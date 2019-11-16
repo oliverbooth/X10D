@@ -68,6 +68,6 @@
         /// <param name="random">The <see cref="Random"/> instance.</param>
         /// <returns>Returns <paramref name="source"/> shuffled.</returns>
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random) =>
-            source.OrderBy(x => random.Next());
+            source.OrderBy(_ => random.Next());
     }
 }
