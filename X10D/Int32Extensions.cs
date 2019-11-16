@@ -11,6 +11,142 @@
     /// </summary>
     public static class Int32Extensions
     {
+        #region DateTime Returns
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is January.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime January(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 1, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is February.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime February(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 2, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is March.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime March(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 3, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is April.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime April(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 4, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is May.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime May(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 5, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is June.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime June(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 6, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is July.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime July(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 7, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is August.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime August(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 8, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is September.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime September(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 9, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is October.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime October(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 10, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is November.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime November(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 11, day, hour, minute, second);
+
+        /// <summary>
+        /// Returns a <see cref="DateTime"/> where the month is December.
+        /// </summary>
+        /// <param name="day">The day of the month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        public static DateTime December(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
+            new DateTime(year, 12, day, hour, minute, second);
+
+        #endregion
+
         #region TimeSpan Returns
 
         // TODO change
