@@ -107,6 +107,7 @@
 
             return builder.ToString();
         }
+
         /// <summary>
         /// Converts a <see cref="String"/> to a <see cref="SecureString"/>.
         /// </summary>
