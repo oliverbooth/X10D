@@ -69,5 +69,24 @@
         /// <returns>Returns <paramref name="source"/> shuffled.</returns>
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random) =>
             source.OrderBy(_ => random.Next());
+
+        /// <summary>
+        /// Shuffles a list.
+        /// </summary>
+        /// <typeparam name="T">The collection type.</typeparam>
+        /// <param name="source">The collection to shuffle.</param>
+        /// <returns>Returns <paramref name="source"/> shuffled.</returns>
+        public static IEnumerable<T> Shuffle<T>(this IList<T> source) =>
+            source.Shuffle(new Random());
+
+        /// <summary>
+        /// Shuffles a list.
+        /// </summary>
+        /// <typeparam name="T">The collection type.</typeparam>
+        /// <param name="source">The collection to shuffle.</param>
+        /// <param name="random">The <see cref="Random"/> instance.</param>
+        /// <returns>Returns <paramref name="source"/> shuffled.</returns>
+        public static IEnumerable<T> Shuffle<T>(this IList<T> source, Random random) =>
+            source.OrderBy(_ => random.Next());
     }
 }
