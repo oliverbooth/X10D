@@ -22,13 +22,5 @@
         /// otherwise.</returns>
         public static bool Between<T>(this T actual, T lower, T upper) where T : IComparable<T> =>
             actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
-
-        /// <summary>
-        /// Gets the value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static TimeSpan Days(this IComparable value) =>
-            TimeSpan.FromDays((double)value);
     }
 }
