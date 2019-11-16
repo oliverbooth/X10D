@@ -24,7 +24,7 @@
             actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
 
         /// <summary>
-        /// Gets the value 
+        /// Gets the value
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>

@@ -68,7 +68,7 @@
                 throw new ArgumentException("Type provided must be an Enum.", "T");
             }
 
-            return (T) Enum.Parse(t, value, ignoreCase);
+            return (T)Enum.Parse(t, value, ignoreCase);
         }
 
         /// <summary>
