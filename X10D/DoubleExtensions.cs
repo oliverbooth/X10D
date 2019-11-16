@@ -32,19 +32,6 @@
             Math.PI * angle / 180.0;
 
         /// <summary>
-        /// Converts the <see cref="Double"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
-        /// </summary>
-        /// <param name="timestamp">The timestamp.</param>
-        /// <param name="isMillis">Optional. Whether or not the input value should be treated as milliseconds. Defaults
-        /// to <see langword="false"/>.</param>
-        /// <returns>Returns a <see cref="DateTime"/> representing <paramref name="timestamp"/> seconds since the Unix
-        /// epoch.</returns>
-        public static DateTime FromUnixTimestamp(this double timestamp, bool isMillis = false) =>
-            isMillis
-                ? DateTimeExtensions.UnixEpoch.AddMilliseconds(timestamp)
-                : DateTimeExtensions.UnixEpoch.AddSeconds(timestamp);
-
-        /// <summary>
         /// Converts the <see cref="Double"/> to a <see cref="Byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>

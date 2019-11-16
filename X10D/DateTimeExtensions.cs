@@ -12,11 +12,6 @@
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// Represents the Unix epoch - midnight on January 1, 1970.
-        /// </summary>
-        public static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0);
-
-        /// <summary>
         /// Calculates someone's age based on a date of birth.
         /// </summary>
         /// <param name="dateOfBirth">The date of birth.</param>
@@ -146,8 +141,8 @@
         /// <returns>Returns a Unix timestamp representing the provided <see cref="DateTime"/>.</returns>
         public static long ToUnixTimeStamp(this DateTime time, bool useMillis = false)
         {
-            TimeSpan difference = time - UnixEpoch;
-            return (long)(useMillis ? difference.TotalMilliseconds : difference.TotalSeconds);
+            DateTimeOffset offset = time;
+            return useMillis ? offset.ToUnixTimeSeconds() : offset.ToUnixTimeMilliseconds();
         }
 
         /// <summary>
