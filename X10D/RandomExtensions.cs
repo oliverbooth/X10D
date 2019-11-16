@@ -4,6 +4,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     #endregion
 
@@ -28,7 +29,7 @@
         /// <param name="source">The collection to draw from.</param>
         /// <returns>Returns a random element of type <see cref="T"/> from <paramref name="source"/>.</returns>
         public static T OneOf<T>(this Random random, params T[] source) =>
-            source[random.Next(source.Length)];
+            source.ToList().OneOf(random);
 
         /// <summary>
         /// Returns a random element from <paramref name="source"/> using the <see cref="Random"/> instance.
