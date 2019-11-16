@@ -112,5 +112,23 @@
         /// otherwise.</returns>
         public static bool IsPrime(this short number) =>
             ((long) number).IsPrime();
+
+        /// <summary>
+        /// Gets an boolean value that represents this integer.
+        /// </summary>
+        /// <param name="value">The integer.</param>
+        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
+        /// <see langword="true"/> otherwise.</returns>
+        public static bool ToBoolean(this short value) =>
+            value != 0;
+
+        /// <summary>
+        /// Gets an boolean value that represents this integer.
+        /// </summary>
+        /// <param name="value">The integer.</param>
+        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
+        /// <see langword="true"/> otherwise.</returns>
+        public static bool ToBoolean(this ushort value) =>
+            value != 0;
     }
 }
