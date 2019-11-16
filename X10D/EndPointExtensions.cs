@@ -8,7 +8,7 @@
     #endregion
 
     /// <summary>
-    /// A set of extension methods for <see cref="EndPoint"/> and derived types.
+    /// Extension methods for <see cref="EndPoint"/> and derived types.
     /// </summary>
     public static class EndPointExtensions
     {
