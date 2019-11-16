@@ -134,8 +134,9 @@
         /// Converts a <see cref="SecureString"/> to a <see cref="String"/>.
         /// </summary>
         /// <param name="str">The <see cref="SecureString"/> to convert.</param>
+        /// <param name="extension">Whether or not to use this extension method.</param>
         /// <returns>Returns a <see cref="String"/>.</returns>
-        public static string ToString(this SecureString str) =>
-            new NetworkCredential(String.Empty, str).Password;
+        public static string ToString(this SecureString str, bool extension) =>
+            extension ? (new NetworkCredential(String.Empty, str).Password) : str.ToString();
     }
 }
