@@ -53,6 +53,30 @@
         #endregion
 
         /// <summary>
+        /// Clamps a value between a minimum and a maximum value.
+        /// </summary>
+        /// <param name="value">The value to clamp.</param>
+        /// <param name="min">The minimum value.</param>
+        /// <param name="max">The maximum value.</param>
+        /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
+        /// <paramref name="min"/> if <paramref name="value"/> is less than it,
+        /// or <paramref name="value"/> itself otherwise.</returns>
+        public static short Clamp(this short value, short min, short max) =>
+            Math.Min(Math.Max(value, min), max);
+
+        /// <summary>
+        /// Clamps a value between a minimum and a maximum value.
+        /// </summary>
+        /// <param name="value">The value to clamp.</param>
+        /// <param name="min">The minimum value.</param>
+        /// <param name="max">The maximum value.</param>
+        /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
+        /// <paramref name="min"/> if <paramref name="value"/> is less than it,
+        /// or <paramref name="value"/> itself otherwise.</returns>
+        public static ushort Clamp(this ushort value, ushort min, ushort max) =>
+            Math.Min(Math.Max(value, min), max);
+
+        /// <summary>
         /// Converts the <see cref="Int16"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
         /// </summary>
         /// <param name="timestamp">The timestamp.</param>

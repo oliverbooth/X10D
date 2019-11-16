@@ -12,6 +12,18 @@
     public static class SingleExtensions
     {
         /// <summary>
+        /// Clamps a value between a minimum and a maximum value.
+        /// </summary>
+        /// <param name="value">The value to clamp.</param>
+        /// <param name="min">The minimum value.</param>
+        /// <param name="max">The maximum value.</param>
+        /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
+        /// <paramref name="min"/> if <paramref name="value"/> is less than it,
+        /// or <paramref name="value"/> itself otherwise.</returns>
+        public static float Clamp(this float value, float min, float max) =>
+            Math.Min(Math.Max(value, min), max);
+
+        /// <summary>
         /// Converts an angle from degrees to radians.
         /// </summary>
         /// <param name="angle">The angle in degrees.</param>
