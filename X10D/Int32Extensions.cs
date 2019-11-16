@@ -12,6 +12,7 @@
     public static class Int32Extensions
     {
         #region TimeSpan Returns
+
         // TODO change
 
         public static TimeSpan Days(this uint number) =>

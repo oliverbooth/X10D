@@ -12,6 +12,7 @@
     public static class Int16Extensions
     {
         #region TimeSpan Returns
+
         // TODO change
 
         public static TimeSpan Days(this ushort number) =>
@@ -85,7 +86,7 @@
         /// <returns>Returns a <see cref="DateTime"/> representing <paramref name="timestamp"/> seconds since the Unix
         /// epoch.</returns>
         public static DateTime FromUnixTimestamp(this short timestamp, bool isMillis = false) =>
-            ((long) timestamp).FromUnixTimestamp(isMillis);
+            ((long)timestamp).FromUnixTimestamp(isMillis);
 
         /// <summary>
         /// Converts the <see cref="UInt16"/> to a <see cref="Byte"/>[].
@@ -103,7 +104,6 @@
         public static byte[] GetBytes(this short number) =>
             BitConverter.GetBytes(number);
 
-
         /// <summary>
         /// Determines if the <see cref="Int16"/> is a prime number.
         /// </summary>
@@ -111,7 +111,7 @@
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
         /// otherwise.</returns>
         public static bool IsPrime(this short number) =>
-            ((long) number).IsPrime();
+            ((long)number).IsPrime();
 
         /// <summary>
         /// Gets an boolean value that represents this integer.

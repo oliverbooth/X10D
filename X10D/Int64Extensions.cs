@@ -12,6 +12,7 @@
     public static class Int64Extensions
     {
         #region TimeSpan Returns
+
         // TODO change
 
         public static TimeSpan Days(this ulong number) =>
@@ -123,7 +124,7 @@
                 return false;
             }
 
-            long boundary = (long) Math.Floor(Math.Sqrt(number));
+            long boundary = (long)Math.Floor(Math.Sqrt(number));
             for (int i = 3; i <= boundary; i += 2)
             {
                 if (number % i == 0)
@@ -131,7 +132,7 @@
                     return false;
                 }
             }
-            
+
             return true;
         }
 

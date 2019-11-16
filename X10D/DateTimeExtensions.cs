@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="dateOfBirth">The date of birth.</param>
         public static int Age(this DateTime dateOfBirth) =>
-            (int) (((DateTime.Today - TimeSpan.FromDays(1) - dateOfBirth.Date).TotalDays + 1) / 365.2425);
+            (int)(((DateTime.Today - TimeSpan.FromDays(1) - dateOfBirth.Date).TotalDays + 1) / 365.2425);
 
         /// <summary>
         /// Gets a DateTime representing the first specified day in the current month
@@ -147,7 +147,7 @@
         public static long ToUnixTimeStamp(this DateTime time, bool useMillis = false)
         {
             TimeSpan difference = time - UnixEpoch;
-            return (long) (useMillis ? difference.TotalMilliseconds : difference.TotalSeconds);
+            return (long)(useMillis ? difference.TotalMilliseconds : difference.TotalSeconds);
         }
 
         /// <summary>
