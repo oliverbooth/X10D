@@ -82,8 +82,14 @@
         /// to <see langword="false"/>.</param>
         /// <returns>Returns a <see cref="DateTime"/> representing <paramref name="timestamp"/> seconds since the Unix
         /// epoch.</returns>
-        public static DateTime FromUnixTimestamp(this long timestamp, bool isMillis = false) =>
-            ((double)timestamp).FromUnixTimestamp(isMillis);
+        public static DateTime FromUnixTimestamp(this long timestamp, bool isMillis = false)
+        {
+            DateTimeOffset offset = isMillis
+                ? DateTimeOffset.FromUnixTimeMilliseconds(timestamp)
+                : DateTimeOffset.FromUnixTimeSeconds(timestamp);
+
+            return offset.DateTime;
+        }
 
         /// <summary>
         /// Converts the <see cref="UInt64"/> to a <see cref="Byte"/>[].
