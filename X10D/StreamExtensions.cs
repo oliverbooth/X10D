@@ -10,7 +10,7 @@
     #endregion
 
     /// <summary>
-    /// A set of extension methods for <see cref="Stream"/>.
+    /// Extension methods for <see cref="Stream"/>.
     /// </summary>
     public static class StreamExtensions
     {
