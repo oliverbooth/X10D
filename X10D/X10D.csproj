@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BooleanExtensions.cs" />
     <Compile Include="ByteExtensions.cs" />
     <Compile Include="CharExtensions.cs" />
     <Compile Include="ConvertibleExtensions.cs" />
