@@ -120,7 +120,7 @@
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this short value) =>
-            value != 0;
+            ((long)value).ToBoolean();
 
         /// <summary>
         /// Gets an boolean value that represents this integer.
@@ -129,6 +129,6 @@
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this ushort value) =>
-            value != 0;
+            ((ulong)value).ToBoolean();
     }
 }
