@@ -118,16 +118,14 @@
             {
                 return null;
             }
-            else
-            {
-                SecureString result = new SecureString();
-                foreach (char c in str)
-                {
-                    result.AppendChar(c);
-                }
 
-                return result;
+            SecureString result = new SecureString();
+            foreach (char c in str)
+            {
+                result.AppendChar(c);
             }
+
+            return result;
         }
 
         /// <summary>
