@@ -13,6 +13,14 @@
     public static class RandomExtensions
     {
         /// <summary>
+        /// Returns either <see langword="true"/> or <see langword="false"/> based on <paramref name="random"/>'s next
+        /// generation.
+        /// </summary>
+        /// <param name="random">The <see cref="Random"/> instance.</param>
+        public static bool CoinToss(this Random random) =>
+            random.Next(2) == 0;
+
+        /// <summary>
         /// Returns a random element from <paramref name="source"/> using the <see cref="Random"/> instance.
         /// </summary>
         /// <typeparam name="T">The collection type.</typeparam>
