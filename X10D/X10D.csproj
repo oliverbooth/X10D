@@ -50,6 +50,7 @@
     <Compile Include="ConvertibleExtensions.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="ComparableExtensions.cs" />
+    <Compile Include="EndPointExtensions.cs" />
     <Compile Include="SingleExtensions.cs" />
     <Compile Include="DoubleExtensions.cs" />
     <Compile Include="Int16Extensions.cs" />
