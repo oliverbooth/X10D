@@ -256,7 +256,7 @@
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this int value) =>
-            value != 0;
+            ((long)value).ToBoolean();
 
         /// <summary>
         /// Gets an boolean value that represents this integer.
@@ -265,6 +265,6 @@
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this uint value) =>
-            value != 0;
+            ((ulong)value).ToBoolean();
     }
 }
