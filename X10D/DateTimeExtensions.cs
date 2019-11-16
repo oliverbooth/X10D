@@ -141,7 +141,7 @@
         /// <returns>Returns a Unix timestamp representing the provided <see cref="DateTime"/>.</returns>
         public static long ToUnixTimeStamp(this DateTime time, bool useMillis = false)
         {
-            DateTimeOffset offset = time;
+            DateTimeOffset offset = time.ToUniversalTime();
             return useMillis ? offset.ToUnixTimeSeconds() : offset.ToUnixTimeMilliseconds();
         }
 
