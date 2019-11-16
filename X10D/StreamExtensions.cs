@@ -22,7 +22,7 @@
         /// <returns>Returns a <see cref="Byte"/> array representing the hash of the stream.</returns>
         public static byte[] GetHash<T>(this Stream stream) where T : HashAlgorithm
         {
-            MethodInfo create = typeof(T).GetMethod("Create", new Type[] { });
+            MethodInfo create = typeof(T).GetMethod("Create", Array.Empty<Type>());
             using T    crypt  = (T)create?.Invoke(null, null);
             return crypt?.ComputeHash(stream);
         }
