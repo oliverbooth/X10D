@@ -21,8 +21,10 @@
         /// </summary>
         /// <param name="image">The image to convert.</param>
         /// <returns>Returns an <see cref="Image"/>.</returns>
-        public static async Task<Image> ToSquareAsync(this Image image) =>
-            await Task.Run(image.ToSquare);
+        public static async Task<Image> ToSquareAsync(this Image image)
+        {
+            return await Task.Run(image.ToSquare);
+        }
 
         /// <summary>
         /// Asynchronously converts the image so that its aspect ratio is 1:1, surrounding any new area with
@@ -31,8 +33,10 @@
         /// <param name="image">The image to convert.</param>
         /// <param name="size">The new size of the image, i.e. the value of both the width and height.</param>
         /// <returns>Returns an <see cref="Image"/>.</returns>
-        public static async Task<Image> ToSquareAsync(this Image image, int size) =>
-            await Task.Run(() => image.ToSquare(size));
+        public static async Task<Image> ToSquareAsync(this Image image, int size)
+        {
+            return await Task.Run(() => image.ToSquare(size));
+        }
 
         /// <summary>
         /// Asynchronously converts the image so that its aspect ratio is 1:1, surrounding any new area with a
@@ -42,8 +46,10 @@
         /// <param name="size">The new size of the image, i.e. the value of both the width and height.</param>
         /// <param name="background">The background color to fill.</param>
         /// <returns>Returns an <see cref="Image"/>.</returns>
-        public static async Task<Image> ToSquareAsync(this Image image, int size, Color background) =>
-            await Task.Run(() => image.ToSquare(size, background));
+        public static async Task<Image> ToSquareAsync(this Image image, int size, Color background)
+        {
+            return await Task.Run(() => image.ToSquare(size, background));
+        }
 
         /// <summary>
         /// Asynchronously converts the image so that its aspect ratio is 1:1, surrounding any new area with a
@@ -52,16 +58,20 @@
         /// <param name="image">The image to convert.</param>
         /// <param name="background">The background color to fill.</param>
         /// <returns>Returns an <see cref="Image"/>.</returns>
-        public static async Task<Image> ToSquareAsync(this Image image, Color background) =>
-            await Task.Run(() => image.ToSquare(background));
+        public static async Task<Image> ToSquareAsync(this Image image, Color background)
+        {
+            return await Task.Run(() => image.ToSquare(background));
+        }
 
         /// <summary>
         /// Converts the image so that its aspect ratio is 1:1, surrounding any new area with transparency.
         /// </summary>
         /// <param name="image">The image to convert.</param>
         /// <returns>Returns an <see cref="Image"/>.</returns>
-        public static Image ToSquare(this Image image) =>
-            image.ToSquare(Color.Transparent);
+        public static Image ToSquare(this Image image)
+        {
+            return image.ToSquare(Color.Transparent);
+        }
 
         /// <summary>
         /// Converts the image so that its aspect ratio is 1:1, surrounding any new area with transparency.
@@ -69,8 +79,10 @@
         /// <param name="image">The image to convert.</param>
         /// <param name="size">The new size of the image, i.e. the value of both the width and height.</param>
         /// <returns>Returns an <see cref="Image"/>.</returns>
-        public static Image ToSquare(this Image image, int size) =>
-            image.ToSquare(size, Color.Transparent);
+        public static Image ToSquare(this Image image, int size)
+        {
+            return image.ToSquare(size, Color.Transparent);
+        }
 
         /// <summary>
         /// Converts the image so that its aspect ratio is 1:1, surrounding any new area with a specified background
@@ -117,8 +129,10 @@
         /// <param name="width">The new width.</param>
         /// <param name="height">The new height.</param>
         /// <returns>Returns a new <see cref="Image"/>.</returns>
-        public static async Task<Bitmap> ScaleAsync(this Image image, int width, int height) =>
-            await Task.Run(() => image.Scale(width, height));
+        public static async Task<Bitmap> ScaleAsync(this Image image, int width, int height)
+        {
+            return await Task.Run(() => image.Scale(width, height));
+        }
 
         /// <summary>
         /// Asynchronously scales the image.
@@ -126,8 +140,10 @@
         /// <param name="image">The image to scale.</param>
         /// <param name="factor">The scale factor.</param>
         /// <returns>Returns a new <see cref="Image"/>.</returns>
-        public static async Task<Bitmap> ScaleAsync(this Image image, float factor) =>
-            await Task.Run(() => image.Scale(factor));
+        public static async Task<Bitmap> ScaleAsync(this Image image, float factor)
+        {
+            return await Task.Run(() => image.Scale(factor));
+        }
 
         /// <summary>
         /// Scales the image.
@@ -135,8 +151,10 @@
         /// <param name="image">The image to scale.</param>
         /// <param name="factor">The scale factor.</param>
         /// <returns>Returns a new <see cref="Image"/>.</returns>
-        public static Bitmap Scale(this Image image, float factor) =>
-            image.Scale((int)(image.Width * factor), (int)(image.Height * factor));
+        public static Bitmap Scale(this Image image, float factor)
+        {
+            return image.Scale((int) (image.Width * factor), (int) (image.Height * factor));
+        }
 
         /// <summary>
         /// Scales the image.

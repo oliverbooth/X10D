@@ -15,38 +15,60 @@
 
         // TODO change
 
-        public static TimeSpan Days(this ulong number) =>
-            TimeSpan.FromDays(number);
+        public static TimeSpan Days(this ulong number)
+        {
+            return TimeSpan.FromDays(number);
+        }
 
-        public static TimeSpan Hours(this ulong number) =>
-            TimeSpan.FromHours(number);
+        public static TimeSpan Hours(this ulong number)
+        {
+            return TimeSpan.FromHours(number);
+        }
 
-        public static TimeSpan Milliseconds(this ulong number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Milliseconds(this ulong number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Minutes(this ulong number) =>
-            TimeSpan.FromMinutes(number);
+        public static TimeSpan Minutes(this ulong number)
+        {
+            return TimeSpan.FromMinutes(number);
+        }
 
-        public static TimeSpan Seconds(this ulong number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Seconds(this ulong number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Days(this long number) =>
-            TimeSpan.FromDays(number);
+        public static TimeSpan Days(this long number)
+        {
+            return TimeSpan.FromDays(number);
+        }
 
-        public static TimeSpan Hours(this long number) =>
-            TimeSpan.FromHours(number);
+        public static TimeSpan Hours(this long number)
+        {
+            return TimeSpan.FromHours(number);
+        }
 
-        public static TimeSpan Milliseconds(this long number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Milliseconds(this long number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Minutes(this long number) =>
-            TimeSpan.FromMinutes(number);
+        public static TimeSpan Minutes(this long number)
+        {
+            return TimeSpan.FromMinutes(number);
+        }
 
-        public static TimeSpan Seconds(this long number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Seconds(this long number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Ticks(this long number) =>
-            TimeSpan.FromTicks(number);
+        public static TimeSpan Ticks(this long number)
+        {
+            return TimeSpan.FromTicks(number);
+        }
 
         #endregion
 
@@ -59,8 +81,10 @@
         /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
         /// <paramref name="min"/> if <paramref name="value"/> is less than it,
         /// or <paramref name="value"/> itself otherwise.</returns>
-        public static long Clamp(this long value, long min, long max) =>
-            Math.Min(Math.Max(value, min), max);
+        public static long Clamp(this long value, long min, long max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
 
         /// <summary>
         /// Clamps a value between a minimum and a maximum value.
@@ -71,8 +95,10 @@
         /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
         /// <paramref name="min"/> if <paramref name="value"/> is less than it,
         /// or <paramref name="value"/> itself otherwise.</returns>
-        public static ulong Clamp(this ulong value, ulong min, ulong max) =>
-            Math.Min(Math.Max(value, min), max);
+        public static ulong Clamp(this ulong value, ulong min, ulong max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
 
         /// <summary>
         /// Converts the <see cref="Int64"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
@@ -96,16 +122,20 @@
         /// </summary>
         /// <param name="number">The number to convert.</param>
         /// <returns>Returns a <see cref="Byte"/>[].</returns>
-        public static byte[] GetBytes(this ulong number) =>
-            BitConverter.GetBytes(number);
+        public static byte[] GetBytes(this ulong number)
+        {
+            return BitConverter.GetBytes(number);
+        }
 
         /// <summary>
         /// Converts the <see cref="Int64"/> to a <see cref="Byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
         /// <returns>Returns a <see cref="Byte"/>[].</returns>
-        public static byte[] GetBytes(this long number) =>
-            BitConverter.GetBytes(number);
+        public static byte[] GetBytes(this long number)
+        {
+            return BitConverter.GetBytes(number);
+        }
 
         /// <summary>
         /// Determines if the <see cref="Int64"/> is a prime number.
@@ -148,8 +178,10 @@
         /// <param name="value">The integer.</param>
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
-        public static bool ToBoolean(this long value) =>
-            value != 0;
+        public static bool ToBoolean(this long value)
+        {
+            return value != 0;
+        }
 
         /// <summary>
         /// Gets an boolean value that represents this integer.
@@ -157,7 +189,9 @@
         /// <param name="value">The integer.</param>
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
-        public static bool ToBoolean(this ulong value) =>
-            value != 0;
+        public static bool ToBoolean(this ulong value)
+        {
+            return value != 0;
+        }
     }
 }

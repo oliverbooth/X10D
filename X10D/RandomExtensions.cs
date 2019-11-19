@@ -18,8 +18,10 @@
         /// generation.
         /// </summary>
         /// <param name="random">The <see cref="Random"/> instance.</param>
-        public static bool CoinToss(this Random random) =>
-            random.Next(2) == 0;
+        public static bool CoinToss(this Random random)
+        {
+            return random.Next(2) == 0;
+        }
 
         /// <summary>
         /// Returns a random element from <paramref name="source"/> using the <see cref="Random"/> instance.
@@ -28,8 +30,10 @@
         /// <param name="random">The <see cref="Random"/> instance.</param>
         /// <param name="source">The collection to draw from.</param>
         /// <returns>Returns a random element of type <see cref="T"/> from <paramref name="source"/>.</returns>
-        public static T OneOf<T>(this Random random, params T[] source) =>
-            source.ToList().OneOf(random);
+        public static T OneOf<T>(this Random random, params T[] source)
+        {
+            return source.ToList().OneOf(random);
+        }
 
         /// <summary>
         /// Returns a random element from <paramref name="source"/> using the <see cref="Random"/> instance.
@@ -38,7 +42,9 @@
         /// <param name="random">The <see cref="Random"/> instance.</param>
         /// <param name="source">The collection to draw from.</param>
         /// <returns>Returns a random element of type <see cref="T"/> from <paramref name="source"/>.</returns>
-        public static T OneOf<T>(this Random random, IList<T> source) =>
-            source[random.Next(source.Count)];
+        public static T OneOf<T>(this Random random, IList<T> source)
+        {
+            return source[random.Next(source.Count)];
+        }
     }
 }

@@ -21,8 +21,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime January(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 1, day, hour, minute, second);
+        public static DateTime January(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 1, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is February.
@@ -32,8 +34,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime February(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 2, day, hour, minute, second);
+        public static DateTime February(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 2, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is March.
@@ -43,8 +47,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime March(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 3, day, hour, minute, second);
+        public static DateTime March(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 3, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is April.
@@ -54,8 +60,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime April(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 4, day, hour, minute, second);
+        public static DateTime April(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 4, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is May.
@@ -65,8 +73,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime May(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 5, day, hour, minute, second);
+        public static DateTime May(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 5, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is June.
@@ -76,8 +86,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime June(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 6, day, hour, minute, second);
+        public static DateTime June(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 6, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is July.
@@ -87,8 +99,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime July(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 7, day, hour, minute, second);
+        public static DateTime July(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 7, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is August.
@@ -98,8 +112,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime August(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 8, day, hour, minute, second);
+        public static DateTime August(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 8, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is September.
@@ -109,8 +125,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime September(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 9, day, hour, minute, second);
+        public static DateTime September(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 9, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is October.
@@ -120,8 +138,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime October(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 10, day, hour, minute, second);
+        public static DateTime October(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 10, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is November.
@@ -131,8 +151,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime November(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 11, day, hour, minute, second);
+        public static DateTime November(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 11, day, hour, minute, second);
+        }
 
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is December.
@@ -142,8 +164,10 @@
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
-        public static DateTime December(this int day, int year, int hour = 0, int minute = 0, int second = 0) =>
-            new DateTime(year, 12, day, hour, minute, second);
+        public static DateTime December(this int day, int year, int hour = 0, int minute = 0, int second = 0)
+        {
+            return new DateTime(year, 12, day, hour, minute, second);
+        }
 
         #endregion
 
@@ -151,41 +175,65 @@
 
         // TODO change
 
-        public static TimeSpan Days(this uint number) =>
-            TimeSpan.FromDays(number);
+        public static TimeSpan Days(this uint number)
+        {
+            return TimeSpan.FromDays(number);
+        }
 
-        public static TimeSpan Hours(this uint number) =>
-            TimeSpan.FromHours(number);
+        public static TimeSpan Hours(this uint number)
+        {
+            return TimeSpan.FromHours(number);
+        }
 
-        public static TimeSpan Milliseconds(this uint number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Milliseconds(this uint number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Minutes(this uint number) =>
-            TimeSpan.FromMinutes(number);
+        public static TimeSpan Minutes(this uint number)
+        {
+            return TimeSpan.FromMinutes(number);
+        }
 
-        public static TimeSpan Seconds(this uint number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Seconds(this uint number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Ticks(this uint number) =>
-            TimeSpan.FromTicks(number);
+        public static TimeSpan Ticks(this uint number)
+        {
+            return TimeSpan.FromTicks(number);
+        }
 
-        public static TimeSpan Days(this int number) =>
-            TimeSpan.FromDays(number);
+        public static TimeSpan Days(this int number)
+        {
+            return TimeSpan.FromDays(number);
+        }
 
-        public static TimeSpan Hours(this int number) =>
-            TimeSpan.FromHours(number);
+        public static TimeSpan Hours(this int number)
+        {
+            return TimeSpan.FromHours(number);
+        }
 
-        public static TimeSpan Milliseconds(this int number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Milliseconds(this int number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Minutes(this int number) =>
-            TimeSpan.FromMinutes(number);
+        public static TimeSpan Minutes(this int number)
+        {
+            return TimeSpan.FromMinutes(number);
+        }
 
-        public static TimeSpan Seconds(this int number) =>
-            TimeSpan.FromSeconds(number);
+        public static TimeSpan Seconds(this int number)
+        {
+            return TimeSpan.FromSeconds(number);
+        }
 
-        public static TimeSpan Ticks(this int number) =>
-            TimeSpan.FromTicks(number);
+        public static TimeSpan Ticks(this int number)
+        {
+            return TimeSpan.FromTicks(number);
+        }
 
         #endregion
 
@@ -198,8 +246,10 @@
         /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
         /// <paramref name="min"/> if <paramref name="value"/> is less than it,
         /// or <paramref name="value"/> itself otherwise.</returns>
-        public static int Clamp(this int value, int min, int max) =>
-            Math.Min(Math.Max(value, min), max);
+        public static int Clamp(this int value, int min, int max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
 
         /// <summary>
         /// Clamps a value between a minimum and a maximum value.
@@ -210,8 +260,10 @@
         /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
         /// <paramref name="min"/> if <paramref name="value"/> is less than it,
         /// or <paramref name="value"/> itself otherwise.</returns>
-        public static uint Clamp(this uint value, uint min, uint max) =>
-            Math.Min(Math.Max(value, min), max);
+        public static uint Clamp(this uint value, uint min, uint max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
 
         /// <summary>
         /// Converts the <see cref="Int32"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
@@ -221,24 +273,30 @@
         /// to <see langword="false"/>..</param>
         /// <returns>Returns a <see cref="DateTime"/> representing <paramref name="timestamp"/> seconds since the Unix
         /// epoch.</returns>
-        public static DateTime FromUnixTimestamp(this int timestamp, bool isMillis = false) =>
-            ((long)timestamp).FromUnixTimestamp(isMillis);
+        public static DateTime FromUnixTimestamp(this int timestamp, bool isMillis = false)
+        {
+            return ((long) timestamp).FromUnixTimestamp(isMillis);
+        }
 
         /// <summary>
         /// Converts the <see cref="UInt32"/> to a <see cref="Byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
         /// <returns>Returns a <see cref="Byte"/>[].</returns>
-        public static byte[] GetBytes(this uint number) =>
-            BitConverter.GetBytes(number);
+        public static byte[] GetBytes(this uint number)
+        {
+            return BitConverter.GetBytes(number);
+        }
 
         /// <summary>
         /// Converts the <see cref="Int32"/> to a <see cref="Byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
         /// <returns>Returns a <see cref="Byte"/>[].</returns>
-        public static byte[] GetBytes(this int number) =>
-            BitConverter.GetBytes(number);
+        public static byte[] GetBytes(this int number)
+        {
+            return BitConverter.GetBytes(number);
+        }
 
         /// <summary>
         /// Determines if the <see cref="Int32"/> is a prime number.
@@ -246,8 +304,10 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
         /// otherwise.</returns>
-        public static bool IsPrime(this int number) =>
-            ((long)number).IsPrime();
+        public static bool IsPrime(this int number)
+        {
+            return ((long) number).IsPrime();
+        }
 
         /// <summary>
         /// Gets an boolean value that represents this integer.
@@ -255,8 +315,10 @@
         /// <param name="value">The integer.</param>
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
-        public static bool ToBoolean(this int value) =>
-            ((long)value).ToBoolean();
+        public static bool ToBoolean(this int value)
+        {
+            return ((long) value).ToBoolean();
+        }
 
         /// <summary>
         /// Gets an boolean value that represents this integer.
@@ -264,7 +326,9 @@
         /// <param name="value">The integer.</param>
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
-        public static bool ToBoolean(this uint value) =>
-            ((ulong)value).ToBoolean();
+        public static bool ToBoolean(this uint value)
+        {
+            return ((ulong) value).ToBoolean();
+        }
     }
 }

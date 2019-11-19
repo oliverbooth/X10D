@@ -18,7 +18,9 @@
         /// <param name="count">The repeat count.</param>
         /// <returns>Returns a <see cref="String"/> whose value is <paramref name="c"/> repeated
         /// <paramref name="count"/> times.</returns>
-        public static string Repeat(this char c, int count) =>
-            new string(c, count);
+        public static string Repeat(this char c, int count)
+        {
+            return new string(c, count);
+        }
     }
 }

@@ -15,8 +15,10 @@
         /// Calculates someone's age based on a date of birth.
         /// </summary>
         /// <param name="dateOfBirth">The date of birth.</param>
-        public static int Age(this DateTime dateOfBirth) =>
-            (int)(((DateTime.Today - TimeSpan.FromDays(1) - dateOfBirth.Date).TotalDays + 1) / 365.2425);
+        public static int Age(this DateTime dateOfBirth)
+        {
+            return (int) (((DateTime.Today - TimeSpan.FromDays(1) - dateOfBirth.Date).TotalDays + 1) / 365.2425);
+        }
 
         /// <summary>
         /// Gets a DateTime representing the first specified day in the current month
@@ -40,8 +42,10 @@
         /// Gets a <see cref="DateTime"/> representing the first day in the current month.
         /// </summary>
         /// <param name="current">The current date.</param>
-        public static DateTime FirstDayOfMonth(this DateTime current) =>
-            current.AddDays(1 - current.Day);
+        public static DateTime FirstDayOfMonth(this DateTime current)
+        {
+            return current.AddDays(1 - current.Day);
+        }
 
         /// <summary>
         /// Gets a <see cref="DateTime"/> representing the last day in the current month.
@@ -72,8 +76,10 @@
         /// Gets a <see cref="DateTime"/> representing midnight on the current date.
         /// </summary>
         /// <param name="current">The current date.</param>
-        public static DateTime Midnight(this DateTime current) =>
-            new DateTime(current.Year, current.Month, current.Day);
+        public static DateTime Midnight(this DateTime current)
+        {
+            return new DateTime(current.Year, current.Month, current.Day);
+        }
 
         /// <summary>
         /// Gets a <see cref="DateTime"/> representing the first date following the current date which falls on the
@@ -98,8 +104,10 @@
         /// Gets a <see cref="DateTime"/> representing noon on the current date.
         /// </summary>
         /// <param name="current">The current date.</param>
-        public static DateTime Noon(this DateTime current) =>
-            new DateTime(current.Year, current.Month, current.Day, 12, 0, 0);
+        public static DateTime Noon(this DateTime current)
+        {
+            return new DateTime(current.Year, current.Month, current.Day, 12, 0, 0);
+        }
 
         /// <summary>
         /// Sets the time of the current date with minute precision.
@@ -107,8 +115,10 @@
         /// <param name="current">The current date.</param>
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
-        public static DateTime SetTime(this DateTime current, int hour, int minute) =>
-            current.SetTime(hour, minute, 0, 0);
+        public static DateTime SetTime(this DateTime current, int hour, int minute)
+        {
+            return current.SetTime(hour, minute, 0, 0);
+        }
 
         /// <summary>
         /// Sets the time of the current date with second precision.
@@ -118,8 +128,10 @@
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
         /// <returns></returns>
-        public static DateTime SetTime(this DateTime current, int hour, int minute, int second) =>
-            current.SetTime(hour, minute, second, 0);
+        public static DateTime SetTime(this DateTime current, int hour, int minute, int second)
+        {
+            return current.SetTime(hour, minute, second, 0);
+        }
 
         /// <summary>
         /// Sets the time of the current date with millisecond precision.
@@ -129,8 +141,10 @@
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
         /// <param name="millisecond">The millisecond.</param>
-        public static DateTime SetTime(this DateTime current, int hour, int minute, int second, int millisecond) =>
-            new DateTime(current.Year, current.Month, current.Day, hour, minute, second, millisecond);
+        public static DateTime SetTime(this DateTime current, int hour, int minute, int second, int millisecond)
+        {
+            return new DateTime(current.Year, current.Month, current.Day, hour, minute, second, millisecond);
+        }
 
         /// <summary>
         /// Converts the <see cref="DateTime"/> to a Unix timestamp.
@@ -151,7 +165,9 @@
         /// <param name="date">The <see cref="DateTime"/> to copy.</param>
         /// <param name="year">The year to set.</param>
         /// <returns>Returns a <see cref="DateTime"/>.</returns>
-        public static DateTime WithYear(this DateTime date, int year) =>
-            new DateTime(year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
+        public static DateTime WithYear(this DateTime date, int year)
+        {
+            return new DateTime(year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
+        }
     }
 }

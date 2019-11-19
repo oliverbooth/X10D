@@ -19,16 +19,20 @@
         /// </summary>
         /// <param name="data">The base-64 string to decode.</param>
         /// <returns>Returns the string in plain text.</returns>
-        public static string Base64Decode(this string data) =>
-            Convert.FromBase64String(data).GetString();
+        public static string Base64Decode(this string data)
+        {
+            return Convert.FromBase64String(data).GetString();
+        }
 
         /// <summary>
         /// Encodes a base-64 encoded string.
         /// </summary>
         /// <param name="value">The plain text string to decode.</param>
         /// <returns>Returns the string in plain text.</returns>
-        public static string Base64Encode(this string value) =>
-            Convert.ToBase64String(value.GetBytes());
+        public static string Base64Encode(this string value)
+        {
+            return Convert.ToBase64String(value.GetBytes());
+        }
 
         /// <summary>
         /// Parses a <see cref="String"/> into an <see cref="Enum"/>.
@@ -36,8 +40,10 @@
         /// <typeparam name="T">The type of the Enum</typeparam>
         /// <param name="value">String value to parse</param>
         /// <returns>The Enum corresponding to the stringExtensions</returns>
-        public static T EnumParse<T>(this string value) =>
-            value.EnumParse<T>(false);
+        public static T EnumParse<T>(this string value)
+        {
+            return value.EnumParse<T>(false);
+        }
 
         /// <summary>
         /// Parses a <see cref="String"/> into an <see cref="Enum"/>.
@@ -77,8 +83,10 @@
         /// </summary>
         /// <param name="str">The string to convert.</param>
         /// <returns>Returns a <see cref="Byte"/>[].</returns>
-        public static byte[] GetBytes(this string str) =>
-            str.GetBytes(Encoding.UTF8);
+        public static byte[] GetBytes(this string str)
+        {
+            return str.GetBytes(Encoding.UTF8);
+        }
 
         /// <summary>
         /// Gets a <see cref="Byte"/>[] representing the value the <see cref="String"/> with the provided encoding.
@@ -86,8 +94,10 @@
         /// <param name="str">The string to convert.</param>
         /// <param name="encoding">The encoding to use.</param>
         /// <returns>Returns a <see cref="Byte"/>[].</returns>
-        public static byte[] GetBytes(this string str, Encoding encoding) =>
-            encoding.GetBytes(str);
+        public static byte[] GetBytes(this string str, Encoding encoding)
+        {
+            return encoding.GetBytes(str);
+        }
 
         /// <summary>
         /// Repeats a string a specified number of times.
@@ -135,7 +145,9 @@
         /// <param name="str">The <see cref="SecureString"/> to convert.</param>
         /// <param name="extension">Whether or not to use this extension method.</param>
         /// <returns>Returns a <see cref="String"/>.</returns>
-        public static string ToString(this SecureString str, bool extension) =>
-            extension ? (new NetworkCredential(String.Empty, str).Password) : str.ToString();
+        public static string ToString(this SecureString str, bool extension)
+        {
+            return extension ? (new NetworkCredential(String.Empty, str).Password) : str.ToString();
+        }
     }
 }
