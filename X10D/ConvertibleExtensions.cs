@@ -17,8 +17,10 @@
         /// <typeparam name="T">The type to convert to.</typeparam>
         /// <param name="obj">The object to convert.</param>
         /// <returns>Returns the value converted to <see cref="T"/>.</returns>
-        public static T To<T>(this IConvertible obj) =>
-            (T)Convert.ChangeType(obj, typeof(T));
+        public static T To<T>(this IConvertible obj)
+        {
+            return (T) Convert.ChangeType(obj, typeof(T));
+        }
 
         /// <summary>
         /// Converts the object to another type, returning the default value on failure.

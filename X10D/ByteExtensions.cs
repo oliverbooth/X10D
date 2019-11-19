@@ -19,56 +19,70 @@
         /// </summary>
         /// <param name="bytes">The bytes to get.</param>
         /// <returns>Returns a <see cref="String"/>.</returns>
-        public static string AsString(this IEnumerable<byte> bytes) =>
-            BitConverter.ToString(bytes.ToArray());
+        public static string AsString(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToString(bytes.ToArray());
+        }
 
         /// <summary>
         /// Converts the <see cref="Byte"/>[] to an <see cref="Int16"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="Int16"/>.</returns>
-        public static short GetInt16(this IEnumerable<byte> bytes) =>
-            BitConverter.ToInt16(bytes.ToArray(), 0);
+        public static short GetInt16(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToInt16(bytes.ToArray(), 0);
+        }
 
         /// <summary>
         /// Converts the <see cref="Byte"/>[] to an <see cref="Int32"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="Int32"/>.</returns>
-        public static int GetInt32(this IEnumerable<byte> bytes) =>
-            BitConverter.ToInt32(bytes.ToArray(), 0);
+        public static int GetInt32(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToInt32(bytes.ToArray(), 0);
+        }
 
         /// <summary>
         /// Converts the <see cref="Byte"/>[] to an <see cref="Int64"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="Int64"/>.</returns>
-        public static long GetInt64(this IEnumerable<byte> bytes) =>
-            BitConverter.ToInt64(bytes.ToArray(), 0);
+        public static long GetInt64(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToInt64(bytes.ToArray(), 0);
+        }
 
         /// <summary>
         /// Converts the <see cref="Byte"/>[] to a <see cref="UInt16"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="UInt16"/>.</returns>
-        public static ushort GetUInt16(this IEnumerable<byte> bytes) =>
-            BitConverter.ToUInt16(bytes.ToArray(), 0);
+        public static ushort GetUInt16(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToUInt16(bytes.ToArray(), 0);
+        }
 
         /// <summary>
         /// Converts the <see cref="Byte"/>[] to an <see cref="UInt32"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="UInt32"/>.</returns>
-        public static uint GetUInt32(this IEnumerable<byte> bytes) =>
-            BitConverter.ToUInt32(bytes.ToArray(), 0);
+        public static uint GetUInt32(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToUInt32(bytes.ToArray(), 0);
+        }
 
         /// <summary>
         /// Converts the <see cref="Byte"/>[] to an <see cref="UInt64"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="UInt64"/>.</returns>
-        public static ulong GetUInt64(this IEnumerable<byte> bytes) =>
-            BitConverter.ToUInt64(bytes.ToArray(), 0);
+        public static ulong GetUInt64(this IEnumerable<byte> bytes)
+        {
+            return BitConverter.ToUInt64(bytes.ToArray(), 0);
+        }
 
         /// <summary>
         /// Gets a <see cref="String"/> representing the value the <see cref="Byte"/>[] with
@@ -76,8 +90,10 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns a <see cref="String"/>.</returns>
-        public static string GetString(this IEnumerable<byte> bytes) =>
-            bytes.GetString(Encoding.UTF8);
+        public static string GetString(this IEnumerable<byte> bytes)
+        {
+            return bytes.GetString(Encoding.UTF8);
+        }
 
         /// <summary>
         /// Gets a <see cref="String"/> representing the value the <see cref="Byte"/>[] with the provided encoding.

@@ -20,7 +20,9 @@
         /// <param name="upper">The exclusive upper bound.</param>
         /// <returns>Returns <see langword="true"/> if the value is between the bounds, <see langword="false"/>
         /// otherwise.</returns>
-        public static bool Between<T>(this T actual, T lower, T upper) where T : IComparable<T> =>
-            actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
+        public static bool Between<T>(this T actual, T lower, T upper) where T : IComparable<T>
+        {
+            return actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
+        }
     }
 }
