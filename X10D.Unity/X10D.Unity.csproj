@@ -39,11 +39,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>F:\Program Files\Unity\2019.1.0f2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>F:\Program Files\Unity\2019.1.0f2\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\X10D\X10D.csproj">
-      <Project>{de210f83-fc9a-4c23-ac2c-7a060960f716}</Project>
+      <Project>{4a8cc062-8b82-4625-b3cc-7dbeab2af149}</Project>
       <Name>X10D</Name>
     </ProjectReference>
   </ItemGroup>
