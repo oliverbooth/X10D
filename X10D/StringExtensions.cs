@@ -3,6 +3,7 @@
     #region Using Directives
 
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Security;
     using System.Text;
@@ -64,7 +65,7 @@
             if (value.Length == 0)
             {
                 throw new ArgumentException("Must specify valid information for parsing in the string.",
-                                            nameof(value));
+                    nameof(value));
             }
 
             Type t = typeof(T);
@@ -74,7 +75,7 @@
                 throw new ArgumentException("Type provided must be an Enum.", "T");
             }
 
-            return (T)Enum.Parse(t, value, ignoreCase);
+            return (T) Enum.Parse(t, value, ignoreCase);
         }
 
         /// <summary>
@@ -116,6 +117,21 @@
             }
 
             return builder.ToString();
+        }
+
+        /// <summary>
+        /// Splits the <see cref="String"/> into chunks that are no greater than <paramref name="chunkSize"/> in length.
+        /// </summary>
+        /// <param name="str">The string to split.</param>
+        /// <param name="chunkSize">The maximum length of each string in the returned result.</param>
+        /// <returns>Returns an <see cref="IEnumerable{T}"/> containing <see cref="String"/> instances which are no
+        /// greater than <paramref name="chunkSize"/> in length.</returns>
+        public static IEnumerable<string> Split(this string str, int chunkSize)
+        {
+            for (int i = 0; i < str.Length; i += chunkSize)
+            {
+                yield return str.Substring(i, Math.Min(chunkSize, str.Length - i));
+            }
         }
 
         /// <summary>
