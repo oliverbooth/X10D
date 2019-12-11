@@ -23,5 +23,5 @@ Below is a list of the number of extension methods written for a given type. Ove
 | `long` / `ulong` | `X10D` | 11 |
 | `IList<T>` | `X10D` | 2 |
 | `Random` | `X10D` | 2 |
-| `string` / `SecureString` | `X10D` | 7 |
+| `string` / `SecureString` | `X10D` | 8 |
 | `TimeSpan` | `X10D` | 1 |
