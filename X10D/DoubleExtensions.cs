@@ -46,6 +46,28 @@
         }
 
         /// <summary>
+        /// Determines if the <see cref="Double"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this double number)
+        {
+            return Math.Abs(number % 2.0) < Double.Epsilon;
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="Double"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this double number)
+        {
+            return !number.IsEven();
+        }
+
+        /// <summary>
         /// Converts an angle from radians to degrees.
         /// </summary>
         /// <param name="angle">The angle in radians.</param>

@@ -299,6 +299,50 @@
         }
 
         /// <summary>
+        /// Determines if the <see cref="Int32"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this int number)
+        {
+            return ((long)number).IsEven();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt32"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this uint number)
+        {
+            return ((ulong)number).IsEven();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="Int32"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this int number)
+        {
+            return !number.IsEven();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt32"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this uint number)
+        {
+            return !number.IsEven();
+        }
+
+        /// <summary>
         /// Determines if the <see cref="Int32"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
