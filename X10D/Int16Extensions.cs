@@ -139,6 +139,50 @@
         }
 
         /// <summary>
+        /// Determines if the <see cref="Int16"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this short number)
+        {
+            return ((long) number).IsEven();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt16"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this ushort number)
+        {
+            return ((ulong) number).IsEven();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="Int16"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this short number)
+        {
+            return !number.IsEven();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt16"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this ushort number)
+        {
+            return !number.IsEven();
+        }
+
+        /// <summary>
         /// Determines if the <see cref="Int16"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
@@ -147,6 +191,17 @@
         public static bool IsPrime(this short number)
         {
             return ((long) number).IsPrime();
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="Int16"/> is a prime number.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsPrime(this ushort number)
+        {
+            return ((ulong) number).IsPrime();
         }
 
         /// <summary>

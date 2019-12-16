@@ -138,6 +138,50 @@
         }
 
         /// <summary>
+        /// Determines if the <see cref="Int64"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this long number)
+        {
+            return Math.Abs(number % 2.0) < Double.Epsilon;
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt64"/> is even.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsEven(this ulong number)
+        {
+            return Math.Abs(number % 2.0) < Double.Epsilon;
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="Int64"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this long number)
+        {
+            return !IsEven(number);
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt64"/> is odd.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsOdd(this ulong number)
+        {
+            return !IsEven(number);
+        }
+
+        /// <summary>
         /// Determines if the <see cref="Int64"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
