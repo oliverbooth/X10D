@@ -16,7 +16,7 @@
         /// </summary>
         /// <typeparam name="T">The comparable type.</typeparam>
         /// <param name="actual">The value to compare.</param>
-        /// <param name="lower">The inclusive lower bound.</param>
+        /// <param name="lower">The exclusive lower bound.</param>
         /// <param name="upper">The exclusive upper bound.</param>
         /// <returns>Returns <see langword="true"/> if the value is between the bounds, <see langword="false"/>
         /// otherwise.</returns>
