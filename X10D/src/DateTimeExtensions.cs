@@ -111,43 +111,6 @@
         }
 
         /// <summary>
-        /// Sets the time of the current date with minute precision.
-        /// </summary>
-        /// <param name="current">The current date.</param>
-        /// <param name="hour">The hour.</param>
-        /// <param name="minute">The minute.</param>
-        public static DateTime SetTime(this DateTime current, int hour, int minute)
-        {
-            return current.SetTime(hour, minute, 0, 0);
-        }
-
-        /// <summary>
-        /// Sets the time of the current date with second precision.
-        /// </summary>
-        /// <param name="current">The current date</param>
-        /// <param name="hour">The hour.</param>
-        /// <param name="minute">The minute.</param>
-        /// <param name="second">The second.</param>
-        /// <returns></returns>
-        public static DateTime SetTime(this DateTime current, int hour, int minute, int second)
-        {
-            return current.SetTime(hour, minute, second, 0);
-        }
-
-        /// <summary>
-        /// Sets the time of the current date with millisecond precision.
-        /// </summary>
-        /// <param name="current">The current date.</param>
-        /// <param name="hour">The hour.</param>
-        /// <param name="minute">The minute.</param>
-        /// <param name="second">The second.</param>
-        /// <param name="millisecond">The millisecond.</param>
-        public static DateTime SetTime(this DateTime current, int hour, int minute, int second, int millisecond)
-        {
-            return new DateTime(current.Year, current.Month, current.Day, hour, minute, second, millisecond);
-        }
-
-        /// <summary>
         /// Converts the <see cref="DateTime"/> to a Unix timestamp.
         /// </summary>
         /// <param name="time">The <see cref="DateTime"/> instance.</param>
@@ -156,8 +119,8 @@
         /// <returns>Returns a Unix timestamp representing the provided <see cref="DateTime"/>.</returns>
         public static long ToUnixTimeStamp(this DateTime time, bool useMillis = false)
         {
-            DateTimeOffset offset = time.ToUniversalTime();
-            return useMillis ? offset.ToUnixTimeSeconds() : offset.ToUnixTimeMilliseconds();
+            DateTimeOffset offset = time;
+            return useMillis ? offset.ToUnixTimeMilliseconds() : offset.ToUnixTimeSeconds();
         }
 
         /// <summary>
@@ -169,6 +132,43 @@
         public static DateTime WithYear(this DateTime date, int year)
         {
             return new DateTime(year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
+        }
+
+        /// <summary>
+        /// Sets the time of the current date with minute precision.
+        /// </summary>
+        /// <param name="current">The current date.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        public static DateTime WithTime(this DateTime current, int hour, int minute)
+        {
+            return current.WithTime(hour, minute, 0);
+        }
+
+        /// <summary>
+        /// Sets the time of the current date with second precision.
+        /// </summary>
+        /// <param name="current">The current date</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        /// <returns></returns>
+        public static DateTime WithTime(this DateTime current, int hour, int minute, int second)
+        {
+            return current.WithTime(hour, minute, second, 0);
+        }
+
+        /// <summary>
+        /// Sets the time of the current date with millisecond precision.
+        /// </summary>
+        /// <param name="current">The current date.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        /// <param name="millisecond">The millisecond.</param>
+        public static DateTime WithTime(this DateTime current, int hour, int minute, int second, int millisecond)
+        {
+            return new DateTime(current.Year, current.Month, current.Day, hour, minute, second, millisecond);
         }
     }
 }
