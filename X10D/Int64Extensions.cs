@@ -204,8 +204,43 @@
                 return false;
             }
 
-            long boundary = (long)Math.Floor(Math.Sqrt(number));
+            long boundary = (long) Math.Floor(Math.Sqrt(number));
             for (int i = 3; i <= boundary; i += 2)
+            {
+                if (number % i == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Determines if the <see cref="UInt64"/> is a prime number.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsPrime(this ulong number)
+        {
+            if (number <= 1)
+            {
+                return false;
+            }
+
+            if (number == 2)
+            {
+                return true;
+            }
+
+            if (number % 2 == 0)
+            {
+                return false;
+            }
+
+            ulong boundary = (ulong) Math.Floor(Math.Sqrt(number));
+            for (uint i = 3; i <= boundary; i += 2)
             {
                 if (number % i == 0)
                 {
