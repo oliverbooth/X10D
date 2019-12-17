@@ -24,3 +24,4 @@ Below is a list of the number of extension methods written for a given type. Ove
 | `IList<T>` | `X10D` | 2 |
 | `Random` | `X10D` | 2 |
 | `string` / `SecureString` | `X10D` | 8 |
+| `Dictionary<T1, T2>` | 2 |
