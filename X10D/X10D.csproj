@@ -12,6 +12,8 @@
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
         <PackageIconUrl />
+        <PackageTags>dotnet extension-methods</PackageTags>
+        <Version>1.1.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
