@@ -66,10 +66,11 @@
         /// <param name="dayOfWeek">The current day of week.</param>
         public static DateTime Last(this DateTime current, DayOfWeek dayOfWeek)
         {
-            DateTime last = current.LastDayOfMonth();
+            DateTime  last          = current.LastDayOfMonth();
+            DayOfWeek lastDayOfWeek = last.DayOfWeek;
 
-            last = last.AddDays(Math.Abs(dayOfWeek - last.DayOfWeek) * -1);
-            return last;
+            int diff = -Math.Abs(dayOfWeek - lastDayOfWeek);
+            return last.AddDays(diff);
         }
 
         /// <summary>
@@ -78,7 +79,7 @@
         /// <param name="current">The current date.</param>
         public static DateTime Midnight(this DateTime current)
         {
-            return new DateTime(current.Year, current.Month, current.Day);
+            return new DateTime(current.Year, current.Month, current.Day, 0, 0, 0);
         }
 
         /// <summary>
