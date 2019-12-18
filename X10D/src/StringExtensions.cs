@@ -109,6 +109,29 @@
         }
 
         /// <summary>
+        /// Generates a new random string by filling it with characters found in <see cref="str"/>.
+        /// </summary>
+        /// <param name="str">The character set.</param>
+        /// <param name="length">The length of the string to generate.</param>
+        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        public static string Random(this string str, int length)
+        {
+            return str.Random(length, new Random());
+        }
+
+        /// <summary>
+        /// Generates a new random string by filling it with characters found in <see cref="str"/>.
+        /// </summary>
+        /// <param name="str">The character set.</param>
+        /// <param name="length">The length of the string to generate.</param>
+        /// <param name="random">The <see cref="System.Random"/> instance.</param>
+        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        public static string Random(this string str, int length, Random random)
+        {
+            return str.ToCharArray().Random(length, random);
+        }
+
+        /// <summary>
         /// Repeats a string a specified number of times.
         /// </summary>
         /// <param name="str">The string to repeat.</param>
