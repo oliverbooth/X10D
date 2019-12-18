@@ -4,6 +4,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Security;
     using System.Text;
@@ -148,6 +149,27 @@
             }
 
             return builder.ToString();
+        }
+
+        /// <summary>
+        /// Shuffles the characters in the string.
+        /// </summary>
+        /// <param name="str">The string to shuffle.</param>
+        /// <returns>Returns a <see cref="String"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
+        public static string Shuffle(this string str)
+        {
+            return str.Shuffle(new Random());
+        }
+
+        /// <summary>
+        /// Shuffles the characters in the string.
+        /// </summary>
+        /// <param name="str">The string to shuffle.</param>
+        /// <param name="random">The <see cref="System.Random"/> instance.</param>
+        /// <returns>Returns a <see cref="String"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
+        public static string Shuffle(this string str, Random random)
+        {
+            return new string(str.ToCharArray().Shuffle(random).ToArray());
         }
 
         /// <summary>
