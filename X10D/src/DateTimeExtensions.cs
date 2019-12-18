@@ -77,6 +77,10 @@
         /// Gets a <see cref="DateTime"/> representing midnight on the current date.
         /// </summary>
         /// <param name="current">The current date.</param>
+        [Obsolete(
+            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
+            "Please consider downloading the Humanizer package for more stable implementations of this method."
+        )]
         public static DateTime Midnight(this DateTime current)
         {
             return new DateTime(current.Year, current.Month, current.Day, 0, 0, 0);
@@ -105,6 +109,10 @@
         /// Gets a <see cref="DateTime"/> representing noon on the current date.
         /// </summary>
         /// <param name="current">The current date.</param>
+        [Obsolete(
+            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
+            "Please consider downloading the Humanizer package for more stable implementations of this method."
+        )]
         public static DateTime Noon(this DateTime current)
         {
             return new DateTime(current.Year, current.Month, current.Day, 12, 0, 0);
@@ -129,6 +137,10 @@
         /// <param name="date">The <see cref="DateTime"/> to copy.</param>
         /// <param name="year">The year to set.</param>
         /// <returns>Returns a <see cref="DateTime"/>.</returns>
+        [Obsolete(
+            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
+            "Please consider downloading the Humanizer package for more stable implementations of this method."
+        )]
         public static DateTime WithYear(this DateTime date, int year)
         {
             return new DateTime(year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
@@ -140,6 +152,10 @@
         /// <param name="current">The current date.</param>
         /// <param name="hour">The hour.</param>
         /// <param name="minute">The minute.</param>
+        [Obsolete(
+            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
+            "Please consider downloading the Humanizer package for more stable implementations of this method."
+        )]
         public static DateTime WithTime(this DateTime current, int hour, int minute)
         {
             return current.WithTime(hour, minute, 0);
@@ -153,6 +169,10 @@
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
         /// <returns></returns>
+        [Obsolete(
+            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
+            "Please consider downloading the Humanizer package for more stable implementations of this method."
+        )]
         public static DateTime WithTime(this DateTime current, int hour, int minute, int second)
         {
             return current.WithTime(hour, minute, second, 0);
@@ -166,6 +186,10 @@
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
         /// <param name="millisecond">The millisecond.</param>
+        [Obsolete(
+            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
+            "Please consider downloading the Humanizer package for more stable implementations of this method."
+        )]
         public static DateTime WithTime(this DateTime current, int hour, int minute, int second, int millisecond)
         {
             return new DateTime(current.Year, current.Month, current.Day, hour, minute, second, millisecond);
