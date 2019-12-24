@@ -13,7 +13,7 @@
         <PackageIcon>icon.png</PackageIcon>
         <PackageIconUrl />
         <PackageTags>dotnet extension-methods</PackageTags>
-        <Version>1.2.0-alpha</Version>
+        <Version>1.2.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
