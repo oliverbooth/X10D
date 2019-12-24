@@ -25,6 +25,28 @@
         }
 
         /// <summary>
+        /// Splits <paramref name="bytes"/> into chunks of size <paramref name="chunkSize"/>.
+        /// </summary>
+        /// <param name="bytes">The collection to split.</param>
+        /// <param name="chunkSize">The maximum length of the nested <see cref="Byte"/> collection.</param>
+        /// <returns>Returns an <see cref="IEnumerable{T}"/> of <see cref="IEnumerable{T}"/> of <see cref="Byte"/>
+        /// values.</returns>
+        public static IEnumerable<IEnumerable<byte>> Chunkify(this IEnumerable<byte> bytes, int chunkSize)
+        {
+            IEnumerable<byte>       enumerable = bytes as byte[] ?? bytes.ToArray();
+            long                    count      = enumerable.LongCount();
+            List<IEnumerable<byte>> chunks     = new List<IEnumerable<byte>>();
+            chunkSize = chunkSize.Clamp(1, enumerable.Count());
+
+            for (int i = 0; i < (int) (count / chunkSize); i++)
+            {
+                chunks.Add(enumerable.Skip(i * chunkSize).Take(chunkSize));
+            }
+
+            return chunks.ToArray();
+        }
+
+        /// <summary>
         /// Converts the <see cref="Byte"/>[] to an <see cref="Int16"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
