@@ -39,13 +39,9 @@
         /// <summary>
         /// Parses a <see cref="String"/> into an <see cref="Enum"/>.
         /// </summary>
-        /// <typeparam name="T">The type of the Enum</typeparam>
-        /// <param name="value">String value to parse</param>
-        /// <returns>The Enum corresponding to the stringExtensions</returns>
-        [Obsolete(
-            "This method has been deprecated in favor of Humanizer.DehumanizeTo<TTargetEnum>(). "+
-            "Please consider downloading the Humanizer package for more stable implementations of this method."
-            )]
+        /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
+        /// <param name="value">The <see cref="String"/> value to parse</param>
+        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="String"/>.</returns>
         public static T EnumParse<T>(this string value)
         {
             return value.EnumParse<T>(false);
@@ -54,14 +50,10 @@
         /// <summary>
         /// Parses a <see cref="String"/> into an <see cref="Enum"/>.
         /// </summary>
-        /// <typeparam name="T">The type of the Enum</typeparam>
-        /// <param name="value">String value to parse</param>
+        /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
+        /// <param name="value">The <see cref="String"/> value to parse</param>
         /// <param name="ignoreCase">Whether or not to ignore casing.</param>
-        /// <returns>The Enum corresponding to the stringExtensions</returns>
-        [Obsolete(
-            "This method has been deprecated in favor of Humanizer.DehumanizeTo<TTargetEnum>(). " +
-            "Please consider downloading the Humanizer package for more stable implementations of this method."
-        )]
+        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="String"/></returns>
         public static T EnumParse<T>(this string value, bool ignoreCase)
         {
             if (value == null)
