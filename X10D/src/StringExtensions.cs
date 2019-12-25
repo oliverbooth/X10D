@@ -73,7 +73,7 @@
 
             if (!t.IsEnum)
             {
-                throw new ArgumentException("Type provided must be an Enum.", "T");
+                throw new ArgumentException("Type provided must be an Enum.", nameof(T));
             }
 
             return (T) Enum.Parse(t, value, ignoreCase);
