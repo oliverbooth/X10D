@@ -210,5 +210,16 @@
         {
             return extension ? (new NetworkCredential(String.Empty, str).Password) : str.ToString();
         }
+
+        /// <summary>
+        /// Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
+        /// <see cref="TimeSpan"/>.
+        /// </summary>
+        /// <param name="str">The input string.</param>
+        /// <returns>Returns an instance of <see cref="TimeSpan"/>.</returns>
+        public static TimeSpan ToTimeSpan(this string str)
+        {
+            return TimeSpanParser.Parse(str);
+        }
     }
 }
