@@ -129,7 +129,7 @@
         /// <paramref name="count"/> times.</returns>
         public static string Repeat(this string str, int count)
         {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new StringBuilder(str.Length * count);
 
             for (int i = 0; i < count; i++)
             {
