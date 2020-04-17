@@ -12,7 +12,7 @@
         /// Gets the endpoint hostname.
         /// </summary>
         /// <param name="endPoint">The endpoint whose hostname to get.</param>
-        /// <returns>Returns a <see cref="String"/> representing the hostname, which may be an IP or a DNS, or empty
+        /// <returns>Returns a <see cref="string"/> representing the hostname, which may be an IP or a DNS, or empty
         /// string on failure.</returns>
         public static string GetHost(this EndPoint endPoint)
         {
@@ -20,7 +20,7 @@
             {
                 IPEndPoint ip => ip.Address.ToString(),
                 DnsEndPoint dns => dns.Host,
-                _ => String.Empty
+                _ => string.Empty
             };
         }
 
@@ -28,7 +28,7 @@
         /// Gets the endpoint port.
         /// </summary>
         /// <param name="endPoint">The endpoint whose port to get.</param>
-        /// <returns>Returns an <see cref="Int32"/> representing the port, or 0 on failure.</returns>
+        /// <returns>Returns an <see cref="int"/> representing the port, or 0 on failure.</returns>
         public static int GetPort(this EndPoint endPoint)
         {
             return endPoint switch

@@ -6,15 +6,15 @@
     using System.Text;
 
     /// <summary>
-    /// Extension methods for <see cref="Byte"/>.
+    /// Extension methods for <see cref="byte"/>.
     /// </summary>
     public static class ByteExtensions
     {
         /// <summary>
-        /// Gets a <see cref="String"/> literally representing the raw values in the <see cref="Byte"/>[].
+        /// Gets a <see cref="string"/> literally representing the raw values in the <see cref="byte"/>[].
         /// </summary>
         /// <param name="bytes">The bytes to get.</param>
-        /// <returns>Returns a <see cref="String"/>.</returns>
+        /// <returns>Returns a <see cref="string"/>.</returns>
         public static string AsString(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToString(bytes.ToArray());
@@ -24,8 +24,8 @@
         /// Splits <paramref name="bytes"/> into chunks of size <paramref name="chunkSize"/>.
         /// </summary>
         /// <param name="bytes">The collection to split.</param>
-        /// <param name="chunkSize">The maximum length of the nested <see cref="Byte"/> collection.</param>
-        /// <returns>Returns an <see cref="IEnumerable{T}"/> of <see cref="IEnumerable{T}"/> of <see cref="Byte"/>
+        /// <param name="chunkSize">The maximum length of the nested <see cref="byte"/> collection.</param>
+        /// <returns>Returns an <see cref="IEnumerable{T}"/> of <see cref="IEnumerable{T}"/> of <see cref="byte"/>
         /// values.</returns>
         public static IEnumerable<IEnumerable<byte>> Chunkify(this IEnumerable<byte> bytes, int chunkSize)
         {
@@ -43,82 +43,82 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="Byte"/>[] to an <see cref="Int16"/>.
+        /// Converts the <see cref="byte"/>[] to an <see cref="short"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns an <see cref="Int16"/>.</returns>
+        /// <returns>Returns an <see cref="short"/>.</returns>
         public static short GetInt16(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToInt16(bytes.ToArray(), 0);
         }
 
         /// <summary>
-        /// Converts the <see cref="Byte"/>[] to an <see cref="Int32"/>.
+        /// Converts the <see cref="byte"/>[] to an <see cref="int"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns an <see cref="Int32"/>.</returns>
+        /// <returns>Returns an <see cref="int"/>.</returns>
         public static int GetInt32(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToInt32(bytes.ToArray(), 0);
         }
 
         /// <summary>
-        /// Converts the <see cref="Byte"/>[] to an <see cref="Int64"/>.
+        /// Converts the <see cref="byte"/>[] to an <see cref="long"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns an <see cref="Int64"/>.</returns>
+        /// <returns>Returns an <see cref="long"/>.</returns>
         public static long GetInt64(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToInt64(bytes.ToArray(), 0);
         }
 
         /// <summary>
-        /// Converts the <see cref="Byte"/>[] to a <see cref="UInt16"/>.
+        /// Converts the <see cref="byte"/>[] to a <see cref="ushort"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns an <see cref="UInt16"/>.</returns>
+        /// <returns>Returns an <see cref="ushort"/>.</returns>
         public static ushort GetUInt16(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToUInt16(bytes.ToArray(), 0);
         }
 
         /// <summary>
-        /// Converts the <see cref="Byte"/>[] to an <see cref="UInt32"/>.
+        /// Converts the <see cref="byte"/>[] to an <see cref="uint"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns an <see cref="UInt32"/>.</returns>
+        /// <returns>Returns an <see cref="uint"/>.</returns>
         public static uint GetUInt32(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToUInt32(bytes.ToArray(), 0);
         }
 
         /// <summary>
-        /// Converts the <see cref="Byte"/>[] to an <see cref="UInt64"/>.
+        /// Converts the <see cref="byte"/>[] to an <see cref="ulong"/>.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns an <see cref="UInt64"/>.</returns>
+        /// <returns>Returns an <see cref="ulong"/>.</returns>
         public static ulong GetUInt64(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToUInt64(bytes.ToArray(), 0);
         }
 
         /// <summary>
-        /// Gets a <see cref="String"/> representing the value the <see cref="Byte"/>[] with
+        /// Gets a <see cref="string"/> representing the value the <see cref="byte"/>[] with
         /// <see cref="Encoding.UTF8"/> encoding.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>Returns a <see cref="String"/>.</returns>
+        /// <returns>Returns a <see cref="string"/>.</returns>
         public static string GetString(this IEnumerable<byte> bytes)
         {
             return bytes.GetString(Encoding.UTF8);
         }
 
         /// <summary>
-        /// Gets a <see cref="String"/> representing the value the <see cref="Byte"/>[] with the provided encoding.
+        /// Gets a <see cref="string"/> representing the value the <see cref="byte"/>[] with the provided encoding.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <param name="encoding">The encoding to use.</param>
-        /// <returns>Returns a <see cref="String"/>.</returns>
+        /// <returns>Returns a <see cref="string"/>.</returns>
         public static string GetString(this IEnumerable<byte> bytes, Encoding encoding)
         {
             IEnumerable<byte> enumerable = bytes as byte[] ?? bytes.ToArray();

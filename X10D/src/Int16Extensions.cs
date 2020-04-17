@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Extension methods for <see cref="Int16"/>.
+    /// Extension methods for <see cref="short"/>.
     /// </summary>
     public static class Int16Extensions
     {
@@ -146,7 +146,7 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="Int16"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
+        /// Converts the <see cref="short"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
         /// </summary>
         /// <param name="timestamp">The timestamp.</param>
         /// <param name="isMillis">Optional. Whether or not the input value should be treated as milliseconds. Defaults
@@ -159,27 +159,27 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="UInt16"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="ushort"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this ushort number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Converts the <see cref="Int16"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="short"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this short number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int16"/> is even.
+        /// Determines if the <see cref="short"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
@@ -190,7 +190,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt16"/> is even.
+        /// Determines if the <see cref="ushort"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
@@ -201,7 +201,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int16"/> is odd.
+        /// Determines if the <see cref="short"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
@@ -212,7 +212,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt16"/> is odd.
+        /// Determines if the <see cref="ushort"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
@@ -223,7 +223,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int16"/> is a prime number.
+        /// Determines if the <see cref="short"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
@@ -234,7 +234,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int16"/> is a prime number.
+        /// Determines if the <see cref="short"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>

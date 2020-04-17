@@ -6,7 +6,7 @@
     using System.Text;
 
     /// <summary>
-    /// Extension methods for <see cref="Char"/>.
+    /// Extension methods for <see cref="char"/>.
     /// </summary>
     public static class CharExtensions
     {
@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
-        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this char[] chars, int length)
         {
             return chars.Random(length, new Random());
@@ -27,7 +27,7 @@
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
-        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this char[] chars, int length, Random random)
         {
             StringBuilder builder = new StringBuilder(length);
@@ -44,7 +44,7 @@
         /// </summary>
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
-        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this IEnumerable<char> chars, int length)
         {
             return chars.Random(length, new Random());
@@ -56,7 +56,7 @@
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
-        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this IEnumerable<char> chars, int length, Random random)
         {
             return chars.ToArray().Random(length, random);
@@ -67,7 +67,7 @@
         /// </summary>
         /// <param name="c">The character to repeat.</param>
         /// <param name="count">The repeat count.</param>
-        /// <returns>Returns a <see cref="String"/> whose value is <paramref name="c"/> repeated
+        /// <returns>Returns a <see cref="string"/> whose value is <paramref name="c"/> repeated
         /// <paramref name="count"/> times.</returns>
         public static string Repeat(this char c, int count)
         {

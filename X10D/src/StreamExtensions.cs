@@ -15,7 +15,7 @@
         /// </summary>
         /// <typeparam name="T">A <see cref="HashAlgorithm"/> derived type.</typeparam>
         /// <param name="stream">The stream whose hash is to be computed.</param>
-        /// <returns>Returns a <see cref="Byte"/> array representing the hash of the stream.</returns>
+        /// <returns>Returns a <see cref="byte"/> array representing the hash of the stream.</returns>
         public static byte[] GetHash<T>(this Stream stream) where T : HashAlgorithm
         {
             MethodInfo create = typeof(T).GetMethod("Create", Array.Empty<Type>());
