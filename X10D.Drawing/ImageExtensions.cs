@@ -1,14 +1,10 @@
 ﻿namespace X10D.Drawing
 {
-    #region Using Directives
-
     using System;
     using System.Drawing;
     using System.Drawing.Drawing2D;
     using System.Drawing.Imaging;
     using System.Threading.Tasks;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="Image"/>.

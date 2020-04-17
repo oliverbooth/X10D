@@ -1,10 +1,6 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="IConvertible"/>.

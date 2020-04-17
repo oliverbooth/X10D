@@ -1,13 +1,9 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
     using System.IO;
     using System.Reflection;
     using System.Security.Cryptography;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="Stream"/>.

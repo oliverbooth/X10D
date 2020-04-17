@@ -1,12 +1,8 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="Random"/>.
