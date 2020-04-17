@@ -1,15 +1,11 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Security;
     using System.Text;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="String"/>.

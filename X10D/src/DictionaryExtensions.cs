@@ -1,14 +1,10 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web;
-
-    #endregion
 
     /// <summary>
     /// A set of extension methods for <see cref="Dictionary{TKey,TValue}"/>.

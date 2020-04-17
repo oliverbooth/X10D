@@ -1,18 +1,12 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="Int16"/>.
     /// </summary>
     public static class Int16Extensions
     {
-        #region TimeSpan Returns
-
         // TODO change
 
         [Obsolete(
@@ -122,8 +116,6 @@
         {
             return TimeSpan.FromTicks(number);
         }
-
-        #endregion
 
         /// <summary>
         /// Clamps a value between a minimum and a maximum value.

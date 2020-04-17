@@ -1,10 +1,6 @@
 ﻿namespace X10D.WinForms
 {
-    #region Using Directives
-
     using System.Windows.Forms;
-
-    #endregion
 
     /// <summary>
     /// A set of extension methods for <see cref="ListView"/> and <see cref="ListViewItem"/>.

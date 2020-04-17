@@ -1,18 +1,12 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="Int32"/>.
     /// </summary>
     public static class Int32Extensions
     {
-        #region DateTime Returns
-
         /// <summary>
         /// Returns a <see cref="DateTime"/> where the month is January.
         /// </summary>
@@ -213,10 +207,6 @@
             return new DateTime(year, 12, day, hour, minute, second);
         }
 
-        #endregion
-
-        #region TimeSpan Returns
-
         // TODO change
 
         [Obsolete(
@@ -326,8 +316,6 @@
         {
             return TimeSpan.FromTicks(number);
         }
-
-        #endregion
 
         /// <summary>
         /// Clamps a value between a minimum and a maximum value.

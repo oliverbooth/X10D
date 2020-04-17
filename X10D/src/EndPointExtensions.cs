@@ -1,11 +1,7 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
     using System.Net;
-
-    #endregion
 
     /// <summary>
     /// Extension methods for <see cref="EndPoint"/> and derived types.

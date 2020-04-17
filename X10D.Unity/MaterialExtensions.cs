@@ -1,11 +1,7 @@
 ﻿namespace X10D.Unity
 {
-    #region Using Directives
-
     using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
-
-    #endregion
 
     /// <summary>
     /// A set of extension methods for <see cref="Material"/>.

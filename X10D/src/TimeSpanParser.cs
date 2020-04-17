@@ -1,12 +1,8 @@
 ﻿namespace X10D
 {
-    #region Using Directives
-
     using System;
     using System.Diagnostics;
     using System.Text.RegularExpressions;
-
-    #endregion
 
     public static class TimeSpanParser
     {

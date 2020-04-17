@@ -1,10 +1,6 @@
 ﻿namespace X10D.Unity
 {
-    #region Using Directives
-
     using UnityEngine;
-
-    #endregion
 
     /// <summary>
     /// A set of extension methods for <see cref="Vector3"/>.
