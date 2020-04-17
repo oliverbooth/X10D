@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Extension methods for <see cref="Double"/>.
+    /// Extension methods for <see cref="double"/>.
     /// </summary>
     public static class DoubleExtensions
     {
@@ -32,28 +32,28 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="Double"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="double"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this double number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Determines if the <see cref="Double"/> is even.
+        /// Determines if the <see cref="double"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
         /// otherwise.</returns>
         public static bool IsEven(this double number)
         {
-            return Math.Abs(number % 2.0) < Double.Epsilon;
+            return Math.Abs(number % 2.0) < double.Epsilon;
         }
 
         /// <summary>
-        /// Determines if the <see cref="Double"/> is odd.
+        /// Determines if the <see cref="double"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>

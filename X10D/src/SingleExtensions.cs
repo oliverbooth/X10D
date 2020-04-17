@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Extension methods for <see cref="Single"/>.
+    /// Extension methods for <see cref="float"/>.
     /// </summary>
     public static class SingleExtensions
     {
@@ -32,17 +32,17 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="Single"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="float"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this float number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Determines if the <see cref="Single"/> is even.
+        /// Determines if the <see cref="float"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
@@ -53,7 +53,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Single"/> is odd.
+        /// Determines if the <see cref="float"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>

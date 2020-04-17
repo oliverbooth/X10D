@@ -27,32 +27,32 @@
 
             if (match.Groups[1].Success)
             {
-                weeks = Double.Parse(match.Groups[1].Value);
+                weeks = double.Parse(match.Groups[1].Value);
             }
 
             if (match.Groups[2].Success)
             {
-                days = Double.Parse(match.Groups[2].Value);
+                days = double.Parse(match.Groups[2].Value);
             }
 
             if (match.Groups[3].Success)
             {
-                hours = Double.Parse(match.Groups[3].Value);
+                hours = double.Parse(match.Groups[3].Value);
             }
 
             if (match.Groups[4].Success)
             {
-                minutes = Double.Parse(match.Groups[4].Value);
+                minutes = double.Parse(match.Groups[4].Value);
             }
 
             if (match.Groups[5].Success)
             {
-                seconds = Double.Parse(match.Groups[5].Value);
+                seconds = double.Parse(match.Groups[5].Value);
             }
 
             if (match.Groups[6].Success)
             {
-                milliseconds = Double.Parse(match.Groups[6].Value);
+                milliseconds = double.Parse(match.Groups[6].Value);
             }
 
             Trace.WriteLine($"Input: {input}");

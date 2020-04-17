@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Extension methods for <see cref="Int64"/>.
+    /// Extension methods for <see cref="long"/>.
     /// </summary>
     public static class Int64Extensions
     {
@@ -137,7 +137,7 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="Int64"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
+        /// Converts the <see cref="long"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
         /// </summary>
         /// <param name="timestamp">The timestamp.</param>
         /// <param name="isMillis">Optional. Whether or not the input value should be treated as milliseconds. Defaults
@@ -154,49 +154,49 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="UInt64"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="ulong"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this ulong number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Converts the <see cref="Int64"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="long"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this long number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int64"/> is even.
+        /// Determines if the <see cref="long"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
         /// otherwise.</returns>
         public static bool IsEven(this long number)
         {
-            return Math.Abs(number % 2.0) < Double.Epsilon;
+            return Math.Abs(number % 2.0) < double.Epsilon;
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt64"/> is even.
+        /// Determines if the <see cref="ulong"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
         /// otherwise.</returns>
         public static bool IsEven(this ulong number)
         {
-            return Math.Abs(number % 2.0) < Double.Epsilon;
+            return Math.Abs(number % 2.0) < double.Epsilon;
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int64"/> is odd.
+        /// Determines if the <see cref="long"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
@@ -207,7 +207,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt64"/> is odd.
+        /// Determines if the <see cref="ulong"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
@@ -218,7 +218,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int64"/> is a prime number.
+        /// Determines if the <see cref="long"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
@@ -253,7 +253,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt64"/> is a prime number.
+        /// Determines if the <see cref="ulong"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>

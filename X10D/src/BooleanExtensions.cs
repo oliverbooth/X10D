@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Extension methods for <see cref="Boolean"/>.
+    /// Extension methods for <see cref="bool"/>.
     /// </summary>
     public static class BooleanExtensions
     {

@@ -17,7 +17,7 @@
         /// <typeparam name="T1">The key type.</typeparam>
         /// <typeparam name="T2">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="String"/> representing the dictionary as a key=value; set.</returns>
+        /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary)
         {
             static string SanitizeValue<T>(T value)
@@ -31,7 +31,7 @@
 
             IEnumerable<string> strings =
                 dictionary.Select(o => $"{o.Key}={SanitizeValue(o.Value)}");
-            return String.Join(";", strings);
+            return string.Join(";", strings);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@
         /// <typeparam name="T1">The key type.</typeparam>
         /// <typeparam name="T2">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="String"/> representing the dictionary as a key=value; set.</returns>
+        /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this IDictionary<T1, T2> dictionary)
         {
             return ((IReadOnlyDictionary<T1, T2>) dictionary).ToConnectionString();
@@ -52,7 +52,7 @@
         /// <typeparam name="T1">The key type.</typeparam>
         /// <typeparam name="T2">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="String"/> representing the dictionary as a key=value; set.</returns>
+        /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this Dictionary<T1, T2> dictionary)
         {
             return ((IReadOnlyDictionary<T1, T2>) dictionary).ToConnectionString();
@@ -64,7 +64,7 @@
         /// <typeparam name="T1">The key type.</typeparam>
         /// <typeparam name="T2">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="String"/> representing the dictionary as a key=value& set.</returns>
+        /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value& set.</returns>
         public static string ToGetParameters<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary)
         {
             static string Sanitize(KeyValuePair<T1, T2> kvp)
@@ -74,7 +74,7 @@
                 return $"{key}={value}";
             }
 
-            return String.Join("&", dictionary.Select(Sanitize));
+            return string.Join("&", dictionary.Select(Sanitize));
         }
 
         /// <summary>
@@ -83,7 +83,7 @@
         /// <typeparam name="T1">The key type.</typeparam>
         /// <typeparam name="T2">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="String"/> representing the dictionary as a key=value& set.</returns>
+        /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value& set.</returns>
         public static string ToGetParameters<T1, T2>(this IDictionary<T1, T2> dictionary)
         {
             return ((IReadOnlyDictionary<T1, T2>) dictionary).ToGetParameters();
@@ -95,7 +95,7 @@
         /// <typeparam name="T1">The key type.</typeparam>
         /// <typeparam name="T2">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="String"/> representing the dictionary as a key=value& set.</returns>
+        /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value& set.</returns>
         public static string ToGetParameters<T1, T2>(this Dictionary<T1, T2> dictionary)
         {
             return ((IReadOnlyDictionary<T1, T2>) dictionary).ToGetParameters();

@@ -8,7 +8,7 @@
     using System.Text;
 
     /// <summary>
-    /// Extension methods for <see cref="String"/>.
+    /// Extension methods for <see cref="string"/>.
     /// </summary>
     public static class StringExtensions
     {
@@ -33,23 +33,23 @@
         }
 
         /// <summary>
-        /// Parses a <see cref="String"/> into an <see cref="Enum"/>.
+        /// Parses a <see cref="string"/> into an <see cref="Enum"/>.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
-        /// <param name="value">The <see cref="String"/> value to parse</param>
-        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="String"/>.</returns>
+        /// <param name="value">The <see cref="string"/> value to parse</param>
+        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="string"/>.</returns>
         public static T EnumParse<T>(this string value)
         {
             return value.EnumParse<T>(false);
         }
 
         /// <summary>
-        /// Parses a <see cref="String"/> into an <see cref="Enum"/>.
+        /// Parses a <see cref="string"/> into an <see cref="Enum"/>.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
-        /// <param name="value">The <see cref="String"/> value to parse</param>
+        /// <param name="value">The <see cref="string"/> value to parse</param>
         /// <param name="ignoreCase">Whether or not to ignore casing.</param>
-        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="String"/></returns>
+        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="string"/></returns>
         public static T EnumParse<T>(this string value, bool ignoreCase)
         {
             if (value == null)
@@ -76,22 +76,22 @@
         }
 
         /// <summary>
-        /// Gets a <see cref="Byte"/>[] representing the value the <see cref="String"/> with
+        /// Gets a <see cref="byte"/>[] representing the value the <see cref="string"/> with
         /// <see cref="Encoding.UTF8"/> encoding.
         /// </summary>
         /// <param name="str">The string to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this string str)
         {
             return str.GetBytes(Encoding.UTF8);
         }
 
         /// <summary>
-        /// Gets a <see cref="Byte"/>[] representing the value the <see cref="String"/> with the provided encoding.
+        /// Gets a <see cref="byte"/>[] representing the value the <see cref="string"/> with the provided encoding.
         /// </summary>
         /// <param name="str">The string to convert.</param>
         /// <param name="encoding">The encoding to use.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this string str, Encoding encoding)
         {
             return encoding.GetBytes(str);
@@ -102,7 +102,7 @@
         /// </summary>
         /// <param name="str">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
-        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this string str, int length)
         {
             return str.Random(length, new Random());
@@ -114,7 +114,7 @@
         /// <param name="str">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
-        /// <returns>Returns a <see cref="String"/> containing <paramref name="length"/> characters.</returns>
+        /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this string str, int length, Random random)
         {
             return str.ToCharArray().Random(length, random);
@@ -125,7 +125,7 @@
         /// </summary>
         /// <param name="str">The string to repeat.</param>
         /// <param name="count">The repeat count.</param>
-        /// <returns>Returns a <see cref="String"/> whose value is <paramref name="str"/> repeated
+        /// <returns>Returns a <see cref="string"/> whose value is <paramref name="str"/> repeated
         /// <paramref name="count"/> times.</returns>
         public static string Repeat(this string str, int count)
         {
@@ -143,7 +143,7 @@
         /// Shuffles the characters in the string.
         /// </summary>
         /// <param name="str">The string to shuffle.</param>
-        /// <returns>Returns a <see cref="String"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
+        /// <returns>Returns a <see cref="string"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
         public static string Shuffle(this string str)
         {
             return str.Shuffle(new Random());
@@ -154,18 +154,18 @@
         /// </summary>
         /// <param name="str">The string to shuffle.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
-        /// <returns>Returns a <see cref="String"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
+        /// <returns>Returns a <see cref="string"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
         public static string Shuffle(this string str, Random random)
         {
             return new string(str.ToCharArray().Shuffle(random).ToArray());
         }
 
         /// <summary>
-        /// Splits the <see cref="String"/> into chunks that are no greater than <paramref name="chunkSize"/> in length.
+        /// Splits the <see cref="string"/> into chunks that are no greater than <paramref name="chunkSize"/> in length.
         /// </summary>
         /// <param name="str">The string to split.</param>
         /// <param name="chunkSize">The maximum length of each string in the returned result.</param>
-        /// <returns>Returns an <see cref="IEnumerable{T}"/> containing <see cref="String"/> instances which are no
+        /// <returns>Returns an <see cref="IEnumerable{T}"/> containing <see cref="string"/> instances which are no
         /// greater than <paramref name="chunkSize"/> in length.</returns>
         public static IEnumerable<string> Split(this string str, int chunkSize)
         {
@@ -176,13 +176,13 @@
         }
 
         /// <summary>
-        /// Converts a <see cref="String"/> to a <see cref="SecureString"/>.
+        /// Converts a <see cref="string"/> to a <see cref="SecureString"/>.
         /// </summary>
         /// <param name="str">The string to convert.</param>
         /// <returns>Returns a <see cref="SecureString"/>.</returns>
         public static SecureString ToSecureString(this string str)
         {
-            if (String.IsNullOrWhiteSpace(str))
+            if (string.IsNullOrWhiteSpace(str))
             {
                 return null;
             }
@@ -197,14 +197,14 @@
         }
 
         /// <summary>
-        /// Converts a <see cref="SecureString"/> to a <see cref="String"/>.
+        /// Converts a <see cref="SecureString"/> to a <see cref="string"/>.
         /// </summary>
         /// <param name="str">The <see cref="SecureString"/> to convert.</param>
         /// <param name="extension">Whether or not to use this extension method.</param>
-        /// <returns>Returns a <see cref="String"/>.</returns>
+        /// <returns>Returns a <see cref="string"/>.</returns>
         public static string ToString(this SecureString str, bool extension)
         {
-            return extension ? (new NetworkCredential(String.Empty, str).Password) : str.ToString();
+            return extension ? (new NetworkCredential(string.Empty, str).Password) : str.ToString();
         }
 
         /// <summary>

@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Extension methods for <see cref="Int32"/>.
+    /// Extension methods for <see cref="int"/>.
     /// </summary>
     public static class Int32Extensions
     {
@@ -346,7 +346,7 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="Int32"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
+        /// Converts the <see cref="int"/> to a <see cref="DateTime"/> treating it as a Unix timestamp.
         /// </summary>
         /// <param name="timestamp">The timestamp.</param>
         /// <param name="isMillis">Optional. Whether or not the input value should be treated as milliseconds. Defaults
@@ -359,27 +359,27 @@
         }
 
         /// <summary>
-        /// Converts the <see cref="UInt32"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="uint"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this uint number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Converts the <see cref="Int32"/> to a <see cref="Byte"/>[].
+        /// Converts the <see cref="int"/> to a <see cref="byte"/>[].
         /// </summary>
         /// <param name="number">The number to convert.</param>
-        /// <returns>Returns a <see cref="Byte"/>[].</returns>
+        /// <returns>Returns a <see cref="byte"/>[].</returns>
         public static byte[] GetBytes(this int number)
         {
             return BitConverter.GetBytes(number);
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int32"/> is even.
+        /// Determines if the <see cref="int"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
@@ -390,7 +390,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt32"/> is even.
+        /// Determines if the <see cref="uint"/> is even.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
@@ -401,7 +401,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int32"/> is odd.
+        /// Determines if the <see cref="int"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
@@ -412,7 +412,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="UInt32"/> is odd.
+        /// Determines if the <see cref="uint"/> is odd.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
@@ -423,7 +423,7 @@
         }
 
         /// <summary>
-        /// Determines if the <see cref="Int32"/> is a prime number.
+        /// Determines if the <see cref="int"/> is a prime number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
