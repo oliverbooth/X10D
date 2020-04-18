@@ -28,12 +28,23 @@
         /// <param name="length">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
         /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random"/> is <see langword="null"/>.</exception>
         public static string Random(this char[] chars, int length, Random random)
         {
-            StringBuilder builder = new StringBuilder(length);
-            for (int i = 0; i < length; i++)
+            if (chars is null)
             {
-                builder.Append(chars.ElementAt(random.Next(0, chars.Length)));
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            var builder = new StringBuilder(length);
+            for (var i = 0; i < length; i++)
+            {
+                builder.Append(chars[random.Next(0, chars.Length)]);
             }
 
             return builder.ToString();

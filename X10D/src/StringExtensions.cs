@@ -52,7 +52,7 @@
         /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="string"/></returns>
         public static T EnumParse<T>(this string value, bool ignoreCase)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -61,18 +61,17 @@
 
             if (value.Length == 0)
             {
-                throw new ArgumentException("Must specify valid information for parsing in the string.",
-                    nameof(value));
+                throw new ArgumentException("Must specify valid information for parsing in the string.", nameof(value));
             }
 
             Type t = typeof(T);
 
             if (!t.IsEnum)
             {
-                throw new ArgumentException("Type provided must be an Enum.", nameof(T));
+                throw new ArgumentException("Type provided must be an Enum.");
             }
 
-            return (T) Enum.Parse(t, value, ignoreCase);
+            return (T)Enum.Parse(t, value, ignoreCase);
         }
 
         /// <summary>
@@ -92,8 +91,20 @@
         /// <param name="str">The string to convert.</param>
         /// <param name="encoding">The encoding to use.</param>
         /// <returns>Returns a <see cref="byte"/>[].</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> or <paramref name="encoding"/> or both are
+        /// <see langword="null"/>.</exception>
         public static byte[] GetBytes(this string str, Encoding encoding)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
             return encoding.GetBytes(str);
         }
 
@@ -115,8 +126,14 @@
         /// <param name="length">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
         /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static string Random(this string str, int length, Random random)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
             return str.ToCharArray().Random(length, random);
         }
 
@@ -127,11 +144,17 @@
         /// <param name="count">The repeat count.</param>
         /// <returns>Returns a <see cref="string"/> whose value is <paramref name="str"/> repeated
         /// <paramref name="count"/> times.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static string Repeat(this string str, int count)
         {
-            StringBuilder builder = new StringBuilder(str.Length * count);
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
 
-            for (int i = 0; i < count; i++)
+            var builder = new StringBuilder(str.Length * count);
+
+            for (var i = 0; i < count; i++)
             {
                 builder.Append(str);
             }
@@ -155,8 +178,14 @@
         /// <param name="str">The string to shuffle.</param>
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
         /// <returns>Returns a <see cref="string"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static string Shuffle(this string str, Random random)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
             return new string(str.ToCharArray().Shuffle(random).ToArray());
         }
 
@@ -167,9 +196,15 @@
         /// <param name="chunkSize">The maximum length of each string in the returned result.</param>
         /// <returns>Returns an <see cref="IEnumerable{T}"/> containing <see cref="string"/> instances which are no
         /// greater than <paramref name="chunkSize"/> in length.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static IEnumerable<string> Split(this string str, int chunkSize)
         {
-            for (int i = 0; i < str.Length; i += chunkSize)
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            for (var i = 0; i < str.Length; i += chunkSize)
             {
                 yield return str.Substring(i, Math.Min(chunkSize, str.Length - i));
             }
@@ -180,8 +215,14 @@
         /// </summary>
         /// <param name="str">The string to convert.</param>
         /// <returns>Returns a <see cref="SecureString"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static SecureString ToSecureString(this string str)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
             if (string.IsNullOrWhiteSpace(str))
             {
                 return null;
@@ -202,9 +243,15 @@
         /// <param name="str">The <see cref="SecureString"/> to convert.</param>
         /// <param name="extension">Whether or not to use this extension method.</param>
         /// <returns>Returns a <see cref="string"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static string ToString(this SecureString str, bool extension)
         {
-            return extension ? (new NetworkCredential(string.Empty, str).Password) : str.ToString();
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            return extension ? new NetworkCredential(string.Empty, str).Password : str.ToString();
         }
 
         /// <summary>
@@ -213,8 +260,14 @@
         /// </summary>
         /// <param name="str">The input string.</param>
         /// <returns>Returns an instance of <see cref="TimeSpan"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>.</exception>
         public static TimeSpan ToTimeSpan(this string str)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
             return TimeSpanParser.Parse(str);
         }
     }

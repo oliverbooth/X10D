@@ -16,10 +16,17 @@
         /// <typeparam name="T">A <see cref="HashAlgorithm"/> derived type.</typeparam>
         /// <param name="stream">The stream whose hash is to be computed.</param>
         /// <returns>Returns a <see cref="byte"/> array representing the hash of the stream.</returns>
-        public static byte[] GetHash<T>(this Stream stream) where T : HashAlgorithm
+        /// <exception cref="ArgumentNullException"><paramref name="stream"/> is <see langword="null"/>.</exception>
+        public static byte[] GetHash<T>(this Stream stream)
+            where T : HashAlgorithm
         {
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
             MethodInfo create = typeof(T).GetMethod("Create", Array.Empty<Type>());
-            using T    crypt  = (T)create?.Invoke(null, null);
+            using var crypt = (T)create?.Invoke(null, null);
             return crypt?.ComputeHash(stream);
         }
     }
