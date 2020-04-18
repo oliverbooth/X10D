@@ -9,6 +9,38 @@ namespace X10D.Tests
     public class BooleanTests
     {
         /// <summary>
+        /// Tests for <see cref="BooleanExtensions.ToByte"/>.
+        /// </summary>
+        [TestMethod]
+        public void ToByte()
+        {
+            const bool a = true;
+            const bool b = false;
+            const byte c = 1;
+            const byte d = 0;
+
+            Assert.IsTrue(a);
+            Assert.IsFalse(b);
+            Assert.AreEqual(c, a.ToByte());
+            Assert.AreEqual(d, b.ToByte());
+        }
+
+        /// <summary>
+        /// Tests for <see cref="BooleanExtensions.ToInt16"/>.
+        /// </summary>
+        [TestMethod]
+        public void ToInt16()
+        {
+            const bool a = true;
+            const bool b = false;
+
+            Assert.IsTrue(a);
+            Assert.IsFalse(b);
+            Assert.AreEqual(1, a.ToInt16());
+            Assert.AreEqual(0, b.ToInt16());
+        }
+
+        /// <summary>
         /// Tests for <see cref="BooleanExtensions.ToInt32"/>.
         /// </summary>
         [TestMethod]
@@ -24,20 +56,18 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="BooleanExtensions.ToByte"/>.
+        /// Tests for <see cref="BooleanExtensions.ToInt64"/>.
         /// </summary>
         [TestMethod]
-        public void ToByte()
+        public void ToInt64()
         {
             const bool a = true;
             const bool b = false;
-            const byte c = 1;
-            const byte d = 0;
 
             Assert.IsTrue(a);
             Assert.IsFalse(b);
-            Assert.AreEqual(c, a.ToByte());
-            Assert.AreEqual(d, b.ToByte());
+            Assert.AreEqual(1L, a.ToInt64());
+            Assert.AreEqual(0L, b.ToInt64());
         }
 
         /// <summary>
