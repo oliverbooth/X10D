@@ -11,7 +11,8 @@
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> when <paramref name="value"/> and <paramref name="comparison"/> are <see langword="true"/> Otherwise, the output is <see langword="false"/>.</returns>
+        /// <returns>Returns <see langword="true"/> when <paramref name="value"/> and <paramref name="comparison"/> are
+        /// <see langword="true"/> Otherwise, the output is <see langword="false"/>.</returns>
         public static bool And(this bool value, bool comparison)
         {
             return value && comparison;
@@ -22,7 +23,8 @@
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> and <paramref name="comparison"/> are <see langword="true"/>. Otherwise, <see langword="true"/>.</returns>
+        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> and <paramref name="comparison"/> are
+        /// <see langword="true"/>. Otherwise, <see langword="true"/>.</returns>
         public static bool NAnd(this bool value, bool comparison)
         {
             return !(value && comparison);
@@ -33,7 +35,8 @@
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> and <paramref name="comparison"/> are <see langword="false"/>. Otherwise, <see langword="false"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> and <paramref name="comparison"/> are
+        /// <see langword="false"/>. Otherwise, <see langword="false"/>.</returns>
         public static bool NOr(this bool value, bool comparison)
         {
             return !(value || comparison);
@@ -54,7 +57,8 @@
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> or <paramref name="comparison"/> is <see langword="true"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> or <paramref name="comparison"/> is
+        /// <see langword="true"/>.</returns>
         public static bool Or(this bool value, bool comparison)
         {
             return value || comparison;
@@ -85,7 +89,8 @@
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> and <paramref name="comparison"/> are the same, Otherwise <see langword="false"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> and <paramref name="comparison"/> are
+        /// the same, Otherwise <see langword="false"/>.</returns>
         public static bool XNOr(this bool value, bool comparison)
         {
             return !(value ^ comparison);
@@ -96,7 +101,9 @@
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> and <paramref name="comparison"/> are <see langword="false"/> or if <paramref name="value"/> and <paramref name="comparison"/> are <see langword="true"/>.</returns>
+        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> and <paramref name="comparison"/> are
+        /// <see langword="false"/> or if <paramref name="value"/> and <paramref name="comparison"/> are
+        /// <see langword="true"/>.</returns>
         public static bool XOr(this bool value, bool comparison)
         {
             return value ^ comparison;
