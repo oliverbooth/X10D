@@ -46,8 +46,8 @@ namespace X10D.Tests
         [TestMethod]
         public void Not()
         {
-            bool a = true;
-            bool b = false;
+            const bool a = true;
+            const bool b = false;
 
             Assert.IsTrue(a);
             Assert.IsFalse(b);
@@ -98,10 +98,10 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="BooleanExtensions.Xor"/>.
+        /// Tests for <see cref="BooleanExtensions.XOr"/>.
         /// </summary>
         [TestMethod]
-        public void Xor()
+        public void XOr()
         {
             const bool a = true;
             const bool b = true;
@@ -161,7 +161,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="BooleanExtensions.NOr"/>.
+        /// Tests for <see cref="BooleanExtensions.XNOr"/>.
         /// </summary>
         [TestMethod]
         public void XNOr()
