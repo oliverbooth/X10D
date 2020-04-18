@@ -105,7 +105,7 @@
         /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this string str, int length)
         {
-            return str.Random(length, new Random());
+            return str.Random(length, RandomExtensions.Random);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@
         /// <returns>Returns a <see cref="string"/> containing the characters in <paramref name="str"/>, rearranged.</returns>
         public static string Shuffle(this string str)
         {
-            return str.Shuffle(new Random());
+            return str.Shuffle(RandomExtensions.Random);
         }
 
         /// <summary>
