@@ -51,10 +51,8 @@ namespace X10D.Tests
 
             Assert.IsTrue(a);
             Assert.IsFalse(b);
-            a.Not();
-            b.Not();
-            Assert.IsFalse(a);
-            Assert.IsTrue(b);
+            Assert.IsFalse(a.Not());
+            Assert.IsTrue(b.Not());
         }
 
         /// <summary>
