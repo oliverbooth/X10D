@@ -36,7 +36,7 @@
         /// Parses a <see cref="string"/> into an <see cref="Enum"/>.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
-        /// <param name="value">The <see cref="string"/> value to parse</param>
+        /// <param name="value">The <see cref="string"/> value to parse.</param>
         /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="string"/>.</returns>
         public static T EnumParse<T>(this string value)
         {
@@ -47,9 +47,9 @@
         /// Parses a <see cref="string"/> into an <see cref="Enum"/>.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
-        /// <param name="value">The <see cref="string"/> value to parse</param>
+        /// <param name="value">The <see cref="string"/> value to parse.</param>
         /// <param name="ignoreCase">Whether or not to ignore casing.</param>
-        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="string"/></returns>
+        /// <returns>The <see cref="Enum"/> value corresponding to the <see cref="string"/>.</returns>
         public static T EnumParse<T>(this string value, bool ignoreCase)
         {
             if (value is null)
@@ -228,8 +228,8 @@
                 return null;
             }
 
-            SecureString result = new SecureString();
-            foreach (char c in str)
+            var result = new SecureString();
+            foreach (var c in str)
             {
                 result.AppendChar(c);
             }

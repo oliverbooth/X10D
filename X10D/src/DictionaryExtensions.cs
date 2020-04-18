@@ -1,6 +1,5 @@
 ﻿namespace X10D
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -22,15 +21,13 @@
         {
             static string SanitizeValue<T>(T value)
             {
-                return
-                    value is string str &&
-                    Regex.IsMatch(str, "\\s")
-                        ? $"\"{str}\""
-                        : value.ToString();
+                return value is string str &&
+                       Regex.IsMatch(str, "\\s")
+                    ? $"\"{str}\""
+                    : value.ToString();
             }
 
-            IEnumerable<string> strings =
-                dictionary.Select(o => $"{o.Key}={SanitizeValue(o.Value)}");
+            IEnumerable<string> strings = dictionary.Select(o => $"{o.Key}={SanitizeValue(o.Value)}");
             return string.Join(";", strings);
         }
 
@@ -43,7 +40,7 @@
         /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this IDictionary<T1, T2> dictionary)
         {
-            return ((IReadOnlyDictionary<T1, T2>) dictionary).ToConnectionString();
+            return ((IReadOnlyDictionary<T1, T2>)dictionary).ToConnectionString();
         }
 
         /// <summary>
@@ -55,7 +52,7 @@
         /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this Dictionary<T1, T2> dictionary)
         {
-            return ((IReadOnlyDictionary<T1, T2>) dictionary).ToConnectionString();
+            return ((IReadOnlyDictionary<T1, T2>)dictionary).ToConnectionString();
         }
 
         /// <summary>
@@ -69,8 +66,8 @@
         {
             static string Sanitize(KeyValuePair<T1, T2> kvp)
             {
-                string key   = HttpUtility.UrlEncode(kvp.Key.ToString());
-                string value = HttpUtility.UrlEncode(kvp.Value.ToString());
+                var key = HttpUtility.UrlEncode(kvp.Key.ToString());
+                var value = HttpUtility.UrlEncode(kvp.Value.ToString());
                 return $"{key}={value}";
             }
 
@@ -86,7 +83,7 @@
         /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value& set.</returns>
         public static string ToGetParameters<T1, T2>(this IDictionary<T1, T2> dictionary)
         {
-            return ((IReadOnlyDictionary<T1, T2>) dictionary).ToGetParameters();
+            return ((IReadOnlyDictionary<T1, T2>)dictionary).ToGetParameters();
         }
 
         /// <summary>
@@ -98,7 +95,7 @@
         /// <returns>Returns a <see cref="string"/> representing the dictionary as a key=value& set.</returns>
         public static string ToGetParameters<T1, T2>(this Dictionary<T1, T2> dictionary)
         {
-            return ((IReadOnlyDictionary<T1, T2>) dictionary).ToGetParameters();
+            return ((IReadOnlyDictionary<T1, T2>)dictionary).ToGetParameters();
         }
     }
 }

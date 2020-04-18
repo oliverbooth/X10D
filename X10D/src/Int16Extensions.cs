@@ -45,7 +45,7 @@
         /// epoch.</returns>
         public static DateTime FromUnixTimestamp(this short timestamp, bool isMillis = false)
         {
-            return ((long) timestamp).FromUnixTimestamp(isMillis);
+            return ((long)timestamp).FromUnixTimestamp(isMillis);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@
         /// otherwise.</returns>
         public static bool IsEven(this short number)
         {
-            return ((long) number).IsEven();
+            return ((long)number).IsEven();
         }
 
         /// <summary>
@@ -87,7 +87,7 @@
         /// otherwise.</returns>
         public static bool IsEven(this ushort number)
         {
-            return ((ulong) number).IsEven();
+            return ((ulong)number).IsEven();
         }
 
         /// <summary>
@@ -120,7 +120,7 @@
         /// otherwise.</returns>
         public static bool IsPrime(this short number)
         {
-            return ((long) number).IsPrime();
+            return ((long)number).IsPrime();
         }
 
         /// <summary>
@@ -131,7 +131,7 @@
         /// otherwise.</returns>
         public static bool IsPrime(this ushort number)
         {
-            return ((ulong) number).IsPrime();
+            return ((ulong)number).IsPrime();
         }
 
         /// <summary>
@@ -142,7 +142,7 @@
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this short value)
         {
-            return ((long) value).ToBoolean();
+            return ((long)value).ToBoolean();
         }
 
         /// <summary>
@@ -153,7 +153,7 @@
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this ushort value)
         {
-            return ((ulong) value).ToBoolean();
+            return ((ulong)value).ToBoolean();
         }
     }
 }

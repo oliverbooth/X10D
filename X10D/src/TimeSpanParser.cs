@@ -4,6 +4,9 @@
     using System.Diagnostics;
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// Represents a class which contains a <see cref="string"/> parser which converts into <see cref="TimeSpan"/>.
+    /// </summary>
     public static class TimeSpanParser
     {
         /// <summary>
@@ -16,12 +19,12 @@
         public static TimeSpan Parse(string input, IFormatProvider provider = null)
         {
             const string realNumberPattern = @"([0-9]*\.[0-9]+|[0-9]+)";
-            string pattern = $@"^(?:{realNumberPattern} *w)? *" +
-                             $@"(?:{realNumberPattern} *d)? *" +
-                             $@"(?:{realNumberPattern} *h)? *"  +
-                             $@"(?:{realNumberPattern} *m)? *"  +
-                             $@"(?:{realNumberPattern} *s)? *"  +
-                             $@"(?:{realNumberPattern} *ms)?$";
+            var pattern = $"^(?:{realNumberPattern} *w)? *" +
+                          $"(?:{realNumberPattern} *d)? *" +
+                          $"(?:{realNumberPattern} *h)? *" +
+                          $"(?:{realNumberPattern} *m)? *" +
+                          $"(?:{realNumberPattern} *s)? *" +
+                          $"(?:{realNumberPattern} *ms)?$";
 
             Match match = Regex.Match(input, pattern);
             double weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0;

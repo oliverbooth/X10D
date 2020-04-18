@@ -28,7 +28,7 @@
         /// <returns>Returns <paramref name="angle"/> in radians.</returns>
         public static float DegreesToRadians(this float angle)
         {
-            return (float) ((double) angle).DegreesToRadians();
+            return (float)((double)angle).DegreesToRadians();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@
         /// otherwise.</returns>
         public static bool IsEven(this float number)
         {
-            return ((double) number).IsEven();
+            return ((double)number).IsEven();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@
         /// <returns>Returns <paramref name="angle"/> in degrees.</returns>
         public static float RadiansToDegrees(this float angle)
         {
-            return (float) ((double) angle).RadiansToDegrees();
+            return (float)((double)angle).RadiansToDegrees();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@
         /// <returns>Returns the rounded value.</returns>
         public static float Round(this float v, int nearest = 1)
         {
-            return (float) ((double) v).Round(nearest);
+            return (float)((double)v).Round(nearest);
         }
     }
 }
