@@ -139,8 +139,8 @@
                 return false;
             }
 
-            long boundary = (long) Math.Floor(Math.Sqrt(number));
-            for (int i = 3; i <= boundary; i += 2)
+            var boundary = (long)Math.Floor(Math.Sqrt(number));
+            for (var i = 3; i <= boundary; i += 2)
             {
                 if (number % i == 0)
                 {
@@ -174,7 +174,7 @@
                 return false;
             }
 
-            ulong boundary = (ulong) Math.Floor(Math.Sqrt(number));
+            var boundary = (ulong)Math.Floor(Math.Sqrt(number));
             for (uint i = 3; i <= boundary; i += 2)
             {
                 if (number % i == 0)

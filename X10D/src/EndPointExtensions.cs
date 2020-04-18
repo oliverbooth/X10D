@@ -1,6 +1,5 @@
 ﻿namespace X10D
 {
-    using System;
     using System.Net;
 
     /// <summary>
@@ -20,7 +19,7 @@
             {
                 IPEndPoint ip => ip.Address.ToString(),
                 DnsEndPoint dns => dns.Host,
-                _ => string.Empty
+                _ => string.Empty,
             };
         }
 
@@ -35,7 +34,7 @@
             {
                 IPEndPoint ip => ip.Port,
                 DnsEndPoint dns => dns.Port,
-                _ => 0
+                _ => 0,
             };
         }
     }

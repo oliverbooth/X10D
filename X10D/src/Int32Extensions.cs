@@ -45,7 +45,7 @@
         /// epoch.</returns>
         public static DateTime FromUnixTimestamp(this int timestamp, bool isMillis = false)
         {
-            return ((long) timestamp).FromUnixTimestamp(isMillis);
+            return ((long)timestamp).FromUnixTimestamp(isMillis);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@
         /// otherwise.</returns>
         public static bool IsPrime(this int number)
         {
-            return ((long) number).IsPrime();
+            return ((long)number).IsPrime();
         }
 
         /// <summary>
@@ -131,7 +131,7 @@
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this int value)
         {
-            return ((long) value).ToBoolean();
+            return ((long)value).ToBoolean();
         }
 
         /// <summary>
@@ -142,7 +142,7 @@
         /// <see langword="true"/> otherwise.</returns>
         public static bool ToBoolean(this uint value)
         {
-            return ((ulong) value).ToBoolean();
+            return ((ulong)value).ToBoolean();
         }
     }
 }

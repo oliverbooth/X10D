@@ -1,7 +1,5 @@
 ﻿namespace X10D
 {
-    using System;
-
     /// <summary>
     /// Extension methods for <see cref="bool"/>.
     /// </summary>
