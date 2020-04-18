@@ -5,60 +5,60 @@
     /// </summary>
     public static class BooleanExtensions
     {
-
         /// <summary>
-        /// Gets the value of this boolean and another boolean.
+        /// Performs logical AND on this <see cref="bool"/> and another <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> when <paramref name="value"/> and <paramref name="comparison"/> are
-        /// <see langword="true"/> Otherwise, the output is <see langword="false"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> AND <paramref name="comparison"/>
+        /// evaluate to <see langword="true"/>, or <see langword="false"/> otherwise.</returns>
         public static bool And(this bool value, bool comparison)
         {
             return value && comparison;
         }
 
         /// <summary>
-        /// Gets the value of this boolean and another boolean.
+        /// Performs logical NAND on this <see cref="bool"/> and another <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> and <paramref name="comparison"/> are
-        /// <see langword="true"/>. Otherwise, <see langword="true"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> NAND <paramref name="comparison"/>
+        /// evaluate to <see langword="true"/>, or <see langword="false"/> otherwise.</returns>
         public static bool NAnd(this bool value, bool comparison)
         {
             return !(value && comparison);
         }
 
         /// <summary>
-        /// Gets the value of this boolean and another boolean.
+        /// Performs logical NOR on this <see cref="bool"/> and another <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> and <paramref name="comparison"/> are
-        /// <see langword="false"/>. Otherwise, <see langword="false"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> NOR <paramref name="comparison"/>
+        /// evaluate to <see langword="true"/>, or <see langword="false"/> otherwise.</returns>
         public static bool NOr(this bool value, bool comparison)
         {
             return !(value || comparison);
         }
 
         /// <summary>
-        /// Toggles this booleans current state.
+        /// Performs logical NOT on this <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
-        /// <returns>Returns the opposite state of this boolean.</returns>
-        public static bool Not(this ref bool value)
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> is <see langword="false"/>,
+        /// or <see langword="false"/> otherwise.</returns>
+        public static bool Not(this bool value)
         {
-            return value = !value;
+            return !value;
         }
 
         /// <summary>
-        /// Gets the value of this boolean or another boolean.
+        /// Performs logical OR on this <see cref="bool"/> and another <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> or <paramref name="comparison"/> is
-        /// <see langword="true"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> OR <paramref name="comparison"/>
+        /// evaluate to <see langword="true"/>, or <see langword="false"/> otherwise.</returns>
         public static bool Or(this bool value, bool comparison)
         {
             return value || comparison;
@@ -85,25 +85,24 @@
         }
 
         /// <summary>
-        /// Gets the value of this boolean and another boolean.
+        /// Performs logical XNOR on this <see cref="bool"/> and another <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> and <paramref name="comparison"/> are
-        /// the same, Otherwise <see langword="false"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> XNOR <paramref name="comparison"/>
+        /// evaluate to <see langword="true"/>, or <see langword="false"/> otherwise.</returns>
         public static bool XNOr(this bool value, bool comparison)
         {
             return !(value ^ comparison);
         }
 
         /// <summary>
-        /// Gets the value of this boolean exclusively or another boolean.
+        /// Performs logical XOR on this <see cref="bool"/> and another <see cref="bool"/>.
         /// </summary>
         /// <param name="value">The boolean.</param>
         /// <param name="comparison">The boolean comparator.</param>
-        /// <returns>Returns <see langword="false"/> if <paramref name="value"/> and <paramref name="comparison"/> are
-        /// <see langword="false"/> or if <paramref name="value"/> and <paramref name="comparison"/> are
-        /// <see langword="true"/>.</returns>
+        /// <returns>Returns <see langword="true"/> if <paramref name="value"/> XOR <paramref name="comparison"/>
+        /// evaluate to <see langword="true"/>, or <see langword="false"/> otherwise.</returns>
         public static bool XOr(this bool value, bool comparison)
         {
             return value ^ comparison;
