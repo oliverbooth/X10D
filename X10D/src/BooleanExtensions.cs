@@ -81,7 +81,7 @@
         /// <returns>Returns 00000001 if <paramref name="value"/> is <see langword="true"/>, otherwise 0000000.</returns>
         public static byte ToByte(this bool value)
         {
-            return value ? (byte)1 : (byte)0;
+            return (byte)(value ? 1 : 0);
         }
 
         /// <summary>
