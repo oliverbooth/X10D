@@ -8,20 +8,32 @@
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// Calculates someone's age based on a date of birth.
+        /// Returns a rounded integer of the number of years since a given date as of today.
         /// </summary>
-        /// <param name="dateOfBirth">The date of birth.</param>
-        public static int Age(this DateTime dateOfBirth)
+        /// <param name="date">The date from which to start.</param>
+        /// <returns>Returns the number of years since <paramref name="date"/> as of today.</returns>
+        public static int Age(this DateTime date)
         {
-            return (int) (((DateTime.Today - TimeSpan.FromDays(1) - dateOfBirth.Date).TotalDays + 1) / 365.2425);
+            return date.Age(DateTime.Today);
         }
 
         /// <summary>
-        /// Gets a DateTime representing the first specified day in the current month
+        /// Returns a rounded integer of the number of years since a given date as of another given date.
+        /// </summary>
+        /// <param name="date">The date from which to start.</param>
+        /// <param name="asOf">The date at which to stop counting.</param>
+        /// <returns>Returns the number of years since <paramref name="date"/> as of <paramref name="asOf"/>.</returns>
+        public static int Age(this DateTime date, DateTime asOf)
+        {
+            return (int)(((asOf.Date - TimeSpan.FromDays(1) - date.Date).TotalDays + 1) / 365.2425);
+        }
+
+        /// <summary>
+        /// Gets a DateTime representing the first occurence of a specified day in the current month.
         /// </summary>
         /// <param name="current">The current day</param>
         /// <param name="dayOfWeek">The current day of week</param>
-        /// <returns></returns>
+        /// <returns>Returns a date which representing the first occurence of <paramref name="dayOfWeek"/>.</returns>
         public static DateTime First(this DateTime current, DayOfWeek dayOfWeek)
         {
             DateTime first = current.FirstDayOfMonth();
@@ -49,10 +61,8 @@
         /// <param name="current">The current date.</param>
         public static DateTime LastDayOfMonth(this DateTime current)
         {
-            int daysInMonth = DateTime.DaysInMonth(current.Year, current.Month);
-
-            DateTime last = current.FirstDayOfMonth().AddDays(daysInMonth - 1);
-            return last;
+            var daysInMonth = DateTime.DaysInMonth(current.Year, current.Month);
+            return new DateTime(current.Year, current.Month, daysInMonth);
         }
 
         /// <summary>
@@ -62,24 +72,13 @@
         /// <param name="dayOfWeek">The current day of week.</param>
         public static DateTime Last(this DateTime current, DayOfWeek dayOfWeek)
         {
-            DateTime  last          = current.LastDayOfMonth();
+            DateTime last = current.LastDayOfMonth();
             DayOfWeek lastDayOfWeek = last.DayOfWeek;
 
-            int diff = -Math.Abs(dayOfWeek - lastDayOfWeek);
-            return last.AddDays(diff);
-        }
+            var diff = dayOfWeek - lastDayOfWeek;
+            var offset = diff > 0 ? diff - 7 : diff;
 
-        /// <summary>
-        /// Gets a <see cref="DateTime"/> representing midnight on the current date.
-        /// </summary>
-        /// <param name="current">The current date.</param>
-        [Obsolete(
-            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
-            "Please consider downloading the Humanizer package for more stable implementations of this method."
-        )]
-        public static DateTime Midnight(this DateTime current)
-        {
-            return new DateTime(current.Year, current.Month, current.Day, 0, 0, 0);
+            return last.AddDays(offset);
         }
 
         /// <summary>
@@ -90,28 +89,14 @@
         /// <param name="dayOfWeek">The day of week for the next date to get.</param>
         public static DateTime Next(this DateTime current, DayOfWeek dayOfWeek)
         {
-            int offsetDays = dayOfWeek - current.DayOfWeek;
+            var offsetDays = dayOfWeek - current.DayOfWeek;
 
             if (offsetDays <= 0)
             {
                 offsetDays += 7;
             }
 
-            DateTime result = current.AddDays(offsetDays);
-            return result;
-        }
-
-        /// <summary>
-        /// Gets a <see cref="DateTime"/> representing noon on the current date.
-        /// </summary>
-        /// <param name="current">The current date.</param>
-        [Obsolete(
-            "This method has been deprecated in favor of Humanizer's fluent DateTime API. " +
-            "Please consider downloading the Humanizer package for more stable implementations of this method."
-        )]
-        public static DateTime Noon(this DateTime current)
-        {
-            return new DateTime(current.Year, current.Month, current.Day, 12, 0, 0);
+            return current.AddDays(offsetDays);
         }
 
         /// <summary>
