@@ -52,8 +52,20 @@
         /// <param name="random">The <see cref="System.Random"/> instance.</param>
         /// <param name="source">The collection from which to draw.</param>
         /// <returns>Returns a random element of type <see cref="T"/> from <paramref name="source"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random"/> or <paramref name="source"/> is
+        /// <see langword="null"/>.</exception>
         public static T OneOf<T>(this Random random, IList<T> source)
         {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             return source[random.Next(source.Count)];
         }
     }

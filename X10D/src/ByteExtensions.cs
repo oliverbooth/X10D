@@ -97,10 +97,17 @@
         /// <param name="bytes">The bytes to convert.</param>
         /// <param name="encoding">The encoding to use.</param>
         /// <returns>Returns a <see cref="string"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="encoding"/> is <see langword="null"/>.</exception>
         public static string GetString(this IEnumerable<byte> bytes, Encoding encoding)
         {
-            IEnumerable<byte> enumerable = bytes as byte[] ?? bytes.ToArray();
-            return encoding.GetString(enumerable.ToArray(), 0, enumerable.Count());
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
+            // ReSharper disable once SuggestVarOrType_Elsewhere
+            var array = bytes.ToArray();
+            return encoding.GetString(array, 0, array.Length);
         }
     }
 }
