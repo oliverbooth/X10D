@@ -11,8 +11,9 @@
         /// <see cref="TimeSpan"/>.
         /// </summary>
         /// <param name="input">The input string.</param>
+        /// <param name="provider">The format provider.</param>
         /// <returns>Returns an instance of <see cref="TimeSpan"/>.</returns>
-        public static TimeSpan Parse(string input)
+        public static TimeSpan Parse(string input, IFormatProvider provider = null)
         {
             const string realNumberPattern = @"([0-9]*\.[0-9]+|[0-9]+)";
             string pattern = $@"^(?:{realNumberPattern} *w)? *" +
@@ -27,32 +28,32 @@
 
             if (match.Groups[1].Success)
             {
-                weeks = double.Parse(match.Groups[1].Value);
+                weeks = double.Parse(match.Groups[1].Value, provider);
             }
 
             if (match.Groups[2].Success)
             {
-                days = double.Parse(match.Groups[2].Value);
+                days = double.Parse(match.Groups[2].Value, provider);
             }
 
             if (match.Groups[3].Success)
             {
-                hours = double.Parse(match.Groups[3].Value);
+                hours = double.Parse(match.Groups[3].Value, provider);
             }
 
             if (match.Groups[4].Success)
             {
-                minutes = double.Parse(match.Groups[4].Value);
+                minutes = double.Parse(match.Groups[4].Value, provider);
             }
 
             if (match.Groups[5].Success)
             {
-                seconds = double.Parse(match.Groups[5].Value);
+                seconds = double.Parse(match.Groups[5].Value, provider);
             }
 
             if (match.Groups[6].Success)
             {
-                milliseconds = double.Parse(match.Groups[6].Value);
+                milliseconds = double.Parse(match.Groups[6].Value, provider);
             }
 
             Trace.WriteLine($"Input: {input}");
