@@ -29,9 +29,10 @@
         /// Toggles this booleans current state.
         /// </summary>
         /// <param name="value">The boolean.</param>
-        public static void Not(this ref bool value)
+        /// <returns>Returns the opposite state of this boolean.</returns>
+        public static bool Not(this ref bool value)
         {
-            value = !value;
+            return value = !value;
         }
 
         /// <summary>
