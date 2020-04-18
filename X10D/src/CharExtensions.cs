@@ -18,7 +18,7 @@
         /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this char[] chars, int length)
         {
-            return chars.Random(length, new Random());
+            return chars.Random(length, RandomExtensions.Random);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@
         /// <returns>Returns a <see cref="string"/> containing <paramref name="length"/> characters.</returns>
         public static string Random(this IEnumerable<char> chars, int length)
         {
-            return chars.Random(length, new Random());
+            return chars.Random(length, RandomExtensions.Random);
         }
 
         /// <summary>
