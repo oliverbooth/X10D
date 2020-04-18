@@ -57,7 +57,7 @@ namespace X10D.Tests
         public void GetString()
         {
             byte[] a = { 0x48, 0xc3, 0xa9, 0x6c, 0x6c, 0x6f, 0x20, 0x57, 0x6f, 0x72, 0x6c, 0x64 };
-            Assert.AreEqual("Héllo World", a.GetString());
+            Assert.AreEqual("H\u00e9llo World", a.GetString());
         }
 
         /// <summary>
