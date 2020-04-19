@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <IsPackable>false</IsPackable>
+        <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
