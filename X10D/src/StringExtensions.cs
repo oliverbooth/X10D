@@ -59,16 +59,16 @@
 
             value = value.Trim();
 
-            if (value.Length == 0)
+            if (string.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("Must specify valid information for parsing in the string.", nameof(value));
+                throw new ArgumentException(Resource.EnumParseEmptyStringException, nameof(value));
             }
 
             Type t = typeof(T);
 
             if (!t.IsEnum)
             {
-                throw new ArgumentException("Type provided must be an Enum.");
+                throw new ArgumentException(Resource.EnumParseNotEnumException);
             }
 
             return (T)Enum.Parse(t, value, ignoreCase);
