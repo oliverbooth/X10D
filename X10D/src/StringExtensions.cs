@@ -204,9 +204,14 @@
                 throw new ArgumentNullException(nameof(str));
             }
 
-            for (var i = 0; i < str.Length; i += chunkSize)
+            return SplitInternal();
+
+            IEnumerable<string> SplitInternal()
             {
-                yield return str.Substring(i, Math.Min(chunkSize, str.Length - i));
+                for (var i = 0; i < str.Length; i += chunkSize)
+                {
+                    yield return str.Substring(i, Math.Min(chunkSize, str.Length - i));
+                }
             }
         }
 
