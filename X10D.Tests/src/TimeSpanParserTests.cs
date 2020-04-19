@@ -3,9 +3,15 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    /// <summary>
+    /// Tests for <see cref="TimeSpanParser"/>.
+    /// </summary>
     [TestClass]
     public class TimeSpanParserTests
     {
+        /// <summary>
+        /// Tests for <see cref="TimeSpanParser.Parse"/>.
+        /// </summary>
         [TestMethod]
         public void TestParser()
         {
