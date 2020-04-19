@@ -254,5 +254,8 @@ var item = random.OneOf(arr);
 var shuffled = arr.Shuffle(random);
 ```
 
+## Contributing
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## License
 X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md) for more details.
