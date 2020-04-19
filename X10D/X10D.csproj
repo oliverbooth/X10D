@@ -13,7 +13,7 @@
         <PackageIcon>icon.png</PackageIcon>
         <PackageIconUrl />
         <PackageTags>dotnet extension-methods</PackageTags>
-        <Version>2.1.0</Version>
+        <Version>2.1.1-alpha</Version>
         <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
