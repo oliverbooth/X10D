@@ -2,8 +2,8 @@
 name: Extension method request
 about: Make a request for an extension method you believe should be implemented
 title: ''
-labels: ''
-assignees: ''
+labels: enhancement
+assignees: oliverbooth
 
 ---
 
