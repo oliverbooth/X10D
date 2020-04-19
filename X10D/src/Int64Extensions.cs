@@ -30,6 +30,7 @@
         /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
         /// <paramref name="min"/> if <paramref name="value"/> is less than it,
         /// or <paramref name="value"/> itself otherwise.</returns>
+        [CLSCompliant(false)]
         public static ulong Clamp(this ulong value, ulong min, ulong max)
         {
             return Math.Min(Math.Max(value, min), max);
@@ -57,6 +58,7 @@
         /// </summary>
         /// <param name="number">The number to convert.</param>
         /// <returns>Returns a <see cref="byte"/>[].</returns>
+        [CLSCompliant(false)]
         public static byte[] GetBytes(this ulong number)
         {
             return BitConverter.GetBytes(number);
@@ -89,6 +91,7 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
         /// otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool IsEven(this ulong number)
         {
             return Math.Abs(number % 2.0) < double.Epsilon;
@@ -111,6 +114,7 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
         /// otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool IsOdd(this ulong number)
         {
             return !IsEven(number);
@@ -157,6 +161,7 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
         /// otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool IsPrime(this ulong number)
         {
             if (number <= 1)
@@ -203,6 +208,7 @@
         /// <param name="value">The integer.</param>
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool ToBoolean(this ulong value)
         {
             return value != 0;

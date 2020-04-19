@@ -30,6 +30,7 @@
         /// <returns>Returns <paramref name="max"/> if <paramref name="value"/> is greater than it,
         /// <paramref name="min"/> if <paramref name="value"/> is less than it,
         /// or <paramref name="value"/> itself otherwise.</returns>
+        [CLSCompliant(false)]
         public static ushort Clamp(this ushort value, ushort min, ushort max)
         {
             return Math.Min(Math.Max(value, min), max);
@@ -53,6 +54,7 @@
         /// </summary>
         /// <param name="number">The number to convert.</param>
         /// <returns>Returns a <see cref="byte"/>[].</returns>
+        [CLSCompliant(false)]
         public static byte[] GetBytes(this ushort number)
         {
             return BitConverter.GetBytes(number);
@@ -85,6 +87,7 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is even, <see langword="false"/>
         /// otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool IsEven(this ushort number)
         {
             return ((ulong)number).IsEven();
@@ -107,6 +110,7 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is odd, <see langword="false"/>
         /// otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool IsOdd(this ushort number)
         {
             return !number.IsEven();
@@ -129,6 +133,7 @@
         /// <param name="number">The number.</param>
         /// <returns>Returns <see langword="true"/> if <paramref name="number"/> is prime, <see langword="false"/>
         /// otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool IsPrime(this ushort number)
         {
             return ((ulong)number).IsPrime();
@@ -151,6 +156,7 @@
         /// <param name="value">The integer.</param>
         /// <returns>Returns <see langword="false"/> if <paramref name="value"/> is 0,
         /// <see langword="true"/> otherwise.</returns>
+        [CLSCompliant(false)]
         public static bool ToBoolean(this ushort value)
         {
             return ((ulong)value).ToBoolean();
