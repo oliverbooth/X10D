@@ -55,6 +55,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="ushort"/>.</returns>
+        [CLSCompliant(false)]
         public static ushort GetUInt16(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToUInt16(bytes.ToArray(), 0);
@@ -65,6 +66,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="uint"/>.</returns>
+        [CLSCompliant(false)]
         public static uint GetUInt32(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToUInt32(bytes.ToArray(), 0);
@@ -75,6 +77,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>Returns an <see cref="ulong"/>.</returns>
+        [CLSCompliant(false)]
         public static ulong GetUInt64(this IEnumerable<byte> bytes)
         {
             return BitConverter.ToUInt64(bytes.ToArray(), 0);
