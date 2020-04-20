@@ -33,6 +33,39 @@
         }
 
         /// <summary>
+        /// Converts this string from one encoding to another.
+        /// </summary>
+        /// <param name="str">The input string.</param>
+        /// <param name="from">The input encoding.</param>
+        /// <param name="to">The output encoding.</param>
+        /// <returns>Returns a new <see cref="string"/> with its data converted to
+        /// <paramref name="to"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="str"/> is <see langword="null"/>
+        /// - or -
+        /// <paramref name="from"/> is <see langword="null"/>
+        /// -or
+        /// <paramref name="to"/> is <see langword="null"/>.</exception>
+        public static string ChangeEncoding(this string str, Encoding from, Encoding to)
+        {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (from is null)
+            {
+                throw new ArgumentNullException(nameof(from));
+            }
+
+            if (to is null)
+            {
+                throw new ArgumentNullException(nameof(to));
+            }
+
+            return str.GetBytes(from).GetString(to);
+        }
+
+        /// <summary>
         /// Parses a <see cref="string"/> into an <see cref="Enum"/>.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
