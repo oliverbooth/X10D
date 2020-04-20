@@ -146,6 +146,28 @@
         }
 
         /// <summary>
+        /// Determines if all alpha characters in this string are considered lowercase.
+        /// </summary>
+        /// <param name="str">The input string.</param>
+        /// <returns>Returns <see langword="true"/> if all alpha characters are lowercase, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsLower(this string str)
+        {
+            return str.Where(char.IsLetter).All(char.IsLower);
+        }
+
+        /// <summary>
+        /// Determines if all alpha characters in this string are considered uppercase.
+        /// </summary>
+        /// <param name="str">The input string.</param>
+        /// <returns>Returns <see langword="true"/> if all alpha characters are uppercase, <see langword="false"/>
+        /// otherwise.</returns>
+        public static bool IsUpper(this string str)
+        {
+            return str.Where(char.IsLetter).All(char.IsUpper);
+        }
+
+        /// <summary>
         /// Generates a new random string by filling it with characters found in <see cref="str"/>.
         /// </summary>
         /// <param name="str">The character set.</param>

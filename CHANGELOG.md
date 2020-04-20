@@ -4,6 +4,10 @@
 ### Added
 - Add `string.ChangeEncoding(Encoding, Encoding)`
     - Converts this string from one encoding to another
+- Add `string.IsLower`
+    - Determines if all alpha characters in this string are considered lowercase
+- Add `string.IsUpper`
+    - Determines if all alpha characters in this string are considered uppercase
 
 ### Changed
 - n/a
