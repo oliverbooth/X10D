@@ -9,6 +9,11 @@
 - Add `string.IsUpper`
     - Determines if all alpha characters in this string are considered uppercase
 
+- Various extension methods with regards to reflection:
+    - `GetDefaultValue` and `GetDefaultValue<T>` - gets the value stored in the member's `DefaultValue` attribute
+    - `GetDescription`- gets the value stored in the member's `Description` attribute
+    - `SelectFromCustomAttribute<T1, T2>` - Internally calls `GetCustomAttribute<T1>` and passes it to a `Func<T1, T2>` so that specific members may be selected
+
 ### Changed
 - n/a
 
