@@ -29,7 +29,7 @@ You can find the list of classes that have extension methods by viewing the `REA
 ## Install
 Install X10D with NuGet via the following command:
 ```ps
-Install-Package X10D -Version 2.1.0
+Install-Package X10D -Version 2.2.0
 ```
 or by downloading the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository.
 
