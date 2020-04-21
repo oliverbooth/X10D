@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [2.2.0] - 2020-04-21
 ### Added
 - Add `string.ChangeEncoding(Encoding, Encoding)`
     - Converts this string from one encoding to another
