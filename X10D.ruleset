@@ -234,6 +234,10 @@
     <Rule Id="CA2243" Action="Warning" />
     <Rule Id="CA5122" Action="Warning" />
   </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0008" Action="None" />
+    <Rule Id="IDE0008WithoutSuggestion" Action="None" />
+  </Rules>
   <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
     <Rule Id="CA1813" Action="Warning" />
   </Rules>
