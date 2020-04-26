@@ -22,4 +22,4 @@ jobs:
         curl -L https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -o docfx.zip
         unzip -d .docfx docfx.zip
     - name: Build documentation
-      run: dotnet run .docfx/docfx.exe
+      run: dotnet run .docfx/docfx.exe --project X10D.sln
