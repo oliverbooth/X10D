@@ -1,16 +1,16 @@
-﻿namespace X10D.Tests
+﻿namespace X10D.Tests.Core
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="TimeSpanParser"/>.
+    ///     Tests for <see cref="TimeSpanParser" />.
     /// </summary>
     [TestClass]
     public class TimeSpanParserTests
     {
         /// <summary>
-        /// Tests for <see cref="TimeSpanParser.Parse"/>.
+        ///     Tests for <see cref="TimeSpanParser.Parse" />.
         /// </summary>
         [TestMethod]
         public void TestParser()

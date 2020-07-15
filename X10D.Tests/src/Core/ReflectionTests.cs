@@ -1,17 +1,17 @@
-﻿namespace X10D.Tests
+﻿namespace X10D.Tests.Core
 {
     using System;
     using System.ComponentModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="ReflectionExtensions"/>.
+    ///     Tests for <see cref="ReflectionExtensions" />.
     /// </summary>
     [TestClass]
     public class ReflectionTests
     {
         /// <summary>
-        /// Test for <see cref="ReflectionExtensions.GetDefaultValue{T}(System.Reflection.MemberInfo)"/>.
+        ///     Test for <see cref="ReflectionExtensions.GetDefaultValue{T}(System.Reflection.MemberInfo)" />.
         /// </summary>
         [TestMethod]
         public void GetDefaultValue()
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Test for <see cref="ReflectionExtensions.GetDescription(System.Reflection.MemberInfo)"/>.
+        ///     Test for <see cref="ReflectionExtensions.GetDescription(System.Reflection.MemberInfo)" />.
         /// </summary>
         [TestMethod]
         public void GetDescription()
@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// Test for <see cref="ReflectionExtensions.GetDescription(System.Reflection.MemberInfo)"/>.
+        ///     Test for <see cref="ReflectionExtensions.GetDescription(System.Reflection.MemberInfo)" />.
         /// </summary>
         [TestMethod]
         public void SelectFromCustomAttribute()

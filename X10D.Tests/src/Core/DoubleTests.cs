@@ -1,16 +1,16 @@
-namespace X10D.Tests
+namespace X10D.Tests.Core
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="DoubleExtensions"/>.
+    ///     Tests for <see cref="DoubleExtensions" />.
     /// </summary>
     [TestClass]
     public class DoubleTests
     {
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.Clamp"/>.
+        ///     Tests for <see cref="DoubleExtensions.Clamp" />.
         /// </summary>
         [TestMethod]
         public void Clamp()
@@ -20,7 +20,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.DegreesToRadians"/>.
+        ///     Tests for <see cref="DoubleExtensions.DegreesToRadians" />.
         /// </summary>
         [TestMethod]
         public void DegreesToRadians()
@@ -30,7 +30,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.GetBytes"/>.
+        ///     Tests for <see cref="DoubleExtensions.GetBytes" />.
         /// </summary>
         [TestMethod]
         public void GetBytes()
@@ -41,7 +41,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.IsEven"/>.
+        ///     Tests for <see cref="DoubleExtensions.IsEven" />.
         /// </summary>
         [TestMethod]
         public void IsEven()
@@ -51,7 +51,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.IsOdd"/>.
+        ///     Tests for <see cref="DoubleExtensions.IsOdd" />.
         /// </summary>
         [TestMethod]
         public void IsOdd()
@@ -61,7 +61,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.RadiansToDegrees"/>.
+        ///     Tests for <see cref="DoubleExtensions.RadiansToDegrees" />.
         /// </summary>
         [TestMethod]
         public void RadiansToDegrees()
@@ -71,7 +71,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DoubleExtensions.Round"/>.
+        ///     Tests for <see cref="DoubleExtensions.Round" />.
         /// </summary>
         [TestMethod]
         public void Round()

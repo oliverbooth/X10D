@@ -1,16 +1,16 @@
-namespace X10D.Tests
+namespace X10D.Tests.Core
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="ConvertibleExtensions"/>.
+    ///     Tests for <see cref="ConvertibleExtensions" />.
     /// </summary>
     [TestClass]
     public class ConvertibleTests
     {
         /// <summary>
-        /// Tests for <see cref="ConvertibleExtensions.To{T}"/>.
+        ///     Tests for <see cref="ConvertibleExtensions.To{T}" />.
         /// </summary>
         [TestMethod]
         public void To()
@@ -21,7 +21,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ConvertibleExtensions.ToOrDefault{T}(System.IConvertible, System.IFormatProvider)"/>.
+        ///     Tests for <see cref="ConvertibleExtensions.ToOrDefault{T}(System.IConvertible, System.IFormatProvider)" />.
         /// </summary>
         [TestMethod]
         public void ToOrDefault()
@@ -35,7 +35,17 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ConvertibleExtensions.ToOrOther{T}(System.IConvertible, T, System.IFormatProvider)"/>.
+        ///     Tests for <see cref="ConvertibleExtensions.ToOrNull{T}(System.IConvertible, System.IFormatProvider)" />.
+        /// </summary>
+        [TestMethod]
+        public void ToOrNull()
+        {
+            Assert.IsFalse("foo".ToOrNull(out ConvertibleTests t));
+            Assert.IsNull(t);
+        }
+
+        /// <summary>
+        ///     Tests for <see cref="ConvertibleExtensions.ToOrOther{T}(System.IConvertible, T, System.IFormatProvider)" />.
         /// </summary>
         [TestMethod]
         public void ToOrOther()
@@ -43,16 +53,6 @@ namespace X10D.Tests
             Assert.AreEqual(2.0, "Foo".ToOrOther(2.0));
             Assert.IsFalse("Foo".ToOrOther(out var d, 2.0));
             Assert.AreEqual(2.0, d);
-        }
-
-        /// <summary>
-        /// Tests for <see cref="ConvertibleExtensions.ToOrNull{T}(System.IConvertible, System.IFormatProvider)"/>.
-        /// </summary>
-        [TestMethod]
-        public void ToOrNull()
-        {
-            Assert.IsFalse("foo".ToOrNull(out ConvertibleTests t));
-            Assert.IsNull(t);
         }
     }
 }

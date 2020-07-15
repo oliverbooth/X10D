@@ -1,30 +1,30 @@
-namespace X10D.Tests
+namespace X10D.Tests.Core
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="DateTimeExtensions"/>.
+    ///     Tests for <see cref="DateTimeExtensions" />.
     /// </summary>
     [TestClass]
     public class DateTimeTests
     {
         /// <summary>
-        /// Tests for <see cref="DateTimeExtensions.Age(DateTime)"/>.
+        ///     Tests for <see cref="DateTimeExtensions.Age(DateTime)" />.
         /// </summary>
         [TestMethod]
         public void Age()
         {
             // no choice but to create dynamic based on today's date.
             // age varies with time
-            DateTime now = DateTime.Now;
+            var now = DateTime.Now;
             var dt = new DateTime(now.Year - 18, 1, 1);
 
             Assert.AreEqual(18, dt.Age());
         }
 
         /// <summary>
-        /// Tests for <see cref="DateTimeExtensions.First"/>.
+        ///     Tests for <see cref="DateTimeExtensions.First" />.
         /// </summary>
         [TestMethod]
         public void First()
@@ -35,13 +35,13 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DateTimeExtensions.FirstDayOfMonth"/>.
+        ///     Tests for <see cref="DateTimeExtensions.FirstDayOfMonth" />.
         /// </summary>
         [TestMethod]
         public void FirstDayOfMonth()
         {
             var dt = new DateTime(2018, 6, 20);
-            DateTime first = dt.FirstDayOfMonth();
+            var first = dt.FirstDayOfMonth();
 
             Assert.AreEqual(dt.Year, first.Year);
             Assert.AreEqual(dt.Month, first.Month);
@@ -49,14 +49,14 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DateTimeExtensions.Last"/>.
+        ///     Tests for <see cref="DateTimeExtensions.Last" />.
         /// </summary>
         [TestMethod]
         public void Last()
         {
             {
                 var dt = new DateTime(2019, 12, 1);
-                DateTime last = dt.Last(DayOfWeek.Wednesday);
+                var last = dt.Last(DayOfWeek.Wednesday);
 
                 Assert.AreEqual(dt.Year, last.Year);
                 Assert.AreEqual(dt.Month, last.Month);
@@ -65,7 +65,7 @@ namespace X10D.Tests
 
             {
                 var dt = new DateTime(2020, 4, 14);
-                DateTime last = dt.Last(DayOfWeek.Friday);
+                var last = dt.Last(DayOfWeek.Friday);
 
                 Assert.AreEqual(dt.Year, last.Year);
                 Assert.AreEqual(dt.Month, last.Month);
@@ -79,13 +79,13 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DateTimeExtensions.LastDayOfMonth"/>.
+        ///     Tests for <see cref="DateTimeExtensions.LastDayOfMonth" />.
         /// </summary>
         [TestMethod]
         public void LastDayOfMonth()
         {
             var dt = new DateTime(2016, 2, 4);
-            DateTime last = dt.LastDayOfMonth();
+            var last = dt.LastDayOfMonth();
 
             Assert.AreEqual(dt.Year, last.Year);
             Assert.AreEqual(dt.Month, last.Month);
@@ -93,7 +93,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DateTimeExtensions.ToUnixTimeStamp"/>.
+        ///     Tests for <see cref="DateTimeExtensions.ToUnixTimeStamp" />.
         /// </summary>
         [TestMethod]
         public void ToUnixTimestamp()

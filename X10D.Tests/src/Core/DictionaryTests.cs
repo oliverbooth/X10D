@@ -1,16 +1,16 @@
-namespace X10D.Tests
+namespace X10D.Tests.Core
 {
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="DictionaryExtensions"/>.
+    ///     Tests for <see cref="DictionaryExtensions" />.
     /// </summary>
     [TestClass]
     public class DictionaryTests
     {
         /// <summary>
-        /// Tests for <see cref="DictionaryExtensions.ToConnectionString{T1,T2}(IDictionary{T1,T2})"/>.
+        ///     Tests for <see cref="DictionaryExtensions.ToConnectionString{T1,T2}(IDictionary{T1,T2})" />.
         /// </summary>
         [TestMethod]
         public void ToConnectionString()
@@ -25,7 +25,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="DictionaryExtensions.ToGetParameters{T1,T2}(IDictionary{T1,T2})"/>.
+        ///     Tests for <see cref="DictionaryExtensions.ToGetParameters{T1,T2}(IDictionary{T1,T2})" />.
         /// </summary>
         [TestMethod]
         public void ToGetParameters()

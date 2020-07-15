@@ -1,17 +1,17 @@
-namespace X10D.Tests
+namespace X10D.Tests.Core
 {
     using System.Collections.Generic;
     using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="ByteExtensions"/>.
+    ///     Tests for <see cref="ByteExtensions" />.
     /// </summary>
     [TestClass]
     public class ByteTests
     {
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.AsString"/>.
+        ///     Tests for <see cref="ByteExtensions.AsString" />.
         /// </summary>
         [TestMethod]
         public void AsString()
@@ -21,7 +21,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetInt16"/>.
+        ///     Tests for <see cref="ByteExtensions.GetInt16" />.
         /// </summary>
         [TestMethod]
         public void GetInt16()
@@ -31,7 +31,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetInt32"/>.
+        ///     Tests for <see cref="ByteExtensions.GetInt32" />.
         /// </summary>
         [TestMethod]
         public void GetInt32()
@@ -41,7 +41,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetInt64"/>.
+        ///     Tests for <see cref="ByteExtensions.GetInt64" />.
         /// </summary>
         [TestMethod]
         public void GetInt64()
@@ -51,7 +51,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetString(IEnumerable{byte})"/>.
+        ///     Tests for <see cref="ByteExtensions.GetString(IEnumerable{byte})" />.
         /// </summary>
         [TestMethod]
         public void GetString()
@@ -61,7 +61,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetString(IEnumerable{byte}, Encoding)"/>.
+        ///     Tests for <see cref="ByteExtensions.GetString(IEnumerable{byte}, Encoding)" />.
         /// </summary>
         [TestMethod]
         public void GetStringAscii()
@@ -71,7 +71,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetUInt16"/>.
+        ///     Tests for <see cref="ByteExtensions.GetUInt16" />.
         /// </summary>
         [TestMethod]
         public void GetUInt16()
@@ -81,7 +81,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetUInt32"/>.
+        ///     Tests for <see cref="ByteExtensions.GetUInt32" />.
         /// </summary>
         [TestMethod]
         public void GetUInt32()
@@ -91,7 +91,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="ByteExtensions.GetUInt64"/>.
+        ///     Tests for <see cref="ByteExtensions.GetUInt64" />.
         /// </summary>
         [TestMethod]
         public void GetUInt64()
