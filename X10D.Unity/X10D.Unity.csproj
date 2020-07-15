@@ -16,9 +16,9 @@
         <Version>2.2.0</Version>
         <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <PackageVersion>2.4.0</PackageVersion>
-        <AssemblyVersion>2.4.0</AssemblyVersion>
-        <FileVersion>2.4.0</FileVersion>
+        <PackageVersion>2.5.0</PackageVersion>
+        <AssemblyVersion>2.5.0</AssemblyVersion>
+        <FileVersion>2.5.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
