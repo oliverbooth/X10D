@@ -1,17 +1,17 @@
-﻿namespace X10D.Tests
+﻿namespace X10D.Tests.Core
 {
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="EnumerableExtensions"/>.
+    ///     Tests for <see cref="EnumerableExtensions" />.
     /// </summary>
     [TestClass]
     public class EnumerableTests
     {
         /// <summary>
-        /// Tests for <see cref="EnumerableExtensions.Split{T}"/> using an array of <see cref="byte"/>.
+        ///     Tests for <see cref="EnumerableExtensions.Split{T}" /> using an array of <see cref="byte" />.
         /// </summary>
         [TestMethod]
         public void SplitByte()
@@ -32,7 +32,7 @@
         }
 
         /// <summary>
-        /// Tests for <see cref="EnumerableExtensions.Split{T}"/> using an array of <see cref="int"/>.
+        ///     Tests for <see cref="EnumerableExtensions.Split{T}" /> using an array of <see cref="int" />.
         /// </summary>
         [TestMethod]
         public void SplitInt32()

@@ -1,16 +1,16 @@
-﻿namespace X10D.Tests
+﻿namespace X10D.Tests.Core
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="StringExtensions"/>.
+    ///     Tests for <see cref="StringExtensions" />.
     /// </summary>
     [TestClass]
     public class StringTests
     {
         /// <summary>
-        /// Tests for <see cref="StringExtensions.Repeat"/>.
+        ///     Tests for <see cref="StringExtensions.Repeat" />.
         /// </summary>
         [TestMethod]
         public void Repeat()
@@ -19,7 +19,7 @@
         }
 
         /// <summary>
-        /// Tests for <see cref="StringExtensions.Split"/>.
+        ///     Tests for <see cref="StringExtensions.Split" />.
         /// </summary>
         [TestMethod]
         public void Split()

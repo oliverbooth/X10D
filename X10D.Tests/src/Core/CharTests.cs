@@ -1,17 +1,17 @@
-namespace X10D.Tests
+namespace X10D.Tests.Core
 {
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Tests for <see cref="CharExtensions"/>.
+    ///     Tests for <see cref="CharExtensions" />.
     /// </summary>
     [TestClass]
     public class CharTests
     {
         /// <summary>
-        /// Tests for <see cref="CharExtensions.Repeat"/>.
+        ///     Tests for <see cref="CharExtensions.Repeat" />.
         /// </summary>
         [TestMethod]
         public void Random()
@@ -24,7 +24,7 @@ namespace X10D.Tests
         }
 
         /// <summary>
-        /// Tests for <see cref="CharExtensions.Repeat"/>.
+        ///     Tests for <see cref="CharExtensions.Repeat" />.
         /// </summary>
         [TestMethod]
         public void Repeat()
