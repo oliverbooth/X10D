@@ -5,17 +5,17 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Represents a class which contains a <see cref="string"/> parser which converts into <see cref="TimeSpan"/>.
+    ///     Represents a class which contains a <see cref="string" /> parser which converts into <see cref="TimeSpan" />.
     /// </summary>
     public static class TimeSpanParser
     {
         /// <summary>
-        /// Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
-        /// <see cref="TimeSpan"/>.
+        ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
+        ///     <see cref="TimeSpan" />.
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <param name="provider">The format provider.</param>
-        /// <returns>Returns an instance of <see cref="TimeSpan"/>.</returns>
+        /// <returns>Returns an instance of <see cref="TimeSpan" />.</returns>
         public static TimeSpan Parse(string input, IFormatProvider provider = null)
         {
             const string realNumberPattern = @"([0-9]*\.[0-9]+|[0-9]+)";
@@ -26,7 +26,7 @@
                           $"(?:{realNumberPattern} *s)? *" +
                           $"(?:{realNumberPattern} *ms)?$";
 
-            Match match = Regex.Match(input, pattern);
+            var match = Regex.Match(input, pattern);
             double weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
 
             if (match.Groups[1].Success)
@@ -62,7 +62,7 @@
             Trace.WriteLine($"Input: {input}");
             Trace.WriteLine($"Parsed: {weeks}w {days}d {hours}h {minutes}m {seconds}s {milliseconds}ms");
 
-            TimeSpan span = TimeSpan.Zero;
+            var span = TimeSpan.Zero;
 
             span += TimeSpan.FromDays(weeks * 7);
             span += TimeSpan.FromDays(days);
