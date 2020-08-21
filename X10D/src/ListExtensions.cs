@@ -17,7 +17,7 @@
         /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
         public static T OneOf<T>(this IEnumerable<T> source)
         {
-            return source.OneOf(new Random());
+            return source.OneOf(RandomExtensions.Random);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@
         /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
         public static T OneOf<T>(this IList<T> source)
         {
-            return source.OneOf(new Random());
+            return source.OneOf(RandomExtensions.Random);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@
         /// <returns>Returns <paramref name="source" /> shuffled.</returns>
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
         {
-            return source.Shuffle(new Random());
+            return source.Shuffle(RandomExtensions.Random);
         }
 
         /// <summary>
@@ -74,29 +74,6 @@
         /// <param name="random">The <see cref="Random" /> instance.</param>
         /// <returns>Returns <paramref name="source" /> shuffled.</returns>
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random)
-        {
-            return source.OrderBy(_ => random.Next());
-        }
-
-        /// <summary>
-        ///     Shuffles a list.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to shuffle.</param>
-        /// <returns>Returns <paramref name="source" /> shuffled.</returns>
-        public static IEnumerable<T> Shuffle<T>(this IList<T> source)
-        {
-            return source.Shuffle(new Random());
-        }
-
-        /// <summary>
-        ///     Shuffles a list.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to shuffle.</param>
-        /// <param name="random">The <see cref="Random" /> instance.</param>
-        /// <returns>Returns <paramref name="source" /> shuffled.</returns>
-        public static IEnumerable<T> Shuffle<T>(this IList<T> source, Random random)
         {
             return source.OrderBy(_ => random.Next());
         }

@@ -23,5 +23,22 @@
         {
             return actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
         }
+
+        /// <summary>
+        ///     Determines if <paramref name="actual" /> is outside of <paramref name="lower" /> and <paramref name="upper" />.
+        /// </summary>
+        /// <typeparam name="T">The comparable type.</typeparam>
+        /// <param name="actual">The value to compare.</param>
+        /// <param name="lower">The exclusive lower bound.</param>
+        /// <param name="upper">The exclusive upper bound.</param>
+        /// <returns>
+        ///     Returns <see langword="true" /> if the value is out of the bounds, <see langword="false" />
+        ///     otherwise.
+        /// </returns>
+        public static bool Outside<T>(this T actual, T lower, T upper)
+            where T : IComparable<T>
+        {
+            return actual.CompareTo(lower) < 0 || actual.CompareTo(upper) > 0;
+        }
     }
 }

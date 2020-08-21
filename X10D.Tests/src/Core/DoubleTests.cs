@@ -20,13 +20,13 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
-        ///     Tests for <see cref="DoubleExtensions.DegreesToRadians" />.
+        ///     Tests for <see cref="DoubleExtensions.ToRadians" />.
         /// </summary>
         [TestMethod]
         public void DegreesToRadians()
         {
-            Assert.AreEqual(Math.PI, 180.0.DegreesToRadians());
-            Assert.AreEqual(Math.PI * 1.5, 270.0.DegreesToRadians());
+            Assert.AreEqual(Math.PI, 180.0.ToRadians());
+            Assert.AreEqual(Math.PI * 1.5, 270.0.ToRadians());
         }
 
         /// <summary>
@@ -61,13 +61,13 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
-        ///     Tests for <see cref="DoubleExtensions.RadiansToDegrees" />.
+        ///     Tests for <see cref="DoubleExtensions.ToDegrees" />.
         /// </summary>
         [TestMethod]
         public void RadiansToDegrees()
         {
-            Assert.AreEqual(180.0, Math.PI.RadiansToDegrees());
-            Assert.AreEqual(360.0, (2.0 * Math.PI).RadiansToDegrees());
+            Assert.AreEqual(180.0, Math.PI.ToDegrees());
+            Assert.AreEqual(360.0, (2.0 * Math.PI).ToDegrees());
         }
 
         /// <summary>

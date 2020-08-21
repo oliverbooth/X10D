@@ -14,9 +14,20 @@ namespace X10D.Tests.Core
         [TestMethod]
         public void Between()
         {
-            Assert.IsTrue(5.Between(2, 7));
-            Assert.IsTrue(10.Between(9, 11));
-            Assert.IsFalse(100.Between(80, 99));
+            Assert.IsFalse(1.Between(2, 4));
+            Assert.IsTrue(3.Between(2, 4));
+            Assert.IsFalse(5.Between(2, 4));
+        }
+
+        /// <summary>
+        ///     Tests for <see cref="ComparableExtensions.Outside{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void Outside()
+        {
+            Assert.IsTrue(1.Outside(2, 4));
+            Assert.IsFalse(3.Outside(2, 4));
+            Assert.IsTrue(5.Outside(2, 4));
         }
     }
 }

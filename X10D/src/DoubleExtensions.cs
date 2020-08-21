@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="angle">The angle in degrees.</param>
         /// <returns>Returns <paramref name="angle" /> in radians.</returns>
-        public static double DegreesToRadians(this double angle)
+        public static double ToRadians(this double angle)
         {
             return (Math.PI * angle) / 180.0;
         }
@@ -74,7 +74,7 @@
         /// </summary>
         /// <param name="angle">The angle in radians.</param>
         /// <returns>Returns <paramref name="angle" /> in degrees.</returns>
-        public static double RadiansToDegrees(this double angle)
+        public static double ToDegrees(this double angle)
         {
             return angle * (180.0 / Math.PI);
         }
