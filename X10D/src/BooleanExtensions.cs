@@ -1,12 +1,12 @@
 ﻿namespace X10D
 {
+    using System;
+
     /// <summary>
     ///     Extension methods for <see cref="bool" />.
     /// </summary>
     public static class BooleanExtensions
     {
-        private delegate bool SimpleOperator(bool a, bool b);
-
         /// <summary>
         ///     Performs logical AND on this <see cref="bool" /> and another <see cref="bool" />.
         /// </summary>
@@ -234,7 +234,7 @@
             return AdvancedComparison(value, XOr, comparisons);
         }
 
-        private static bool AdvancedComparison<T>(T value, SimpleOperator simpleOperator, params T[] comparisons)
+        private static bool AdvancedComparison<T>(T value, Func<bool, bool, bool> simpleOperator, params T[] comparisons)
         {
             var temp = value.Equals(comparisons[0]);
 
