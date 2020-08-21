@@ -207,7 +207,7 @@
                 throw new ArgumentNullException(nameof(str));
             }
 
-            return str.ToCharArray().Random(length, random);
+            return new string(str.ToCharArray().Random(length, random));
         }
 
         /// <summary>

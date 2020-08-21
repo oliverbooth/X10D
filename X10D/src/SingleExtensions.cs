@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="angle">The angle in degrees.</param>
         /// <returns>Returns <paramref name="angle" /> in radians.</returns>
-        public static float DegreesToRadians(this float angle)
+        public static float ToRadians(this float angle)
         {
             return (float)((double)angle).ToRadians();
         }
@@ -74,7 +74,7 @@
         /// </summary>
         /// <param name="angle">The angle in radians.</param>
         /// <returns>Returns <paramref name="angle" /> in degrees.</returns>
-        public static float RadiansToDegrees(this float angle)
+        public static float ToDegrees(this float angle)
         {
             return (float)((double)angle).ToDegrees();
         }

@@ -1,6 +1,7 @@
 ﻿namespace X10D
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -16,7 +17,7 @@
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
         /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static string Random(this char[] chars, int length)
+        public static char[] Random(this char[] chars, int length)
         {
             return chars.Random(length, RandomExtensions.Random);
         }
@@ -29,7 +30,7 @@
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
         /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-        public static string Random(this char[] chars, int length, Random random)
+        public static char[] Random(this IEnumerable<char> chars, int length, Random random)
         {
             if (chars is null)
             {
@@ -41,13 +42,13 @@
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var builder = new StringBuilder(length);
+            var buffer = new char[length];
             for (var i = 0; i < length; i++)
             {
-                builder.Append(chars[random.Next(0, chars.Length)]);
+                buffer[i] = chars.ElementAt(random.Next(0, chars.Count()));
             }
 
-            return builder.ToString();
+            return buffer;
         }
 
         /// <summary>
@@ -56,21 +57,9 @@
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
         /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static string Random(this IEnumerable<char> chars, int length)
+        public static char[] Random(this IEnumerable<char> chars, int length)
         {
             return chars.Random(length, RandomExtensions.Random);
-        }
-
-        /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="chars" />.
-        /// </summary>
-        /// <param name="chars">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
-        /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static string Random(this IEnumerable<char> chars, int length, Random random)
-        {
-            return chars.ToArray().Random(length, random);
         }
 
         /// <summary>
@@ -82,9 +71,9 @@
         ///     Returns a <see cref="string" /> whose value is <paramref name="c" /> repeated
         ///     <paramref name="count" /> times.
         /// </returns>
-        public static string Repeat(this char c, int count)
+        public static char[] Repeat(this char c, int count)
         {
-            return new string(c, count);
+            return Enumerable.Repeat(c, count).ToArray();
         }
     }
 }
