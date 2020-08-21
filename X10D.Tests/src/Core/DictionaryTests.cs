@@ -10,12 +10,12 @@ namespace X10D.Tests.Core
     public class DictionaryTests
     {
         /// <summary>
-        ///     Tests for <see cref="DictionaryExtensions.ToConnectionString{T1,T2}(IDictionary{T1,T2})" />.
+        ///     Tests for <see cref="DictionaryExtensions.ToConnectionString{T1,T2}(IEnumerable{KeyValuePair{T1, T2}})" />.
         /// </summary>
         [TestMethod]
         public void ToConnectionString()
         {
-            var dictionary = new Dictionary<string, object>
+            IReadOnlyDictionary<string, object> dictionary = new Dictionary<string, object>
             {
                 { "username", "Foo" }, { "password", "Foo Bar" }, { "port", 3306 },
             };
@@ -25,7 +25,7 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
-        ///     Tests for <see cref="DictionaryExtensions.ToGetParameters{T1,T2}(IDictionary{T1,T2})" />.
+        ///     Tests for <see cref="DictionaryExtensions.ToGetParameters{T1,T2}(IEnumerable{KeyValuePair{T1, T2}})" />.
         /// </summary>
         [TestMethod]
         public void ToGetParameters()
