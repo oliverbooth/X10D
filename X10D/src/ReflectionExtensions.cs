@@ -119,5 +119,28 @@
 
             return selector(attribute);
         }
+
+        /// <summary>
+        ///     Gets the type contained within this type.
+        /// </summary>
+        /// <param name="collectionType"> The type being checked. </param>
+        /// <returns>
+        ///     The contained type.
+        ///     EX: List{int} or int[] will return int.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="collectionType" /> is <see langword="null" />.
+        /// </exception>
+        public static Type GetContainedType(this Type collectionType)
+        {
+            if (collectionType is null)
+            {
+                throw new ArgumentNullException(nameof(collectionType));
+            }
+
+            return collectionType.IsGenericType
+                ? collectionType.GetGenericArguments()[0]
+                : collectionType.GetElementType();
+        }
     }
 }
