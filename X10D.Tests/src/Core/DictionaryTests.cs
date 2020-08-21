@@ -53,6 +53,25 @@ namespace X10D.Tests.Core
 
             var getParameterString = dictionary.ToGetParameters(",");
             Assert.AreEqual("username=F%2co%2co&password=F%2co%2co%2c+%2cB%2ca%2cr&port=3%2c3%2c0%2c6", getParameterString);
+
+            // equivalent to username=F,o,o&password=F,o,o,+,B,a,r&port=3,3,0,6
+        }
+
+        /// <summary>
+        ///     Tests for <see cref="DictionaryExtensions.ToGetParameters{T1,T2}(IEnumerable{KeyValuePair{T1, T2}})" />.
+        /// </summary>
+        [TestMethod]
+        public void ToGetParametersSeparators()
+        {
+            var dictionary = new Dictionary<string, IEnumerable>
+            {
+                { "username", "Foo" }, { "password", "Foo Bar" }, { "port", new[] { 3, 3, 0, 6 } },
+            };
+
+            var getParameterString = dictionary.ToGetParameters(",", "-", ".");
+            Assert.AreEqual("username=F%2co%2co&password=F-o-o-+-B-a-r&port=3.3.0.6", getParameterString);
+
+            // equivalent to username=F,o,o&password=F-o-o-+-B-a-r&port=3.3.0.6
         }
     }
 }

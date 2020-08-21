@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web;
@@ -71,6 +72,33 @@
             }
 
             return string.Join("&", dictionary.Select(Sanitize));
+        }
+
+        /// <summary>
+        ///     Converts an <see cref="IReadOnlyDictionary{T1,T2}" /> to a HTTP GET parameter string.
+        /// </summary>
+        /// <typeparam name="TKey">The key type.</typeparam>
+        /// <typeparam name="TValue">The value type.</typeparam>
+        /// <param name="dictionary">The dictionary.</param>
+        /// <param name="separators"> Joins <typeparam name="TValue"/> by the chosen string values. </param>
+        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value& set.</returns>
+        public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> dictionary, params string[] separators)
+            where TValue : IEnumerable
+        {
+            if (dictionary.Count() != separators.Length)
+            {
+                throw new InvalidDataException();
+            }
+
+            static string Sanitize(KeyValuePair<TKey, TValue> pair, string separator)
+            {
+                var key = HttpUtility.UrlEncode(pair.Key.ToString());
+                var value = HttpUtility.UrlEncode(string.Join(separator, pair.Value.OfType<object>()));
+                return $"{key}={value}";
+            }
+
+            var index = 0;
+            return string.Join("&", dictionary.Select(e => Sanitize(e, separators[index++])));
         }
     }
 }
