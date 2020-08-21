@@ -44,7 +44,7 @@
         /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
         public static T OneOf<T>(this Random random, params T[] source)
         {
-            return source.ToList().OneOf(random);
+            return random.OneOf((IEnumerable<T>)source);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@
         ///     <paramref name="random" /> or <paramref name="source" /> is
         ///     <see langword="null" />.
         /// </exception>
-        public static T OneOf<T>(this Random random, IList<T> source)
+        public static T OneOf<T>(this Random random, IEnumerable<T> source)
         {
             if (random is null)
             {
@@ -70,7 +70,7 @@
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source[random.Next(source.Count)];
+            return source.ElementAt(random.Next(source.Count()));
         }
     }
 }
