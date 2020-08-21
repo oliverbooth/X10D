@@ -30,6 +30,22 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
+        ///     Tests for <see cref="BooleanExtensions.AndEquals{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void AndEquals()
+        {
+            Assert.IsFalse(1.AndEquals(0, 0, 0));
+            Assert.IsFalse(1.AndEquals(1, 0, 0));
+            Assert.IsFalse(1.AndEquals(0, 1, 0));
+            Assert.IsFalse(1.AndEquals(1, 1, 0));
+            Assert.IsFalse(1.AndEquals(0, 0, 1));
+            Assert.IsFalse(1.AndEquals(1, 0, 1));
+            Assert.IsFalse(1.AndEquals(0, 1, 1));
+            Assert.IsTrue(1.AndEquals(1, 1, 1));
+        }
+
+        /// <summary>
         ///     Tests for <see cref="BooleanExtensions.NAnd" />.
         /// </summary>
         [TestMethod]
@@ -51,6 +67,22 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
+        ///     Tests for <see cref="BooleanExtensions.AndEquals{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void NAndEquals()
+        {
+            Assert.IsTrue(1.NAndEquals(0, 0, 0));
+            Assert.IsTrue(1.NAndEquals(1, 0, 0));
+            Assert.IsTrue(1.NAndEquals(0, 1, 0));
+            Assert.IsTrue(1.NAndEquals(1, 1, 0));
+            Assert.IsFalse(1.NAndEquals(0, 0, 1));
+            Assert.IsFalse(1.NAndEquals(1, 0, 1));
+            Assert.IsFalse(1.NAndEquals(0, 1, 1));
+            Assert.IsTrue(1.NAndEquals(1, 1, 1));
+        }
+
+        /// <summary>
         ///     Tests for <see cref="BooleanExtensions.NOr" />.
         /// </summary>
         [TestMethod]
@@ -69,6 +101,22 @@ namespace X10D.Tests.Core
             Assert.IsFalse(a.NOr(b));
             Assert.IsFalse(b.NOr(c));
             Assert.IsTrue(c.NOr(d));
+        }
+
+        /// <summary>
+        ///     Tests for <see cref="BooleanExtensions.NOrEquals{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void NOrEquals()
+        {
+            Assert.IsFalse(1.NOrEquals(0, 0, 0));
+            Assert.IsTrue(1.NOrEquals(1, 0, 0));
+            Assert.IsTrue(1.NOrEquals(0, 1, 0));
+            Assert.IsTrue(1.NOrEquals(1, 1, 0));
+            Assert.IsFalse(1.NOrEquals(0, 0, 1));
+            Assert.IsFalse(1.NOrEquals(1, 0, 1));
+            Assert.IsFalse(1.NOrEquals(0, 1, 1));
+            Assert.IsFalse(1.NOrEquals(1, 1, 1));
         }
 
         /// <summary>
@@ -105,6 +153,22 @@ namespace X10D.Tests.Core
             Assert.IsTrue(a.Or(b));
             Assert.IsTrue(b.Or(c));
             Assert.IsFalse(c.Or(d));
+        }
+
+        /// <summary>
+        ///     Tests for <see cref="BooleanExtensions.OrEquals{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void OrEquals()
+        {
+            Assert.IsFalse(1.OrEquals(0, 0, 0));
+            Assert.IsTrue(1.OrEquals(1, 0, 0));
+            Assert.IsTrue(1.OrEquals(0, 1, 0));
+            Assert.IsTrue(1.OrEquals(1, 1, 0));
+            Assert.IsTrue(1.OrEquals(0, 0, 1));
+            Assert.IsTrue(1.OrEquals(1, 0, 1));
+            Assert.IsTrue(1.OrEquals(0, 1, 1));
+            Assert.IsTrue(1.OrEquals(1, 1, 1));
         }
 
         /// <summary>
@@ -191,6 +255,22 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
+        ///     Tests for <see cref="BooleanExtensions.XNOrEquals{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void XNOrEquals()
+        {
+            Assert.IsFalse(1.XNOrEquals(0, 0, 0));
+            Assert.IsTrue(1.XNOrEquals(1, 0, 0));
+            Assert.IsTrue(1.XNOrEquals(0, 1, 0));
+            Assert.IsFalse(1.XNOrEquals(1, 1, 0));
+            Assert.IsTrue(1.XNOrEquals(0, 0, 1));
+            Assert.IsFalse(1.XNOrEquals(1, 0, 1));
+            Assert.IsFalse(1.XNOrEquals(0, 1, 1));
+            Assert.IsTrue(1.XNOrEquals(1, 1, 1));
+        }
+
+        /// <summary>
         ///     Tests for <see cref="BooleanExtensions.XOr" />.
         /// </summary>
         [TestMethod]
@@ -209,6 +289,22 @@ namespace X10D.Tests.Core
             Assert.IsFalse(a.XOr(b));
             Assert.IsTrue(b.XOr(c));
             Assert.IsFalse(c.XOr(d));
+        }
+
+        /// <summary>
+        ///     Tests for <see cref="BooleanExtensions.XOrEquals{T}" />.
+        /// </summary>
+        [TestMethod]
+        public void XOrEquals()
+        {
+            Assert.IsFalse(1.XOrEquals(0, 0, 0));
+            Assert.IsTrue(1.XOrEquals(1, 0, 0));
+            Assert.IsTrue(1.XOrEquals(0, 1, 0));
+            Assert.IsFalse(1.XOrEquals(1, 1, 0));
+            Assert.IsTrue(1.XOrEquals(0, 0, 1));
+            Assert.IsFalse(1.XOrEquals(1, 0, 1));
+            Assert.IsFalse(1.XOrEquals(0, 1, 1));
+            Assert.IsTrue(1.XOrEquals(1, 1, 1));
         }
     }
 }

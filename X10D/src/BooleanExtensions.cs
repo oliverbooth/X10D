@@ -5,6 +5,8 @@
     /// </summary>
     public static class BooleanExtensions
     {
+        private delegate bool SimpleOperator(bool a, bool b);
+
         /// <summary>
         ///     Performs logical AND on this <see cref="bool" /> and another <see cref="bool" />.
         /// </summary>
@@ -17,6 +19,21 @@
         public static bool And(this bool value, bool comparison)
         {
             return value && comparison;
+        }
+
+        /// <summary>
+        ///     Checks if this element is equal to any of the params.
+        /// </summary>
+        /// <param name="value"> The value being checked into. </param>
+        /// <param name="comparisons"> All values being checked against. </param>
+        /// <typeparam name="T"> The type being tested against. </typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if value is or equaled to all of the parameters.
+        ///     EX: a == b && a == c && a == d.
+        /// </returns>
+        public static bool AndEquals<T>(this T value, params T[] comparisons)
+        {
+            return AdvancedComparison(value, And, comparisons);
         }
 
         /// <summary>
@@ -34,6 +51,21 @@
         }
 
         /// <summary>
+        ///     Checks if this element is equal to any of the params.
+        /// </summary>
+        /// <param name="value"> The value being checked into. </param>
+        /// <param name="comparisons"> All values being checked against. </param>
+        /// <typeparam name="T"> The type being tested against. </typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if value is nand to all of the parameters.
+        ///     EX: !(!(a == b && a == c) && a == d).
+        /// </returns>
+        public static bool NAndEquals<T>(this T value, params T[] comparisons)
+        {
+            return AdvancedComparison(value, NAnd, comparisons);
+        }
+
+        /// <summary>
         ///     Performs logical NOR on this <see cref="bool" /> and another <see cref="bool" />.
         /// </summary>
         /// <param name="value">The boolean.</param>
@@ -45,6 +77,21 @@
         public static bool NOr(this bool value, bool comparison)
         {
             return !(value || comparison);
+        }
+
+        /// <summary>
+        ///     Checks if this element is equal to any of the params.
+        /// </summary>
+        /// <param name="value"> The value being checked into. </param>
+        /// <param name="comparisons"> All values being checked against. </param>
+        /// <typeparam name="T"> The type being tested against. </typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if value is nor to all of the parameters.
+        ///     EX: !(!(a == b || a == c) || a == d).
+        /// </returns>
+        public static bool NOrEquals<T>(this T value, params T[] comparisons)
+        {
+            return AdvancedComparison(value, NOr, comparisons);
         }
 
         /// <summary>
@@ -72,6 +119,21 @@
         public static bool Or(this bool value, bool comparison)
         {
             return value || comparison;
+        }
+
+        /// <summary>
+        ///     Checks if this element is equal to any of the params.
+        /// </summary>
+        /// <param name="value"> The value being checked into. </param>
+        /// <param name="comparisons"> All values being checked against. </param>
+        /// <typeparam name="T"> The type being tested against. </typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if value is or equaled to any of the parameters.
+        ///     EX: a == b || a == c || a == d.
+        /// </returns>
+        public static bool OrEquals<T>(this T value, params T[] comparisons)
+        {
+            return AdvancedComparison(value, Or, comparisons);
         }
 
         /// <summary>
@@ -129,6 +191,21 @@
         }
 
         /// <summary>
+        ///     Checks if this element is equal to any of the params.
+        /// </summary>
+        /// <param name="value"> The value being checked into. </param>
+        /// <param name="comparisons"> All values being checked against. </param>
+        /// <typeparam name="T"> The type being tested against. </typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if value is xnor equaled to any of the parameters.
+        ///     EX: !(!(a == b ^ a == c) ^ a == d).
+        /// </returns>
+        public static bool XNOrEquals<T>(this T value, params T[] comparisons)
+        {
+            return AdvancedComparison(value, XNOr, comparisons);
+        }
+
+        /// <summary>
         ///     Performs logical XOR on this <see cref="bool" /> and another <see cref="bool" />.
         /// </summary>
         /// <param name="value">The boolean.</param>
@@ -140,6 +217,34 @@
         public static bool XOr(this bool value, bool comparison)
         {
             return value ^ comparison;
+        }
+
+        /// <summary>
+        ///     Checks if this element is equal to any of the params.
+        /// </summary>
+        /// <param name="value"> The value being checked into. </param>
+        /// <param name="comparisons"> All values being checked against. </param>
+        /// <typeparam name="T"> The type being tested against. </typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if value is xor to all of the parameters.
+        ///     EX: a == b ^ a == c ^ a == d.
+        /// </returns>
+        public static bool XOrEquals<T>(this T value, params T[] comparisons)
+        {
+            return AdvancedComparison(value, XOr, comparisons);
+        }
+
+        private static bool AdvancedComparison<T>(T value, SimpleOperator simpleOperator, params T[] comparisons)
+        {
+            var temp = value.Equals(comparisons[0]);
+
+            for (var index = 1; index < comparisons.Length; index++)
+            {
+                var currentComparison = comparisons[index];
+                temp = simpleOperator.Invoke(temp, value.Equals(currentComparison));
+            }
+
+            return temp;
         }
     }
 }
