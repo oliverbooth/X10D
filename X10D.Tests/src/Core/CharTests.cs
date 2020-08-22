@@ -29,7 +29,7 @@ namespace X10D.Tests.Core
         [TestMethod]
         public void Repeat()
         {
-            Assert.AreEqual("aaaaaaaaaa", 'a'.Repeat(10));
+            Assert.AreEqual("aaaaaaaaaa", new string('a'.Repeat(10)));
         }
     }
 }
