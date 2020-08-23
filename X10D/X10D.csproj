@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>8.0</LangVersion>
-        <Authors>Oliver Booth</Authors>
+        <Authors>Oliver Booth, Timathy Bywater</Authors>
         <NeutralLanguage>en</NeutralLanguage>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/oliverbooth/X10D</RepositoryUrl>
