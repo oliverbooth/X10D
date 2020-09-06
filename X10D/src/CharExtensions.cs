@@ -16,8 +16,10 @@
         /// </summary>
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
+        /// <typeparam name="T"> A generic char collection, allows for implicit vars. </typeparam>
         /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static char[] Random(this char[] chars, int length)
+        public static T Random<T>(this T chars, int length)
+            where T : IEnumerable<char>
         {
             return chars.Random(length, RandomExtensions.Random);
         }
@@ -26,11 +28,13 @@
         ///     Generates a new random string by filling it with characters found in <see cref="chars" />.
         /// </summary>
         /// <param name="chars">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
+        /// <param name="count">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
+        /// /// <typeparam name="T"> A generic char collection, allows for implicit vars. </typeparam>
+        /// <returns>Returns a <see cref="string" /> containing <paramref name="count" /> characters.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-        public static char[] Random(this IEnumerable<char> chars, int length, Random random)
+        public static T Random<T>(this T chars, int count, Random random)
+            where T : IEnumerable<char>
         {
             if (chars is null)
             {
@@ -42,24 +46,15 @@
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var buffer = new char[length];
-            for (var i = 0; i < length; i++)
+            var buffer = new char[count];
+            for (var i = 0; i < count; i++)
             {
                 buffer[i] = chars.ElementAt(random.Next(0, chars.Count()));
             }
 
-            return buffer;
-        }
-
-        /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="chars" />.
-        /// </summary>
-        /// <param name="chars">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static char[] Random(this IEnumerable<char> chars, int length)
-        {
-            return chars.Random(length, RandomExtensions.Random);
+            return (T)(chars is string
+                ? (IEnumerable)new string(buffer)
+                : buffer);
         }
 
         /// <summary>
@@ -71,9 +66,9 @@
         ///     Returns a <see cref="string" /> whose value is <paramref name="c" /> repeated
         ///     <paramref name="count" /> times.
         /// </returns>
-        public static char[] Repeat(this char c, int count)
+        public static string Repeat(this char c, int count)
         {
-            return Enumerable.Repeat(c, count).ToArray();
+            return new string(c, count);
         }
     }
 }

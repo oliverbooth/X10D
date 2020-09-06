@@ -182,35 +182,6 @@
         }
 
         /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="str" />.
-        /// </summary>
-        /// <param name="str">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static string Random(this string str, int length)
-        {
-            return str.Random(length, RandomExtensions.Random);
-        }
-
-        /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="str" />.
-        /// </summary>
-        /// <param name="str">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
-        /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static string Random(this string str, int length, Random random)
-        {
-            if (str is null)
-            {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            return new string(str.ToCharArray().Random(length, random));
-        }
-
-        /// <summary>
         ///     Repeats a string a specified number of times.
         /// </summary>
         /// <param name="str">The string to repeat.</param>

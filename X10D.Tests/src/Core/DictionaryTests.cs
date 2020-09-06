@@ -16,7 +16,7 @@ namespace X10D.Tests.Core
         [TestMethod]
         public void ToConnectionString()
         {
-            IReadOnlyDictionary<string, object> dictionary = new Dictionary<string, object>
+            var dictionary = new Dictionary<string, object>
             {
                 { "username", "Foo" }, { "password", "Foo Bar" }, { "port", 3306 },
             };
