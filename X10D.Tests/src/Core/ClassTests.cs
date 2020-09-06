@@ -15,8 +15,26 @@
         [TestMethod]
         public void PropertiesEquals()
         {
-            var a = new TempClass { FieldBool = true, FieldInt = 1, PropBool = true, PropInt = 1 };
-            var b = new TempClass { FieldBool = false, FieldInt = 0, PropBool = true, PropInt = 1 };
+            var a = new TempClass
+            {
+                PropBool = true,
+                PropInt = 1,
+                InnerClass = new TempClass
+                {
+                    PropBool = false,
+                    PropInt = 0,
+                },
+            };
+            var b = new TempClass
+            {
+                PropBool = true,
+                PropInt = 1,
+                InnerClass = new TempClass
+                {
+                    PropBool = false,
+                    PropInt = 0,
+                },
+            };
             Assert.IsTrue(a.PropertiesEquals(b));
         }
 
@@ -26,8 +44,26 @@
         [TestMethod]
         public void FieldsEquals()
         {
-            var a = new TempClass { FieldBool = false, FieldInt = 0, PropBool = false, PropInt = 0 };
-            var b = new TempClass { FieldBool = false, FieldInt = 0, PropBool = true, PropInt = 1 };
+            var a = new TempClass
+            {
+                FieldBool = false,
+                FieldInt = 0,
+                InnerClass = new TempClass
+                {
+                    FieldBool = true,
+                    FieldInt = 1,
+                },
+            };
+            var b = new TempClass
+            {
+                FieldBool = false,
+                FieldInt = 0,
+                InnerClass = new TempClass
+                {
+                    FieldBool = true,
+                    FieldInt = 1,
+                },
+            };
             Assert.IsTrue(a.FieldsEquals(b));
         }
 
@@ -40,6 +76,8 @@
             public int PropInt { get; set; }
 
             public bool PropBool { get; set; }
+
+            public TempClass InnerClass { get; set; }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace X10D
+﻿using System;
+
+namespace X10D
 {
     using System.Linq;
     using System.Reflection;
@@ -19,7 +21,24 @@
         public static bool PropertiesEquals<T>(this T instance, T comparator, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public)
             where T : class
         {
-            return typeof(T).GetProperties(bindingFlags).Any(e => e.GetValue(instance).Equals(e.GetValue(comparator)));
+            Predicate<PropertyInfo> valueEquals = i => i.GetValue(instance).Equals(i.GetValue(comparator));
+
+            foreach (var propertyInfo in typeof(T).GetProperties(bindingFlags))
+            {
+                if (propertyInfo.PropertyType.IsClass)
+                {
+                    if (!PropertiesEquals(propertyInfo.GetValue(instance), propertyInfo.GetValue(comparator), bindingFlags))
+                    {
+                        return false;
+                    }
+                }
+                else if (!valueEquals(propertyInfo))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -33,7 +52,24 @@
         public static bool FieldsEquals<T>(this T instance, T comparator, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public)
             where T : class
         {
-            return typeof(T).GetFields(bindingFlags).Any(e => e.GetValue(instance).Equals(e.GetValue(comparator)));
+            Predicate<FieldInfo> valueEquals = i => i.GetValue(instance).Equals(i.GetValue(comparator));
+
+            foreach (var fieldInfo in typeof(T).GetFields(bindingFlags))
+            {
+                if (fieldInfo.FieldType.IsClass)
+                {
+                    if (!PropertiesEquals(fieldInfo.GetValue(instance), fieldInfo.GetValue(comparator), bindingFlags))
+                    {
+                        return false;
+                    }
+                }
+                else if (!valueEquals(fieldInfo))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
