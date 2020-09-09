@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>8.0</LangVersion>
-        <Authors>Oliver Booth, Timathy Bywater</Authors>
+        <Authors>Oliver Booth</Authors>
         <NeutralLanguage>en</NeutralLanguage>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/oliverbooth/X10D</RepositoryUrl>
@@ -11,33 +11,23 @@
         <Description>Extension methods on crack.</Description>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageIconUrl />
         <PackageTags>dotnet extension-methods</PackageTags>
-        <Version>2.2.0</Version>
-        <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
+        <Version>2.3.0</Version>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <AssemblyVersion>2.5.0</AssemblyVersion>
-        <FileVersion>2.5.0</FileVersion>
-        <PackageVersion>2.5.0</PackageVersion>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <AssemblyVersion>2.6.0</AssemblyVersion>
+        <FileVersion>2.6.0</FileVersion>
+        <PackageVersion>2.6.0</PackageVersion>
+        <RootNamespace>X10D</RootNamespace>
+        <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
-
+    
     <ItemGroup>
-        <None Include="..\icon.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
-        <None Include="..\LICENSE.md">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
+        <PackageReference Include="Roslynator.Analyzers" Version="3.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -60,6 +50,17 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resource.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\icon.png">
+            <Pack>True</Pack>
+            <PackagePath />
+        </Content>
+        <Content Include="..\LICENSE.md">
+            <Pack>True</Pack>
+            <PackagePath />
+        </Content>
     </ItemGroup>
 
 </Project>

@@ -41,7 +41,7 @@
         /// <typeparam name="T">The collection type.</typeparam>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
         /// <param name="source">The collection from which to draw.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+        /// <returns>Returns a random element of type <typeparamref name="T"/> from <paramref name="source" />.</returns>
         public static T OneOf<T>(this Random random, params T[] source)
         {
             return random.OneOf((IEnumerable<T>)source);
@@ -53,7 +53,7 @@
         /// <typeparam name="T">The collection type.</typeparam>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
         /// <param name="source">The collection from which to draw.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+        /// <returns>Returns a random element of type <typeparamref name="T"/> from <paramref name="source" />.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="random" /> or <paramref name="source" /> is
         ///     <see langword="null" />.
@@ -70,7 +70,8 @@
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source.ElementAt(random.Next(source.Count()));
+            var array = source as T[] ?? source.ToArray();
+            return array[random.Next(array.Length)];
         }
     }
 }

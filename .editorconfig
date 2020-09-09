@@ -200,10 +200,6 @@ dotnet_naming_style.begins_with_i.required_suffix=
 dotnet_naming_style.begins_with_i.word_separator=
                    dotnet_naming_style.begins_with_i.capitalization=pascal_case
 
-# XML comment analysis is disabled due to project configuration
-# https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA0001.md
-dotnet_diagnostic.SA0001.severity = silent
-
 # A C# code file is missing a standard file header.
 # https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1633.md
 dotnet_diagnostic.SA1633.severity = silent
@@ -213,3 +209,4 @@ dotnet_diagnostic.SA1633.severity = silent
 # https://github.com/JosefPihrt/Roslynator/blob/master/docs/analyzers/RCS1090.md
 dotnet_diagnostic.CA2007.severity = silent
 dotnet_diagnostic.RCS1090.severity = silent
+resharper_check_namespace_highlighting = do_not_show

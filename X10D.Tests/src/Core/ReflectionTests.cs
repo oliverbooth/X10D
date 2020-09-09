@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -48,7 +49,7 @@
 
             foreach (var property in klass.GetType().GetProperties())
             {
-                var value = property.SelectFromCustomAttribute<TestAttribute, string>(a => a.TestValue);
+                var value = property.SelectFromCustomAttribute<TestAttribute, string>(a => a?.TestValue);
                 Assert.AreEqual("Bar", value);
             }
         }
@@ -61,6 +62,7 @@
 
         private sealed class TestClass
         {
+            [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Used in Reflection")]
             [System.ComponentModel.Description("Test description")]
             [DefaultValue("Foo")]
             [Test(TestValue = "Bar")]

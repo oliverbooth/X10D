@@ -38,7 +38,7 @@
         /// <typeparam name="TKey">The key type.</typeparam>
         /// <typeparam name="TValue">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value& set.</returns>
+        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value; set.</returns>
         public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> dictionary)
         {
             static string Sanitize(KeyValuePair<TKey, TValue> kvp)
@@ -57,8 +57,8 @@
         /// <typeparam name="TKey">The key type.</typeparam>
         /// <typeparam name="TValue">The value type.</typeparam>
         /// <param name="dictionary">The dictionary.</param>
-        /// <param name="separators"> Joins <typeparam name="TValue"/> by the chosen string values. </param>
-        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value& set.</returns>
+        /// <param name="separators"> Joins <see name="TValue"/> by the chosen string values. </param>
+        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value; set.</returns>
         public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> dictionary, params string[] separators)
             where TValue : IEnumerable
         {

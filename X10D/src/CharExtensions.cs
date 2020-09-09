@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     /// <summary>
     ///     Extension methods for <see cref="char" />.
@@ -12,7 +11,7 @@
     public static class CharExtensions
     {
         /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="chars" />.
+        ///     Generates a new random string by filling it with characters found in <see param="chars" />.
         /// </summary>
         /// <param name="chars">The character set.</param>
         /// <param name="length">The length of the string to generate.</param>
@@ -25,12 +24,12 @@
         }
 
         /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="chars" />.
+        ///     Generates a new random string by filling it with characters found in <see param="chars" />.
         /// </summary>
         /// <param name="chars">The character set.</param>
         /// <param name="count">The length of the string to generate.</param>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// /// <typeparam name="T"> A generic char collection, allows for implicit vars. </typeparam>
+        /// <typeparam name="T"> A generic char collection, allows for implicit vars. </typeparam>
         /// <returns>Returns a <see cref="string" /> containing <paramref name="count" /> characters.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
         public static T Random<T>(this T chars, int count, Random random)

@@ -1,6 +1,7 @@
 ﻿namespace X10D.Tests.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -68,6 +69,9 @@
         }
 
         [Serializable]
+        [SuppressMessage("ReSharper", "SA1401", Justification = "For Testing")]
+        [SuppressMessage("ReSharper", "NotAccessedField.Local", Justification = "It is accessed")]
+        [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Looks nicer")]
         private class TempClass
         {
             public int FieldInt;

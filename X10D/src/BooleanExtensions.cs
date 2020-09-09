@@ -29,7 +29,7 @@
         /// <typeparam name="T"> The type being tested against. </typeparam>
         /// <returns>
         ///     <see langword="true" /> if value is or equaled to all of the parameters.
-        ///     EX: a == b && a == c && a == d.
+        ///     EX: a == b and a == c and a == d.
         /// </returns>
         public static bool AndEquals<T>(this T value, params T[] comparisons)
         {
@@ -58,7 +58,7 @@
         /// <typeparam name="T"> The type being tested against. </typeparam>
         /// <returns>
         ///     <see langword="true" /> if value is nand to all of the parameters.
-        ///     EX: !(!(a == b && a == c) && a == d).
+        ///     EX: !(!(a == b and a == c) and a == d).
         /// </returns>
         public static bool NAndEquals<T>(this T value, params T[] comparisons)
         {
@@ -87,7 +87,7 @@
         /// <typeparam name="T"> The type being tested against. </typeparam>
         /// <returns>
         ///     <see langword="true" /> if value is nor to all of the parameters.
-        ///     EX: !(!(a == b || a == c) || a == d).
+        ///     EX: !(!(a == b or a == c) or a == d).
         /// </returns>
         public static bool NOrEquals<T>(this T value, params T[] comparisons)
         {
@@ -129,7 +129,7 @@
         /// <typeparam name="T"> The type being tested against. </typeparam>
         /// <returns>
         ///     <see langword="true" /> if value is or equaled to any of the parameters.
-        ///     EX: a == b || a == c || a == d.
+        ///     EX: a == b or a == c or a == d.
         /// </returns>
         public static bool OrEquals<T>(this T value, params T[] comparisons)
         {

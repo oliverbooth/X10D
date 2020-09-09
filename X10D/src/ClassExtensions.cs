@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace X10D
+﻿namespace X10D
 {
-    using System.Linq;
+    using System;
     using System.Reflection;
 
     /// <summary>
@@ -17,7 +15,7 @@ namespace X10D
         /// <param name="comparator"> The second value being checked. </param>
         /// <param name="bindingFlags"> The flags that specify what fields are being checked. </param>
         /// <typeparam name="T"> Any type. </typeparam>
-        /// <returns> True if all properties of <param name="instance"/> equals all properties of <param name="comparator"/>. </returns>
+        /// <returns> True if all properties of <paramref name="instance"/> equals all properties of <paramref name="comparator"/>. </returns>
         public static bool PropertiesEquals<T>(this T instance, T comparator, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public)
             where T : class
         {
@@ -48,7 +46,7 @@ namespace X10D
         /// <param name="comparator"> The second value being checked. </param>
         /// <param name="bindingFlags"> The flags that specify what fields are being checked. </param>
         /// <typeparam name="T"> Any type. </typeparam>
-        /// <returns> True if all fields of <param name="instance"/> equals all fields of <param name="comparator"/>. </returns>
+        /// <returns> True if all fields of <paramref name="instance"/> equals all fields of <paramref name="comparator"/>. </returns>
         public static bool FieldsEquals<T>(this T instance, T comparator, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public)
             where T : class
         {

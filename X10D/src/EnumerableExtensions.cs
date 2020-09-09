@@ -21,10 +21,10 @@
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> value, int chunkSize)
         {
             var enumerable = value.ToArray();
-            var count = enumerable.LongCount();
+            var count = enumerable.Length;
             chunkSize = chunkSize.Clamp(1, enumerable.Length);
 
-            for (var i = 0; i < (int)(count / chunkSize); i++)
+            for (var i = 0; i < count / chunkSize; i++)
             {
                 yield return enumerable.Skip(i * chunkSize).Take(chunkSize);
             }

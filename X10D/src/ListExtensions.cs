@@ -14,7 +14,7 @@
         /// </summary>
         /// <typeparam name="T">The collection type.</typeparam>
         /// <param name="source">The collection to draw from.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+        /// <returns>Returns a random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
         public static T OneOf<T>(this IEnumerable<T> source)
         {
             return source.OneOf(RandomExtensions.Random);
@@ -26,7 +26,7 @@
         /// <typeparam name="T">The collection type.</typeparam>
         /// <param name="source">The collection to draw from.</param>
         /// <param name="random">The <see cref="Random" /> instance.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+        /// <returns>Returns a random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
         public static T OneOf<T>(this IEnumerable<T> source, Random random)
         {
             return random.OneOf(source);

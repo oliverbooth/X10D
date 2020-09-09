@@ -16,7 +16,7 @@
         ///     Optional. Whether or not to wrap to the to the start of the enum. Defaults to
         ///     true.
         /// </param>
-        /// <returns>Returns a <see cref="T" /> value.</returns>
+        /// <returns>Returns a <typeparamref name="T" /> value.</returns>
         public static T Next<T>(this T src, bool wrap = true)
             where T : struct
         {
@@ -39,7 +39,7 @@
         ///     Optional. Whether or not to wrap to the to the end of the enum. Defaults to
         ///     true.
         /// </param>
-        /// <returns>Returns a <see cref="T" /> value.</returns>
+        /// <returns>Returns a <typeparamref name="T" /> value.</returns>
         public static T Previous<T>(this T src, bool wrap = true)
             where T : struct
         {
