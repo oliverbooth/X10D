@@ -13,6 +13,27 @@
     public static class StringExtensions
     {
         /// <summary>
+        ///     Returns the current string, or <see langword="null" /> if the current string is null or empty.
+        /// </summary>
+        /// <param name="value">The value to sanitize.</param>
+        /// <returns><see langword="null" /> or <paramref name="value" />.</returns>
+        public static string? AsNullIfEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value) ? null : value;
+        }
+
+        /// <summary>
+        ///     Returns the current string, or <see langword="null" /> if the current string is null, empty, or consists of only
+        ///     whitespace.
+        /// </summary>
+        /// <param name="value">The value to sanitize.</param>
+        /// <returns><see langword="null" /> or <paramref name="value" />.</returns>
+        public static string? AsNullIfWhiteSpace(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value) ? null : value;
+        }
+
+        /// <summary>
         ///     Decodes a base-64 encoded string.
         /// </summary>
         /// <param name="data">The base-64 string to decode.</param>
