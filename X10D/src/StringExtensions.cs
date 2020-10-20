@@ -259,6 +259,16 @@
         }
 
         /// <summary>
+        ///     Reverses the current string.
+        /// </summary>
+        /// <param name="value">The string to reverse.</param>
+        /// <returns>A <see cref="string" /> whose characters are that of <paramref name="value" /> in reverse order.</returns>
+        public static string Reverse(this string value)
+        {
+            return string.Join(string.Empty, Enumerable.Reverse(value));
+        }
+
+        /// <summary>
         ///     Shuffles the characters in the string.
         /// </summary>
         /// <param name="str">The string to shuffle.</param>
