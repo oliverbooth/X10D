@@ -373,5 +373,27 @@
 
             return TimeSpanParser.Parse(str);
         }
+
+        /// <summary>
+        ///     Returns the current string, or an alternative value if the current string is null or empty, or optionally if the
+        ///     current string consists of only whitespace.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        /// <param name="alternative">The alternative value if <paramref name="value" /> does not meet the criteria.</param>
+        /// <param name="includeWhiteSpace">
+        ///     Optional. If set to <see langword="true" />, <paramref name="alternative" /> will be returned also if
+        ///     <paramref name="value" /> only consists of whitespace.
+        /// </param>
+        /// <returns>Returns <paramref name="value" /> or <paramref name="alternative" />.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="alternative" /> is <see langword="null" />.</exception>
+        public static string WithAlternative(this string? value, string alternative, bool includeWhiteSpace = false)
+        {
+            if (alternative is null)
+            {
+                throw new ArgumentNullException(nameof(alternative));
+            }
+
+            return (includeWhiteSpace ? value?.AsNullIfWhiteSpace() : value?.AsNullIfEmpty()) ?? alternative;
+        }
     }
 }
