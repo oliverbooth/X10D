@@ -13,14 +13,12 @@
         <PackageIcon>icon.png</PackageIcon>
         <PackageIconUrl />
         <PackageTags>dotnet extension-methods unity</PackageTags>
-        <Version>2.3.0</Version>
+        <Version>2.6.0</Version>
+        <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageVersion>2.6.0</PackageVersion>
         <AssemblyVersion>2.6.0</AssemblyVersion>
         <FileVersion>2.6.0</FileVersion>
-        <RootNamespace>X10D.Unity</RootNamespace>
-        <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

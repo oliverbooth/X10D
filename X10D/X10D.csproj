@@ -12,14 +12,13 @@
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
         <PackageTags>dotnet extension-methods</PackageTags>
-        <Version>2.3.0</Version>
+        <Version>2.6.0</Version>
+        <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <AssemblyVersion>2.6.0</AssemblyVersion>
         <FileVersion>2.6.0</FileVersion>
         <PackageVersion>2.6.0</PackageVersion>
-        <RootNamespace>X10D</RootNamespace>
-        <NoWarn>NU1701</NoWarn>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     
     <ItemGroup>
