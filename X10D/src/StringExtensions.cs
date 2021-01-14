@@ -192,14 +192,27 @@
         /// <summary>
         ///     Determines if all alpha characters in this string are considered uppercase.
         /// </summary>
-        /// <param name="str">The input string.</param>
+        /// <param name="value">The input string.</param>
         /// <returns>
         ///     Returns <see langword="true" /> if all alpha characters are uppercase, <see langword="false" />
         ///     otherwise.
         /// </returns>
-        public static bool IsUpper(this string str)
+        public static bool IsUpper(this string value)
         {
-            return str.Where(char.IsLetter).All(char.IsUpper);
+            for (var index = 0; index < value.Length; index++)
+            {
+                if (!char.IsLetter(value[index]))
+                {
+                    continue;
+                }
+
+                if (!char.IsUpper(value[index]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
