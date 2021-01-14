@@ -1,12 +1,62 @@
 # Changelog
 
+## [2.6.0] - 2020-10-20
+# Added
+- Add `string.AsNullIfEmpty()`
+  - Returns the current string, or `null` if the current string is null or empty.
+- Add `string.AsNullIfWhiteSpace()`
+  - Returns the current string, or `null` if the current string is null, empty, or consists of only whitespace.
+- Add `string.Reverse()`
+  - Reverses the current string
+- Add `string.WithAlternative()`
+  - Returns the current string, or an alternative value if the current string is null or empty, or optionally if the current string consists of only whitespace.
+
+### Changed
+- n/a
+
+### Removed
+- n/a
+
+## [2.5.0] - 2020-07-15
+### Added
+- `WaitHandle.WaitOneAsync()`
+  - Wraps `WaitHandle.WaitOne` as a `Task`
+- Add support for Unity 2019.4.3f1
+  - Add `GameObject.LookAt(GameObject)`
+    - Rotates the Transform on the current GameObject so that it faces the Transform on another GameObject
+  - Add `GameObject.LookAt(Transform)`
+    - Rotates the Transform on the current GameObject so that it faces another transform
+  - Add `Transform.LookAt(GameObject)`
+    - Rotates the current Transform so that it faces the Transform on another GameObject
+  - Add `Vector3.Round([float])`
+    - Returns a rounded Vector3 by calling `float.Round()` on each component 
+  - Add `Vector3.WithX(float)`
+    - Returns a Vector3 with a new X component value
+  - Add `Vector3.WithY(float)`
+    - Returns a Vector3 with a new Y component value
+  - Add `Vector3.WithZ(float)`
+    - Returns a Vector3 with a new Z component value
+  - Add `Vector3.WithXY(float, float)`
+    - Returns a Vector3 with new X and Y component values
+  - Add `Vector3.WithXZ(float, float)`
+    - Returns a Vector3 with new X and Z component values
+  - Add `Vector3.WithYZ(float, float)`
+    - Returns a Vector3 with new Y and Z component values
+  - Add `BetterBehavior` (experimental wrapper over `MonoBehaviour`)
+
+### Changed
+- n/a
+
+### Removed
+- n/a
+
 ## [2.2.0] - 2020-04-21
 ### Added
 - Add `string.ChangeEncoding(Encoding, Encoding)`
     - Converts this string from one encoding to another
-- Add `string.IsLower`
+- Add `string.IsLower()`
     - Determines if all alpha characters in this string are considered lowercase
-- Add `string.IsUpper`
+- Add `string.IsUpper()`
     - Determines if all alpha characters in this string are considered uppercase
 
 - Various extension methods with regards to reflection:
@@ -22,25 +72,25 @@
 
 ## [2.1.0] - 2020-04-18
 ### Added
-- `bool bool.And(bool)`
+- Add `bool bool.And(bool)`
     - Performs logical AND
-- `bool bool.Or(bool)` 
+- Add `bool bool.Or(bool)` 
     - Performs logical OR
-- `bool bool.Not(bool)`
+- Add `bool bool.Not(bool)`
     - Performs logical NOT
-- `bool bool.XOr(bool)`
+- Add `bool bool.XOr(bool)`
     - Performs Logical XOR
-- `bool bool.NAnd(bool)`
+- Add `bool bool.NAnd(bool)`
     - Performs logical NAND
-- `bool bool.NOr(bool)`
+- Add `bool bool.NOr(bool)`
     - Performs logical NOR
-- `bool bool.XNOr(bool)`
+- Add `bool bool.XNOr(bool)`
     - Performs logical XNOR
-- `byte bool.ToByte()`
+- Add `byte bool.ToByte()`
     - 1 if `true`, 0 otherwise
-- `short bool.ToInt16()`
+- Add `short bool.ToInt16()`
     - 1 if `true`, 0 otherwise
-- `long bool.ToInt64()`
+- Add `long bool.ToInt64()`
     - 1 if `true`, 0 otherwise
 
 ### Changed
@@ -67,6 +117,7 @@
 ### ***Not documented***
 
 [Unreleased]: https://github.com/oliverbooth/X10D/tree/HEAD
+[2.5.0]: https://github.com/oliverbooth/X10D/releases/tag/2.5.0
 [2.2.0]: https://github.com/oliverbooth/X10D/releases/tag/2.2.0
 [2.1.0]: https://github.com/oliverbooth/X10D/releases/tag/2.1.0
 [2.0.0]: https://github.com/oliverbooth/X10D/releases/tag/2.0.0
