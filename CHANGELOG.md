@@ -1,7 +1,7 @@
 # Changelog
 
 ## [2.6.0] - 2020-10-20
-# Added
+### Added
 - Add `string.AsNullIfEmpty()`
   - Returns the current string, or `null` if the current string is null or empty.
 - Add `string.AsNullIfWhiteSpace()`
