@@ -265,7 +265,27 @@
         /// <returns>A <see cref="string" /> whose characters are that of <paramref name="value" /> in reverse order.</returns>
         public static string Reverse(this string value)
         {
-            return string.Join(string.Empty, Enumerable.Reverse(value));
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (value.Length == 1)
+            {
+                return value;
+            }
+
+            unsafe
+            {
+                var array = stackalloc char[value.Length];
+
+                for (var index = 0; index < value.Length; index++)
+                {
+                    array[index] = value[value.Length - index - 1];
+                }
+
+                return new string(array);
+            }
         }
 
         /// <summary>
