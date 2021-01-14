@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>8.0</LangVersion>
+        <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+        <LangVersion>9.0</LangVersion>
         <Authors>Oliver Booth</Authors>
         <NeutralLanguage>en</NeutralLanguage>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -25,11 +25,11 @@
     <ItemGroup>
         <None Include="..\icon.png">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath />
         </None>
         <None Include="..\LICENSE.md">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath />
         </None>
     </ItemGroup>
 
