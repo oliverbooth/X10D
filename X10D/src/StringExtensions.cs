@@ -179,14 +179,27 @@
         /// <summary>
         ///     Determines if all alpha characters in this string are considered lowercase.
         /// </summary>
-        /// <param name="str">The input string.</param>
+        /// <param name="value">The input string.</param>
         /// <returns>
         ///     Returns <see langword="true" /> if all alpha characters are lowercase, <see langword="false" />
         ///     otherwise.
         /// </returns>
-        public static bool IsLower(this string str)
+        public static bool IsLower(this string value)
         {
-            return str.Where(char.IsLetter).All(char.IsLower);
+            for (var index = 0; index < value.Length; index++)
+            {
+                if (!char.IsLetter(value[index]))
+                {
+                    continue;
+                }
+
+                if (!char.IsLower(value[index]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
