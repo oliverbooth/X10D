@@ -368,51 +368,7 @@
                 }
             }
         }
-
-        /// <summary>
-        ///     Converts a <see cref="string" /> to a <see cref="SecureString" />.
-        /// </summary>
-        /// <param name="str">The string to convert.</param>
-        /// <returns>Returns a <see cref="SecureString" />.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static SecureString ToSecureString(this string str)
-        {
-            if (str is null)
-            {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            if (string.IsNullOrWhiteSpace(str))
-            {
-                return null;
-            }
-
-            var result = new SecureString();
-            foreach (var c in str)
-            {
-                result.AppendChar(c);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        ///     Converts a <see cref="SecureString" /> to a <see cref="string" />.
-        /// </summary>
-        /// <param name="str">The <see cref="SecureString" /> to convert.</param>
-        /// <param name="extension">Whether or not to use this extension method.</param>
-        /// <returns>Returns a <see cref="string" />.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static string ToString(this SecureString str, bool extension)
-        {
-            if (str is null)
-            {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            return extension ? new NetworkCredential(string.Empty, str).Password : str.ToString();
-        }
-
+        
         /// <summary>
         ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
         ///     <see cref="TimeSpan" />.
