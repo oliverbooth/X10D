@@ -16,23 +16,25 @@ namespace X10D
         internal static Random Random { get; } = new Random();
 
         /// <summary>
-        ///     Returns either <see langword="true" /> or <see langword="false" /> based on <paramref name="random" />'s next
-        ///     generation.
+        ///     Returns either <see langword="true" /> or <see langword="false" /> based on the next generation of the current
+        ///     <see cref="System.Random" />.
         /// </summary>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
         /// <returns>
-        ///     Returns <see langword="true" /> or <see langword="false" /> depending on the return value
-        ///     from <see cref="System.Random.Next(int)" />.
+        ///     <see langword="true" /> if the return value from <see cref="System.Random.NextDouble()" /> is greater than or
+        ///     equal to 0.5
+        ///     -or-
+        ///     <see langword="false" /> otherwise.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-        public static bool CoinToss(this Random random)
+        public static bool NextBoolean(this Random random)
         {
             if (random is null)
             {
                 throw new ArgumentNullException(nameof(random));
             }
 
-            return random.Next(2) == 0;
+            return random.NextDouble() >= 0.5;
         }
 
         /// <summary>
