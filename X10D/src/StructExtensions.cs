@@ -1,7 +1,7 @@
-﻿namespace X10D
-{
-    using System;
+﻿using System;
 
+namespace X10D
+{
     /// <summary>
     ///     Extension methods for <see langword="struct" /> types.
     /// </summary>

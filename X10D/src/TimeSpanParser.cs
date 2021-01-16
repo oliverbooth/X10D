@@ -1,9 +1,9 @@
-﻿namespace X10D
-{
-    using System;
-    using System.Diagnostics;
-    using System.Text.RegularExpressions;
+﻿using System;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
+namespace X10D
+{
     /// <summary>
     ///     Represents a class which contains a <see cref="string" /> parser which converts into <see cref="TimeSpan" />.
     /// </summary>

@@ -1,10 +1,10 @@
-﻿namespace X10D
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Web;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
 
+namespace X10D
+{
     /// <summary>
     ///     A set of extension methods for <see cref="Dictionary{TKey,TValue}" />.
     /// </summary>

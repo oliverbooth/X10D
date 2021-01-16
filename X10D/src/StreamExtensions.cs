@@ -1,9 +1,9 @@
-﻿namespace X10D
-{
-    using System;
-    using System.IO;
-    using System.Security.Cryptography;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
 
+namespace X10D
+{
     /// <summary>
     ///     Extension methods for <see cref="Stream" />.
     /// </summary>

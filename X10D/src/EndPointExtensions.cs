@@ -1,7 +1,7 @@
-﻿namespace X10D
-{
-    using System.Net;
+﻿using System.Net;
 
+namespace X10D
+{
     /// <summary>
     ///     Extension methods for <see cref="EndPoint" /> and derived types.
     /// </summary>
