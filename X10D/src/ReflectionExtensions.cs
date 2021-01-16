@@ -1,9 +1,9 @@
-﻿namespace X10D
-{
-    using System;
-    using System.ComponentModel;
-    using System.Reflection;
+﻿using System;
+using System.ComponentModel;
+using System.Reflection;
 
+namespace X10D
+{
     /// <summary>
     ///     Extension methods for various reflection types.
     /// </summary>

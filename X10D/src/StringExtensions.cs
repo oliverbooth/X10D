@@ -1,12 +1,10 @@
-﻿namespace X10D
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Security;
-    using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
+namespace X10D
+{
     /// <summary>
     ///     Extension methods for <see cref="string" />.
     /// </summary>
