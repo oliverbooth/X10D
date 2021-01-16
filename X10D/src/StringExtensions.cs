@@ -336,7 +336,7 @@ namespace X10D
                 throw new ArgumentNullException(nameof(str));
             }
 
-            return new string(str.ToCharArray().Shuffle(random).ToArray());
+            return new string(str.Shuffled(random).ToArray());
         }
 
         /// <summary>
