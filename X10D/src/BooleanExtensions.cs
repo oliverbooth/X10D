@@ -12,7 +12,7 @@
         /// <returns>Returns 1 if <paramref name="value" /> is <see langword="true" />, or 0 otherwise.</returns>
         public static byte ToByte(this bool value)
         {
-            return (byte)value.ToInt32();
+            return value ? 1 : 0;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// <returns>Returns 1 if <paramref name="value" /> is <see langword="true" />, or 0 otherwise.</returns>
         public static short ToInt16(this bool value)
         {
-            return (short)value.ToInt32();
+            return value.ToByte();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// <returns>Returns 1 if <paramref name="value" /> is <see langword="true" />, or 0 otherwise.</returns>
         public static int ToInt32(this bool value)
         {
-            return value ? 1 : 0;
+            return value.ToByte();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@
         /// <returns>Returns 1 if <paramref name="value" /> is <see langword="true" />, 0 otherwise.</returns>
         public static long ToInt64(this bool value)
         {
-            return value.ToInt32();
+            return value.ToByte();
         }
     }
 }
