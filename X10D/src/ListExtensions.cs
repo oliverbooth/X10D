@@ -56,49 +56,28 @@ namespace X10D
         }
 
         /// <summary>
-        ///     Shuffles an enumerable.
+        ///     Reorganizes the elements in a list by implementing a Fisher-Yates shuffle.
         /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to shuffle.</param>
-        /// <returns>Returns <paramref name="source" /> shuffled.</returns>
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
-        {
-            return source.Shuffle(new Random());
-        }
-
-        /// <summary>
-        ///     Shuffles an enumerable.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to shuffle.</param>
+        /// <typeparam name="T">The element type.</typeparam>
+        /// <param name="source">The <see cref="IList{T}" /> to shuffle.</param>
         /// <param name="random">The <see cref="Random" /> instance.</param>
-        /// <returns>Returns <paramref name="source" /> shuffled.</returns>
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random)
+        public static void Shuffle<T>(this IList<T> source, System.Random? random = null)
         {
-            return source.OrderBy(_ => random.Next());
-        }
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
 
-        /// <summary>
-        ///     Shuffles a list.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to shuffle.</param>
-        /// <returns>Returns <paramref name="source" /> shuffled.</returns>
-        public static IEnumerable<T> Shuffle<T>(this IList<T> source)
-        {
-            return source.Shuffle(new Random());
-        }
+            random ??= RandomExtensions.Random;
 
-        /// <summary>
-        ///     Shuffles a list.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to shuffle.</param>
-        /// <param name="random">The <see cref="Random" /> instance.</param>
-        /// <returns>Returns <paramref name="source" /> shuffled.</returns>
-        public static IEnumerable<T> Shuffle<T>(this IList<T> source, Random random)
-        {
-            return source.OrderBy(_ => random.Next());
+            var count = source.Count;
+            while (count > 0)
+            {
+                var index = random.Next(count--);
+                var temp = source[count];
+                source[count] = source[index];
+                source[index] = temp;
+            }
         }
     }
 }
