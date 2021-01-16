@@ -3,9 +3,9 @@
 namespace X10D
 {
     /// <summary>
-    ///     Extension methods for <see langword="struct" /> types.
+    ///     Extension methods for <see langword="enum" /> types.
     /// </summary>
-    public static class StructExtensions
+    public static class EnumExtensions
     {
         /// <summary>
         ///     Returns the next value in an <see cref="Enum" /> using the specified value as a starting point.
@@ -18,11 +18,11 @@ namespace X10D
         /// </param>
         /// <returns>Returns a <see cref="T" /> value.</returns>
         public static T Next<T>(this T src, bool wrap = true)
-            where T : struct
+            where T : struct, Enum
         {
             if (!typeof(T).IsEnum)
             {
-                throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+                throw new ArgumentException($"Argument {typeof(T).FullName} is not an enum");
             }
 
             var arr = (T[])Enum.GetValues(src.GetType());
@@ -41,7 +41,7 @@ namespace X10D
         /// </param>
         /// <returns>Returns a <see cref="T" /> value.</returns>
         public static T Previous<T>(this T src, bool wrap = true)
-            where T : struct
+            where T : struct, Enum
         {
             if (!typeof(T).IsEnum)
             {
