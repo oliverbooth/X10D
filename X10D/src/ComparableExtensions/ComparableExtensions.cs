@@ -169,7 +169,7 @@ namespace X10D.ComparableExtensions
         /// <param name="value">The first value.</param>
         /// <param name="other">The second value.</param>
         /// <typeparam name="T">A type which implements <see cref="IComparable{T}" />.</typeparam>
-        /// <returns>G
+        /// <returns>
         ///     <paramref name="value" /> if <paramref name="value" /> is greater than <paramref name="other" />
         ///     -or-
         ///     <paramref name="other" /> otherwise.
