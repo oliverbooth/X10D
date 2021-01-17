@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -19,6 +20,11 @@ namespace X10D
         /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary)
         {
+            if (dictionary is null)
+            {
+                throw new ArgumentNullException(nameof(dictionary));
+            }
+
             static string SanitizeValue(string? value)
             {
                 if (value is null)
@@ -37,8 +43,14 @@ namespace X10D
                 return value;
             }
 
-            var strings = dictionary.Select(o => $"{o.Key}={SanitizeValue(o.Value?.ToString())}");
-            return string.Join(";", strings);
+            var list = new List<string>();
+            
+            foreach (var pair in dictionary)
+            {
+                list.Add($"{pair.Key}={SanitizeValue(pair.Value?.ToString())}");
+            }
+
+            return string.Join(";", list);
         }
 
         /// <summary>
