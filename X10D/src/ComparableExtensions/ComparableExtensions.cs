@@ -162,5 +162,59 @@ namespace X10D.ComparableExtensions
         {
             return value.CompareTo(other) <= 0;
         }
+
+        /// <summary>
+        ///     Returns the maximum of two values.
+        /// </summary>
+        /// <param name="value">The first value.</param>
+        /// <param name="other">The second value.</param>
+        /// <typeparam name="T">A type which implements <see cref="IComparable{T}" />.</typeparam>
+        /// <returns>G
+        ///     <paramref name="value" /> if <paramref name="value" /> is greater than <paramref name="other" />
+        ///     -or-
+        ///     <paramref name="other" /> otherwise.
+        /// </returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// int first = 5;
+        /// int second = 10;
+        ///
+        /// int max = first.Max(second);
+        /// // max will be 10
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T Max<T>(this T value, T other)
+            where T : IComparable<T>
+        {
+            return value.GreaterThan(other) ? value : other;
+        }
+
+        /// <summary>
+        ///     Returns the minimum of two values.
+        /// </summary>
+        /// <param name="value">The first value.</param>
+        /// <param name="other">The second value.</param>
+        /// <typeparam name="T">A type which implements <see cref="IComparable{T}" />.</typeparam>
+        /// <returns>
+        ///     <paramref name="value" /> if <paramref name="value" /> is less than <paramref name="other" />
+        ///     -or-
+        ///     <paramref name="other" /> otherwise.
+        /// </returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// int first = 5;
+        /// int second = 10;
+        ///
+        /// int min = first.Min(second);
+        /// // min will be 5
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T Min<T>(this T value, T other)
+            where T : IComparable<T>
+        {
+            return value.LessThan(other) ? value : other;
+        }
     }
 }
