@@ -50,6 +50,43 @@ namespace X10D.ComparableExtensions
         {
             return actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
         }
+        
+        /// <summary>
+        ///     Returns the current value clamped to the inclusive range of <paramref name="lower" /> and <paramref name="upper" />.
+        /// </summary>
+        /// <param name="value">The value to be clamped.</param>
+        /// <param name="lower">The lower bound of the result.</param>
+        /// <param name="upper">The upper bound of the result.</param>
+        /// <typeparam name="T">An <see cref="IComparable" /> type.</typeparam>
+        /// <returns>
+        ///     <paramref name="value" /> if <paramref name="lower" /> ≤ <paramref name="value" /> ≤ <paramref name="upper" />.
+        ///     -or-
+        ///     <paramref name="lower" /> if <paramref name="value" /> &lt; <paramref name="lower" />.
+        ///     -or-
+        ///     <paramref name="upper" /> if <paramref name="upper" /> &lt; <paramref name="value" />.
+        /// </returns>
+        /// <exception cref="ArgumentException"><paramref name="lower" /> is greater than <paramref name="upper" />.</exception>
+        /// <example>
+        /// <code lang="csharp">
+        /// int value = 42;
+        /// int lower = 0;
+        /// int upper = 20;
+        ///
+        /// int clamped = value.Clamp(lower, upper);
+        /// // clamped will be 20
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T Clamp<T>(this T value, T lower, T upper)
+            where T : IComparable<T>
+        {
+            if (lower.GreaterThan(upper))
+            {
+                throw new ArgumentException($@"{lower} cannot be greater than {upper}", nameof(lower));
+            }
+
+            return value.Max(lower).Min(upper);
+        }
 
         /// <summary>
         ///     Determines if the current value is greater than another value.
