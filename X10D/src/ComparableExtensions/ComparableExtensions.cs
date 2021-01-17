@@ -50,5 +50,117 @@ namespace X10D.ComparableExtensions
         {
             return actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
         }
+
+        /// <summary>
+        ///     Determines if the current value is greater than another value.
+        /// </summary>
+        /// <param name="value">The first value.</param>
+        /// <param name="other">The second value.</param>
+        /// <typeparam name="T1">An <see cref="IComparable{T2}" /> type.</typeparam>
+        /// <typeparam name="T2">The comparison operand type.</typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is greater than <paramref name="other" />
+        ///     -or-
+        ///     <see langword="false"/> otherwise.
+        /// </returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// int first = 5;
+        /// int second = 10;
+        ///
+        /// bool result = first.GreaterThan(second);
+        /// // result will be False
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool GreaterThan<T1, T2>(this T1 value, T2 other)
+            where T1 : IComparable<T2>
+        {
+            return value.CompareTo(other) > 0;
+        }
+
+        /// <summary>
+        ///     Determines if the current value is greater than or equal to another value.
+        /// </summary>
+        /// <param name="value">The first value.</param>
+        /// <param name="other">The second value.</param>
+        /// <typeparam name="T1">An <see cref="IComparable{T2}" /> type.</typeparam>
+        /// <typeparam name="T2">The comparison operand type.</typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is greater than or equal to <paramref name="other" />
+        ///     -or-
+        ///     <see langword="false"/> otherwise.
+        /// </returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// int first = 5;
+        /// int second = 10;
+        ///
+        /// bool result = first.GreaterThanOrEqualTo(second);
+        /// // result will be False
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool GreaterThanOrEqualTo<T1, T2>(this T1 value, T2 other)
+            where T1 : IComparable<T2>
+        {
+            return value.CompareTo(other) >= 0;
+        }
+
+        /// <summary>
+        ///     Determines if the current value is less than another value.
+        /// </summary>
+        /// <param name="value">The first value.</param>
+        /// <param name="other">The second value.</param>
+        /// <typeparam name="T1">An <see cref="IComparable{T2}" /> type.</typeparam>
+        /// <typeparam name="T2">The comparison operand type.</typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is less than <paramref name="other" />
+        ///     -or-
+        ///     <see langword="false"/> otherwise.
+        /// </returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// int first = 5;
+        /// int second = 10;
+        ///
+        /// bool result = first.LessThan(second);
+        /// // result will be True
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool LessThan<T1, T2>(this T1 value, T2 other)
+            where T1 : IComparable<T2>
+        {
+            return value.CompareTo(other) < 0;
+        }
+
+        /// <summary>
+        ///     Determines if the current value is less than or equal to another value.
+        /// </summary>
+        /// <param name="value">The first value.</param>
+        /// <param name="other">The second value.</param>
+        /// <typeparam name="T1">An <see cref="IComparable{T2}" /> type.</typeparam>
+        /// <typeparam name="T2">The comparison operand type.</typeparam>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is less than or equal to <paramref name="other" />
+        ///     -or-
+        ///     <see langword="false"/> otherwise.
+        /// </returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// int first = 5;
+        /// int second = 10;
+        ///
+        /// bool result = first.LessThanOrEqualTo(second);
+        /// // result will be True
+        /// </code>
+        /// </example>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool LessThanOrEqualTo<T1, T2>(this T1 value, T2 other)
+            where T1 : IComparable<T2>
+        {
+            return value.CompareTo(other) <= 0;
+        }
     }
 }
