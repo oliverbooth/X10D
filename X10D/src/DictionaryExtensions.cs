@@ -19,15 +19,25 @@ namespace X10D
         /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value; set.</returns>
         public static string ToConnectionString<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary)
         {
-            static string SanitizeValue<T>(T value)
+            static string SanitizeValue(string? value)
             {
-                return value is string str &&
-                       Regex.IsMatch(str, "\\s")
-                    ? $"\"{str}\""
-                    : value.ToString();
+                if (value is null)
+                {
+                    return string.Empty;
+                }
+
+                for (var index = 0; index < value.Length; index++)
+                {
+                    if (char.IsWhiteSpace(value[index]))
+                    {
+                        return $"\"{value}\"";
+                    }
+                }
+
+                return value;
             }
 
-            var strings = dictionary.Select(o => $"{o.Key}={SanitizeValue(o.Value)}");
+            var strings = dictionary.Select(o => $"{o.Key}={SanitizeValue(o.Value?.ToString())}");
             return string.Join(";", strings);
         }
 
