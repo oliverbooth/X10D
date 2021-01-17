@@ -6,7 +6,7 @@ namespace X10D.ComparableExtensions
     /// <summary>
     ///     Extension methods for <see cref="IComparable{T}" />.
     /// </summary>
-    public static partial class ComparableExtensions
+    public static class ComparableExtensions
     {
         /// <summary>
         ///     Determines if <paramref name="actual" /> is between <paramref name="lower" /> and <paramref name="upper" />.
