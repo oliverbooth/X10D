@@ -9,11 +9,7 @@ namespace X10D
     /// </summary>
     public static class RandomExtensions
     {
-        /// <summary>
-        ///     Gets the <see cref="System.Random" /> instance to which other extension methods may refer, when one is
-        ///     needed but not provided.
-        /// </summary>
-        internal static Random Random { get; } = new Random();
+        internal static readonly Random Random = new();
 
         /// <summary>
         ///     Returns either <see langword="true" /> or <see langword="false" /> based on the next generation of the current
@@ -40,27 +36,23 @@ namespace X10D
         /// <summary>
         ///     Returns a random element from <paramref name="source" /> using the <see cref="System.Random" /> instance.
         /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
+        /// <typeparam name="T">The element type.</typeparam>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <param name="source">The collection from which to draw.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
-        public static T OneOf<T>(this Random random, params T[] source)
-        {
-            return source.ToList().OneOf(random);
-        }
-
-        /// <summary>
-        ///     Returns a random element from <paramref name="source" /> using the <see cref="System.Random" /> instance.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <param name="source">The collection from which to draw.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+        /// <param name="source">The source collection from which to draw.</param>
+        /// <returns>A random element of type <see cref="T" /> from <paramref name="source" />.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="random" /> or <paramref name="source" /> is
-        ///     <see langword="null" />.
+        ///     <paramref name="random" /> is is <see langword="null" />
+        ///     -or-
+        ///     <paramref name="source" /> is <see langword="null" />.
         /// </exception>
-        public static T OneOf<T>(this Random random, IList<T> source)
+        /// <example>
+        /// <code lang="csharp">
+        /// var list = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        /// var random = new Random();
+        /// var number = random.NextFrom(list);
+        /// </code>
+        /// </example>
+        public static T NextFrom<T>(this System.Random random, IEnumerable<T> source)
         {
             if (random is null)
             {
@@ -72,7 +64,17 @@ namespace X10D
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source[random.Next(source.Count)];
+            if (source is T[] array)
+            {
+                return array[random.Next(array.Length)];
+            }
+
+            if (source is not IReadOnlyList<T> list)
+            {
+                list = source.ToList();
+            }
+
+            return list[random.Next(list.Count)];
         }
     }
 }
