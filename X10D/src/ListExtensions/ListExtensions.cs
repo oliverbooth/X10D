@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using X10D.RandomExtensions;
 
 namespace X10D.ListExtensions
 {
@@ -33,7 +34,7 @@ namespace X10D.ListExtensions
                 throw new ArgumentNullException(nameof(source));
             }
 
-            random ??= RandomExtensions.Random;
+            random ??= RandomExtensions.RandomExtensions.Random;
             return random.NextFrom(source);
         }
 
@@ -50,7 +51,7 @@ namespace X10D.ListExtensions
                 throw new ArgumentNullException(nameof(source));
             }
 
-            random ??= RandomExtensions.Random;
+            random ??= RandomExtensions.RandomExtensions.Random;
 
             var count = source.Count;
             while (count > 0)
