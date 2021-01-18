@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace X10D
+namespace X10D.RandomExtensions
 {
     /// <summary>
     ///     Extension methods for <see cref="Random" />.
