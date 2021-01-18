@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace X10D
+namespace X10D.WaitHandleExtensions
 {
     /// <summary>
     ///     Extension methods for <see cref="WaitHandle" />.
@@ -15,7 +15,7 @@ namespace X10D
         /// <returns>Returns a task which wraps <see cref="WaitHandle.WaitOne()" />.</returns>
         public static Task WaitOneAsync(this WaitHandle handle)
         {
-            return new Task(() => handle.WaitOne());
+            return new(() => handle.WaitOne());
         }
     }
 }
