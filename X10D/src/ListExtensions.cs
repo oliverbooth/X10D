@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace X10D
 {
@@ -10,51 +9,34 @@ namespace X10D
     public static class ListExtensions
     {
         /// <summary>
-        ///     Returns a random element from <paramref name="source" /> using a new <see cref="Random" /> instance.
+        ///     Returns a random element from the current list using a specified <see cref="System.Random" /> instance.
         /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to draw from.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
-        public static T OneOf<T>(this IEnumerable<T> source)
+        /// <typeparam name="T">The element type.</typeparam>
+        /// <param name="source">The source collection from which to draw.</param>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <returns>A random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="random" /> is is <see langword="null" />
+        ///     -or-
+        ///     <paramref name="source" /> is <see langword="null" />.
+        /// </exception>
+        /// <example>
+        /// <code lang="csharp">
+        /// var list = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        /// var number = list.Random();
+        /// </code>
+        /// </example>
+        public static T Random<T>(this IReadOnlyList<T> source, System.Random? random = null)
         {
-            return source.OneOf(new Random());
-        }
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
 
-        /// <summary>
-        ///     Returns a random element from <paramref name="source" /> using the <see cref="Random" /> instance.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to draw from.</param>
-        /// <param name="random">The <see cref="Random" /> instance.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
-        public static T OneOf<T>(this IEnumerable<T> source, Random random)
-        {
-            return source.ToList().OneOf(random);
-        }
-
-        /// <summary>
-        ///     Returns a random element from <paramref name="source" /> using a new <see cref="Random" /> instance.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to draw from.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
-        public static T OneOf<T>(this IList<T> source)
-        {
-            return source.OneOf(new Random());
-        }
-
-        /// <summary>
-        ///     Returns a random element from <paramref name="source" /> using the <see cref="Random" /> instance.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        /// <param name="source">The collection to draw from.</param>
-        /// <param name="random">The <see cref="Random" /> instance.</param>
-        /// <returns>Returns a random element of type <see cref="T" /> from <paramref name="source" />.</returns>
-        public static T OneOf<T>(this IList<T> source, Random random)
-        {
-            return random.OneOf(source);
-        }
-
+            random ??= RandomExtensions.Random;
+            return random.NextFrom(source);
+        } 
+        
         /// <summary>
         ///     Reorganizes the elements in a list by implementing a Fisher-Yates shuffle.
         /// </summary>
