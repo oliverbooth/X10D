@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace X10D
+namespace X10D.ListExtensions
 {
     /// <summary>
     ///     Extension methods for <see cref="IList{T}" />.
