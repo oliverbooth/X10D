@@ -54,6 +54,68 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
+        ///     Reads a decimal value from the current stream using the system's default endian encoding, and advances the stream
+        ///     position by sixteen bytes.
+        /// </summary>
+        /// <param name="stream">The stream to read.</param>
+        /// <returns>A sixteen-byte decimal value read from the stream.</returns>
+        public static decimal ReadDecimal(this Stream stream)
+        {
+            return stream.ReadDecimal(DefaultEndianness);
+        }
+
+        /// <summary>
+        ///     Reads a decimal value from the current stream using a specified endian encoding, and advances the stream position
+        ///     by sixteen bytes.
+        /// </summary>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <param name="endianness">The endian encoding to use.</param>
+        /// <returns>A decimal value read from the stream.</returns>
+        public static decimal ReadDecimal(this Stream stream, Endianness endianness)
+        {
+            const int decimalSize = sizeof(decimal);
+            const int int32Size = sizeof(int);
+            const int partitionSize = decimalSize / int32Size;
+
+            var buffer = new byte[decimalSize];
+            stream.Read(buffer, 0, decimalSize);
+
+            Util.SwapIfNeeded(ref buffer, endianness);
+
+            var bits = new int[partitionSize];
+            for (var index = 0; index < partitionSize; index += int32Size)
+            {
+                Array.Copy(buffer, index, bits, 0, int32Size);
+            }
+
+            return new decimal(bits);
+        }
+
+        /// <summary>
+        ///     Reads a double-precision floating point value from the current stream using the system's default endian encoding,
+        ///     and advances the stream position by eight bytes.
+        /// </summary>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>A double-precision floating point value read from the stream.</returns>
+        public static double ReadDouble(this Stream stream)
+        {
+            return stream.ReadDouble(DefaultEndianness);
+        }
+
+        /// <summary>
+        ///     Reads a double-precision floating point value from the current stream using a specified endian encoding, and
+        ///     advances the stream position by eight bytes.
+        /// </summary>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <param name="endianness">The endian encoding to use.</param>
+        /// <returns>A double-precision floating point value read from the stream.</returns>
+        public static double ReadDouble(this Stream stream, Endianness endianness)
+        {
+            var value = ReadInternal<double>(stream, endianness);
+            return BitConverter.ToDouble(value, 0);
+        }
+
+        /// <summary>
         ///     Reads a two-byte signed integer from the current stream using the system's default endian encoding, and advances
         ///     the stream position by two bytes.
         /// </summary>
@@ -123,6 +185,30 @@ namespace X10D.StreamExtensions
         {
             var value = ReadInternal<long>(stream, endianness);
             return BitConverter.ToInt64(value, 0);
+        }
+
+        /// <summary>
+        ///     Reads a single-precision floating point value from the current stream using the system's default endian encoding,
+        ///     and advances the stream position by four bytes.
+        /// </summary>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>A single-precision floating point value read from the stream.</returns>
+        public static double ReadSingle(this Stream stream)
+        {
+            return stream.ReadSingle(DefaultEndianness);
+        }
+
+        /// <summary>
+        ///     Reads a double-precision floating point value from the current stream using a specified endian encoding, and
+        ///     advances the stream position by four bytes.
+        /// </summary>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <param name="endianness">The endian encoding to use.</param>
+        /// <returns>A single-precision floating point value read from the stream.</returns>
+        public static double ReadSingle(this Stream stream, Endianness endianness)
+        {
+            var value = ReadInternal<double>(stream, endianness);
+            return BitConverter.ToSingle(value, 0);
         }
 
         /// <summary>
