@@ -88,6 +88,24 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The stream does not support reading..
+        /// </summary>
+        internal static string StreamDoesNotSupportReading {
+            get {
+                return ResourceManager.GetString("StreamDoesNotSupportReading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The stream does not support writing..
+        /// </summary>
+        internal static string StreamDoesNotSupportWriting {
+            get {
+                return ResourceManager.GetString("StreamDoesNotSupportWriting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {{0}} does not inherit {typeof(Attribute)}.
         /// </summary>
         internal static string TypeDoesNotInheritAttribute {
@@ -97,7 +115,7 @@ namespace X10D {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {{0}} is not a class.
+        ///   Looks up a localized string similar to {{0}} is not a class..
         /// </summary>
         internal static string TypeIsNotClass {
             get {
@@ -106,7 +124,7 @@ namespace X10D {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {{0}} is not an interface.
+        ///   Looks up a localized string similar to {{0}} is not an interface..
         /// </summary>
         internal static string TypeIsNotInterface {
             get {
