@@ -24,10 +24,10 @@
         </value>
     </resheader>
     <data name="TypeIsNotClass" xml:space="preserve">
-        <value>{{0}} is not a class</value>
+        <value>{{0}} is not a class.</value>
     </data>
     <data name="TypeIsNotInterface" xml:space="preserve">
-        <value>{{0}} is not an interface</value>
+        <value>{{0}} is not an interface.</value>
     </data>
     <data name="TypeDoesNotInheritAttribute" xml:space="preserve">
         <value>{{0}} does not inherit {typeof(Attribute)}</value>
@@ -40,5 +40,11 @@
     </data>
     <data name="LengthMustBePositiveValue" xml:space="preserve">
         <value>Length must be a positive value.</value>
+    </data>
+    <data name="StreamDoesNotSupportReading" xml:space="preserve">
+        <value>The stream does not support reading.</value>
+    </data>
+    <data name="StreamDoesNotSupportWriting" xml:space="preserve">
+        <value>The stream does not support writing.</value>
     </data>
 </root>
