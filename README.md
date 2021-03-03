@@ -1,14 +1,28 @@
+<h1 align="center">X10D - Extension methods on crack</h1>
+
+<p align="center">*Simplifying development, one method at a time.*</p>
+
 <p align="center">
 
-# X10D - Extension methods on crack
-
-*Simplifying development, one method at a time.*
-
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core)](https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22)
-[![GitHub issues](https://img.shields.io/github/issues/oliverbooth/X10D)](https://github.com/oliverbooth/X10D/issues)
-[![Nuget](https://img.shields.io/nuget/dt/X10D)](https://www.nuget.org/packages/X10D/)
-[![Nuget](https://img.shields.io/nuget/v/X10D)](https://www.nuget.org/packages/X10D/)
-[![GitHub](https://img.shields.io/github/license/oliverbooth/X10D)](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md)
+<a href="https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22">
+  <img src="https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core" alt="GitHub Workflow Status" title="GitHub Workflow Status">
+</a>
+&nbsp;
+<a href="https://github.com/oliverbooth/X10D/issues">
+  <img src="https://img.shields.io/github/issues/oliverbooth/X10D" alt="GitHub Issues" title="GitHub Issues">
+</a>
+&nbsp;
+<a href="https://www.nuget.org/packages/X10D/">
+  <img src="https://img.shields.io/nuget/dt/X10D" alt="NuGet Downloads" title="NuGet Downloads">
+</a>
+&nbsp;
+<a href="https://www.nuget.org/packages/X10D/">
+  <img src="https://img.shields.io/nuget/v/X10D" alt="NuGet Version" title="NuGet Version">
+</a>
+&nbsp;
+<a href="https://github.com/oliverbooth/X10D/blob/master/LICENSE.md">
+  <img src="https://img.shields.io/github/license/oliverbooth/X10D" alt="MIT License" title="MIT License">
+</a>
 
 </p>
 
