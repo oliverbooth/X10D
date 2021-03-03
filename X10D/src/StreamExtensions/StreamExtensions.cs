@@ -85,7 +85,10 @@ namespace X10D.StreamExtensions
             var bits = new int[partitionSize];
             for (var index = 0; index < partitionSize; index += int32Size)
             {
-                Array.Copy(buffer, index, bits, 0, int32Size);
+                bits[index] = (buffer[index + 0] << 24) // +0 because aligned code is best code
+                            | (buffer[index + 1] << 16)
+                            | (buffer[index + 2] << 8)
+                            | (buffer[index + 3] << 0); // don't @ me
             }
 
             return new decimal(bits);
