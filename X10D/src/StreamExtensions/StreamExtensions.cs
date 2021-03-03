@@ -54,23 +54,23 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Reads a 2-byte signed integer from the current stream and advances the current position of the stream by two
-        ///     bytes using the default endian encoding.
+        ///     Writes a two-byte signed integer to the current stream using the system's default endian encoding, and advances
+        ///     the stream position by two bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
-        /// <returns>A 2-byte signed integer read from the current stream.</returns>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>An two-byte signed integer read from the stream.</returns>
         public static short ReadInt16(this Stream stream)
         {
             return stream.ReadInt16(DefaultEndianness);
         }
 
         /// <summary>
-        ///     Reads a 2-byte signed integer from the current stream and advances the current position of the stream by two
-        ///     bytes using a specified endian encoding.
+        ///     Writes a two-byte signed integer to the current stream using the specified endian encoding, and advances the
+        ///     stream position by two bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
+        /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
-        /// <returns>A 2-byte signed integer read from the current stream.</returns>
+        /// <returns>An two-byte unsigned integer read from the stream.</returns>
         public static short ReadInt16(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<short>(stream, endianness);
@@ -78,23 +78,23 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Reads a 4-byte signed integer from the current stream and advances the current position of the stream by four
-        ///     bytes using the default endian encoding.
+        ///     Writes a four-byte signed integer to the current stream using the system's default endian encoding, and advances
+        ///     the stream position by four bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
-        /// <returns>A 4-byte signed integer read from the current stream.</returns>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>An four-byte signed integer read from the stream.</returns>
         public static int ReadInt32(this Stream stream)
         {
             return stream.ReadInt32(DefaultEndianness);
         }
 
         /// <summary>
-        ///     Reads a 4-byte signed integer from the current stream and advances the current position of the stream by four
-        ///     bytes using a specified endian encoding.
+        ///     Writes a four-byte signed integer to the current stream using the specified endian encoding, and advances the
+        ///     stream position by four bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
+        /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
-        /// <returns>A 4-byte signed integer read from the current stream.</returns>
+        /// <returns>An four-byte unsigned integer read from the stream.</returns>
         public static int ReadInt32(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<int>(stream, endianness);
@@ -102,23 +102,23 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Reads an 8-byte signed integer from the current stream and advances the current position of the stream by eight
-        ///     bytes using the default endian encoding.
+        ///     Writes an eight-byte signed integer to the current stream using the system's default endian encoding, and advances
+        ///     the stream position by eight bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
-        /// <returns>An 8-byte signed integer read from the current stream.</returns>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>An eight-byte signed integer read from the stream.</returns>
         public static long ReadInt64(this Stream stream)
         {
             return stream.ReadInt64(DefaultEndianness);
         }
 
         /// <summary>
-        ///     Reads an 8-byte signed integer from the current stream and advances the current position of the stream by eight
-        ///     bytes using a specified endian encoding.
+        ///     Writes an eight-byte signed integer to the current stream using the specified endian encoding, and advances the
+        ///     stream position by eight bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
+        /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
-        /// <returns>An 8-byte signed integer read from the current stream.</returns>
+        /// <returns>An eight-byte unsigned integer read from the stream.</returns>
         public static long ReadInt64(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<long>(stream, endianness);
@@ -126,23 +126,23 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Reads a 2-byte unsigned integer from the current stream and advances the current position of the stream by two
-        ///     bytes using the default endian encoding.
+        ///     Writes a two-byte unsigned integer to the current stream using the system's default endian encoding, and advances
+        ///     the stream position by two bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
-        /// <returns>A 2-byte unsigned integer read from the current stream.</returns>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>An two-byte unsigned integer read from the stream.</returns>
         public static ushort ReadUInt16(this Stream stream)
         {
             return stream.ReadUInt16(DefaultEndianness);
         }
 
         /// <summary>
-        ///     Reads a 2-byte unsigned integer from the current stream and advances the current position of the stream by two
-        ///     bytes using a specified endian encoding.
+        ///     Writes a two-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+        ///     stream position by two bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
+        /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
-        /// <returns>A 2-byte unsigned integer read from the current stream.</returns>
+        /// <returns>An two-byte unsigned integer read from the stream.</returns>
         public static ushort ReadUInt16(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<ushort>(stream, endianness);
@@ -150,23 +150,23 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Reads a 4-byte unsigned integer from the current stream and advances the current position of the stream by four
-        ///     bytes using the default endian encoding.
+        ///     Writes a four-byte unsigned integer to the current stream using the system's default endian encoding, and advances
+        ///     the stream position by four bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
-        /// <returns>A 4-byte unsigned integer read from the current stream.</returns>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>An four-byte unsigned integer read from the stream.</returns>
         public static uint ReadUInt32(this Stream stream)
         {
             return stream.ReadUInt32(DefaultEndianness);
         }
 
         /// <summary>
-        ///     Reads a 4-byte unsigned integer from the current stream and advances the current position of the stream by four
-        ///     bytes using a specified endian encoding.
+        ///     Writes a four-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+        ///     stream position by four bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
+        /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
-        /// <returns>A 4-byte unsigned integer read from the current stream.</returns>
+        /// <returns>An four-byte unsigned integer read from the stream.</returns>
         public static uint ReadUInt32(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<uint>(stream, endianness);
@@ -174,23 +174,23 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Reads an 8-byte unsigned integer from the current stream and advances the current position of the stream by eight
-        ///     bytes using the default endian encoding.
+        ///     Writes an eight-byte unsigned integer to the current stream using the system's default endian encoding, and
+        ///     advances the stream position by eight bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
-        /// <returns>An 8-byte unsigned integer read from the current stream.</returns>
+        /// <param name="stream">The stream from which the value should be read.</param>
+        /// <returns>An eight-byte unsigned integer read from the stream.</returns>
         public static ulong ReadUInt64(this Stream stream)
         {
             return stream.ReadUInt64(DefaultEndianness);
         }
 
         /// <summary>
-        ///     Reads an 8-byte unsigned integer from the current stream and advances the current position of the stream by eight
-        ///     bytes using a specified endian encoding.
+        ///     Writes an eight-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+        ///     stream position by eight bytes.
         /// </summary>
-        /// <param name="stream">The stream to read.</param>
+        /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
-        /// <returns>An 8-byte unsigned integer read from the current stream.</returns>
+        /// <returns>An eight-byte unsigned integer read from the stream.</returns>
         public static ulong ReadUInt64(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<ulong>(stream, endianness);
