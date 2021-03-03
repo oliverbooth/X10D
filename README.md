@@ -1,15 +1,11 @@
 <h1 align="center">X10D - Extension methods on crack</h1>
-
 <p align="center"><i>Simplifying development, one method at a time.</i></p>
-
 <p align="center">
-
 <a href="https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22"><img src="https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
 <a href="https://github.com/oliverbooth/X10D/issues"><img src="https://img.shields.io/github/issues/oliverbooth/X10D" alt="GitHub Issues" title="GitHub Issues"></a>
 <a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/dt/X10D" alt="NuGet Downloads" title="NuGet Downloads"></a>
 <a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/v/X10D" alt="NuGet Version" title="NuGet Version"></a>
 <a href="https://github.com/oliverbooth/X10D/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/oliverbooth/X10D" alt="MIT License" title="MIT License"></a>
-
 </p>
 
 ### About
