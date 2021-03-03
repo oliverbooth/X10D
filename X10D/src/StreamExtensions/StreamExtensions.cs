@@ -131,6 +131,7 @@ namespace X10D.StreamExtensions
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <returns>An two-byte unsigned integer read from the stream.</returns>
+        [CLSCompliant(false)]
         public static ushort ReadUInt16(this Stream stream)
         {
             return stream.ReadUInt16(DefaultEndianness);
@@ -143,6 +144,7 @@ namespace X10D.StreamExtensions
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
         /// <returns>An two-byte unsigned integer read from the stream.</returns>
+        [CLSCompliant(false)]
         public static ushort ReadUInt16(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<ushort>(stream, endianness);
@@ -155,6 +157,7 @@ namespace X10D.StreamExtensions
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <returns>An four-byte unsigned integer read from the stream.</returns>
+        [CLSCompliant(false)]
         public static uint ReadUInt32(this Stream stream)
         {
             return stream.ReadUInt32(DefaultEndianness);
@@ -167,6 +170,7 @@ namespace X10D.StreamExtensions
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
         /// <returns>An four-byte unsigned integer read from the stream.</returns>
+        [CLSCompliant(false)]
         public static uint ReadUInt32(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<uint>(stream, endianness);
@@ -179,6 +183,7 @@ namespace X10D.StreamExtensions
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <returns>An eight-byte unsigned integer read from the stream.</returns>
+        [CLSCompliant(false)]
         public static ulong ReadUInt64(this Stream stream)
         {
             return stream.ReadUInt64(DefaultEndianness);
@@ -191,6 +196,7 @@ namespace X10D.StreamExtensions
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <param name="endianness">The endian encoding to use.</param>
         /// <returns>An eight-byte unsigned integer read from the stream.</returns>
+        [CLSCompliant(false)]
         public static ulong ReadUInt64(this Stream stream, Endianness endianness)
         {
             var value = ReadInternal<ulong>(stream, endianness);
