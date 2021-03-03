@@ -54,7 +54,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a two-byte signed integer to the current stream using the system's default endian encoding, and advances
+        ///     Reads a two-byte signed integer from the current stream using the system's default endian encoding, and advances
         ///     the stream position by two bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -65,7 +65,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a two-byte signed integer to the current stream using the specified endian encoding, and advances the
+        ///     Reads a two-byte signed integer from the current stream using the specified endian encoding, and advances the
         ///     stream position by two bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -78,7 +78,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a four-byte signed integer to the current stream using the system's default endian encoding, and advances
+        ///     Reads a four-byte signed integer from the current stream using the system's default endian encoding, and advances
         ///     the stream position by four bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -89,7 +89,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a four-byte signed integer to the current stream using the specified endian encoding, and advances the
+        ///     Reads a four-byte signed integer from the current stream using the specified endian encoding, and advances the
         ///     stream position by four bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -102,8 +102,8 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes an eight-byte signed integer to the current stream using the system's default endian encoding, and advances
-        ///     the stream position by eight bytes.
+        ///     Reads an eight-byte signed integer from the current stream using the system's default endian encoding, and
+        ///     advances the stream position by eight bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <returns>An eight-byte signed integer read from the stream.</returns>
@@ -113,7 +113,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes an eight-byte signed integer to the current stream using the specified endian encoding, and advances the
+        ///     Reads an eight-byte signed integer from the current stream using the specified endian encoding, and advances the
         ///     stream position by eight bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -126,7 +126,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a two-byte unsigned integer to the current stream using the system's default endian encoding, and advances
+        ///     Reads a two-byte unsigned integer from the current stream using the system's default endian encoding, and advances
         ///     the stream position by two bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -138,7 +138,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a two-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+        ///     Reads a two-byte unsigned integer from the current stream using the specified endian encoding, and advances the
         ///     stream position by two bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -152,8 +152,8 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a four-byte unsigned integer to the current stream using the system's default endian encoding, and advances
-        ///     the stream position by four bytes.
+        ///     Reads a four-byte unsigned integer from the current stream using the system's default endian encoding, and
+        ///     advances the stream position by four bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
         /// <returns>An four-byte unsigned integer read from the stream.</returns>
@@ -164,7 +164,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes a four-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+        ///     Reads a four-byte unsigned integer from the current stream using the specified endian encoding, and advances the
         ///     stream position by four bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -178,7 +178,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes an eight-byte unsigned integer to the current stream using the system's default endian encoding, and
+        ///     Reads an eight-byte unsigned integer from the current stream using the system's default endian encoding, and
         ///     advances the stream position by eight bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
@@ -190,7 +190,7 @@ namespace X10D.StreamExtensions
         }
 
         /// <summary>
-        ///     Writes an eight-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+        ///     Reads an eight-byte unsigned integer from the current stream using the specified endian encoding, and advances the
         ///     stream position by eight bytes.
         /// </summary>
         /// <param name="stream">The stream from which the value should be read.</param>
