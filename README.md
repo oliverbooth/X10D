@@ -1,6 +1,6 @@
 <h1 align="center">X10D - Extension methods on crack</h1>
 
-<p align="center">*Simplifying development, one method at a time.*</p>
+<p align="center"><i>Simplifying development, one method at a time.</i></p>
 
 <p align="center">
 
