@@ -1,3 +1,5 @@
+<p align="center">
+
 # X10D - Extension methods on crack
 
 *Simplifying development, one method at a time.*
@@ -7,6 +9,8 @@
 [![Nuget](https://img.shields.io/nuget/dt/X10D?style=for-the-badge)](https://www.nuget.org/packages/X10D/)
 [![Nuget](https://img.shields.io/nuget/v/X10D?style=for-the-badge)](https://www.nuget.org/packages/X10D/)
 [![GitHub](https://img.shields.io/github/license/oliverbooth/X10D?style=for-the-badge)](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md)
+
+</p>
 
 ### About
 X10D (pronounced *extend*), is a class library that provides extension methods for numerous .NET types. The purpose of this library is to simplify a codebase by reducing the need for repeated code when performing common operations. Simplify your codebase. Take advantage of .NET. Use extension methods.
