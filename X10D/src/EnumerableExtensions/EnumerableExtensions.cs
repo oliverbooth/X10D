@@ -3,7 +3,7 @@ using System.Linq;
 using X10D.ComparableExtensions;
 using X10D.ListExtensions;
 
-namespace X10D
+namespace X10D.EnumerableExtensions
 {
     /// <summary>
     ///     Extension methods for <see cref="IEnumerable{T}" />.
@@ -28,10 +28,10 @@ namespace X10D
         /// </summary>
         /// <typeparam name="T">Any type.</typeparam>
         /// <param name="value">The collection to split.</param>
-        /// <param name="chunkSize">The maximum length of the nested <see cref="byte" /> collection.</param>
+        /// <param name="chunkSize">The maximum length of the nested collection.</param>
         /// <returns>
-        ///     Returns an <see cref="IEnumerable{T}" /> of <see cref="IEnumerable{T}" /> of <see cref="byte" />
-        ///     values.
+        ///     An <see cref="IEnumerable{T}" /> containing an <see cref="IEnumerable{T}" /> of <typeparamref name="T" />
+        ///     whose lengths are no greater than <paramref name="chunkSize" />. 
         /// </returns>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> value, int chunkSize)
         {
