@@ -1,5 +1,6 @@
-# X10D
-## Extension methods on crack
+# X10D - Extension methods on crack
+
+*Simplifying development, one method at a time.*
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core?style=for-the-badge)](https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22)
 [![GitHub issues](https://img.shields.io/github/issues/oliverbooth/X10D?style=for-the-badge)](https://github.com/oliverbooth/X10D/issues)
