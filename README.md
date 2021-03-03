@@ -12,7 +12,10 @@ X10D (pronounced *extend*), is a class library that provides extension methods f
 *(I'm also [dogfooding](https://www.pcmag.com/encyclopedia/term/dogfooding) this library, so there's that.)*
 
 ### Table of contents
-- [Install](#install)
+- [Installation](#installation)
+    - [Unity installation](#unity-installation)
+    - [NuGet installation](#nuget-installation)
+    - [Manual installation](#manual-installation)
 - [Features](#features)
     - [Numeric](#numeric)
     - [String](#string)
@@ -26,12 +29,24 @@ X10D (pronounced *extend*), is a class library that provides extension methods f
 
 You can find the list of classes that have extension methods by viewing the `README.md` file in any of the respective library folders.
 
-## Install
-Install X10D with NuGet via the following command:
+## Installation
+### Unity installation
+1. Open the package manager, open the `+` menu and select `Add package from git URL...`.
+   
+   ![](https://user-images.githubusercontent.com/1129769/109844969-8ec7a100-7c44-11eb-9729-9a03be703d1b.png)
+
+2) Enter the URL below and press Add.
+    ```cs
+    https://github.com/oliverbooth/X10D.git#upm
+    ```
+
+### NuGet installation
 ```ps
 Install-Package X10D -Version 2.6.0
 ```
-or by downloading the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository.
+
+### Manual installation
+Download the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository and adding a direct assembly reference for your chosen platform.
 
 ## Features
 ### Numeric extensions
