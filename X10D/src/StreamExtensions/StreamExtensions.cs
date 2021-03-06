@@ -1,4 +1,7 @@
 ﻿using System;
+#if NET5_0
+using System.Buffers.Binary;
+#endif
 using System.IO;
 using System.Security.Cryptography;
 
@@ -7,7 +10,7 @@ namespace X10D.StreamExtensions
     /// <summary>
     ///     Extension methods for <see cref="Stream" />.
     /// </summary>
-    public static class StreamExtensions
+    public static partial class StreamExtensions
     {
         private static readonly Endianness DefaultEndianness =
             BitConverter.IsLittleEndian ? Endianness.LittleEndian : Endianness.BigEndian;
@@ -73,22 +76,17 @@ namespace X10D.StreamExtensions
         /// <returns>A decimal value read from the stream.</returns>
         public static decimal ReadDecimal(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
             const int decimalSize = sizeof(decimal);
             const int int32Size = sizeof(int);
             const int partitionSize = decimalSize / int32Size;
 
-            var buffer = new byte[decimalSize];
-            stream.Read(buffer, 0, decimalSize);
-
-            Util.SwapIfNeeded(ref buffer, endianness);
-
             var bits = new int[partitionSize];
-            for (var index = 0; index < partitionSize; index += int32Size)
+            for (var index = 0; index < partitionSize; index++)
             {
-                bits[index] = (buffer[index + 0] << 24) // +0 because aligned code is best code
-                            | (buffer[index + 1] << 16)
-                            | (buffer[index + 2] << 8)
-                            | (buffer[index + 3] << 0); // don't @ me
+                bits[index] = stream.ReadInt32(endianness);
             }
 
             return new decimal(bits);
@@ -114,8 +112,20 @@ namespace X10D.StreamExtensions
         /// <returns>A double-precision floating point value read from the stream.</returns>
         public static double ReadDouble(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadDoubleLittleEndian(buffer)
+                : BinaryPrimitives.ReadDoubleBigEndian(buffer);
+#else
             var value = ReadInternal<double>(stream, endianness);
             return BitConverter.ToDouble(value, 0);
+#endif
         }
 
         /// <summary>
@@ -138,8 +148,20 @@ namespace X10D.StreamExtensions
         /// <returns>An two-byte unsigned integer read from the stream.</returns>
         public static short ReadInt16(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadInt16LittleEndian(buffer)
+                : BinaryPrimitives.ReadInt16BigEndian(buffer);
+#else
             var value = ReadInternal<short>(stream, endianness);
             return BitConverter.ToInt16(value, 0);
+#endif
         }
 
         /// <summary>
@@ -162,8 +184,20 @@ namespace X10D.StreamExtensions
         /// <returns>An four-byte unsigned integer read from the stream.</returns>
         public static int ReadInt32(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadInt32LittleEndian(buffer)
+                : BinaryPrimitives.ReadInt32BigEndian(buffer);
+#else
             var value = ReadInternal<int>(stream, endianness);
             return BitConverter.ToInt32(value, 0);
+#endif
         }
 
         /// <summary>
@@ -186,8 +220,20 @@ namespace X10D.StreamExtensions
         /// <returns>An eight-byte unsigned integer read from the stream.</returns>
         public static long ReadInt64(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadInt64LittleEndian(buffer)
+                : BinaryPrimitives.ReadInt64BigEndian(buffer);
+#else
             var value = ReadInternal<long>(stream, endianness);
             return BitConverter.ToInt64(value, 0);
+#endif
         }
 
         /// <summary>
@@ -210,8 +256,20 @@ namespace X10D.StreamExtensions
         /// <returns>A single-precision floating point value read from the stream.</returns>
         public static double ReadSingle(this Stream stream, Endianness endianness)
         {
-            var value = ReadInternal<double>(stream, endianness);
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadSingleLittleEndian(buffer)
+                : BinaryPrimitives.ReadSingleBigEndian(buffer);
+#else
+            var value = ReadInternal<float>(stream, endianness);
             return BitConverter.ToSingle(value, 0);
+#endif
         }
 
         /// <summary>
@@ -236,8 +294,20 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static ushort ReadUInt16(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadUInt16LittleEndian(buffer)
+                : BinaryPrimitives.ReadUInt16BigEndian(buffer);
+#else
             var value = ReadInternal<ushort>(stream, endianness);
             return BitConverter.ToUInt16(value, 0);
+#endif
         }
 
         /// <summary>
@@ -262,8 +332,20 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static uint ReadUInt32(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadUInt32LittleEndian(buffer)
+                : BinaryPrimitives.ReadUInt32BigEndian(buffer);
+#else
             var value = ReadInternal<uint>(stream, endianness);
             return BitConverter.ToUInt32(value, 0);
+#endif
         }
 
         /// <summary>
@@ -288,8 +370,20 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static ulong ReadUInt64(this Stream stream, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+            stream.Read(buffer);
+
+            return endianness == Endianness.LittleEndian
+                ? BinaryPrimitives.ReadUInt64LittleEndian(buffer)
+                : BinaryPrimitives.ReadUInt64BigEndian(buffer);
+#else
             var value = ReadInternal<ulong>(stream, endianness);
             return BitConverter.ToUInt64(value, 0);
+#endif
         }
 
         /// <summary>
@@ -314,8 +408,26 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, short value, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(short)];
+
+            if (endianness == Endianness.LittleEndian)
+            {
+                BinaryPrimitives.WriteInt16LittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteInt16BigEndian(buffer, value);
+            }
+
+            return stream.WriteInternal(buffer);
+#else
             var buffer = BitConverter.GetBytes(value);
             return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
         /// <summary>
@@ -340,8 +452,26 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, int value, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(int)];
+
+            if (endianness == Endianness.LittleEndian)
+            {
+                BinaryPrimitives.WriteInt32LittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteInt32BigEndian(buffer, value);
+            }
+
+            return stream.WriteInternal(buffer);
+#else
             var buffer = BitConverter.GetBytes(value);
             return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
         /// <summary>
@@ -366,8 +496,26 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, long value, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(long)];
+
+            if (endianness == Endianness.LittleEndian)
+            {
+                BinaryPrimitives.WriteInt64LittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteInt64BigEndian(buffer, value);
+            }
+
+            return stream.WriteInternal(buffer);
+#else
             var buffer = BitConverter.GetBytes(value);
             return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
         /// <summary>
@@ -394,8 +542,26 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static int Write(this Stream stream, ushort value, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(ushort)];
+
+            if (endianness == Endianness.LittleEndian)
+            {
+                BinaryPrimitives.WriteUInt16LittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteUInt16BigEndian(buffer, value);
+            }
+
+            return stream.WriteInternal(buffer);
+#else
             var buffer = BitConverter.GetBytes(value);
             return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
         /// <summary>
@@ -422,8 +588,26 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static int Write(this Stream stream, uint value, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(uint)];
+
+            if (endianness == Endianness.LittleEndian)
+            {
+                BinaryPrimitives.WriteUInt32LittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteUInt32BigEndian(buffer, value);
+            }
+
+            return stream.WriteInternal(buffer);
+#else
             var buffer = BitConverter.GetBytes(value);
             return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
         /// <summary>
@@ -450,55 +634,113 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static int Write(this Stream stream, ulong value, Endianness endianness)
         {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(ulong)];
+
+            if (endianness == Endianness.LittleEndian)
+            {
+                BinaryPrimitives.WriteUInt64LittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteUInt64BigEndian(buffer, value);
+            }
+
+            return stream.WriteInternal(buffer);
+#else
             var buffer = BitConverter.GetBytes(value);
             return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
-        private static unsafe byte[] ReadInternal<T>(this Stream stream, Endianness endianness)
-            where T : unmanaged
+        /// <summary>
+        ///     Writes a single-precision floating point value to the current stream using the specified endian encoding, and
+        ///     advances the stream position by four bytes.
+        /// </summary>
+        /// <param name="stream">The stream to which the value should be written.</param>
+        /// <param name="value">The single-precision floating point value to write.</param>
+        /// <param name="endianness">The endian encoding to use.</param>
+        /// <returns>The number of bytes written to the stream.</returns>
+        public static int Write(this Stream stream, float value, Endianness endianness)
         {
-            if (stream is null)
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(float)];
+
+            if (endianness == Endianness.LittleEndian)
             {
-                throw new ArgumentNullException(nameof(stream));
+                BinaryPrimitives.WriteSingleLittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteSingleBigEndian(buffer, value);
             }
 
-            if (!stream.CanRead)
-            {
-                throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading, nameof(stream));
-            }
-
-            if (!Enum.IsDefined(typeof(Endianness), endianness))
-            {
-                throw new ArgumentOutOfRangeException(nameof(endianness));
-            }
-
-            var buffer = new byte[sizeof(T)];
-            stream.Read(buffer, 0, buffer.Length);
-            Util.SwapIfNeeded(ref buffer, endianness);
-            return buffer;
+            return stream.WriteInternal(buffer);
+#else
+            var buffer = BitConverter.GetBytes(value);
+            return stream.WriteInternal(buffer, endianness);
+#endif
         }
 
-        private static int WriteInternal(this Stream stream, byte[] value, Endianness endianness)
+        /// <summary>
+        ///     Writes a double-precision floating point value to the current stream using the specified endian encoding, and
+        ///     advances the stream position by eight bytes.
+        /// </summary>
+        /// <param name="stream">The stream to which the value should be written.</param>
+        /// <param name="value">The double-precision floating point value to write.</param>
+        /// <param name="endianness">The endian encoding to use.</param>
+        /// <returns>The number of bytes written to the stream.</returns>
+        public static int Write(this Stream stream, double value, Endianness endianness)
         {
-            if (stream is null)
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
+
+#if NET5_0
+            Span<byte> buffer = stackalloc byte[sizeof(double)];
+
+            if (endianness == Endianness.LittleEndian)
             {
-                throw new ArgumentNullException(nameof(stream));
+                BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
+            }
+            else
+            {
+                BinaryPrimitives.WriteDoubleBigEndian(buffer, value);
             }
 
-            if (!stream.CanWrite)
-            {
-                throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting, nameof(stream));
-            }
+            return stream.WriteInternal(buffer);
+#else
+            var buffer = BitConverter.GetBytes(value);
+            return stream.WriteInternal(buffer, endianness);
+#endif
+        }
 
-            if (!Enum.IsDefined(typeof(Endianness), endianness))
-            {
-                throw new ArgumentOutOfRangeException(nameof(endianness));
-            }
+        /// <summary>
+        ///     Writes a decimal value to the current stream using the specified endian encoding, and advances the stream position
+        ///     by sixteen bytes.
+        /// </summary>
+        /// <param name="stream">The stream to which the value should be written.</param>
+        /// <param name="value">The decimal value to write.</param>
+        /// <param name="endianness">The endian encoding to use.</param>
+        /// <returns>The number of bytes written to the stream.</returns>
+        public static int Write(this Stream stream, decimal value, Endianness endianness)
+        {
+            Validate.IsNotNull(stream, nameof(stream));
+            Validate.IsDefined(endianness, nameof(endianness));
 
-            byte[] clone = (byte[])value.Clone();
-            Util.SwapIfNeeded(ref clone, endianness);
+            var bits = decimal.GetBits(value);
             var preWritePosition = stream.Position;
-            stream.Write(clone, 0, clone.Length);
+
+            foreach (var section in bits)
+            {
+                stream.Write(section, endianness);
+            }
+
             return (int)(stream.Position - preWritePosition);
         }
     }
