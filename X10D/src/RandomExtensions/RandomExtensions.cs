@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace X10D.RandomExtensions
 {
@@ -96,6 +97,58 @@ namespace X10D.RandomExtensions
             }
 
             return list[random.Next(list.Count)];
+        }
+
+        /// <summary>
+        ///     Returns a new string of a specified length which is composed of specified characters.
+        /// </summary>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <param name="source">The source collection of characters to poll.</param>
+        /// <param name="length">The length of the new string to generate.</param>
+        /// <returns>
+        ///     A <see cref="string" /> whose length is equal to that of <paramref name="length" />, composed of characters
+        ///     specified by the characters in <paramref name="source" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="random" /> is <see langword="null" />.
+        ///     -or-
+        ///     <paramref name="source" /> is <see langword="null" />.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
+        public static string NextString(this Random random, IReadOnlyList<char> source, int length)
+        {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (length < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(length), ExceptionMessages.LengthMustBePositiveValue);
+            }
+
+            if (length == 0)
+            {
+                return string.Empty;
+            }
+
+            if (length == 1)
+            {
+                return source[random.Next(0, source.Count)].ToString();
+            }
+
+            var builder = new StringBuilder(length);
+            for (var i = 0; i < length; i++)
+            {
+                builder.Append(source[random.Next(0, source.Count)]);
+            }
+
+            return builder.ToString();
         }
     }
 }
