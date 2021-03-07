@@ -1,4 +1,3 @@
-﻿using System.Runtime.CompilerServices;
 
 namespace X10D.BooleanExtensions
 {
@@ -28,7 +27,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte ToByte(this bool value)
         {
             return value ? 1 : 0;
@@ -58,7 +56,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static decimal ToDecimal(this bool value)
         {
             return value.ToByte();
@@ -88,7 +85,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static long ToDouble(this bool value)
         {
             return value.ToByte();
@@ -118,7 +114,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static short ToInt16(this bool value)
         {
             return value.ToByte();
@@ -148,7 +143,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToInt32(this bool value)
         {
             return value.ToByte();
@@ -178,7 +172,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static long ToInt64(this bool value)
         {
             return value.ToByte();
@@ -208,7 +201,6 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float ToSingle(this bool value)
         {
             return value.ToByte();

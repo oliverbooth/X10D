@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace X10D.BooleanExtensions
 {
@@ -30,7 +29,6 @@ namespace X10D.BooleanExtensions
         /// </code>
         /// </example>
         [CLSCompliant(false)]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static sbyte ToSByte(this bool value)
         {
             return value ? 1 : 0;
@@ -61,7 +59,6 @@ namespace X10D.BooleanExtensions
         /// </code>
         /// </example>
         [CLSCompliant(false)]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ushort ToUInt16(this bool value)
         {
             return value.ToByte();
@@ -92,7 +89,6 @@ namespace X10D.BooleanExtensions
         /// </code>
         /// </example>
         [CLSCompliant(false)]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static uint ToUInt32(this bool value)
         {
             return value.ToByte();
@@ -123,7 +119,6 @@ namespace X10D.BooleanExtensions
         /// </code>
         /// </example>
         [CLSCompliant(false)]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ulong ToUInt64(this bool value)
         {
             return value.ToByte();
