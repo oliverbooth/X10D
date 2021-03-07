@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace X10D.ComparableExtensions
 {
@@ -44,7 +43,6 @@ namespace X10D.ComparableExtensions
         /// //      True
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Between<T1, T2, T3>(this T1 actual, T2 lower, T3 upper)
             where T1 : IComparable<T2>, IComparable<T3>
         {
@@ -76,7 +74,6 @@ namespace X10D.ComparableExtensions
         /// // clamped will be 20
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T Clamp<T>(this T value, T lower, T upper)
             where T : IComparable<T>
         {
@@ -109,7 +106,6 @@ namespace X10D.ComparableExtensions
         /// // result will be False
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GreaterThan<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
@@ -137,7 +133,6 @@ namespace X10D.ComparableExtensions
         /// // result will be False
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GreaterThanOrEqualTo<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
@@ -165,7 +160,6 @@ namespace X10D.ComparableExtensions
         /// // result will be True
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool LessThan<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
@@ -193,7 +187,6 @@ namespace X10D.ComparableExtensions
         /// // result will be True
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool LessThanOrEqualTo<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
@@ -220,7 +213,6 @@ namespace X10D.ComparableExtensions
         /// // max will be 10
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T Max<T>(this T value, T other)
             where T : IComparable<T>
         {
@@ -247,7 +239,6 @@ namespace X10D.ComparableExtensions
         /// // min will be 5
         /// </code>
         /// </example>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T Min<T>(this T value, T other)
             where T : IComparable<T>
         {
