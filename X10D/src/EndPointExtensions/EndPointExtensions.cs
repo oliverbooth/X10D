@@ -13,11 +13,11 @@ namespace X10D.EndPointExtensions
         /// </summary>
         /// <param name="endPoint">The endpoint whose hostname to get.</param>
         /// <returns>
-        ///     <see cref="IPEndPoint.Address" /> if <paramref name="endPoint" /> is <see cref="IPEndPoint" />
+        ///     <para><see cref="IPEndPoint.Address" /> if <paramref name="endPoint" /> is <see cref="IPEndPoint" />.</para>
         ///     -or-
-        ///     <see cref="DnsEndPoint.Host" /> if <paramref name="endPoint" /> is <see cref="DnsEndPoint" />
+        ///     <para><see cref="DnsEndPoint.Host" /> if <paramref name="endPoint" /> is <see cref="DnsEndPoint" />.</para>
         ///     -or-
-        ///     <see cref="string.Empty" /> otherwise.
+        ///     <para><see cref="string.Empty" /> otherwise.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetHost(this EndPoint endPoint)
@@ -35,11 +35,11 @@ namespace X10D.EndPointExtensions
         /// </summary>
         /// <param name="endPoint">The endpoint whose port number to get.</param>
         /// <returns>
-        ///     <see cref="IPEndPoint.Port" /> if <paramref name="endPoint" /> is <see cref="IPEndPoint" />
+        ///     <para><see cref="IPEndPoint.Port" /> if <paramref name="endPoint" /> is <see cref="IPEndPoint" />.</para>
         ///     -or-
-        ///     <see cref="DnsEndPoint.Port" /> if <paramref name="endPoint" /> is <see cref="DnsEndPoint" />
+        ///     <para><see cref="DnsEndPoint.Port" /> if <paramref name="endPoint" /> is <see cref="DnsEndPoint" />.</para>
         ///     -or-
-        ///     <c>0</c> otherwise.
+        ///     <para><c>0</c> otherwise.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int GetPort(this EndPoint endPoint)
