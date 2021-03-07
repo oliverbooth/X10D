@@ -18,7 +18,7 @@ namespace X10D.DateTimeExtensions
         {
             return ((DateTimeOffset)value).Age(asOf);
         }
-        
+
         /// <inheritdoc cref="DateTimeOffsetExtensions.First(DateTimeOffset, DayOfWeek)" />
         /// <returns>A <see cref="DateTime" /> representing the first occurence of <paramref name="dayOfWeek" />.</returns>
         public static DateTime First(this DateTime value, DayOfWeek dayOfWeek)
@@ -32,20 +32,21 @@ namespace X10D.DateTimeExtensions
         {
             return ((DateTimeOffset)value).FirstDayOfMonth().DateTime;
         }
-        
+
         /// <inheritdoc cref="DateTimeOffsetExtensions.Last(DateTimeOffset, DayOfWeek)" />
         /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
         public static DateTime Last(this DateTime value, DayOfWeek dayOfWeek)
         {
             return ((DateTimeOffset)value).Last(dayOfWeek).DateTime;
         }
+
         /// <inheritdoc cref="DateTimeOffsetExtensions.LastDayOfMonth(DateTimeOffset)" />
         /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
         public static DateTime LastDayOfMonth(this DateTime value)
         {
             return ((DateTimeOffset)value).LastDayOfMonth().DateTime;
         }
-        
+
         /// <inheritdoc cref="DateTimeOffsetExtensions.Next(DateTimeOffset, DayOfWeek)" />
         /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
         public static DateTime Next(this DateTime value, DayOfWeek dayOfWeek)

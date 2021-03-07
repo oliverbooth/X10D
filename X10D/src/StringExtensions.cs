@@ -366,7 +366,7 @@ namespace X10D
                 }
             }
         }
-        
+
         /// <summary>
         ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
         ///     <see cref="TimeSpan" />.
