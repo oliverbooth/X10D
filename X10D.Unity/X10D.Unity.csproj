@@ -14,7 +14,6 @@
         <PackageIconUrl />
         <PackageTags>dotnet extension-methods unity</PackageTags>
         <Version>2.6.0</Version>
-        <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <PackageVersion>2.6.0</PackageVersion>
         <AssemblyVersion>2.6.0</AssemblyVersion>
@@ -34,14 +33,6 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
