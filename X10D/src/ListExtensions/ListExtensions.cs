@@ -25,7 +25,7 @@ namespace X10D.ListExtensions
         ///     <code lang="csharp">
         /// var list = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         /// var number = list.Random();
-        /// </code>
+        ///     </code>
         /// </example>
         public static T Random<T>(this IReadOnlyList<T> source, Random? random = null)
         {
