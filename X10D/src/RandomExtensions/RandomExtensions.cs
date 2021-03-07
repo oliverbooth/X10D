@@ -12,6 +12,27 @@ namespace X10D.RandomExtensions
         internal static readonly Random Random = new();
 
         /// <summary>
+        ///     Returns a random value that defined in a specified enum.
+        /// </summary>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <typeparam name="T">An enum type.</typeparam>
+        /// <returns>
+        ///     A <typeparamref name="T" /> value at index <c>n</c> where <c>n = </c><see cref="System.Random.Next(int)" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        public static T Next<T>(this Random random)
+            where T : struct, Enum
+        {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            var values = Enum.GetValues(typeof(T));
+            return (T)values.GetValue(random.Next(values.Length))!;
+        }
+
+        /// <summary>
         ///     Returns either <see langword="true" /> or <see langword="false" /> based on the next generation of the current
         ///     <see cref="System.Random" />.
         /// </summary>
