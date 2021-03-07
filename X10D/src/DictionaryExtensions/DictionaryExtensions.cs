@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Web;
 
 namespace X10D.DictionaryExtensions
@@ -66,8 +65,6 @@ namespace X10D.DictionaryExtensions
         /// <typeparam name="TValue">The value type.</typeparam>
         /// <param name="value">The source dictionary.</param>
         /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value& set.</returns>
-        [SuppressMessage("ReSharper", "UseDeconstructionOnParameter")]
-        [SuppressMessage("ReSharper", "UseDeconstruction")]
         public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> value)
         {
             if (value is null)
