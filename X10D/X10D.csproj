@@ -26,10 +26,6 @@
             <Pack>True</Pack>
             <PackagePath />
         </None>
-        <None Include="..\LICENSE.md">
-            <Pack>True</Pack>
-            <PackagePath />
-        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -55,9 +51,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\CHANGELOG.md">
-        <Link>CHANGELOG.md</Link>
-      </Content>
     </ItemGroup>
 
 </Project>
