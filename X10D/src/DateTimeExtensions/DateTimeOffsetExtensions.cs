@@ -30,7 +30,7 @@ namespace X10D.DateTimeExtensions
         {
             return (int)(((asOf.Date - TimeSpan.FromDays(1) - value.Date).TotalDays + 1) / 365.2425);
         }
-        
+
         /// <summary>
         ///     Gets a date representing the first occurence of a specified day of the week in the current month.
         /// </summary>
@@ -58,7 +58,7 @@ namespace X10D.DateTimeExtensions
         {
             return value.AddDays(1 - value.Day);
         }
-        
+
         /// <summary>
         ///     Gets a date representing the final occurence of a specified day of the week in the current month.
         /// </summary>
@@ -86,7 +86,7 @@ namespace X10D.DateTimeExtensions
             var daysInMonth = DateTime.DaysInMonth(value.Year, value.Month);
             return new DateTime(value.Year, value.Month, daysInMonth);
         }
-        
+
         /// <summary>
         ///     Gets a date representing the next occurence of a specified day of the week in the current month.
         /// </summary>
