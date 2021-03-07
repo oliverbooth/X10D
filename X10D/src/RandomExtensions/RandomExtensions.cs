@@ -69,7 +69,9 @@ namespace X10D.RandomExtensions
         ///     <paramref name="maxValue" />.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-        /// <exception cref="ArgumentException"><paramref name="maxValue" /> is less than <paramref name="minValue" />.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="maxValue" /> is less than <paramref name="minValue" />.
+        /// </exception>
         public static double NextDouble(this Random random, double minValue, double maxValue)
         {
             if (random is null)
