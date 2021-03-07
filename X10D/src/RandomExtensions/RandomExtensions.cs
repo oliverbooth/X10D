@@ -54,6 +54,7 @@ namespace X10D.RandomExtensions
 
             return random.NextDouble() >= 0.5;
         }
+        
         /// <summary>
         ///     Returns a random double-precision floating point number that is within a specified range.
         /// </summary>
