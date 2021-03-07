@@ -76,8 +76,15 @@ namespace X10D.StreamExtensions
         /// <returns>A decimal value read from the stream.</returns>
         public static decimal ReadDecimal(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
             const int decimalSize = sizeof(decimal);
             const int int32Size = sizeof(int);
@@ -112,8 +119,15 @@ namespace X10D.StreamExtensions
         /// <returns>A double-precision floating point value read from the stream.</returns>
         public static double ReadDouble(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -148,8 +162,15 @@ namespace X10D.StreamExtensions
         /// <returns>An two-byte unsigned integer read from the stream.</returns>
         public static short ReadInt16(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -184,8 +205,15 @@ namespace X10D.StreamExtensions
         /// <returns>An four-byte unsigned integer read from the stream.</returns>
         public static int ReadInt32(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -220,8 +248,15 @@ namespace X10D.StreamExtensions
         /// <returns>An eight-byte unsigned integer read from the stream.</returns>
         public static long ReadInt64(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -256,8 +291,15 @@ namespace X10D.StreamExtensions
         /// <returns>A single-precision floating point value read from the stream.</returns>
         public static double ReadSingle(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -294,8 +336,15 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static ushort ReadUInt16(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -332,8 +381,15 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static uint ReadUInt32(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -370,8 +426,15 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static ulong ReadUInt64(this Stream stream, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -408,8 +471,15 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, short value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(short)];
@@ -452,8 +522,15 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, int value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(int)];
@@ -496,8 +573,15 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, long value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(long)];
@@ -542,8 +626,15 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static int Write(this Stream stream, ushort value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(ushort)];
@@ -588,8 +679,15 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static int Write(this Stream stream, uint value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(uint)];
@@ -634,8 +732,15 @@ namespace X10D.StreamExtensions
         [CLSCompliant(false)]
         public static int Write(this Stream stream, ulong value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(ulong)];
@@ -666,8 +771,15 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, float value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(float)];
@@ -698,8 +810,15 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, double value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
 #if NET5_0
             Span<byte> buffer = stackalloc byte[sizeof(double)];
@@ -730,8 +849,15 @@ namespace X10D.StreamExtensions
         /// <returns>The number of bytes written to the stream.</returns>
         public static int Write(this Stream stream, decimal value, Endianness endianness)
         {
-            Validate.IsNotNull(stream, nameof(stream));
-            Validate.IsDefined(endianness, nameof(endianness));
+            if (stream is null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!Enum.IsDefined(typeof(Endianness), endianness))
+            {
+                throw new ArgumentOutOfRangeException(nameof(endianness));
+            }
 
             var bits = decimal.GetBits(value);
             var preWritePosition = stream.Position;
