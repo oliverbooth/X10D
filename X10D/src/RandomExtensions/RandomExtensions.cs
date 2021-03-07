@@ -132,6 +132,44 @@ namespace X10D.RandomExtensions
         }
 
         /// <summary>
+        ///     Returns a random single-precision floating point number between 0 and 1.
+        /// </summary>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <returns>A random single-precision floating point number between 0 and 1.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        public static float NextSingle(this Random random)
+        {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            return random.NextSingle(0, 1);
+        }
+
+        /// <summary>
+        ///     Returns a random single-precision floating point number that is within a specified range.
+        /// </summary>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <param name="minValue">The inclusive lower bound of the random number returned.</param>
+        /// <param name="maxValue">
+        ///     The inclusive lower bound of the random number returned. This value must be greater than or equal to
+        ///     <paramref name="minValue" />.
+        /// </param>
+        /// <returns>
+        ///     A random single-precision floating point number between <paramref name="minValue" /> and
+        ///     <paramref name="maxValue" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="maxValue" /> is less than <paramref name="minValue" />.
+        /// </exception>
+        public static float NextSingle(this Random random, float minValue, float maxValue)
+        {
+            return (float)random.NextDouble(minValue, maxValue);
+        }
+
+        /// <summary>
         ///     Returns a new string of a specified length which is composed of specified characters.
         /// </summary>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
