@@ -153,7 +153,7 @@ namespace X10D.RandomExtensions
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
         /// <param name="minValue">The inclusive lower bound of the random number returned.</param>
         /// <param name="maxValue">
-        ///     The exclusive lower bound of the random number returned. This value must be greater than or equal to
+        ///     The exclusive upper bound of the random number returned. This value must be greater than or equal to
         ///     <paramref name="minValue" />.
         /// </param>
         /// <returns>
