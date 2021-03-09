@@ -61,17 +61,14 @@ namespace X10D.RandomExtensions
         /// </summary>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
         /// <param name="maxValue">
-        ///     The exclusive upper bound of the random number returned. This value must be greater than or equal to
-        ///     <paramref name="minValue" />.
+        ///     The exclusive upper bound of the random number returned. This value must be greater than or equal to 0.
         /// </param>
         /// <returns>
         ///     A random double-precision floating point number that is greater than or equal to 0, and less than
         ///     <paramref name="maxValue" />.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="maxValue" /> is less than <paramref name="minValue" />.
-        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="maxValue" /> is less than 0.</exception>
         public static double NextDouble(this Random random, double maxValue)
         {
             if (random is null)
