@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
 namespace X10D.RandomExtensions
 {
     /// <summary>
-    ///     Extension methods for <see cref="Random" />.
+    ///     Extension methods for <see cref="System.Random" />.
     /// </summary>
     public static class RandomExtensions
     {
