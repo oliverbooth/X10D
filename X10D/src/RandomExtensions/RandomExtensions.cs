@@ -54,7 +54,38 @@ namespace X10D.RandomExtensions
 
             return random.NextDouble() >= 0.5;
         }
-        
+
+        /// <summary>
+        ///     Returns a non-negative random double-precision floating point number that is less than the specified maximum.
+        /// </summary>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <param name="maxValue">
+        ///     The exclusive upper bound of the random number returned. This value must be greater than or equal to
+        ///     <paramref name="minValue" />.
+        /// </param>
+        /// <returns>
+        ///     A random double-precision floating point number that is greater than or equal to 0, and less than
+        ///     <paramref name="maxValue" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="maxValue" /> is less than <paramref name="minValue" />.
+        /// </exception>
+        public static double NextDouble(this Random random, double maxValue)
+        {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            if (maxValue < 0)
+            {
+                throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualTo0);
+            }
+
+            return random.NextDouble(0, maxValue);
+        }
+
         /// <summary>
         ///     Returns a random double-precision floating point number that is within a specified range.
         /// </summary>

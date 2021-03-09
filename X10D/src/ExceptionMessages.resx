@@ -47,6 +47,9 @@
     <data name="StreamDoesNotSupportWriting" xml:space="preserve">
         <value>The stream does not support writing.</value>
     </data>
+    <data name="MaxValueGreaterThanEqualTo0" xml:space="preserve">
+        <value>maxValue must be greater than or equal to 0</value>
+    </data>
     <data name="MaxValueGreaterThanEqualToMinValue" xml:space="preserve">
         <value>maxValue must be greater than or equal to minValue</value>
     </data>
