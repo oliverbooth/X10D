@@ -81,7 +81,7 @@ namespace X10D.RandomExtensions
 
             if (maxValue < minValue)
             {
-                throw new ArgumentException("maximum must be greater than or equal to minimum.");
+                throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
             }
 
             return random.NextDouble() * (maxValue - minValue) + minValue;
