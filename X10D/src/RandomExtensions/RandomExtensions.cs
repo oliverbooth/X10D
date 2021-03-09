@@ -209,7 +209,7 @@ namespace X10D.RandomExtensions
 
             if (length == 1)
             {
-                return source[random.Next(0, source.Count)].ToString();
+                return source[random.Next(0, source.Count)].ToString(CultureInfo.InvariantCulture);
             }
 
             var builder = new StringBuilder(length);
