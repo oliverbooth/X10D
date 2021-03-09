@@ -57,6 +57,29 @@ namespace X10D.RandomExtensions
         }
 
         /// <summary>
+        ///     Returns a random color
+        /// </summary>
+        /// <param name="random"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static Color NextColor(this Random random)
+        {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            var seed = random.Next();
+            var seededRandom = new Random(seed);
+
+            var r = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
+            var g = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
+            var b = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
+
+            return System.Drawing.Color.FromArgb(r, g, b);
+        }
+
+        /// <summary>
         ///     Returns a non-negative random double-precision floating point number that is less than the specified maximum.
         /// </summary>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
