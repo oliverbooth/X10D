@@ -258,7 +258,7 @@ namespace X10D.RandomExtensions
 
             if (maxValue < minValue)
             {
-                throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
+                throw new ArgumentOutOfRangeException(nameof(maxValue), ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
             }
 
             var sample = random.NextInt64();
