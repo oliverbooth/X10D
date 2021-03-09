@@ -10,7 +10,7 @@ namespace X10D.RandomExtensions
     /// <summary>
     ///     Extension methods for <see cref="System.Random" />.
     /// </summary>
-    public static class RandomExtensions
+    public static partial class RandomExtensions
     {
         internal static readonly Random Random = new();
 
