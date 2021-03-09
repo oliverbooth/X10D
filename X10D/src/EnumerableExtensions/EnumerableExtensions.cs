@@ -36,7 +36,7 @@ namespace X10D.EnumerableExtensions
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> value, int chunkSize)
         {
             var enumerable = value.ToArray();
-            var count = enumerable.LongCount();
+            var count = enumerable.LongLength;
             chunkSize = chunkSize.Clamp(1, enumerable.Length);
 
             for (var i = 0; i < (int)(count / chunkSize); i++)
