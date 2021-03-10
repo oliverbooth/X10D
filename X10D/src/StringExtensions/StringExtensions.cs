@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using X10D.EnumerableExtensions;
 using X10D.ListExtensions;
 
 namespace X10D.StringExtensions
@@ -148,28 +150,28 @@ namespace X10D.StringExtensions
         ///     Gets a <see cref="byte" />[] representing the value the <see cref="string" /> with
         ///     <see cref="Encoding.UTF8" /> encoding.
         /// </summary>
-        /// <param name="str">The string to convert.</param>
+        /// <param name="value">The string to convert.</param>
         /// <returns>Returns a <see cref="byte" />[].</returns>
-        public static byte[] GetBytes(this string str)
+        public static byte[] GetBytes(this string value)
         {
-            return str.GetBytes(Encoding.UTF8);
+            return value.GetBytes(Encoding.UTF8);
         }
 
         /// <summary>
         ///     Gets a <see cref="byte" />[] representing the value the <see cref="string" /> with the provided encoding.
         /// </summary>
-        /// <param name="str">The string to convert.</param>
+        /// <param name="value">The string to convert.</param>
         /// <param name="encoding">The encoding to use.</param>
         /// <returns>Returns a <see cref="byte" />[].</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="str" /> or <paramref name="encoding" /> or both are
+        ///     <paramref name="value" /> or <paramref name="encoding" /> or both are
         ///     <see langword="null" />.
         /// </exception>
-        public static byte[] GetBytes(this string str, Encoding encoding)
+        public static byte[] GetBytes(this string value, Encoding encoding)
         {
-            if (str is null)
+            if (value is null)
             {
-                throw new ArgumentNullException(nameof(str));
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (encoding is null)
@@ -177,7 +179,7 @@ namespace X10D.StringExtensions
                 throw new ArgumentNullException(nameof(encoding));
             }
 
-            return encoding.GetBytes(str);
+            return encoding.GetBytes(value);
         }
 
         /// <summary>
@@ -264,25 +266,25 @@ namespace X10D.StringExtensions
         /// <summary>
         ///     Repeats a string a specified number of times.
         /// </summary>
-        /// <param name="str">The string to repeat.</param>
+        /// <param name="value">The string to repeat.</param>
         /// <param name="count">The repeat count.</param>
         /// <returns>
-        ///     Returns a <see cref="string" /> whose value is <paramref name="str" /> repeated
+        ///     Returns a <see cref="string" /> whose value is <paramref name="value" /> repeated
         ///     <paramref name="count" /> times.
         /// </returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static string Repeat(this string str, int count)
+        /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        public static string Repeat(this string value, int count)
         {
-            if (str is null)
+            if (value is null)
             {
-                throw new ArgumentNullException(nameof(str));
+                throw new ArgumentNullException(nameof(value));
             }
 
-            var builder = new StringBuilder(str.Length * count);
+            var builder = new StringBuilder(value.Length * count);
 
             for (var i = 0; i < count; i++)
             {
-                builder.Append(str);
+                builder.Append(value);
             }
 
             return builder.ToString();
@@ -321,54 +323,54 @@ namespace X10D.StringExtensions
         /// <summary>
         ///     Shuffles the characters in the string.
         /// </summary>
-        /// <param name="str">The string to shuffle.</param>
-        /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="str" />, rearranged.</returns>
-        public static string Shuffle(this string str)
+        /// <param name="value">The string to shuffle.</param>
+        /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
+        public static string Shuffled(this string value)
         {
-            return str.Shuffle(RandomExtensions.Random);
+            return value.Shuffled(RandomExtensions.RandomExtensions.Random);
         }
 
         /// <summary>
         ///     Shuffles the characters in the string.
         /// </summary>
-        /// <param name="str">The string to shuffle.</param>
+        /// <param name="value">The string to shuffle.</param>
         /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="str" />, rearranged.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static string Shuffle(this string str, Random random)
+        /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        public static string Shuffled(this string value, Random random)
         {
-            if (str is null)
+            if (value is null)
             {
-                throw new ArgumentNullException(nameof(str));
+                throw new ArgumentNullException(nameof(value));
             }
 
-            return new string(str.Shuffled(random).ToArray());
+            return new string(value.ToCharArray().Shuffled(random).ToArray());
         }
 
         /// <summary>
         ///     Splits the <see cref="string" /> into chunks that are no greater than <paramref name="chunkSize" /> in length.
         /// </summary>
-        /// <param name="str">The string to split.</param>
+        /// <param name="value">The string to split.</param>
         /// <param name="chunkSize">The maximum length of each string in the returned result.</param>
         /// <returns>
         ///     Returns an <see cref="IEnumerable{T}" /> containing <see cref="string" /> instances which are no
         ///     greater than <paramref name="chunkSize" /> in length.
         /// </returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static IEnumerable<string> Split(this string str, int chunkSize)
+        /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        public static IEnumerable<string> Split(this string value, int chunkSize)
         {
-            if (str is null)
+            if (value is null)
             {
-                throw new ArgumentNullException(nameof(str));
+                throw new ArgumentNullException(nameof(value));
             }
 
             return SplitInternal();
 
             IEnumerable<string> SplitInternal()
             {
-                for (var i = 0; i < str.Length; i += chunkSize)
+                for (var i = 0; i < value.Length; i += chunkSize)
                 {
-                    yield return str.Substring(i, Math.Min(chunkSize, str.Length - i));
+                    yield return value.Substring(i, Math.Min(chunkSize, value.Length - i));
                 }
             }
         }
