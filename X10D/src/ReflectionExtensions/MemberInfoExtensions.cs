@@ -67,22 +67,23 @@ namespace X10D.ReflectionExtensions
         /// </summary>
         /// <typeparam name="TAttribute">The attribute type.</typeparam>
         /// <typeparam name="TReturn">The return type of the <paramref name="selector" /> delegate.</typeparam>
-        /// <param name="type">The member.</param>
+        /// <param name="member">The member.</param>
         /// <param name="selector">A transform function to apply to the attribute.</param>
         /// <returns>
         ///     An instance of <typeparamref name="TReturn" /> as provided from <paramref name="selector" />.
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="type" /> is <see langword="null" />
+        ///     <paramref name="member" /> is <see langword="null" />
         ///     -or-
         ///     <paramref name="selector" /> is <see langword="null" />.
         /// </exception>
-        public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(this MemberInfo type, Func<TAttribute, TReturn> selector)
+        public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(this MemberInfo member,
+                                                                              Func<TAttribute, TReturn> selector)
             where TAttribute : Attribute
         {
-            if (type is null)
+            if (member is null)
             {
-                throw new ArgumentNullException(nameof(type));
+                throw new ArgumentNullException(nameof(member));
             }
 
             if (selector is null)
@@ -90,7 +91,7 @@ namespace X10D.ReflectionExtensions
                 throw new ArgumentNullException(nameof(selector));
             }
 
-            return type.GetCustomAttribute<TAttribute>() is { } attribute
+            return member.GetCustomAttribute<TAttribute>() is { } attribute
                 ? selector(attribute)
                 : default;
         }
