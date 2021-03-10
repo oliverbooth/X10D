@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using X10D.EnumerableExtensions;
 using X10D.ListExtensions;
+using X10D.RandomExtensions;
 
 namespace X10D.StringExtensions
 {
@@ -235,32 +236,69 @@ namespace X10D.StringExtensions
         }
 
         /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="str" />.
+        ///     Returns a new string of a specified length by randomly selecting characters from the current string.
         /// </summary>
-        /// <param name="str">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        public static string Random(this string str, int length)
+        /// <param name="source">The pool of characters to use.</param>
+        /// <param name="length">The length of the new string returned.</param>
+        /// <returns>
+        ///     A new string whose length is equal to <paramref name="length" /> which contains randomly selected characters from
+        ///     <paramref name="source" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
+        public static string Randomize(this string source, int length)
         {
-            return str.Random(length, RandomExtensions.Random);
+            return source.Randomize(length, RandomExtensions.RandomExtensions.Random);
         }
 
         /// <summary>
-        ///     Generates a new random string by filling it with characters found in <see cref="str" />.
+        ///     Returns a new string of a specified length by randomly selecting characters from the current string.
         /// </summary>
-        /// <param name="str">The character set.</param>
-        /// <param name="length">The length of the string to generate.</param>
-        /// <param name="random">The <see cref="System.Random" /> instance.</param>
-        /// <returns>Returns a <see cref="string" /> containing <paramref name="length" /> characters.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static string Random(this string str, int length, Random random)
+        /// <param name="source">The pool of characters to use.</param>
+        /// <param name="length">The length of the new string returned.</param>
+        /// <param name="random">The <see cref="System.Random" /> supplier.</param>
+        /// <returns>
+        ///     A new string whose length is equal to <paramref name="length" /> which contains randomly selected characters from
+        ///     <paramref name="source" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="source" /> is <see langword="null" />.
+        ///     -or-
+        ///     <paramref name="random" /> is <see langword="null" />.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
+        public static string Randomize(this string source, int length, Random random)
         {
-            if (str is null)
+            if (source is null)
             {
-                throw new ArgumentNullException(nameof(str));
+                throw new ArgumentNullException(nameof(source));
             }
 
-            return str.ToCharArray().Random(length, random);
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            if (length < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(length), ExceptionMessages.LengthGreaterThanOrEqualTo0);
+            }
+
+            if (length == 0)
+            {
+                return string.Empty;
+            }
+
+            var array = source.ToCharArray();
+            var builder = new StringBuilder(length);
+
+            while (builder.Length < length)
+            {
+                var next = random.NextFrom(array);
+                builder.Append(next);
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>
