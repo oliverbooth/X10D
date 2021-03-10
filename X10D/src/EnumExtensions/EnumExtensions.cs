@@ -8,15 +8,18 @@ namespace X10D.EnumExtensions
     public static class EnumExtensions
     {
         /// <summary>
-        ///     Returns the next value in an <see cref="Enum" /> using the specified value as a starting point.
+        ///     Returns the next member defined in a specified enum.
         /// </summary>
-        /// <typeparam name="T">An <see cref="Enum" />.</typeparam>
-        /// <param name="src">An <see cref="Enum" /> value.</param>
+        /// <typeparam name="T">The enum type.</typeparam>
+        /// <param name="src">The enum value which should be used as the starting point.</param>
         /// <param name="wrap">
-        ///     Optional. Whether or not to wrap to the to the start of the enum. Defaults to
-        ///     true.
+        ///     Optional. <see langword="true" /> if the final value of <typeparamref name="T" /> should wrap around to the first
+        ///     value, or <see langword="false" /> otherwise. Defaults to <see langword="true" />.
         /// </param>
-        /// <returns>Returns a <see cref="T" /> value.</returns>
+        /// <returns>
+        ///     A value of <typeparamref name="T" /> that is considered to be the next value defined after
+        ///     <paramref name="src" />.
+        /// </returns>
         public static T Next<T>(this T src, bool wrap = true)
             where T : struct, Enum
         {
@@ -31,15 +34,18 @@ namespace X10D.EnumExtensions
         }
 
         /// <summary>
-        ///     Returns the previous value in an <see cref="Enum" /> using the specified value as a starting point.
+        ///     Returns the previous member defined in a specified enum.
         /// </summary>
-        /// <typeparam name="T">An <see cref="Enum" />.</typeparam>
-        /// <param name="src">An <see cref="Enum" /> value.</param>
+        /// <typeparam name="T">The enum type.</typeparam>
+        /// <param name="src">The enum value which should be used as the starting point.</param>
         /// <param name="wrap">
-        ///     Optional. Whether or not to wrap to the to the end of the enum. Defaults to
-        ///     true.
+        ///     Optional. <see langword="true" /> if the first value of <typeparamref name="T" /> should wrap around to the final
+        ///     value, or <see langword="false" /> otherwise. Defaults to <see langword="true" />.
         /// </param>
-        /// <returns>Returns a <see cref="T" /> value.</returns>
+        /// <returns>
+        ///     A value of <typeparamref name="T" /> that is considered to be the previous value defined before
+        ///     <paramref name="src" />.
+        /// </returns>
         public static T Previous<T>(this T src, bool wrap = true)
             where T : struct, Enum
         {
