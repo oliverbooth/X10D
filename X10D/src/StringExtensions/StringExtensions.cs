@@ -32,20 +32,20 @@ namespace X10D.StringExtensions
         }
 
         /// <summary>
-        ///     Decodes a base-64 encoded string.
+        ///     Converts the specified string, which encodes binary data as base-64 digits, to an equivalent plain text string.
         /// </summary>
-        /// <param name="data">The base-64 string to decode.</param>
-        /// <returns>Returns the string in plain text.</returns>
-        public static string Base64Decode(this string data)
+        /// <param name="value">The base-64 string to convert.</param>
+        /// <returns>The plain text string representation of <paramref name="value" />.</returns>
+        public static string Base64Decode(this string value)
         {
-            return Convert.FromBase64String(data).ToString(Encoding.ASCII);
+            return Convert.FromBase64String(value).ToString(Encoding.ASCII);
         }
 
         /// <summary>
-        ///     Encodes a base-64 encoded string.
+        ///     Converts the current string to its equivalent string representation that is encoded with base-64 digits.
         /// </summary>
-        /// <param name="value">The plain text string to decode.</param>
-        /// <returns>Returns the string in plain text.</returns>
+        /// <param name="value">The plain text string to convert.</param>
+        /// <returns>The string representation, in base 64, of <paramref name="value" />.</returns>
         public static string Base64Encode(this string value)
         {
             return Convert.ToBase64String(value.GetBytes(Encoding.ASCII));
