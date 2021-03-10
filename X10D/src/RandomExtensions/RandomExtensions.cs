@@ -333,7 +333,7 @@ namespace X10D.RandomExtensions
 
             if (length < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(length), ExceptionMessages.LengthMustBePositiveValue);
+                throw new ArgumentOutOfRangeException(nameof(length), ExceptionMessages.LengthGreaterThanOrEqualTo0);
             }
 
             if (length == 0)
