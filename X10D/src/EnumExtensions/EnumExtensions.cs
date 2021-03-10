@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X10D
+namespace X10D.EnumExtensions
 {
     /// <summary>
     ///     Extension methods for <see langword="enum" /> types.
