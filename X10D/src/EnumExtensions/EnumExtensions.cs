@@ -23,11 +23,6 @@ namespace X10D.EnumExtensions
         public static T Next<T>(this T source, bool wrap = true)
             where T : struct, Enum
         {
-            if (!typeof(T).IsEnum)
-            {
-                throw new ArgumentException($"Argument {typeof(T).FullName} is not an enum");
-            }
-
             var array = (T[])Enum.GetValues(source.GetType());
             var index = Array.IndexOf(array, source) + 1;
             return array.Length == index ? array[wrap ? 0 : index - 1] : array[index];
@@ -49,11 +44,6 @@ namespace X10D.EnumExtensions
         public static T Previous<T>(this T source, bool wrap = true)
             where T : struct, Enum
         {
-            if (!typeof(T).IsEnum)
-            {
-                throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
-            }
-
             var array = (T[])Enum.GetValues(source.GetType());
             var index = Array.IndexOf(array, source) - 1;
             return index < 0 ? array[wrap ? array.Length - 1 : 0] : array[index];
