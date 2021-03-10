@@ -109,14 +109,14 @@ namespace X10D.DoubleExtensions
         }
 
         /// <summary>
-        ///     Rounds to the nearest value.
+        ///     Rounds the current value to the nearest multiple of a specified number.
         /// </summary>
-        /// <param name="v">The value to round.</param>
-        /// <param name="nearest">The nearest value.</param>
-        /// <returns>Returns the rounded value.</returns>
-        public static double Round(this double v, double nearest = 1)
+        /// <param name="value">The value to round.</param>
+        /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
+        /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest"/>.</returns>
+        public static double Round(this double value, double nearest = 1)
         {
-            return Math.Round(v / nearest) * nearest;
+            return Math.Round(value / nearest) * nearest;
         }
 
         private static double LerpInternal(double a, double b, double t)
