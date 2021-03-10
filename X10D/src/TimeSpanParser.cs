@@ -10,12 +10,12 @@ namespace X10D
     public static class TimeSpanParser
     {
         /// <summary>
-        ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
-        ///     <see cref="TimeSpan" />.
+        ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of <see cref="TimeSpan" />
+        ///     which represents that duration of time.
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <param name="provider">The format provider.</param>
-        /// <returns>Returns an instance of <see cref="TimeSpan" />.</returns>
+        /// <returns>An instance of <see cref="TimeSpan" /> constructed from the parsed <paramref name="input" />.</returns>
         public static TimeSpan Parse(string input, IFormatProvider? provider = null)
         {
             const string realNumberPattern = @"([0-9]*\.[0-9]+|[0-9]+)";
