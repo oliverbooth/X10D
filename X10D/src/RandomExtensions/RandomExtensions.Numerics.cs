@@ -34,6 +34,37 @@ namespace X10D.RandomExtensions
         }
 
         /// <summary>
+        ///     Returns a randomly generated rotation with uniform distribution.
+        /// </summary>
+        /// <param name="random">The <see cref="System.Random" /> instance.</param>
+        /// <returns>A <see cref="Quaternion" /> constructed with uniform distribution.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        public static Quaternion NextRotationUniform(this Random random)
+        {
+            if (random is null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            var seed = random.Next();
+            var seededRandom = new Random(seed);
+            float normal, w, x, y, z;
+
+            do
+            {
+                w = seededRandom.NextSingle(-1f, 1f);
+                x = seededRandom.NextSingle(-1f, 1f);
+                y = seededRandom.NextSingle(-1f, 1f);
+                z = seededRandom.NextSingle(-1f, 1f);
+                normal = w * w + x * x + y * y + z * z;
+            }
+            while (normal > 1f || normal == 0f);
+
+            normal = MathF.Sqrt(normal);
+            return new Quaternion(x / normal, y / normal, z / normal, w / normal);
+        }
+
+        /// <summary>
         ///     Returns a <see cref="Vector2" /> with magnitude 1 whose components indicate a random point on the unit circle. 
         /// </summary>
         /// <param name="random">The <see cref="System.Random" /> instance</param>
