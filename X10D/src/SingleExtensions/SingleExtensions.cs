@@ -32,29 +32,29 @@ namespace X10D.SingleExtensions
         }
 
         /// <summary>
-        ///     Determines if the <see cref="float" /> is even.
+        ///     Returns a value indicating whether the current value is evenly divisible by 2.
         /// </summary>
-        /// <param name="number">The number.</param>
+        /// <param name="value">The value whose parity to check.</param>
         /// <returns>
-        ///     Returns <see langword="true" /> if <paramref name="number" /> is even, <see langword="false" />
+        ///     <see langword="true" /> if <paramref name="value" /> is evenly divisible by 2, or <see langword="false" />
         ///     otherwise.
         /// </returns>
-        public static bool IsEven(this float number)
+        public static bool IsEven(this float value)
         {
-            return ((double)number).IsEven();
+            return value % 2 == 0;
         }
 
         /// <summary>
-        ///     Determines if the <see cref="float" /> is odd.
+        ///     Returns a value indicating whether the current value is not evenly divisible by 2.
         /// </summary>
-        /// <param name="number">The number.</param>
+        /// <param name="value">The value whose parity to check.</param>
         /// <returns>
-        ///     Returns <see langword="true" /> if <paramref name="number" /> is odd, <see langword="false" />
+        ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
         ///     otherwise.
         /// </returns>
-        public static bool IsOdd(this float number)
+        public static bool IsOdd(this float value)
         {
-            return !number.IsEven();
+            return !value.IsEven();
         }
 
         /// <summary>

@@ -31,29 +31,29 @@ namespace X10D.DoubleExtensions
         }
 
         /// <summary>
-        ///     Determines if the <see cref="double" /> is even.
+        ///     Returns a value indicating whether the current value is evenly divisible by 2.
         /// </summary>
-        /// <param name="number">The number.</param>
+        /// <param name="value">The value whose parity to check.</param>
         /// <returns>
-        ///     Returns <see langword="true" /> if <paramref name="number" /> is even, <see langword="false" />
+        ///     <see langword="true" /> if <paramref name="value" /> is evenly divisible by 2, or <see langword="false" />
         ///     otherwise.
         /// </returns>
-        public static bool IsEven(this double number)
+        public static bool IsEven(this double value)
         {
-            return Math.Abs(number % 2.0) < double.Epsilon;
+            return Math.Abs(value % 2.0) < double.Epsilon;
         }
 
         /// <summary>
-        ///     Determines if the <see cref="double" /> is odd.
+        ///     Returns a value indicating whether the current value is not evenly divisible by 2.
         /// </summary>
-        /// <param name="number">The number.</param>
+        /// <param name="value">The value whose parity to check.</param>
         /// <returns>
-        ///     Returns <see langword="true" /> if <paramref name="number" /> is odd, <see langword="false" />
+        ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
         ///     otherwise.
         /// </returns>
-        public static bool IsOdd(this double number)
+        public static bool IsOdd(this double value)
         {
-            return !number.IsEven();
+            return !value.IsEven();
         }
 
         /// <summary>

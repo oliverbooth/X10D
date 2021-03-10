@@ -47,20 +47,26 @@ namespace X10D.Int16Extensions
         }
 
         /// <summary>
-        ///     Returns a value indicating whether the current 16-bit signed integer is even.
+        ///     Returns a value indicating whether the current value is not evenly divisible by 2.
         /// </summary>
-        /// <param name="value">The number to check.</param>
-        /// <returns><see langword="true" /> if <paramref name="value" /> is even, or <see langword="false" /> otherwise.</returns>
+        /// <param name="value">The value whose parity to check.</param>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
+        ///     otherwise.
+        /// </returns>
         public static bool IsEven(this short value)
         {
             return value % 2 == 0;
         }
 
         /// <summary>
-        ///     Returns a value indicating whether the current 16-bit signed integer is odd.
+        ///     Returns a value indicating whether the current value is not evenly divisible by 2.
         /// </summary>
-        /// <param name="value">The number to check.</param>
-        /// <returns><see langword="true" /> if <paramref name="value" /> is odd, or <see langword="false" /> otherwise.</returns>
+        /// <param name="value">The value whose parity to check.</param>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
+        ///     otherwise.
+        /// </returns>
         public static bool IsOdd(this short value)
         {
             return !value.IsEven();
