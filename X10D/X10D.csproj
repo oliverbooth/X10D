@@ -19,6 +19,7 @@
         <FileVersion>2.6.0</FileVersion>
         <PackageVersion>2.6.0</PackageVersion>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
