@@ -110,12 +110,22 @@ namespace X10D.SingleExtensions
         }
 
         /// <summary>
+        ///     Rounds the current value to the nearest whole number.
+        /// </summary>
+        /// <param name="value">The value to round.</param>
+        /// <returns><paramref name="value" /> rounded to the nearest whole number.</returns>
+        public static float Round(this float value)
+        {
+            return value.Round(1.0f);
+        }
+
+        /// <summary>
         ///     Rounds the current value to the nearest multiple of a specified number.
         /// </summary>
         /// <param name="value">The value to round.</param>
         /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
         /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest"/>.</returns>
-        public static float Round(this float value, float nearest = 1)
+        public static float Round(this float value, float nearest)
         {
             return (float)((double)value).Round(nearest);
         }
