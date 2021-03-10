@@ -55,6 +55,51 @@ namespace X10D.SingleExtensions
         }
 
         /// <summary>
+        ///     Linearly interpolates to the current value from a specified source using a specified alpha.
+        /// </summary>
+        /// <param name="target">The interpolation target.</param>
+        /// <param name="value">The interpolation source.</param>
+        /// <param name="alpha">The interpolation alpha.</param>
+        /// <returns>
+        ///     The interpolation result as determined by <c>(1 - <paramref name="alpha" />) * <paramref name="value" /> +
+        ///     <paramref name="alpha" /> * <paramref name="target" /></c>.
+        /// </returns>
+        public static float LerpFrom(this float target, float value, float alpha)
+        {
+            return (float)((double)target).LerpFrom(value, alpha);
+        }
+
+        /// <summary>
+        ///     Linearly interpolates from the current value to a specified target using a specified alpha.
+        /// </summary>
+        /// <param name="value">The interpolation source.</param>
+        /// <param name="target">The interpolation target.</param>
+        /// <param name="alpha">The interpolation alpha.</param>
+        /// <returns>
+        ///     The interpolation result as determined by <c>(1 - <paramref name="alpha" />) * <paramref name="value" /> +
+        ///     <paramref name="alpha" /> * <paramref name="target" /></c>.
+        /// </returns>
+        public static float LerpTo(this float value, float target, float alpha)
+        {
+            return (float)((double)value).LerpTo(target, alpha);
+        }
+
+        /// <summary>
+        ///     Linearly interpolates to a specified target from a specified source, using the current value as the alpha value.
+        /// </summary>
+        /// <param name="alpha">The interpolation alpha.</param>
+        /// <param name="value">The interpolation source.</param>
+        /// <param name="target">The interpolation target.</param>
+        /// <returns>
+        ///     The interpolation result as determined by <c>(1 - <paramref name="alpha" />) * <paramref name="value" /> +
+        ///     <paramref name="alpha" /> * <paramref name="target" /></c>.
+        /// </returns>
+        public static float LerpWith(this float alpha, float value, float target)
+        {
+            return (float)((double)alpha).LerpWith(value, target);
+        }
+
+        /// <summary>
         ///     Converts an angle from radians to degrees.
         /// </summary>
         /// <param name="angle">The angle in radians.</param>
