@@ -16,7 +16,7 @@ namespace X10D
         /// <param name="input">The input string.</param>
         /// <param name="provider">The format provider.</param>
         /// <returns>Returns an instance of <see cref="TimeSpan" />.</returns>
-        public static TimeSpan Parse(string input, IFormatProvider provider = null)
+        public static TimeSpan Parse(string input, IFormatProvider? provider = null)
         {
             const string realNumberPattern = @"([0-9]*\.[0-9]+|[0-9]+)";
             var pattern = $"^(?:{realNumberPattern} *w)? *" +
