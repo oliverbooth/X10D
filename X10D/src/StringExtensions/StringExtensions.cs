@@ -14,7 +14,10 @@ namespace X10D.StringExtensions
         ///     Returns the current string, or <see langword="null" /> if the current string is null or empty.
         /// </summary>
         /// <param name="value">The value to sanitize.</param>
-        /// <returns><see langword="null" /> or <paramref name="value" />.</returns>
+        /// <returns>
+        ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or equal to
+        ///     <see cref="string.Empty" />, or <paramref name="value" /> otherwise.
+        /// </returns>
         public static string? AsNullIfEmpty(this string value)
         {
             return string.IsNullOrEmpty(value) ? null : value;
@@ -25,7 +28,10 @@ namespace X10D.StringExtensions
         ///     whitespace.
         /// </summary>
         /// <param name="value">The value to sanitize.</param>
-        /// <returns><see langword="null" /> or <paramref name="value" />.</returns>
+        /// <returns>
+        ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or equal to
+        ///     <see cref="string.Empty" /> or is composed of only whitespace characters, or <paramref name="value" /> otherwise.
+        /// </returns>
         public static string? AsNullIfWhiteSpace(this string value)
         {
             return string.IsNullOrWhiteSpace(value) ? null : value;
