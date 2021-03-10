@@ -79,11 +79,11 @@ namespace X10D {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Length must be a positive value..
+        ///   Looks up a localized string similar to Length must be greater than or equal to 0..
         /// </summary>
-        internal static string LengthMustBePositiveValue {
+        internal static string LengthGreaterThanOrEqualTo0 {
             get {
-                return ResourceManager.GetString("LengthMustBePositiveValue", resourceCulture);
+                return ResourceManager.GetString("LengthGreaterThanOrEqualTo0", resourceCulture);
             }
         }
         

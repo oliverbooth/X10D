@@ -38,8 +38,8 @@
     <data name="HashAlgorithmCreateReturnedNull" xml:space="preserve">
         <value>HashAlgorithm's Create method returned null referenece.</value>
     </data>
-    <data name="LengthMustBePositiveValue" xml:space="preserve">
-        <value>Length must be a positive value.</value>
+    <data name="LengthGreaterThanOrEqualTo0" xml:space="preserve">
+        <value>Length must be greater than or equal to 0.</value>
     </data>
     <data name="StreamDoesNotSupportReading" xml:space="preserve">
         <value>The stream does not support reading.</value>
