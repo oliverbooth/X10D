@@ -93,9 +93,10 @@ namespace X10D.ReflectionExtensions
 
             if (!interfaceType.IsInterface)
             {
-                throw new ArgumentException(
-                    string.Format(CultureInfo.CurrentCulture, ExceptionMessages.TypeIsNotInterface, interfaceType),
-                    nameof(interfaceType));
+                var exceptionMessage = ExceptionMessages.TypeIsNotInterface;
+                var formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, interfaceType);
+                
+                throw new ArgumentException(formattedMessage, nameof(interfaceType));
             }
 
             return Array.IndexOf(value.GetInterfaces(), interfaceType) >= 0;
@@ -139,16 +140,18 @@ namespace X10D.ReflectionExtensions
 
             if (!value.IsClass)
             {
-                throw new ArgumentException(
-                    string.Format(CultureInfo.CurrentCulture, ExceptionMessages.TypeIsNotClass, value),
-                    nameof(value));
+                var exceptionMessage = ExceptionMessages.TypeIsNotClass;
+                var formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, value);
+                
+                throw new ArgumentException(formattedMessage, nameof(value));
             }
 
             if (!type.IsClass)
             {
-                throw new ArgumentException(
-                    string.Format(CultureInfo.CurrentCulture, ExceptionMessages.TypeIsNotClass, type),
-                    nameof(type));
+                var exceptionMessage = ExceptionMessages.TypeIsNotClass;
+                var formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, type);
+                
+                throw new ArgumentException(formattedMessage, nameof(type));
             }
 
             return value.IsSubclassOf(type);
