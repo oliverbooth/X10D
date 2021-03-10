@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using X10D.ListExtensions;
 
 namespace X10D.StringExtensions
 {
@@ -38,7 +38,7 @@ namespace X10D.StringExtensions
         /// <returns>Returns the string in plain text.</returns>
         public static string Base64Decode(this string data)
         {
-            return Convert.FromBase64String(data).GetString();
+            return Convert.FromBase64String(data).ToString(Encoding.ASCII);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace X10D.StringExtensions
         /// <returns>Returns the string in plain text.</returns>
         public static string Base64Encode(this string value)
         {
-            return Convert.ToBase64String(value.GetBytes());
+            return Convert.ToBase64String(value.GetBytes(Encoding.ASCII));
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace X10D.StringExtensions
                 throw new ArgumentNullException(nameof(to));
             }
 
-            return str.GetBytes(from).GetString(to);
+            return str.GetBytes(from).ToString(to);
         }
 
         /// <summary>
