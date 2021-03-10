@@ -3,7 +3,7 @@ using System;
 using System.Numerics;
 using X10D.SingleExtensions;
 
-namespace X10D.RandomExtensions
+namespace X10D.RandomExtensions.SystemNumerics
 {
     public static partial class RandomExtensions
     {
