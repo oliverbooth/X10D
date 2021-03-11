@@ -32,10 +32,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToByte());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToByte());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToByte());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToByte());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
@@ -61,10 +59,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToDouble());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToDouble());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToDecimal());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToDecimal());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
@@ -90,10 +86,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToDouble());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToDouble());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToDouble());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToDouble());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
