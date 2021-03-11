@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using X10D.DoubleExtensions;
 
 namespace X10D.SingleExtensions
@@ -15,7 +16,7 @@ namespace X10D.SingleExtensions
         /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
         public static float DegreesToRadians(this float value)
         {
-            return (float)((double)value).DegreesToRadians();
+            return (float)Math.PI * value / 180.0f;
         }
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace X10D.SingleExtensions
         /// </returns>
         public static float LerpFrom(this float target, float value, float alpha)
         {
-            return (float)((double)target).LerpFrom(value, alpha);
+            return LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace X10D.SingleExtensions
         /// </returns>
         public static float LerpTo(this float value, float target, float alpha)
         {
-            return (float)((double)value).LerpTo(target, alpha);
+            return LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace X10D.SingleExtensions
         /// </returns>
         public static float LerpWith(this float alpha, float value, float target)
         {
-            return (float)((double)alpha).LerpWith(value, target);
+            return LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace X10D.SingleExtensions
         /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
         public static float RadiansToDegrees(this float value)
         {
-            return (float)((double)value).RadiansToDegrees();
+            return (float)Math.PI * value / 180.0f;
         }
 
         /// <summary>
@@ -128,6 +129,14 @@ namespace X10D.SingleExtensions
         public static float Round(this float value, float nearest)
         {
             return (float)((double)value).Round(nearest);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static float LerpInternal(float a, float b, float t)
+        {
+            // rookie mistake: a + t * (b - a)
+            // "precise" method: (1 - t) * a + t * b
+            return (1.0f - t) * a + t * b;
         }
     }
 }
