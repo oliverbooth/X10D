@@ -11,14 +11,11 @@ namespace X10D.SingleExtensions
         /// <summary>
         ///     Converts the current angle in degrees to its equivalent represented in radians.
         /// </summary>
-        /// <param name="angle">The angle in degrees to convert.</param>
-        /// <returns>
-        ///     <paramref name="angle" /> converted from degrees to radians by calculating
-        ///     <c><paramref name="angle" />π / 180</c>.
-        /// </returns>
-        public static float DegreesToRadians(this float angle)
+        /// <param name="value">The angle in degrees to convert.</param>
+        /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
+        public static float DegreesToRadians(this float value)
         {
-            return (float)((double)angle).DegreesToRadians();
+            return (float)((double)value).DegreesToRadians();
         }
 
         /// <summary>
@@ -105,14 +102,11 @@ namespace X10D.SingleExtensions
         /// <summary>
         ///     Converts the current angle in radians to its equivalent represented in degrees.
         /// </summary>
-        /// <param name="angle">The angle in radians to convert.</param>
-        /// <returns>
-        ///     <paramref name="angle" /> converted from radians to degrees by calculating
-        ///     <c><paramref name="angle" />(180 / π)</c>.
-        /// </returns>
-        public static float RadiansToDegrees(this float angle)
+        /// <param name="value">The angle in radians to convert.</param>
+        /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
+        public static float RadiansToDegrees(this float value)
         {
-            return (float)((double)angle).RadiansToDegrees();
+            return (float)((double)value).RadiansToDegrees();
         }
 
         /// <summary>

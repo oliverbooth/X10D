@@ -11,14 +11,11 @@ namespace X10D.DoubleExtensions
         /// <summary>
         ///     Converts the current angle in degrees to its equivalent represented in radians.
         /// </summary>
-        /// <param name="angle">The angle in degrees to convert.</param>
-        /// <returns>
-        ///     <paramref name="angle" /> converted from degrees to radians by calculating
-        ///     <c><paramref name="angle" />π / 180</c>.
-        /// </returns>
-        public static double DegreesToRadians(this double angle)
+        /// <param name="value">The angle in degrees to convert.</param>
+        /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
+        public static double DegreesToRadians(this double value)
         {
-            return Math.PI * angle / 180.0;
+            return Math.PI * value / 180.0;
         }
 
         /// <summary>
@@ -105,14 +102,11 @@ namespace X10D.DoubleExtensions
         /// <summary>
         ///     Converts the current angle in radians to its equivalent represented in degrees.
         /// </summary>
-        /// <param name="angle">The angle in radians to convert.</param>
-        /// <returns>
-        ///     <paramref name="angle" /> converted from radians to degrees by calculating
-        ///     <c><paramref name="angle" />(180 / π)</c>.
-        /// </returns>
-        public static double RadiansToDegrees(this double angle)
+        /// <param name="value">The angle in radians to convert.</param>
+        /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
+        public static double RadiansToDegrees(this double value)
         {
-            return angle * (180.0 / Math.PI);
+            return value * (180.0 / Math.PI);
         }
 
         /// <summary>
