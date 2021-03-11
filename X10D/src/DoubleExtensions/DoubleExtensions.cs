@@ -135,12 +135,12 @@ namespace X10D.DoubleExtensions
             return Math.Round(value / nearest) * nearest;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static double LerpInternal(double a, double b, double t)
         {
             // rookie mistake: a + t * (b - a)
-            
             // "precise" method: (1 - t) * a + t * b
-            return (1 - t) * a + t * b;
+            return (1.0 - t) * a + t * b;
         }
     }
 }
