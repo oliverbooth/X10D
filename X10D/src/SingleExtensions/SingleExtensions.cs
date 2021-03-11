@@ -132,7 +132,7 @@ namespace X10D.SingleExtensions
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static float LerpInternal(float a, float b, float t)
+        internal static float LerpInternal(float a, float b, float t)
         {
             // rookie mistake: a + t * (b - a)
             // "precise" method: (1 - t) * a + t * b

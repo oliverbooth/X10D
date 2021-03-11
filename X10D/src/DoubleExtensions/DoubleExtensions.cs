@@ -131,7 +131,7 @@ namespace X10D.DoubleExtensions
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static double LerpInternal(double a, double b, double t)
+        internal static double LerpInternal(double a, double b, double t)
         {
             // rookie mistake: a + t * (b - a)
             // "precise" method: (1 - t) * a + t * b
