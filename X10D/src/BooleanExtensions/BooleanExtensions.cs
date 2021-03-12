@@ -16,7 +16,7 @@ namespace X10D.BooleanExtensions
         {
             return BitConverter.GetBytes(value);
         }
-        
+
         /// <summary>
         ///     Converts the current Boolean value to the equivalent 8-bit unsigned integer. 
         /// </summary>
@@ -43,7 +43,7 @@ namespace X10D.BooleanExtensions
         {
             return value ? 1 : 0;
         }
-        
+
         /// <summary>
         ///     Converts the current Boolean value to the equivalent decimal number.
         /// </summary>
