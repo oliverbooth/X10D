@@ -21,11 +21,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent 8-bit unsigned integer. 
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="byte" /> values.
         /// <code lang="csharp">
@@ -48,11 +44,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent decimal number.
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="decimal" /> values.
         /// <code lang="csharp">
@@ -75,11 +67,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent double-precision floating-point number.
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="double" /> values.
         /// <code lang="csharp">
@@ -102,11 +90,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent 16-bit signed integer. 
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="short" /> values.
         /// <code lang="csharp">
@@ -131,11 +115,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent 32-bit signed integer. 
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="int" /> values.
         /// <code lang="csharp">
@@ -160,11 +140,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent 64-bit signed integer. 
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="long" /> values.
         /// <code lang="csharp">
@@ -189,11 +165,7 @@ namespace X10D.BooleanExtensions
         ///     Converts the current Boolean value to the equivalent single-precision floating-point number.
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
-        /// <returns>
-        ///     <c>1</c> if <paramref name="value" /> is <see langword="false" />
-        ///     -or-
-        ///     <c>0</c> otherwise.
-        /// </returns>
+        /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="float" /> values.
         /// <code lang="csharp">
