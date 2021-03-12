@@ -24,6 +24,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="byte" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
@@ -47,6 +48,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="decimal" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
@@ -70,6 +72,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="double" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
@@ -93,6 +96,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="short" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
@@ -118,6 +122,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="int" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
@@ -143,6 +148,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="long" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
@@ -168,6 +174,7 @@ namespace X10D.BooleanExtensions
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="float" /> values.
+        /// 
         /// <code lang="csharp">
         /// bool falseFlag = false;
         /// bool trueFlag = true;
