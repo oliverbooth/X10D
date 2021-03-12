@@ -62,7 +62,7 @@ namespace X10D.BooleanExtensions
         /// </example>
         public static decimal ToDecimal(this bool value)
         {
-            return value.ToByte();
+            return value ? 1.0m : 0.0m;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace X10D.BooleanExtensions
         /// </example>
         public static double ToDouble(this bool value)
         {
-            return value.ToByte();
+            return value ? 1.0 : 0.0;
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace X10D.BooleanExtensions
         /// </example>
         public static short ToInt16(this bool value)
         {
-            return value.ToByte();
+            return value ? 1 : 0;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace X10D.BooleanExtensions
         /// </example>
         public static int ToInt32(this bool value)
         {
-            return value.ToByte();
+            return value ? 1 : 0;
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace X10D.BooleanExtensions
         /// </example>
         public static long ToInt64(this bool value)
         {
-            return value.ToByte();
+            return value ? 1L : 0L;
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace X10D.BooleanExtensions
         /// </example>
         public static float ToSingle(this bool value)
         {
-            return value.ToByte();
+            return value ? 1.0f : 0.0f;
         }
     }
 }
