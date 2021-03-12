@@ -61,7 +61,7 @@ namespace X10D.ReflectionExtensions
 
             return member.GetCustomAttribute(attribute) is not null;
         }
-        
+
         /// <summary>
         ///     Retrieves a custom attribute that is decorated by the current member, and projects it into to a new form.
         /// </summary>

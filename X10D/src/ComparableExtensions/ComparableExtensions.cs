@@ -48,7 +48,7 @@ namespace X10D.ComparableExtensions
         {
             return actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
         }
-        
+
         /// <summary>
         ///     Returns the current value clamped to the inclusive range of <paramref name="lower" /> and <paramref name="upper" />.
         /// </summary>

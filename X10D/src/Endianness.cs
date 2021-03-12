@@ -9,7 +9,7 @@ namespace X10D
     {
         [Description("The value should be read as though it uses little endian encoding.")]
         LittleEndian,
-        
+
         [Description("The value should be read as though it uses big endian encoding.")]
         BigEndian
     }

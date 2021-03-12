@@ -21,7 +21,7 @@ namespace X10D.Int16Extensions
         {
             return DateTimeOffset.FromUnixTimeMilliseconds(value);
         }
-        
+
         /// <summary>
         ///     Converts a Unix time expressed as the number of seconds that have elapsed since 1970-01-01T00:00:00Z to a
         ///     <see cref="DateTimeOffset" /> value.
@@ -35,7 +35,7 @@ namespace X10D.Int16Extensions
         {
             return DateTimeOffset.FromUnixTimeSeconds(value);
         }
-        
+
         /// <summary>
         ///     Returns the current 16-bit signed integer value as an array of bytes.
         /// </summary>
