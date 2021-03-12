@@ -93,7 +93,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        public static long ToDouble(this bool value)
+        public static double ToDouble(this bool value)
         {
             return value.ToByte();
         }
