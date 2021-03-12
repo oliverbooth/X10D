@@ -36,6 +36,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="ByteExtensions.ByteExtensions.ToBoolean(byte)" />
         public static byte ToByte(this bool value)
         {
             return value ? 1 : 0;
@@ -60,6 +61,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="DecimalExtensions.DecimalExtensions.ToBoolean(decimal)" />
         public static decimal ToDecimal(this bool value)
         {
             return value ? 1.0m : 0.0m;
@@ -70,6 +72,7 @@ namespace X10D.BooleanExtensions
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
+        /// <seealso cref="DoubleExtensions.DoubleExtensions.ToBoolean(double)" />
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="double" /> values.
         /// 
@@ -84,6 +87,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="DoubleExtensions.DoubleExtensions.ToBoolean(double)" />
         public static double ToDouble(this bool value)
         {
             return value ? 1.0 : 0.0;
@@ -108,6 +112,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="Int16Extensions.Int16Extensions.ToBoolean(short)" />
         public static short ToInt16(this bool value)
         {
             return value ? 1 : 0;
@@ -132,6 +137,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="Int32Extensions.Int32Extensions.ToBoolean(int)" />
         public static int ToInt32(this bool value)
         {
             return value ? 1 : 0;
@@ -156,6 +162,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="Int64Extensions.Int64Extensions.ToBoolean(long)" />
         public static long ToInt64(this bool value)
         {
             return value ? 1L : 0L;
@@ -180,6 +187,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
+        /// <seealso cref="SingleExtensions.SingleExtensions.ToBoolean(float)" />
         public static float ToSingle(this bool value)
         {
             return value ? 1.0f : 0.0f;
