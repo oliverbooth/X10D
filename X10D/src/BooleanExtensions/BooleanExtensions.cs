@@ -101,10 +101,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToInt16());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToInt16());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToInt16());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToInt16());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
@@ -127,10 +125,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToInt32());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToInt32());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToInt32());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToInt32());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
@@ -153,10 +149,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToInt64());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToInt64());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToInt64());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToInt64());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
@@ -179,10 +173,8 @@ namespace X10D.BooleanExtensions
         /// bool falseFlag = false;
         /// bool trueFlag = true;
         ///
-        /// Console.WriteLine("{0} converts to {1}.", falseFlag,
-        ///                   falseFlag.ToSingle());
-        /// Console.WriteLine("{0} converts to {1}.", trueFlag,
-        ///                   trueFlag.ToSingle());
+        /// Console.WriteLine("{0} converts to {1}.", falseFlag, falseFlag.ToSingle());
+        /// Console.WriteLine("{0} converts to {1}.", trueFlag, trueFlag.ToSingle());
         /// // The example displays the following output:
         /// //       False converts to 0.
         /// //       True converts to 1.
