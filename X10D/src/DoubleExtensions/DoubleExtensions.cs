@@ -130,6 +130,18 @@ namespace X10D.DoubleExtensions
             return Math.Round(value / nearest) * nearest;
         }
 
+        /// <summary>
+        ///     Converts the value of the current double-precision floating-point number to an equivalent Boolean value.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
+        /// </returns>
+        public static bool ToBoolean(this float value)
+        {
+            return value != 0.0;
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static double LerpInternal(double a, double b, double t)
         {
