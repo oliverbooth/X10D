@@ -106,10 +106,12 @@ namespace X10D.Int64Extensions
         }
 
         /// <summary>
-        ///     Converts the value of the current 64-bit signed integer to an equivalent <see cref="bool" /> value.
+        ///     Converts the value of the current 64-bit signed integer to an equivalent Boolean value.
         /// </summary>
         /// <param name="value">The value to convert.</param>
-        /// <returns><see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.</returns>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
+        /// </returns>
         public static bool ToBoolean(this long value)
         {
             return value != 0;
