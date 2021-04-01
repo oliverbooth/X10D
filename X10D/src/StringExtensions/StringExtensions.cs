@@ -414,20 +414,21 @@ namespace X10D.StringExtensions
         }
 
         /// <summary>
-        ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of
-        ///     <see cref="TimeSpan" />.
+        ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of <see cref="TimeSpan" />.
         /// </summary>
-        /// <param name="str">The input string.</param>
+        /// <param name="input">The input string.</param>
         /// <returns>Returns an instance of <see cref="TimeSpan" />.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="str" /> is <see langword="null" />.</exception>
-        public static TimeSpan ToTimeSpan(this string str)
+        /// <exception cref="ArgumentNullException"><paramref name="input" /> is <see langword="null" />.</exception>
+        public static TimeSpan ToTimeSpan(this string input)
         {
-            if (str is null)
+            if (input is null)
             {
-                throw new ArgumentNullException(nameof(str));
+                throw new ArgumentNullException(nameof(input));
             }
 
-            return TimeSpanParser.Parse(str);
+            return TimeSpanParser.TryParse(input, out var result)
+                ? result
+                : default;
         }
 
         /// <summary>
