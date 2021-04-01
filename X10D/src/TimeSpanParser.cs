@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace X10D
@@ -9,69 +9,96 @@ namespace X10D
     /// </summary>
     public static class TimeSpanParser
     {
+        private const string RealNumberPattern = @"(\d*\.\d+|\d+)";
+
+        private static readonly string Pattern = $"^(?:{RealNumberPattern} *y)? *" +
+                                                 $"^(?:{RealNumberPattern} *mo)? *" +
+                                                 $"^(?:{RealNumberPattern} *w)? *" +
+                                                 $"(?:{RealNumberPattern} *d)? *" +
+                                                 $"(?:{RealNumberPattern} *h)? *" +
+                                                 $"(?:{RealNumberPattern} *m)? *" +
+                                                 $"(?:{RealNumberPattern} *s)? *" +
+                                                 $"(?:{RealNumberPattern} *ms)?$";
+
+        private static readonly Regex Regex = new(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
         /// <summary>
-        ///     Parses a shorthand time span string (e.g. 3w 2d 1.5h) and converts it to an instance of <see cref="TimeSpan" />
-        ///     which represents that duration of time.
+        ///     Attempts to parses a shorthand time span string (e.g. 3w 2d 1.5h), converting it to an instance of
+        ///     <see cref="TimeSpan" /> which represents that duration of time.
         /// </summary>
         /// <param name="input">The input string.</param>
+        /// <param name="result">The parsed result.</param>
         /// <param name="provider">The format provider.</param>
-        /// <returns>An instance of <see cref="TimeSpan" /> constructed from the parsed <paramref name="input" />.</returns>
-        public static TimeSpan Parse(string input, IFormatProvider? provider = null)
+        /// <returns><see langword="true" /> if the parse was successful, <see langword="false" /> otherwise.</returns>
+        public static bool TryParse(string input, out TimeSpan result, IFormatProvider? provider = null)
         {
-            const string realNumberPattern = @"([0-9]*\.[0-9]+|[0-9]+)";
-            var pattern = $"^(?:{realNumberPattern} *w)? *" +
-                          $"(?:{realNumberPattern} *d)? *" +
-                          $"(?:{realNumberPattern} *h)? *" +
-                          $"(?:{realNumberPattern} *m)? *" +
-                          $"(?:{realNumberPattern} *s)? *" +
-                          $"(?:{realNumberPattern} *ms)?$";
+            result = default;
 
-            var match = Regex.Match(input, pattern);
-            double weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
+            var match = Regex.Match(input);
 
-            if (match.Groups[1].Success)
+            if (!match.Success)
             {
-                weeks = double.Parse(match.Groups[1].Value, provider);
+                return false;
             }
 
-            if (match.Groups[2].Success)
+            bool TryParseAt(int group, out double parsedResult)
             {
-                days = double.Parse(match.Groups[2].Value, provider);
+                parsedResult = 0;
+
+                return match.Groups[@group].Success
+                    && double.TryParse(match.Groups[@group].Value, NumberStyles.Number, provider, out parsedResult);
             }
 
-            if (match.Groups[3].Success)
+            if (!TryParseAt(1, out var years))
             {
-                hours = double.Parse(match.Groups[3].Value, provider);
+                return false;
             }
 
-            if (match.Groups[4].Success)
+            if (!TryParseAt(2, out var months))
             {
-                minutes = double.Parse(match.Groups[4].Value, provider);
+                return false;
             }
 
-            if (match.Groups[5].Success)
+            if (!TryParseAt(3, out var weeks))
             {
-                seconds = double.Parse(match.Groups[5].Value, provider);
+                return false;
             }
 
-            if (match.Groups[6].Success)
+            if (!TryParseAt(4, out var days))
             {
-                milliseconds = double.Parse(match.Groups[6].Value, provider);
+                return false;
             }
 
-            Trace.WriteLine($"Input: {input}");
-            Trace.WriteLine($"Parsed: {weeks}w {days}d {hours}h {minutes}m {seconds}s {milliseconds}ms");
+            if (!TryParseAt(5, out var hours))
+            {
+                return false;
+            }
 
-            var span = TimeSpan.Zero;
+            if (!TryParseAt(6, out var minutes))
+            {
+                return false;
+            }
 
-            span += TimeSpan.FromDays(weeks * 7);
-            span += TimeSpan.FromDays(days);
-            span += TimeSpan.FromHours(hours);
-            span += TimeSpan.FromMinutes(minutes);
-            span += TimeSpan.FromSeconds(seconds);
-            span += TimeSpan.FromMilliseconds(milliseconds);
+            if (!TryParseAt(7, out var seconds))
+            {
+                return false;
+            }
 
-            return span;
+            if (!TryParseAt(8, out var milliseconds))
+            {
+                return false;
+            }
+
+            result += TimeSpan.FromDays(years * 365);
+            result += TimeSpan.FromDays(months * 30);
+            result += TimeSpan.FromDays(weeks * 7);
+            result += TimeSpan.FromDays(days);
+            result += TimeSpan.FromHours(hours);
+            result += TimeSpan.FromMinutes(minutes);
+            result += TimeSpan.FromSeconds(seconds);
+            result += TimeSpan.FromMilliseconds(milliseconds);
+
+            return true;
         }
     }
 }
