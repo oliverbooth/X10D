@@ -53,4 +53,7 @@
     <data name="MaxValueGreaterThanEqualToMinValue" xml:space="preserve">
         <value>maxValue must be greater than or equal to minValue</value>
     </data>
+    <data name="LowerCannotBeGreaterThanUpper" xml:space="preserve">
+        <value>{0} cannot be greater than {1}</value>
+    </data>
 </root>
