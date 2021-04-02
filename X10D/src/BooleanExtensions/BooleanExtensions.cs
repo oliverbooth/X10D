@@ -59,7 +59,7 @@ namespace X10D.BooleanExtensions
         /// <seealso cref="ByteExtensions.ByteExtensions.ToBoolean(byte)" />
         public static byte ToByte(this bool value)
         {
-            return value ? 1 : 0;
+            return (byte)(value ? 1 : 0);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace X10D.BooleanExtensions
         /// <seealso cref="Int16Extensions.Int16Extensions.ToBoolean(short)" />
         public static short ToInt16(this bool value)
         {
-            return value ? 1 : 0;
+            return (short)(value ? 1 : 0);
         }
 
         /// <summary>
