@@ -79,7 +79,9 @@ namespace X10D.ComparableExtensions
         {
             if (lower.GreaterThan(upper))
             {
-                throw new ArgumentException($@"{lower} cannot be greater than {upper}", nameof(lower));
+                throw new ArgumentException(
+                    string.Format(ExceptionMessages.LowerCannotBeGreaterThanUpper, lower, upper),
+                    nameof(lower));
             }
 
             return value.Max(lower).Min(upper);

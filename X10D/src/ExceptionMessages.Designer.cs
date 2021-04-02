@@ -88,6 +88,15 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} cannot be greater than {1}.
+        /// </summary>
+        internal static string LowerCannotBeGreaterThanUpper {
+            get {
+                return ResourceManager.GetString("LowerCannotBeGreaterThanUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to maxValue must be greater than or equal to 0.
         /// </summary>
         internal static string MaxValueGreaterThanEqualTo0 {
