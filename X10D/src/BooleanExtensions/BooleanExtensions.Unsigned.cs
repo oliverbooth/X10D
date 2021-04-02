@@ -27,7 +27,7 @@ namespace X10D.BooleanExtensions
         [CLSCompliant(false)]
         public static sbyte ToSByte(this bool value)
         {
-            return value ? 1 : 0;
+            return (sbyte)(value ? 1 : 0);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace X10D.BooleanExtensions
         [CLSCompliant(false)]
         public static ushort ToUInt16(this bool value)
         {
-            return value ? 1 : 0;
+            return (ushort)(value ? 1 : 0);
         }
 
         /// <summary>
