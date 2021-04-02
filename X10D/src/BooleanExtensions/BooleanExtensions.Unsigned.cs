@@ -49,7 +49,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        /// <seealso cref="UInt16Extensions.UInt16Extensions.ToBoolean(ushort)" />
+        /// <seealso cref="Int16Extensions.UInt16Extensions.ToBoolean(ushort)" />
         [CLSCompliant(false)]
         public static ushort ToUInt16(this bool value)
         {
@@ -75,7 +75,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        /// <seealso cref="UInt32Extensions.UInt32Extensions.ToBoolean(uint)" />
+        /// <seealso cref="Int32Extensions.UInt32Extensions.ToBoolean(uint)" />
         [CLSCompliant(false)]
         public static uint ToUInt32(this bool value)
         {
