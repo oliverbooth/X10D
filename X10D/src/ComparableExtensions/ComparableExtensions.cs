@@ -8,16 +8,16 @@ namespace X10D.ComparableExtensions
     public static class ComparableExtensions
     {
         /// <summary>
-        ///     Determines if <paramref name="actual" /> is between <paramref name="lower" /> and <paramref name="upper" />.
+        ///     Determines if a specified value falls exclusively between a specified lower bound and upper bound.
         /// </summary>
         /// <typeparam name="T1">An <see cref="IComparable{T2}" /> type.</typeparam>
         /// <typeparam name="T2">The first comparison operand type.</typeparam>
         /// <typeparam name="T3">The second comparison operand type.</typeparam>
-        /// <param name="actual">The value to compare.</param>
+        /// <param name="value">The value to compare.</param>
         /// <param name="lower">The exclusive lower bound.</param>
         /// <param name="upper">The exclusive upper bound.</param>
         /// <returns>
-        ///     <see langword="true" /> if <paramref name="actual" /> is between the <paramref name="lower"/> and
+        ///     <see langword="true" /> if <paramref name="value" /> is between the <paramref name="lower"/> and
         ///     <paramref name="upper"/>
         ///     -or-
         ///     <see langword="false" /> otherwise.
@@ -43,10 +43,10 @@ namespace X10D.ComparableExtensions
         /// //      True
         /// </code>
         /// </example>
-        public static bool Between<T1, T2, T3>(this T1 actual, T2 lower, T3 upper)
+        public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper)
             where T1 : IComparable<T2>, IComparable<T3>
         {
-            return actual.CompareTo(lower) > 0 && actual.CompareTo(upper) < 0;
+            return value.CompareTo(lower) > 0 && value.CompareTo(upper) < 0;
         }
 
         /// <summary>
