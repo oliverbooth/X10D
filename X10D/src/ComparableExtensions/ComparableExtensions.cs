@@ -45,12 +45,21 @@ namespace X10D
         /// </example>
         public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper)
             where T1 : IComparable<T2>, IComparable<T3>
+            where T2 : IComparable<T3>
+            where T3 : IComparable<T2>
         {
             if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
             
+            if (lower.GreaterThan(upper))
+            {
+                throw new ArgumentException(
+                    string.Format(ExceptionMessages.LowerCannotBeGreaterThanUpper, lower, upper),
+                    nameof(lower));
+            }
+
             return value.CompareTo(lower) > 0 && value.CompareTo(upper) < 0;
         }
 
