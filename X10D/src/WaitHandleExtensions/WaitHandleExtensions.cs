@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace X10D
@@ -15,7 +16,12 @@ namespace X10D
         /// <returns>A task which encapsulates <see cref="WaitHandle.WaitOne()" />.</returns>
         public static Task WaitOneAsync(this WaitHandle handle)
         {
-            return new(() => handle.WaitOne());
+            if (handle is null)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
+
+            return new Task(() => handle.WaitOne());
         }
     }
 }
