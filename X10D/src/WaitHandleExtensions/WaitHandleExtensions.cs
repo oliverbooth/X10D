@@ -13,15 +13,18 @@ namespace X10D
         ///     Returns a <see cref="Task" /> which can be awaited until the current <see cref="WaitHandle" /> receives a signal.
         /// </summary>
         /// <param name="handle">The <see cref="WaitHandle" /> instance.</param>
-        /// <returns>A task which encapsulates <see cref="WaitHandle.WaitOne()" />.</returns>
-        public static Task WaitOneAsync(this WaitHandle handle)
+        /// <returns>
+        ///     <see langword="true" /> if the current instance receives a signal. If the current instance is never signaled,
+        ///     <see cref="WaitOneAsync" /> never returns.
+        /// </returns>
+        public static Task<bool> WaitOneAsync(this WaitHandle handle)
         {
             if (handle is null)
             {
                 throw new ArgumentNullException(nameof(handle));
             }
 
-            return new Task(() => handle.WaitOne());
+            return Task.Run(handle.WaitOne);
         }
     }
 }
