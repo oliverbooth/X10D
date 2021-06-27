@@ -1,4 +1,6 @@
-﻿namespace X10D
+﻿using System;
+
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="char" />.
@@ -15,7 +17,12 @@
         /// </returns>
         public static string Repeat(this char value, int count)
         {
-            return new(value, count);
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
+            }
+            
+            return new string(value, count);
         }
     }
 }
