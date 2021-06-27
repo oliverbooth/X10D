@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using X10D.RandomExtensions;
 
-namespace X10D.ListExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="IList{T}" /> and <see cref="IReadOnlyList{T}" />.
@@ -34,7 +33,7 @@ namespace X10D.ListExtensions
                 throw new ArgumentNullException(nameof(source));
             }
 
-            random ??= RandomExtensions.RandomExtensions.Random;
+            random ??= RandomExtensions.Random;
             return random.NextFrom(source);
         }
 
@@ -51,7 +50,7 @@ namespace X10D.ListExtensions
                 throw new ArgumentNullException(nameof(source));
             }
 
-            random ??= RandomExtensions.RandomExtensions.Random;
+            random ??= RandomExtensions.Random;
 
             var count = source.Count;
             while (count > 0)

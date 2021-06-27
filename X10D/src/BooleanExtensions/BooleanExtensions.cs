@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X10D.BooleanExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="bool" />.
@@ -92,7 +92,7 @@ namespace X10D.BooleanExtensions
         /// </summary>
         /// <param name="value">The Boolean value to convert.</param>
         /// <returns>1 if <paramref name="value" /> is <see langword="false" />, or 0 otherwise.</returns>
-        /// <seealso cref="DoubleExtensions.DoubleExtensions.ToBoolean(double)" />
+        /// <seealso cref="DoubleExtensions.ToBoolean(double)" />
         /// <example>
         /// The following example illustrates the conversion of <see cref="bool" /> to <see cref="double" /> values.
         /// 
@@ -107,7 +107,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        /// <seealso cref="DoubleExtensions.DoubleExtensions.ToBoolean(double)" />
+        /// <seealso cref="DoubleExtensions.ToBoolean(double)" />
         public static double ToDouble(this bool value)
         {
             return value ? 1.0 : 0.0;
@@ -207,7 +207,7 @@ namespace X10D.BooleanExtensions
         /// //       True converts to 1.
         /// </code>
         /// </example>
-        /// <seealso cref="SingleExtensions.SingleExtensions.ToBoolean(float)" />
+        /// <seealso cref="SingleExtensions.ToBoolean(float)" />
         public static float ToSingle(this bool value)
         {
             return value ? 1.0f : 0.0f;

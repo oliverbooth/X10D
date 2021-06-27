@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace X10D.RandomExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="System.Random" />.

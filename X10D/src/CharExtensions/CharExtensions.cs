@@ -1,4 +1,4 @@
-﻿namespace X10D.CharExtensions
+﻿namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="char" />.

@@ -1,7 +1,6 @@
 ﻿using System;
-using X10D.Int64Extensions;
 
-namespace X10D.Int32Extensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="int" />.
@@ -94,7 +93,7 @@ namespace X10D.Int32Extensions
         /// </returns>
         public static double LerpFrom(this int target, double value, double alpha)
         {
-            return DoubleExtensions.DoubleExtensions.LerpInternal(value, target, alpha);
+            return DoubleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -109,7 +108,7 @@ namespace X10D.Int32Extensions
         /// </returns>
         public static double LerpTo(this int value, double target, double alpha)
         {
-            return DoubleExtensions.DoubleExtensions.LerpInternal(value, target, alpha);
+            return DoubleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -124,7 +123,7 @@ namespace X10D.Int32Extensions
         /// </returns>
         public static double LerpWith(this int alpha, double value, double target)
         {
-            return DoubleExtensions.DoubleExtensions.LerpInternal(value, target, alpha);
+            return DoubleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace X10D.Int32Extensions
         /// </returns>
         public static float LerpFrom(this int target, float value, float alpha)
         {
-            return SingleExtensions.SingleExtensions.LerpInternal(value, target, alpha);
+            return SingleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -154,7 +153,7 @@ namespace X10D.Int32Extensions
         /// </returns>
         public static float LerpTo(this int value, float target, float alpha)
         {
-            return SingleExtensions.SingleExtensions.LerpInternal(value, target, alpha);
+            return SingleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -169,7 +168,7 @@ namespace X10D.Int32Extensions
         /// </returns>
         public static float LerpWith(this int alpha, float value, float target)
         {
-            return SingleExtensions.SingleExtensions.LerpInternal(value, target, alpha);
+            return SingleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using System.Buffers.Binary;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace X10D.StreamExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="Stream" />.

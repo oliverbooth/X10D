@@ -1,9 +1,8 @@
 ﻿#if NET5_0
 using System;
 using System.Numerics;
-using X10D.SingleExtensions;
 
-namespace X10D.RandomExtensions.SystemNumerics
+namespace X10D.SystemNumerics
 {
     public static partial class RandomExtensions
     {
