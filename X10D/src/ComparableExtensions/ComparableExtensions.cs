@@ -125,6 +125,11 @@ namespace X10D
         public static bool GreaterThan<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return value.CompareTo(other) > 0;
         }
 
@@ -152,6 +157,11 @@ namespace X10D
         public static bool GreaterThanOrEqualTo<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return value.CompareTo(other) >= 0;
         }
 
@@ -179,6 +189,11 @@ namespace X10D
         public static bool LessThan<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return value.CompareTo(other) < 0;
         }
 
@@ -206,6 +221,11 @@ namespace X10D
         public static bool LessThanOrEqualTo<T1, T2>(this T1 value, T2 other)
             where T1 : IComparable<T2>
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return value.CompareTo(other) <= 0;
         }
 
@@ -232,6 +252,11 @@ namespace X10D
         public static T Max<T>(this T value, T other)
             where T : IComparable<T>
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return value.GreaterThan(other) ? value : other;
         }
 
@@ -258,6 +283,11 @@ namespace X10D
         public static T Min<T>(this T value, T other)
             where T : IComparable<T>
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return value.LessThan(other) ? value : other;
         }
     }
