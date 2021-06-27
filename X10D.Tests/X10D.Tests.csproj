@@ -1,21 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="2.2.4" />
+        <PackageReference Include="MSTest.TestFramework" Version="2.2.4" />
+        <PackageReference Include="coverlet.collector" Version="3.0.3">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-        <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
-        <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
-        <PackageReference Include="coverlet.collector" Version="1.0.1" />
         <PackageReference Include="Unity3D.SDK" Version="2019.4.3.1" />
     </ItemGroup>
 
