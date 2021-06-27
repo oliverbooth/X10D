@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace X10D.StreamExtensions
+namespace X10D
 {
     public static partial class StreamExtensions
     {

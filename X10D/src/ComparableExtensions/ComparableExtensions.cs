@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X10D.ComparableExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="IComparable{T}" />.

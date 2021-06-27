@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace X10D.ListExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="byte" /> array.

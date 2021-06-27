@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace X10D.DoubleExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="double" />.

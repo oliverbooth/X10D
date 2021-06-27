@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace X10D.DictionaryExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="Dictionary{TKey,TValue}" /> and similar types.

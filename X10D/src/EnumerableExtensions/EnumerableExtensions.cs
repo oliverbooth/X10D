@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using X10D.ComparableExtensions;
-using X10D.ListExtensions;
 
-namespace X10D.EnumerableExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="IEnumerable{T}" />.

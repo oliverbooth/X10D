@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using X10D.EnumerableExtensions;
-using X10D.ListExtensions;
-using X10D.RandomExtensions;
 
-namespace X10D.StringExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="string" />.
@@ -248,7 +245,7 @@ namespace X10D.StringExtensions
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
         public static string Randomize(this string source, int length)
         {
-            return source.Randomize(length, RandomExtensions.RandomExtensions.Random);
+            return source.Randomize(length, RandomExtensions.Random);
         }
 
         /// <summary>
@@ -365,7 +362,7 @@ namespace X10D.StringExtensions
         /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
         public static string Shuffled(this string value)
         {
-            return value.Shuffled(RandomExtensions.RandomExtensions.Random);
+            return value.Shuffled(RandomExtensions.Random);
         }
 
         /// <summary>

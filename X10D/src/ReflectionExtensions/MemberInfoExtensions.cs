@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 
-namespace X10D.ReflectionExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="MemberInfo" />.

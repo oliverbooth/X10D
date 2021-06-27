@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X10D.Int64Extensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="long" />.
@@ -117,7 +117,7 @@ namespace X10D.Int64Extensions
         /// </returns>
         public static double LerpFrom(this long target, double value, double alpha)
         {
-            return DoubleExtensions.DoubleExtensions.LerpInternal(value, target, alpha);
+            return DoubleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace X10D.Int64Extensions
         /// </returns>
         public static double LerpTo(this long value, double target, double alpha)
         {
-            return DoubleExtensions.DoubleExtensions.LerpInternal(value, target, alpha);
+            return DoubleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace X10D.Int64Extensions
         /// </returns>
         public static double LerpWith(this long alpha, double value, double target)
         {
-            return DoubleExtensions.DoubleExtensions.LerpInternal(value, target, alpha);
+            return DoubleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace X10D.Int64Extensions
         /// </returns>
         public static float LerpFrom(this long target, float value, float alpha)
         {
-            return SingleExtensions.SingleExtensions.LerpInternal(value, target, alpha);
+            return SingleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace X10D.Int64Extensions
         /// </returns>
         public static float LerpTo(this long value, float target, float alpha)
         {
-            return SingleExtensions.SingleExtensions.LerpInternal(value, target, alpha);
+            return SingleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace X10D.Int64Extensions
         /// </returns>
         public static float LerpWith(this long alpha, float value, float target)
         {
-            return SingleExtensions.SingleExtensions.LerpInternal(value, target, alpha);
+            return SingleExtensions.LerpInternal(value, target, alpha);
         }
 
         /// <summary>

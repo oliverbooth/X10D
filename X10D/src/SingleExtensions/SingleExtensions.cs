@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using X10D.DoubleExtensions;
 
-namespace X10D.SingleExtensions
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="float" />.
