@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace X10D
         ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or equal to
         ///     <see cref="string.Empty" />, or <paramref name="value" /> otherwise.
         /// </returns>
-        public static string? AsNullIfEmpty(this string value)
+        public static string? AsNullIfEmpty(this string? value)
         {
             return string.IsNullOrEmpty(value) ? null : value;
         }
@@ -32,7 +32,7 @@ namespace X10D
         ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or equal to
         ///     <see cref="string.Empty" /> or is composed of only whitespace characters, or <paramref name="value" /> otherwise.
         /// </returns>
-        public static string? AsNullIfWhiteSpace(this string value)
+        public static string? AsNullIfWhiteSpace(this string? value)
         {
             return string.IsNullOrWhiteSpace(value) ? null : value;
         }
