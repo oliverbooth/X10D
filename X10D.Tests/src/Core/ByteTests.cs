@@ -1,9 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace X10D.Tests.Core
 {
-    using System.Collections.Generic;
-    using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     /// <summary>
     ///     Tests for <see cref="ByteExtensions" />.
     /// </summary>
