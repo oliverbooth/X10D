@@ -1,4 +1,4 @@
-namespace X10D
+﻿namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="byte" />.
@@ -60,20 +60,19 @@ namespace X10D
         /// <returns>
         ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
         /// </returns>
-        /// <seealso cref="BooleanExtensions.BooleanExtensions.ToByte(bool)" />
+        /// <seealso cref="BooleanExtensions.ToByte(bool)" />
         /// <example>
         /// The following example converts an array of <see cref="byte" /> values to <see cref="bool" /> values.
-        /// 
         /// <code lang="csharp">
         /// byte[] bytes = { byte.MinValue, 100, 200, byte.MaxValue };
         /// bool result;
-        ///
+        /// 
         /// foreach (byte value in bytes)
         /// {
         ///     result = value.ToBoolean();
         ///     Console.WriteLine("{0, -5}  -->  {1}", value, result);
         /// }
-        ///
+        /// 
         /// // The example displays the following output:
         /// //       0      -->  False
         /// //       100    -->  True
