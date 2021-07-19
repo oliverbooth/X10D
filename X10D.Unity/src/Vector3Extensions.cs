@@ -1,6 +1,7 @@
-﻿namespace X10D.Unity
+using UnityEngine;
+
+namespace X10D.Unity
 {
-    using UnityEngine;
 
     /// <summary>
     ///     Extension methods for <see cref="Vector3" />.

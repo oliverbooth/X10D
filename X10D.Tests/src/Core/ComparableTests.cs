@@ -1,7 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace X10D.Tests.Core
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     /// <summary>
     ///     Tests for <see cref="ComparableExtensions" />.
     /// </summary>
