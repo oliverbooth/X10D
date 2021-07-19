@@ -190,6 +190,11 @@ namespace X10D
         /// </returns>
         public static bool IsLower(this string value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             for (var index = 0; index < value.Length; index++)
             {
                 if (!char.IsLetter(value[index]))
@@ -216,6 +221,11 @@ namespace X10D
         /// </returns>
         public static bool IsUpper(this string value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             for (var index = 0; index < value.Length; index++)
             {
                 if (!char.IsLetter(value[index]))
@@ -315,6 +325,11 @@ namespace X10D
                 throw new ArgumentNullException(nameof(value));
             }
 
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
+            }
+
             var builder = new StringBuilder(value.Length * count);
 
             for (var i = 0; i < count; i++)
@@ -337,7 +352,7 @@ namespace X10D
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (value.Length == 1)
+            if (value.Length < 2)
             {
                 return value;
             }
