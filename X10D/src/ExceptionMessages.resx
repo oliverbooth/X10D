@@ -56,4 +56,7 @@
     <data name="LowerCannotBeGreaterThanUpper" xml:space="preserve">
         <value>{0} cannot be greater than {1}</value>
     </data>
+    <data name="CountMustBeGreaterThanOrEqualTo0" xml:space="preserve">
+        <value>count must be greater than or equal to 0.</value>
+    </data>
 </root>
