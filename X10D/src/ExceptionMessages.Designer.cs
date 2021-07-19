@@ -61,6 +61,15 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to count must be greater than or equal to 0..
+        /// </summary>
+        internal static string CountMustBeGreaterThanOrEqualTo0 {
+            get {
+                return ResourceManager.GetString("CountMustBeGreaterThanOrEqualTo0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HashAlgorithm&apos;s Create method returned null referenece..
         /// </summary>
         internal static string HashAlgorithmCreateReturnedNull {
