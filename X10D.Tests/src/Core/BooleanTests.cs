@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace X10D.Tests.Core
@@ -10,206 +10,234 @@ namespace X10D.Tests.Core
     public class BooleanTests
     {
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.And" />.
+        ///     Tests <see cref="BooleanExtensions.GetBytes" />.
         /// </summary>
         [TestMethod]
-        public void And()
+        public void GetBytes()
         {
-            const bool a = true;
-            const bool b = true;
-            const bool c = false;
-            const bool d = false;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsTrue(b);
-            Assert.IsFalse(c);
-            Assert.IsFalse(d);
+            var trueBytes = new byte[] { 0x01 };
+            var falseBytes = new byte[] { 0x00 };
 
-            Assert.IsTrue(a.And(b));
-            Assert.IsFalse(b.And(c));
-            Assert.IsFalse(c.And(d));
+            var trueResult = trueValue.GetBytes();
+            var falseResult = falseValue.GetBytes();
+
+            CollectionAssert.AreEqual(trueBytes, trueResult);
+            CollectionAssert.AreEqual(falseBytes, falseResult);
         }
 
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.NAnd" />.
-        /// </summary>
-        [TestMethod]
-        public void NAnd()
-        {
-            const bool a = true;
-            const bool b = true;
-            const bool c = false;
-            const bool d = false;
-
-            Assert.IsTrue(a);
-            Assert.IsTrue(b);
-            Assert.IsFalse(c);
-            Assert.IsFalse(d);
-
-            Assert.IsFalse(a.NAnd(b));
-            Assert.IsTrue(b.NAnd(c));
-            Assert.IsTrue(c.NAnd(d));
-        }
-
-        /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.NOr" />.
-        /// </summary>
-        [TestMethod]
-        public void NOr()
-        {
-            const bool a = true;
-            const bool b = true;
-            const bool c = false;
-            const bool d = false;
-
-            Assert.IsTrue(a);
-            Assert.IsTrue(b);
-            Assert.IsFalse(c);
-            Assert.IsFalse(d);
-
-            Assert.IsFalse(a.NOr(b));
-            Assert.IsFalse(b.NOr(c));
-            Assert.IsTrue(c.NOr(d));
-        }
-
-        /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.Not" />.
-        /// </summary>
-        [TestMethod]
-        public void Not()
-        {
-            const bool a = true;
-            const bool b = false;
-
-            Assert.IsTrue(a);
-            Assert.IsFalse(b);
-            Assert.IsFalse(a.Not());
-            Assert.IsTrue(b.Not());
-        }
-
-        /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.Or" />.
-        /// </summary>
-        [TestMethod]
-        public void Or()
-        {
-            const bool a = true;
-            const bool b = true;
-            const bool c = false;
-            const bool d = false;
-
-            Assert.IsTrue(a);
-            Assert.IsTrue(b);
-            Assert.IsFalse(c);
-            Assert.IsFalse(d);
-
-            Assert.IsTrue(a.Or(b));
-            Assert.IsTrue(b.Or(c));
-            Assert.IsFalse(c.Or(d));
-        }
-
-        /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.ToByte" />.
+        ///     Tests <see cref="BooleanExtensions.ToByte" />.
         /// </summary>
         [TestMethod]
         public void ToByte()
         {
-            const bool a = true;
-            const bool b = false;
-            const byte c = 1;
-            const byte d = 0;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsFalse(b);
-            Assert.AreEqual(c, a.ToByte());
-            Assert.AreEqual(d, b.ToByte());
+            const byte trueByte = 1;
+            const byte falseByte = 0;
+
+            var trueResult = trueValue.ToByte();
+            var falseResult = falseValue.ToByte();
+
+            Assert.AreEqual(trueByte, trueResult);
+            Assert.AreEqual(falseByte, falseResult);
         }
 
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.ToInt16" />.
+        ///     Tests <see cref="BooleanExtensions.ToDecimal" />.
+        /// </summary>
+        [TestMethod]
+        public void ToDecimal()
+        {
+            const bool trueValue = true;
+            const bool falseValue = false;
+
+            const decimal trueDecimal = 1.0m;
+            const decimal falseDecimal = 0.0m;
+
+            var trueResult = trueValue.ToDecimal();
+            var falseResult = falseValue.ToDecimal();
+
+            Assert.AreEqual(trueDecimal, trueResult);
+            Assert.AreEqual(falseDecimal, falseResult);
+        }
+
+        /// <summary>
+        ///     Tests <see cref="BooleanExtensions.ToDouble" />.
+        /// </summary>
+        [TestMethod]
+        public void ToDouble()
+        {
+            const bool trueValue = true;
+            const bool falseValue = false;
+
+            const double trueDouble = 1.0;
+            const double falseDouble = 0.0;
+
+            var trueResult = trueValue.ToDouble();
+            var falseResult = falseValue.ToDouble();
+
+            Assert.AreEqual(trueDouble, trueResult);
+            Assert.AreEqual(falseDouble, falseResult);
+        }
+
+        /// <summary>
+        ///     Tests <see cref="BooleanExtensions.ToInt16" />.
         /// </summary>
         [TestMethod]
         public void ToInt16()
         {
-            const bool a = true;
-            const bool b = false;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsFalse(b);
-            Assert.AreEqual(1, a.ToInt16());
-            Assert.AreEqual(0, b.ToInt16());
+            const short trueInt16 = 1;
+            const short falseInt16 = 0;
+
+            var trueResult = trueValue.ToInt16();
+            var falseResult = falseValue.ToInt16();
+
+            Assert.AreEqual(trueInt16, trueResult);
+            Assert.AreEqual(falseInt16, falseResult);
         }
 
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.ToInt32" />.
+        ///     Tests <see cref="BooleanExtensions.ToInt32" />.
         /// </summary>
         [TestMethod]
         public void ToInt32()
         {
-            const bool a = true;
-            const bool b = false;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsFalse(b);
-            Assert.AreEqual(1, a.ToInt32());
-            Assert.AreEqual(0, b.ToInt32());
+            const int trueInt32 = 1;
+            const int falseInt32 = 0;
+
+            var trueResult = trueValue.ToInt32();
+            var falseResult = falseValue.ToInt32();
+
+            Assert.AreEqual(trueInt32, trueResult);
+            Assert.AreEqual(falseInt32, falseResult);
         }
 
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.ToInt64" />.
+        ///     Tests <see cref="BooleanExtensions.ToInt64" />.
         /// </summary>
         [TestMethod]
         public void ToInt64()
         {
-            const bool a = true;
-            const bool b = false;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsFalse(b);
-            Assert.AreEqual(1L, a.ToInt64());
-            Assert.AreEqual(0L, b.ToInt64());
+            const long trueInt64 = 1L;
+            const long falseInt64 = 0L;
+
+            var trueResult = trueValue.ToInt64();
+            var falseResult = falseValue.ToInt64();
+
+            Assert.AreEqual(trueInt64, trueResult);
+            Assert.AreEqual(falseInt64, falseResult);
         }
 
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.XNOr" />.
+        ///     Tests <see cref="BooleanExtensions.ToSByte" />.
         /// </summary>
         [TestMethod]
-        public void XNOr()
+        public void ToSByte()
         {
-            const bool a = true;
-            const bool b = true;
-            const bool c = false;
-            const bool d = false;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsTrue(b);
-            Assert.IsFalse(c);
-            Assert.IsFalse(d);
+            const sbyte trueByte = 1;
+            const sbyte falseByte = 0;
 
-            Assert.IsTrue(a.XNOr(b));
-            Assert.IsFalse(b.XNOr(c));
-            Assert.IsTrue(c.XNOr(d));
+            var trueResult = trueValue.ToSByte();
+            var falseResult = falseValue.ToSByte();
+
+            Assert.AreEqual(trueByte, trueResult);
+            Assert.AreEqual(falseByte, falseResult);
         }
 
         /// <summary>
-        ///     Tests for <see cref="BooleanExtensions.XOr" />.
+        ///     Tests <see cref="BooleanExtensions.ToSingle" />.
         /// </summary>
         [TestMethod]
-        public void XOr()
+        public void ToSingle()
         {
-            const bool a = true;
-            const bool b = true;
-            const bool c = false;
-            const bool d = false;
+            const bool trueValue = true;
+            const bool falseValue = false;
 
-            Assert.IsTrue(a);
-            Assert.IsTrue(b);
-            Assert.IsFalse(c);
-            Assert.IsFalse(d);
+            const float trueSingle = 1.0f;
+            const float falseSingle = 0.0f;
 
-            Assert.IsFalse(a.XOr(b));
-            Assert.IsTrue(b.XOr(c));
-            Assert.IsFalse(c.XOr(d));
+            var trueResult = trueValue.ToSingle();
+            var falseResult = falseValue.ToSingle();
+
+            Assert.AreEqual(trueSingle, trueResult);
+            Assert.AreEqual(falseSingle, falseResult);
+        }
+
+        /// <summary>
+        ///     Tests <see cref="BooleanExtensions.ToUInt16" />.
+        /// </summary>
+        [CLSCompliant(false)]
+        [TestMethod]
+        public void ToUInt16()
+        {
+            const bool trueValue = true;
+            const bool falseValue = false;
+
+            const ushort trueUInt16 = 1;
+            const ushort falseUInt16 = 0;
+
+            var trueResult = trueValue.ToUInt16();
+            var falseResult = falseValue.ToUInt16();
+
+            Assert.AreEqual(trueUInt16, trueResult);
+            Assert.AreEqual(falseUInt16, falseResult);
+        }
+
+        /// <summary>
+        ///     Tests <see cref="BooleanExtensions.ToUInt32" />.
+        /// </summary>
+        [CLSCompliant(false)]
+        [TestMethod]
+        public void ToUInt32()
+        {
+            const bool trueValue = true;
+            const bool falseValue = false;
+
+            const uint trueUInt32 = 1U;
+            const uint falseUInt32 = 0U;
+
+            var trueResult = trueValue.ToUInt32();
+            var falseResult = falseValue.ToUInt32();
+
+            Assert.AreEqual(trueUInt32, trueResult);
+            Assert.AreEqual(falseUInt32, falseResult);
+        }
+
+        /// <summary>
+        ///     Tests <see cref="BooleanExtensions.ToUInt64" />.
+        /// </summary>
+        [CLSCompliant(false)]
+        [TestMethod]
+        public void ToUInt64()
+        {
+            const bool trueValue = true;
+            const bool falseValue = false;
+
+            const ulong trueUInt64 = 1UL;
+            const ulong falseUInt64 = 0UL;
+
+            var trueResult = trueValue.ToUInt64();
+            var falseResult = falseValue.ToUInt64();
+
+            Assert.AreEqual(trueUInt64, trueResult);
+            Assert.AreEqual(falseUInt64, falseResult);
         }
     }
 }
