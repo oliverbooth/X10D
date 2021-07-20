@@ -105,6 +105,7 @@ namespace X10D
         ///     (http://geekswithblogs.net/sdorman/Default.aspx).
         /// </remarks>
         public static T EnumParse<T>(this string value)
+            where T : struct, Enum
         {
             return value.EnumParse<T>(false);
         }
@@ -121,6 +122,7 @@ namespace X10D
         ///     (http://geekswithblogs.net/sdorman/Default.aspx).
         /// </remarks>
         public static T EnumParse<T>(this string value, bool ignoreCase)
+            where T : struct, Enum
         {
             if (value is null)
             {
