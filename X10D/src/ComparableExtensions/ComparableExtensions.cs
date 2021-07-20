@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Globalization;
 
 namespace X10D
 {
@@ -52,11 +53,11 @@ namespace X10D
             {
                 throw new ArgumentNullException(nameof(value));
             }
-            
+
             if (lower.GreaterThan(upper))
             {
                 throw new ArgumentException(
-                    string.Format(ExceptionMessages.LowerCannotBeGreaterThanUpper, lower, upper),
+                    string.Format(CultureInfo.CurrentCulture, ExceptionMessages.LowerCannotBeGreaterThanUpper, lower, upper),
                     nameof(lower));
             }
 
