@@ -1,10 +1,13 @@
-# X10D
-## Extension methods on crack
-
-[<img src="https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core">](https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22)
-[<img src="https://img.shields.io/github/issues/oliverbooth/X10D">](https://github.com/oliverbooth/X10D/issues)
-[<img src="https://img.shields.io/nuget/v/X10D">](https://www.nuget.org/packages/X10D/)
-[<img src="https://img.shields.io/github/license/oliverbooth/X10D">](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md)
+<h1 align="center">X10D - Extension methods on crack</h1>
+<p align="center"><i>Simplifying development, one method at a time.</i></p>
+<p align="center">
+<a href="https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22"><img src="https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
+<a href="https://github.com/oliverbooth/X10D/issues"><img src="https://img.shields.io/github/issues/oliverbooth/X10D" alt="GitHub Issues" title="GitHub Issues"></a>
+<a href="https://sonarcloud.io/dashboard?id=oliverbooth_X10D"><img src="https://sonarcloud.io/api/project_badges/measure?project=oliverbooth_X10D&metric=coverage" alt="Coverage"></a>
+<a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/dt/X10D" alt="NuGet Downloads" title="NuGet Downloads"></a>
+<a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/v/X10D" alt="NuGet Version" title="NuGet Version"></a>
+<a href="https://github.com/oliverbooth/X10D/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/oliverbooth/X10D" alt="MIT License" title="MIT License"></a>
+</p>
 
 ### About
 X10D (pronounced *extend*), is a class library that provides extension methods for numerous .NET types. The purpose of this library is to simplify a codebase by reducing the need for repeated code when performing common operations. Simplify your codebase. Take advantage of .NET. Use extension methods.
@@ -12,7 +15,10 @@ X10D (pronounced *extend*), is a class library that provides extension methods f
 *(I'm also [dogfooding](https://www.pcmag.com/encyclopedia/term/dogfooding) this library, so there's that.)*
 
 ### Table of contents
-- [Install](#install)
+- [Installation](#installation)
+    - [Unity installation](#unity-installation)
+    - [NuGet installation](#nuget-installation)
+    - [Manual installation](#manual-installation)
 - [Features](#features)
     - [Numeric](#numeric)
     - [String](#string)
@@ -26,12 +32,24 @@ X10D (pronounced *extend*), is a class library that provides extension methods f
 
 You can find the list of classes that have extension methods by viewing the `README.md` file in any of the respective library folders.
 
-## Install
-Install X10D with NuGet via the following command:
+## Installation
+### Unity installation
+1. Open the package manager, open the `+` menu and select `Add package from git URL...`.
+   
+   ![](https://user-images.githubusercontent.com/1129769/109844969-8ec7a100-7c44-11eb-9729-9a03be703d1b.png)
+
+2) Enter the URL below and press Add.
+    ```cs
+    https://github.com/oliverbooth/X10D.git#upm
+    ```
+
+### NuGet installation
 ```ps
 Install-Package X10D -Version 2.6.0
 ```
-or by downloading the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository.
+
+### Manual installation
+Download the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository and adding a direct assembly reference for your chosen platform.
 
 ## Features
 ### Numeric extensions

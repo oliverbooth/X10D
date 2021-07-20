@@ -1,9 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace X10D.Tests.Core
 {
-    using System;
-    using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     /// <summary>
     ///     Tests for <see cref="CharExtensions" />.
     /// </summary>

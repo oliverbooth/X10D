@@ -1,9 +1,9 @@
-﻿namespace X10D.Unity
-{
-    using System;
-    using JetBrains.Annotations;
-    using UnityEngine;
+using System;
+using JetBrains.Annotations;
+using UnityEngine;
 
+namespace X10D.Unity
+{
     /// <summary>
     ///     Extension methods for <see cref="GameObject" />.
     /// </summary>

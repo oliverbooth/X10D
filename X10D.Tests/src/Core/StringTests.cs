@@ -1,8 +1,8 @@
-﻿namespace X10D.Tests.Core
-{
-    using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+namespace X10D.Tests.Core
+{
     /// <summary>
     ///     Tests for <see cref="StringExtensions" />.
     /// </summary>
