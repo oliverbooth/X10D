@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -58,7 +58,7 @@ namespace X10D
         }
 
         /// <summary>
-        ///     Returns a random color
+        ///     Returns a random color.
         /// </summary>
         /// <param name="random"></param>
         /// <returns></returns>
@@ -212,7 +212,7 @@ namespace X10D
         /// <returns>
         ///     A 64-bit signed integer that is greater than or equal to 0, and less than <paramref name="maxValue" />; that is,
         ///     the range of return values ordinarily includes 0 but not <paramref name="maxValue" />. However, if
-        ///     <paramref name="maxValue" /> equals 0, <paramref name="maxValue"/> is returned.
+        ///     <paramref name="maxValue" /> equals 0, <paramref name="maxValue" /> is returned.
         /// </returns>
         /// <remarks><paramref name="maxValue" /> must be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>

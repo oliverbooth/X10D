@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Security.Cryptography;
 #if NET5_0
 using System.Buffers.Binary;
 #endif
-using System.IO;
-using System.Security.Cryptography;
 
 namespace X10D
 {

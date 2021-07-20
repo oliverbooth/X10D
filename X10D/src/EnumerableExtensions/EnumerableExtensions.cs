@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace X10D
@@ -29,7 +29,7 @@ namespace X10D
         /// <param name="chunkSize">The maximum length of the nested collection.</param>
         /// <returns>
         ///     An <see cref="IEnumerable{T}" /> containing an <see cref="IEnumerable{T}" /> of <typeparamref name="T" />
-        ///     whose lengths are no greater than <paramref name="chunkSize" />. 
+        ///     whose lengths are no greater than <paramref name="chunkSize" />.
         /// </returns>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> value, int chunkSize)
         {
