@@ -23,4 +23,9 @@
         <ProjectReference Include="..\X10D\X10D.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Remove="1000primes.txt" />
+        <EmbeddedResource Include="1000primes.txt" />
+    </ItemGroup>
+
 </Project>
