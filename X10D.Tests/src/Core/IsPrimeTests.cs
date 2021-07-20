@@ -16,7 +16,9 @@ namespace X10D.Tests.Core
     ///     Tests for this extension method are delegated to their own test class because of the non-trivial requirements for
     ///     loading testing prime numbers.
     /// </remarks>
+    /// <seealso cref="Int16Extensions.IsPrime(short)" />
     /// <seealso cref="Int32Extensions.IsPrime(int)" />
+    /// <seealso cref="Int64Extensions.IsPrime(long)" />
     [TestClass]
     public class IsPrimeTests
     {
@@ -57,7 +59,7 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
-        ///     Asserts that all negative numbers are not prime.
+        ///     Asserts that values 0 and 1 are not prime.
         /// </summary>
         [TestMethod]
         public void LessThan2()
