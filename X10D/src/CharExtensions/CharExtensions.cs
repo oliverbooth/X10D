@@ -21,7 +21,17 @@ namespace X10D
             {
                 throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
             }
-            
+
+            if (count == 0)
+            {
+                return string.Empty;
+            }
+
+            if (count == 1)
+            {
+                return value.ToString();
+            }
+
             return new string(value, count);
         }
     }
