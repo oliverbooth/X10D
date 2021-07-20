@@ -17,6 +17,11 @@ namespace X10D
         ///     1970, at 12:00 AM UTC). For Unix times before this date, its value is negative.
         /// </param>
         /// <returns>A date and time value that represents the same moment in time as the Unix time.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <para><paramref name="value" /> is less than -62,135,596,800,000.</para>
+        ///     -or-
+        ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
+        /// </exception>
         public static DateTimeOffset FromUnixTimeMilliseconds(this int value)
         {
             return DateTimeOffset.FromUnixTimeMilliseconds(value);
@@ -31,6 +36,11 @@ namespace X10D
         ///     12:00 AM UTC). For Unix times before this date, its value is negative.
         /// </param>
         /// <returns>A date and time value that represents the same moment in time as the Unix time.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <para><paramref name="value" /> is less than -62,135,596,800.</para>
+        ///     -or-
+        ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
+        /// </exception>
         public static DateTimeOffset FromUnixTimeSeconds(this int value)
         {
             return DateTimeOffset.FromUnixTimeSeconds(value);
