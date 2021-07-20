@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace X10D
 {
@@ -133,7 +133,7 @@ namespace X10D
         /// <returns>
         ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
         /// </returns>
-        public static bool ToBoolean(this float value)
+        public static bool ToBoolean(this double value)
         {
             return value != 0.0;
         }
