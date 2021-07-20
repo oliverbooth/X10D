@@ -50,7 +50,7 @@
         /// </returns>
         public static bool IsPrime(this byte value)
         {
-            return ((int)value).IsPrime();
+            return ((short)value).IsPrime();
         }
 
         /// <summary>
