@@ -251,34 +251,14 @@ namespace X10D
         /// </summary>
         /// <param name="source">The pool of characters to use.</param>
         /// <param name="length">The length of the new string returned.</param>
+        /// <param name="random">The <see cref="System.Random" /> supplier.</param>
         /// <returns>
         ///     A new string whose length is equal to <paramref name="length" /> which contains randomly selected characters from
         ///     <paramref name="source" />.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
-        public static string Randomize(this string source, int length)
-        {
-            return source.Randomize(length, RandomExtensions.Random);
-        }
-
-        /// <summary>
-        ///     Returns a new string of a specified length by randomly selecting characters from the current string.
-        /// </summary>
-        /// <param name="source">The pool of characters to use.</param>
-        /// <param name="length">The length of the new string returned.</param>
-        /// <param name="random">The <see cref="System.Random" /> supplier.</param>
-        /// <returns>
-        ///     A new string whose length is equal to <paramref name="length" /> which contains randomly selected characters from
-        ///     <paramref name="source" />.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source" /> is <see langword="null" />.
-        ///     -or-
-        ///     <paramref name="random" /> is <see langword="null" />.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
-        public static string Randomize(this string source, int length, Random random)
+        public static string Randomize(this string source, int length, Random? random = null)
         {
             if (source is null)
             {
