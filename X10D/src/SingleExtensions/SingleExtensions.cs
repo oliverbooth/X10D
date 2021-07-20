@@ -1,5 +1,4 @@
-using System;
-using System.Runtime.CompilerServices;
+﻿using System;
 
 namespace X10D
 {
@@ -61,12 +60,11 @@ namespace X10D
         /// <param name="value">The interpolation source.</param>
         /// <param name="alpha">The interpolation alpha.</param>
         /// <returns>
-        ///     The interpolation result as determined by <c>(1 - <paramref name="alpha" />) * <paramref name="value" /> +
-        ///     <paramref name="alpha" /> * <paramref name="target" /></c>.
+        ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
         /// </returns>
         public static float LerpFrom(this float target, float value, float alpha)
         {
-            return LerpInternal(value, target, alpha);
+            return MathUtils.Lerp(value, target, alpha);
         }
 
         /// <summary>
@@ -76,12 +74,11 @@ namespace X10D
         /// <param name="target">The interpolation target.</param>
         /// <param name="alpha">The interpolation alpha.</param>
         /// <returns>
-        ///     The interpolation result as determined by <c>(1 - <paramref name="alpha" />) * <paramref name="value" /> +
-        ///     <paramref name="alpha" /> * <paramref name="target" /></c>.
+        ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
         /// </returns>
         public static float LerpTo(this float value, float target, float alpha)
         {
-            return LerpInternal(value, target, alpha);
+            return MathUtils.Lerp(value, target, alpha);
         }
 
         /// <summary>
@@ -91,12 +88,11 @@ namespace X10D
         /// <param name="value">The interpolation source.</param>
         /// <param name="target">The interpolation target.</param>
         /// <returns>
-        ///     The interpolation result as determined by <c>(1 - <paramref name="alpha" />) * <paramref name="value" /> +
-        ///     <paramref name="alpha" /> * <paramref name="target" /></c>.
+        ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
         /// </returns>
         public static float LerpWith(this float alpha, float value, float target)
         {
-            return LerpInternal(value, target, alpha);
+            return MathUtils.Lerp(value, target, alpha);
         }
 
         /// <summary>
@@ -140,14 +136,6 @@ namespace X10D
         public static bool ToBoolean(this float value)
         {
             return value != 0.0f;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal static float LerpInternal(float a, float b, float t)
-        {
-            // rookie mistake: a + t * (b - a)
-            // "precise" method: (1 - t) * a + t * b
-            return (1.0f - t) * a + t * b;
         }
     }
 }
