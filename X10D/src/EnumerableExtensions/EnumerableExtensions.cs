@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace X10D
 {
@@ -23,24 +22,38 @@ namespace X10D
         }
 
         /// <summary>
-        ///     Splits <paramref name="value" /> into chunks of size <paramref name="chunkSize" />.
+        ///     Splits <paramref name="source" /> into chunks of size <paramref name="chunkSize" />.
         /// </summary>
         /// <typeparam name="T">Any type.</typeparam>
-        /// <param name="value">The collection to split.</param>
+        /// <param name="source">The collection to split.</param>
         /// <param name="chunkSize">The maximum length of the nested collection.</param>
         /// <returns>
         ///     An <see cref="IEnumerable{T}" /> containing an <see cref="IEnumerable{T}" /> of <typeparamref name="T" />
         ///     whose lengths are no greater than <paramref name="chunkSize" />.
         /// </returns>
-        public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> value, int chunkSize)
+        public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> source, int chunkSize)
         {
-            var enumerable = value.ToArray();
-            var count = enumerable.LongLength;
-            chunkSize = chunkSize.Clamp(1, enumerable.Length);
-
-            for (var i = 0; i < (int)(count / chunkSize); i++)
+            if (source is null)
             {
-                yield return enumerable.Skip(i * chunkSize).Take(chunkSize);
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            var buffer = new List<T>(chunkSize);
+            
+            foreach (var item in source)
+            {
+                buffer.Add(item);
+                
+                if (buffer.Count >= chunkSize)
+                {
+                    yield return buffer;
+                    buffer.Clear();
+                }
+            }
+
+            if (buffer.Count > 0)
+            {
+                yield return buffer;
             }
         }
     }
