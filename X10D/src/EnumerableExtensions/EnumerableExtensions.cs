@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace X10D
         /// <typeparam name="T">The element type.</typeparam>
         /// <param name="source">The <see cref="IEnumerable{T}" /> to shuffle.</param>
         /// <param name="random">Optional. The <see cref="System.Random" /> instance to use for the shuffling.</param>
-        public static IReadOnlyCollection<T> Shuffled<T>(this IEnumerable<T> source, System.Random? random = null)
+        public static IReadOnlyCollection<T> Shuffled<T>(this IEnumerable<T> source, Random? random = null)
         {
             var list = new List<T>(source);
             list.Shuffle(random);
