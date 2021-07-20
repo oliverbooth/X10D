@@ -45,8 +45,8 @@ namespace X10D
             {
                 parsedResult = 0;
 
-                return match.Groups[@group].Success
-                    && double.TryParse(match.Groups[@group].Value, NumberStyles.Number, provider, out parsedResult);
+                return match.Groups[group].Success
+                    && double.TryParse(match.Groups[group].Value, NumberStyles.Number, provider, out parsedResult);
             }
 
             if (!TryParseAt(1, out var years))

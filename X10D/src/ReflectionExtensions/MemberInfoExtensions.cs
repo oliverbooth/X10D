@@ -77,8 +77,9 @@ namespace X10D
         ///     -or-
         ///     <paramref name="selector" /> is <see langword="null" />.
         /// </exception>
-        public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(this MemberInfo member,
-                                                                              Func<TAttribute, TReturn> selector)
+        public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(
+            this MemberInfo member,
+            Func<TAttribute, TReturn> selector)
             where TAttribute : Attribute
         {
             if (member is null)

@@ -60,13 +60,13 @@ namespace X10D
         /// <code lang="csharp">
         /// byte[] bytes = { byte.MinValue, 100, 200, byte.MaxValue };
         /// bool result;
-        ///
+        /// 
         /// foreach (byte value in bytes)
         /// {
         ///     result = value.ToBoolean();
         ///     Console.WriteLine("{0, -5}  -->  {1}", value, result);
         /// }
-        ///
+        /// 
         /// // The example displays the following output:
         /// //       0      -->  False
         /// //       100    -->  True

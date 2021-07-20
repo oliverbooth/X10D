@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.CompilerServices;
 
 namespace X10D
@@ -124,7 +124,7 @@ namespace X10D
         /// </summary>
         /// <param name="value">The value to round.</param>
         /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
-        /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest"/>.</returns>
+        /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
         public static float Round(this float value, float nearest)
         {
             return (float)((double)value).Round(nearest);

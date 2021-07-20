@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -134,14 +134,14 @@ namespace X10D
                 throw new ArgumentException(Resource.EnumParseEmptyStringException, nameof(value));
             }
 
-            var t = typeof(T);
+            var type = typeof(T);
 
-            if (!t.IsEnum)
+            if (!type.IsEnum)
             {
                 throw new ArgumentException(Resource.EnumParseNotEnumException);
             }
 
-            return (T)Enum.Parse(t, value, ignoreCase);
+            return (T)Enum.Parse(type, value, ignoreCase);
         }
 
         /// <summary>

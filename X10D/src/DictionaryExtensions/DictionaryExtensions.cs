@@ -54,9 +54,6 @@ namespace X10D
             return string.Join(";", list);
         }
 
-        /// <returns>A <see cref="string" /> representing the dictionary as a <c>key=value;</c> set.</returns>
-        ///
-        /// 
         /// <summary>
         ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to a HTTP GET parameter
         ///     string.
@@ -64,7 +61,7 @@ namespace X10D
         /// <typeparam name="TKey">The key type.</typeparam>
         /// <typeparam name="TValue">The value type.</typeparam>
         /// <param name="value">The source dictionary.</param>
-        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value& set.</returns>
+        /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value&amp; set.</returns>
         public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> value)
         {
             if (value is null)
