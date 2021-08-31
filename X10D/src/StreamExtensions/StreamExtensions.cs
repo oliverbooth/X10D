@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
 #if NET5_0
 using System.Buffers.Binary;
@@ -38,15 +39,20 @@ namespace X10D
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            var type = typeof(T);
-            var create = type.GetMethod("Create", Array.Empty<Type>());
-            if (create is null)
+            if (!stream.CanRead)
+            {
+                throw new IOException(ExceptionMessages.StreamDoesNotSupportReading);
+            }
+
+            Type type = typeof(T);
+            MethodInfo? createMethod = type.GetMethod("Create", BindingFlags.Public | BindingFlags.Static);
+            if (createMethod is null)
             {
                 throw new TypeInitializationException(type.FullName,
                     new ArgumentException(ExceptionMessages.HashAlgorithmNoCreateMethod));
             }
 
-            using var crypt = create.Invoke(null, null) as T;
+            using var crypt = createMethod.Invoke(null, null) as T;
             if (crypt is null)
             {
                 throw new TypeInitializationException(type.FullName,
