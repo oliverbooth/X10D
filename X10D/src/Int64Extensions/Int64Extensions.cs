@@ -66,7 +66,7 @@ namespace X10D
         /// </returns>
         public static bool IsEven(this long value)
         {
-            return value % 2 == 0;
+            return (value & 1) == 0;
         }
 
         /// <summary>
