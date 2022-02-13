@@ -9,6 +9,58 @@ namespace X10D
     public static class Int32Extensions
     {
         /// <summary>
+        ///     Performs a circular bitwise left-shift on an integer, such that the most-significant bits that are truncated
+        ///     occupy the least-significant bits.
+        /// </summary>
+        /// <param name="value">The value to shift.</param>
+        /// <param name="shift">The shift amount.</param>
+        /// <returns>The result of the shift.</returns>
+        public static int CircularLeftShift(this int value, int shift)
+        {
+            shift = shift.Mod(32);
+            if (shift == 0)
+            {
+                return value;
+            }
+
+            var pattern = 0;
+            for (var i = 0; i < shift; i++)
+            {
+                pattern |= 1 << (32 - i);
+            }
+
+            var cache = value & pattern;
+            cache >>= 32 - shift;
+            return (value << shift) | cache;
+        }
+
+        /// <summary>
+        ///     Performs a circular bitwise right-shift on an integer, such that the least-significant bits that are truncated
+        ///     occupy the most-significant bits.
+        /// </summary>
+        /// <param name="value">The value to shift.</param>
+        /// <param name="shift">The shift amount.</param>
+        /// <returns>The result of the shift.</returns>
+        public static int CircularRightShift(this int value, int shift)
+        {
+            shift = shift.Mod(32);
+            if (shift == 0)
+            {
+                return value;
+            }
+
+            var pattern = 0;
+            for (var i = 0; i < shift; i++)
+            {
+                pattern |= 1 << i;
+            }
+
+            var cache = value & pattern;
+            cache <<= 32 - shift;
+            return (value >> shift) | cache;
+        }
+
+        /// <summary>
         ///     Converts a Unix time expressed as the number of milliseconds that have elapsed since 1970-01-01T00:00:00Z to a
         ///     <see cref="DateTimeOffset" /> value.
         /// </summary>
@@ -174,6 +226,18 @@ namespace X10D
         public static float LerpWith(this int alpha, float value, float target)
         {
             return MathUtils.Lerp(value, target, alpha);
+        }
+
+        /// <summary>
+        ///     Performs a modulo operation which supports a negative dividend. 
+        /// </summary>
+        /// <param name="dividend">The dividend.</param>
+        /// <param name="divisor">The divisor.</param>
+        /// <returns>The result of <c>dividend % divisor</c>.</returns>
+        public static int Mod(this int dividend, int divisor)
+        {
+            int r = dividend % divisor;
+            return r < 0 ? r + divisor : r;
         }
 
         /// <summary>
