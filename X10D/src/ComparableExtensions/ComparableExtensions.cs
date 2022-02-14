@@ -16,6 +16,7 @@ namespace X10D
         /// <param name="value">The value to compare.</param>
         /// <param name="lower">The exclusive lower bound.</param>
         /// <param name="upper">The exclusive upper bound.</param>
+        /// <param name="clusivity">The comparison clusivity.</param>
         /// <returns>
         ///     <see langword="true" /> if <paramref name="value" /> is between the <paramref name="lower" /> and
         ///     <paramref name="upper" />
@@ -43,7 +44,7 @@ namespace X10D
         /// //      True
         /// </code>
         /// </example>
-        public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper)
+        public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper, Clusivity clusivity = Clusivity.Exclusive)
             where T1 : IComparable<T2>, IComparable<T3>
             where T2 : IComparable<T3>
             where T3 : IComparable<T2>
@@ -60,7 +61,15 @@ namespace X10D
                     nameof(lower));
             }
 
-            return value.CompareTo(lower) > 0 && value.CompareTo(upper) < 0;
+            bool lowerComparison = (clusivity & Clusivity.LowerInclusive) != 0
+                ? value.CompareTo(lower) >= 0
+                : value.CompareTo(lower) > 0;
+
+            bool upperComparison = (clusivity & Clusivity.UpperInclusive) != 0
+                ? value.CompareTo(upper) <= 0
+                : value.CompareTo(upper) < 0;
+
+            return lowerComparison && upperComparison;
         }
 
         /// <summary>
