@@ -20,12 +20,12 @@ namespace X10D.SystemNumerics
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var seed = random.Next();
+            int seed = random.Next();
             var seededRandom = new Random(seed);
 
-            var x = seededRandom.NextSingle(0, 360);
-            var y = seededRandom.NextSingle(0, 360);
-            var z = seededRandom.NextSingle(0, 360);
+            float x = seededRandom.NextSingle(0, 360);
+            float y = seededRandom.NextSingle(0, 360);
+            float z = seededRandom.NextSingle(0, 360);
 
             return Quaternion.CreateFromYawPitchRoll(y, x, z);
         }
@@ -43,7 +43,7 @@ namespace X10D.SystemNumerics
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var seed = random.Next();
+            int seed = random.Next();
             var seededRandom = new Random(seed);
             float normal, w, x, y, z;
 
@@ -76,18 +76,18 @@ namespace X10D.SystemNumerics
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var seed = random.Next();
+            int seed = random.Next();
             var seededRandom = new Random(seed);
 
-            var angle = seededRandom.NextSingle(0, 360).DegreesToRadians();
-            var x = MathF.Cos(angle);
-            var y = MathF.Sin(angle);
+            float angle = seededRandom.NextSingle(0, 360).DegreesToRadians();
+            float x = MathF.Cos(angle);
+            float y = MathF.Sin(angle);
 
             return new Vector2(x, y);
         }
 
         /// <summary>
-        ///     Returns a <see cref="Vector3" /> with magnitude 1 whose components indicate a random point on the unit sphere. 
+        ///     Returns a <see cref="Vector3" /> with magnitude 1 whose components indicate a random point on the unit sphere.
         /// </summary>
         /// <param name="random">The <see cref="System.Random" /> instance</param>
         /// <returns>
@@ -101,7 +101,7 @@ namespace X10D.SystemNumerics
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var seed = random.Next();
+            int seed = random.Next();
             var seededRandom = new Random(seed);
 
             var angle = seededRandom.NextSingle(0, 360).DegreesToRadians();

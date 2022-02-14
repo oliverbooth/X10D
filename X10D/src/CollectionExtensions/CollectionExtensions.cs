@@ -22,7 +22,7 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            var count = value.Count;
+            int count = value.Count;
             chunkSize = chunkSize.Clamp(1, count);
 
             for (var i = 0; i < count / chunkSize; i++)

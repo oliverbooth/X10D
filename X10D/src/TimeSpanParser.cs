@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace X10D
@@ -33,7 +33,7 @@ namespace X10D
         {
             result = default;
 
-            var match = Regex.Match(input);
+            Match? match = Regex.Match(input);
 
             if (!match.Success)
             {
@@ -48,42 +48,42 @@ namespace X10D
                     && double.TryParse(match.Groups[group].Value, NumberStyles.Number, provider, out parsedResult);
             }
 
-            if (!TryParseAt(1, out var years))
+            if (!TryParseAt(1, out double years))
             {
                 return false;
             }
 
-            if (!TryParseAt(2, out var months))
+            if (!TryParseAt(2, out double months))
             {
                 return false;
             }
 
-            if (!TryParseAt(3, out var weeks))
+            if (!TryParseAt(3, out double weeks))
             {
                 return false;
             }
 
-            if (!TryParseAt(4, out var days))
+            if (!TryParseAt(4, out double days))
             {
                 return false;
             }
 
-            if (!TryParseAt(5, out var hours))
+            if (!TryParseAt(5, out double hours))
             {
                 return false;
             }
 
-            if (!TryParseAt(6, out var minutes))
+            if (!TryParseAt(6, out double minutes))
             {
                 return false;
             }
 
-            if (!TryParseAt(7, out var seconds))
+            if (!TryParseAt(7, out double seconds))
             {
                 return false;
             }
 
-            if (!TryParseAt(8, out var milliseconds))
+            if (!TryParseAt(8, out double milliseconds))
             {
                 return false;
             }

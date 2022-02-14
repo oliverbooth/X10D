@@ -24,7 +24,7 @@ namespace X10D
             where T : struct, Enum
         {
             var array = (T[])Enum.GetValues(source.GetType());
-            var index = Array.IndexOf(array, source) + 1;
+            int index = Array.IndexOf(array, source) + 1;
             return array.Length == index ? array[wrap ? 0 : index - 1] : array[index];
         }
 
@@ -45,7 +45,7 @@ namespace X10D
             where T : struct, Enum
         {
             var array = (T[])Enum.GetValues(source.GetType());
-            var index = Array.IndexOf(array, source) - 1;
+            int index = Array.IndexOf(array, source) - 1;
             return index < 0 ? array[wrap ? array.Length - 1 : 0] : array[index];
         }
     }

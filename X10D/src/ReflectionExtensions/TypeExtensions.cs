@@ -92,8 +92,8 @@ namespace X10D
 
             if (!interfaceType.IsInterface)
             {
-                var exceptionMessage = ExceptionMessages.TypeIsNotInterface;
-                var formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, interfaceType);
+                string? exceptionMessage = ExceptionMessages.TypeIsNotInterface;
+                string? formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, interfaceType);
 
                 throw new ArgumentException(formattedMessage, nameof(interfaceType));
             }
@@ -139,16 +139,16 @@ namespace X10D
 
             if (!value.IsClass)
             {
-                var exceptionMessage = ExceptionMessages.TypeIsNotClass;
-                var formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, value);
+                string? exceptionMessage = ExceptionMessages.TypeIsNotClass;
+                string? formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, value);
 
                 throw new ArgumentException(formattedMessage, nameof(value));
             }
 
             if (!type.IsClass)
             {
-                var exceptionMessage = ExceptionMessages.TypeIsNotClass;
-                var formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, type);
+                string? exceptionMessage = ExceptionMessages.TypeIsNotClass;
+                string? formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, type);
 
                 throw new ArgumentException(formattedMessage, nameof(type));
             }

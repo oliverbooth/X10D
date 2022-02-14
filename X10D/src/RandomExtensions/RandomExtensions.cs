@@ -258,7 +258,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(maxValue), ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
             }
 
-            var sample = random.NextInt64();
+            long sample = random.NextInt64();
             return (sample % (maxValue - minValue)) + minValue;
         }
 
