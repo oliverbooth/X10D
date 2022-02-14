@@ -66,7 +66,7 @@ namespace X10D
         /// </summary>
         /// <param name="value">The type whose interface list to check.</param>
         /// <typeparam name="T">The interface type.</typeparam>
-        /// <returns><see langword="true" /> if the current exists on the type, or <see langword="false" /> otherwise.</returns>
+        /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
         public static bool Implements<T>(this Type value)
         {
             return value.Implements(typeof(T));
@@ -77,7 +77,7 @@ namespace X10D
         /// </summary>
         /// <param name="value">The type whose interface list to check.</param>
         /// <param name="interfaceType">The interface type.</param>
-        /// <returns><see langword="true" /> if the current exists on the type, or <see langword="false" /> otherwise.</returns>
+        /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
         public static bool Implements(this Type value, Type interfaceType)
         {
             if (value is null)
