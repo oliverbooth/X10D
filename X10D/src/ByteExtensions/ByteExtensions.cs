@@ -1,4 +1,4 @@
-namespace X10D
+﻿namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="byte" />.
@@ -51,38 +51,6 @@ namespace X10D
         public static bool IsPrime(this byte value)
         {
             return ((short)value).IsPrime();
-        }
-
-        /// <summary>
-        ///     Converts the value of the current 8-bit unsigned integer to an equivalent Boolean value.
-        /// </summary>
-        /// <param name="value">The 8-bit unsigned integer to convert.</param>
-        /// <returns>
-        ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
-        /// </returns>
-        /// <seealso cref="BooleanExtensions.ToByte(bool)" />
-        /// <example>
-        /// The following example converts an array of <see cref="byte" /> values to <see cref="bool" /> values.
-        /// <code lang="csharp">
-        /// byte[] bytes = { byte.MinValue, 100, 200, byte.MaxValue };
-        /// bool result;
-        /// 
-        /// foreach (byte value in bytes)
-        /// {
-        ///     result = value.ToBoolean();
-        ///     Console.WriteLine("{0, -5}  -->  {1}", value, result);
-        /// }
-        /// 
-        /// // The example displays the following output:
-        /// //       0      -->  False
-        /// //       100    -->  True
-        /// //       200    -->  True
-        /// //       255    -->  True
-        /// </code>
-        /// </example>
-        public static bool ToBoolean(this byte value)
-        {
-            return value != 0;
         }
     }
 }

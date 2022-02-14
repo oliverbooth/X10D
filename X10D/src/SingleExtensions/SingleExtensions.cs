@@ -1,4 +1,4 @@
-namespace X10D
+﻿namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="float" />.
@@ -122,18 +122,6 @@ namespace X10D
         public static float Round(this float value, float nearest)
         {
             return (float)((double)value).Round(nearest);
-        }
-
-        /// <summary>
-        ///     Converts the value of the current single-precision floating-point number to an equivalent Boolean value.
-        /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>
-        ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
-        /// </returns>
-        public static bool ToBoolean(this float value)
-        {
-            return value != 0.0f;
         }
     }
 }
