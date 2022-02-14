@@ -39,7 +39,7 @@ namespace X10D
         /// </summary>
         /// <param name="value">The value whose primality to check.</param>
         /// <returns>
-        ///     <see langword="true" /> if <paramref name="value" /> is prime, or <see langword="false" /> otherwise.
+        ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
         /// </returns>
         public static bool IsPrime(this sbyte value)
         {

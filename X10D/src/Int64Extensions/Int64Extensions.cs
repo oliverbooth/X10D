@@ -82,10 +82,12 @@ namespace X10D
         }
 
         /// <summary>
-        ///     Returns a value indicating whether the current 64-bit signed integer is prime.
+        ///     Returns a value indicating whether the current value is a prime number.
         /// </summary>
-        /// <param name="value">The number to check.</param>
-        /// <returns><see langword="true" /> if <paramref name="value" /> is prime, or <see langword="false" /> otherwise.</returns>
+        /// <param name="value">The value whose primality to check.</param>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
+        /// </returns>
         public static bool IsPrime(this long value)
         {
             switch (value)
