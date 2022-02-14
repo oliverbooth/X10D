@@ -58,24 +58,5 @@ namespace X10D.Tests.Core
             Assert.IsTrue(oneOdd);
             Assert.IsFalse(twoOdd);
         }
-
-        /// <summary>
-        ///     Tests <see cref="ByteExtensions.ToBoolean" />.
-        /// </summary>
-        [TestMethod]
-        public void ToBoolean()
-        {
-            const byte zero = 0;
-            const byte one = 1;
-
-            const bool trueValue = true;
-            const bool falseValue = false;
-
-            var zeroBoolean = zero.ToBoolean();
-            var oneBoolean = one.ToBoolean();
-
-            Assert.AreEqual(falseValue, zeroBoolean);
-            Assert.AreEqual(trueValue, oneBoolean);
-        }
     }
 }
