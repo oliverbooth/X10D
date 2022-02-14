@@ -14,7 +14,7 @@
         <Description>Extension methods on crack.</Description>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageIconUrl />
+        <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
         <Version>2.6.0</Version>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
@@ -28,11 +28,11 @@
     <ItemGroup>
         <None Include="..\icon.png">
             <Pack>True</Pack>
-            <PackagePath />
+            <PackagePath/>
         </None>
         <None Include="..\LICENSE.md">
             <Pack>True</Pack>
-            <PackagePath />
+            <PackagePath/>
         </None>
     </ItemGroup>
 
