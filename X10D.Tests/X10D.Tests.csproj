@@ -15,12 +15,10 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Unity3D.SDK" Version="2020.3.12.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X10D.Unity\X10D.Unity.csproj" />
-        <ProjectReference Include="..\X10D\X10D.csproj" />
+        <ProjectReference Include="..\X10D\X10D.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
