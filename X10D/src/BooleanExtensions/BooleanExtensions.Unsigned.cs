@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace X10D
+﻿namespace X10D
 {
     public static partial class BooleanExtensions
     {
