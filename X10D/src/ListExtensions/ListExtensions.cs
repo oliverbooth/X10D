@@ -53,9 +53,7 @@ namespace X10D
             while (count > 0)
             {
                 int index = random.Next(count--);
-                var temp = source[count];
-                source[count] = source[index];
-                source[index] = temp;
+                (source[count], source[index]) = (source[index], source[count]);
             }
         }
     }
