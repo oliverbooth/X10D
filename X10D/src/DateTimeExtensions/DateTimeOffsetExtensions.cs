@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace X10D
 {
@@ -70,8 +70,8 @@ namespace X10D
             var last = value.LastDayOfMonth();
             var lastDayOfWeek = last.DayOfWeek;
 
-            var diff = dayOfWeek - lastDayOfWeek;
-            var offset = diff > 0 ? diff - 7 : diff;
+            int diff = dayOfWeek - lastDayOfWeek;
+            int offset = diff > 0 ? diff - 7 : diff;
 
             return last.AddDays(offset);
         }
@@ -83,7 +83,7 @@ namespace X10D
         /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
         public static DateTimeOffset LastDayOfMonth(this DateTimeOffset value)
         {
-            var daysInMonth = DateTime.DaysInMonth(value.Year, value.Month);
+            int daysInMonth = DateTime.DaysInMonth(value.Year, value.Month);
             return new DateTime(value.Year, value.Month, daysInMonth);
         }
 
@@ -95,7 +95,7 @@ namespace X10D
         /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
         public static DateTimeOffset Next(this DateTimeOffset value, DayOfWeek dayOfWeek)
         {
-            var offsetDays = dayOfWeek - value.DayOfWeek;
+            int offsetDays = dayOfWeek - value.DayOfWeek;
 
             if (offsetDays <= 0)
             {

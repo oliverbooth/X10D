@@ -1,4 +1,4 @@
-using System.Web;
+﻿using System.Web;
 
 namespace X10D
 {
@@ -44,6 +44,7 @@ namespace X10D
 
             // ReSharper disable once UseDeconstruction
             // .NET Standard 2.0 does not support tuple deconstruct for KeyValuePair<K, V>
+            // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var pair in value)
             {
                 list.Add($"{pair.Key}={SanitizeValue(pair.Value?.ToString())}");
@@ -69,8 +70,8 @@ namespace X10D
 
             static string Sanitize(KeyValuePair<TKey, TValue> pair)
             {
-                var key = HttpUtility.UrlEncode(pair.Key?.ToString());
-                var value = HttpUtility.UrlEncode(pair.Value?.ToString());
+                string? key = HttpUtility.UrlEncode(pair.Key?.ToString());
+                string? value = HttpUtility.UrlEncode(pair.Value?.ToString());
                 return $"{key}={value}";
             }
 

@@ -797,10 +797,10 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-            var bits = decimal.GetBits(value);
-            var preWritePosition = stream.Position;
+            int[]? bits = decimal.GetBits(value);
+            long preWritePosition = stream.Position;
 
-            foreach (var section in bits)
+            foreach (int section in bits)
             {
                 stream.Write(section, endianness);
             }

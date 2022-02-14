@@ -13,7 +13,7 @@
 
         private static void SwapIfNeeded(ref byte[] buffer, Endianness endianness)
         {
-            var swapNeeded = BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian);
+            bool swapNeeded = BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian);
             if (swapNeeded)
             {
                 Array.Reverse(buffer);
@@ -24,14 +24,14 @@
         {
             var clone = (byte[])value.Clone();
             SwapIfNeeded(ref clone, endianness);
-            var preWritePosition = stream.Position;
+            long preWritePosition = stream.Position;
             stream.Write(clone, 0, clone.Length);
             return (int)(stream.Position - preWritePosition);
         }
 
         private static int WriteInternal(this Stream stream, Span<byte> value)
         {
-            var preWritePosition = stream.Position;
+            long preWritePosition = stream.Position;
             stream.Write(value);
             return (int)(stream.Position - preWritePosition);
         }

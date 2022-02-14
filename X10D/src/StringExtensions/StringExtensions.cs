@@ -331,7 +331,7 @@ namespace X10D
 
             unsafe
             {
-                var array = stackalloc char[value.Length];
+                char* array = stackalloc char[value.Length];
 
                 for (var index = 0; index < value.Length; index++)
                 {
@@ -410,7 +410,7 @@ namespace X10D
                 throw new ArgumentNullException(nameof(input));
             }
 
-            return TimeSpanParser.TryParse(input, out var result)
+            return TimeSpanParser.TryParse(input, out TimeSpan result)
                 ? result
                 : default;
         }

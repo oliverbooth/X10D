@@ -28,7 +28,7 @@ namespace X10D
                 pattern |= 1 << (32 - i);
             }
 
-            var cache = value & pattern;
+            int cache = value & pattern;
             cache >>= 32 - shift;
             return (value << shift) | cache;
         }
@@ -54,7 +54,7 @@ namespace X10D
                 pattern |= 1 << i;
             }
 
-            var cache = value & pattern;
+            int cache = value & pattern;
             cache <<= 32 - shift;
             return (value >> shift) | cache;
         }

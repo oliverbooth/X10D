@@ -1,4 +1,4 @@
-﻿namespace X10D
+namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="IList{T}" /> and <see cref="IReadOnlyList{T}" />.
@@ -49,10 +49,10 @@
 
             random ??= RandomExtensions.Random;
 
-            var count = source.Count;
+            int count = source.Count;
             while (count > 0)
             {
-                var index = random.Next(count--);
+                int index = random.Next(count--);
                 var temp = source[count];
                 source[count] = source[index];
                 source[index] = temp;
