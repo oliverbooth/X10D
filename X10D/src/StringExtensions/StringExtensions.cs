@@ -204,6 +204,55 @@ namespace X10D
         }
 
         /// <summary>
+        ///     Determines whether the current string is considered palindromic; that is, the letters within the string are the
+        ///     same when reversed.
+        /// </summary>
+        /// <param name="value">The value to check.</param>
+        /// <returns>
+        ///     <see langword="true" /> if <paramref name="value" /> is considered a palindromic string; otherwise,
+        ///     <see langword="false" />.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        public static bool IsPalindrome(this string value)
+        {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (value.Length == 0)
+            {
+                // empty string is not palindromic
+                return false;
+            }
+
+            for (int index = 0, endIndex = value.Length - 1; index < value.Length; index++, endIndex--)
+            {
+                Rune startRune = new Rune(value[index]);
+                Rune endRune = new Rune(value[endIndex]);
+
+                if (!Rune.IsLetter(startRune) && !Rune.IsNumber(startRune))
+                {
+                    endIndex++;
+                    continue;
+                }
+
+                if (!Rune.IsLetter(endRune) && !Rune.IsNumber(endRune))
+                {
+                    index--;
+                    continue;
+                }
+
+                if (Rune.ToUpperInvariant(startRune) != Rune.ToUpperInvariant(endRune))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         ///     Determines if all alpha characters in this string are considered uppercase.
         /// </summary>
         /// <param name="value">The input string.</param>
