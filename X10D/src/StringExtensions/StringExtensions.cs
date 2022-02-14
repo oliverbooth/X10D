@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace X10D
@@ -136,16 +133,7 @@ namespace X10D
                 throw new ArgumentException(Resource.EnumParseEmptyStringException, nameof(value));
             }
 
-#if NET5_0_OR_GREATER
             return Enum.Parse<T>(value, ignoreCase);
-#else
-            if (typeof(T) is not { IsEnum: true } type)
-            {
-                throw new ArgumentException(Resource.EnumParseNotEnumException);
-            }
-
-            return (T)Enum.Parse(type, value, ignoreCase);
-#endif
         }
 
         /// <summary>
