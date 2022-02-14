@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 
 namespace X10D
 {
@@ -200,18 +200,6 @@ namespace X10D
         public static float LerpWith(this long alpha, float value, float target)
         {
             return MathUtils.Lerp(value, target, alpha);
-        }
-
-        /// <summary>
-        ///     Converts the value of the current 64-bit signed integer to an equivalent Boolean value.
-        /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>
-        ///     <see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.
-        /// </returns>
-        public static bool ToBoolean(this long value)
-        {
-            return value != 0;
         }
 
         /// <summary>

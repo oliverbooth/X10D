@@ -242,16 +242,6 @@ namespace X10D
         }
 
         /// <summary>
-        ///     Converts the value of the current 32-bit signed integer to an equivalent <see cref="bool" /> value.
-        /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns><see langword="true" /> if <paramref name="value" /> is not zero, or <see langword="false" /> otherwise.</returns>
-        public static bool ToBoolean(this int value)
-        {
-            return value != 0;
-        }
-
-        /// <summary>
         ///     Converts an integer value from network byte order to host byte order.
         /// </summary>
         /// <param name="value">The value to convert, expressed in network byte order.</param>
