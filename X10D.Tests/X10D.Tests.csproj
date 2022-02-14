@@ -5,6 +5,7 @@
         <IsPackable>false</IsPackable>
         <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+        <EnablePreviewFeatures>True</EnablePreviewFeatures>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +16,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="System.Runtime.Experimental" Version="6.0.2-mauipre.1.22054.8"/>
     </ItemGroup>
 
     <ItemGroup>
