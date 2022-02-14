@@ -317,12 +317,12 @@ namespace X10D
                 return string.Empty;
             }
 
-            var array = source.ToCharArray();
+            char[] array = source.ToCharArray();
             var builder = new StringBuilder(length);
 
             while (builder.Length < length)
             {
-                var next = random.NextFrom(array);
+                char next = random.NextFrom(array);
                 builder.Append(next);
             }
 

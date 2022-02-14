@@ -67,7 +67,7 @@ namespace X10D
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var seed = random.Next();
+            int seed = random.Next();
             var seededRandom = new Random(seed);
 
             var r = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
@@ -196,9 +196,9 @@ namespace X10D
                 throw new ArgumentNullException(nameof(random));
             }
 
-            var sample = random.Next();
+            int sample = random.Next();
             var sampledRandom = new Random(sample);
-            return (long)sample << 32 | sampledRandom.Next();
+            return ((long)sample << 32) | (uint)sampledRandom.Next();
         }
 
         /// <summary>
