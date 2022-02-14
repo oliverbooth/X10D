@@ -3,8 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <IsPackable>false</IsPackable>
-        <CodeAnalysisRuleSet>..\X10D.ruleset</CodeAnalysisRuleSet>
-        <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <EnablePreviewFeatures>True</EnablePreviewFeatures>
     </PropertyGroup>
 
