@@ -1,10 +1,6 @@
-using System;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Security.Cryptography;
-#if NET5_0
 using System.Buffers.Binary;
-#endif
 
 namespace X10D
 {
@@ -135,17 +131,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadDoubleLittleEndian(buffer)
                 : BinaryPrimitives.ReadDoubleBigEndian(buffer);
-#else
-            var value = ReadInternal<double>(stream, endianness);
-            return BitConverter.ToDouble(value, 0);
-#endif
         }
 
         /// <summary>
@@ -178,17 +170,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadInt16LittleEndian(buffer)
                 : BinaryPrimitives.ReadInt16BigEndian(buffer);
-#else
-            var value = ReadInternal<short>(stream, endianness);
-            return BitConverter.ToInt16(value, 0);
-#endif
         }
 
         /// <summary>
@@ -221,17 +209,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadInt32LittleEndian(buffer)
                 : BinaryPrimitives.ReadInt32BigEndian(buffer);
-#else
-            var value = ReadInternal<int>(stream, endianness);
-            return BitConverter.ToInt32(value, 0);
-#endif
         }
 
         /// <summary>
@@ -264,17 +248,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadInt64LittleEndian(buffer)
                 : BinaryPrimitives.ReadInt64BigEndian(buffer);
-#else
-            var value = ReadInternal<long>(stream, endianness);
-            return BitConverter.ToInt64(value, 0);
-#endif
         }
 
         /// <summary>
@@ -307,17 +287,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadSingleLittleEndian(buffer)
                 : BinaryPrimitives.ReadSingleBigEndian(buffer);
-#else
-            var value = ReadInternal<float>(stream, endianness);
-            return BitConverter.ToSingle(value, 0);
-#endif
         }
 
         /// <summary>
@@ -352,17 +328,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadUInt16LittleEndian(buffer)
                 : BinaryPrimitives.ReadUInt16BigEndian(buffer);
-#else
-            var value = ReadInternal<ushort>(stream, endianness);
-            return BitConverter.ToUInt16(value, 0);
-#endif
         }
 
         /// <summary>
@@ -397,17 +369,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadUInt32LittleEndian(buffer)
                 : BinaryPrimitives.ReadUInt32BigEndian(buffer);
-#else
-            var value = ReadInternal<uint>(stream, endianness);
-            return BitConverter.ToUInt32(value, 0);
-#endif
         }
 
         /// <summary>
@@ -442,17 +410,13 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             stream.Read(buffer);
 
             return endianness == Endianness.LittleEndian
                 ? BinaryPrimitives.ReadUInt64LittleEndian(buffer)
                 : BinaryPrimitives.ReadUInt64BigEndian(buffer);
-#else
-            var value = ReadInternal<ulong>(stream, endianness);
-            return BitConverter.ToUInt64(value, 0);
-#endif
         }
 
         /// <summary>
@@ -487,7 +451,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(short)];
 
             if (endianness == Endianness.LittleEndian)
@@ -500,10 +464,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -538,7 +498,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(int)];
 
             if (endianness == Endianness.LittleEndian)
@@ -551,10 +511,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -589,7 +545,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(long)];
 
             if (endianness == Endianness.LittleEndian)
@@ -602,10 +558,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -642,7 +594,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(ushort)];
 
             if (endianness == Endianness.LittleEndian)
@@ -655,10 +607,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -695,7 +643,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(uint)];
 
             if (endianness == Endianness.LittleEndian)
@@ -708,10 +656,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -748,7 +692,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(ulong)];
 
             if (endianness == Endianness.LittleEndian)
@@ -761,10 +705,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -787,7 +727,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(float)];
 
             if (endianness == Endianness.LittleEndian)
@@ -800,10 +740,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>
@@ -826,7 +762,7 @@ namespace X10D
                 throw new ArgumentOutOfRangeException(nameof(endianness));
             }
 
-#if NET5_0
+
             Span<byte> buffer = stackalloc byte[sizeof(double)];
 
             if (endianness == Endianness.LittleEndian)
@@ -839,10 +775,6 @@ namespace X10D
             }
 
             return stream.WriteInternal(buffer);
-#else
-            var buffer = BitConverter.GetBytes(value);
-            return stream.WriteInternal(buffer, endianness);
-#endif
         }
 
         /// <summary>

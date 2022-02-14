@@ -5,6 +5,7 @@
         <LangVersion>10.0</LangVersion>
         <EnablePreviewFeatures>true</EnablePreviewFeatures>
         <GenerateRequiresPreviewFeaturesAttribute>false</GenerateRequiresPreviewFeaturesAttribute>
+        <ImplicitUsings>true</ImplicitUsings>
         <Authors>Oliver Booth</Authors>
         <NeutralLanguage>en</NeutralLanguage>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

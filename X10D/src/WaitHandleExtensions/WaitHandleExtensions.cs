@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace X10D
+﻿namespace X10D
 {
     /// <summary>
     ///     Extension methods for <see cref="WaitHandle" />.

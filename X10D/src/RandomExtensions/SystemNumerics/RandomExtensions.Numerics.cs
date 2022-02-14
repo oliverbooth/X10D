@@ -1,5 +1,3 @@
-﻿#if NET5_0
-using System;
 using System.Numerics;
 
 namespace X10D.SystemNumerics
@@ -116,5 +114,3 @@ namespace X10D.SystemNumerics
         }
     }
 }
-
-#endif

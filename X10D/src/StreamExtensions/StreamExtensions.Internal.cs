@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace X10D
+﻿namespace X10D
 {
     public static partial class StreamExtensions
     {
@@ -32,13 +29,11 @@ namespace X10D
             return (int)(stream.Position - preWritePosition);
         }
 
-#if NET5_0
         private static int WriteInternal(this Stream stream, Span<byte> value)
         {
             var preWritePosition = stream.Position;
             stream.Write(value);
             return (int)(stream.Position - preWritePosition);
         }
-#endif
     }
 }
