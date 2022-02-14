@@ -104,11 +104,11 @@ namespace X10D.SystemNumerics
             int seed = random.Next();
             var seededRandom = new Random(seed);
 
-            var angle = seededRandom.NextSingle(0, 360).DegreesToRadians();
-            var z = seededRandom.NextSingle(-1, 1);
-            var mp = MathF.Sqrt(1 - z * z);
-            var x = mp * MathF.Cos(angle);
-            var y = mp * MathF.Sin(angle);
+            float angle = seededRandom.NextSingle(0, 360).DegreesToRadians();
+            float z = seededRandom.NextSingle(-1, 1);
+            float mp = MathF.Sqrt(1 - (z * z));
+            float x = mp * MathF.Cos(angle);
+            float y = mp * MathF.Sin(angle);
 
             return new Vector3(x, y, z);
         }
