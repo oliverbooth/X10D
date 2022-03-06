@@ -65,16 +65,31 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
-        ///     Tests for <see cref="StringExtensions.WithAlternative" />.
+        ///     Tests <see cref="StringExtensions.WithEmptyAlternative" /> and
+        ///     <see cref="StringExtensions.WithWhiteSpaceAlternative"/>.
         /// </summary>
         [TestMethod]
         public void WithAlternative()
         {
-            Assert.AreEqual("Hello", "Hello".WithAlternative("Discarded"));
-            Assert.AreEqual("Alternative", string.Empty.WithAlternative("Alternative"));
-            Assert.AreEqual("   ", "   ".WithAlternative("Discarded"));
-            Assert.AreEqual("Alternative", "   ".WithAlternative("Alternative", true));
-            Assert.AreEqual("Alternative", ((string)null).WithAlternative("Alternative"));
+            const string inputA = "Hello World";
+            const string inputB = " ";
+            const string inputC = "";
+            const string? inputD = null;
+            const string alternative = "ALTERNATIVE";
+
+            string resultA = inputA.WithEmptyAlternative(alternative);
+            string resultB = inputB.WithEmptyAlternative(alternative);
+            string resultBWithWhitespace = inputB.WithWhiteSpaceAlternative(alternative);
+            string resultC = inputC.WithEmptyAlternative(alternative);
+            string resultD = inputD.WithEmptyAlternative(alternative);
+
+            Assert.ThrowsException<ArgumentNullException>(() => ((string?)null).WithEmptyAlternative(null!));
+            
+            Assert.AreEqual(resultA, inputA);
+            Assert.AreEqual(resultB, inputB);
+            Assert.AreEqual(resultBWithWhitespace, alternative);
+            Assert.AreEqual(resultC, alternative);
+            Assert.AreEqual(resultD, alternative);
         }
     }
 }
