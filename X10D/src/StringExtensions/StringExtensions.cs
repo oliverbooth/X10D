@@ -498,4 +498,45 @@ public static class StringExtensions
 
         return (includeWhiteSpace ? value?.AsNullIfWhiteSpace() : value?.AsNullIfEmpty()) ?? alternative;
     }
+
+    /// <summary>
+    ///     Normalizes a string which may be either <see langword="null" /> or empty to a specified alternative.
+    /// </summary>
+    /// <param name="value">The value to normalize.</param>
+    /// <param name="alternative">The alternative string.</param>
+    /// <returns>
+    ///     <paramref name="alternative" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
+    ///     <paramref name="value" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="alternative" /> is <see langword="null" />.</exception>
+    public static string WithEmptyAlternative(this string? value, string alternative)
+    {
+        if (alternative is null)
+        {
+            throw new ArgumentNullException(nameof(alternative));
+        }
+        
+        return string.IsNullOrEmpty(value) ? alternative : value;
+    }
+
+    /// <summary>
+    ///     Normalizes a string which may be either <see langword="null" />, empty, or consisting of only whitespace, to a
+    ///     specified alternative.
+    /// </summary>
+    /// <param name="value">The value to normalize.</param>
+    /// <param name="alternative">The alternative string.</param>
+    /// <returns>
+    ///     <paramref name="alternative" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
+    ///     whitespace; otherwise, <paramref name="value" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="alternative" /> is <see langword="null" />.</exception>
+    public static string WithWhiteSpaceAlternative(this string? value, string alternative)
+    {
+        if (alternative is null)
+        {
+            throw new ArgumentNullException(nameof(alternative));
+        }
+
+        return string.IsNullOrWhiteSpace(value) ? alternative : value;
+    }
 }
