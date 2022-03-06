@@ -42,8 +42,14 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The base-64 string to convert.</param>
     /// <returns>The plain text string representation of <paramref name="value" />.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     public static string Base64Decode(this string value)
     {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
         return Convert.FromBase64String(value).ToString(Encoding.ASCII);
     }
 
@@ -52,8 +58,14 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The plain text string to convert.</param>
     /// <returns>The string representation, in base 64, of <paramref name="value" />.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     public static string Base64Encode(this string value)
     {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
         return Convert.ToBase64String(value.GetBytes(Encoding.ASCII));
     }
 
