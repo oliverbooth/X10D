@@ -337,9 +337,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to repeat.</param>
     /// <param name="count">The repeat count.</param>
-    /// <returns>
-    ///     Returns a <see cref="string" /> whose value is <paramref name="value" /> repeated
-    ///     <paramref name="count" /> times.
+    /// <returns>A string containing <paramref name="value" /> repeated <paramref name="count" /> times.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     public static string Repeat(this string value, int count)
