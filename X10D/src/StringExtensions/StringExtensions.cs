@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace X10D;
@@ -8,27 +9,29 @@ namespace X10D;
 public static class StringExtensions
 {
     /// <summary>
-    ///     Returns the current string, or <see langword="null" /> if the current string is null or empty.
+    ///     Normalizes a string which may be either <see langword="null" /> or empty to <see langword="null" />.
     /// </summary>
-    /// <param name="value">The value to sanitize.</param>
+    /// <param name="value">The value to normalize.</param>
     /// <returns>
-    ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or equal to
-    ///     <see cref="string.Empty" />, or <paramref name="value" /> otherwise.
+    ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
+    ///     <paramref name="value" />.
     /// </returns>
+    [return: NotNullIfNotNull("value")]
     public static string? AsNullIfEmpty(this string? value)
     {
         return string.IsNullOrEmpty(value) ? null : value;
     }
 
     /// <summary>
-    ///     Returns the current string, or <see langword="null" /> if the current string is null, empty, or consists of only
-    ///     whitespace.
+    ///     Normalizes a string which may be either <see langword="null" />, empty, or consisting of only whitespace, to
+    ///     <see langword="null" />.
     /// </summary>
-    /// <param name="value">The value to sanitize.</param>
+    /// <param name="value">The value to normalize.</param>
     /// <returns>
-    ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or equal to
-    ///     <see cref="string.Empty" /> or is composed of only whitespace characters, or <paramref name="value" /> otherwise.
+    ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
+    ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
+    [return: NotNullIfNotNull("value")]
     public static string? AsNullIfWhiteSpace(this string? value)
     {
         return string.IsNullOrWhiteSpace(value) ? null : value;
