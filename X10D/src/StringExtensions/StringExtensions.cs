@@ -72,38 +72,38 @@ public static class StringExtensions
     /// <summary>
     ///     Converts this string from one encoding to another.
     /// </summary>
-    /// <param name="str">The input string.</param>
-    /// <param name="from">The input encoding.</param>
-    /// <param name="to">The output encoding.</param>
+    /// <param name="value">The input string.</param>
+    /// <param name="sourceEncoding">The input encoding.</param>
+    /// <param name="destinationEncoding">The output encoding.</param>
     /// <returns>
     ///     Returns a new <see cref="string" /> with its data converted to
-    ///     <paramref name="to" />.
+    ///     <paramref name="destinationEncoding" />.
     /// </returns>
     /// <exception cref="ArgumentNullException">
-    ///     <paramref name="str" /> is <see langword="null" />
+    ///     <paramref name="value" /> is <see langword="null" />
     ///     - or -
-    ///     <paramref name="from" /> is <see langword="null" />
+    ///     <paramref name="sourceEncoding" /> is <see langword="null" />
     ///     -or
-    ///     <paramref name="to" /> is <see langword="null" />.
+    ///     <paramref name="destinationEncoding" /> is <see langword="null" />.
     /// </exception>
-    public static string ChangeEncoding(this string str, Encoding from, Encoding to)
+    public static string ChangeEncoding(this string value, Encoding sourceEncoding, Encoding destinationEncoding)
     {
-        if (str is null)
+        if (value is null)
         {
-            throw new ArgumentNullException(nameof(str));
+            throw new ArgumentNullException(nameof(value));
         }
 
-        if (from is null)
+        if (sourceEncoding is null)
         {
-            throw new ArgumentNullException(nameof(from));
+            throw new ArgumentNullException(nameof(sourceEncoding));
         }
 
-        if (to is null)
+        if (destinationEncoding is null)
         {
-            throw new ArgumentNullException(nameof(to));
+            throw new ArgumentNullException(nameof(destinationEncoding));
         }
 
-        return str.GetBytes(from).ToString(to);
+        return value.GetBytes(sourceEncoding).ToString(destinationEncoding);
     }
 
     /// <summary>
