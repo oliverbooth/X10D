@@ -6,6 +6,18 @@ namespace X10D.Tests.Core;
 public class ArrayTests
 {
     [TestMethod]
+    [DataRow(1)]
+    [DataRow("f")]
+    [DataRow(true)]
+    public void AsArray(object o)
+    {
+        object[] array = o.AsArray();
+        Assert.IsNotNull(array);
+        Assert.IsTrue(array.Length == 1);
+        Assert.AreEqual(o, array[0]);
+    }
+
+    [TestMethod]
     [DataRow]
     [DataRow(1)]
     [DataRow(1, 2, 3)]
