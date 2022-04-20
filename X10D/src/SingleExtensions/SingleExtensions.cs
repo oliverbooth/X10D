@@ -12,7 +12,7 @@ public static class SingleExtensions
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     public static float DegreesToRadians(this float value)
     {
-        return (float)Math.PI * value / 180.0f;
+        return MathF.PI * value / 180.0f;
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public static class SingleExtensions
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     public static float RadiansToDegrees(this float value)
     {
-        return (float)Math.PI * value / 180.0f;
+        return MathF.PI * value / 180.0f;
     }
 
     /// <summary>
