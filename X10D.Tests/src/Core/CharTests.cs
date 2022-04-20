@@ -15,7 +15,7 @@ namespace X10D.Tests.Core
             const int repeatCount = 10;
 
             const string repeated = "aaaaaaaaaa";
-            var result = character.Repeat(repeatCount);
+            string result = character.Repeat(repeatCount);
 
             Assert.AreEqual(repeated, result);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => character.Repeat(-1));
