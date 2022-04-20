@@ -37,6 +37,10 @@ namespace X10D.Tests.Core
         {
             Assert.AreEqual(Math.PI, 180.0.DegreesToRadians());
             Assert.AreEqual(Math.PI * 1.5, 270.0.DegreesToRadians());
+            Assert.AreEqual(0.0, 0.0.DegreesToRadians());
+            Assert.AreEqual(0.017453292519943295, 1.0.DegreesToRadians());
+            Assert.AreEqual(0.10471975511965978, 6.0.DegreesToRadians());
+            Assert.AreEqual(0.20943951023931956, 12.0.DegreesToRadians());
         }
 
         /// <summary>
@@ -78,6 +82,10 @@ namespace X10D.Tests.Core
         {
             Assert.AreEqual(180.0, Math.PI.RadiansToDegrees());
             Assert.AreEqual(360.0, (2.0 * Math.PI).RadiansToDegrees());
+            Assert.AreEqual(0.0, 0.0.RadiansToDegrees());
+            Assert.AreEqual(1.0, 0.017453292519943295.RadiansToDegrees());
+            Assert.AreEqual(6.000000000000001, 0.10471975511965978.RadiansToDegrees()); // rounding errors are fun
+            Assert.AreEqual(12.0, 0.20943951023931953.RadiansToDegrees());
         }
 
         /// <summary>
