@@ -19,7 +19,7 @@ public static class StringExtensions
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfEmpty(this string? value)
     {
-        return string.IsNullOrEmpty(value) ? null : value;
+        return value.WithEmptyAlternative(null);
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public static class StringExtensions
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfWhiteSpace(this string? value)
     {
-        return string.IsNullOrWhiteSpace(value) ? null : value;
+        return value.WithWhiteSpaceAlternative(null);
     }
 
     /// <summary>
@@ -492,14 +492,9 @@ public static class StringExtensions
     ///     <paramref name="alternative" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
     ///     <paramref name="value" />.
     /// </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="alternative" /> is <see langword="null" />.</exception>
-    public static string WithEmptyAlternative(this string? value, string alternative)
+    [return: NotNullIfNotNull("alternative")]
+    public static string? WithEmptyAlternative(this string? value, string? alternative)
     {
-        if (alternative is null)
-        {
-            throw new ArgumentNullException(nameof(alternative));
-        }
-        
         return string.IsNullOrEmpty(value) ? alternative : value;
     }
 
@@ -513,14 +508,9 @@ public static class StringExtensions
     ///     <paramref name="alternative" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="alternative" /> is <see langword="null" />.</exception>
-    public static string WithWhiteSpaceAlternative(this string? value, string alternative)
+    [return: NotNullIfNotNull("alternative")]
+    public static string? WithWhiteSpaceAlternative(this string? value, string? alternative)
     {
-        if (alternative is null)
-        {
-            throw new ArgumentNullException(nameof(alternative));
-        }
-
         return string.IsNullOrWhiteSpace(value) ? alternative : value;
     }
 }
