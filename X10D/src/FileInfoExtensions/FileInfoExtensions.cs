@@ -14,7 +14,7 @@ public static class FileInfoExtensions
     /// <typeparam name="T">A <see cref="HashAlgorithm" /> derived type.</typeparam>
     /// <returns>A <see cref="byte" /> array representing the hash of the file.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
-    /// <exception cref="FileNotFoundException">The file pointed at by <paramref name="value" /> does not exist.</exception>
+    /// <exception cref="FileNotFoundException">The specified file was not found.</exception>
     /// <exception cref="IOException">The opened file stream cannot be read.</exception>
     /// <exception cref="TypeInitializationException">
     ///     The specified <see cref="HashAlgorithm" /> does not offer a public, static. parameterless <c>Create</c> method, or its
@@ -27,11 +27,6 @@ public static class FileInfoExtensions
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
-        }
-
-        if (!value.Exists)
-        {
-            throw new FileNotFoundException("Cannot get hash of non-existent file.", value.FullName);
         }
 
         using FileStream stream = value.OpenRead();
