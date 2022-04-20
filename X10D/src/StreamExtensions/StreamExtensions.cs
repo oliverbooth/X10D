@@ -19,6 +19,7 @@ public static partial class StreamExtensions
     /// <param name="stream">The stream whose hash is to be computed.</param>
     /// <returns>A <see cref="byte" /> array representing the hash of the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="IOException">The stream does not support reading.</exception>
     /// <exception cref="ArgumentException">
     ///     <typeparamref name="T" /> does not offer a static <c>Create</c> method.
     ///     -or-
@@ -26,6 +27,10 @@ public static partial class StreamExtensions
     ///     <see langword="null" />.
     /// </exception>
     /// <exception cref="ObjectDisposedException">The stream has already been disposed.</exception>
+    /// <exception cref="TypeInitializationException">
+    ///     The specified <see cref="HashAlgorithm" /> does not offer a parameterless <c>Create</c> method, or its <c>Create</c>
+    ///     method returns a type that is not assignable to <typeparamref name="T" />.
+    /// </exception>
     /// <remarks>This method consumes the stream from its current position!.</remarks>
     public static byte[] GetHash<T>(this Stream stream)
         where T : HashAlgorithm
@@ -41,7 +46,9 @@ public static partial class StreamExtensions
         }
 
         Type type = typeof(T);
-        MethodInfo? createMethod = type.GetMethod("Create", BindingFlags.Public | BindingFlags.Static);
+
+        MethodInfo? createMethod = type.GetMethods(BindingFlags.Public | BindingFlags.Static)
+            .FirstOrDefault(c => c.Name == "Create" && c.GetParameters().Length == 0);
         if (createMethod is null)
         {
             throw new TypeInitializationException(type.FullName,
