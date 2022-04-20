@@ -224,13 +224,13 @@ namespace X10D.Tests.Core
             string resultC = inputC.WithEmptyAlternative(alternative);
             string resultD = inputD.WithEmptyAlternative(alternative);
 
-            Assert.ThrowsException<ArgumentNullException>(() => ((string?)null).WithEmptyAlternative(null!));
-
             Assert.AreEqual(resultA, inputA);
             Assert.AreEqual(resultB, inputB);
             Assert.AreEqual(resultBWithWhitespace, alternative);
             Assert.AreEqual(resultC, alternative);
             Assert.AreEqual(resultD, alternative);
+            Assert.AreEqual(alternative, ((string?)null).WithEmptyAlternative(alternative));
+            Assert.AreEqual(alternative, ((string?)null).WithWhiteSpaceAlternative(alternative));
         }
     }
 }
