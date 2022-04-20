@@ -9,7 +9,7 @@ public enum Clusivity : byte
     /// <summary>
     ///     Indicates that the comparison will be exclusive. 
     /// </summary>
-    Exclusive = 0,
+    None = 0,
     
     /// <summary>
     ///     Indicates that the comparison will treat the upper bound as exclusive. 
