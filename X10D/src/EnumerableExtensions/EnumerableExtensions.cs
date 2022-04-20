@@ -3,7 +3,7 @@
 /// <summary>
 ///     Extension methods for <see cref="IEnumerable{T}" />.
 /// </summary>
-public static class EnumerableExtensions
+public static partial class EnumerableExtensions
 {
     /// <summary>
     ///     Reorganizes the elements in an enumerable by implementing a Fisher-Yates shuffle, and returns th shuffled result.
@@ -36,11 +36,11 @@ public static class EnumerableExtensions
         }
 
         var buffer = new List<T>(chunkSize);
-            
+
         foreach (var item in source)
         {
             buffer.Add(item);
-                
+
             if (buffer.Count >= chunkSize)
             {
                 yield return buffer;
