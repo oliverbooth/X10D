@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 
 namespace X10D;
 
@@ -82,6 +82,6 @@ public static class DictionaryExtensions
             list.Add(Sanitize(pair));
         }
 
-        return string.Join(";", list);
+        return string.Join('&', list);
     }
 }
