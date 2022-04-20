@@ -8,7 +8,7 @@ namespace X10D;
 public static class DictionaryExtensions
 {
     /// <summary>
-    ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to an data connection
+    ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to a data connection
     ///     string.
     /// </summary>
     /// <typeparam name="TKey">The type of the key element of the key/value pair.</typeparam>
@@ -41,7 +41,7 @@ public static class DictionaryExtensions
     }
 
     /// <summary>
-    ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to an data connection
+    ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to a data connection
     ///     string.
     /// </summary>
     /// <typeparam name="TKey">The type of the key element of the key/value pair.</typeparam>
