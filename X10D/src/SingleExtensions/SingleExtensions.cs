@@ -121,6 +121,6 @@ public static class SingleExtensions
     /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
     public static float Round(this float value, float nearest)
     {
-        return (float)((double)value).Round(nearest);
+        return MathF.Round(value / nearest) * nearest;
     }
 }
