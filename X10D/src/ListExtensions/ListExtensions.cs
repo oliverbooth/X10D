@@ -10,13 +10,12 @@ public static class ListExtensions
     /// </summary>
     /// <typeparam name="T">The element type.</typeparam>
     /// <param name="source">The source collection from which to draw.</param>
-    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="random">
+    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified,
+    ///     <see cref="System.Random.Shared" /> is used.
+    /// </param>
     /// <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
-    /// <exception cref="ArgumentNullException">
-    ///     <paramref name="random" /> is is <see langword="null" />
-    ///     -or-
-    ///     <paramref name="source" /> is <see langword="null" />.
-    /// </exception>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <example>
     ///     <code lang="csharp">
     /// var list = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -40,8 +39,8 @@ public static class ListExtensions
     /// <typeparam name="T">The element type.</typeparam>
     /// <param name="source">The <see cref="IList{T}" /> to shuffle.</param>
     /// <param name="random">
-    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified, an
-    ///     internal instance of <see cref="System.Random" /> is used.
+    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified,
+    ///     <see cref="System.Random.Shared" /> is used.
     /// </param>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Shuffle<T>(this IList<T> source, Random? random = null)

@@ -402,10 +402,10 @@ public static class StringExtensions
     }
 
     /// <summary>
-    ///     Shuffles the characters in the string.
+    ///     Shuffles the characters in the string using the <see cref="Random.Shared" /> instance.
     /// </summary>
     /// <param name="value">The string to shuffle.</param>
-    /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
+    /// <returns>A new <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
     public static string Shuffled(this string value)
     {
         return value.Shuffled(Random.Shared);
@@ -416,7 +416,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to shuffle.</param>
     /// <param name="random">The <see cref="System.Random" /> instance.</param>
-    /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
+    /// <returns>A new <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
     /// <exception cref="ArgumentNullException">
     ///     <para><paramref name="value" /> is <see langword="null" />.</para>
     ///     -or-
