@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace X10D.Tests.Core
 {
@@ -22,13 +22,13 @@ namespace X10D.Tests.Core
             Assert.IsFalse(lower.Between(value, upper), "lower.Between(value, upper)");
             Assert.IsFalse(upper.Between(lower, value), "upper.Between(lower, value)");
             
-            Assert.IsTrue(upper.Between(lower, upper, Clusivity.UpperInclusive), "upper.Between(lower, upper, Clusivity.UpperInclusive)");
-            Assert.IsTrue(upper.Between(lower, upper, Clusivity.Inclusive), "upper.Between(lower, upper, Clusivity.Inclusive)");
-            Assert.IsFalse(upper.Between(lower, upper, Clusivity.LowerInclusive), "upper.Between(lower, upper, Clusivity.LowerInclusive)");
+            Assert.IsTrue(upper.Between(lower, upper, InclusiveOptions.UpperInclusive), "upper.Between(lower, upper, Clusivity.UpperInclusive)");
+            Assert.IsTrue(upper.Between(lower, upper, InclusiveOptions.Inclusive), "upper.Between(lower, upper, Clusivity.Inclusive)");
+            Assert.IsFalse(upper.Between(lower, upper, InclusiveOptions.LowerInclusive), "upper.Between(lower, upper, Clusivity.LowerInclusive)");
             
-            Assert.IsTrue(lower.Between(lower, upper, Clusivity.LowerInclusive), "lower.Between(lower, upper, Clusivity.LowerInclusive)");
-            Assert.IsTrue(lower.Between(lower, upper, Clusivity.Inclusive), "lower.Between(lower, upper, Clusivity.Inclusive)");
-            Assert.IsFalse(lower.Between(lower, upper, Clusivity.UpperInclusive), "lower.Between(lower, upper, Clusivity.UpperInclusive)");
+            Assert.IsTrue(lower.Between(lower, upper, InclusiveOptions.LowerInclusive), "lower.Between(lower, upper, Clusivity.LowerInclusive)");
+            Assert.IsTrue(lower.Between(lower, upper, InclusiveOptions.Inclusive), "lower.Between(lower, upper, Clusivity.Inclusive)");
+            Assert.IsFalse(lower.Between(lower, upper, InclusiveOptions.UpperInclusive), "lower.Between(lower, upper, Clusivity.UpperInclusive)");
         }
     }
 }
