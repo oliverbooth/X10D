@@ -9,20 +9,20 @@ public enum Clusivity : byte
     /// <summary>
     ///     Indicates that the comparison will be exclusive. 
     /// </summary>
-    Exclusive,
+    Exclusive = 0,
     
     /// <summary>
     ///     Indicates that the comparison will treat the upper bound as exclusive. 
     /// </summary>
-    UpperInclusive,
+    UpperInclusive = 1,
     
     /// <summary>
     ///     Indicates that the comparison will treat the lower bound as exclusive. 
     /// </summary>
-    LowerInclusive,
+    LowerInclusive = 1 << 1,
     
     /// <summary>
     ///     Indicates that the comparison will treat both the upper and lower bound as exclusive. 
     /// </summary>
-    Inclusive
+    Inclusive = UpperInclusive | LowerInclusive
 }
