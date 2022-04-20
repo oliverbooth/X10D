@@ -417,12 +417,21 @@ public static class StringExtensions
     /// <param name="value">The string to shuffle.</param>
     /// <param name="random">The <see cref="System.Random" /> instance.</param>
     /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="value" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="random" /> is <see langword="null" />.</para>
+    /// </exception>
     public static string Shuffled(this string value, Random random)
     {
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
+        }
+
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
         }
 
         return new string(value.ToCharArray().Shuffled(random).ToArray());
