@@ -23,6 +23,9 @@
             PublicKeyToken=b77a5c561934e089
         </value>
     </resheader>
+    <data name="BufferTooSmall" xml:space="preserve">
+        <value>The buffer is too small to contain the data.</value>
+    </data>
     <data name="TypeIsNotClass" xml:space="preserve">
         <value>{{0}} is not a class.</value>
     </data>
