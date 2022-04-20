@@ -4,7 +4,7 @@
 ///     Provides options for <see cref="ComparableExtensions.Between{T1, T2, T3}" /> clusivity.
 /// </summary>
 [Flags]
-public enum Clusivity : byte
+public enum InclusiveOptions : byte
 {
     /// <summary>
     ///     Indicates that the comparison will be exclusive. 
