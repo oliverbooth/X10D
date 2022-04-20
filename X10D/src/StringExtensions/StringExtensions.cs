@@ -235,7 +235,7 @@ public static class StringExtensions
             throw new ArgumentNullException(nameof(value));
         }
 
-        if (value.Length == 0)
+        if (string.IsNullOrWhiteSpace(value))
         {
             // empty string is not palindromic
             return false;
