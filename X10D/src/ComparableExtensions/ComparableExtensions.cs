@@ -44,7 +44,7 @@ public static class ComparableExtensions
     /// //      True
     /// </code>
     /// </example>
-    public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper, Clusivity clusivity = Clusivity.Exclusive)
+    public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper, Clusivity clusivity = Clusivity.None)
         where T1 : IComparable<T2>, IComparable<T3>
         where T2 : IComparable<T3>
         where T3 : IComparable<T2>
