@@ -61,6 +61,15 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The buffer is too small to contain the data..
+        /// </summary>
+        internal static string BufferTooSmall {
+            get {
+                return ResourceManager.GetString("BufferTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to count must be greater than or equal to 0..
         /// </summary>
         internal static string CountMustBeGreaterThanOrEqualTo0 {
