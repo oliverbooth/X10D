@@ -16,7 +16,9 @@
         /// </returns>
         public static float Lerp(float value, float target, float alpha)
         {
-            return (float)Lerp(value * 1.0, target, alpha);
+            // rookie mistake: a + t * (b - a)
+            // "precise" method: (1 - t) * a + t * b
+            return ((1.0f - alpha) * value) + (alpha * target);
         }
 
         /// <summary>
