@@ -9,8 +9,6 @@ namespace X10D;
 /// </summary>
 public static class RandomExtensions
 {
-    internal static readonly Random Random = new();
-
     /// <summary>
     ///     Returns a random value that defined in a specified enum.
     /// </summary>

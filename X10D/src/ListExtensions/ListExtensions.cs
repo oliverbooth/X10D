@@ -30,7 +30,7 @@ public static class ListExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        random ??= RandomExtensions.Random;
+        random ??= System.Random.Shared;
         return random.NextFrom(source);
     }
 
@@ -51,7 +51,7 @@ public static class ListExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        random ??= RandomExtensions.Random;
+        random ??= System.Random.Shared;
 
         int count = source.Count;
         while (count > 0)

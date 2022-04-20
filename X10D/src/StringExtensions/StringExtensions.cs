@@ -317,11 +317,6 @@ public static class StringExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
-        if (random is null)
-        {
-            throw new ArgumentNullException(nameof(random));
-        }
-
         if (length < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(length), ExceptionMessages.LengthGreaterThanOrEqualTo0);
@@ -331,6 +326,8 @@ public static class StringExtensions
         {
             return string.Empty;
         }
+        
+        random ??= Random.Shared;
 
         char[] array = source.ToCharArray();
         var builder = new StringBuilder(length);
@@ -411,7 +408,7 @@ public static class StringExtensions
     /// <returns>Returns a <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
     public static string Shuffled(this string value)
     {
-        return value.Shuffled(RandomExtensions.Random);
+        return value.Shuffled(Random.Shared);
     }
 
     /// <summary>
