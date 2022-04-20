@@ -16,14 +16,11 @@ public static class FileInfoExtensions
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     /// <exception cref="FileNotFoundException">The file pointed at by <paramref name="value" /> does not exist.</exception>
     /// <exception cref="IOException">The opened file stream cannot be read.</exception>
-    /// <exception cref="ArgumentException">
-    ///     <para><typeparamref name="T" /> does not offer a static <c>Create</c> method.</para>
-    ///     -or-
-    ///     <para>
-    ///         An invocation to the static <c>Create</c> method defined in <typeparamref name="T" /> returned
-    ///         <see langword="null" />.
-    ///     </para>
+    /// <exception cref="TypeInitializationException">
+    ///     The specified <see cref="HashAlgorithm" /> does not offer a public, static. parameterless <c>Create</c> method, or its
+    ///     <c>Create</c> method returns a type that is not assignable to <typeparamref name="T" />.
     /// </exception>
+    /// <exception cref="ObjectDisposedException">The stream has already been disposed.</exception>
     public static byte[] GetHash<T>(this FileInfo value)
         where T : HashAlgorithm
     {
