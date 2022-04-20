@@ -12,7 +12,7 @@ public static class DoubleExtensions
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     public static double DegreesToRadians(this double value)
     {
-        return Math.PI * value / 180.0;
+        return value * (Math.PI / 180.0);
     }
 
     /// <summary>
