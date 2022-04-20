@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace X10D.Tests.Core
 {
@@ -20,8 +20,11 @@ namespace X10D.Tests.Core
             var trueBytes = new byte[] { 0x01 };
             var falseBytes = new byte[] { 0x00 };
 
-            var trueResult = trueValue.GetBytes();
-            var falseResult = falseValue.GetBytes();
+            byte[] trueResult = trueValue.GetBytes();
+            byte[] falseResult = falseValue.GetBytes();
+            
+            Assert.AreEqual(1, trueResult.Length);
+            Assert.AreEqual(1, trueResult.Length);
 
             CollectionAssert.AreEqual(trueBytes, trueResult);
             CollectionAssert.AreEqual(falseBytes, falseResult);

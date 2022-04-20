@@ -35,8 +35,8 @@ namespace X10D.Tests.Core
         {
             for (var index = 0; index < _primeNumbers.Count; index++)
             {
-                var value = _primeNumbers[index];
-                var result = value.IsPrime();
+                int value = _primeNumbers[index];
+                bool result = value.IsPrime();
                 Assert.IsTrue(result, value.ToString("N0", CultureInfo.InvariantCulture));
             }
         }
@@ -49,7 +49,7 @@ namespace X10D.Tests.Core
         {
             for (var value = short.MinValue; value < 0; value++)
             {
-                var result = value.IsPrime();
+                bool result = value.IsPrime();
                 Assert.IsFalse(result, value.ToString("N0", CultureInfo.InvariantCulture));
             }
         }
@@ -62,7 +62,7 @@ namespace X10D.Tests.Core
         {
             for (var value = 0; value < 2; value++)
             {
-                var result = value.IsPrime();
+                bool result = value.IsPrime();
                 Assert.IsFalse(result, value.ToString("N0", CultureInfo.InvariantCulture));
             }
         }
@@ -75,8 +75,8 @@ namespace X10D.Tests.Core
         {
             for (var value = 0; value < 7920; value++)
             {
-                var expected = _primeNumbers.Contains(value);
-                var actual = value.IsPrime();
+                bool expected = _primeNumbers.Contains(value);
+                bool actual = value.IsPrime();
 
                 Assert.AreEqual(expected, actual, value.ToString("N0", CultureInfo.InvariantCulture));
             }
@@ -90,8 +90,8 @@ namespace X10D.Tests.Core
         {
             for (byte value = 0; value < byte.MaxValue; value++)
             {
-                var expected = _primeNumbers.Contains(value);
-                var actual = value.IsPrime();
+                bool expected = _primeNumbers.Contains(value);
+                bool actual = value.IsPrime();
 
                 Assert.AreEqual(expected, actual, value.ToString("N0", CultureInfo.InvariantCulture));
             }
@@ -107,7 +107,7 @@ namespace X10D.Tests.Core
 
             while (reader.ReadLine() is { } line)
             {
-                if (int.TryParse(line, out var prime))
+                if (int.TryParse(line, out int prime))
                 {
                     primes.Add(prime);
                 }
