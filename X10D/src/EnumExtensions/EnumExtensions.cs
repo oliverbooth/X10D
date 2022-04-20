@@ -21,7 +21,7 @@ public static class EnumExtensions
     public static T Next<T>(this T source, bool wrap = true)
         where T : struct, Enum
     {
-        var array = (T[])Enum.GetValues(source.GetType());
+        var array = Enum.GetValues<T>();
         int index = Array.IndexOf(array, source) + 1;
         return array.Length == index ? array[wrap ? 0 : index - 1] : array[index];
     }
@@ -42,7 +42,7 @@ public static class EnumExtensions
     public static T Previous<T>(this T source, bool wrap = true)
         where T : struct, Enum
     {
-        var array = (T[])Enum.GetValues(source.GetType());
+        var array = Enum.GetValues<T>();
         int index = Array.IndexOf(array, source) - 1;
         return index < 0 ? array[wrap ? array.Length - 1 : 0] : array[index];
     }
