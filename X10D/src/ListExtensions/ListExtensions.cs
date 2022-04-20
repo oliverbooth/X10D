@@ -39,7 +39,11 @@ public static class ListExtensions
     /// </summary>
     /// <typeparam name="T">The element type.</typeparam>
     /// <param name="source">The <see cref="IList{T}" /> to shuffle.</param>
-    /// <param name="random">Optional. The <see cref="System.Random" /> instance to use for the shuffling.</param>
+    /// <param name="random">
+    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified, an
+    ///     internal instance of <see cref="System.Random" /> is used.
+    /// </param>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Shuffle<T>(this IList<T> source, Random? random = null)
     {
         if (source is null)
