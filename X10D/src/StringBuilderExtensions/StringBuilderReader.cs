@@ -25,6 +25,23 @@ public class StringBuilderReader : TextReader
     }
 
     /// <inheritdoc />
+    public override void Close()
+    {
+        _index = _stringBuilder.Length;
+    }
+
+    /// <inheritdoc />
+    public override int Peek()
+    {
+        if (_index >= _stringBuilder.Length)
+        {
+            return -1;
+        }
+
+        return _stringBuilder[_index];
+    }
+
+    /// <inheritdoc />
     public override int Read()
     {
         if (_index >= _stringBuilder.Length)
@@ -114,6 +131,20 @@ public class StringBuilderReader : TextReader
     }
 
     /// <inheritdoc />
+    public override int ReadBlock(char[] buffer, int index, int count)
+    {
+        if (_index >= _stringBuilder.Length)
+        {
+            return -1;
+        }
+
+        int length = Math.Min(count, _stringBuilder.Length - _index);
+        _stringBuilder.CopyTo(_index, buffer, index, length);
+        _index += length;
+        return length;
+    }
+
+    /// <inheritdoc />
     public override Task<int> ReadBlockAsync(char[] buffer, int index, int count)
     {
         return Task.FromResult(ReadBlock(buffer, index, count));
@@ -140,43 +171,6 @@ public class StringBuilderReader : TextReader
     }
 
     /// <inheritdoc />
-    public override Task<string?> ReadLineAsync()
-    {
-        return Task.FromResult(ReadLine());
-    }
-
-    /// <inheritdoc />
-    public override Task<string> ReadToEndAsync()
-    {
-        return Task.FromResult(ReadToEnd());
-    }
-
-    /// <inheritdoc />
-    public override int Peek()
-    {
-        if (_index >= _stringBuilder.Length)
-        {
-            return -1;
-        }
-
-        return _stringBuilder[_index];
-    }
-
-    /// <inheritdoc />
-    public override int ReadBlock(char[] buffer, int index, int count)
-    {
-        if (_index >= _stringBuilder.Length)
-        {
-            return -1;
-        }
-
-        int length = Math.Min(count, _stringBuilder.Length - _index);
-        _stringBuilder.CopyTo(_index, buffer, index, length);
-        _index += length;
-        return length;
-    }
-
-    /// <inheritdoc />
     public override string? ReadLine()
     {
         if (_index >= _stringBuilder.Length)
@@ -199,6 +193,12 @@ public class StringBuilderReader : TextReader
     }
 
     /// <inheritdoc />
+    public override Task<string?> ReadLineAsync()
+    {
+        return Task.FromResult(ReadLine());
+    }
+
+    /// <inheritdoc />
     public override string ReadToEnd()
     {
         var value = _stringBuilder.ToString(_index, _stringBuilder.Length - _index);
@@ -207,8 +207,8 @@ public class StringBuilderReader : TextReader
     }
 
     /// <inheritdoc />
-    public override void Close()
+    public override Task<string> ReadToEndAsync()
     {
-        _index = _stringBuilder.Length;
+        return Task.FromResult(ReadToEnd());
     }
 }
