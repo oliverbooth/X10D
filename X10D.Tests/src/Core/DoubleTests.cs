@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace X10D.Tests.Core
 {
     using System;
@@ -10,13 +12,21 @@ namespace X10D.Tests.Core
     public class DoubleTests
     {
         /// <summary>
-        ///     Tests for <see cref="DoubleExtensions.Clamp" />.
+        ///     Test for <see cref="DoubleExtensions.LerpTo" />
         /// </summary>
         [TestMethod]
-        public void Clamp()
+        public void LerpTo()
         {
-            Assert.AreEqual(2.0, 3.0.Clamp(1.0, 2.0));
-            Assert.AreEqual(1.0, (-3.0).Clamp(1.0, 2.0));
+            const double a = 0.0;
+            const double b = 1.0;
+            const double t = 0.5;
+            const double expected = 0.5;
+
+            double actual = a.LerpFrom(b, t);
+
+            Trace.WriteLine($"expected = {expected}");
+            Trace.WriteLine($"{a}.LerpTo({b}, {t}) = {actual}");
+            Assert.AreEqual(expected, actual, $"{a}.LerpTo({b}, {t})");
         }
 
         /// <summary>
@@ -36,7 +46,7 @@ namespace X10D.Tests.Core
         public void GetBytes()
         {
             CollectionAssert.AreEqual(
-                new byte[] { 0x18, 0x2D, 0x44, 0x54, 0xFB, 0x21, 0x09, 0x40 },
+                new byte[] {0x18, 0x2D, 0x44, 0x54, 0xFB, 0x21, 0x09, 0x40},
                 Math.PI.GetBytes());
         }
 
@@ -71,11 +81,15 @@ namespace X10D.Tests.Core
         }
 
         /// <summary>
-        ///     Tests for <see cref="DoubleExtensions.Round" />.
+        ///     Tests for <see cref="DoubleExtensions.Round(double)" /> and <see cref="DoubleExtensions.Round(double, double)" />.
         /// </summary>
         [TestMethod]
         public void Round()
         {
+            Assert.AreEqual(4.0, 3.5.Round());
+            Assert.AreEqual(7.0, 6.8.Round());
+            Assert.AreEqual(7.0, 7.2.Round());
+
             Assert.AreEqual(5.0, 3.5.Round(5));
             Assert.AreEqual(5.0, 7.0.Round(5));
             Assert.AreEqual(10.0, 7.5.Round(5));
