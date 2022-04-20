@@ -143,7 +143,7 @@ public static class RandomExtensions
     /// <typeparam name="T">The element type.</typeparam>
     /// <param name="random">The <see cref="System.Random" /> instance.</param>
     /// <param name="source">The source collection from which to draw.</param>
-    /// <returns>A random element of type <see cref="T" /> from <paramref name="source" />.</returns>
+    /// <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
     /// <exception cref="ArgumentNullException">
     ///     <paramref name="random" /> is is <see langword="null" />
     ///     -or-
