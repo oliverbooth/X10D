@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10.0</LangVersion>
+        <Optimize>true</Optimize>
         <ImplicitUsings>true</ImplicitUsings>
         <Authors>Oliver Booth</Authors>
         <NeutralLanguage>en</NeutralLanguage>
