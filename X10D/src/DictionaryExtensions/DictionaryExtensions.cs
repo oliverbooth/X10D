@@ -1,4 +1,4 @@
-using System.Web;
+﻿using System.Web;
 
 namespace X10D;
 
@@ -11,15 +11,15 @@ public static class DictionaryExtensions
     ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to an data connection
     ///     string.
     /// </summary>
-    /// <typeparam name="TKey">The key type.</typeparam>
-    /// <typeparam name="TValue">The value type.</typeparam>
-    /// <param name="value">The source dictionary.</param>
-    /// <returns>A <see cref="string" /> representing the dictionary as a <c>key=value;</c> set.</returns>
-    public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> value)
+    /// <typeparam name="TKey">The type of the key element of the key/value pair.</typeparam>
+    /// <typeparam name="TValue">The type of the value element of the key/value pair.</typeparam>
+    /// <param name="source">The source dictionary.</param>
+    /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>;</c>.</returns>
+    public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
     {
-        if (value is null)
+        if (source is null)
         {
-            throw new ArgumentNullException(nameof(value));
+            throw new ArgumentNullException(nameof(source));
         }
 
         static string SanitizeValue(string? value)
@@ -29,9 +29,9 @@ public static class DictionaryExtensions
                 return string.Empty;
             }
 
-            for (var index = 0; index < value.Length; index++)
+            foreach (char character in value)
             {
-                if (char.IsWhiteSpace(value[index]))
+                if (char.IsWhiteSpace(character))
                 {
                     return $"\"{value}\"";
                 }
@@ -40,48 +40,36 @@ public static class DictionaryExtensions
             return value;
         }
 
-        var list = new List<string>();
-
-        // ReSharper disable once UseDeconstruction
-        // .NET Standard 2.0 does not support tuple deconstruct for KeyValuePair<K, V>
-        // ReSharper disable once LoopCanBeConvertedToQuery
-        foreach (var pair in value)
+        static string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
         {
-            list.Add($"{pair.Key}={SanitizeValue(pair.Value?.ToString())}");
+            return $"{pair.Key}={SanitizeValue(pair.Value?.ToString())}");
         }
 
-        return string.Join(";", list);
+        return string.Join(';', source.Select(GetQueryParameter));
     }
 
     /// <summary>
-    ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to a HTTP GET parameter
-    ///     string.
+    ///     Converts an <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey, TValue}" /> to a HTTP GET query string.
     /// </summary>
-    /// <typeparam name="TKey">The key type.</typeparam>
-    /// <typeparam name="TValue">The value type.</typeparam>
-    /// <param name="value">The source dictionary.</param>
-    /// <returns>Returns a <see cref="string" /> representing the dictionary as a key=value&amp; set.</returns>
-    public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> value)
+    /// <typeparam name="TKey">The type of the key element of the key/value pair.</typeparam>
+    /// <typeparam name="TValue">The type of the value element of the key/value pair.</typeparam>
+    /// <param name="source">The source dictionary.</param>
+    /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>&amp;</c>.</returns>
+    public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
+        where TKey : notnull
     {
-        if (value is null)
+        if (source is null)
         {
-            throw new ArgumentNullException(nameof(value));
+            throw new ArgumentNullException(nameof(source));
         }
 
-        static string Sanitize(KeyValuePair<TKey, TValue> pair)
+        static string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
         {
-            string? key = HttpUtility.UrlEncode(pair.Key?.ToString());
+            string key = HttpUtility.UrlEncode(pair.Key.ToString())!;
             string? value = HttpUtility.UrlEncode(pair.Value?.ToString());
             return $"{key}={value}";
         }
 
-        var list = new List<string>();
-
-        foreach (var pair in value)
-        {
-            list.Add(Sanitize(pair));
-        }
-
-        return string.Join('&', list);
+        return string.Join('&', source.Select(GetQueryParameter));
     }
 }
