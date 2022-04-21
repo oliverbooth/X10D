@@ -6,7 +6,7 @@
 public static class EnumExtensions
 {
     /// <summary>
-    ///     Returns the value which is defined proceeding this value in the enumeration.  
+    ///     Returns the value which is defined proceeding this value in the enumeration.
     /// </summary>
     /// <typeparam name="T">The type of the enumeration.</typeparam>
     /// <param name="value">The value whose proceeding value to retrieve.</param>
@@ -24,7 +24,7 @@ public static class EnumExtensions
     }
 
     /// <summary>
-    ///     Returns the value which is defined proceeding this value in the enumeration.  
+    ///     Returns the value which is defined proceeding this value in the enumeration.
     /// </summary>
     /// <typeparam name="T">The type of the enumeration.</typeparam>
     /// <param name="value">The value whose proceeding value to retrieve.</param>
@@ -42,7 +42,7 @@ public static class EnumExtensions
     }
 
     /// <summary>
-    ///     Returns the value which is defined preceeding this value in the enumeration.  
+    ///     Returns the value which is defined preceeding this value in the enumeration.
     /// </summary>
     /// <typeparam name="T">The type of the enumeration.</typeparam>
     /// <param name="value">The value whose preceeding value to retrieve.</param>
@@ -64,7 +64,7 @@ public static class EnumExtensions
     }
 
     /// <summary>
-    ///     Returns the value which is defined preceeding this value in the enumeration.  
+    ///     Returns the value which is defined preceeding this value in the enumeration.
     /// </summary>
     /// <typeparam name="T">The type of the enumeration.</typeparam>
     /// <param name="value">The value whose preceeding value to retrieve.</param>

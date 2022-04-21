@@ -11,7 +11,7 @@ public static partial class EnumerableExtensions
     {
         return source.Aggregate(1, (current, value) => current * value);
     }
-    
+
     /// <summary>
     ///     Computes the product of a sequence of <see cref="uint" /> values.
     /// </summary>

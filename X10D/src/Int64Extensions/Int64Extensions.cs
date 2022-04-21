@@ -218,7 +218,7 @@ public static class Int64Extensions
     }
 
     /// <summary>
-    ///     Performs a modulo operation which supports a negative dividend. 
+    ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
     /// <param name="dividend">The dividend.</param>
     /// <param name="divisor">The divisor.</param>

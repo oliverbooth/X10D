@@ -14,14 +14,14 @@ public static class BooleanExtensions
     ///     The following example converts the bit patterns of <see cref="bool" /> values to <see cref="byte" /> arrays.
     ///     <code lang="csharp">
     /// bool[] values = { true, false };
-    /// 
+    ///
     /// Console.WriteLine("{0,10}{1,16}\n", "Boolean", "Bytes");
     /// foreach (var value in values)
     /// {
     ///     byte[] bytes = value.GetBytes();
     ///     Console.WriteLine("{0,10}{1,16}", value, bytes.AsString());
     /// }
-    /// 
+    ///
     /// // The example displays the following output:
     /// //        Boolean           Bytes
     /// //
