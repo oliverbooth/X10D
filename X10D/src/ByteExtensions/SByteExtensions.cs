@@ -44,7 +44,7 @@ public static class SByteExtensions
     /// </returns>
     public static bool IsPrime(this sbyte value)
     {
-        return ((short)value).IsPrime();
+        return ((long)value).IsPrime();
     }
 
     /// <summary>
