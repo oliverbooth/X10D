@@ -8,7 +8,7 @@ namespace X10D.Tests.Time;
 public class UInt16Tests
 {
     [TestMethod]
-    public void Zero_Should_Be_Zero_TimeSpan()
+    public void ZeroShouldBeZeroTimeSpan()
     {
         Assert.AreEqual(TimeSpan.Zero, ((ushort)0).Ticks());
         Assert.AreEqual(TimeSpan.Zero, ((ushort)0).Milliseconds());
@@ -20,7 +20,7 @@ public class UInt16Tests
     }
 
     [TestMethod]
-    public void One_Should_Be_Positive()
+    public void OneShouldBePositive()
     {
         Assert.IsTrue(((ushort)1).Ticks() > TimeSpan.Zero);
         Assert.IsTrue(((ushort)1).Milliseconds() > TimeSpan.Zero);

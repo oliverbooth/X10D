@@ -8,7 +8,7 @@ namespace X10D.Tests.Time;
 public class SByteTests
 {
     [TestMethod]
-    public void Zero_Should_Be_Zero_TimeSpan()
+    public void ZeroShouldBeZeroTimeSpan()
     {
         Assert.AreEqual(TimeSpan.Zero, ((sbyte)0).Ticks());
         Assert.AreEqual(TimeSpan.Zero, ((sbyte)0).Milliseconds());
@@ -20,7 +20,7 @@ public class SByteTests
     }
 
     [TestMethod]
-    public void One_Should_Be_Positive()
+    public void OneShouldBePositive()
     {
         Assert.IsTrue(((sbyte)1).Ticks() > TimeSpan.Zero);
         Assert.IsTrue(((sbyte)1).Milliseconds() > TimeSpan.Zero);
@@ -32,7 +32,7 @@ public class SByteTests
     }
 
     [TestMethod]
-    public void MinusOne_Should_Be_Negative()
+    public void MinusOneShouldBeNegative()
     {
         Assert.IsTrue(((sbyte)-1).Ticks() < TimeSpan.Zero);
         Assert.IsTrue(((sbyte)-1).Milliseconds() < TimeSpan.Zero);

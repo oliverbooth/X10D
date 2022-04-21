@@ -7,7 +7,7 @@ namespace X10D.Tests.Time;
 public class Int32Tests
 {
     [TestMethod]
-    public void Zero_Should_Be_Zero_TimeSpan()
+    public void ZeroShouldBeZeroTimeSpan()
     {
         Assert.AreEqual(TimeSpan.Zero, 0.Ticks());
         Assert.AreEqual(TimeSpan.Zero, 0.Milliseconds());
@@ -19,7 +19,7 @@ public class Int32Tests
     }
 
     [TestMethod]
-    public void One_Should_Be_Positive()
+    public void OneShouldBePositive()
     {
         Assert.IsTrue(1.Ticks() > TimeSpan.Zero);
         Assert.IsTrue(1.Milliseconds() > TimeSpan.Zero);
@@ -31,7 +31,7 @@ public class Int32Tests
     }
 
     [TestMethod]
-    public void MinusOne_Should_Be_Negative()
+    public void MinusOneShouldBeNegative()
     {
         Assert.IsTrue((-1).Ticks() < TimeSpan.Zero);
         Assert.IsTrue((-1).Milliseconds() < TimeSpan.Zero);

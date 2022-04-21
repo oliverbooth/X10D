@@ -7,7 +7,7 @@ namespace X10D.Tests.Time;
 public class SingleTests
 {
     [TestMethod]
-    public void Zero_Should_Be_Zero_TimeSpan()
+    public void ZeroShouldBeZeroTimeSpan()
     {
         Assert.AreEqual(TimeSpan.Zero, 0f.Milliseconds());
         Assert.AreEqual(TimeSpan.Zero, 0f.Seconds());
@@ -18,7 +18,7 @@ public class SingleTests
     }
 
     [TestMethod]
-    public void One_Should_Be_Positive()
+    public void OneShouldBePositive()
     {
         Assert.IsTrue(1f.Milliseconds() > TimeSpan.Zero);
         Assert.IsTrue(1f.Seconds() > TimeSpan.Zero);
@@ -29,7 +29,7 @@ public class SingleTests
     }
 
     [TestMethod]
-    public void MinusOne_Should_Be_Negative()
+    public void MinusOneShouldBeNegative()
     {
         Assert.IsTrue((-1f).Milliseconds() < TimeSpan.Zero);
         Assert.IsTrue((-1f).Seconds() < TimeSpan.Zero);
