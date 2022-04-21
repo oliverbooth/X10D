@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Runtime.CompilerServices;
 
-namespace X10D;
+namespace X10D.Net;
 
 /// <summary>
 ///     Extension methods for <see cref="EndPoint" /> and derived types.
