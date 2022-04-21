@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Net;
 
@@ -7,6 +7,20 @@ namespace X10D.Tests.Net;
 [TestClass]
 public class EndPointTests
 {
+    [TestMethod]
+    public void GetHost_Null_ShouldThrow()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IPEndPoint?)null)!.GetHost());
+        Assert.ThrowsException<ArgumentNullException>(() => ((DnsEndPoint?)null)!.GetHost());
+    }
+    
+    [TestMethod]
+    public void GetPort_Null_ShouldThrow()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IPEndPoint?)null)!.GetPort());
+        Assert.ThrowsException<ArgumentNullException>(() => ((DnsEndPoint?)null)!.GetPort());
+    }
+    
     [TestMethod]
     public void DnsEndPoint_GetHost_Localhost()
     {
