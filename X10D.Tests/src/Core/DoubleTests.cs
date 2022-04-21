@@ -102,4 +102,17 @@ public class DoubleTests
         Assert.AreEqual(5.0, 7.0.Round(5));
         Assert.AreEqual(10.0, 7.5.Round(5));
     }
+
+    [TestMethod]
+    public void Sqrt()
+    {
+        Assert.AreEqual(0.0, 0.0.Sqrt());
+        Assert.AreEqual(1.414213562373095, 2.0.Sqrt());
+        Assert.AreEqual(3.0, 9.0.Sqrt());
+        Assert.AreEqual(4.0, 16.0.Sqrt());
+        Assert.AreEqual(double.NaN, double.NaN.Sqrt());
+        Assert.AreEqual(double.NaN, (-1.0).Sqrt());
+        Assert.AreEqual(double.NaN, double.NegativeInfinity.Sqrt());
+        Assert.AreEqual(double.PositiveInfinity, double.PositiveInfinity.Sqrt());
+    }
 }

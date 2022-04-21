@@ -26,4 +26,17 @@ public class SingleTests
         Assert.AreEqual(6.0f, 0.10471976f.RadiansToDegrees());
         Assert.AreEqual(12.0f, 0.20943952f.RadiansToDegrees());
     }
+
+    [TestMethod]
+    public void Sqrt()
+    {
+        Assert.AreEqual(0.0f, 0.0f.Sqrt());
+        Assert.AreEqual(1.4142135f, 2.0f.Sqrt());
+        Assert.AreEqual(3.0f, 9.0f.Sqrt());
+        Assert.AreEqual(4.0f, 16.0f.Sqrt());
+        Assert.AreEqual(float.NaN, float.NaN.Sqrt());
+        Assert.AreEqual(float.NaN, (-1.0f).Sqrt());
+        Assert.AreEqual(float.NaN, float.NegativeInfinity.Sqrt());
+        Assert.AreEqual(float.PositiveInfinity, float.PositiveInfinity.Sqrt());
+    }
 }
