@@ -1,6 +1,9 @@
-﻿namespace X10D;
+﻿namespace X10D.Linq;
 
-public static partial class EnumerableExtensions
+/// <summary>
+///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="long" />.
+/// </summary>
+public static class Int16Extensions
 {
     /// <summary>
     ///     Computes the product of a sequence of <see cref="short" /> values.
@@ -9,8 +12,9 @@ public static partial class EnumerableExtensions
     /// <returns>The product the values in the sequence.</returns>
     public static short Product(this IEnumerable<short> source)
     {
-        return source.Aggregate((short)1, (current, value) => (short) (current * value));
+        return source.Aggregate((short)1, (current, value) => (short)(current * value));
     }
+
     /// <summary>
     ///     Computes the product of a sequence of <see cref="ushort" /> values.
     /// </summary>
@@ -19,7 +23,7 @@ public static partial class EnumerableExtensions
     [CLSCompliant(false)]
     public static ushort Product(this IEnumerable<ushort> source)
     {
-        return source.Aggregate((ushort)1, (current, value) => (ushort) (current * value));
+        return source.Aggregate((ushort)1, (current, value) => (ushort)(current * value));
     }
 
     /// <summary>

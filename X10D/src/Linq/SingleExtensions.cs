@@ -1,6 +1,9 @@
-﻿namespace X10D;
+﻿namespace X10D.Linq;
 
-public static partial class EnumerableExtensions
+/// <summary>
+///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="float" />.
+/// </summary>
+public static class SingleExtensions
 {
     /// <summary>
     ///     Computes the product of a sequence of <see cref="float" /> values.
