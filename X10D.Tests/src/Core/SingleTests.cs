@@ -1,5 +1,7 @@
 ﻿using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using X10D.Math;
+using X10D.Numerics;
 
 namespace X10D.Tests.Core;
 
