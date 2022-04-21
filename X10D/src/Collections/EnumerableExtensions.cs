@@ -3,7 +3,7 @@
 /// <summary>
 ///     Extension methods for <see cref="IEnumerable{T}" />.
 /// </summary>
-public static partial class EnumerableExtensions
+public static class EnumerableExtensions
 {
     /// <summary>
     ///     Reorganizes the elements in an enumerable by implementing a Fisher-Yates shuffle, and returns th shuffled result.
