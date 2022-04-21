@@ -27,16 +27,16 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int firstValue = 42;
     /// int secondValue = 15;
-    /// 
+    ///
     /// int lower = 0;
     /// int upper = 20;
-    /// 
+    ///
     /// Console.WriteLine($"{firstValue} between {lower} and {upper}?");
     /// Console.WriteLine(firstValue.Between(lower, upper));
-    /// 
+    ///
     /// Console.WriteLine($"{secondValue} between {lower} and {upper}?");
     /// Console.WriteLine(secondValue.Between(lower, upper));
-    /// 
+    ///
     /// // This will output the following:
     /// //      42 between 0 and 20?
     /// //      False
@@ -93,7 +93,7 @@ public static class ComparableExtensions
     /// int value = 42;
     /// int lower = 0;
     /// int upper = 20;
-    /// 
+    ///
     /// int clamped = value.Clamp(lower, upper);
     /// // clamped will be 20
     /// </code>
@@ -127,7 +127,7 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int first = 5;
     /// int second = 10;
-    /// 
+    ///
     /// bool result = first.GreaterThan(second);
     /// // result will be False
     /// </code>
@@ -159,7 +159,7 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int first = 5;
     /// int second = 10;
-    /// 
+    ///
     /// bool result = first.GreaterThanOrEqualTo(second);
     /// // result will be False
     /// </code>
@@ -191,7 +191,7 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int first = 5;
     /// int second = 10;
-    /// 
+    ///
     /// bool result = first.LessThan(second);
     /// // result will be True
     /// </code>
@@ -223,7 +223,7 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int first = 5;
     /// int second = 10;
-    /// 
+    ///
     /// bool result = first.LessThanOrEqualTo(second);
     /// // result will be True
     /// </code>
@@ -254,7 +254,7 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int first = 5;
     /// int second = 10;
-    /// 
+    ///
     /// int max = first.Max(second);
     /// // max will be 10
     /// </code>
@@ -285,7 +285,7 @@ public static class ComparableExtensions
     /// <code lang="csharp">
     /// int first = 5;
     /// int second = 10;
-    /// 
+    ///
     /// int min = first.Min(second);
     /// // min will be 5
     /// </code>
