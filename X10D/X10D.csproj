@@ -47,6 +47,10 @@
             <Pack>True</Pack>
             <PackagePath/>
         </None>
+        <None Include="..\CHANGELOG.md">
+            <Pack>True</Pack>
+            <PackagePath/>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
