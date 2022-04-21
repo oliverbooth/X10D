@@ -1,4 +1,7 @@
-﻿namespace X10D;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
+namespace X10D;
 
 /// <summary>
 ///     Extension methods for <see cref="float" />.
@@ -122,5 +125,39 @@ public static class SingleExtensions
     public static float Round(this float value, float nearest)
     {
         return MathF.Round(value / nearest) * nearest;
+    }
+
+    /// <summary>
+    ///     Returns an integer that indicates the sign of this single-precision floating-point number.
+    /// </summary>
+    /// <param name="value">A signed number.</param>
+    /// <returns>
+    ///     A number that indicates the sign of <paramref name="value" />, as shown in the following table.
+    ///
+    ///     <list type="table">
+    ///         <listheader>
+    ///             <term>Return value</term>
+    ///             <description>Meaning</description>
+    ///         </listheader>
+    ///
+    ///         <item>
+    ///             <term>-1</term>
+    ///             <description><paramref name="value" /> is less than zero.</description>
+    ///         </item>
+    ///         <item>
+    ///             <term>0</term>
+    ///             <description><paramref name="value" /> is equal to zero.</description>
+    ///         </item>
+    ///         <item>
+    ///             <term>1</term>
+    ///             <description><paramref name="value" /> is greater than zero.</description>
+    ///         </item>
+    ///     </list>
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static int Sign(this float value)
+    {
+        return MathF.Sign(value);
     }
 }
