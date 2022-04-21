@@ -3,7 +3,7 @@
 /// <summary>
 ///     Provides static helpers methods for mathematical functions not found in the .NET <see cref="System.Math" /> class.
 /// </summary>
-public static class MathUtils
+public static class MathUtility
 {
     /// <summary>
     ///     Linearly interpolates from one value to a target using a specified alpha.

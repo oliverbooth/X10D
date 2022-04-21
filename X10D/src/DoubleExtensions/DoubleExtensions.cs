@@ -62,7 +62,7 @@ public static class DoubleExtensions
     /// </returns>
     public static double LerpFrom(this double target, double value, double alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public static class DoubleExtensions
     /// </returns>
     public static double LerpTo(this double value, double target, double alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -90,7 +90,7 @@ public static class DoubleExtensions
     /// </returns>
     public static double LerpWith(this double alpha, double value, double target)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>

@@ -143,7 +143,7 @@ public static class Int64Extensions
     /// </returns>
     public static double LerpFrom(this long target, double value, double alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -157,7 +157,7 @@ public static class Int64Extensions
     /// </returns>
     public static float LerpFrom(this long target, float value, float alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -171,7 +171,7 @@ public static class Int64Extensions
     /// </returns>
     public static double LerpTo(this long value, double target, double alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -185,7 +185,7 @@ public static class Int64Extensions
     /// </returns>
     public static float LerpTo(this long value, float target, float alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -199,7 +199,7 @@ public static class Int64Extensions
     /// </returns>
     public static double LerpWith(this long alpha, double value, double target)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -213,7 +213,7 @@ public static class Int64Extensions
     /// </returns>
     public static float LerpWith(this long alpha, float value, float target)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
