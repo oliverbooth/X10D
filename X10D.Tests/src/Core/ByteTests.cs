@@ -1,62 +1,61 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace X10D.Tests.Core
+namespace X10D.Tests.Core;
+
+/// <summary>
+///     Tests for <see cref="ByteExtensions" />
+/// </summary>
+[TestClass]
+public class ByteTests
 {
     /// <summary>
-    ///     Tests for <see cref="ByteExtensions" />
+    ///     Tests <see cref="ByteExtensions.GetBytes" />.
     /// </summary>
-    [TestClass]
-    public class ByteTests
+    [TestMethod]
+    public void GetBytes()
     {
-        /// <summary>
-        ///     Tests <see cref="ByteExtensions.GetBytes" />.
-        /// </summary>
-        [TestMethod]
-        public void GetBytes()
-        {
-            const byte byteMinValue = byte.MinValue;
-            const byte byteMaxValue = byte.MaxValue;
+        const byte byteMinValue = byte.MinValue;
+        const byte byteMaxValue = byte.MaxValue;
 
-            var minValueBytes = new[] { byteMinValue };
-            var maxValueBytes = new[] { byteMaxValue };
+        var minValueBytes = new[] { byteMinValue };
+        var maxValueBytes = new[] { byteMaxValue };
 
-            var minValueResult = byteMinValue.GetBytes();
-            var maxValueResult = byteMaxValue.GetBytes();
+        var minValueResult = byteMinValue.GetBytes();
+        var maxValueResult = byteMaxValue.GetBytes();
 
-            CollectionAssert.AreEqual(minValueBytes, minValueResult);
-            CollectionAssert.AreEqual(maxValueBytes, maxValueResult);
-        }
+        CollectionAssert.AreEqual(minValueBytes, minValueResult);
+        CollectionAssert.AreEqual(maxValueBytes, maxValueResult);
+    }
 
-        /// <summary>
-        ///     Tests <see cref="ByteExtensions.IsEven" />.
-        /// </summary>
-        [TestMethod]
-        public void IsEven()
-        {
-            const byte one = 1;
-            const byte two = 2;
+    /// <summary>
+    ///     Tests <see cref="ByteExtensions.IsEven" />.
+    /// </summary>
+    [TestMethod]
+    public void IsEven()
+    {
+        const byte one = 1;
+        const byte two = 2;
 
-            var oneEven = one.IsEven();
-            var twoEven = two.IsEven();
+        var oneEven = one.IsEven();
+        var twoEven = two.IsEven();
 
-            Assert.IsFalse(oneEven);
-            Assert.IsTrue(twoEven);
-        }
+        Assert.IsFalse(oneEven);
+        Assert.IsTrue(twoEven);
+    }
 
-        /// <summary>
-        ///     Tests <see cref="ByteExtensions.IsOdd" />.
-        /// </summary>
-        [TestMethod]
-        public void IsOdd()
-        {
-            const byte one = 1;
-            const byte two = 2;
+    /// <summary>
+    ///     Tests <see cref="ByteExtensions.IsOdd" />.
+    /// </summary>
+    [TestMethod]
+    public void IsOdd()
+    {
+        const byte one = 1;
+        const byte two = 2;
 
-            var oneOdd = one.IsOdd();
-            var twoOdd = two.IsOdd();
+        var oneOdd = one.IsOdd();
+        var twoOdd = two.IsOdd();
 
-            Assert.IsTrue(oneOdd);
-            Assert.IsFalse(twoOdd);
-        }
+        Assert.IsTrue(oneOdd);
+        Assert.IsFalse(twoOdd);
     }
 }
