@@ -1,3 +1,6 @@
+using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
 namespace X10D;
 
 /// <summary>
@@ -42,5 +45,39 @@ public static class SByteExtensions
     public static bool IsPrime(this sbyte value)
     {
         return ((short)value).IsPrime();
+    }
+
+    /// <summary>
+    ///     Returns an integer that indicates the sign of this 8-bit signed integer.
+    /// </summary>
+    /// <param name="value">A signed number.</param>
+    /// <returns>
+    ///     A number that indicates the sign of <paramref name="value" />, as shown in the following table.
+    ///
+    ///     <list type="table">
+    ///         <listheader>
+    ///             <term>Return value</term>
+    ///             <description>Meaning</description>
+    ///         </listheader>
+    ///
+    ///         <item>
+    ///             <term>-1</term>
+    ///             <description><paramref name="value" /> is less than zero.</description>
+    ///         </item>
+    ///         <item>
+    ///             <term>0</term>
+    ///             <description><paramref name="value" /> is equal to zero.</description>
+    ///         </item>
+    ///         <item>
+    ///             <term>1</term>
+    ///             <description><paramref name="value" /> is greater than zero.</description>
+    ///         </item>
+    ///     </list>
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static int Sign(this sbyte value)
+    {
+        return Math.Sign(value);
     }
 }
