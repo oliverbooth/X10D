@@ -19,6 +19,15 @@ public static class SingleExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Complex ComplexSqrt(this float value)
     {
+        switch (value)
+        {
+            case float.PositiveInfinity:
+            case float.NegativeInfinity:
+                return Complex.Infinity;
+            case float.NaN:
+                return Complex.NaN;
+        }
+
         float absoluteSqrt = MathF.Abs(value).Sqrt();
         return new Complex(absoluteSqrt, value >= 0 ? 0 : 1);
     }

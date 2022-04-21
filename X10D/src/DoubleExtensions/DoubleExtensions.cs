@@ -19,6 +19,15 @@ public static class DoubleExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Complex ComplexSqrt(this double value)
     {
+        switch (value)
+        {
+            case double.PositiveInfinity:
+            case double.NegativeInfinity:
+                return Complex.Infinity;
+            case double.NaN:
+                return Complex.NaN;
+        }
+
         double absoluteSqrt = Math.Abs(value).Sqrt();
         return new Complex(absoluteSqrt, value >= 0 ? 0 : 1);
     }
