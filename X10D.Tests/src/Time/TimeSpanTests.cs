@@ -15,26 +15,26 @@ public class TimeSpanTests
     }
 
     [TestMethod]
-    public void Ago_Should_Be_In_The_Past()
+    public void AgoShouldBeInThePast()
     {
         Assert.IsTrue(_timeSpan.Ago() < DateTime.Now);
     }
 
     [TestMethod]
-    public void FromNow_Should_Be_In_The_Past()
+    public void FromNowShouldBeInThePast()
     {
         Assert.IsTrue(_timeSpan.FromNow() > DateTime.Now);
     }
 
     [TestMethod]
-    public void One_Day_Ago_Should_Be_Yesterday()
+    public void OneDayAgoShouldBeYesterday()
     {
         DateTime yesterday = DateTime.Now.AddDays(-1);
         Assert.AreEqual(yesterday.Date, 1.Days().Ago().Date);
     }
 
     [TestMethod]
-    public void One_Day_FromNow_Should_Be_Tomorrow()
+    public void OneDayFromNowShouldBeTomorrow()
     {
         DateTime tomorrow = DateTime.Now.AddDays(1);
         Assert.AreEqual(tomorrow.Date, 1.Days().FromNow().Date);

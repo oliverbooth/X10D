@@ -7,7 +7,7 @@ namespace X10D.Tests.Time;
 public class DecimalTests
 {
     [TestMethod]
-    public void Zero_Should_Be_Zero_TimeSpan()
+    public void ZeroShouldBeZeroTimeSpan()
     {
         Assert.AreEqual(TimeSpan.Zero, 0m.Milliseconds());
         Assert.AreEqual(TimeSpan.Zero, 0m.Seconds());
@@ -18,7 +18,7 @@ public class DecimalTests
     }
 
     [TestMethod]
-    public void One_Should_Be_Positive()
+    public void OneShouldBePositive()
     {
         Assert.IsTrue(1m.Milliseconds() > TimeSpan.Zero);
         Assert.IsTrue(1m.Seconds() > TimeSpan.Zero);
@@ -29,7 +29,7 @@ public class DecimalTests
     }
 
     [TestMethod]
-    public void MinusOne_Should_Be_Negative()
+    public void MinusOneShouldBeNegative()
     {
         Assert.IsTrue((-1m).Milliseconds() < TimeSpan.Zero);
         Assert.IsTrue((-1m).Seconds() < TimeSpan.Zero);
