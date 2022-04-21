@@ -1,9 +1,9 @@
-﻿namespace X10D;
+namespace X10D;
 
 /// <summary>
 ///     Extension methods for <see cref="bool" />.
 /// </summary>
-public static partial class BooleanExtensions
+public static class BooleanExtensions
 {
     /// <summary>
     ///     Returns the current Boolean value as a byte array.
