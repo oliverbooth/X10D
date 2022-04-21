@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Numerics;
+using X10D.Math;
+using X10D.Numerics;
 
 namespace X10D.Tests.Core;
 

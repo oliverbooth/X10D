@@ -242,7 +242,7 @@ public static class Int16Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int Sign(this short value)
     {
-        return Math.Sign(value);
+        return System.Math.Sign(value);
     }
 
     /// <summary>
@@ -317,7 +317,7 @@ public static class Int16Extensions
         }
         else
         {
-            short absStep = Math.Abs(step);
+            short absStep = System.Math.Abs(step);
             for (short i = start; i >= end; i -= absStep)
             {
                 yield return i;
