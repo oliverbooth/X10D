@@ -62,7 +62,7 @@ public static class SingleExtensions
     /// </returns>
     public static float LerpFrom(this float target, float value, float alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public static class SingleExtensions
     /// </returns>
     public static float LerpTo(this float value, float target, float alpha)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
@@ -90,7 +90,7 @@ public static class SingleExtensions
     /// </returns>
     public static float LerpWith(this float alpha, float value, float target)
     {
-        return MathUtils.Lerp(value, target, alpha);
+        return MathUtility.Lerp(value, target, alpha);
     }
 
     /// <summary>
