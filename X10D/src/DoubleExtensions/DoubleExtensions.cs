@@ -208,10 +208,35 @@ public static class DoubleExtensions
     ///     <see cref="ComplexSqrt" />.
     /// </remarks>
     /// <seealso cref="ComplexSqrt" />
+    /// <author>SLenik https://stackoverflow.com/a/6755197/1467293</author>
+    /// <license>CC BY-SA 3.0</license>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static double Sqrt(this double value)
     {
-        return Math.Sqrt(value);
+        switch (value)
+        {
+            case 0:
+                return 0;
+            case < 0 or double.NaN:
+                return double.NaN;
+            case double.PositiveInfinity:
+                return double.PositiveInfinity;
+        }
+
+        double previous;
+        double current = Math.Sqrt(value);
+        do
+        {
+            previous = current;
+            if (previous == 0.0)
+            {
+                return 0;
+            }
+
+            current = (previous + value / previous) / 2;
+        } while (Math.Abs(previous - current) > double.Epsilon);
+
+        return current;
     }
 }

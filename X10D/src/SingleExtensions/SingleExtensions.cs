@@ -207,10 +207,35 @@ public static class SingleExtensions
     ///     <see cref="ComplexSqrt" />.
     /// </remarks>
     /// <seealso cref="ComplexSqrt" />
+    /// <author>SLenik https://stackoverflow.com/a/6755197/1467293</author>
+    /// <license>CC BY-SA 3.0</license>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static float Sqrt(this float value)
     {
-        return MathF.Sqrt(value);
+        switch (value)
+        {
+            case 0:
+                return 0;
+            case < 0 or float.NaN:
+                return float.NaN;
+            case float.PositiveInfinity:
+                return float.PositiveInfinity;
+        }
+
+        float previous;
+        float current = MathF.Sqrt(value);
+        do
+        {
+            previous = current;
+            if (previous == 0.0f)
+            {
+                return 0;
+            }
+
+            current = (previous + value / previous) / 2;
+        } while (MathF.Abs(previous - current) > float.Epsilon);
+
+        return current;
     }
 }
