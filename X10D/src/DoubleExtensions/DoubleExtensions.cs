@@ -10,6 +10,113 @@ namespace X10D;
 public static class DoubleExtensions
 {
     /// <summary>
+    ///     Returns the arccosine of the specified value.
+    /// </summary>
+    /// <param name="value">
+    ///     The value representing a cosine, which must be greater than or equal to -1, but less than or equal to 1.
+    /// </param>
+    /// <returns>
+    ///     The arccosine of <paramref name="value" />, θ, measured in radians; such that 0 ≤ θ ≤ π. If <paramref name="value" />
+    ///     is equal to <see cref="double.NaN" />, less than -1, or greater than 1, <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Acos(this double value)
+    {
+        return Math.Acos(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic arccosine of the specified value.
+    /// </summary>
+    /// <param name="value">
+    ///     The value representing a hyperbolic cosine, which must be greater than or equal to 1, but less than or equal to
+    ///     <see cref="double.PositiveInfinity" />.
+    /// </param>
+    /// <returns>
+    ///     The hyperbolic arccosine of <paramref name="value" />, θ, measured in radians; such that 0 ≤ θ ≤ ∞. If
+    ///     <paramref name="value" /> is less than 1 or equal to <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Acosh(this double value)
+    {
+        return Math.Acosh(value);
+    }
+
+    /// <summary>
+    ///     Returns the arcsine of the specified value.
+    /// </summary>
+    /// <param name="value">
+    ///     The value representing a sine, which must be greater than or equal to -1, but less than or equal to 1.
+    /// </param>
+    /// <returns>
+    ///     The arccosine of <paramref name="value" />, θ, measured in radians; such that π/2 ≤ θ ≤ π/2. If
+    ///     <paramref name="value" /> is equal to <see cref="double.NaN" />, less than -1, or greater than 1,
+    ///     <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Asin(this double value)
+    {
+        return Math.Asin(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic arcsine of the specified value.
+    /// </summary>
+    /// <param name="value">
+    ///     The value representing a hyperbolic sine, which must be greater than or equal to 1, but less than or equal to
+    ///     <see cref="double.PositiveInfinity" />.
+    /// </param>
+    /// <returns>
+    ///     The hyperbolic arccosine of <paramref name="value" />, measured in radians. If <paramref name="value" /> is equal to
+    ///     <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Asinh(this double value)
+    {
+        return Math.Asinh(value);
+    }
+
+    /// <summary>
+    ///     Returns the arctangent of the specified value.
+    /// </summary>
+    /// <param name="value">
+    ///     The value representing a tangent, which must be greater than or equal to -1, but less than or equal to 1.
+    /// </param>
+    /// <returns>
+    ///     The arctangent of <paramref name="value" />, θ, measured in radians; such that π/2 ≤ θ ≤ π/2. If
+    ///     <paramref name="value" /> is equal to <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Atan(this double value)
+    {
+        return Math.Atan(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic arctangent of the specified value.
+    /// </summary>
+    /// <param name="value">
+    ///     The value representing a hyperbolic tangent, which must be greater than or equal to 1, but less than or equal to
+    ///     <see cref="double.PositiveInfinity" />.
+    /// </param>
+    /// <returns>
+    ///     The hyperbolic arctangent of <paramref name="value" />, θ, measured in radians; such that -∞ &lt; θ &lt; -1, or 1 &lt;
+    ///     θ &lt; ∞. If <paramref name="value" /> is equal to <see cref="double.NaN" />, less than -1, or greater than 1,
+    ///     <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Atanh(this double value)
+    {
+        return Math.Atanh(value);
+    }
+
+    /// <summary>
     ///     Returns the complex square root of this double-precision floating-point number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
@@ -30,6 +137,39 @@ public static class DoubleExtensions
 
         double absoluteSqrt = Math.Abs(value).Sqrt();
         return new Complex(absoluteSqrt, value >= 0 ? 0 : 1);
+    }
+
+    /// <summary>
+    ///     Returns the cosine of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, measured in radians.</param>
+    /// <returns>
+    ///     The cosine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
+    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
+    ///     <see cref="double.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Cos(this double value)
+    {
+        return Math.Cos(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic cosine of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, measured in radians.</param>
+    /// <returns>
+    ///     The hyperbolic cosine of <paramref name="value" />. If <paramref name="value" /> is equal to
+    ///     <see cref="double.NegativeInfinity" /> or <see cref="double.PositiveInfinity" />,
+    ///     <see cref="double.PositiveInfinity" /> is returned. If <paramref name="value" /> is equal to
+    ///     <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Cosh(this double value)
+    {
+        return Math.Cosh(value);
     }
 
     /// <summary>
@@ -187,6 +327,38 @@ public static class DoubleExtensions
     }
 
     /// <summary>
+    ///     Returns the sine of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, in radians.</param>
+    /// <returns>
+    ///     The sine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
+    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
+    ///     <see cref="double.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Sin(this double value)
+    {
+        return Math.Sin(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic sine of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, in radians.</param>
+    /// <returns>
+    ///     The hyperbolic sine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
+    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
+    ///     <see cref="double.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Sinh(this double value)
+    {
+        return Math.Sinh(value);
+    }
+
+    /// <summary>
     ///     Returns the square root of this double-precision floating-point number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
@@ -248,5 +420,38 @@ public static class DoubleExtensions
         } while (Math.Abs(previous - current) > double.Epsilon);
 
         return current;
+    }
+
+    /// <summary>
+    ///     Returns the tangent of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, measured in radians.</param>
+    /// <returns>
+    ///     The tangent of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
+    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
+    ///     <see cref="double.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Tan(this double value)
+    {
+        return Math.Tan(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic tangent of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, measured in radians.</param>
+    /// <returns>
+    ///     The hyperbolic tangent of <paramref name="value" />. If <paramref name="value" /> is equal to
+    ///     <see cref="double.NegativeInfinity" />, this method returns -1. If <paramref name="value" /> is equal to
+    ///     <see cref="double.PositiveInfinity" />, this method returns 1. If <paramref name="value" /> is equal to
+    ///     <see cref="double.NaN" />, this method returns <see cref="double.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Tanh(this double value)
+    {
+        return Math.Tanh(value);
     }
 }
