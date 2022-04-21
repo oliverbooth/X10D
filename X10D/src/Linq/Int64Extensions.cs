@@ -1,6 +1,9 @@
-﻿namespace X10D;
+﻿namespace X10D.Linq;
 
-public static partial class EnumerableExtensions
+/// <summary>
+///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="long" />.
+/// </summary>
+public static class Int64Extensions
 {
     /// <summary>
     ///     Computes the product of a sequence of <see cref="long" /> values.
@@ -11,6 +14,7 @@ public static partial class EnumerableExtensions
     {
         return source.Aggregate(1L, (current, value) => current * value);
     }
+
     /// <summary>
     ///     Computes the product of a sequence of <see cref="ulong" /> values.
     /// </summary>

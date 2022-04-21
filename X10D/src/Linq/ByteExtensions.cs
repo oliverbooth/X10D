@@ -1,6 +1,9 @@
-﻿namespace X10D;
+﻿namespace X10D.Linq;
 
-public static partial class EnumerableExtensions
+/// <summary>
+///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="byte" />.
+/// </summary>
+public static class ByteExtensions
 {
     /// <summary>
     ///     Computes the product of a sequence of <see cref="byte" /> values.
@@ -9,8 +12,9 @@ public static partial class EnumerableExtensions
     /// <returns>The product the values in the sequence.</returns>
     public static byte Product(this IEnumerable<byte> source)
     {
-        return source.Aggregate((byte)1, (current, value) => (byte) (current * value));
+        return source.Aggregate((byte)1, (current, value) => (byte)(current * value));
     }
+
     /// <summary>
     ///     Computes the product of a sequence of <see cref="sbyte" /> values.
     /// </summary>
@@ -19,7 +23,7 @@ public static partial class EnumerableExtensions
     [CLSCompliant(false)]
     public static sbyte Product(this IEnumerable<sbyte> source)
     {
-        return source.Aggregate((sbyte)1, (current, value) => (sbyte) (current * value));
+        return source.Aggregate((sbyte)1, (current, value) => (sbyte)(current * value));
     }
 
     /// <summary>
