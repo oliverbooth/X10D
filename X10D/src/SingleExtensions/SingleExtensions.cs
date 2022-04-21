@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace X10D;
@@ -8,6 +9,19 @@ namespace X10D;
 /// </summary>
 public static class SingleExtensions
 {
+    /// <summary>
+    ///     Returns the complex square root of this single-precision floating-point number.
+    /// </summary>
+    /// <param name="value">The number whose square root is to be found.</param>
+    /// <returns>The square root of <paramref name="value" />.</returns>
+    /// <seealso cref="Sqrt" />
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static Complex ComplexSqrt(this float value)
+    {
+        return Complex.Sqrt(value);
+    }
+
     /// <summary>
     ///     Converts the current angle in degrees to its equivalent represented in radians.
     /// </summary>
@@ -159,5 +173,44 @@ public static class SingleExtensions
     public static int Sign(this float value)
     {
         return MathF.Sign(value);
+    }
+
+    /// <summary>
+    ///     Returns the square root of this single-precision floating-point number.
+    /// </summary>
+    /// <param name="value">The number whose square root is to be found.</param>
+    /// <returns>
+    ///     One of the values in the following table.
+    ///
+    ///     <list type="table">
+    ///         <listheader>
+    ///             <term>Return value</term>
+    ///             <description>Meaning</description>
+    ///         </listheader>
+    ///
+    ///         <item>
+    ///            <term>The positive square root of <paramref name="value" />.</term>
+    ///            <description><paramref name="value" /> is greater than or equal to 0.</description>
+    ///         </item>
+    ///         <item>
+    ///             <term><see cref="float.NaN" /></term>
+    ///             <description><paramref name="value" /> is equal to <see cref="float.NaN" /> or is negative.</description>
+    ///         </item>
+    ///         <item>
+    ///             <term><see cref="float.PositiveInfinity" /></term>
+    ///             <description><paramref name="value" /> is equal to <see cref="float.PositiveInfinity" />.</description>
+    ///         </item>
+    ///     </list>
+    /// </returns>
+    /// <remarks>
+    ///     For negative input, this method returns <see cref="float.NaN" />. To receive a complex number, see
+    ///     <see cref="ComplexSqrt" />.
+    /// </remarks>
+    /// <seealso cref="ComplexSqrt" />
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static float Sqrt(this float value)
+    {
+        return MathF.Sqrt(value);
     }
 }
