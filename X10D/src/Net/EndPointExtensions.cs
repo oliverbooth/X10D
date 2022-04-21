@@ -19,14 +19,20 @@ public static class EndPointExtensions
     ///     -or-
     ///     <para><see cref="string.Empty" /> otherwise.</para>
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetHost(this EndPoint endPoint)
     {
+        if (endPoint is null)
+        {
+            throw new ArgumentNullException(nameof(endPoint));
+        }
+
         return endPoint switch
         {
             IPEndPoint ip => ip.Address.ToString(),
             DnsEndPoint dns => dns.Host,
-            var _ => string.Empty
+            _ => string.Empty
         };
     }
 
@@ -41,14 +47,20 @@ public static class EndPointExtensions
     ///     -or-
     ///     <para><c>0</c> otherwise.</para>
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetPort(this EndPoint endPoint)
     {
+        if (endPoint is null)
+        {
+            throw new ArgumentNullException(nameof(endPoint));
+        }
+
         return endPoint switch
         {
             IPEndPoint ip => ip.Port,
             DnsEndPoint dns => dns.Port,
-            var _ => 0
+            _ => 0
         };
     }
 }
