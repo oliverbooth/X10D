@@ -1,4 +1,6 @@
-﻿namespace X10D;
+﻿using X10D.Math;
+
+namespace X10D;
 
 /// <summary>
 ///     Extension methods for <see cref="double" />.

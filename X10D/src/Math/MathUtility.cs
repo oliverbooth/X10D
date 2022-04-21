@@ -1,4 +1,4 @@
-﻿namespace X10D;
+﻿namespace X10D.Math;
 
 /// <summary>
 ///     Provides static helpers methods for mathematical functions not found in the .NET <see cref="System.Math" /> class.
