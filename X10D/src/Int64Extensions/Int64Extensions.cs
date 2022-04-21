@@ -10,6 +10,18 @@ namespace X10D;
 public static class Int64Extensions
 {
     /// <summary>
+    ///     Computes the digital root of an integer.
+    /// </summary>
+    /// <param name="value">The value whose digital root to compute.</param>
+    /// <returns>The digital root of <paramref name="value" />.</returns>
+    /// <remarks>The digital root is defined as the recursive sum of digits until that result is a single digit.</remarks>
+    public static long DigitalRoot(this long value)
+    {
+        long root = value.Mod(9);
+        return root < 1 ? 9 - root : root;
+    }
+
+    /// <summary>
     ///     Converts a Unix time expressed as the number of milliseconds that have elapsed since 1970-01-01T00:00:00Z to a
     ///     <see cref="DateTimeOffset" /> value.
     /// </summary>
@@ -202,6 +214,26 @@ public static class Int64Extensions
     public static float LerpWith(this long alpha, float value, float target)
     {
         return MathUtils.Lerp(value, target, alpha);
+    }
+
+    /// <summary>
+    ///     Performs a modulo operation which supports a negative dividend. 
+    /// </summary>
+    /// <param name="dividend">The dividend.</param>
+    /// <param name="divisor">The divisor.</param>
+    /// <returns>The result of <c>dividend mod divisor</c>.</returns>
+    /// <remarks>
+    ///     The <c>%</c> operator (commonly called the modulo operator) in C# is not defined to be modulo, but is instead
+    ///     remainder. This quirk inherently makes it difficult to use modulo in a negative context, as <c>x % y</c> where x is
+    ///     negative will return a negative value, akin to <c>-(x % y)</c>, even if precedence is forced. This method provides a
+    ///     modulo operation which supports negative dividends.
+    /// </remarks>
+    /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
+    /// <license>CC-BY-SA 2.5</license>
+    public static long Mod(this long dividend, long divisor)
+    {
+        long r = dividend % divisor;
+        return r < 0 ? r + divisor : r;
     }
 
     /// <summary>
