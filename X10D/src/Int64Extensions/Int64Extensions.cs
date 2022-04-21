@@ -267,7 +267,7 @@ public static class Int64Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int Sign(this long value)
     {
-        return Math.Sign(value);
+        return System.Math.Sign(value);
     }
 
     /// <summary>
@@ -342,7 +342,7 @@ public static class Int64Extensions
         }
         else
         {
-            long absStep = Math.Abs(step);
+            long absStep = System.Math.Abs(step);
             for (long i = start; i >= end; i -= absStep)
             {
                 yield return i;

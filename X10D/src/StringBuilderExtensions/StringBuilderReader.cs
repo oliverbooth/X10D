@@ -80,7 +80,7 @@ public class StringBuilderReader : TextReader
             return -1;
         }
 
-        int length = Math.Min(_stringBuilder.Length - _index, count);
+        int length = System.Math.Min(_stringBuilder.Length - _index, count);
         _stringBuilder.CopyTo(_index, buffer, index, length);
         _index += length;
         return length;
@@ -89,7 +89,7 @@ public class StringBuilderReader : TextReader
     /// <inheritdoc />
     public override int Read(Span<char> buffer)
     {
-        int count = Math.Min(buffer.Length, _stringBuilder.Length - _index);
+        int count = System.Math.Min(buffer.Length, _stringBuilder.Length - _index);
         for (var index = 0; index < count; index++)
         {
             buffer[index] = _stringBuilder[index + _index];
@@ -138,7 +138,7 @@ public class StringBuilderReader : TextReader
             return -1;
         }
 
-        int length = Math.Min(count, _stringBuilder.Length - _index);
+        int length = System.Math.Min(count, _stringBuilder.Length - _index);
         _stringBuilder.CopyTo(_index, buffer, index, length);
         _index += length;
         return length;

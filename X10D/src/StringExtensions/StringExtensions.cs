@@ -326,7 +326,7 @@ public static class StringExtensions
         {
             return string.Empty;
         }
-        
+
         random ??= Random.Shared;
 
         char[] array = source.ToCharArray();
@@ -454,14 +454,9 @@ public static class StringExtensions
             throw new ArgumentNullException(nameof(value));
         }
 
-        return SplitInternal();
-
-        IEnumerable<string> SplitInternal()
+        for (var i = 0; i < value.Length; i += chunkSize)
         {
-            for (var i = 0; i < value.Length; i += chunkSize)
-            {
-                yield return value.Substring(i, Math.Min(chunkSize, value.Length - i));
-            }
+            yield return value[i..System.Math.Min(i + chunkSize, value.Length - 1)];
         }
     }
 

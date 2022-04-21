@@ -294,7 +294,7 @@ public static class Int32Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int Sign(this int value)
     {
-        return Math.Sign(value);
+        return System.Math.Sign(value);
     }
 
     /// <summary>
@@ -369,7 +369,7 @@ public static class Int32Extensions
         }
         else
         {
-            int absStep = Math.Abs(step);
+            int absStep = System.Math.Abs(step);
             for (int i = start; i >= end; i -= absStep)
             {
                 yield return i;

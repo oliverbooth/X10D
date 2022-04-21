@@ -78,6 +78,6 @@ public static class SByteExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int Sign(this sbyte value)
     {
-        return Math.Sign(value);
+        return System.Math.Sign(value);
     }
 }
