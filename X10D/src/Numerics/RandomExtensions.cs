@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace X10D.SystemNumerics;
+namespace X10D.Numerics;
 
 /// <summary>
 ///     Extension methods for <see cref="System.Random" />.
