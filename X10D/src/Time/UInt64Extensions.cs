@@ -13,14 +13,7 @@ public static class UInt64Extensions
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
     public static TimeSpan Ticks(this ulong value)
     {
-        long remainder = 0;
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromTicks((long)value).Add(TimeSpan.FromTicks(remainder));
+        return TimeSpan.FromTicks((long)value);
     }
 
     /// <summary>
@@ -32,15 +25,7 @@ public static class UInt64Extensions
     /// </returns>
     public static TimeSpan Milliseconds(this ulong value)
     {
-        long remainder = 0;
-
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromMilliseconds((long)value).Add(TimeSpan.FromMilliseconds(remainder));
+        return TimeSpan.FromMilliseconds((long)value);
     }
 
     /// <summary>
@@ -52,15 +37,7 @@ public static class UInt64Extensions
     /// </returns>
     public static TimeSpan Seconds(this ulong value)
     {
-        long remainder = 0;
-
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromSeconds((long)value).Add(TimeSpan.FromSeconds(remainder));
+        return TimeSpan.FromSeconds((long)value);
     }
 
     /// <summary>
@@ -72,15 +49,7 @@ public static class UInt64Extensions
     /// </returns>
     public static TimeSpan Minutes(this ulong value)
     {
-        long remainder = 0;
-
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromMinutes((long)value).Add(TimeSpan.FromMinutes(remainder));
+        return TimeSpan.FromMinutes((long)value);
     }
 
     /// <summary>
@@ -92,15 +61,7 @@ public static class UInt64Extensions
     /// </returns>
     public static TimeSpan Hours(this ulong value)
     {
-        long remainder = 0;
-
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromHours((long)value).Add(TimeSpan.FromHours(remainder));
+        return TimeSpan.FromHours((long)value);
     }
 
     /// <summary>
@@ -110,15 +71,7 @@ public static class UInt64Extensions
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
     public static TimeSpan Days(this ulong value)
     {
-        long remainder = 0;
-
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromDays((long)value).Add(TimeSpan.FromDays(remainder));
+        return TimeSpan.FromDays((long)value);
     }
 
     /// <summary>
@@ -130,14 +83,6 @@ public static class UInt64Extensions
     /// </returns>
     public static TimeSpan Weeks(this ulong value)
     {
-        long remainder = 0;
-
-        if (value > long.MaxValue)
-        {
-            remainder = (long)(value - long.MaxValue);
-            value -= long.MaxValue;
-        }
-
-        return TimeSpan.FromDays((long)value * 7).Add(TimeSpan.FromDays(remainder * 7));
+        return TimeSpan.FromDays((long)value * 7);
     }
 }
