@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 namespace X10D.Math;
 
 /// <summary>
-///     Mathematical extension methods.
+///     Extension methods for <see cref="float" />.
 /// </summary>
-public static class DoubleExtensions
+public static class SingleExtensions
 {
     /// <summary>
     ///     Returns the arccosine of the specified value.
@@ -16,13 +16,13 @@ public static class DoubleExtensions
     /// </param>
     /// <returns>
     ///     The arccosine of <paramref name="value" />, θ, measured in radians; such that 0 ≤ θ ≤ π. If <paramref name="value" />
-    ///     is equal to <see cref="double.NaN" />, less than -1, or greater than 1, <see cref="double.NaN" /> is returned.
+    ///     is equal to <see cref="float.NaN" />, less than -1, or greater than 1, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Acos(this double value)
+    public static float Acos(this float value)
     {
-        return System.Math.Acos(value);
+        return MathF.Acos(value);
     }
 
     /// <summary>
@@ -30,17 +30,17 @@ public static class DoubleExtensions
     /// </summary>
     /// <param name="value">
     ///     The value representing a hyperbolic cosine, which must be greater than or equal to 1, but less than or equal to
-    ///     <see cref="double.PositiveInfinity" />.
+    ///     <see cref="float.PositiveInfinity" />.
     /// </param>
     /// <returns>
     ///     The hyperbolic arccosine of <paramref name="value" />, θ, measured in radians; such that 0 ≤ θ ≤ ∞. If
-    ///     <paramref name="value" /> is less than 1 or equal to <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    ///     <paramref name="value" /> is less than 1 or equal to <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Acosh(this double value)
+    public static float Acosh(this float value)
     {
-        return System.Math.Acosh(value);
+        return MathF.Acosh(value);
     }
 
     /// <summary>
@@ -51,14 +51,14 @@ public static class DoubleExtensions
     /// </param>
     /// <returns>
     ///     The arccosine of <paramref name="value" />, θ, measured in radians; such that π/2 ≤ θ ≤ π/2. If
-    ///     <paramref name="value" /> is equal to <see cref="double.NaN" />, less than -1, or greater than 1,
-    ///     <see cref="double.NaN" /> is returned.
+    ///     <paramref name="value" /> is equal to <see cref="float.NaN" />, less than -1, or greater than 1,
+    ///     <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Asin(this double value)
+    public static float Asin(this float value)
     {
-        return System.Math.Asin(value);
+        return MathF.Asin(value);
     }
 
     /// <summary>
@@ -66,17 +66,17 @@ public static class DoubleExtensions
     /// </summary>
     /// <param name="value">
     ///     The value representing a hyperbolic sine, which must be greater than or equal to 1, but less than or equal to
-    ///     <see cref="double.PositiveInfinity" />.
+    ///     <see cref="float.PositiveInfinity" />.
     /// </param>
     /// <returns>
     ///     The hyperbolic arccosine of <paramref name="value" />, measured in radians. If <paramref name="value" /> is equal to
-    ///     <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    ///     <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Asinh(this double value)
+    public static float Asinh(this float value)
     {
-        return System.Math.Asinh(value);
+        return MathF.Asinh(value);
     }
 
     /// <summary>
@@ -87,13 +87,13 @@ public static class DoubleExtensions
     /// </param>
     /// <returns>
     ///     The arctangent of <paramref name="value" />, θ, measured in radians; such that π/2 ≤ θ ≤ π/2. If
-    ///     <paramref name="value" /> is equal to <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    ///     <paramref name="value" /> is equal to <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Atan(this double value)
+    public static float Atan(this float value)
     {
-        return System.Math.Atan(value);
+        return MathF.Atan(value);
     }
 
     /// <summary>
@@ -101,18 +101,18 @@ public static class DoubleExtensions
     /// </summary>
     /// <param name="value">
     ///     The value representing a hyperbolic tangent, which must be greater than or equal to 1, but less than or equal to
-    ///     <see cref="double.PositiveInfinity" />.
+    ///     <see cref="float.PositiveInfinity" />.
     /// </param>
     /// <returns>
     ///     The hyperbolic arctangent of <paramref name="value" />, θ, measured in radians; such that -∞ &lt; θ &lt; -1, or 1 &lt;
-    ///     θ &lt; ∞. If <paramref name="value" /> is equal to <see cref="double.NaN" />, less than -1, or greater than 1,
-    ///     <see cref="double.NaN" /> is returned.
+    ///     θ &lt; ∞. If <paramref name="value" /> is equal to <see cref="float.NaN" />, less than -1, or greater than 1,
+    ///     <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Atanh(this double value)
+    public static float Atanh(this float value)
     {
-        return System.Math.Atanh(value);
+        return MathF.Atanh(value);
     }
 
     /// <summary>
@@ -120,15 +120,15 @@ public static class DoubleExtensions
     /// </summary>
     /// <param name="value">The angle, measured in radians.</param>
     /// <returns>
-    ///     The cosine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
-    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
-    ///     <see cref="double.NaN" />.
+    ///     The cosine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="float.NaN" />,
+    ///     <see cref="float.NegativeInfinity" />, or <see cref="float.PositiveInfinity" />, this method returns
+    ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Cos(this double value)
+    public static float Cos(this float value)
     {
-        return System.Math.Cos(value);
+        return MathF.Cos(value);
     }
 
     /// <summary>
@@ -137,51 +137,19 @@ public static class DoubleExtensions
     /// <param name="value">The angle, measured in radians.</param>
     /// <returns>
     ///     The hyperbolic cosine of <paramref name="value" />. If <paramref name="value" /> is equal to
-    ///     <see cref="double.NegativeInfinity" /> or <see cref="double.PositiveInfinity" />,
-    ///     <see cref="double.PositiveInfinity" /> is returned. If <paramref name="value" /> is equal to
-    ///     <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
+    ///     <see cref="float.NegativeInfinity" /> or <see cref="float.PositiveInfinity" />,
+    ///     <see cref="float.PositiveInfinity" /> is returned. If <paramref name="value" /> is equal to
+    ///     <see cref="float.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Cosh(this double value)
+    public static float Cosh(this float value)
     {
-        return System.Math.Cosh(value);
+        return MathF.Cosh(value);
     }
 
     /// <summary>
-    ///     Returns the sine of the specified angle.
-    /// </summary>
-    /// <param name="value">The angle, in radians.</param>
-    /// <returns>
-    ///     The sine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
-    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
-    ///     <see cref="double.NaN" />.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Sin(this double value)
-    {
-        return System.Math.Sin(value);
-    }
-
-    /// <summary>
-    ///     Returns the hyperbolic sine of the specified angle.
-    /// </summary>
-    /// <param name="value">The angle, in radians.</param>
-    /// <returns>
-    ///     The hyperbolic sine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
-    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
-    ///     <see cref="double.NaN" />.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Sinh(this double value)
-    {
-        return System.Math.Sinh(value);
-    }
-
-    /// <summary>
-    ///     Returns an integer that indicates the sign of this double-precision floating-point number.
+    ///     Returns an integer that indicates the sign of this single-precision floating-point number.
     /// </summary>
     /// <param name="value">A signed number.</param>
     /// <returns>
@@ -207,16 +175,15 @@ public static class DoubleExtensions
     ///         </item>
     ///     </list>
     /// </returns>
-    /// <exception cref="ArithmeticException"><paramref name="value" /> is equal to <see cref="double.NaN" />.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static int Sign(this double value)
+    public static int Sign(this float value)
     {
-        return System.Math.Sign(value);
+        return MathF.Sign(value);
     }
 
     /// <summary>
-    ///     Returns the square root of this double-precision floating-point number.
+    ///     Returns the square root of this single-precision floating-point number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>
@@ -233,50 +200,82 @@ public static class DoubleExtensions
     ///            <description><paramref name="value" /> is greater than or equal to 0.</description>
     ///         </item>
     ///         <item>
-    ///             <term><see cref="double.NaN" /></term>
-    ///             <description><paramref name="value" /> is equal to <see cref="double.NaN" /> or is negative.</description>
+    ///             <term><see cref="float.NaN" /></term>
+    ///             <description><paramref name="value" /> is equal to <see cref="float.NaN" /> or is negative.</description>
     ///         </item>
     ///         <item>
-    ///             <term><see cref="double.PositiveInfinity" /></term>
-    ///             <description><paramref name="value" /> is equal to <see cref="double.PositiveInfinity" />.</description>
+    ///             <term><see cref="float.PositiveInfinity" /></term>
+    ///             <description><paramref name="value" /> is equal to <see cref="float.PositiveInfinity" />.</description>
     ///         </item>
     ///     </list>
     /// </returns>
     /// <remarks>
-    ///     For negative input, this method returns <see cref="double.NaN" />. To receive a complex number, see
-    ///     <see cref="Numerics.DoubleExtensions.ComplexSqrt" />.
+    ///     For negative input, this method returns <see cref="float.NaN" />. To receive a complex number, see
+    ///     <see cref="Numerics.SingleExtensions.ComplexSqrt" />.
     /// </remarks>
-    /// <seealso cref="Numerics.DoubleExtensions.ComplexSqrt" />
+    /// <seealso cref="Numerics.SingleExtensions.ComplexSqrt" />
     /// <author>SLenik https://stackoverflow.com/a/6755197/1467293</author>
     /// <license>CC BY-SA 3.0</license>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Sqrt(this double value)
+    public static float Sqrt(this float value)
     {
         switch (value)
         {
             case 0:
                 return 0;
-            case < 0 or double.NaN:
-                return double.NaN;
-            case double.PositiveInfinity:
-                return double.PositiveInfinity;
+            case < 0 or float.NaN:
+                return float.NaN;
+            case float.PositiveInfinity:
+                return float.PositiveInfinity;
         }
 
-        double previous;
-        double current = System.Math.Sqrt(value);
+        float previous;
+        float current = MathF.Sqrt(value);
         do
         {
             previous = current;
-            if (previous == 0.0)
+            if (previous == 0.0f)
             {
                 return 0;
             }
 
             current = (previous + value / previous) / 2;
-        } while (System.Math.Abs(previous - current) > double.Epsilon);
+        } while (MathF.Abs(previous - current) > float.Epsilon);
 
         return current;
+    }
+
+    /// <summary>
+    ///     Returns the sine of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, measured in radians.</param>
+    /// <returns>
+    ///     The sine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
+    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
+    ///     <see cref="double.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static float Sin(this float value)
+    {
+        return MathF.Sin(value);
+    }
+
+    /// <summary>
+    ///     Returns the hyperbolic sine of the specified angle.
+    /// </summary>
+    /// <param name="value">The angle, measured in radians.</param>
+    /// <returns>
+    ///     The hyperbolic sine of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="float.NaN" />,
+    ///     <see cref="float.NegativeInfinity" />, or <see cref="float.PositiveInfinity" />, this method returns
+    ///     <see cref="float.NaN" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static float Sinh(this float value)
+    {
+        return MathF.Sinh(value);
     }
 
     /// <summary>
@@ -284,15 +283,15 @@ public static class DoubleExtensions
     /// </summary>
     /// <param name="value">The angle, measured in radians.</param>
     /// <returns>
-    ///     The tangent of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="double.NaN" />,
-    ///     <see cref="double.NegativeInfinity" />, or <see cref="double.PositiveInfinity" />, this method returns
-    ///     <see cref="double.NaN" />.
+    ///     The tangent of <paramref name="value" />. If <paramref name="value" /> is equal to <see cref="float.NaN" />,
+    ///     <see cref="float.NegativeInfinity" />, or <see cref="float.PositiveInfinity" />, this method returns
+    ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Tan(this double value)
+    public static float Tan(this float value)
     {
-        return System.Math.Tan(value);
+        return MathF.Sin(value);
     }
 
     /// <summary>
@@ -301,14 +300,14 @@ public static class DoubleExtensions
     /// <param name="value">The angle, measured in radians.</param>
     /// <returns>
     ///     The hyperbolic tangent of <paramref name="value" />. If <paramref name="value" /> is equal to
-    ///     <see cref="double.NegativeInfinity" />, this method returns -1. If <paramref name="value" /> is equal to
-    ///     <see cref="double.PositiveInfinity" />, this method returns 1. If <paramref name="value" /> is equal to
-    ///     <see cref="double.NaN" />, this method returns <see cref="double.NaN" />.
+    ///     <see cref="float.NegativeInfinity" />, this method returns -1. If <paramref name="value" /> is equal to
+    ///     <see cref="float.PositiveInfinity" />, this method returns 1. If <paramref name="value" /> is equal to
+    ///     <see cref="float.NaN" />, this method returns <see cref="float.NaN" />.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double Tanh(this double value)
+    public static float Tanh(this float value)
     {
-        return System.Math.Tanh(value);
+        return MathF.Tanh(value);
     }
 }
