@@ -1,10 +1,27 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Numerics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace X10D.Tests.Core;
 
 [TestClass]
 public class SingleTests
 {
+    [TestMethod]
+    public void ComplexSqrt()
+    {
+        Assert.AreEqual(0.0f, 0.0f.ComplexSqrt());
+        Assert.AreEqual(1.4142135f, 2.0f.ComplexSqrt());
+        Assert.AreEqual(3.0f, 9.0f.ComplexSqrt());
+        Assert.AreEqual(4.0f, 16.0f.ComplexSqrt());
+        Assert.AreEqual(new Complex(1.4142135f, 1), (-2.0f).ComplexSqrt());
+        Assert.AreEqual(new Complex(3.0f, 1), (-9.0f).ComplexSqrt());
+        Assert.AreEqual(new Complex(4.0f, 1), (-16.0f).ComplexSqrt());
+        Assert.AreEqual(Complex.NaN, float.NaN.ComplexSqrt());
+        Assert.AreEqual(new Complex(1, 1), (-1.0f).ComplexSqrt());
+        Assert.AreEqual(Complex.Infinity, float.NegativeInfinity.ComplexSqrt());
+        Assert.AreEqual(Complex.Infinity, float.PositiveInfinity.ComplexSqrt());
+    }
+
     [TestMethod]
     public void DegreesToRadians()
     {

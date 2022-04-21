@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Numerics;
 
 namespace X10D.Tests.Core;
 
@@ -11,6 +12,22 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 [TestClass]
 public class DoubleTests
 {
+    [TestMethod]
+    public void ComplexSqrt()
+    {
+        Assert.AreEqual(0.0, 0.0.ComplexSqrt());
+        Assert.AreEqual(1.414213562373095, 2.0.ComplexSqrt());
+        Assert.AreEqual(3.0, 9.0.ComplexSqrt());
+        Assert.AreEqual(4.0, 16.0.ComplexSqrt());
+        Assert.AreEqual(new Complex(1.414213562373095, 1), (-2.0).ComplexSqrt());
+        Assert.AreEqual(new Complex(3.0, 1), (-9.0).ComplexSqrt());
+        Assert.AreEqual(new Complex(4.0, 1), (-16.0).ComplexSqrt());
+        Assert.AreEqual(Complex.NaN, double.NaN.ComplexSqrt());
+        Assert.AreEqual(new Complex(1, 1), (-1.0).ComplexSqrt());
+        Assert.AreEqual(Complex.Infinity, double.NegativeInfinity.ComplexSqrt());
+        Assert.AreEqual(Complex.Infinity, double.PositiveInfinity.ComplexSqrt());
+    }
+    
     /// <summary>
     ///     Test for <see cref="DoubleExtensions.LerpTo" />
     /// </summary>
