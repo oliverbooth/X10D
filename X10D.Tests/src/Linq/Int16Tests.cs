@@ -35,6 +35,6 @@ public class Int16Tests
         Assert.AreEqual(384, Enumerable.Range(1, 4).Product(Double));
         Assert.AreEqual(3840, Enumerable.Range(1, 5).Product(Double));
 
-        // Π_(i=1)^(n(i*2)) will overflow at i=6 for short
+        // Π_(i=1)^n (2i) will overflow at i=6 for short
     }
 }
