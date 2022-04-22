@@ -31,6 +31,6 @@ public class ByteTests
         Assert.AreEqual(8, Enumerable.Range(1, 2).Product(Double));
         Assert.AreEqual(48, Enumerable.Range(1, 3).Product(Double));
 
-        // Π_(i=1)^(n(i*2)) will overflow at i=4 for byte
+        // Π_(i=1)^n (2i) will overflow at i=4 for byte
     }
 }
