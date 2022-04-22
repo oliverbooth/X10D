@@ -50,6 +50,9 @@
     <data name="StreamDoesNotSupportWriting" xml:space="preserve">
         <value>The stream does not support writing.</value>
     </data>
+    <data name="StreamTooLarge" xml:space="preserve">
+        <value>The length of the stream is too large.</value>
+    </data>
     <data name="MaxValueGreaterThanEqualTo0" xml:space="preserve">
         <value>maxValue must be greater than or equal to 0</value>
     </data>
