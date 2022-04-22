@@ -1,4 +1,4 @@
-namespace X10D.Core;
+﻿namespace X10D.Core;
 
 /// <summary>
 ///     Extension methods which apply to all types.
