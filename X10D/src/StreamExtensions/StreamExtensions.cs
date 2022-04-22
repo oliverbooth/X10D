@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Security.Cryptography;
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 
 namespace X10D;
 
@@ -11,53 +9,6 @@ public static partial class StreamExtensions
 {
     private static readonly Endianness DefaultEndianness =
         BitConverter.IsLittleEndian ? Endianness.LittleEndian : Endianness.BigEndian;
-
-    /// <summary>
-    ///     Returns the hash of a stream using the specified hash algorithm.
-    /// </summary>
-    /// <typeparam name="T">A <see cref="HashAlgorithm" /> derived type.</typeparam>
-    /// <param name="stream">The stream whose hash is to be computed.</param>
-    /// <returns>A <see cref="byte" /> array representing the hash of the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    /// <exception cref="IOException">The stream does not support reading.</exception>
-    /// <exception cref="TypeInitializationException">
-    ///     The specified <see cref="HashAlgorithm" /> does not offer a public, static. parameterless <c>Create</c> method, or its
-    ///     <c>Create</c> method returns a type that is not assignable to <typeparamref name="T" />.
-    /// </exception>
-    /// <exception cref="ObjectDisposedException">The stream has already been disposed.</exception>
-    /// <remarks>This method consumes the stream from its current position!.</remarks>
-    public static byte[] GetHash<T>(this Stream stream)
-        where T : HashAlgorithm
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-        if (!stream.CanRead)
-        {
-            throw new IOException(ExceptionMessages.StreamDoesNotSupportReading);
-        }
-
-        Type type = typeof(T);
-
-        MethodInfo? createMethod = type.GetMethods(BindingFlags.Public | BindingFlags.Static)
-            .FirstOrDefault(c => c.Name == "Create" && c.GetParameters().Length == 0);
-        if (createMethod is null)
-        {
-            throw new TypeInitializationException(type.FullName,
-                new ArgumentException(ExceptionMessages.HashAlgorithmNoCreateMethod));
-        }
-
-        using var crypt = createMethod.Invoke(null, null) as T;
-        if (crypt is null)
-        {
-            throw new TypeInitializationException(type.FullName,
-                new ArgumentException(ExceptionMessages.HashAlgorithmCreateReturnedNull));
-        }
-
-        return crypt.ComputeHash(stream);
-    }
 
     /// <summary>
     ///     Reads a decimal value from the current stream using the system's default endian encoding, and advances the stream

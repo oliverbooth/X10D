@@ -10,6 +10,7 @@
 - Added time-related extension methods (`Ticks`, `Milliseconds`, `Seconds`, `Minutes`, `Hours`, `Days`, and `Weeks`) to all built-in numeric types
 - Added `TimeSpan.Ago()` and `TimeSpan.FromNow()`
 - Added `FileInfo.GetHash<T>()`
+- Added `FileInfo.TryWriteHash<T>(Span<byte>, out int)`
 - Added `IEnumerable<TSource>.Product()` and `IEnumerable<TSource>.Product<TResult>(Func<TSource>, TResult)` for all built-in numeric types, computing the product of all (transformed) elements
 - Added `IEnumerable<T>.Shuffled([Random])`, which wraps `IList<T>.Shuffle([Random])` and returns the result
 - Added `T.AsArray()`
@@ -126,6 +127,8 @@
 - Added `Type.SelectFromCustomAttribute<TAttribute, TReturn>()`
 - Added `DateTimeOffset` extensions which supersede `DateTime` extensions
 - Added `Endianness` enum
+- Added `Stream.GetHash<T>()`
+- Added `Stream.TryWriteHash<T>(Span<byte>, out int)`
 - Added `Stream.ReadInt16([Endian])`
 - Added `Stream.ReadInt32([Endian])`
 - Added `Stream.ReadInt64([Endian])`
