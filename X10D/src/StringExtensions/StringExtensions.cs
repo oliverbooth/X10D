@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using X10D.Collections;
 
 namespace X10D;
 
