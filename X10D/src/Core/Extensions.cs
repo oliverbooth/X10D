@@ -1,4 +1,4 @@
-﻿namespace X10D.Core;
+namespace X10D.Core;
 
 /// <summary>
 ///     Extension methods which apply to all types.
@@ -13,7 +13,7 @@ public static class Extensions
     /// <returns>
     ///     An array of type <typeparamref name="T" /> with length 1, whose only element is <paramref name="value" />.
     /// </returns>
-    public static T[] AsArray<T>(this T value)
+    public static T?[] AsArray<T>(this T? value)
     {
         return new[] {value};
     }
@@ -26,7 +26,7 @@ public static class Extensions
     /// <returns>
     ///     An enumerable collection of type <typeparamref name="T" />, whose only element is <paramref name="value" />.
     /// </returns>
-    public static IEnumerable<T> AsEnumerable<T>(this T value)
+    public static IEnumerable<T?> AsEnumerable<T>(this T? value)
     {
         yield return value;
     }
