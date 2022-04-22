@@ -151,6 +151,15 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The length of the stream is too large..
+        /// </summary>
+        internal static string StreamTooLarge {
+            get {
+                return ResourceManager.GetString("StreamTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {{0}} does not inherit {typeof(Attribute)}.
         /// </summary>
         internal static string TypeDoesNotInheritAttribute {
