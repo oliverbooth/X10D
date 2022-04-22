@@ -14,6 +14,7 @@
 - Added `IEnumerable<T>.Shuffled([Random])`, which wraps `IList<T>.Shuffle([Random])` and returns the result
 - Added `T.AsArray()`
 - Added `T.AsEnumerable()`
+- Added `T.ToJson([JsonSerializerOptions])`
 - Added `T[].AsReadOnly()`
 - Added `T[].Clear([Range])` and `T[].Clear(int, int)`
 - Added `T[].Fill(T)` and `T[].Fill(T, int, int)`
@@ -138,6 +139,7 @@
 - Added `Stream.Write(uint, [Endian])`
 - Added `Stream.Write(ulong, [Endian])`
 - Added `string.IsPalindrome()`
+- Added `string.FromJson([JsonSerializerOptions])`
 - Added `TimeSpanParser.TryParse` which supersedes `TimeSpanParser.Parse`
 
 ### Changed
