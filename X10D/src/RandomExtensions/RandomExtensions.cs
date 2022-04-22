@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Text;
+using X10D.Math;
 
 namespace X10D;
 
@@ -108,7 +109,7 @@ public static class RandomExtensions
             throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
         }
 
-        return (random.NextDouble() * (maxValue - minValue)) + minValue;
+        return MathUtility.Lerp(minValue, maxValue, random.NextDouble());
     }
 
     /// <summary>
