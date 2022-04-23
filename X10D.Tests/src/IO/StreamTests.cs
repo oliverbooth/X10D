@@ -56,4 +56,136 @@ public class StreamTests
         Assert.AreEqual(expectedHash.Length, bytesWritten);
         CollectionAssert.AreEqual(expectedHash, hash.ToArray());
     }
+
+    [TestMethod]
+    public void NonReadableStreamShouldThrow()
+    {
+        Assert.ThrowsException<IOException>(() =>
+        {
+            using var stream = new DummyStream();
+            stream.GetHash<SHA1>();
+        });
+        
+        Assert.ThrowsException<IOException>(() =>
+        {
+            using var stream = new DummyStream();
+            stream.TryWriteHash<SHA1>(Span<byte>.Empty, out _);
+        });
+    }
+
+    [TestMethod]
+    public void LargeStreamShouldThrow()
+    {
+        Assert.ThrowsException<ArgumentException>(() =>
+        {
+            using var stream = new DummyStream(true);
+            stream.TryWriteHash<SHA1>(Span<byte>.Empty, out _);
+        });
+    }
+
+    [TestMethod]
+    public void NullCreateMethodShouldThrow()
+    {
+        Assert.ThrowsException<TypeInitializationException>(() => Stream.Null.GetHash<HashAlgorithmTestClass>());
+        Assert.ThrowsException<TypeInitializationException>(() =>
+            Stream.Null.TryWriteHash<HashAlgorithmTestClass>(Span<byte>.Empty, out _));
+    }
+
+    [TestMethod]
+    public void NoCreateMethodShouldThrow()
+    {
+        Assert.ThrowsException<TypeInitializationException>(() => Stream.Null.GetHash<HashAlgorithmTestClassNoCreateMethod>());
+        Assert.ThrowsException<TypeInitializationException>(() =>
+            Stream.Null.TryWriteHash<HashAlgorithmTestClassNoCreateMethod>(Span<byte>.Empty, out _));
+    }
+
+    private class DummyStream : Stream
+    {
+        public DummyStream(bool readable = false)
+        {
+            CanRead = readable;
+            CanSeek = readable;
+            CanWrite = readable;
+        }
+
+        public override void Flush()
+        {
+        }
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            return 0;
+        }
+
+        public override long Seek(long offset, SeekOrigin origin)
+        {
+            return 0;
+        }
+
+        public override void SetLength(long value)
+        {
+        }
+
+        public override void Write(byte[] buffer, int offset, int count)
+        {
+        }
+
+        public override bool CanRead { get; }
+
+        public override bool CanSeek { get; }
+
+        public override bool CanWrite { get; }
+
+        public override long Length
+        {
+            get => long.MaxValue;
+        }
+
+        public override long Position
+        {
+            get => 0;
+            set { }
+        }
+    }
+
+    private class HashAlgorithmTestClass : HashAlgorithm
+    {
+        public static new HashAlgorithmTestClass? Create()
+        {
+            return null;
+        }
+
+        protected override void HashCore(byte[] array, int ibStart, int cbSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override byte[] HashFinal()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    private class HashAlgorithmTestClassNoCreateMethod : HashAlgorithm
+    {
+        protected override void HashCore(byte[] array, int ibStart, int cbSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override byte[] HashFinal()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
