@@ -2,7 +2,7 @@
 <p align="center">
 <a href="https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET+Core%22"><img src="https://img.shields.io/github/workflow/status/oliverbooth/X10D/.NET%20Core" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
 <a href="https://github.com/oliverbooth/X10D/issues"><img src="https://img.shields.io/github/issues/oliverbooth/X10D" alt="GitHub Issues" title="GitHub Issues"></a>
-<a href="https://sonarcloud.io/dashboard?id=oliverbooth_X10D"><img src="https://sonarcloud.io/api/project_badges/measure?project=oliverbooth_X10D&metric=coverage" alt="Coverage"></a>
+<a href="https://sonarcloud.io/dashboard?id=oliverbooth_X10D"><img src="https://img.shields.io/sonar/coverage/oliverbooth_X10D?server=https%3A%2F%2Fsonarcloud.io" alt="Coverage"></a>
 <a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/dt/X10D" alt="NuGet Downloads" title="NuGet Downloads"></a>
 <a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/v/X10D?label=stable" alt="Stable Version" title="Stable Version"></a>
 <a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/vpre/X10D?label=nightly" alt="Nightly Version" title="Nightly Version"></a>
