@@ -33,6 +33,7 @@
 - Added `Random.NextUnitVector2()`
 - Added `Random.NextUnitVector3()`
 - Added `Random.NextRotation()`
+- Added `Rune.Repeat(int)`
 - Added `bool.GetBytes()`
 - Added `byte.GetBytes()`
 - Added `byte.IsEven()`
