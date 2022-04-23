@@ -1,4 +1,4 @@
-﻿namespace X10D;
+﻿namespace X10D.Text;
 
 /// <summary>
 ///     Extension methods for <see cref="char" />.
