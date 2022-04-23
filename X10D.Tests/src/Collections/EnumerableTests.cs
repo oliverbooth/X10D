@@ -9,14 +9,7 @@ public class EnumerableTests
     [TestMethod]
     public void EnumerableShuffledShouldBeDifferentOrder()
     {
-        var list = new List<int>
-        {
-            1,
-            2,
-            3,
-            4,
-            5
-        };
+        var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
         var shuffled = new List<int>(list);
 
         CollectionAssert.AreEqual(list, shuffled);
