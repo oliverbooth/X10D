@@ -1,7 +1,7 @@
-﻿namespace X10D;
+﻿namespace X10D.Math;
 
 /// <summary>
-///     Provides options for <see cref="ComparableExtensions.Between{T1, T2, T3}" /> clusivity.
+///     Provides options for <see cref="ComparableExtensions.Between{T1,T2,T3}" /> clusivity.
 /// </summary>
 [Flags]
 public enum InclusiveOptions : byte
