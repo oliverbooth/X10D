@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace X10D;
+namespace X10D.Math;
 
 /// <summary>
 ///     Extension methods for <see cref="IComparable{T}" />.
