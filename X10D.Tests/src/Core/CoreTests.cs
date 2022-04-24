@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Core;
-using X10D.Text;
 
 namespace X10D.Tests.Core;
 
