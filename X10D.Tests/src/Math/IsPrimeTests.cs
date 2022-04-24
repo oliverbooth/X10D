@@ -2,19 +2,10 @@
 using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using X10D.Math;
 
-namespace X10D.Tests.Core;
+namespace X10D.Tests.Math;
 
-/// <summary>
-///     Tests for <see cref="Int32Extensions.IsPrime(int)"/>.
-/// </summary>
-/// <remarks>
-///     Tests for this extension method are delegated to their own test class because of the non-trivial requirements for
-///     loading testing prime numbers.
-/// </remarks>
-/// <seealso cref="Int16Extensions.IsPrime(short)" />
-/// <seealso cref="Int32Extensions.IsPrime(int)" />
-/// <seealso cref="Int64Extensions.IsPrime(long)" />
 [TestClass]
 public class IsPrimeTests
 {
@@ -27,9 +18,6 @@ public class IsPrimeTests
         Assert.AreEqual(1000, _primeNumbers.Count);
     }
 
-    /// <summary>
-    ///     Asserts the primality of the first 1000 known prime numbers. 
-    /// </summary>
     [TestMethod]
     public void First1000Primes()
     {
@@ -41,9 +29,6 @@ public class IsPrimeTests
         }
     }
 
-    /// <summary>
-    ///     Asserts that all negative numbers are not prime.
-    /// </summary>
     [TestMethod]
     public void Negatives()
     {
@@ -54,9 +39,6 @@ public class IsPrimeTests
         }
     }
 
-    /// <summary>
-    ///     Asserts that values 0 and 1 are not prime.
-    /// </summary>
     [TestMethod]
     public void LessThan2()
     {
@@ -67,9 +49,6 @@ public class IsPrimeTests
         }
     }
 
-    /// <summary>
-    ///     Tests the primality of the numbers 0 - 7919.
-    /// </summary>
     [TestMethod]
     public void ZeroTo7919()
     {
@@ -82,9 +61,6 @@ public class IsPrimeTests
         }
     }
 
-    /// <summary>
-    ///     Tests the primality of the numbers 0 - <see cref="byte.MaxValue" />.
-    /// </summary>
     [TestMethod]
     public void ZeroToByteMaxValue()
     {
