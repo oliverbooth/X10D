@@ -30,6 +30,7 @@ while (directories.Count > 0)
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Out.WriteLine($"{file}({lineNumber}): Double blank line");
                     Console.ResetColor();
+                    problems++;
                 }
 
                 blankLine = true;
