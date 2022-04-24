@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 
 namespace X10D.Numerics;
 
@@ -57,8 +57,7 @@ public static class RandomExtensions
             y = seededRandom.NextSingle(-1f, 1f);
             z = seededRandom.NextSingle(-1f, 1f);
             normal = (w * w) + (x * x) + (y * y) + (z * z);
-        }
-        while (normal > 1f || normal == 0f);
+        } while (normal > 1f || normal == 0f);
 
         normal = MathF.Sqrt(normal);
         return new Quaternion(x / normal, y / normal, z / normal, w / normal);

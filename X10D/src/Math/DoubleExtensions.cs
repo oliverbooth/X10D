@@ -149,6 +149,133 @@ public static class DoubleExtensions
     }
 
     /// <summary>
+    ///     Converts the current angle in degrees to its equivalent represented in radians.
+    /// </summary>
+    /// <param name="value">The angle in degrees to convert.</param>
+    /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double DegreesToRadians(this double value)
+    {
+        return value * (System.Math.PI / 180.0);
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is evenly divisible by 2.
+    /// </summary>
+    /// <param name="value">The value whose parity to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is evenly divisible by 2, or <see langword="false" />
+    ///     otherwise.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static bool IsEven(this double value)
+    {
+        return System.Math.Abs(value % 2.0) < double.Epsilon;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is not evenly divisible by 2.
+    /// </summary>
+    /// <param name="value">The value whose parity to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
+    ///     otherwise.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static bool IsOdd(this double value)
+    {
+        return !value.IsEven();
+    }
+
+    /// <summary>
+    ///     Linearly interpolates to the current value from a specified source using a specified alpha.
+    /// </summary>
+    /// <param name="target">The interpolation target.</param>
+    /// <param name="value">The interpolation source.</param>
+    /// <param name="alpha">The interpolation alpha.</param>
+    /// <returns>
+    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double LerpFrom(this double target, double value, double alpha)
+    {
+        return MathUtility.Lerp(value, target, alpha);
+    }
+
+    /// <summary>
+    ///     Linearly interpolates from the current value to a specified target using a specified alpha.
+    /// </summary>
+    /// <param name="value">The interpolation source.</param>
+    /// <param name="target">The interpolation target.</param>
+    /// <param name="alpha">The interpolation alpha.</param>
+    /// <returns>
+    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double LerpTo(this double value, double target, double alpha)
+    {
+        return MathUtility.Lerp(value, target, alpha);
+    }
+
+    /// <summary>
+    ///     Linearly interpolates to a specified target from a specified source, using the current value as the alpha value.
+    /// </summary>
+    /// <param name="alpha">The interpolation alpha.</param>
+    /// <param name="value">The interpolation source.</param>
+    /// <param name="target">The interpolation target.</param>
+    /// <returns>
+    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double LerpWith(this double alpha, double value, double target)
+    {
+        return MathUtility.Lerp(value, target, alpha);
+    }
+
+    /// <summary>
+    ///     Converts the current angle in radians to its equivalent represented in degrees.
+    /// </summary>
+    /// <param name="value">The angle in radians to convert.</param>
+    /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double RadiansToDegrees(this double value)
+    {
+        return value * (180.0 / System.Math.PI);
+    }
+
+    /// <summary>
+    ///     Rounds the current value to the nearest whole number.
+    /// </summary>
+    /// <param name="value">The value to round.</param>
+    /// <returns><paramref name="value" /> rounded to the nearest whole number.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Round(this double value)
+    {
+        return value.Round(1.0);
+    }
+
+    /// <summary>
+    ///     Rounds the current value to the nearest multiple of a specified number.
+    /// </summary>
+    /// <param name="value">The value to round.</param>
+    /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
+    /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static double Round(this double value, double nearest)
+    {
+        return System.Math.Round(value / nearest) * nearest;
+    }
+
+    /// <summary>
     ///     Returns the sine of the specified angle.
     /// </summary>
     /// <param name="value">The angle, in radians.</param>

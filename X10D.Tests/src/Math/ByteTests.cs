@@ -21,4 +21,30 @@ public class ByteTests
         Assert.AreEqual(362880L, ((byte)9).Factorial());
         Assert.AreEqual(3628800L, ((byte)10).Factorial());
     }
+
+    [TestMethod]
+    public void IsEvenShouldBeCorrect()
+    {
+        const byte one = 1;
+        const byte two = 2;
+
+        bool oneEven = one.IsEven();
+        bool twoEven = two.IsEven();
+
+        Assert.IsFalse(oneEven);
+        Assert.IsTrue(twoEven);
+    }
+
+    [TestMethod]
+    public void IsOddShouldBeCorrect()
+    {
+        const byte one = 1;
+        const byte two = 2;
+
+        bool oneOdd = one.IsOdd();
+        bool twoOdd = two.IsOdd();
+
+        Assert.IsTrue(oneOdd);
+        Assert.IsFalse(twoOdd);
+    }
 }

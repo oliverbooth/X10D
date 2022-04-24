@@ -17,45 +17,13 @@ public class ByteTests
         const byte byteMinValue = byte.MinValue;
         const byte byteMaxValue = byte.MaxValue;
 
-        var minValueBytes = new[] { byteMinValue };
-        var maxValueBytes = new[] { byteMaxValue };
+        byte[] minValueBytes = {byteMinValue};
+        byte[] maxValueBytes = {byteMaxValue};
 
-        var minValueResult = byteMinValue.GetBytes();
-        var maxValueResult = byteMaxValue.GetBytes();
+        byte[] minValueResult = byteMinValue.GetBytes();
+        byte[] maxValueResult = byteMaxValue.GetBytes();
 
         CollectionAssert.AreEqual(minValueBytes, minValueResult);
         CollectionAssert.AreEqual(maxValueBytes, maxValueResult);
-    }
-
-    /// <summary>
-    ///     Tests <see cref="ByteExtensions.IsEven" />.
-    /// </summary>
-    [TestMethod]
-    public void IsEven()
-    {
-        const byte one = 1;
-        const byte two = 2;
-
-        var oneEven = one.IsEven();
-        var twoEven = two.IsEven();
-
-        Assert.IsFalse(oneEven);
-        Assert.IsTrue(twoEven);
-    }
-
-    /// <summary>
-    ///     Tests <see cref="ByteExtensions.IsOdd" />.
-    /// </summary>
-    [TestMethod]
-    public void IsOdd()
-    {
-        const byte one = 1;
-        const byte two = 2;
-
-        var oneOdd = one.IsOdd();
-        var twoOdd = two.IsOdd();
-
-        Assert.IsTrue(oneOdd);
-        Assert.IsFalse(twoOdd);
     }
 }

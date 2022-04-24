@@ -24,6 +24,32 @@ public class SByteTests
     }
 
     [TestMethod]
+    public void IsEvenShouldBeCorrect()
+    {
+        const sbyte one = 1;
+        const sbyte two = 2;
+
+        bool oneEven = one.IsEven();
+        bool twoEven = two.IsEven();
+
+        Assert.AreEqual(false, oneEven);
+        Assert.AreEqual(true, twoEven);
+    }
+
+    [TestMethod]
+    public void IsOddShouldBeCorrect()
+    {
+        const sbyte one = 1;
+        const sbyte two = 2;
+
+        bool oneOdd = one.IsOdd();
+        bool twoOdd = two.IsOdd();
+
+        Assert.AreEqual(true, oneOdd);
+        Assert.AreEqual(false, twoOdd);
+    }
+
+    [TestMethod]
     public void NegativeFactorialShouldThrow()
     {
         Assert.ThrowsException<ArithmeticException>(() => ((sbyte)-1).Factorial());
