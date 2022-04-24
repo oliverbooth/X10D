@@ -18,10 +18,27 @@ while (directories.Count > 0)
         files++;
         await using var stream = File.OpenRead(file);
         using var reader = new StreamReader(stream, Encoding.UTF8);
+        var blankLine = false;
 
         var lineNumber = 1;
         while (await reader.ReadLineAsync() is { } line)
         {
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                if (blankLine)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Out.WriteLine($"{file}({lineNumber}): Double blank line");
+                    Console.ResetColor();
+                }
+
+                blankLine = true;
+            }
+            else
+            {
+                blankLine = false;
+            }
+
             if (line.Length > 130)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
