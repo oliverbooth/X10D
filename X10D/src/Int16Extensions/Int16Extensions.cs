@@ -1,7 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using System.Net;
-using System.Runtime.CompilerServices;
-using X10D.Math;
+﻿using System.Net;
 
 namespace X10D;
 

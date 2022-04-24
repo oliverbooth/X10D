@@ -46,4 +46,34 @@ public static class UInt64Extensions
 
         return result;
     }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is evenly divisible by 2.
+    /// </summary>
+    /// <param name="value">The value whose parity to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is evenly divisible by 2, or <see langword="false" />
+    ///     otherwise.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static bool IsEven(this ulong value)
+    {
+        return (value & 1) == 0;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is not evenly divisible by 2.
+    /// </summary>
+    /// <param name="value">The value whose parity to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
+    ///     otherwise.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static bool IsOdd(this ulong value)
+    {
+        return !value.IsEven();
+    }
 }
