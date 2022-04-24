@@ -7,6 +7,14 @@ namespace X10D.Tests.Math;
 public class ByteTests
 {
     [TestMethod]
+    public void DigitalRootShouldBeCorrect()
+    {
+        const byte value = 238;
+        Assert.AreEqual(4, value.DigitalRoot());
+        Assert.AreEqual(4, (-value).DigitalRoot());
+    }
+
+    [TestMethod]
     public void FactorialShouldBeCorrect()
     {
         Assert.AreEqual(1L, ((byte)0).Factorial());
@@ -28,11 +36,8 @@ public class ByteTests
         const byte one = 1;
         const byte two = 2;
 
-        bool oneEven = one.IsEven();
-        bool twoEven = two.IsEven();
-
-        Assert.IsFalse(oneEven);
-        Assert.IsTrue(twoEven);
+        Assert.IsFalse(one.IsEven());
+        Assert.IsTrue(two.IsEven());
     }
 
     [TestMethod]
@@ -41,10 +46,7 @@ public class ByteTests
         const byte one = 1;
         const byte two = 2;
 
-        bool oneOdd = one.IsOdd();
-        bool twoOdd = two.IsOdd();
-
-        Assert.IsTrue(oneOdd);
-        Assert.IsFalse(twoOdd);
+        Assert.IsTrue(one.IsOdd());
+        Assert.IsFalse(two.IsOdd());
     }
 }

@@ -10,6 +10,23 @@ namespace X10D.Math;
 public static class SByteExtensions
 {
     /// <summary>
+    ///     Computes the digital root of this 32-bit integer.
+    /// </summary>
+    /// <param name="value">The value whose digital root to compute.</param>
+    /// <returns>The digital root of <paramref name="value" />.</returns>
+    /// <remarks>
+    ///     <para>The digital root is defined as the recursive sum of digits until that result is a single digit.</para>
+    ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
+    /// </remarks>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static sbyte DigitalRoot(this sbyte value)
+    {
+        int root = System.Math.Abs(value).Mod(9);
+        return (sbyte)(root < 1 ? 9 - root : root);
+    }
+
+    /// <summary>
     ///     Returns the factorial of the current 8-bit signed integer.
     /// </summary>
     /// <param name="value">The value whose factorial to compute.</param>
@@ -80,6 +97,28 @@ public static class SByteExtensions
     public static bool IsPrime(this sbyte value)
     {
         return ((long)value).IsPrime();
+    }
+
+    /// <summary>
+    ///     Performs a modulo operation which supports a negative dividend.
+    /// </summary>
+    /// <param name="dividend">The dividend.</param>
+    /// <param name="divisor">The divisor.</param>
+    /// <returns>The result of <c>dividend mod divisor</c>.</returns>
+    /// <remarks>
+    ///     The <c>%</c> operator (commonly called the modulo operator) in C# is not defined to be modulo, but is instead
+    ///     remainder. This quirk inherently makes it difficult to use modulo in a negative context, as <c>x % y</c> where x is
+    ///     negative will return a negative value, akin to <c>-(x % y)</c>, even if precedence is forced. This method provides a
+    ///     modulo operation which supports negative dividends.
+    /// </remarks>
+    /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
+    /// <license>CC-BY-SA 2.5</license>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static sbyte Mod(this sbyte dividend, sbyte divisor)
+    {
+        int r = dividend % divisor;
+        return (sbyte)(r < 0 ? r + divisor : r);
     }
 
     /// <summary>

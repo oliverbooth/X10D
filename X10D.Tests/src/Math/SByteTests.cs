@@ -8,6 +8,14 @@ namespace X10D.Tests.Math;
 public class SByteTests
 {
     [TestMethod]
+    public void DigitalRootShouldBeCorrect()
+    {
+        const sbyte value = 127; // sbyte.MaxValue. can't use 238 like the other tests
+        Assert.AreEqual(1, value.DigitalRoot());
+        Assert.AreEqual(1, (-value).DigitalRoot());
+    }
+    
+    [TestMethod]
     public void FactorialShouldBeCorrect()
     {
         Assert.AreEqual(1L, ((sbyte)0).Factorial());
@@ -28,12 +36,9 @@ public class SByteTests
     {
         const sbyte one = 1;
         const sbyte two = 2;
-
-        bool oneEven = one.IsEven();
-        bool twoEven = two.IsEven();
-
-        Assert.AreEqual(false, oneEven);
-        Assert.AreEqual(true, twoEven);
+        
+        Assert.IsFalse(one.IsEven());
+        Assert.IsTrue(two.IsEven());
     }
 
     [TestMethod]
@@ -41,17 +46,24 @@ public class SByteTests
     {
         const sbyte one = 1;
         const sbyte two = 2;
-
-        bool oneOdd = one.IsOdd();
-        bool twoOdd = two.IsOdd();
-
-        Assert.AreEqual(true, oneOdd);
-        Assert.AreEqual(false, twoOdd);
+        
+        Assert.IsTrue(one.IsOdd());
+        Assert.IsFalse(two.IsOdd());
     }
 
     [TestMethod]
     public void NegativeFactorialShouldThrow()
     {
         Assert.ThrowsException<ArithmeticException>(() => ((sbyte)-1).Factorial());
+    }
+
+    [TestMethod]
+    public void SignShouldBeCorrect()
+    {
+        const sbyte one = 1;
+        const sbyte zero = 0;
+        Assert.AreEqual(one, one.Sign());
+        Assert.AreEqual(zero, zero.Sign());
+        Assert.AreEqual(-one, (-one).Sign());
     }
 }

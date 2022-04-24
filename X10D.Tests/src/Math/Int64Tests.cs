@@ -7,6 +7,14 @@ namespace X10D.Tests.Math;
 public class Int64Tests
 {
     [TestMethod]
+    public void DigitalRootShouldBeCorrect()
+    {
+        const long value = 238;
+        Assert.AreEqual(4, value.DigitalRoot());
+        Assert.AreEqual(4, (-value).DigitalRoot());
+    }
+
+    [TestMethod]
     public void FactorialShouldBeCorrect()
     {
         Assert.AreEqual(1L, 0L.Factorial());
@@ -23,8 +31,38 @@ public class Int64Tests
     }
 
     [TestMethod]
+    public void IsEvenShouldBeCorrect()
+    {
+        const long one = 1;
+        const long two = 2;
+        
+        Assert.IsFalse(one.IsEven());
+        Assert.IsTrue(two.IsEven());
+    }
+
+    [TestMethod]
+    public void IsOddShouldBeCorrect()
+    {
+        const long one = 1;
+        const long two = 2;
+        
+        Assert.IsTrue(one.IsOdd());
+        Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
     public void NegativeFactorialShouldThrow()
     {
         Assert.ThrowsException<ArithmeticException>(() => (-1L).Factorial());
+    }
+
+    [TestMethod]
+    public void SignShouldBeCorrect()
+    {
+        const long one = 1;
+        const long zero = 0;
+        Assert.AreEqual(one, one.Sign());
+        Assert.AreEqual(zero, zero.Sign());
+        Assert.AreEqual(-one, (-one).Sign());
     }
 }

@@ -8,6 +8,14 @@ namespace X10D.Tests.Math;
 public class UInt16Tests
 {
     [TestMethod]
+    public void DigitalRootShouldBeCorrect()
+    {
+        const ushort value = 238;
+        Assert.AreEqual(4, value.DigitalRoot());
+        Assert.AreEqual(4, (-value).DigitalRoot());
+    }
+    
+    [TestMethod]
     public void FactorialShouldBeCorrect()
     {
         Assert.AreEqual(1UL, ((ushort)0).Factorial());
@@ -21,5 +29,25 @@ public class UInt16Tests
         Assert.AreEqual(40320UL, ((ushort)8).Factorial());
         Assert.AreEqual(362880UL, ((ushort)9).Factorial());
         Assert.AreEqual(3628800UL, ((ushort)10).Factorial());
+    }
+
+    [TestMethod]
+    public void IsEvenShouldBeCorrect()
+    {
+        const ushort one = 1;
+        const ushort two = 2;
+        
+        Assert.IsFalse(one.IsEven());
+        Assert.IsTrue(two.IsEven());
+    }
+
+    [TestMethod]
+    public void IsOddShouldBeCorrect()
+    {
+        const ushort one = 1;
+        const ushort two = 2;
+        
+        Assert.IsTrue(one.IsOdd());
+        Assert.IsFalse(two.IsOdd());
     }
 }
