@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace X10D.Numerics;
 
@@ -57,7 +57,7 @@ public static class RandomExtensions
             y = seededRandom.NextSingle(-1f, 1f);
             z = seededRandom.NextSingle(-1f, 1f);
             normal = (w * w) + (x * x) + (y * y) + (z * z);
-        } while (normal > 1f || normal == 0f);
+        } while (normal is 0f or > 1f);
 
         normal = MathF.Sqrt(normal);
         return new Quaternion(x / normal, y / normal, z / normal, w / normal);
@@ -77,11 +77,10 @@ public static class RandomExtensions
         {
             throw new ArgumentNullException(nameof(random));
         }
+        
+        // no need to construct a seeded random here, since we only call Next once
 
-        int seed = random.Next();
-        var seededRandom = new Random(seed);
-
-        float angle = seededRandom.NextSingle(0, 360).DegreesToRadians();
+        float angle = random.NextSingle(0, MathF.PI * 2.0f);
         float x = MathF.Cos(angle);
         float y = MathF.Sin(angle);
 
@@ -106,7 +105,7 @@ public static class RandomExtensions
         int seed = random.Next();
         var seededRandom = new Random(seed);
 
-        float angle = seededRandom.NextSingle(0, 360).DegreesToRadians();
+        float angle = seededRandom.NextSingle(0, MathF.PI * 2.0f);
         float z = seededRandom.NextSingle(-1, 1);
         float mp = MathF.Sqrt(1 - (z * z));
         float x = mp * MathF.Cos(angle);
