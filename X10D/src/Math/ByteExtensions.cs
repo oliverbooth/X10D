@@ -1,10 +1,31 @@
-﻿namespace X10D.Math;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
+namespace X10D.Math;
 
 /// <summary>
 ///     Math-related extension methods for <see cref="byte" />.
 /// </summary>
 public static class ByteExtensions
 {
+    /// <summary>
+    ///     Computes the digital root of this 16-bit integer.
+    /// </summary>
+    /// <param name="value">The value whose digital root to compute.</param>
+    /// <returns>The digital root of <paramref name="value" />.</returns>
+    /// <remarks>The digital root is defined as the recursive sum of digits until that result is a single digit.</remarks>
+    /// <remarks>
+    ///     <para>The digital root is defined as the recursive sum of digits until that result is a single digit.</para>
+    ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
+    /// </remarks>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static byte DigitalRoot(this byte value)
+    {
+        int root = value % 9;
+        return (byte)(root == 0 ? 9 : root);
+    }
+
     /// <summary>
     ///     Returns the factorial of the current 8-bit unsigned integer.
     /// </summary>
