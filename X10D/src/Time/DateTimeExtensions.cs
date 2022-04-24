@@ -1,4 +1,4 @@
-﻿namespace X10D;
+﻿namespace X10D.Time;
 
 /// <summary>
 ///     Extension methods for <see cref="DateTime" />.
