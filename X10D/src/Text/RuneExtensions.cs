@@ -3,7 +3,7 @@
 namespace X10D.Text;
 
 /// <summary>
-///     Extension methods for <see cref="Rune" />.
+///     Text-related extension methods for <see cref="Rune" />.
 /// </summary>
 public static class RuneExtensions
 {
@@ -17,19 +17,14 @@ public static class RuneExtensions
     /// </returns>
     public static string Repeat(this Rune value, int count)
     {
-        if (count < 0)
+        switch (count)
         {
-            throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
-        }
-
-        if (count == 0)
-        {
-            return string.Empty;
-        }
-
-        if (count == 1)
-        {
-            return value.ToString();
+            case < 0:
+                throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
+            case 0:
+                return string.Empty;
+            case 1:
+                return value.ToString();
         }
 
         int utf8SequenceLength = value.Utf8SequenceLength;

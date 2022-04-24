@@ -1,7 +1,7 @@
 ﻿namespace X10D.Text;
 
 /// <summary>
-///     Extension methods for <see cref="char" />.
+///     Text-related extension methods for <see cref="char" />.
 /// </summary>
 public static class CharExtensions
 {
@@ -15,21 +15,12 @@ public static class CharExtensions
     /// </returns>
     public static string Repeat(this char value, int count)
     {
-        if (count < 0)
+        return count switch
         {
-            throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
-        }
-
-        if (count == 0)
-        {
-            return string.Empty;
-        }
-
-        if (count == 1)
-        {
-            return value.ToString();
-        }
-
-        return new string(value, count);
+            < 0 => throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0),
+            0 => string.Empty,
+            1 => value.ToString(),
+            _ => new string(value, count)
+        };
     }
 }

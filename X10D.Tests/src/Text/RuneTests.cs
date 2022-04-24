@@ -16,7 +16,7 @@ public class RuneTests
 
         Assert.AreEqual(expected, actual);
     }
-    
+
     [TestMethod]
     public void RepeatOneCountShouldBeLength1String()
     {
@@ -24,13 +24,13 @@ public class RuneTests
         Assert.AreEqual(1, repeated.Length);
         Assert.AreEqual("a", repeated);
     }
-    
+
     [TestMethod]
     public void RepeatZeroCountShouldBeEmpty()
     {
         Assert.AreEqual(string.Empty, new Rune('a').Repeat(0));
     }
-    
+
     [TestMethod]
     public void RepeatNegativeCountShouldThrow()
     {
