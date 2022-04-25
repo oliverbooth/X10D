@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using X10D.Core;
 
 namespace X10D.Numerics;
 
