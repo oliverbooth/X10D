@@ -68,39 +68,4 @@ public class ArrayTests
         Assert.ThrowsException<ArgumentNullException>(array!.Clear);
         Assert.ThrowsException<ArgumentNullException>(() => array!.Clear(0, 0));
     }
-
-    [TestMethod]
-    [DataRow]
-    [DataRow(1)]
-    [DataRow(1, 2, 3)]
-    [DataRow(1, 2, 3, 4, 5)]
-    public void FillShouldBeCorrect(params int[] args)
-    {
-        args.Fill(1);
-
-        int[] comparison = Enumerable.Repeat(1, args.Length).ToArray();
-        CollectionAssert.AreEqual(comparison, args);
-    }
-
-    [TestMethod]
-    public void FillNullShouldThrow()
-    {
-        int[]? array = null;
-        Assert.ThrowsException<ArgumentNullException>(() => array!.Fill(0));
-        Assert.ThrowsException<ArgumentNullException>(() => array!.Fill(0, 0, 0));
-    }
-
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow(1, 2, 3)]
-    [DataRow(1, 2, 3, 4, 5)]
-    public void FillSlicedShouldBeCorrect(params int[] args)
-    {
-        int first = args[0];
-        args.Fill(1, 1, args.Length - 1);
-
-        int[] comparison = Enumerable.Repeat(1, args.Length - 1).ToArray();
-        Assert.AreEqual(first, args[0]);
-        CollectionAssert.AreEqual(comparison, args[1..]);
-    }
 }

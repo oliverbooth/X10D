@@ -26,6 +26,56 @@ public static class ListExtensions
     }
 
     /// <summary>
+    ///     Assigns the given value to the elements of the list which are within the range of <paramref name="startIndex" />
+    ///     (inclusive) and the next <paramref name="count" /> number of indices.
+    /// </summary>
+    /// <param name="source">The list to be filled.</param>
+    /// <param name="value">The value to assign to each list element.</param>
+    /// <param name="startIndex">A 32-bit integer that represents the index in the list at which filling begins.</param>
+    /// <param name="count">The number of elements to fill.</param>
+    /// <typeparam name="T">The type of the elements in the list.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <para><paramref name="startIndex" /> is less than 0.</para>
+    ///     -or-
+    ///     <para><paramref name="count" /> is less than 0.</para>
+    ///     -or-
+    ///     <para><paramref name="startIndex" /> + <paramref name="count" /> exceeds the bounds of the list.</para>
+    /// </exception>
+    public static void Fill<T>(this IList<T> source, T value, int startIndex, int count)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (startIndex < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
+        }
+
+        if (count < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count));
+        }
+
+        if (startIndex + count > source.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count));
+        }
+
+        if (count == 0 || source.Count == 0)
+        {
+            return;
+        }
+
+        for (int index = startIndex; index < startIndex + count; index++)
+        {
+            source[index] = value;
+        }
+    }
+
+    /// <summary>
     ///     Returns a random element from the current list using a specified <see cref="System.Random" /> instance.
     /// </summary>
     /// <typeparam name="T">The element type.</typeparam>
