@@ -77,7 +77,7 @@ public static class RandomExtensions
         {
             throw new ArgumentNullException(nameof(random));
         }
-        
+
         // no need to construct a seeded random here, since we only call Next once
 
         float angle = random.NextSingle(0, MathF.PI * 2.0f);
