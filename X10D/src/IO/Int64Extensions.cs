@@ -18,7 +18,7 @@ public static class Int64Extensions
         value.TryWriteBytes(buffer);
         return buffer.ToArray();
     }
-    
+
     /// <summary>
     ///     Returns the current 64-bit signed integer value as an array of bytes.
     /// </summary>

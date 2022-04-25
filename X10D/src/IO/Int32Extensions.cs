@@ -18,7 +18,7 @@ public static class Int32Extensions
         value.TryWriteBytes(buffer);
         return buffer.ToArray();
     }
-    
+
     /// <summary>
     ///     Returns the current 32-bit signed integer value as an array of bytes.
     /// </summary>

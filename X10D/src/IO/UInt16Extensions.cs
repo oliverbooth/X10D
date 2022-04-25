@@ -19,7 +19,7 @@ public static class UInt16Extensions
         value.TryWriteBytes(buffer);
         return buffer.ToArray();
     }
-    
+
     /// <summary>
     ///     Returns the current 16-bit unsigned integer value as an array of bytes.
     /// </summary>

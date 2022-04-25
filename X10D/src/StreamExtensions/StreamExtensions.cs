@@ -83,7 +83,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
 
@@ -121,7 +120,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
@@ -161,7 +159,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
 
@@ -200,7 +197,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
 
@@ -238,7 +234,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
@@ -280,7 +275,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
 
@@ -320,7 +314,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
@@ -362,7 +355,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
 
@@ -402,7 +394,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(short)];
 
@@ -450,7 +441,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(int)];
 
         if (endianness == Endianness.LittleEndian)
@@ -496,7 +486,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(long)];
 
@@ -546,7 +535,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(ushort)];
 
         if (endianness == Endianness.LittleEndian)
@@ -594,7 +582,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(uint)];
 
@@ -644,7 +631,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(ulong)];
 
         if (endianness == Endianness.LittleEndian)
@@ -679,7 +665,6 @@ public static partial class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 
-
         Span<byte> buffer = stackalloc byte[sizeof(float)];
 
         if (endianness == Endianness.LittleEndian)
@@ -713,7 +698,6 @@ public static partial class StreamExtensions
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
-
 
         Span<byte> buffer = stackalloc byte[sizeof(double)];
 

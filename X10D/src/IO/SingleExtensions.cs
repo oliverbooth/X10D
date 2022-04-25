@@ -18,7 +18,7 @@ public static class SingleExtensions
         value.TryWriteBytes(buffer);
         return buffer.ToArray();
     }
-    
+
     /// <summary>
     ///     Returns the current single-precision floating-point value as an array of bytes.
     /// </summary>
