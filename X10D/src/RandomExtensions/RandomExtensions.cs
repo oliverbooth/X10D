@@ -157,19 +157,31 @@ public static class RandomExtensions
     }
 
     /// <summary>
-    ///     Returns a random single-precision floating point number between 0 and 1.
+    ///     Returns a non-negative random single-precision floating point number that is less than the specified maximum.
     /// </summary>
     /// <param name="random">The <see cref="System.Random" /> instance.</param>
-    /// <returns>A random single-precision floating point number between 0 and 1.</returns>
+    /// <param name="maxValue">
+    ///     The exclusive upper bound of the random number returned. This value must be greater than or equal to 0.
+    /// </param>
+    /// <returns>
+    ///     A random single-precision floating point number that is greater than or equal to 0, and less than
+    ///     <paramref name="maxValue" />.
+    /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-    public static float NextSingle(this Random random)
+    /// <exception cref="ArgumentException"><paramref name="maxValue" /> is less than 0.</exception>
+    public static float NextSingle(this Random random, float maxValue)
     {
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
 
-        return random.NextSingle(0, 1);
+        if (maxValue < 0)
+        {
+            throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualTo0);
+        }
+
+        return random.NextSingle(0, maxValue);
     }
 
     /// <summary>
@@ -191,7 +203,7 @@ public static class RandomExtensions
     /// </exception>
     public static float NextSingle(this Random random, float minValue, float maxValue)
     {
-        return (float)random.NextDouble(minValue, maxValue);
+        return MathUtility.Lerp(minValue, maxValue, random.NextSingle());
     }
 
     /// <summary>
