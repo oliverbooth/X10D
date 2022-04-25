@@ -1,4 +1,6 @@
-﻿namespace X10D.Collections;
+﻿using X10D.Core;
+
+namespace X10D.Collections;
 
 /// <summary>
 ///     Extension methods for <see cref="IList{T}" /> and <see cref="IReadOnlyList{T}" />.
