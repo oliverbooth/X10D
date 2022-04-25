@@ -6,7 +6,7 @@ namespace X10D.Net;
 /// <summary>
 ///     Extension methods for <see cref="IPAddress" />.
 /// </summary>
-public static class IpAddressExtensions
+public static class IPAddressExtensions
 {
     /// <summary>
     ///     Returns a value indicating whether the specified IP address is a valid IPv4 address.
@@ -15,7 +15,7 @@ public static class IpAddressExtensions
     /// <returns>
     ///     <see langword="true" /> if the specified IP address is a valid IPv4 address; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsIpV4(this IPAddress address)
+    public static bool IsIPv4(this IPAddress address)
     {
         return address.AddressFamily == AddressFamily.InterNetwork;
     }
@@ -27,7 +27,7 @@ public static class IpAddressExtensions
     /// <returns>
     ///     <see langword="true" /> if the specified IP address is a valid IPv6 address; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool IsIpV6(this IPAddress address)
+    public static bool IsIPv6(this IPAddress address)
     {
         return address.AddressFamily == AddressFamily.InterNetworkV6;
     }
