@@ -6,6 +6,26 @@
 public static class ListExtensions
 {
     /// <summary>
+    ///     Assigns the given value to each element of the list.
+    /// </summary>
+    /// <param name="source">The list to be filled.</param>
+    /// <param name="value">The value to assign to each list element.</param>
+    /// <typeparam name="T">The type of the elements in the list.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    public static void Fill<T>(this IList<T> source, T value)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        for (var i = 0; i < source.Count; i++)
+        {
+            source[i] = value;
+        }
+    }
+
+    /// <summary>
     ///     Returns a random element from the current list using a specified <see cref="System.Random" /> instance.
     /// </summary>
     /// <typeparam name="T">The element type.</typeparam>

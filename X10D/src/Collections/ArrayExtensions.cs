@@ -88,28 +88,6 @@ public static class ArrayExtensions
     }
 
     /// <summary>
-    ///     Assigns the given value to each element of the array.
-    /// </summary>
-    /// <param name="array">The array to be filled.</param>
-    /// <param name="value">The value to assign to each array element.</param>
-    /// <typeparam name="T">The type of the elements in the array.</typeparam>
-    /// <exception cref="ArgumentNullException"><paramref name="array" /> is <see langword="null" />.</exception>
-    public static void Fill<T>(this T?[] array, T value)
-    {
-        if (array is null)
-        {
-            throw new ArgumentNullException(nameof(array));
-        }
-
-        if (array.Length == 0)
-        {
-            return;
-        }
-
-        Array.Fill(array, value);
-    }
-
-    /// <summary>
     ///     Assigns the given value to the elements of the array which are within the range of <paramref name="startIndex" />
     ///     (inclusive) and the next <paramref name="count" /> number of indices.
     /// </summary>
