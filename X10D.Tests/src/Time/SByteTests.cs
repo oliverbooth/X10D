@@ -8,7 +8,19 @@ namespace X10D.Tests.Time;
 public class SByteTests
 {
     [TestMethod]
-    public void ZeroShouldBeZeroTimeSpan()
+    public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()
+    {
+        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), ((sbyte)0).FromUnixTimeMilliseconds());
+    }
+
+    [TestMethod]
+    public void FromUnixTimeSeconds_ShouldBeEpoch_GivenZero()
+    {
+        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), ((sbyte)0).FromUnixTimeSeconds());
+    }
+
+    [TestMethod]
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
         Assert.AreEqual(TimeSpan.Zero, ((sbyte)0).Ticks());
         Assert.AreEqual(TimeSpan.Zero, ((sbyte)0).Milliseconds());
@@ -20,7 +32,7 @@ public class SByteTests
     }
 
     [TestMethod]
-    public void OneShouldBePositive()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(((sbyte)1).Ticks() > TimeSpan.Zero);
         Assert.IsTrue(((sbyte)1).Milliseconds() > TimeSpan.Zero);
@@ -32,7 +44,7 @@ public class SByteTests
     }
 
     [TestMethod]
-    public void MinusOneShouldBeNegative()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
         Assert.IsTrue(((sbyte)-1).Ticks() < TimeSpan.Zero);
         Assert.IsTrue(((sbyte)-1).Milliseconds() < TimeSpan.Zero);

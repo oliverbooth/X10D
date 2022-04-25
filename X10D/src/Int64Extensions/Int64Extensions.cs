@@ -8,16 +8,6 @@ namespace X10D;
 public static class Int64Extensions
 {
     /// <summary>
-    ///     Returns the current 64-bit signed integer value as an array of bytes.
-    /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <returns>An array of bytes with length 8.</returns>
-    public static byte[] GetBytes(this long value)
-    {
-        return BitConverter.GetBytes(value);
-    }
-
-    /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
     /// </summary>
     /// <param name="value">The value whose multiplicative persistence to calculate.</param>

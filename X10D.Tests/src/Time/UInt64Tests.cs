@@ -8,19 +8,7 @@ namespace X10D.Tests.Time;
 public class UInt64Tests
 {
     [TestMethod]
-    public void ZeroShouldBeZeroTimeSpan()
-    {
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Ticks());
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Milliseconds());
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Seconds());
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Minutes());
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Days());
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Hours());
-        Assert.AreEqual(TimeSpan.Zero, 0UL.Weeks());
-    }
-
-    [TestMethod]
-    public void OneShouldBePositive()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(1UL.Ticks() > TimeSpan.Zero);
         Assert.IsTrue(1UL.Milliseconds() > TimeSpan.Zero);
@@ -29,5 +17,17 @@ public class UInt64Tests
         Assert.IsTrue(1UL.Days() > TimeSpan.Zero);
         Assert.IsTrue(1UL.Hours() > TimeSpan.Zero);
         Assert.IsTrue(1UL.Weeks() > TimeSpan.Zero);
+    }
+
+    [TestMethod]
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
+    {
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Ticks());
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Milliseconds());
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Seconds());
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Minutes());
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Days());
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Hours());
+        Assert.AreEqual(TimeSpan.Zero, 0UL.Weeks());
     }
 }

@@ -19,7 +19,7 @@ public class DoubleTests
     }
 
     [TestMethod]
-    public void ZeroShouldBeZeroTimeSpan()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
         Assert.AreEqual(TimeSpan.Zero, _zero.Milliseconds());
         Assert.AreEqual(TimeSpan.Zero, _zero.Seconds());
@@ -30,7 +30,7 @@ public class DoubleTests
     }
 
     [TestMethod]
-    public void OneShouldBePositive()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(_one.Milliseconds() > TimeSpan.Zero);
         Assert.IsTrue(_one.Seconds() > TimeSpan.Zero);
@@ -41,7 +41,7 @@ public class DoubleTests
     }
 
     [TestMethod]
-    public void MinusOneShouldBeNegative()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
         Assert.IsTrue((_negativeOne).Milliseconds() < TimeSpan.Zero);
         Assert.IsTrue((_negativeOne).Seconds() < TimeSpan.Zero);

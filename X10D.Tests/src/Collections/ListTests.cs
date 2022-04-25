@@ -40,12 +40,41 @@ public class ListTests
     }
 
     [TestMethod]
+    public void Fill_ShouldThrow_GivenExceededCount()
+    {
+        int[] array = Array.Empty<int>();
+        var list = new List<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Fill(0, 0, 1));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Fill(0, 0, 1));
+    }
+
+    [TestMethod]
+    public void Fill_ShouldThrow_GivenNegativeCount()
+    {
+        int[] array = Array.Empty<int>();
+        var list = new List<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Fill(0, 0, -1));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Fill(0, 0, -1));
+    }
+
+    [TestMethod]
+    public void Fill_ShouldThrow_GivenNegativeStartIndex()
+    {
+        int[] array = Array.Empty<int>();
+        var list = new List<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Fill(0, -1, 0));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Fill(0, -1, 0));
+    }
+
+    [TestMethod]
     public void Fill_ShouldThrow_GivenNull()
     {
         int[]? array = null;
         List<int>? list = null;
         Assert.ThrowsException<ArgumentNullException>(() => array!.Fill(0));
         Assert.ThrowsException<ArgumentNullException>(() => list!.Fill(0));
+        Assert.ThrowsException<ArgumentNullException>(() => array!.Fill(0, 0, 0));
+        Assert.ThrowsException<ArgumentNullException>(() => list!.Fill(0, 0, 0));
     }
 
     [TestMethod]

@@ -7,7 +7,7 @@ namespace X10D.Tests.Time;
 public class DateTimeOffsetTests
 {
     [TestMethod]
-    public void AgeShouldBeCorrect()
+    public void Age_ShouldBeDifference_Given1Jan2000()
     {
         DateTimeOffset birthday = new DateTime(2000, 1, 1);
         DateTimeOffset today = DateTime.Now.Date;
@@ -16,7 +16,7 @@ public class DateTimeOffsetTests
     }
 
     [TestMethod]
-    public void FirstShouldBeCorrect()
+    public void First_ShouldBeSaturday_Given1Jan2000()
     {
         DateTimeOffset date = new DateTime(2000, 1, 1);
 
@@ -30,7 +30,7 @@ public class DateTimeOffsetTests
     }
 
     [TestMethod]
-    public void FirstDayOfMonthShouldBeCorrect()
+    public void FirstDayOfMonth_ShouldBe1st_GivenToday()
     {
         DateTimeOffset today = DateTime.Now.Date;
 
@@ -38,7 +38,7 @@ public class DateTimeOffsetTests
     }
 
     [TestMethod]
-    public void LastShouldBeCorrect()
+    public void LastSaturday_ShouldBe29th_Given1Jan2000()
     {
         DateTimeOffset date = new DateTime(2000, 1, 1);
 
@@ -52,15 +52,65 @@ public class DateTimeOffsetTests
     }
 
     [TestMethod]
-    public void LastDayOfMonthShouldBeCorrect()
+    public void LastDayOfMonth_ShouldBe28th_GivenFebruary1999()
     {
-        DateTimeOffset date = new DateTime(2000, 1, 1);
+        DateTimeOffset february = new DateTime(1999, 2, 1);
 
-        Assert.AreEqual(new DateTime(date.Year, date.Month, 31), date.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(february.Year, february.Month, 28), february.LastDayOfMonth());
     }
 
     [TestMethod]
-    public void NextShouldBeCorrect()
+    public void LastDayOfMonth_ShouldBe29th_GivenFebruary2000()
+    {
+        DateTimeOffset february = new DateTime(2000, 2, 1);
+
+        Assert.AreEqual(new DateTime(february.Year, february.Month, 29), february.LastDayOfMonth());
+    }
+
+    [TestMethod]
+    public void LastDayOfMonth_ShouldBe28th_GivenFebruary2001()
+    {
+        DateTimeOffset february = new DateTime(2001, 2, 1);
+
+        Assert.AreEqual(new DateTime(february.Year, february.Month, 28), february.LastDayOfMonth());
+    }
+
+    [TestMethod]
+    public void LastDayOfMonth_ShouldBe30th_GivenAprilJuneSeptemberNovember()
+    {
+        DateTimeOffset april = new DateTime(2000, 4, 1);
+        DateTimeOffset june = new DateTime(2000, 6, 1);
+        DateTimeOffset september = new DateTime(2000, 9, 1);
+        DateTimeOffset november = new DateTime(2000, 11, 1);
+
+        Assert.AreEqual(new DateTime(april.Year, april.Month, 30), april.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(june.Year, june.Month, 30), june.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(september.Year, september.Month, 30), september.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(november.Year, november.Month, 30), november.LastDayOfMonth());
+    }
+
+    [TestMethod]
+    public void LastDayOfMonth_ShouldBe31st_GivenJanuaryMarchMayJulyAugustOctoberDecember()
+    {
+        DateTimeOffset january = new DateTime(2000, 1, 1);
+        DateTimeOffset march = new DateTime(2000, 3, 1);
+        DateTimeOffset may = new DateTime(2000, 5, 1);
+        DateTimeOffset july = new DateTime(2000, 7, 1);
+        DateTimeOffset august = new DateTime(2000, 8, 1);
+        DateTimeOffset october = new DateTime(2000, 10, 1);
+        DateTimeOffset december = new DateTime(2000, 12, 1);
+
+        Assert.AreEqual(new DateTime(january.Year, january.Month, 31), january.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(march.Year, march.Month, 31), march.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(may.Year, may.Month, 31), may.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(july.Year, july.Month, 31), july.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(august.Year, august.Month, 31), august.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(october.Year, october.Month, 31), october.LastDayOfMonth());
+        Assert.AreEqual(new DateTime(december.Year, december.Month, 31), december.LastDayOfMonth());
+    }
+
+    [TestMethod]
+    public void NextSaturday_ShouldBe8th_Given1Jan2000()
     {
         DateTimeOffset date = new DateTime(2000, 1, 1);
 

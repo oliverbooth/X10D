@@ -7,7 +7,7 @@ namespace X10D.Tests.Time;
 public class HalfTests
 {
     [TestMethod]
-    public void ZeroShouldBeZeroTimeSpan()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
         Assert.AreEqual(TimeSpan.Zero, 0.0.Milliseconds());
         Assert.AreEqual(TimeSpan.Zero, 0.0.Seconds());
@@ -18,7 +18,7 @@ public class HalfTests
     }
 
     [TestMethod]
-    public void OneShouldBePositive()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(1.0.Milliseconds() > TimeSpan.Zero);
         Assert.IsTrue(1.0.Seconds() > TimeSpan.Zero);
@@ -29,7 +29,7 @@ public class HalfTests
     }
 
     [TestMethod]
-    public void MinusOneShouldBeNegative()
+    public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
         Assert.IsTrue((-1.0).Milliseconds() < TimeSpan.Zero);
         Assert.IsTrue((-1.0).Seconds() < TimeSpan.Zero);
