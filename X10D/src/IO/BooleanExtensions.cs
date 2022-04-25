@@ -1,4 +1,4 @@
-﻿namespace X10D;
+﻿namespace X10D.IO;
 
 /// <summary>
 ///     Extension methods for <see cref="bool" />.
