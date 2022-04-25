@@ -86,29 +86,4 @@ public static class ArrayExtensions
 
         Array.Clear(array, index, length);
     }
-
-    /// <summary>
-    ///     Assigns the given value to the elements of the array which are within the range of <paramref name="startIndex" />
-    ///     (inclusive) and the next <paramref name="count" /> number of indices.
-    /// </summary>
-    /// <param name="array">The array to be filled.</param>
-    /// <param name="value">The value to assign to each array element.</param>
-    /// <param name="startIndex">A 32-bit integer that represents the index in the array at which filling begins.</param>
-    /// <param name="count">The number of elements to fill.</param>
-    /// <typeparam name="T">The type of the elements in the array.</typeparam>
-    /// <exception cref="ArgumentNullException"><paramref name="array" /> is <see langword="null" />.</exception>
-    public static void Fill<T>(this T?[] array, T value, int startIndex, int count)
-    {
-        if (array is null)
-        {
-            throw new ArgumentNullException(nameof(array));
-        }
-
-        if (count == 0 || array.Length == 0)
-        {
-            return;
-        }
-
-        Array.Fill(array, value, startIndex, count);
-    }
 }
