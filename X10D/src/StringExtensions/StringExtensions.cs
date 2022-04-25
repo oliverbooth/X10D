@@ -1,4 +1,5 @@
 using System.Text;
+using X10D.Core;
 
 namespace X10D;
 
