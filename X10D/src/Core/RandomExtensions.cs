@@ -2,7 +2,7 @@
 using System.Text;
 using X10D.Math;
 
-namespace X10D;
+namespace X10D.Core;
 
 /// <summary>
 ///     Extension methods for <see cref="System.Random" />.
@@ -64,7 +64,7 @@ public static class RandomExtensions
     ///     <paramref name="maxValue" />.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentException"><paramref name="maxValue" /> is less than 0.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="maxValue" /> is less than 0.</exception>
     public static double NextDouble(this Random random, double maxValue)
     {
         if (random is null)
@@ -106,7 +106,7 @@ public static class RandomExtensions
 
         if (maxValue < minValue)
         {
-            throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
+            throw new ArgumentException(ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
         }
 
         return MathUtility.Lerp(minValue, maxValue, random.NextDouble());
@@ -157,6 +157,154 @@ public static class RandomExtensions
     }
 
     /// <summary>
+    ///     Returns a non-negative random integer.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <returns>
+    ///     An 8-bit unsigned integer that is greater than or equal to 0, and less than <see cref="byte.MaxValue" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    public static byte NextByte(this Random random)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        return random.NextByte(byte.MaxValue);
+    }
+
+    /// <summary>
+    ///     Returns a non-negative random integer.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="maxValue">
+    ///     The exclusive upper bound of the random number to be generated. <paramref name="maxValue" /> must be greater than or
+    ///     equal to 0.
+    /// </param>
+    /// <returns>
+    ///     An 8-bit unsigned integer that is greater than or equal to 0, and less than <paramref name="maxValue" />; that is, the
+    ///     range of return values ordinarily includes 0 but not <paramref name="maxValue" />. However, if
+    ///     <paramref name="maxValue" /> equals 0, <paramref name="maxValue" /> is returned.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    public static byte NextByte(this Random random, byte maxValue)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        return random.NextByte(0, maxValue);
+    }
+
+    /// <summary>
+    ///     Returns a non-negative random integer.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="minValue">The inclusive lower bound of the random number to be generated.</param>
+    /// <param name="maxValue">
+    ///     The exclusive upper bound of the random number to be generated. <paramref name="maxValue" /> must be greater than or
+    ///     equal to <paramref name="minValue" />.
+    /// </param>
+    /// <returns>
+    ///     An 8-bit unsigned integer greater than or equal to <paramref name="minValue" /> and less than
+    ///     <paramref name="maxValue" />; that is, the range of return values includes <paramref name="minValue" /> but not
+    ///     <paramref name="maxValue" />. If <paramref name="minValue" /> equals <paramref name="maxValue" />,
+    ///     <paramref name="minValue" /> is returned.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <paramref name="minValue" /> is greater than <paramref name="maxValue" />.
+    /// </exception>
+    public static byte NextByte(this Random random, byte minValue, byte maxValue)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        return (byte)random.Next(minValue, maxValue);
+    }
+
+    /// <summary>
+    ///     Returns a non-negative random integer.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <returns>
+    ///     An 16-bit signed integer that is greater than or equal to 0, and less than <see cref="short.MaxValue" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    public static short NextInt16(this Random random)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        return random.NextInt16(short.MaxValue);
+    }
+
+    /// <summary>
+    ///     Returns a non-negative random integer that is less than the specified maximum.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="maxValue">
+    ///     The exclusive upper bound of the random number to be generated. <paramref name="maxValue" /> must be greater than or
+    ///     equal to 0.
+    /// </param>
+    /// <returns>
+    ///     A 16-bit signed integer that is greater than or equal to 0, and less than <paramref name="maxValue" />; that is, the
+    ///     range of return values ordinarily includes 0 but not <paramref name="maxValue" />. However, if
+    ///     <paramref name="maxValue" /> equals 0, <paramref name="maxValue" /> is returned.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="maxValue" /> is less than 0.</exception>
+    public static short NextInt16(this Random random, short maxValue)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        if (maxValue < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(maxValue));
+        }
+
+        return random.NextInt16(0, maxValue);
+    }
+
+    /// <summary>
+    ///     Returns a random integer that is within a specified range.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="minValue">The inclusive lower bound of the random number to be generated.</param>
+    /// <param name="maxValue">
+    ///     The exclusive upper bound of the random number to be generated. <paramref name="maxValue" /> must be greater than or
+    ///     equal to <paramref name="minValue" />.
+    /// </param>
+    /// <returns>
+    ///     An 8-bit unsigned integer greater than or equal to <paramref name="minValue" /> and less than
+    ///     <paramref name="maxValue" />; that is, the range of return values includes <paramref name="minValue" /> but not
+    ///     <paramref name="maxValue" />. If <paramref name="minValue" /> equals <paramref name="maxValue" />,
+    ///     <paramref name="minValue" /> is returned.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <paramref name="minValue" /> is greater than <paramref name="maxValue" />.
+    /// </exception>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    public static short NextInt16(this Random random, short minValue, short maxValue)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        return (short)random.Next(minValue, maxValue);
+    }
+
+    /// <summary>
     ///     Returns a non-negative random single-precision floating point number that is less than the specified maximum.
     /// </summary>
     /// <param name="random">The <see cref="System.Random" /> instance.</param>
@@ -178,7 +326,7 @@ public static class RandomExtensions
 
         if (maxValue < 0)
         {
-            throw new ArgumentOutOfRangeException(ExceptionMessages.MaxValueGreaterThanEqualTo0);
+            throw new ArgumentOutOfRangeException(nameof(maxValue));
         }
 
         return random.NextSingle(0, maxValue);
@@ -203,6 +351,16 @@ public static class RandomExtensions
     /// </exception>
     public static float NextSingle(this Random random, float minValue, float maxValue)
     {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        if (maxValue < minValue)
+        {
+            throw new ArgumentException(ExceptionMessages.MaxValueGreaterThanEqualToMinValue);
+        }
+
         return MathUtility.Lerp(minValue, maxValue, random.NextSingle());
     }
 
