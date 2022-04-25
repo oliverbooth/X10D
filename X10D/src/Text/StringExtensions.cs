@@ -58,8 +58,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The input string.</param>
     /// <returns>
-    ///     Returns <see langword="true" /> if all alpha characters are lowercase, <see langword="false" />
-    ///     otherwise.
+    ///     <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsLower(this string value)
     {
@@ -140,8 +139,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The input string.</param>
     /// <returns>
-    ///     Returns <see langword="true" /> if all alpha characters are uppercase, <see langword="false" />
-    ///     otherwise.
+    ///     <see langword="true" /> if all alpha characters in this string are uppercase; otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsUpper(this string value)
     {
