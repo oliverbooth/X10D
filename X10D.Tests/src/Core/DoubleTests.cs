@@ -29,7 +29,7 @@ public class DoubleTests
         Assert.AreEqual(Complex.Infinity, double.NegativeInfinity.ComplexSqrt());
         Assert.AreEqual(Complex.Infinity, double.PositiveInfinity.ComplexSqrt());
     }
-    
+
     /// <summary>
     ///     Test for <see cref="DoubleExtensions.LerpTo" />
     /// </summary>
@@ -60,17 +60,6 @@ public class DoubleTests
         Assert.AreEqual(0.017453292519943295, 1.0.DegreesToRadians());
         Assert.AreEqual(0.10471975511965978, 6.0.DegreesToRadians());
         Assert.AreEqual(0.20943951023931956, 12.0.DegreesToRadians());
-    }
-
-    /// <summary>
-    ///     Tests for <see cref="DoubleExtensions.GetBytes" />.
-    /// </summary>
-    [TestMethod]
-    public void GetBytes()
-    {
-        CollectionAssert.AreEqual(
-            new byte[] {0x18, 0x2D, 0x44, 0x54, 0xFB, 0x21, 0x09, 0x40},
-            Math.PI.GetBytes());
     }
 
     /// <summary>

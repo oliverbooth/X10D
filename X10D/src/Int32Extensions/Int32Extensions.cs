@@ -71,16 +71,6 @@ public static class Int32Extensions
     }
 
     /// <summary>
-    ///     Returns the current 32-bit signed integer value as an array of bytes.
-    /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <returns>An array of bytes with length 4.</returns>
-    public static byte[] GetBytes(this int value)
-    {
-        return BitConverter.GetBytes(value);
-    }
-
-    /// <summary>
     ///     Returns an enumerable collection of 32-bit signed integers that range from the current value to a specified value.
     /// </summary>
     /// <param name="start">The value of the first integer in the sequence.</param>

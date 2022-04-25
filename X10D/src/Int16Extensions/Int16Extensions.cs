@@ -8,16 +8,6 @@ namespace X10D;
 public static class Int16Extensions
 {
     /// <summary>
-    ///     Returns the current 16-bit signed integer value as an array of bytes.
-    /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <returns>An array of bytes with length 2.</returns>
-    public static byte[] GetBytes(this short value)
-    {
-        return BitConverter.GetBytes(value);
-    }
-
-    /// <summary>
     ///     Returns an enumerable collection of 16-bit signed integers that range from the current value to a specified value.
     /// </summary>
     /// <param name="start">The value of the first integer in the sequence.</param>
