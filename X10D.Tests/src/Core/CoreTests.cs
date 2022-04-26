@@ -7,20 +7,46 @@ namespace X10D.Tests.Core;
 public class CoreTests
 {
     [TestMethod]
-    public void AsArrayShouldBeLength1()
+    [DataRow(1)]
+    [DataRow("f")]
+    [DataRow(true)]
+    public void AsArrayValue_ShouldBeLength1_GivenValue(object o)
     {
-        Assert.AreEqual(1, 0.AsArrayValue().Length);
-        Assert.AreEqual(1, string.Empty.AsArrayValue().Length);
-        Assert.AreEqual(1, true.AsArrayValue().Length);
-        Assert.AreEqual(1, ((object?)null).AsArrayValue().Length);
+        object[] array = o.AsArrayValue()!;
+        Assert.IsNotNull(array);
+        Assert.IsTrue(array.Length == 1);
     }
-    
+
     [TestMethod]
-    public void AsEnumerableShouldBeLength1()
+    [DataRow(1)]
+    [DataRow("f")]
+    [DataRow(true)]
+    public void AsArrayValue_ShouldContainValue_Given_Value(object o)
     {
-        Assert.AreEqual(1, 0.AsEnumerableValue().Count());
-        Assert.AreEqual(1, string.Empty.AsEnumerableValue().Count());
-        Assert.AreEqual(1, true.AsEnumerableValue().Count());
-        Assert.AreEqual(1, ((object?)null).AsEnumerableValue().Count());
+        object[] array = o.AsArrayValue()!;
+        Assert.IsNotNull(array);
+        Assert.AreEqual(o, array[0]);
+    }
+
+    [TestMethod]
+    [DataRow(1)]
+    [DataRow("f")]
+    [DataRow(true)]
+    public void AsEnumerableValue_ShouldBeLength1_GivenValue(object o)
+    {
+        IEnumerable<object> array = o.AsEnumerableValue()!;
+        Assert.IsNotNull(array);
+        Assert.IsTrue(array.Count() == 1);
+    }
+
+    [TestMethod]
+    [DataRow(1)]
+    [DataRow("f")]
+    [DataRow(true)]
+    public void AsEnumerableValue_ShouldContainValue_Given_Value(object o)
+    {
+        IEnumerable<object> array = o.AsEnumerableValue()!;
+        Assert.IsNotNull(array);
+        Assert.AreEqual(o, array.ElementAt(0));
     }
 }

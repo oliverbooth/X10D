@@ -1,34 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Collections;
-using X10D.Core;
 
 namespace X10D.Tests.Collections;
 
 [TestClass]
 public class ArrayTests
 {
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
-    public void AsArrayShouldGiveLength1(object o)
-    {
-        object[] array = o.AsArrayValue()!;
-        Assert.IsNotNull(array);
-        Assert.IsTrue(array.Length == 1);
-    }
-
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
-    public void AsArrayShouldContainObject(object o)
-    {
-        object[] array = o.AsArrayValue()!;
-        Assert.IsNotNull(array);
-        Assert.AreEqual(o, array[0]);
-    }
-
     [TestMethod]
     public void AsReadOnlyShouldBeReadOnly()
     {
