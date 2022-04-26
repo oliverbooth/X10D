@@ -20,8 +20,6 @@ public static class Int64Extensions
         var persistence = 0;
         long product = value;
 
-        const string foo = "Hello" + "World";
-
         while (product > 9)
         {
             if (value % 10 == 0)
