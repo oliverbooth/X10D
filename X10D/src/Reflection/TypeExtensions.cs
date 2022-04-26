@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
-using System.Reflection;
 
-namespace X10D;
+namespace X10D.Reflection;
 
 /// <summary>
 ///     Extension methods for <see cref="Type" />.
@@ -40,7 +39,7 @@ public static class TypeExtensions
         if (!interfaceType.IsInterface)
         {
             string? exceptionMessage = ExceptionMessages.TypeIsNotInterface;
-            string? formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, interfaceType);
+            string formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, interfaceType);
 
             throw new ArgumentException(formattedMessage, nameof(interfaceType));
         }
@@ -87,7 +86,7 @@ public static class TypeExtensions
         if (!value.IsClass)
         {
             string? exceptionMessage = ExceptionMessages.TypeIsNotClass;
-            string? formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, value);
+            string formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, value);
 
             throw new ArgumentException(formattedMessage, nameof(value));
         }
@@ -95,7 +94,7 @@ public static class TypeExtensions
         if (!type.IsClass)
         {
             string? exceptionMessage = ExceptionMessages.TypeIsNotClass;
-            string? formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, type);
+            string formattedMessage = string.Format(CultureInfo.CurrentCulture, exceptionMessage, type);
 
             throw new ArgumentException(formattedMessage, nameof(type));
         }
