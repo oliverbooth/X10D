@@ -12,7 +12,7 @@ public class EnumerableTests
     [DataRow(true)]
     public void AsEnumerable_ShouldWrapElement_GivenValue(object o)
     {
-        IEnumerable<object?> array = o.AsEnumerable().ToArray(); // prevent multiple enumeration of IEnumerable
+        IEnumerable<object?> array = o.AsEnumerableValue().ToArray(); // prevent multiple enumeration of IEnumerable
         Assert.IsNotNull(array);
         Assert.IsTrue(array.Count() == 1);
         Assert.AreEqual(o, array.ElementAt(0));

@@ -13,7 +13,7 @@ public class ArrayTests
     [DataRow(true)]
     public void AsArrayShouldGiveLength1(object o)
     {
-        object[] array = o.AsArray()!;
+        object[] array = o.AsArrayValue()!;
         Assert.IsNotNull(array);
         Assert.IsTrue(array.Length == 1);
     }
@@ -24,7 +24,7 @@ public class ArrayTests
     [DataRow(true)]
     public void AsArrayShouldContainObject(object o)
     {
-        object[] array = o.AsArray()!;
+        object[] array = o.AsArrayValue()!;
         Assert.IsNotNull(array);
         Assert.AreEqual(o, array[0]);
     }
