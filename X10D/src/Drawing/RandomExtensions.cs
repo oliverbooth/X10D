@@ -8,25 +8,36 @@ namespace X10D.Drawing;
 public static class RandomExtensions
 {
     /// <summary>
-    ///     Returns a random color.
+    ///     Returns a color of random components for red, green, and blue.
     /// </summary>
     /// <param name="random">The <see cref="System.Random" /> instance.</param>
     /// <returns>A <see cref="Color" /> whose red, green, and blue components are all random, and whose alpha is 255</returns>
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
-    public static Color NextColor(this Random random)
+    public static Color NextColorRgb(this Random random)
     {
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
 
-        int seed = random.Next();
-        var seededRandom = new Random(seed);
+        int rgb = random.Next();
+        return Color.FromArgb(0xFF, (byte)(rgb >> 16 & 0xFF), (byte)(rgb >> 8 & 0xFF), (byte)(rgb & 0xFF));
+    }
 
-        var r = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
-        var g = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
-        var b = (byte)(seededRandom.Next() % (byte.MaxValue + 1));
+    /// <summary>
+    ///     Returns a color composed of random components for apha, red, green, and blue.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <returns>A <see cref="Color" /> whose alpha, red, green, and blue components are all random.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    public static Color NextColorArgb(this Random random)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
 
-        return Color.FromArgb(r, g, b);
+        int argb = random.Next();
+        return Color.FromArgb(argb);
     }
 }
