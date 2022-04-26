@@ -14,7 +14,7 @@ public static class ByteExtensions
     /// <returns>An array of bytes with length 1.</returns>
     public static byte[] GetBytes(this byte value)
     {
-        return value.AsArray();
+        return value.AsArrayValue();
     }
 
     /// <summary>
