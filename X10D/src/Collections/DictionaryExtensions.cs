@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace X10D;
+namespace X10D.Collections;
 
 /// <summary>
 ///     Extension methods for <see cref="Dictionary{TKey,TValue}" /> and similar types.
