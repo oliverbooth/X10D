@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 
-namespace X10D;
+namespace X10D.Reflection;
 
 /// <summary>
 ///     Extension methods for <see cref="MemberInfo" />.
@@ -76,8 +76,7 @@ public static class MemberInfoExtensions
     ///     -or-
     ///     <paramref name="selector" /> is <see langword="null" />.
     /// </exception>
-    public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(
-        this MemberInfo member,
+    public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(this MemberInfo member,
         Func<TAttribute, TReturn> selector)
         where TAttribute : Attribute
     {
