@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace X10D;
+namespace X10D.Text;
 
 // NOTE: the overriden async overloads simply wrap the result of their sync counterparts because StringBuilder isn't inherently
 // async. calling Task.FromResult (or creating a new ValueTask) is sufficient enough in this case, because there is simply no
