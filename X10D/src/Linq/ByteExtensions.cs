@@ -52,4 +52,80 @@ public static class ByteExtensions
     {
         return source.Select(selector).Product();
     }
+
+    /// <summary>
+    ///     Returns an enumerable sequence of 8-bit integers ranging from the current value to a specified value.
+    /// </summary>
+    /// <param name="value">The starting value of the sequence.</param>
+    /// <param name="end">The ending value of the sequence.</param>
+    /// <returns>
+    ///     An enumerable collection of 8-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
+    /// </returns>
+    public static IEnumerable<byte> RangeTo(this byte value, byte end)
+    {
+        byte start = System.Math.Min(value, end);
+        end = System.Math.Max(value, end);
+
+        for (byte current = start; current < end; current++)
+        {
+            yield return current;
+        }
+    }
+
+    /// <summary>
+    ///     Returns an enumerable sequence of 16-bit integers ranging from the current value to a specified value.
+    /// </summary>
+    /// <param name="value">The starting value of the sequence.</param>
+    /// <param name="end">The ending value of the sequence.</param>
+    /// <returns>
+    ///     An enumerable collection of 16-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
+    /// </returns>
+    public static IEnumerable<short> RangeTo(this byte value, short end)
+    {
+        short start = System.Math.Min(value, end);
+        end = System.Math.Max(value, end);
+
+        for (short current = start; current < end; current++)
+        {
+            yield return current;
+        }
+    }
+
+    /// <summary>
+    ///     Returns an enumerable sequence of 32-bit integers ranging from the current value to a specified value.
+    /// </summary>
+    /// <param name="value">The starting value of the sequence.</param>
+    /// <param name="end">The ending value of the sequence.</param>
+    /// <returns>
+    ///     An enumerable collection of 32-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
+    /// </returns>
+    public static IEnumerable<int> RangeTo(this byte value, int end)
+    {
+        int start = System.Math.Min(value, end);
+        end = System.Math.Max(value, end);
+
+        for (int current = start; current < end; current++)
+        {
+            yield return current;
+        }
+    }
+
+    /// <summary>
+    ///     Returns an enumerable sequence of 64-bit integers ranging from the current value to a specified value.
+    /// </summary>
+    /// <param name="value">The starting value of the sequence.</param>
+    /// <param name="end">The ending value of the sequence.</param>
+    /// <returns>
+    ///     An enumerable collection of 64-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
+    /// </returns>
+    public static IEnumerable<long> RangeTo(this byte value, long end)
+    {
+        long start = System.Math.Min(value, end);
+        end = System.Math.Max(value, end);
+
+        for (long current = start; current < end; current++)
+        {
+            yield return current;
+        }
+    }
 }
