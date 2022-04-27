@@ -37,4 +37,49 @@ public class Int16Tests
 
         // Π_(i=1)^n (2i) will overflow at i=6 for short
     }
+
+    [TestMethod]
+    public void RangeTo_Int16_ShouldYieldCorrectValues()
+    {
+        const short start = 1;
+        const short end = 10;
+
+        short current = 1;
+        foreach (short value in start.RangeTo(end))
+        {
+            Assert.AreEqual(current++, value);
+        }
+
+        Assert.AreEqual(current, end);
+    }
+
+    [TestMethod]
+    public void RangeTo_Int32_ShouldYieldCorrectValues()
+    {
+        const short start = 1;
+        const int end = 10;
+
+        int current = 1;
+        foreach (int value in start.RangeTo(end))
+        {
+            Assert.AreEqual(current++, value);
+        }
+
+        Assert.AreEqual(current, end);
+    }
+
+    [TestMethod]
+    public void RangeTo_Int64_ShouldYieldCorrectValues()
+    {
+        const short start = 1;
+        const long end = 10;
+
+        long current = 1;
+        foreach (long value in start.RangeTo(end))
+        {
+            Assert.AreEqual(current++, value);
+        }
+
+        Assert.AreEqual(current, end);
+    }
 }

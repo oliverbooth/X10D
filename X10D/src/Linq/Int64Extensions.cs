@@ -52,4 +52,23 @@ public static class Int64Extensions
     {
         return source.Select(selector).Product();
     }
+
+    /// <summary>
+    ///     Returns an enumerable sequence of 64-bit integers ranging from the current value to a specified value.
+    /// </summary>
+    /// <param name="value">The starting value of the sequence.</param>
+    /// <param name="end">The ending value of the sequence.</param>
+    /// <returns>
+    ///     An enumerable collection of 64-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
+    /// </returns>
+    public static IEnumerable<long> RangeTo(this long value, long end)
+    {
+        long start = System.Math.Min(value, end);
+        end = System.Math.Max(value, end);
+
+        for (long current = start; current < end; current++)
+        {
+            yield return current;
+        }
+    }
 }

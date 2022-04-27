@@ -41,4 +41,19 @@ public class Int64Tests
         Assert.AreEqual(185794560, Enumerable.Range(1, 9).Product(Double));
         Assert.AreEqual(3715891200, Enumerable.Range(1, 10).Product(Double));
     }
+
+    [TestMethod]
+    public void RangeTo_Int64_ShouldYieldCorrectValues()
+    {
+        const long start = 1;
+        const long end = 10;
+
+        long current = 1;
+        foreach (long value in start.RangeTo(end))
+        {
+            Assert.AreEqual(current++, value);
+        }
+
+        Assert.AreEqual(current, end);
+    }
 }
