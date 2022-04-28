@@ -25,13 +25,14 @@ public static class BoolListExtensions
             throw new ArgumentException("Source cannot contain more than than 8 elements.", nameof(source));
         }
 
-        unsafe
+        byte result = 0;
+
+        for (var i = 0; i < source.Count; i++)
         {
-            fixed (bool* p = source.ToArray())
-            {
-                return (byte)(*(ulong*)p * 72624976668147840L >> 56); // evil fucking bit hack
-            }
+            result |= (byte)(source[i] ? 1 << i : 0);
         }
+
+        return result;
     }
 
     /// <summary>

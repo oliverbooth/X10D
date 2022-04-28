@@ -33,12 +33,9 @@ public static class ByteExtensions
             throw new ArgumentException($"Destination must be at least {Size} in length.", nameof(destination));
         }
 
-        unsafe
+        for (var index = 0; index < Size; index++)
         {
-            fixed (bool* p = destination)
-            {
-                *(ulong*)p = ((ulong)value * 567382630219905) & 72340172838076673UL; // evil fucking bit hack
-            }
+            destination[index] = (value & (1 << index)) != 0;
         }
     }
 }
