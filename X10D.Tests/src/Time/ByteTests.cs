@@ -19,6 +19,35 @@ public class ByteTests
     }
 
     [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
+    {
+        Assert.IsFalse(((byte)100).IsLeapYear());
+        Assert.IsFalse(((byte)200).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenOddNumber()
+    {
+        Assert.IsFalse(((byte)1).IsLeapYear());
+        Assert.IsFalse(((byte)101).IsLeapYear());
+        Assert.IsFalse(((byte)201).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeTrue_GivenMultipleOf4()
+    {
+        Assert.IsTrue(((byte)4).IsLeapYear());
+        Assert.IsTrue(((byte)104).IsLeapYear());
+        Assert.IsTrue(((byte)204).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldThrow_GivenZero()
+    {
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => ((byte)0).IsLeapYear());
+    }
+
+    [TestMethod]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(((byte)1).Ticks() > TimeSpan.Zero);

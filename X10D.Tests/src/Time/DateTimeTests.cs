@@ -38,6 +38,34 @@ public class DateTimeTests
     }
 
     [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_Given1999()
+    {
+        var date = new DateTime(1999, 1, 1);
+        Assert.IsFalse(date.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeTrue_Given2000()
+    {
+        var date = new DateTime(2000, 1, 1);
+        Assert.IsTrue(date.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_Given2001()
+    {
+        var date = new DateTime(2001, 1, 1);
+        Assert.IsFalse(date.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_Given2100()
+    {
+        var date = new DateTime(2100, 1, 1);
+        Assert.IsFalse(date.IsLeapYear());
+    }
+
+    [TestMethod]
     public void LastSaturday_ShouldBe29th_Given1Jan2000()
     {
         var date = new DateTime(2000, 1, 1);

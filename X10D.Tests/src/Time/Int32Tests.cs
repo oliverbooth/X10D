@@ -19,6 +19,40 @@ public class Int32Tests
     }
 
     [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
+    {
+        Assert.IsFalse(100.IsLeapYear());
+        Assert.IsFalse((-100).IsLeapYear());
+        Assert.IsFalse(1900.IsLeapYear());
+        Assert.IsFalse(2100.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenOddNumber()
+    {
+        Assert.IsFalse(1.IsLeapYear());
+        Assert.IsFalse(101.IsLeapYear());
+        Assert.IsFalse((-101).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeTrue_GivenMultipleOf4Or400()
+    {
+        Assert.IsTrue((-401).IsLeapYear());
+        Assert.IsTrue((-105).IsLeapYear());
+        Assert.IsTrue(4.IsLeapYear());
+        Assert.IsTrue(104.IsLeapYear());
+        Assert.IsTrue(400.IsLeapYear());
+        Assert.IsTrue(2000.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldThrow_GivenZero()
+    {
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => 0.IsLeapYear());
+    }
+
+    [TestMethod]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
         Assert.IsTrue((-1).Ticks() < TimeSpan.Zero);

@@ -185,5 +185,14 @@ namespace X10D {
                 return ResourceManager.GetString("TypeIsNotInterface", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year cannot be zero..
+        /// </summary>
+        internal static string YearCannotBeZero {
+            get {
+                return ResourceManager.GetString("YearCannotBeZero", resourceCulture);
+            }
+        }
     }
 }
