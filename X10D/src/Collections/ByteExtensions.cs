@@ -12,10 +12,10 @@ public static class ByteExtensions
     /// </summary>
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 8.</returns>
-    public static bool[] UnpackBits(this byte value)
+    public static bool[] Unpack(this byte value)
     {
         Span<bool> buffer = stackalloc bool[Size];
-        value.UnpackBits(buffer);
+        value.Unpack(buffer);
         return buffer.ToArray();
     }
 
@@ -26,7 +26,7 @@ public static class ByteExtensions
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
     /// <author>Alpha Anar</author>
-    public static void UnpackBits(this byte value, Span<bool> destination)
+    public static void Unpack(this byte value, Span<bool> destination)
     {
         if (destination.Length < Size)
         {

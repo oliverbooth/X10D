@@ -1,4 +1,4 @@
-﻿namespace X10D.Collections;
+namespace X10D.Collections;
 
 /// <summary>
 ///     Collection-related extension methods for <see cref="IReadOnlyList{T}" /> of <see cref="bool" />.
@@ -13,7 +13,7 @@ public static class BoolListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     /// <author>Alpha Anar</author>
-    public static byte Pack8Bit(this IReadOnlyList<bool> source)
+    public static byte PackByte(this IReadOnlyList<bool> source)
     {
         if (source is null)
         {
@@ -42,7 +42,7 @@ public static class BoolListExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
-    public static short Pack16Bit(this IReadOnlyList<bool> source)
+    public static short PackInt16(this IReadOnlyList<bool> source)
     {
         if (source is null)
         {
@@ -71,7 +71,7 @@ public static class BoolListExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
-    public static int Pack32Bit(this IReadOnlyList<bool> source)
+    public static int PackInt32(this IReadOnlyList<bool> source)
     {
         if (source is null)
         {
@@ -100,7 +100,7 @@ public static class BoolListExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
-    public static long Pack64Bit(this IReadOnlyList<bool> source)
+    public static long PackInt64(this IReadOnlyList<bool> source)
     {
         if (source is null)
         {

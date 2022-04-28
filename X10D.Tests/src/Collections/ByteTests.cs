@@ -9,7 +9,7 @@ public class ByteTests
     [TestMethod]
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
-        bool[] bits = ((byte)0b11010100).UnpackBits();
+        bool[] bits = ((byte)0b11010100).Unpack();
 
         Assert.AreEqual(8, bits.Length);
 
@@ -27,7 +27,7 @@ public class ByteTests
     public void UnpackBits_ShouldUnpackToSpanCorrectly()
     {
         Span<bool> bits = stackalloc bool[8];
-        ((byte)0b11010100).UnpackBits(bits);
+        ((byte)0b11010100).Unpack(bits);
 
         Assert.IsFalse(bits[0]);
         Assert.IsFalse(bits[1]);
@@ -42,7 +42,7 @@ public class ByteTests
     [TestMethod]
     public void UnpackBits_ShouldRepackEqually()
     {
-        Assert.AreEqual(0b11010100, ((byte)0b11010100).UnpackBits().Pack8Bit());
+        Assert.AreEqual(0b11010100, ((byte)0b11010100).Unpack().PackByte());
     }
 
     [TestMethod]
@@ -51,7 +51,7 @@ public class ByteTests
         Assert.ThrowsException<ArgumentException>(() =>
         {
             Span<bool> bits = stackalloc bool[0];
-            ((byte)0b11010100).UnpackBits(bits);
+            ((byte)0b11010100).Unpack(bits);
         });
     }
 }
