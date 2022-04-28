@@ -9,7 +9,7 @@ public class Int16Tests
     [TestMethod]
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
-        bool[] bits = ((short)0b11010100).UnpackBits();
+        bool[] bits = ((short)0b11010100).Unpack();
         
         Assert.AreEqual(16, bits.Length);
 
@@ -32,7 +32,7 @@ public class Int16Tests
     public void UnpackBits_ShouldUnpackToSpanCorrectly()
     {
         Span<bool> bits = stackalloc bool[16];
-        ((short)0b11010100).UnpackBits(bits);
+        ((short)0b11010100).Unpack(bits);
 
         Assert.IsFalse(bits[0]);
         Assert.IsFalse(bits[1]);
@@ -52,7 +52,7 @@ public class Int16Tests
     [TestMethod]
     public void UnpackBits_ShouldRepackEqually()
     {
-        Assert.AreEqual(0b11010100, ((short)0b11010100).UnpackBits().Pack16Bit());
+        Assert.AreEqual(0b11010100, ((short)0b11010100).Unpack().PackInt16());
     }
 
     [TestMethod]
@@ -61,7 +61,7 @@ public class Int16Tests
         Assert.ThrowsException<ArgumentException>(() =>
         {
             Span<bool> bits = stackalloc bool[0];
-            ((short)0b11010100).UnpackBits(bits);
+            ((short)0b11010100).Unpack(bits);
         });
     }
 }

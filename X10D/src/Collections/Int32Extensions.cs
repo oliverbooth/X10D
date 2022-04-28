@@ -12,10 +12,10 @@ public static class Int32Extensions
     /// </summary>
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 32.</returns>
-    public static bool[] UnpackBits(this int value)
+    public static bool[] Unpack(this int value)
     {
         Span<bool> buffer = stackalloc bool[Size];
-        value.UnpackBits(buffer);
+        value.Unpack(buffer);
         return buffer.ToArray();
     }
 
@@ -25,13 +25,13 @@ public static class Int32Extensions
     /// <param name="value">The value to unpack.</param>
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
-    public static void UnpackBits(this int value, Span<bool> destination)
+    public static void Unpack(this int value, Span<bool> destination)
     {
         if (destination.Length < Size)
         {
             throw new ArgumentException($"Destination must be at least {Size} in length.", nameof(destination));
         }
-        
+
         for (var index = 0; index < Size; index++)
         {
             destination[index] = (value & (1 << index)) != 0;

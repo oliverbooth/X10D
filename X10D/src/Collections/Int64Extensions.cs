@@ -12,10 +12,10 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 64.</returns>
-    public static bool[] UnpackBits(this long value)
+    public static bool[] Unpack(this long value)
     {
         Span<bool> buffer = stackalloc bool[Size];
-        value.UnpackBits(buffer);
+        value.Unpack(buffer);
         return buffer.ToArray();
     }
 
@@ -25,7 +25,7 @@ public static class Int64Extensions
     /// <param name="value">The value to unpack.</param>
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
-    public static void UnpackBits(this long value, Span<bool> destination)
+    public static void Unpack(this long value, Span<bool> destination)
     {
         if (destination.Length < Size)
         {

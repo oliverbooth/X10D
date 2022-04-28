@@ -9,7 +9,7 @@ public class Int32Tests
     [TestMethod]
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
-        bool[] bits = 0b11010100.UnpackBits();
+        bool[] bits = 0b11010100.Unpack();
         
         Assert.AreEqual(32, bits.Length);
 
@@ -32,7 +32,7 @@ public class Int32Tests
     public void UnpackBits_ShouldUnpackToSpanCorrectly()
     {
         Span<bool> bits = stackalloc bool[32];
-        0b11010100.UnpackBits(bits);
+        0b11010100.Unpack(bits);
 
         Assert.IsFalse(bits[0]);
         Assert.IsFalse(bits[1]);
@@ -52,7 +52,7 @@ public class Int32Tests
     [TestMethod]
     public void UnpackBits_ShouldRepackEqually()
     {
-        Assert.AreEqual(0b11010100, 0b11010100.UnpackBits().Pack32Bit());
+        Assert.AreEqual(0b11010100, 0b11010100.Unpack().PackInt32());
     }
 
     [TestMethod]
@@ -61,7 +61,7 @@ public class Int32Tests
         Assert.ThrowsException<ArgumentException>(() =>
         {
             Span<bool> bits = stackalloc bool[0];
-            0b11010100.UnpackBits(bits);
+            0b11010100.Unpack(bits);
         });
     }
 }

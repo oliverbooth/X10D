@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Collections;
-using X10D.Linq;
 
 namespace X10D.Tests.Collections;
 
@@ -11,7 +10,7 @@ public class Int64Tests
     [TestMethod]
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
-        bool[] bits = 0b11010100L.UnpackBits();
+        bool[] bits = 0b11010100L.Unpack();
 
         Assert.AreEqual(64, bits.Length);
 
@@ -37,7 +36,7 @@ public class Int64Tests
     public void UnpackBits_ShouldUnpackToSpanCorrectly()
     {
         Span<bool> bits = stackalloc bool[64];
-        0b11010100L.UnpackBits(bits);
+        0b11010100L.Unpack(bits);
 
         Assert.IsFalse(bits[0]);
         Assert.IsFalse(bits[1]);
@@ -57,7 +56,7 @@ public class Int64Tests
     [TestMethod]
     public void UnpackBits_ShouldRepackEqually()
     {
-        Assert.AreEqual(0b11010100L, 0b11010100L.UnpackBits().Pack64Bit());
+        Assert.AreEqual(0b11010100L, 0b11010100L.Unpack().PackInt64());
     }
 
     [TestMethod]
@@ -66,7 +65,7 @@ public class Int64Tests
         Assert.ThrowsException<ArgumentException>(() =>
         {
             Span<bool> bits = stackalloc bool[0];
-            0b11010100L.UnpackBits(bits);
+            0b11010100L.Unpack(bits);
         });
     }
 }
