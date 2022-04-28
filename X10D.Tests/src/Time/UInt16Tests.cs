@@ -8,6 +8,36 @@ namespace X10D.Tests.Time;
 public class UInt16Tests
 {
     [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
+    {
+        Assert.IsFalse(((ushort)100).IsLeapYear());
+        Assert.IsFalse(((ushort)1900).IsLeapYear());
+        Assert.IsFalse(((ushort)2100).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenOddNumber()
+    {
+        Assert.IsFalse(((ushort)1).IsLeapYear());
+        Assert.IsFalse(((ushort)101).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeTrue_GivenMultipleOf4Or400()
+    {
+        Assert.IsTrue(((ushort)4).IsLeapYear());
+        Assert.IsTrue(((ushort)104).IsLeapYear());
+        Assert.IsTrue(((ushort)400).IsLeapYear());
+        Assert.IsTrue(((ushort)2000).IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldThrow_GivenZero()
+    {
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => ((ushort)0).IsLeapYear());
+    }
+
+    [TestMethod]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(((ushort)1).Ticks() > TimeSpan.Zero);

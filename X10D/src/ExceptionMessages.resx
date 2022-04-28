@@ -65,4 +65,7 @@
     <data name="CountMustBeGreaterThanOrEqualTo0" xml:space="preserve">
         <value>count must be greater than or equal to 0.</value>
     </data>
+    <data name="YearCannotBeZero" xml:space="preserve">
+        <value>Year cannot be zero.</value>
+    </data>
 </root>

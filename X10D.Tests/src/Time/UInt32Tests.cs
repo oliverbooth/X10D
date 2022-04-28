@@ -8,6 +8,36 @@ namespace X10D.Tests.Time;
 public class UInt32Tests
 {
     [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
+    {
+        Assert.IsFalse(100U.IsLeapYear());
+        Assert.IsFalse(1900U.IsLeapYear());
+        Assert.IsFalse(2100U.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeFalse_GivenOddNumber()
+    {
+        Assert.IsFalse(1U.IsLeapYear());
+        Assert.IsFalse(101U.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldBeTrue_GivenMultipleOf4Or400()
+    {
+        Assert.IsTrue(4U.IsLeapYear());
+        Assert.IsTrue(104U.IsLeapYear());
+        Assert.IsTrue(400U.IsLeapYear());
+        Assert.IsTrue(2000U.IsLeapYear());
+    }
+
+    [TestMethod]
+    public void IsLeapYear_ShouldThrow_GivenZero()
+    {
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => 0U.IsLeapYear());
+    }
+
+    [TestMethod]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
         Assert.IsTrue(1U.Ticks() > TimeSpan.Zero);

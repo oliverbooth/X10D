@@ -58,6 +58,19 @@ public static class DateTimeOffsetExtensions
     }
 
     /// <summary>
+    ///     Returns a value indicating whether the year represented by the current <see cref="DateTimeOffset" /> is a leap year.
+    /// </summary>
+    /// <param name="value">The date whose year to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if the year represented by <paramref name="value" /> is a leap year; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    public static bool IsLeapYear(this DateTimeOffset value)
+    {
+        return DateTime.IsLeapYear(value.Year);
+    }
+
+    /// <summary>
     ///     Gets a date representing the final occurence of a specified day of the week in the current month.
     /// </summary>
     /// <param name="value">The current date.</param>

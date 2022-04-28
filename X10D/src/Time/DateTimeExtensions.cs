@@ -31,6 +31,19 @@ public static class DateTimeExtensions
         return ((DateTimeOffset)value).FirstDayOfMonth().DateTime;
     }
 
+    /// <summary>
+    ///     Returns a value indicating whether the year represented by the current <see cref="DateTime" /> is a leap year.
+    /// </summary>
+    /// <param name="value">The date whose year to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if the year represented by <paramref name="value" /> is a leap year; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    public static bool IsLeapYear(this DateTime value)
+    {
+        return DateTime.IsLeapYear(value.Year);
+    }
+
     /// <inheritdoc cref="DateTimeOffsetExtensions.Last(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
     public static DateTime Last(this DateTime value, DayOfWeek dayOfWeek)
