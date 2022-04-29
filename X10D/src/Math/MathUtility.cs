@@ -1,4 +1,7 @@
-﻿namespace X10D.Math;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
+namespace X10D.Math;
 
 /// <summary>
 ///     Provides static helpers methods for mathematical functions not found in the .NET <see cref="System.Math" /> class.
@@ -14,6 +17,8 @@ public static class MathUtility
     /// <returns>
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static float Lerp(float value, float target, float alpha)
     {
         // rookie mistake: a + t * (b - a)
@@ -30,6 +35,8 @@ public static class MathUtility
     /// <returns>
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static double Lerp(double value, double target, double alpha)
     {
         // rookie mistake: a + t * (b - a)

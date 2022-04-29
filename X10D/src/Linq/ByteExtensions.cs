@@ -1,4 +1,6 @@
-﻿namespace X10D.Linq;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Linq;
 
 /// <summary>
 ///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="byte" />.
@@ -61,6 +63,7 @@ public static class ByteExtensions
     /// <returns>
     ///     An enumerable collection of 8-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
     /// </returns>
+    [Pure]
     public static IEnumerable<byte> RangeTo(this byte value, byte end)
     {
         byte start = System.Math.Min(value, end);
@@ -80,6 +83,7 @@ public static class ByteExtensions
     /// <returns>
     ///     An enumerable collection of 16-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
     /// </returns>
+    [Pure]
     public static IEnumerable<short> RangeTo(this byte value, short end)
     {
         short start = System.Math.Min(value, end);
@@ -99,6 +103,7 @@ public static class ByteExtensions
     /// <returns>
     ///     An enumerable collection of 32-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
     /// </returns>
+    [Pure]
     public static IEnumerable<int> RangeTo(this byte value, int end)
     {
         int start = System.Math.Min(value, end);
@@ -118,6 +123,7 @@ public static class ByteExtensions
     /// <returns>
     ///     An enumerable collection of 64-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
     /// </returns>
+    [Pure]
     public static IEnumerable<long> RangeTo(this byte value, long end)
     {
         long start = System.Math.Min(value, end);

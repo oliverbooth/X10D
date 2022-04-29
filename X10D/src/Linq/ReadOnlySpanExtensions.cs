@@ -1,4 +1,6 @@
-﻿namespace X10D.Linq;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Linq;
 
 /// <summary>
 ///     Extension methods for <see cref="ReadOnlySpan{T}" />.
@@ -16,6 +18,7 @@ public static class ReadOnlySpanExtensions
     ///     span is empty; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
+    [Pure]
     public static bool All<TSource>(this ReadOnlySpan<TSource> source, Predicate<TSource> predicate)
     {
         if (predicate is null)
@@ -50,6 +53,7 @@ public static class ReadOnlySpanExtensions
     ///     specified predicate; otherwise, <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
+    [Pure]
     public static bool Any<TSource>(this ReadOnlySpan<TSource> source, Predicate<TSource> predicate)
     {
         if (predicate is null)

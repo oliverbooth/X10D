@@ -1,4 +1,6 @@
-﻿namespace X10D.Collections;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Collections;
 
 /// <summary>
 ///     Extension methods for <see cref="Array" />.
@@ -12,6 +14,7 @@ public static class ArrayExtensions
     /// <typeparam name="T">The type of the elements in the array.</typeparam>
     /// <returns>A <see cref="IReadOnlyCollection{T}" /> wrapper for the specified array.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="array" /> is <see langword="null" />.</exception>
+    [Pure]
     public static IReadOnlyCollection<T> AsReadOnly<T>(this T[] array)
     {
         if (array is null)

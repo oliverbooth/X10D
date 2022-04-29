@@ -1,4 +1,5 @@
-﻿using X10D.Core;
+﻿using System.Diagnostics.Contracts;
+using X10D.Core;
 
 namespace X10D.IO;
 
@@ -12,6 +13,7 @@ public static class ByteExtensions
     /// </summary>
     /// <param name="value">The number to convert.</param>
     /// <returns>An array of bytes with length 1.</returns>
+    [Pure]
     public static byte[] GetBytes(this byte value)
     {
         return value.AsArrayValue();

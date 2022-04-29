@@ -1,4 +1,7 @@
-﻿namespace X10D.Text;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
+namespace X10D.Text;
 
 /// <summary>
 ///     Text-related extension methods for <see cref="char" />.
@@ -13,6 +16,8 @@ public static class CharExtensions
     /// <returns>
     ///     A <see cref="string" /> composed of <paramref name="value" /> repeated <paramref name="count" /> times.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Repeat(this char value, int count)
     {
         return count switch

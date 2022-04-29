@@ -1,4 +1,5 @@
-﻿using X10D.Core;
+﻿using System.Diagnostics.Contracts;
+using X10D.Core;
 
 namespace X10D.Collections;
 
@@ -94,6 +95,7 @@ public static class ListExtensions
     /// var number = list.Random();
     ///     </code>
     /// </example>
+    [Pure]
     public static T Random<T>(this IReadOnlyList<T> source, Random? random = null)
     {
         if (source is null)

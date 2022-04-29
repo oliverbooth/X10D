@@ -42,6 +42,8 @@ public static class ByteExtensions
     ///     -or-
     ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTimeOffset FromUnixTimeMilliseconds(this byte value)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(value);
@@ -61,6 +63,8 @@ public static class ByteExtensions
     ///     -or-
     ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTimeOffset FromUnixTimeSeconds(this byte value)
     {
         return DateTimeOffset.FromUnixTimeSeconds(value);
@@ -71,6 +75,8 @@ public static class ByteExtensions
     /// </summary>
     /// <param name="value">The duration, in ticks.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Ticks(this byte value)
     {
         return TimeSpan.FromTicks(value);
@@ -83,6 +89,8 @@ public static class ByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Milliseconds(this byte value)
     {
         return TimeSpan.FromMilliseconds(value);
@@ -95,6 +103,8 @@ public static class ByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Seconds(this byte value)
     {
         return TimeSpan.FromSeconds(value);
@@ -107,6 +117,8 @@ public static class ByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Minutes(this byte value)
     {
         return TimeSpan.FromMinutes(value);
@@ -119,6 +131,8 @@ public static class ByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Hours(this byte value)
     {
         return TimeSpan.FromHours(value);
@@ -129,6 +143,8 @@ public static class ByteExtensions
     /// </summary>
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Days(this byte value)
     {
         return TimeSpan.FromDays(value);
@@ -141,6 +157,8 @@ public static class ByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Weeks(this byte value)
     {
         return TimeSpan.FromDays(value * 7);

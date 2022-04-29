@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using X10D.Collections;
@@ -18,6 +20,8 @@ public static class StringExtensions
     ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
     ///     <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfEmpty(this string? value)
     {
@@ -33,6 +37,8 @@ public static class StringExtensions
     ///     <see langword="null" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfWhiteSpace(this string? value)
     {
@@ -48,6 +54,8 @@ public static class StringExtensions
     /// <returns>
     ///     An object constructed from the JSON string, or <see langword="null" /> if deserialization could not be performed.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T? FromJson<T>(this string value, JsonSerializerOptions? options = null)
     {
         return JsonSerializer.Deserialize<T>(value, options);
@@ -60,6 +68,8 @@ public static class StringExtensions
     /// <returns>
     ///     <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsLower(this string value)
     {
         if (value is null)
@@ -95,6 +105,8 @@ public static class StringExtensions
     ///     <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsPalindrome(this string value)
     {
         if (value is null)
@@ -141,6 +153,8 @@ public static class StringExtensions
     /// <returns>
     ///     <see langword="true" /> if all alpha characters in this string are uppercase; otherwise, <see langword="false" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsUpper(this string value)
     {
         if (value is null)
@@ -174,6 +188,8 @@ public static class StringExtensions
     /// <returns>A string containing <paramref name="value" /> repeated <paramref name="count" /> times.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Repeat(this string value, int count)
     {
         if (value is null)
@@ -206,6 +222,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to reverse.</param>
     /// <returns>A <see cref="string" /> whose characters are that of <paramref name="value" /> in reverse order.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Reverse(this string value)
     {
         if (value is null)
@@ -238,6 +256,8 @@ public static class StringExtensions
     /// </param>
     /// <returns>A new <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Shuffled(this string value, Random? random = null)
     {
         if (value is null)
@@ -261,6 +281,8 @@ public static class StringExtensions
     ///     <paramref name="alternative" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
     ///     <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [return: NotNullIfNotNull("alternative")]
     public static string? WithEmptyAlternative(this string? value, string? alternative)
     {
@@ -277,6 +299,8 @@ public static class StringExtensions
     ///     <paramref name="alternative" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [return: NotNullIfNotNull("alternative")]
     public static string? WithWhiteSpaceAlternative(this string? value, string? alternative)
     {

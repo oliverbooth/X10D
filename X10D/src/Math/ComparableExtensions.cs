@@ -1,4 +1,6 @@
+using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
 
@@ -44,6 +46,8 @@ public static class ComparableExtensions
     /// //      True
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper,
         InclusiveOptions inclusiveOptions = InclusiveOptions.None)
         where T1 : IComparable<T2>, IComparable<T3>
@@ -98,6 +102,8 @@ public static class ComparableExtensions
     /// // clamped will be 20
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T Clamp<T>(this T value, T lower, T upper)
         where T : IComparable<T>
     {
@@ -132,6 +138,8 @@ public static class ComparableExtensions
     /// // result will be False
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool GreaterThan<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -164,6 +172,8 @@ public static class ComparableExtensions
     /// // result will be False
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool GreaterThanOrEqualTo<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -196,6 +206,8 @@ public static class ComparableExtensions
     /// // result will be True
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool LessThan<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -228,6 +240,8 @@ public static class ComparableExtensions
     /// // result will be True
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool LessThanOrEqualTo<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -259,6 +273,8 @@ public static class ComparableExtensions
     /// // max will be 10
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T Max<T>(this T value, T other)
         where T : IComparable<T>
     {
@@ -290,6 +306,8 @@ public static class ComparableExtensions
     /// // min will be 5
     /// </code>
     /// </example>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T Min<T>(this T value, T other)
         where T : IComparable<T>
     {

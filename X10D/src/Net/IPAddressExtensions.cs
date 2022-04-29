@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System.Diagnostics.Contracts;
+using System.Net;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 
 namespace X10D.Net;
 
@@ -15,6 +17,8 @@ public static class IPAddressExtensions
     /// <returns>
     ///     <see langword="true" /> if the specified IP address is a valid IPv4 address; otherwise, <see langword="false" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsIPv4(this IPAddress address)
     {
         return address.AddressFamily == AddressFamily.InterNetwork;
@@ -27,6 +31,8 @@ public static class IPAddressExtensions
     /// <returns>
     ///     <see langword="true" /> if the specified IP address is a valid IPv6 address; otherwise, <see langword="false" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsIPv6(this IPAddress address)
     {
         return address.AddressFamily == AddressFamily.InterNetworkV6;

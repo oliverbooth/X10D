@@ -1,5 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace X10D.Reflection;
 
@@ -18,6 +20,8 @@ public static class MemberInfoExtensions
     ///     <see langword="false" /> otherwise.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="member" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool HasCustomAttribute<T>(this MemberInfo member)
         where T : Attribute
     {
@@ -39,6 +43,8 @@ public static class MemberInfoExtensions
     ///     <see langword="false" /> otherwise.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="member" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool HasCustomAttribute(this MemberInfo member, Type attribute)
     {
         if (member is null)

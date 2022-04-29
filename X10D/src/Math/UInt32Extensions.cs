@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -31,6 +31,8 @@ public static class UInt32Extensions
     /// </summary>
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static ulong Factorial(this uint value)
     {
         if (value == 0)

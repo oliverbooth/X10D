@@ -1,4 +1,6 @@
-﻿namespace X10D.Collections;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Collections;
 
 /// <summary>
 ///     Collection-related extension methods for <see cref="short" />.
@@ -12,6 +14,7 @@ public static class Int16Extensions
     /// </summary>
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 16.</returns>
+    [Pure]
     public static bool[] Unpack(this short value)
     {
         Span<bool> buffer = stackalloc bool[Size];
