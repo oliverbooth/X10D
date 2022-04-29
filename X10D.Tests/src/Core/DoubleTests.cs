@@ -31,24 +31,6 @@ public class DoubleTests
     }
 
     /// <summary>
-    ///     Test for <see cref="DoubleExtensions.LerpTo" />
-    /// </summary>
-    [TestMethod]
-    public void LerpTo()
-    {
-        const double a = 0.0;
-        const double b = 1.0;
-        const double t = 0.5;
-        const double expected = 0.5;
-
-        double actual = a.LerpFrom(b, t);
-
-        Trace.WriteLine($"expected = {expected}");
-        Trace.WriteLine($"{a}.LerpTo({b}, {t}) = {actual}");
-        Assert.AreEqual(expected, actual, $"{a}.LerpTo({b}, {t})");
-    }
-
-    /// <summary>
     ///     Tests for <see cref="DoubleExtensions.DegreesToRadians" />.
     /// </summary>
     [TestMethod]
