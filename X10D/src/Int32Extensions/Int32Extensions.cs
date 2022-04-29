@@ -1,5 +1,4 @@
-﻿using System.Net;
-using X10D.Math;
+﻿using X10D.Math;
 
 namespace X10D;
 
@@ -68,25 +67,5 @@ public static class Int32Extensions
     public static float DegreesToRadians(this int value)
     {
         return ((float)value).DegreesToRadians();
-    }
-
-    /// <summary>
-    ///     Converts an integer value from network byte order to host byte order.
-    /// </summary>
-    /// <param name="value">The value to convert, expressed in network byte order.</param>
-    /// <returns>An integer value, expressed in host byte order.</returns>
-    public static int ToHostOrder(this int value)
-    {
-        return IPAddress.NetworkToHostOrder(value);
-    }
-
-    /// <summary>
-    ///     Converts an integer value from host byte order to network byte order.
-    /// </summary>
-    /// <param name="value">The value to convert, expressed in host byte order.</param>
-    /// <returns>An integer value, expressed in network byte order.</returns>
-    public static int ToNetworkOrder(this int value)
-    {
-        return IPAddress.HostToNetworkOrder(value);
     }
 }
