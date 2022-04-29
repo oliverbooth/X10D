@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Diagnostics.Contracts;
+using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace X10D.Net;
 
@@ -12,6 +14,8 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="value">The value to convert, expressed in host byte order.</param>
     /// <returns>An integer value, expressed in network byte order.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static long HostToNetworkOrder(this long value)
     {
         return IPAddress.HostToNetworkOrder(value);
@@ -22,6 +26,8 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="value">The value to convert, expressed in network byte order.</param>
     /// <returns>An integer value, expressed in host byte order.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static long NetworkToHostOrder(this long value)
     {
         return IPAddress.NetworkToHostOrder(value);

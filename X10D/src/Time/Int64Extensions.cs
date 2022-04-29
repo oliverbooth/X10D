@@ -48,6 +48,8 @@ public static class Int64Extensions
     ///     -or-
     ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTimeOffset FromUnixTimeMilliseconds(this long value)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(value);
@@ -67,6 +69,8 @@ public static class Int64Extensions
     ///     -or-
     ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTimeOffset FromUnixTimeSeconds(this long value)
     {
         return DateTimeOffset.FromUnixTimeSeconds(value);
@@ -77,6 +81,8 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="value">The duration, in ticks.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Ticks(this long value)
     {
         return TimeSpan.FromTicks(value);
@@ -89,6 +95,8 @@ public static class Int64Extensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Milliseconds(this long value)
     {
         return TimeSpan.FromMilliseconds(value);
@@ -101,6 +109,8 @@ public static class Int64Extensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Seconds(this long value)
     {
         return TimeSpan.FromSeconds(value);
@@ -113,6 +123,8 @@ public static class Int64Extensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Minutes(this long value)
     {
         return TimeSpan.FromMinutes(value);
@@ -125,6 +137,8 @@ public static class Int64Extensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Hours(this long value)
     {
         return TimeSpan.FromHours(value);
@@ -135,6 +149,8 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Days(this long value)
     {
         return TimeSpan.FromDays(value);
@@ -147,6 +163,8 @@ public static class Int64Extensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Weeks(this long value)
     {
         return TimeSpan.FromDays(value * 7);

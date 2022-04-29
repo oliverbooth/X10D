@@ -31,6 +31,8 @@ public static class ByteExtensions
     /// </summary>
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static long Factorial(this byte value)
     {
         if (value == 0)
@@ -55,6 +57,8 @@ public static class ByteExtensions
     ///     <see langword="true" /> if <paramref name="value" /> is evenly divisible by 2, or <see langword="false" />
     ///     otherwise.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsEven(this byte value)
     {
         return value % 2 == 0;
@@ -68,6 +72,8 @@ public static class ByteExtensions
     ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
     ///     otherwise.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsOdd(this byte value)
     {
         return !value.IsEven();
@@ -80,6 +86,7 @@ public static class ByteExtensions
     /// <returns>
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
+    [Pure]
     public static bool IsPrime(this byte value)
     {
         return ((long)value).IsPrime();

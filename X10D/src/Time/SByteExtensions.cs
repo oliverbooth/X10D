@@ -49,6 +49,8 @@ public static class SByteExtensions
     ///     -or-
     ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTimeOffset FromUnixTimeMilliseconds(this sbyte value)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(value);
@@ -68,6 +70,8 @@ public static class SByteExtensions
     ///     -or-
     ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTimeOffset FromUnixTimeSeconds(this sbyte value)
     {
         return DateTimeOffset.FromUnixTimeSeconds(value);
@@ -78,6 +82,8 @@ public static class SByteExtensions
     /// </summary>
     /// <param name="value">The duration, in ticks.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Ticks(this sbyte value)
     {
         return TimeSpan.FromTicks(value);
@@ -90,6 +96,8 @@ public static class SByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Milliseconds(this sbyte value)
     {
         return TimeSpan.FromMilliseconds(value);
@@ -102,6 +110,8 @@ public static class SByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Seconds(this sbyte value)
     {
         return TimeSpan.FromSeconds(value);
@@ -114,6 +124,8 @@ public static class SByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Minutes(this sbyte value)
     {
         return TimeSpan.FromMinutes(value);
@@ -126,6 +138,8 @@ public static class SByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Hours(this sbyte value)
     {
         return TimeSpan.FromHours(value);
@@ -136,6 +150,8 @@ public static class SByteExtensions
     /// </summary>
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Days(this sbyte value)
     {
         return TimeSpan.FromDays(value);
@@ -148,6 +164,8 @@ public static class SByteExtensions
     /// <returns>
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan Weeks(this sbyte value)
     {
         return TimeSpan.FromDays(value * 7);

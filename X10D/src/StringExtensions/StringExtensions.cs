@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Text;
 using X10D.Core;
 
@@ -14,6 +16,8 @@ public static class StringExtensions
     /// <param name="value">The base-64 string to convert.</param>
     /// <returns>The plain text string representation of <paramref name="value" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Base64Decode(this string value)
     {
         if (value is null)
@@ -30,6 +34,8 @@ public static class StringExtensions
     /// <param name="value">The plain text string to convert.</param>
     /// <returns>The string representation, in base 64, of <paramref name="value" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Base64Encode(this string value)
     {
         if (value is null)
@@ -57,6 +63,8 @@ public static class StringExtensions
     ///     -or
     ///     <paramref name="destinationEncoding" /> is <see langword="null" />.
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string ChangeEncoding(this string value, Encoding sourceEncoding, Encoding destinationEncoding)
     {
         if (value is null)
@@ -87,6 +95,8 @@ public static class StringExtensions
     ///     Credit for this method goes to Scott Dorman:
     ///     (http://geekswithblogs.net/sdorman/Default.aspx).
     /// </remarks>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T EnumParse<T>(this string value)
         where T : struct, Enum
     {
@@ -104,6 +114,8 @@ public static class StringExtensions
     ///     Credit for this method goes to Scott Dorman:
     ///     (http://geekswithblogs.net/sdorman/Default.aspx).
     /// </remarks>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T EnumParse<T>(this string value, bool ignoreCase)
         where T : struct, Enum
     {
@@ -128,6 +140,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to convert.</param>
     /// <returns>Returns a <see cref="byte" />[].</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static byte[] GetBytes(this string value)
     {
         return value.GetBytes(Encoding.UTF8);
@@ -143,6 +157,8 @@ public static class StringExtensions
     ///     <paramref name="value" /> or <paramref name="encoding" /> or both are
     ///     <see langword="null" />.
     /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static byte[] GetBytes(this string value, Encoding encoding)
     {
         if (value is null)
@@ -170,6 +186,8 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Randomize(this string source, int length, Random? random = null)
     {
         if (source is null)
@@ -211,6 +229,8 @@ public static class StringExtensions
     ///     greater than <paramref name="chunkSize" /> in length.
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static IEnumerable<string> Split(this string value, int chunkSize)
     {
         if (value is null)
@@ -230,6 +250,8 @@ public static class StringExtensions
     /// <param name="input">The input string.</param>
     /// <returns>Returns an instance of <see cref="TimeSpan" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="input" /> is <see langword="null" />.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static TimeSpan ToTimeSpan(this string input)
     {
         if (input is null)

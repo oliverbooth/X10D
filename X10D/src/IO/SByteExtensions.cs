@@ -1,4 +1,6 @@
-﻿namespace X10D.IO;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.IO;
 
 /// <summary>
 ///     IO-related extension methods for <see cref="sbyte" />.
@@ -11,6 +13,7 @@ public static class SByteExtensions
     /// </summary>
     /// <param name="value">The number to convert.</param>
     /// <returns>An array of bytes with length 1.</returns>
+    [Pure]
     public static byte[] GetBytes(this sbyte value)
     {
         Span<byte> buffer = stackalloc byte[1];

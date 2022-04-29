@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics.Contracts;
+using System.Net;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Net;
@@ -20,7 +21,8 @@ public static class EndPointExtensions
     ///     <para><see cref="string.Empty" /> otherwise.</para>
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string GetHost(this EndPoint endPoint)
     {
         if (endPoint is null)
@@ -48,7 +50,8 @@ public static class EndPointExtensions
     ///     <para><c>0</c> otherwise.</para>
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int GetPort(this EndPoint endPoint)
     {
         if (endPoint is null)

@@ -1,4 +1,6 @@
-﻿namespace X10D.Core;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Core;
 
 /// <summary>
 ///     Extension methods for <see langword="enum" /> types.
@@ -14,6 +16,7 @@ public static class EnumExtensions
     ///     A value of <typeparamref name="T" /> that is considered to be the next value defined after <paramref name="value" />,
     ///     or the first value if <paramref name="value" /> is the final field of the enumeration.
     /// </returns>
+    [Pure]
     public static T Next<T>(this T value)
         where T : struct, Enum
     {
@@ -33,6 +36,7 @@ public static class EnumExtensions
     ///     <paramref name="value" />.
     /// </returns>
     /// <exception cref="IndexOutOfRangeException"><paramref name="value" /> is the final field of the enumeration.</exception>
+    [Pure]
     public static T NextUnchecked<T>(this T value)
         where T : struct, Enum
     {
@@ -50,6 +54,7 @@ public static class EnumExtensions
     ///     A value of <typeparamref name="T" /> that is considered to be the previous value defined after
     ///     <paramref name="value" />, or the last value if <paramref name="value" /> is the first field of the enumeration.
     /// </returns>
+    [Pure]
     public static T Previous<T>(this T value)
         where T : struct, Enum
     {
@@ -73,6 +78,7 @@ public static class EnumExtensions
     ///     <paramref name="value" />, or the last value if <paramref name="value" /> is the first field of the enumeration.
     /// </returns>
     /// <exception cref="IndexOutOfRangeException"><paramref name="value" /> is the first field of the enumeration.</exception>
+    [Pure]
     public static T PreviousUnchecked<T>(this T value)
         where T : struct, Enum
     {

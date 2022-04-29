@@ -1,4 +1,6 @@
-﻿namespace X10D.Collections;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Collections;
 
 /// <summary>
 ///     Collection-related extension methods for <see cref="byte" />.
@@ -12,6 +14,7 @@ public static class ByteExtensions
     /// </summary>
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 8.</returns>
+    [Pure]
     public static bool[] Unpack(this byte value)
     {
         Span<bool> buffer = stackalloc bool[Size];
@@ -25,7 +28,6 @@ public static class ByteExtensions
     /// <param name="value">The value to unpack.</param>
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
-    /// <author>Alpha Anar</author>
     public static void Unpack(this byte value, Span<bool> destination)
     {
         if (destination.Length < Size)

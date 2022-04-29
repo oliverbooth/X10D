@@ -1,4 +1,6 @@
-﻿namespace X10D.Linq;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.Linq;
 
 /// <summary>
 ///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="int" />.
@@ -61,6 +63,7 @@ public static class Int32Extensions
     /// <returns>
     ///     An enumerable collection of 32-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
     /// </returns>
+    [Pure]
     public static IEnumerable<int> RangeTo(this int value, int end)
     {
         int start = System.Math.Min(value, end);
@@ -80,6 +83,7 @@ public static class Int32Extensions
     /// <returns>
     ///     An enumerable collection of 64-bit integers, ranging from <paramref name="value" /> to <paramref name="end" />.
     /// </returns>
+    [Pure]
     public static IEnumerable<long> RangeTo(this int value, long end)
     {
         long start = System.Math.Min(value, end);

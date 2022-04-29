@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Binary;
+using System.Diagnostics.Contracts;
 
 namespace X10D.IO;
 
@@ -12,6 +13,7 @@ public static class Int32Extensions
     /// </summary>
     /// <param name="value">The number to convert.</param>
     /// <returns>An array of bytes with length 4.</returns>
+    [Pure]
     public static byte[] GetBytes(this int value)
     {
         Span<byte> buffer = stackalloc byte[4];
@@ -25,6 +27,7 @@ public static class Int32Extensions
     /// <param name="value">The number to convert.</param>
     /// <param name="endianness">The endianness with which to write the bytes.</param>
     /// <returns>An array of bytes with length 4.</returns>
+    [Pure]
     public static byte[] GetBytes(this int value, Endianness endianness)
     {
         Span<byte> buffer = stackalloc byte[4];

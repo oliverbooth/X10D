@@ -1,4 +1,7 @@
-﻿namespace X10D.Time;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
+namespace X10D.Time;
 
 /// <summary>
 ///     Extension methods for <see cref="TimeSpan" />.
@@ -12,6 +15,8 @@ public static class TimeSpanExtensions
     /// <returns>
     ///     A <see cref="DateTime" /> that is a duration of <paramref name="value" /> in the past relative to the current time.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime Ago(this TimeSpan value)
     {
         return DateTime.Now.Subtract(value);
@@ -24,6 +29,8 @@ public static class TimeSpanExtensions
     /// <returns>
     ///     A <see cref="DateTime" /> that is a duration of <paramref name="value" /> in the future relative to the current time.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime FromNow(this TimeSpan value)
     {
         return DateTime.Now.Add(value);

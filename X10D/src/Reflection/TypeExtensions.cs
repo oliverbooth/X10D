@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.Contracts;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace X10D.Reflection;
 
@@ -13,6 +15,8 @@ public static class TypeExtensions
     /// <param name="value">The type whose interface list to check.</param>
     /// <typeparam name="T">The interface type.</typeparam>
     /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool Implements<T>(this Type value)
     {
         return value.Implements(typeof(T));
@@ -24,6 +28,8 @@ public static class TypeExtensions
     /// <param name="value">The type whose interface list to check.</param>
     /// <param name="interfaceType">The interface type.</param>
     /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool Implements(this Type value, Type interfaceType)
     {
         if (value is null)
@@ -56,6 +62,8 @@ public static class TypeExtensions
     ///     <see langword="true" /> if the current type inherits <typeparamref name="T" />, or <see langword="false" />
     ///     otherwise.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool Inherits<T>(this Type value)
         where T : class
     {
@@ -71,6 +79,8 @@ public static class TypeExtensions
     ///     <see langword="true" /> if the current type inherits <paramref name="type" />, or <see langword="false" />
     ///     otherwise.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool Inherits(this Type value, Type type)
     {
         if (value is null)

@@ -1,4 +1,6 @@
-﻿namespace X10D.IO;
+﻿using System.Diagnostics.Contracts;
+
+namespace X10D.IO;
 
 /// <summary>
 ///     Extension methods for <see cref="bool" />.
@@ -10,6 +12,7 @@ public static class BooleanExtensions
     /// </summary>
     /// <param name="value">The value to convert.</param>
     /// <returns>An array of bytes with length 1.</returns>
+    [Pure]
     public static byte[] GetBytes(this bool value)
     {
         return BitConverter.GetBytes(value);

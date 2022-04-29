@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Diagnostics.Contracts;
+using System.Security.Cryptography;
 
 namespace X10D.IO;
 
@@ -24,6 +25,7 @@ public static class FileInfoExtensions
     ///     <c>Create</c> method returns a type that is not assignable to <typeparamref name="T" />.
     /// </exception>
     /// <exception cref="ObjectDisposedException">The stream has already been disposed.</exception>
+    [Pure]
     public static byte[] GetHash<T>(this FileInfo value)
         where T : HashAlgorithm
     {

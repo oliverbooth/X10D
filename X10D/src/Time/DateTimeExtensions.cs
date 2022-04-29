@@ -1,4 +1,7 @@
-﻿namespace X10D.Time;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+
+namespace X10D.Time;
 
 /// <summary>
 ///     Extension methods for <see cref="DateTime" />.
@@ -6,12 +9,16 @@
 public static class DateTimeExtensions
 {
     /// <inheritdoc cref="DateTimeOffsetExtensions.Age(DateTimeOffset)" />
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int Age(this DateTime value)
     {
         return value.Age(DateTime.Today);
     }
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.Age(DateTimeOffset, DateTimeOffset)" />
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int Age(this DateTime value, DateTime asOf)
     {
         return ((DateTimeOffset)value).Age(asOf);
@@ -19,6 +26,8 @@ public static class DateTimeExtensions
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.First(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTime" /> representing the first occurence of <paramref name="dayOfWeek" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime First(this DateTime value, DayOfWeek dayOfWeek)
     {
         return ((DateTimeOffset)value).First(dayOfWeek).DateTime;
@@ -26,6 +35,8 @@ public static class DateTimeExtensions
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.FirstDayOfMonth(DateTimeOffset)" />
     /// <returns>A <see cref="DateTime" /> representing the first day of the current month.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime FirstDayOfMonth(this DateTime value)
     {
         return ((DateTimeOffset)value).FirstDayOfMonth().DateTime;
@@ -39,6 +50,8 @@ public static class DateTimeExtensions
     ///     <see langword="true" /> if the year represented by <paramref name="value" /> is a leap year; otherwise,
     ///     <see langword="false" />.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsLeapYear(this DateTime value)
     {
         return DateTime.IsLeapYear(value.Year);
@@ -46,6 +59,8 @@ public static class DateTimeExtensions
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.Last(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime Last(this DateTime value, DayOfWeek dayOfWeek)
     {
         return ((DateTimeOffset)value).Last(dayOfWeek).DateTime;
@@ -53,6 +68,8 @@ public static class DateTimeExtensions
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.LastDayOfMonth(DateTimeOffset)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime LastDayOfMonth(this DateTime value)
     {
         return ((DateTimeOffset)value).LastDayOfMonth().DateTime;
@@ -60,6 +77,8 @@ public static class DateTimeExtensions
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.Next(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static DateTime Next(this DateTime value, DayOfWeek dayOfWeek)
     {
         return ((DateTimeOffset)value).Next(dayOfWeek).DateTime;
@@ -70,6 +89,8 @@ public static class DateTimeExtensions
     /// </summary>
     /// <param name="value">The current date.</param>
     /// <returns>The number of milliseconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static long ToUnixTimeMilliseconds(this DateTime value)
     {
         return ((DateTimeOffset)value).ToUnixTimeMilliseconds();
@@ -80,6 +101,8 @@ public static class DateTimeExtensions
     /// </summary>
     /// <param name="value">The current date.</param>
     /// <returns>The number of seconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static long ToUnixTimeSeconds(this DateTime value)
     {
         return ((DateTimeOffset)value).ToUnixTimeSeconds();

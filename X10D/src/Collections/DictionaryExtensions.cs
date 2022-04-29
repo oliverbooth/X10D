@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Diagnostics.Contracts;
+using System.Web;
 
 namespace X10D.Collections;
 
@@ -179,6 +180,7 @@ public static class DictionaryExtensions
     /// <typeparam name="TValue">The type of the value element of the key/value pair.</typeparam>
     /// <param name="source">The source dictionary.</param>
     /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>;</c>.</returns>
+    [Pure]
     public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
     {
         if (source is null)
@@ -215,6 +217,7 @@ public static class DictionaryExtensions
     ///     A transform function to apply to the <see cref="KeyValuePair{TKey,TValue}.Value" /> of each element.
     /// </param>
     /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>;</c>.</returns>
+    [Pure]
     public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
         Func<TValue, string?> selector)
     {
@@ -255,6 +258,7 @@ public static class DictionaryExtensions
     ///     A transform function to apply to the <see cref="KeyValuePair{TKey,TValue}.Value" /> of each element.
     /// </param>
     /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>;</c>.</returns>
+    [Pure]
     public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
         Func<TKey, string> keySelector, Func<TValue, string?> valueSelector)
         where TKey : notnull
@@ -289,6 +293,7 @@ public static class DictionaryExtensions
     /// <typeparam name="TValue">The type of the value element of the key/value pair.</typeparam>
     /// <param name="source">The source dictionary.</param>
     /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>&amp;</c>.</returns>
+    [Pure]
     public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
         where TKey : notnull
     {
@@ -317,6 +322,7 @@ public static class DictionaryExtensions
     ///     A transform function to apply to the <see cref="KeyValuePair{TKey,TValue}.Value" /> of each element.
     /// </param>
     /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>&amp;</c>.</returns>
+    [Pure]
     public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
         Func<TValue, string?> selector)
         where TKey : notnull
@@ -355,6 +361,7 @@ public static class DictionaryExtensions
     ///     A transform function to apply to the <see cref="KeyValuePair{TKey,TValue}.Value" /> of each element.
     /// </param>
     /// <returns>A <see cref="string" /> representing the dictionary as a key=value set, concatenated with <c>&amp;</c>.</returns>
+    [Pure]
     public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
         Func<TKey, string> keySelector, Func<TValue, string?> valueSelector)
         where TKey : notnull

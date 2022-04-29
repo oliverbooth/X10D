@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace X10D.Text;
 
@@ -15,6 +17,8 @@ public static class RuneExtensions
     /// <returns>
     ///     A <see cref="string" /> composed of <paramref name="value" /> repeated <paramref name="count" /> times.
     /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Repeat(this Rune value, int count)
     {
         switch (count)
