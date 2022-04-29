@@ -99,54 +99,6 @@ public static class Int16Extensions
     }
 
     /// <summary>
-    ///     Linearly interpolates to the current value from a specified source using a specified alpha.
-    /// </summary>
-    /// <param name="target">The interpolation target.</param>
-    /// <param name="value">The interpolation source.</param>
-    /// <param name="alpha">The interpolation alpha.</param>
-    /// <returns>
-    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double LerpFrom(this short target, double value, double alpha)
-    {
-        return MathUtility.Lerp(value, target, alpha);
-    }
-
-    /// <summary>
-    ///     Linearly interpolates to the current value from a specified source using a specified alpha.
-    /// </summary>
-    /// <param name="target">The interpolation target.</param>
-    /// <param name="value">The interpolation source.</param>
-    /// <param name="alpha">The interpolation alpha.</param>
-    /// <returns>
-    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static float LerpFrom(this short target, float value, float alpha)
-    {
-        return MathUtility.Lerp(value, target, alpha);
-    }
-
-    /// <summary>
-    ///     Linearly interpolates from the current value to a specified target using a specified alpha.
-    /// </summary>
-    /// <param name="value">The interpolation source.</param>
-    /// <param name="target">The interpolation target.</param>
-    /// <param name="alpha">The interpolation alpha.</param>
-    /// <returns>
-    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static double LerpTo(this short value, double target, double alpha)
-    {
-        return MathUtility.Lerp(value, target, alpha);
-    }
-
-    /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
     /// <param name="dividend">The dividend.</param>

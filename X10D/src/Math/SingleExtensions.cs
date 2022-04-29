@@ -191,54 +191,6 @@ public static class SingleExtensions
     }
 
     /// <summary>
-    ///     Linearly interpolates to the current value from a specified source using a specified alpha.
-    /// </summary>
-    /// <param name="target">The interpolation target.</param>
-    /// <param name="value">The interpolation source.</param>
-    /// <param name="alpha">The interpolation alpha.</param>
-    /// <returns>
-    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static float LerpFrom(this float target, float value, float alpha)
-    {
-        return MathUtility.Lerp(value, target, alpha);
-    }
-
-    /// <summary>
-    ///     Linearly interpolates from the current value to a specified target using a specified alpha.
-    /// </summary>
-    /// <param name="value">The interpolation source.</param>
-    /// <param name="target">The interpolation target.</param>
-    /// <param name="alpha">The interpolation alpha.</param>
-    /// <returns>
-    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static float LerpTo(this float value, float target, float alpha)
-    {
-        return MathUtility.Lerp(value, target, alpha);
-    }
-
-    /// <summary>
-    ///     Linearly interpolates to a specified target from a specified source, using the current value as the alpha value.
-    /// </summary>
-    /// <param name="alpha">The interpolation alpha.</param>
-    /// <param name="value">The interpolation source.</param>
-    /// <param name="target">The interpolation target.</param>
-    /// <returns>
-    ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static float LerpWith(this float alpha, float value, float target)
-    {
-        return MathUtility.Lerp(value, target, alpha);
-    }
-
-    /// <summary>
     ///     Converts the current angle in radians to its equivalent represented in degrees.
     /// </summary>
     /// <param name="value">The angle in radians to convert.</param>
