@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Reflection;
 
 namespace X10D.Reflection;
@@ -79,6 +79,29 @@ public static class MemberInfoExtensions
         Func<TAttribute, TReturn> selector)
         where TAttribute : Attribute
     {
+        return member.SelectFromCustomAttribute(selector, default);
+    }
+
+    /// <summary>
+    ///     Retrieves a custom attribute that is decorated by the current member, and projects it into to a new form.
+    /// </summary>
+    /// <typeparam name="TAttribute">The attribute type.</typeparam>
+    /// <typeparam name="TReturn">The return type of the <paramref name="selector" /> delegate.</typeparam>
+    /// <param name="member">The member.</param>
+    /// <param name="selector">A transform function to apply to the attribute.</param>
+    /// <param name="defaultValue">The default value to return when the specified attribute is not found.</param>
+    /// <returns>
+    ///     An instance of <typeparamref name="TReturn" /> as provided from <paramref name="selector" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="member" /> is <see langword="null" />
+    ///     -or-
+    ///     <paramref name="selector" /> is <see langword="null" />.
+    /// </exception>
+    public static TReturn? SelectFromCustomAttribute<TAttribute, TReturn>(this MemberInfo member,
+        Func<TAttribute, TReturn> selector, TReturn? defaultValue)
+        where TAttribute : Attribute
+    {
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
@@ -91,6 +114,6 @@ public static class MemberInfoExtensions
 
         return member.GetCustomAttribute<TAttribute>() is { } attribute
             ? selector(attribute)
-            : default;
+            : defaultValue;
     }
 }
