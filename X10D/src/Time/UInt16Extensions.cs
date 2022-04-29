@@ -10,6 +10,48 @@ namespace X10D.Time;
 public static class UInt16Extensions
 {
     /// <summary>
+    ///     Converts a Unix time expressed as the number of milliseconds that have elapsed since 1970-01-01T00:00:00Z to a
+    ///     <see cref="DateTimeOffset" /> value.
+    /// </summary>
+    /// <param name="value">
+    ///     A Unix time, expressed as the number of milliseconds that have elapsed since 1970-01-01T00:00:00Z (January 1,
+    ///     1970, at 12:00 AM UTC). For Unix times before this date, its value is negative.
+    /// </param>
+    /// <returns>A date and time value that represents the same moment in time as the Unix time.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <para><paramref name="value" /> is less than -62,135,596,800,000.</para>
+    ///     -or-
+    ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
+    /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static DateTimeOffset FromUnixTimeMilliseconds(this ushort value)
+    {
+        return DateTimeOffset.FromUnixTimeMilliseconds(value);
+    }
+
+    /// <summary>
+    ///     Converts a Unix time expressed as the number of seconds that have elapsed since 1970-01-01T00:00:00Z to a
+    ///     <see cref="DateTimeOffset" /> value.
+    /// </summary>
+    /// <param name="value">
+    ///     A Unix time, expressed as the number of seconds that have elapsed since 1970-01-01T00:00:00Z (January 1, 1970, at
+    ///     12:00 AM UTC). For Unix times before this date, its value is negative.
+    /// </param>
+    /// <returns>A date and time value that represents the same moment in time as the Unix time.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <para><paramref name="value" /> is less than -62,135,596,800.</para>
+    ///     -or-
+    ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
+    /// </exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static DateTimeOffset FromUnixTimeSeconds(this ushort value)
+    {
+        return DateTimeOffset.FromUnixTimeSeconds(value);
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current integer, representing a year, is a leap year.
     /// </summary>
     /// <param name="value">The value whose leap year status to check.</param>

@@ -8,6 +8,18 @@ namespace X10D.Tests.Time;
 public class UInt16Tests
 {
     [TestMethod]
+    public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()
+    {
+        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), ((ushort)0).FromUnixTimeMilliseconds());
+    }
+
+    [TestMethod]
+    public void FromUnixTimeSeconds_ShouldBeEpoch_GivenZero()
+    {
+        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), ((ushort)0).FromUnixTimeSeconds());
+    }
+
+    [TestMethod]
     public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
     {
         Assert.IsFalse(((ushort)100).IsLeapYear());
