@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <root>
     <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -27,13 +27,13 @@
         <value>The buffer is too small to contain the data.</value>
     </data>
     <data name="TypeIsNotClass" xml:space="preserve">
-        <value>{{0}} is not a class.</value>
+        <value>{0} is not a class.</value>
     </data>
     <data name="TypeIsNotInterface" xml:space="preserve">
-        <value>{{0}} is not an interface.</value>
+        <value>{0} is not an interface.</value>
     </data>
     <data name="TypeDoesNotInheritAttribute" xml:space="preserve">
-        <value>{{0}} does not inherit {typeof(Attribute)}</value>
+        <value>{0} does not inherit {1}</value>
     </data>
     <data name="HashAlgorithmNoCreateMethod" xml:space="preserve">
         <value>HashAlgorithm does not offer Create method.</value>
