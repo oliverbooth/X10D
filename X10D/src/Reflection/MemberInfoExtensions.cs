@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Reflection;
 
 namespace X10D.Reflection;
@@ -53,9 +53,8 @@ public static class MemberInfoExtensions
 
         if (!attribute.Inherits<Attribute>())
         {
-            throw new ArgumentException(
-                string.Format(CultureInfo.CurrentCulture, ExceptionMessages.TypeDoesNotInheritAttribute, attribute),
-                nameof(attribute));
+            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.TypeDoesNotInheritAttribute,
+                attribute, typeof(Attribute)), nameof(attribute));
         }
 
         return member.GetCustomAttribute(attribute) is not null;
