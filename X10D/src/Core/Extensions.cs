@@ -1,4 +1,4 @@
-namespace X10D.Core;
+﻿namespace X10D.Core;
 
 /// <summary>
 ///     Extension methods which apply to all types.
@@ -29,5 +29,26 @@ public static class Extensions
     public static IEnumerable<T?> AsEnumerableValue<T>(this T? value)
     {
         yield return value;
+    }
+
+    /// <summary>
+    ///     Returns an enumerable collection containing the current value repeated a specified number of times.
+    /// </summary>
+    /// <param name="value">The value to repeat.</param>
+    /// <param name="count">The number of times to repeat <paramref name="value" />.</param>
+    /// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+    /// <returns>An enumerable collection containing <paramref name="value" /> repeated <paramref name="count" /> times.</returns>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="count" /> is less than 0.</exception>
+    public static IEnumerable<T> RepeatValue<T>(this T value, int count)
+    {
+        if (count < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeGreaterThanOrEqualTo0);
+        }
+
+        for (var i = 0; i < count; i++)
+        {
+            yield return value;
+        }
     }
 }
