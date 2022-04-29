@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <root>
     <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -39,7 +39,7 @@
         <value>HashAlgorithm does not offer Create method.</value>
     </data>
     <data name="HashAlgorithmCreateReturnedNull" xml:space="preserve">
-        <value>HashAlgorithm's Create method returned null referenece.</value>
+        <value>HashAlgorithm's Create method returned null reference.</value>
     </data>
     <data name="LengthGreaterThanOrEqualTo0" xml:space="preserve">
         <value>Length must be greater than or equal to 0.</value>
