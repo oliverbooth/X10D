@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -60,6 +60,20 @@ public static class UInt32Extensions
     public static bool IsEven(this uint value)
     {
         return (value & 1) == 0;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is a prime number.
+    /// </summary>
+    /// <param name="value">The value whose primality to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static bool IsPrime(this uint value)
+    {
+        return ((ulong)value).IsPrime();
     }
 
     /// <summary>
