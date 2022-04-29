@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Core;
 
 namespace X10D.Tests.Core;
@@ -34,9 +34,9 @@ public class CoreTests
     [DataRow(true)]
     public void AsEnumerableValue_ShouldBeLength1_GivenValue(object o)
     {
-        IEnumerable<object> array = o.AsEnumerableValue()!;
-        Assert.IsNotNull(array);
-        Assert.IsTrue(array.Count() == 1);
+        IEnumerable<object> enumerable = o.AsEnumerableValue()!;
+        Assert.IsNotNull(enumerable);
+        Assert.IsTrue(enumerable.Count() == 1);
     }
 
     [TestMethod]
@@ -45,8 +45,9 @@ public class CoreTests
     [DataRow(true)]
     public void AsEnumerableValue_ShouldContainValue_Given_Value(object o)
     {
-        IEnumerable<object> array = o.AsEnumerableValue()!;
-        Assert.IsNotNull(array);
-        Assert.AreEqual(o, array.ElementAt(0));
+        IEnumerable<object> enumerable = o.AsEnumerableValue()!;
+        Assert.IsNotNull(enumerable);
+        Assert.AreEqual(o, enumerable.ElementAt(0));
+    }
     }
 }
