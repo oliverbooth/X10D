@@ -10,23 +10,23 @@ public class DoubleTests
     [TestMethod]
     public void DegreesToRadians_ShouldBeCorrect()
     {
-        Assert.AreEqual(System.Math.PI, 180.0.DegreesToRadians());
-        Assert.AreEqual(System.Math.PI * 1.5, 270.0.DegreesToRadians());
-        Assert.AreEqual(0.0, 0.0.DegreesToRadians());
-        Assert.AreEqual(0.017453292519943295, 1.0.DegreesToRadians());
-        Assert.AreEqual(0.10471975511965978, 6.0.DegreesToRadians());
-        Assert.AreEqual(0.20943951023931956, 12.0.DegreesToRadians());
+        Assert.AreEqual(System.Math.PI, 180.0.DegreesToRadians(), 1e-6);
+        Assert.AreEqual(System.Math.PI * 1.5, 270.0.DegreesToRadians(), 1e-6);
+        Assert.AreEqual(0.0, 0.0.DegreesToRadians(), 1e-6);
+        Assert.AreEqual(0.017453292519943295, 1.0.DegreesToRadians(), 1e-6);
+        Assert.AreEqual(0.10471975511965978, 6.0.DegreesToRadians(), 1e-6);
+        Assert.AreEqual(0.20943951023931956, 12.0.DegreesToRadians(), 1e-6);
     }
 
     [TestMethod]
     public void RadiansToDegrees_ShouldBeCorrect()
     {
-        Assert.AreEqual(180.0, System.Math.PI.RadiansToDegrees());
-        Assert.AreEqual(360.0, (2.0 * System.Math.PI).RadiansToDegrees());
-        Assert.AreEqual(0.0, 0.0.RadiansToDegrees());
-        Assert.AreEqual(1.0, 0.017453292519943295.RadiansToDegrees());
-        Assert.AreEqual(6.000000000000001, 0.10471975511965978.RadiansToDegrees()); // rounding errors are fun
-        Assert.AreEqual(12.0, 0.20943951023931953.RadiansToDegrees());
+        Assert.AreEqual(180.0, System.Math.PI.RadiansToDegrees(), 1e-6);
+        Assert.AreEqual(360.0, (2.0 * System.Math.PI).RadiansToDegrees(), 1e-6);
+        Assert.AreEqual(0.0, 0.0.RadiansToDegrees(), 1e-6);
+        Assert.AreEqual(1.0, 0.017453292519943295.RadiansToDegrees(), 1e-6);
+        Assert.AreEqual(6.000000000000001, 0.10471975511965978.RadiansToDegrees(), 1e-6); // rounding errors are fun
+        Assert.AreEqual(12.0, 0.20943951023931953.RadiansToDegrees(), 1e-6);
     }
 
     [TestMethod]
@@ -102,17 +102,17 @@ public class DoubleTests
     [TestMethod]
     public void Round_ShouldRoundToNearestInteger()
     {
-        Assert.AreEqual(4.0, 3.5.Round());
-        Assert.AreEqual(7.0, 6.8.Round());
-        Assert.AreEqual(7.0, 7.2.Round());
+        Assert.AreEqual(4.0, 3.5.Round(), 1e-6);
+        Assert.AreEqual(7.0, 6.8.Round(), 1e-6);
+        Assert.AreEqual(7.0, 7.2.Round(), 1e-6);
     }
 
     [TestMethod]
     public void Round_ShouldRoundToNearestMultiple()
     {
-        Assert.AreEqual(5.0, 3.5.Round(5));
-        Assert.AreEqual(5.0, 7.0.Round(5));
-        Assert.AreEqual(10.0, 7.5.Round(5));
+        Assert.AreEqual(5.0, 3.5.Round(5), 1e-6);
+        Assert.AreEqual(5.0, 7.0.Round(5), 1e-6);
+        Assert.AreEqual(10.0, 7.5.Round(5), 1e-6);
     }
 
     [TestMethod]
@@ -140,11 +140,11 @@ public class DoubleTests
     [TestMethod]
     public void Sqrt_ShouldBeCorrect_GivenValue()
     {
-        Assert.AreEqual(0.0, 0.0.Sqrt());
-        Assert.AreEqual(1.414213562373095, 2.0.Sqrt());
-        Assert.AreEqual(3.0, 9.0.Sqrt());
-        Assert.AreEqual(4.0, 16.0.Sqrt());
-        Assert.AreEqual(100.0, 10000.0.Sqrt());
+        Assert.AreEqual(0.0, 0.0.Sqrt(), 1e-6);
+        Assert.AreEqual(1.414213562373095, 2.0.Sqrt(), 1e-6);
+        Assert.AreEqual(3.0, 9.0.Sqrt(), 1e-6);
+        Assert.AreEqual(4.0, 16.0.Sqrt(), 1e-6);
+        Assert.AreEqual(100.0, 10000.0.Sqrt(), 1e-6);
     }
 
     [TestMethod]
@@ -171,81 +171,72 @@ public class DoubleTests
     [TestMethod]
     public void Acos_ShouldBeCorrect()
     {
-        Assert.AreEqual(1.0471975511965979, 0.5.Acos());
+        Assert.AreEqual(1.0471975511965979, 0.5.Acos(), 1e-6);
     }
 
     [TestMethod]
     public void Acosh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.9624236501192069, 1.5.Acosh());
+        Assert.AreEqual(0.9624236501192069, 1.5.Acosh(), 1e-6);
     }
 
     [TestMethod]
     public void Asin_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5235987755982989, 0.5.Asin());
+        Assert.AreEqual(0.5235987755982989, 0.5.Asin(), 1e-6);
     }
 
     [TestMethod]
     public void Asinh_ShouldBeCorrect()
     {
-        Assert.AreEqual(1.1947632172871094, 1.5.Asinh());
+        Assert.AreEqual(1.1947632172871094, 1.5.Asinh(), 1e-6);
     }
 
     [TestMethod]
     public void Atan_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.4636476090008061, 0.5.Atan());
+        Assert.AreEqual(0.4636476090008061, 0.5.Atan(), 1e-6);
     }
 
     [TestMethod]
     public void Atanh_ShouldBeCorrect()
     {
-        try
-        {
-            Assert.AreEqual(0.5493061443340548, 0.5.Atanh());
-        }
-        catch
-        {
-            // floating point rounding errors cause this value to be different on CI vs my local machine.
-            // I have no idea why, but here we are. if THIS assertion fails, we'll just throw it back
-            Assert.AreEqual(0.5493061443340549, 0.5.Atanh());
-        }
+        Assert.AreEqual(0.5493061443340549, 0.5.Atanh(), 1e-6);
     }
 
     [TestMethod]
     public void Cos_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.8775825618903728, 0.5.Cos());
+        Assert.AreEqual(0.8775825618903728, 0.5.Cos(), 1e-6);
     }
 
     [TestMethod]
     public void Cosh_ShouldBeCorrect()
     {
-        Assert.AreEqual(2.352409615243247, 1.5.Cosh());
+        Assert.AreEqual(2.352409615243247, 1.5.Cosh(), 1e-6);
     }
 
     [TestMethod]
     public void Sin_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.479425538604203, 0.5.Sin());
+        Assert.AreEqual(0.479425538604203, 0.5.Sin(), 1e-6);
     }
 
     [TestMethod]
     public void Sinh_ShouldBeCorrect()
     {
-        Assert.AreEqual(2.1292794550948173, 1.5.Sinh());
+        Assert.AreEqual(2.1292794550948173, 1.5.Sinh(), 1e-6);
     }
 
     [TestMethod]
     public void Tan_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5463024898437905, 0.5.Tan());
+        Assert.AreEqual(0.5463024898437905, 0.5.Tan(), 1e-6);
     }
 
     [TestMethod]
     public void Tanh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.46211715726000974, 0.5.Tanh());
+        Assert.AreEqual(0.46211715726000974, 0.5.Tanh(), 1e-6);
     }
 }

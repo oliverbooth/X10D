@@ -10,23 +10,23 @@ public class SingleTests
     [TestMethod]
     public void DegreesToRadians_ShouldBeCorrect()
     {
-        Assert.AreEqual(MathF.PI, 180.0f.DegreesToRadians());
-        Assert.AreEqual(MathF.PI * 1.5f, 270.0f.DegreesToRadians());
-        Assert.AreEqual(0.0f, 0.0f.DegreesToRadians());
-        Assert.AreEqual(0.017453292f, 1.0f.DegreesToRadians());
-        Assert.AreEqual(0.10471976f, 6.0f.DegreesToRadians());
-        Assert.AreEqual(0.20943952f, 12.0f.DegreesToRadians());
+        Assert.AreEqual(MathF.PI, 180.0f.DegreesToRadians(), 1e-6f);
+        Assert.AreEqual(MathF.PI * 1.5f, 270.0f.DegreesToRadians(), 1e-6f);
+        Assert.AreEqual(0.0f, 0.0f.DegreesToRadians(), 1e-6f);
+        Assert.AreEqual(0.017453292f, 1.0f.DegreesToRadians(), 1e-6f);
+        Assert.AreEqual(0.10471976f, 6.0f.DegreesToRadians(), 1e-6f);
+        Assert.AreEqual(0.20943952f, 12.0f.DegreesToRadians(), 1e-6f);
     }
 
     [TestMethod]
     public void RadiansToDegrees_ShouldBeCorrect()
     {
-        Assert.AreEqual(180.0f, MathF.PI.RadiansToDegrees());
-        Assert.AreEqual(270.0f, (MathF.PI * 1.5f).RadiansToDegrees());
-        Assert.AreEqual(0.0, 0.0f.RadiansToDegrees());
-        Assert.AreEqual(0.99999994f, 0.017453292f.RadiansToDegrees()); // rounding errors are fun
-        Assert.AreEqual(6.0f, 0.10471976f.RadiansToDegrees());
-        Assert.AreEqual(12.0f, 0.20943952f.RadiansToDegrees());
+        Assert.AreEqual(180.0f, MathF.PI.RadiansToDegrees(), 1e-6f);
+        Assert.AreEqual(270.0f, (MathF.PI * 1.5f).RadiansToDegrees(), 1e-6f);
+        Assert.AreEqual(0.0, 0.0f.RadiansToDegrees(), 1e-6f);
+        Assert.AreEqual(0.99999994f, 0.017453292f.RadiansToDegrees(), 1e-6f); // rounding errors are fun
+        Assert.AreEqual(6.0f, 0.10471976f.RadiansToDegrees(), 1e-6f);
+        Assert.AreEqual(12.0f, 0.20943952f.RadiansToDegrees(), 1e-6f);
     }
 
     [TestMethod]
@@ -102,17 +102,17 @@ public class SingleTests
     [TestMethod]
     public void Round_ShouldRoundToNearestInteger()
     {
-        Assert.AreEqual(4.0f, 3.5f.Round());
-        Assert.AreEqual(7.0f, 6.8f.Round());
-        Assert.AreEqual(7.0f, 7.2f.Round());
+        Assert.AreEqual(4.0f, 3.5f.Round(), 1e-6f);
+        Assert.AreEqual(7.0f, 6.8f.Round(), 1e-6f);
+        Assert.AreEqual(7.0f, 7.2f.Round(), 1e-6f);
     }
 
     [TestMethod]
     public void Round_ShouldRoundToNearestMultiple()
     {
-        Assert.AreEqual(5.0f, 3.5f.Round(5));
-        Assert.AreEqual(5.0f, 7.0f.Round(5));
-        Assert.AreEqual(10.0f, 7.5f.Round(5));
+        Assert.AreEqual(5.0f, 3.5f.Round(5), 1e-6f);
+        Assert.AreEqual(5.0f, 7.0f.Round(5), 1e-6f);
+        Assert.AreEqual(10.0f, 7.5f.Round(5), 1e-6f);
     }
 
     [TestMethod]
@@ -140,11 +140,11 @@ public class SingleTests
     [TestMethod]
     public void Sqrt_ShouldBeCorrect_GivenValue()
     {
-        Assert.AreEqual(0.0f, 0.0f.Sqrt());
-        Assert.AreEqual(1.4142135f, 2.0f.Sqrt());
-        Assert.AreEqual(3.0f, 9.0f.Sqrt());
-        Assert.AreEqual(4.0f, 16.0f.Sqrt());
-        Assert.AreEqual(100.0f, 10000.0f.Sqrt());
+        Assert.AreEqual(0.0f, 0.0f.Sqrt(), 1e-6f);
+        Assert.AreEqual(1.4142135f, 2.0f.Sqrt(), 1e-6f);
+        Assert.AreEqual(3.0f, 9.0f.Sqrt(), 1e-6f);
+        Assert.AreEqual(4.0f, 16.0f.Sqrt(), 1e-6f);
+        Assert.AreEqual(100.0f, 10000.0f.Sqrt(), 1e-6f);
     }
 
     [TestMethod]
@@ -171,72 +171,72 @@ public class SingleTests
     [TestMethod]
     public void Acos_ShouldBeCorrect()
     {
-        Assert.AreEqual(1.0471975803375244f, 0.5f.Acos());
+        Assert.AreEqual(1.0471975803375244f, 0.5f.Acos(), 1e-6f);
     }
 
     [TestMethod]
     public void Acosh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.9624236822128296f, 1.5f.Acosh());
+        Assert.AreEqual(0.9624236822128296f, 1.5f.Acosh(), 1e-6f);
     }
 
     [TestMethod]
     public void Asin_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5235987901687622f, 0.5f.Asin());
+        Assert.AreEqual(0.5235987901687622f, 0.5f.Asin(), 1e-6f);
     }
 
     [TestMethod]
     public void Asinh_ShouldBeCorrect()
     {
-        Assert.AreEqual(1.19476318359375f, 1.5f.Asinh());
+        Assert.AreEqual(1.19476318359375f, 1.5f.Asinh(), 1e-6f);
     }
 
     [TestMethod]
     public void Atan_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.46364760398864746, 0.5f.Atan());
+        Assert.AreEqual(0.46364760398864746, 0.5f.Atan(), 1e-6f);
     }
 
     [TestMethod]
     public void Atanh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5493061542510986f, 0.5f.Atanh());
+        Assert.AreEqual(0.5493061542510986f, 0.5f.Atanh(), 1e-6f);
     }
 
     [TestMethod]
     public void Cos_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.8775825500488281f, 0.5f.Cos());
+        Assert.AreEqual(0.8775825500488281f, 0.5f.Cos(), 1e-6f);
     }
 
     [TestMethod]
     public void Cosh_ShouldBeCorrect()
     {
-        Assert.AreEqual(2.352409601211548f, 1.5f.Cosh());
+        Assert.AreEqual(2.352409601211548f, 1.5f.Cosh(), 1e-6f);
     }
 
     [TestMethod]
     public void Sin_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.4794255495071411, 0.5f.Sin());
+        Assert.AreEqual(0.4794255495071411, 0.5f.Sin(), 1e-6f);
     }
 
     [TestMethod]
     public void Sinh_ShouldBeCorrect()
     {
-        Assert.AreEqual(2.129279375076294f, 1.5f.Sinh());
+        Assert.AreEqual(2.129279375076294f, 1.5f.Sinh(), 1e-6f);
     }
 
     [TestMethod]
     public void Tan_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.4794255495071411f, 0.5f.Tan());
+        Assert.AreEqual(0.4794255495071411f, 0.5f.Tan(), 1e-6f);
     }
 
     [TestMethod]
     public void Tanh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.46211716532707214f, 0.5f.Tanh());
+        Assert.AreEqual(0.46211716532707214f, 0.5f.Tanh(), 1e-6f);
     }
 }
