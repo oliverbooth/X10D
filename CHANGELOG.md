@@ -299,7 +299,7 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 ### ***Not documented***
 
-[3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/3.0.0
+[3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0
 [2.6.0]: https://github.com/oliverbooth/X10D/releases/tag/2.6.0
 [2.5.0]: https://github.com/oliverbooth/X10D/releases/tag/2.5.0
 [2.2.0]: https://github.com/oliverbooth/X10D/releases/tag/2.2.0
