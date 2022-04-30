@@ -1,6 +1,9 @@
 # Changelog
 
-## [3.0.0 (Unreleased)]
+## [3.0.0]
+
+In the midst of writing these release notes, I may have missed some important changes. If you notice an API change that is not documented here,
+please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 ### Added
 - Added `T.AsArrayValue()`
@@ -296,7 +299,7 @@
 
 ### ***Not documented***
 
-[3.0.0 (Unreleased)]: https://github.com/oliverbooth/X10D/tree/develop
+[3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/3.0.0
 [2.6.0]: https://github.com/oliverbooth/X10D/releases/tag/2.6.0
 [2.5.0]: https://github.com/oliverbooth/X10D/releases/tag/2.5.0
 [2.2.0]: https://github.com/oliverbooth/X10D/releases/tag/2.2.0
