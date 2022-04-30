@@ -22,8 +22,6 @@ X10D (pronounced *extend*), is a .NET package that provides extension methods fo
 - [Contributing](#contributing)
 - [License](#license)
 
-You can find the list of classes that have extension methods by viewing the `README.md` file in any of the respective library folders.
-
 ## Installation
 ### NuGet installation
 ```ps
