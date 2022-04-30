@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -113,6 +114,32 @@ public static class SingleExtensions
     public static float Atanh(this float value)
     {
         return MathF.Atanh(value);
+    }
+
+    /// <summary>
+    ///     Returns the complex square root of this single-precision floating-point number.
+    /// </summary>
+    /// <param name="value">The number whose square root is to be found.</param>
+    /// <returns>The square root of <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static Complex ComplexSqrt(this float value)
+    {
+        switch (value)
+        {
+            case float.PositiveInfinity:
+            case float.NegativeInfinity:
+                return Complex.Infinity;
+            case float.NaN:
+                return Complex.NaN;
+
+            case 0:
+                return Complex.Zero;
+            case > 0:
+                return new Complex(MathF.Sqrt(value), 0);
+            case < 0:
+                return new Complex(0, MathF.Sqrt(-value));
+        }
     }
 
     /// <summary>
