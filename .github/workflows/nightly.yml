@@ -3,7 +3,7 @@ name: Publish Nightly
 on:
   push:
     branches:
-      - master
+      - main
       - develop
 
 jobs:
