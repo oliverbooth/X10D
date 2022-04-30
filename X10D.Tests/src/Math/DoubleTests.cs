@@ -201,7 +201,16 @@ public class DoubleTests
     [TestMethod]
     public void Atanh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5493061443340549, 0.5.Atanh());
+        try
+        {
+            Assert.AreEqual(0.5493061443340548, 0.5.Atanh());
+        }
+        catch
+        {
+            // floating point rounding errors cause this value to be different on CI vs my local machine.
+            // I have no idea why, but here we are. if THIS assertion fails, we'll just throw it back
+            Assert.AreEqual(0.5493061443340549, 0.5.Atanh());
+        }
     }
 
     [TestMethod]
