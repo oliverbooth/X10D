@@ -189,7 +189,14 @@ public class StringBuilderReader : TextReader
             _index++;
         }
 
-        return _stringBuilder.ToString(start, _index - start - 1);
+        var result = _stringBuilder.ToString(start, _index - start);
+
+        if (result.Length > 0 && (result[^1] == '\n' || result[^1] == '\r'))
+        {
+            result = result[..^1];
+        }
+
+        return result;
     }
 
     /// <inheritdoc />
