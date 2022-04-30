@@ -51,6 +51,23 @@ public class Int64Tests
     }
 
     [TestMethod]
+    public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
+    {
+        Assert.AreEqual(0, 0L.MultiplicativePersistence());
+        Assert.AreEqual(1, 10L.MultiplicativePersistence());
+        Assert.AreEqual(2, 25L.MultiplicativePersistence());
+        Assert.AreEqual(3, 39L.MultiplicativePersistence());
+        Assert.AreEqual(4, 77L.MultiplicativePersistence());
+        Assert.AreEqual(5, 679L.MultiplicativePersistence());
+        Assert.AreEqual(6, 6788L.MultiplicativePersistence());
+        Assert.AreEqual(7, 68889L.MultiplicativePersistence());
+        Assert.AreEqual(8, 2677889L.MultiplicativePersistence());
+        Assert.AreEqual(9, 26888999L.MultiplicativePersistence());
+        Assert.AreEqual(10, 3778888999L.MultiplicativePersistence());
+        Assert.AreEqual(11, 277777788888899L.MultiplicativePersistence());
+    }
+
+    [TestMethod]
     public void NegativeFactorialShouldThrow()
     {
         Assert.ThrowsException<ArithmeticException>(() => (-1L).Factorial());

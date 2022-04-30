@@ -122,6 +122,21 @@ public static class SByteExtensions
     }
 
     /// <summary>
+    ///     Returns the multiplicative persistence of a specified value.
+    /// </summary>
+    /// <param name="value">The value whose multiplicative persistence to calculate.</param>
+    /// <returns>The multiplicative persistence.</returns>
+    /// <remarks>
+    ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
+    /// </remarks>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static int MultiplicativePersistence(this sbyte value)
+    {
+        return ((long)value).MultiplicativePersistence();
+    }
+
+    /// <summary>
     ///     Returns an integer that indicates the sign of this 8-bit signed integer.
     /// </summary>
     /// <param name="value">A signed number.</param>

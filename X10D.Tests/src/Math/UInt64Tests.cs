@@ -54,4 +54,21 @@ public class UInt64Tests
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
+    {
+        Assert.AreEqual(0, 0UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 10UL.MultiplicativePersistence());
+        Assert.AreEqual(2, 25UL.MultiplicativePersistence());
+        Assert.AreEqual(3, 39UL.MultiplicativePersistence());
+        Assert.AreEqual(4, 77UL.MultiplicativePersistence());
+        Assert.AreEqual(5, 679UL.MultiplicativePersistence());
+        Assert.AreEqual(6, 6788UL.MultiplicativePersistence());
+        Assert.AreEqual(7, 68889UL.MultiplicativePersistence());
+        Assert.AreEqual(8, 2677889UL.MultiplicativePersistence());
+        Assert.AreEqual(9, 26888999UL.MultiplicativePersistence());
+        Assert.AreEqual(10, 3778888999UL.MultiplicativePersistence());
+        Assert.AreEqual(11, 277777788888899UL.MultiplicativePersistence());
+    }
 }

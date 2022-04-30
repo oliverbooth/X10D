@@ -36,7 +36,7 @@ public class UInt32Tests
     {
         const uint one = 1;
         const uint two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -46,8 +46,24 @@ public class UInt32Tests
     {
         const uint one = 1;
         const uint two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
+    {
+        Assert.AreEqual(0, 0U.MultiplicativePersistence());
+        Assert.AreEqual(1, 10U.MultiplicativePersistence());
+        Assert.AreEqual(2, 25U.MultiplicativePersistence());
+        Assert.AreEqual(3, 39U.MultiplicativePersistence());
+        Assert.AreEqual(4, 77U.MultiplicativePersistence());
+        Assert.AreEqual(5, 679U.MultiplicativePersistence());
+        Assert.AreEqual(6, 6788U.MultiplicativePersistence());
+        Assert.AreEqual(7, 68889U.MultiplicativePersistence());
+        Assert.AreEqual(8, 2677889U.MultiplicativePersistence());
+        Assert.AreEqual(9, 26888999U.MultiplicativePersistence());
+        Assert.AreEqual(10, 3778888999U.MultiplicativePersistence());
     }
 }

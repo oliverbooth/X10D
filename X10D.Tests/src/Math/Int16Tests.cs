@@ -51,6 +51,18 @@ public class Int16Tests
     }
 
     [TestMethod]
+    public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
+    {
+        Assert.AreEqual(0, ((short)0).MultiplicativePersistence());
+        Assert.AreEqual(1, ((short)10).MultiplicativePersistence());
+        Assert.AreEqual(2, ((short)25).MultiplicativePersistence());
+        Assert.AreEqual(3, ((short)39).MultiplicativePersistence());
+        Assert.AreEqual(4, ((short)77).MultiplicativePersistence());
+        Assert.AreEqual(5, ((short)679).MultiplicativePersistence());
+        Assert.AreEqual(6, ((short)6788).MultiplicativePersistence());
+    }
+
+    [TestMethod]
     public void NegativeFactorialShouldThrow()
     {
         Assert.ThrowsException<ArithmeticException>(() => ((short)-1).Factorial());
