@@ -21,7 +21,6 @@ public static class DecimalExtensions
         return Complex.Sqrt((double)value);
     }
 
-
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
@@ -51,7 +50,6 @@ public static class DecimalExtensions
     {
         return !value.IsEven();
     }
-
 
     /// <summary>
     ///     Rounds the current value to the nearest whole number.
