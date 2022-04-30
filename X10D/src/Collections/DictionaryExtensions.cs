@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Web;
 
 namespace X10D.Collections;
@@ -226,6 +226,11 @@ public static class DictionaryExtensions
             throw new ArgumentNullException(nameof(source));
         }
 
+        if (selector is null)
+        {
+            throw new ArgumentNullException(nameof(selector));
+        }
+
         static string SanitizeValue(string? value)
         {
             if (value is null)
@@ -266,6 +271,16 @@ public static class DictionaryExtensions
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
+        }
+
+        if (keySelector is null)
+        {
+            throw new ArgumentNullException(nameof(keySelector));
+        }
+
+        if (valueSelector is null)
+        {
+            throw new ArgumentNullException(nameof(valueSelector));
         }
 
         static string SanitizeValue(string? value)
@@ -369,6 +384,11 @@ public static class DictionaryExtensions
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
+        }
+
+        if (keySelector is null)
+        {
+            throw new ArgumentNullException(nameof(keySelector));
         }
 
         if (valueSelector is null)
