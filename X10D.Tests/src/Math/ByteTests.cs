@@ -49,4 +49,14 @@ public class ByteTests
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
+    {
+        Assert.AreEqual(0, ((byte)0).MultiplicativePersistence());
+        Assert.AreEqual(1, ((byte)10).MultiplicativePersistence());
+        Assert.AreEqual(2, ((byte)25).MultiplicativePersistence());
+        Assert.AreEqual(3, ((byte)39).MultiplicativePersistence());
+        Assert.AreEqual(4, ((byte)77).MultiplicativePersistence());
+    }
 }

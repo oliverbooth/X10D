@@ -14,7 +14,7 @@ public class SByteTests
         Assert.AreEqual(1, value.DigitalRoot());
         Assert.AreEqual(1, (-value).DigitalRoot());
     }
-    
+
     [TestMethod]
     public void FactorialShouldBeCorrect()
     {
@@ -36,7 +36,7 @@ public class SByteTests
     {
         const sbyte one = 1;
         const sbyte two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -46,9 +46,19 @@ public class SByteTests
     {
         const sbyte one = 1;
         const sbyte two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
+    {
+        Assert.AreEqual(0, ((sbyte)0).MultiplicativePersistence());
+        Assert.AreEqual(1, ((sbyte)10).MultiplicativePersistence());
+        Assert.AreEqual(2, ((sbyte)25).MultiplicativePersistence());
+        Assert.AreEqual(3, ((sbyte)39).MultiplicativePersistence());
+        Assert.AreEqual(4, ((sbyte)77).MultiplicativePersistence());
     }
 
     [TestMethod]
