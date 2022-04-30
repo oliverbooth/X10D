@@ -13,7 +13,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="input">
     ///     The input string. Floating point is not supported, but range the following units are supported:
-    /// 
+    ///
     ///     <list type="table">
     ///         <listheader>
     ///             <term>Suffix</term>

@@ -11,7 +11,7 @@ public static class TimeSpanParser
     /// </summary>
     /// <param name="value">
     ///     The input string. Floating point is not supported, but range the following units are supported:
-    /// 
+    ///
     ///     <list type="table">
     ///         <listheader>
     ///             <term>Suffix</term>
