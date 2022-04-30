@@ -14,14 +14,6 @@ X10D (pronounced *extend*), is a .NET package that provides extension methods fo
 
 *(I'm also [dogfooding](https://www.pcmag.com/encyclopedia/term/dogfooding) this library, so there's that.)*
 
-### Table of contents
-- [Installation](#installation)
-    - [Unity installation](#unity-installation)
-    - [NuGet installation](#nuget-installation)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Installation
 ### NuGet installation
 ```ps
@@ -35,6 +27,8 @@ Download the [latest release](https://github.com/oliverbooth/X10D/releases/lates
 I decided it was time for X10D to be migrated to .NET 6. Unity currently supports .NET Framework 4.x / .NET Standard 2.1, and as such is not compatible with X10D at this time.
 Unity have announced official support for .NET 6 in the future (see [this forum post](https://forum.unity.com/threads/unity-future-net-development-status.1092205/) for more details),
 but until such a time that Unity supports .NET 6, X10D.Unity will not be maintained or innovated upon.
+
+The upm branch, however, is still available under version 2.6.0 - if you wish to use this version, add the package https://github.com/oliverbooth/X10D.git#upm to your Unity project.
 
 ## Features
 I'm planning on writing complete and extensive documentation in the near future. As of this time, feel free to browse the source or the API using your favourite IDE.
