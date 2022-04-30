@@ -3,132 +3,67 @@
 ## [3.0.0 (Unreleased)]
 
 ### Added
-
-- Added `StringBuilderReader` (inheriting `TextReader`) which allows reading from a `StringBuilder` without consuming the underlying string
-- Added extension methods for `System.Decimal`
-- Added `All` and `Any` for `Span<T>` and `ReadOnlySpan<T>`, mimicking the corresponding methods in `System.Linq`
-- Added time-related extension methods (`Ticks`, `Milliseconds`, `Seconds`, `Minutes`, `Hours`, `Days`, and `Weeks`) to all built-in numeric types
-- Added `TimeSpan.Ago()` and `TimeSpan.FromNow()`
-- Added `Factorial` extension method for built-in numeric types
-- Added `FileInfo.GetHash<T>()`
-- Added `FileInfo.TryWriteHash<T>(Span<byte>, out int)`
-- Added `IEnumerable<TSource>.Product()` and `IEnumerable<TSource>.Product<TResult>(Func<TSource>, TResult)` for all built-in numeric types, computing the product of all (transformed) elements
-- Added `IEnumerable<T>.Shuffled([Random])`, which wraps `IList<T>.Shuffle([Random])` and returns the result
-- Added `T.AsArray()`
-- Added `T.AsEnumerable()`
+- Added `T.AsArrayValue()`
+- Added `T.AsEnumerableValue()`
+- Added `T.RepeatValue(int)`
 - Added `T.ToJson([JsonSerializerOptions])`
+- Added `string.FromJson([JsonSerializerOptions])`
 - Added `T[].AsReadOnly()`
 - Added `T[].Clear([Range])` and `T[].Clear(int, int)`
-- Added `T[].Fill(T)` and `T[].Fill(T, int, int)`
-- Added `Random.Next<T>()`
-- Added `Random.NextDouble(double)`
-- Added `Random.NextDouble(double, double)`
-- Added `Random.NextSingle()`
-- Added `Random.NextSingle(float)`
-- Added `Random.NextSingle(float, float)`
-- Added `Random.NextInt64()`
-- Added `Random.NextInt64(long)`
-- Added `Random.NextInt64(long, long)`
-- Added `Random.NextColor()`
+- Added `DateTime.IsLeapYear()`
+- Added `DateTimeOffset.IsLeapYear()`
+- Added `Endianness` enum
+- Added `FileInfo.GetHash<T>()`
+- Added `FileInfo.TryWriteHash<T>(Span<byte>, out int)`
+- Added `IComparable<T>.Clamp(T, T)` - this supersedes `Clamp` defined for hard-coded numeric types (#24)
+- Added `IComparable<T1>.GreaterThan(T2)` (#22)
+- Added `IComparable<T1>.GreaterThanOrEqualTo(T2)` (#22)
+- Added `IComparable<T1>.LessThan(T2)` (#22)
+- Added `IComparable<T1>.LessThanOrEqualTo(T2)` (#22)
+- Added `IComparable<T1>.Max(T)` (#23)
+- Added `IComparable<T1>.Min(T)` (#23)
+- Added `IDictionary<TKey, TValue>.AddOrUpdate()`
+- Added `IEnumerable<TSource>.Product()` and `IEnumerable<TSource>.Product<TResult>(Func<TSource>, TResult)` for all built-in numeric types, computing the product of all (optionally transformed) elements
+- Added `IList<T>.Fill(T)` and `IList<T>.Fill(T, int, int)`
+- Added `IPAddress.IsIPv4()` and `IPAddress.IsIPv6()`
+- Added `IReadOnlyList<byte>.Pack8Bit()`
+- Added `IReadOnlyList<byte>.Pack16Bit()`
+- Added `IReadOnlyList<byte>.Pack32Bit()`
+- Added `IReadOnlyList<byte>.Pack64Bit()`
+- Added `MemberInfo.HasCustomAttribute<T>()` and `MemberInfo.HasCustomAttribute(Type)`
+- Added `defaultValue` overload for `MemberInfo.SelectFromCustomAttribute<TAttr, TReturn>()`
+- Added `Random.Next<T>()` (returns a random field from a specified enum type)
+- Added `Random.NextByte([byte[, byte]])`
+- Added `Random.NextColorArgb()`, returning a random color in RGB space, including random alpha
+- Added `Random.NextColorRgb()`, returning a random color in RGB space with alpha 255
+- Added `Random.NextDouble(double[, double])`
+- Added `Random.NextInt16([short[, short]])`
+- Added `Random.NextSingle(float[, float])` (#34)
 - Added `Random.NextUnitVector2()`
 - Added `Random.NextUnitVector3()`
 - Added `Random.NextRotation()`
 - Added `Rune.Repeat(int)`
-- Added `bool.GetBytes()`
-- Added `byte.GetBytes()`
 - Added `byte.IsEven()`
 - Added `byte.IsOdd()`
 - Added `byte.IsPrime()`
+- Added `byte.UnpackBits()`
+- Added `byte.RangeTo(byte)`, `byte.RangeTo(short)`, `byte.RangeTo(int)`, and `byte.RangeTo(long)`
+- Added `int.Mod(int)`
+- Added `int.RangeTo(int)`, and `int.RangeTo(long)`
+- Added `int.UnpackBits()`
+- Added `long.Mod(long)`
+- Added `long.RangeTo(long)`
+- Added `long.UnpackBits()`
 - Added `sbyte.IsEven()`
 - Added `sbyte.IsOdd()`
 - Added `sbyte.IsPrime()`
-- Added `sbyte.Sign()`
-- Added `decimal.Sign()`
-- Added `double.Acos()`
-- Added `double.Acosh()`
-- Added `double.Asin()`
-- Added `double.Asinh()`
-- Added `double.Atan()`
-- Added `double.Atanh()`
-- Added `double.ComplexSqrt()`
-- Added `double.Cos()`
-- Added `double.Cosh()`
-- Added `double.LerpFrom(double, double)`
-- Added `double.LerpTo(double, double)`
-- Added `double.LerpWith(double, double)`
-- Added `double.Sign()`
-- Added `double.Sin()`
-- Added `double.Sinh()`
-- Added `double.Sqrt()`
-- Added `double.Tan()`
-- Added `double.Tanh()`
-- Added `float.Acos()`
-- Added `float.Acosh()`
-- Added `float.Asin()`
-- Added `float.Asinh()`
-- Added `float.Atan()`
-- Added `float.Atanh()`
-- Added `float.ComplexSqrt()`
-- Added `float.Cos()`
-- Added `float.Cosh()`
-- Added `float.LerpFrom(float, float)`
-- Added `float.LerpTo(float, float)`
-- Added `float.LerpWith(float, float)`
-- Added `float.Sign()`
-- Added `float.Sin()`
-- Added `float.Sinh()`
-- Added `float.Sqrt()`
-- Added `float.Tan()`
-- Added `float.Tanh()`
-- Added `short.ToHostOrder()`
-- Added `short.LerpFrom(double, double)`
-- Added `short.LerpTo(double, double)`
-- Added `short.LerpWith(double, double)`
-- Added `short.LerpFrom(float, float)`
-- Added `short.LerpTo(float, float)`
-- Added `short.LerpWith(float, float)`
-- Added `short.Sign()`
-- Added `short.ToNetworkOrder()`
-- Added `short.To(short)` and `short.To(short, short)`
-- Added `int.LerpFrom(double, double)`
-- Added `int.LerpTo(double, double)`
-- Added `int.LerpWith(double, double)`
-- Added `int.LerpFrom(float, float)`
-- Added `int.LerpTo(float, float)`
-- Added `int.LerpWith(float, float)`
-- Added `int.Mod(int)`
-- Added `int.RotateLeft(int)`
-- Added `int.RotateRight(int)`
-- Added `int.Sign()`
-- Added `int.ToHostOrder()`
-- Added `int.ToNetworkOrder()`
-- Added `int.To(int)` and `int.To(int, int)`
-- Added `long.ToHostOrder()`
-- Added `long.LerpFrom(double, double)`
-- Added `long.LerpTo(double, double)`
-- Added `long.LerpWith(double, double)`
-- Added `long.LerpFrom(float, float)`
-- Added `long.LerpTo(float, float)`
-- Added `long.LerpWith(float, float)`
-- Added `long.Sign()`
-- Added `long.ToNetworkOrder()`
-- Added `long.To(long)` and `long.To(long, long)`
-- Added `IComparable<T>.Clamp(T, T)` which supersedes `short.Clamp(short, short)`, `int.Clamp(int, int)`,
-  and `long.Clamp(long, long)`
-- Added `IComparable<T>.GreaterThan(T)`
-- Added `IComparable<T>.GreaterOrEqualTo(T)`
-- Added `IComparable<T>.LessThan(T)`
-- Added `IComparable<T>.LessThanOrEqualTo(T)`
-- Added `IComparable<T>.Max(T)`
-- Added `IComparable<T>.Min(T)`
-- Added `IReadOnlyCollection<T>.Split(int)`
-  - Yields the same results as `IEnumerable<T>.Split(int)`, except is able to avoid a hidden allocation with the benefit of knowing the collection size ahead of time
-- Added `Type.HasCustomAttribute<T>()` and `Type.HasCustomAttribute(Type)`
-- Added `Type.Implements<T>()` and `Type.Implements(Type)`
-- Added `Type.Inherits<T>()` and `Type.Inherits(Type)`
-- Added `Type.SelectFromCustomAttribute<TAttribute, TReturn>()`
-- Added `DateTimeOffset` extensions which supersede `DateTime` extensions
-- Added `Endianness` enum
+- Added `sbyte.Mod(sbyte)`
+- Added `short.IsEven()`
+- Added `short.IsOdd()`
+- Added `short.Mod(short)`
+- Added `short.RangeTo(short)`, `short.RangeTo(int)`, and `short.RangeTo(long)`
+- Added `short.UnpackBits()`
+- Added `string.IsPalindrome()`
 - Added `Stream.GetHash<T>()`
 - Added `Stream.TryWriteHash<T>(Span<byte>, out int)`
 - Added `Stream.ReadInt16([Endian])`
@@ -143,72 +78,85 @@
 - Added `Stream.Write(ushort, [Endian])`
 - Added `Stream.Write(uint, [Endian])`
 - Added `Stream.Write(ulong, [Endian])`
-- Added `string.IsPalindrome()`
-- Added `string.FromJson([JsonSerializerOptions])`
+- Added `TimeSpan.Ago()`
+- Added `TimeSpan.FromNow()`
 - Added `TimeSpanParser.TryParse` which supersedes `TimeSpanParser.Parse`
+- Added `Sqrt()` and `ComplexSqrt()` for all built-in decimal types
+- Added `All()` and `Any()` for `Span<T>` and `ReadOnlySpan<T>`, mimicking the corresponding methods in `System.Linq`
+- Added `Sign()` for built-in numeric types. For unsigned types, this never returns -1
+- Added `Type.Implements<T>()` and `Type.Implements(Type)` (#25)
+- Added `Type.Inherits<T>()` and `Type.Inherits(Type)` (#25)
+- Added `DigitalRoot` function for built-in integer types
+- Added `Factorial` function for built-in integer types
+- Added `HostToNetworkOrder` and `NetworkToHostOrder` for `short`, `int`, and `long`
+- Added `IsLeapYear` function for `DateTime` and `DateTimeOffset`, as well as built-in numeric types
+- Added `MultiplicativePersistence` function for built-in integer types
+- Added `RotateLeft` and `RotateRight` for built-in integer types
+- Added trigonometric functions for built-in numeric types, including `Acos()`, `Asin()`, `Atan()`, `Atan2()`, `Cos()`, `Sin()`, `Tan()` (#49)
+- Added time-related extension methods for built-in numeric types, including `Milliseconds()`, `Seconds()`, `Minutes()`, `Hours()`, `Days()`, and `Weeks()`. `Ticks()` is also available, but only for integers; not floating point
+- Added `StringBuilderReader` (inheriting `TextReader`) which allows reading from a `StringBuilder` without consuming the underlying string
+- Added extension methods for `System.Decimal`
 
 ### Changed
-
-- Update to .NET 6
+- Updated to .NET 6 (#45)
 - Methods defined to accept `byte[]` have been changed accept `IReadOnlyList<byte>`
-- `Enum.Next([bool])` and `Enum.Previous([bool])` have been separated. Non-wrapped overloads now use the `Unchecked` prefix (`NextUnchecked` and `PreviousUnchecked`)
-- Improve performance for:
+- Extension methods are now defined in appropriate child namespaces to reduce the risk of name collisions (#7)
+- `char[].Random(int)`, `char[].Random(int, int)`, `IEnumerable<char>.Random(int)`, and `IEnumerable<char>.Random(int, int)` have been redefined as `Random.NextString(IReadOnlyList<char>, int)`
+- `IComparable<T>.Between(T, T)` has been redefined as `IComparable<T1>.Between(T2, T3, [InclusiveOptions])` to allow comparison of disparate yet comparable types, and also offers inclusivity options
+- `DateTime` extensions now wrap `DateTimeOffset` extensions
+- `DateTime.ToUnixTimestamp([bool])` has been redefined as `DateTime.ToUnixTimeMilliseconds()` and `DateTime.ToUnixTimeSeconds()`
+- `Dictionary<T1, T2>.ToGetParameters()`, `IDictionary<T1, T2>.ToGetParameters()`, and `IReadOnlyDictionary<T1, T2>.ToGetParameters()`, has been redefined as `IEnumerable<KeyValuePair<T1, T2>>.ToGetParameters()`
+- `Dictionary<T1, T2>.ToConnectionString()`, `IDictionary<T1, T2>.ToConnectionString()`, and `IReadOnlyDictionary<T1, T2>.ToConnectionString()`, has been redefined as `IEnumerable<KeyValuePair<T1, T2>>.ToConnectionString()`
+- `IList<T>.OneOf([Random])` and `IEnumerable<T>.OneOf([Random])` have been redefined as `Random.NextFrom<T>(IEnumerable<T>)` to fall in line with the naming convention of `System.Random` (#21)
+- `IList<T>.Shuffle([Random])` now uses a Fisher-Yates shuffle implementation
+- `IList<T>.Shuffle([Random])` has been repurposed to shuffle the list in place, rather than returning a new enumerable
+  - `IEnumerable<T>.Shuffle([Random])` has been renamed to `IEnumerable<T>.Shuffled([Random])` to avoid confusion with `IList<T>.Shuffle([Random])`
+- `Random.CoinToss()` has been redefined as `Random.NextBoolean()` to fall in line with the naming convention of `System.Random`
+- `Random.OneOf<T>(T[])` and `Random.OneOf<T>(IList<T>)` have been redefined as `Random.NextFrom<T>(IEnumerable<T>)` to fall in line with the naming convention of `System.Random`
+- `Enum.Next([bool])` and `Enum.Previous([bool])` have been redefined as `Enum.Next()`, `Enum.Previous()`, `Enum.NextUnchecked()`, `Enum.PreviousUnchecked()`. The `Unchecked` variants of these methods do not perform index validation, and will throw `IndexOutOfRangeException` when attempting to access an invalid index. The checked variants will perform a modulo to wrap the index
+- Seperated `string.WithAlternative(string, [bool])` to `string.WithEmptyAlternative(string)` and `string.WithWhiteSpaceAlternative(string)`
+- `string.AsNullIfEmpty()` and `string.AsNullIfWhiteSpace()` now accept a nullable `string`
+- `IEnumerable<byte>.GetString([Encoding])` has been renamed to `IReadOnlyList<byte>.ToString` and its `Encoding` parameter has
+  been made non-optional
+- Fixed a bug where `IEnumerable<KeyValuePair<K,V>>.ToConnectionString()` would not sanitize types with custom `ToString()`
+  implementation (#20)
+  Renamed `string.Random(int[, Random])` to `string.Randomize(int[, Random])`
+- Redefined `char[].Random(int)`, `char[].Random(int, Random)`, `IEnumerable<char>.Random(int)`, and `IEnumerable<char>.Random(int, Random)`, as `Random.NextString(IReadOnlyList<char>, int)`
+- Improved performance for:
     - `string.IsLower()`
     - `string.IsUpper()`
     - `string.Reverse()`
-- `IEnumerable<T>.Split(int)` now lazily enumerates, rather than consuming in full before yielding
-- Separated `short.FromUnixTimestamp(bool)` into `short.FromUnixTimeMilliseconds` and `short.FromUnixTimeSeconds`
-- Separated `int.FromUnixTimestamp(bool)` into `int.FromUnixTimeMilliseconds` and `int.FromUnixTimeSeconds`
-- Separated `long.FromUnixTimestamp(bool)` into `long.FromUnixTimeMilliseconds` and `long.FromUnixTimeSeconds`
-- Seperated `string.WithAlternative(string, [bool])` to `string.WithEmptyAlternative(string)` and `string.WithWhiteSpaceAlternative(string)`
-- `IComparable.Between` now accepts an `InclusiveOptions` parameter to specify whether checks shall be inclusive or exclusive
-- Renamed `Random.CoinToss()` to `Random.NextBoolean()` to fall into consistency with `Random.Next()`, `Random.NextBytes()`
-  and `Random.NextDouble()`
-- Renamed `Random.OneOf()` to `Random.NextFrom()` (same reasoning)
-- Renamed `List.OneOf()` to `List.Random()`
-- Renamed `string.Random(int[, Random])` to `string.Randomize(int[, Random])`
-- Renamed `char[].Random(int)`, `char[].Random(int, Random)`, `IEnumerable<char>.Random(int)`,
-  and `IEnumerable<char>.Random(int, Random)`, in favour of `Random.NextString(IReadOnlyList<char>, int)`
-- `IList<T>.Shuffle([Random])` now uses a Fisher-Yates shuffle implementation
-- `IList<T>.Shuffle([Random])` now returns `void`, as it will reorganize the elements in-place on the current `IList<T>`
-- `Dictionary`, `IDictionary`, and `IReadOnlyDictionary` extension methods have been consolidated
-  to `IEnumerable<KeyValuePair<K,V>>`
-- Fixed a bug where `IEnumerable<KeyValuePair<K,V>>.ToConnectionString()` would not sanitize types with custom `ToString()`
-  implementation (#20)
-- `DateTime` extensions now wrap `DateTimeOffset` extensions
-- `DateTime.ToUnixTimestamp([bool])` has been split into `DateTime.ToUnixTimeMilliseconds()` and `DateTime.ToUnixTimeSeconds()`
-- `IEnumerable<byte>.GetString([Encoding])` has been renamed to `IReadOnlyList<byte>.ToString` and its `Encoding` parameter has
-  been made non-optional
-- `WaitHandle.WaitOneAsync` now returns `Task<bool>` as a result of calling `Task.Run`, rather than returning a
-  typeless `new Task()`
-- `string.AsNullIfEmpty()` and `string.AsNullIfWhiteSpace()` now accept a nullable `string`
-- `string.WithAlternative` is now `string.WithEmptyAlternative` and `string.WithWhiteSpaceAlternative`
+    - `TimeSpanParser`
 
 ### Removed
-
+- Indefinitely suspended Unity support, until such a time that Unity can be updated to a newer version of .NET. See: https://forum.unity.com/threads/unity-future-net-development-status.1092205/
 - Removed `bool.And(bool)`
 - Removed `bool.NAnd(bool)`
 - Removed `bool.NOr(bool)`
-- Removed `bool.Not()`
+- Removed `bool.Not(bool)`
 - Removed `bool.Or(bool)`
-- Removed `bool.XNOr(bool)`
-- Removed `bool.XOr(bool)`
-- Removed `float.ToBoolean()`
-- Removed `double.ToBoolean()`
-- Removed `int.ToBoolean()`
-- Removed `long.ToBoolean()`
-- Removed `IConvertible.To<T>([IFormatProvider])`
-- Removed `IConvertible.ToOrDefault<T>([IFormatProvider])`
-- Removed `IConvertible.ToOrDefault<T>(out T, [IFormatProvider])`
-- Removed `IConvertible.ToOrNull<T>([IFormatProvider])`
-- Removed `IConvertible.ToOrNull<T>(out T, [IFormatProvider])`
-- Removed `IConvertible.ToOrOther<T>(T, [IFormatProvider])`
-- Removed `IConvertible.ToOrOther<T>(T, out T, [IFormatProvider])`
-- Removed `IEnumerable<T>.Split(int)` and `IReadOnlyCollection<T>.Split` (this functionality is now provided by LINQ in the form of the [`Chunk`](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.chunk?view=net-6.0) method)
+- Removed `bool.ToByte()`
+- Removed `bool.ToInt16()`
+- Removed `bool.ToInt64()`
+- Removed `bool.XNOr()`
+- Removed `bool.XOr()`
+- Removed `IConvertible.To<T>([IFormatProvider])` (#13)
+- Removed `IConvertible.ToOrDefault<T>([IFormatProvider])` (#13)
+- Removed `IConvertible.ToOrDefault<T>(out T, [IFormatProvider])` (#13)
+- Removed `IConvertible.ToOrNull<T>([IFormatProvider])` (#13)
+- Removed `IConvertible.ToOrNull<T>(out T, [IFormatProvider])` (#13)
+- Removed `IConvertible.ToOrOther<T>(T, [IFormatProvider])` (#13)
+- Removed `IConvertible.ToOrOther<T>(out T, T, [IFormatProvider])` (#13)
+- Removed `IEnumerable<T>.Split(int)` - this functionality is now provided by .NET in the form of the `Chunk` method. See: https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.chunk?view=net-6.0
 - Removed `MemberInfo.GetDefaultValue()` (use `SelectFromCustomAttribute()` instead)
 - Removed `MemberInfo.GetDescription()` (use `SelectFromCustomAttribute()` instead)
-- Removed `Random.NextInt64()` and its overloads. This functionality is built in starting with .NET 6
-- Removed `TimeSpanParser.Parse`
+- Removed `int.ToBoolean()`
+- Removed `long.ToBoolean()`
+- Removed `short.ToBoolean()`
+- Removed `uint.ToBoolean()`
+- Removed `ushort.ToBoolean()`
+- Removed `ulong.ToBoolean()`
+- Removed `WaitHandle.WaitOneAsync()`. For suspensions of execution during asynchronous operations, favour `TaskCompletionSource` or `TaskCompletionSource<T>`. See: https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource?view=net-6.0 and https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource-1?view=net-6.0 
 
 ## [2.6.0] - 2020-10-20
 
