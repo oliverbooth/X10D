@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
@@ -6,6 +6,36 @@ namespace X10D.Tests.Collections;
 [TestClass]
 public class EnumerableTests
 {
+    [TestMethod]
+    public void DisposeAll_ShouldDispose_GivenCollection()
+    {
+        var collection = new List<Disposable> {new(), new(), new()};
+        collection.DisposeAll();
+        Assert.IsTrue(collection.All(x => x.IsDisposed));
+    }
+
+    [TestMethod]
+    public async Task DisposeAllAsync_ShouldDispose_GivenCollection()
+    {
+        var collection = new List<Disposable> {new(), new(), new()};
+        await collection.DisposeAllAsync();
+        Assert.IsTrue(collection.All(x => x.IsDisposed));
+    }
+
+    [TestMethod]
+    public void DisposeAll_ShouldThrow_GivenNull()
+    {
+        List<Disposable>? collection = null;
+        Assert.ThrowsException<ArgumentNullException>(() => collection!.DisposeAll());
+    }
+
+    [TestMethod]
+    public async Task DisposeAllAsync_ShouldThrow_GivenNull()
+    {
+        List<Disposable>? collection = null;
+        await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () => await collection!.DisposeAllAsync());
+    }
+
     [TestMethod]
     public void For_ShouldTransform_GivenTransformationDelegate()
     {
@@ -85,5 +115,21 @@ public class EnumerableTests
     private class DummyClass
     {
         public int Value { get; set; }
+    }
+
+    private class Disposable : IDisposable, IAsyncDisposable
+    {
+        public bool IsDisposed { get; private set; }
+
+        public void Dispose()
+        {
+            Assert.IsTrue(IsDisposed = true);
+        }
+
+        public ValueTask DisposeAsync()
+        {
+            Assert.IsTrue(IsDisposed = true);
+            return ValueTask.CompletedTask;
+        }
     }
 }
