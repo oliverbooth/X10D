@@ -76,6 +76,59 @@ public static class EnumerableExtensions
     }
 
     /// <summary>
+    ///     Calls <see cref="IDisposable.Dispose" /> on all elements of the <see cref="IEnumerable{T}" />.
+    /// </summary>
+    /// <param name="source">The enumerable collection whose elements to dispose.</param>
+    /// <typeparam name="T">The type of the elements in <paramref name="source" />.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <seealso cref="CollectionExtensions.ClearAndDisposeAll{T}" />
+    public static void DisposeAll<T>(this IEnumerable<T> source) where T : IDisposable
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        foreach (T item in source)
+        {
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+            if (item is null)
+            {
+                continue;
+            }
+
+            item.Dispose();
+        }
+    }
+
+    /// <summary>
+    ///     Asynchronously calls <see cref="IAsyncDisposable.DisposeAsync" /> on all elements of the
+    ///     <see cref="IEnumerable{T}" />.
+    /// </summary>
+    /// <param name="source">The enumerable collection whose elements to dispose.</param>
+    /// <typeparam name="T">The type of the elements in <paramref name="source" />.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <seealso cref="CollectionExtensions.ClearAndDisposeAllAsync{T}" />
+    public static async Task DisposeAllAsync<T>(this IEnumerable<T> source) where T : IAsyncDisposable
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        foreach (T item in source)
+        {
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+            if (item is null)
+            {
+                continue;
+            }
+
+            await item.DisposeAsync();
+        }
+    }
+
+    /// <summary>
     ///     Reorganizes the elements in an enumerable by implementing a Fisher-Yates shuffle, and returns th shuffled result.
     /// </summary>
     /// <typeparam name="T">The element type.</typeparam>
