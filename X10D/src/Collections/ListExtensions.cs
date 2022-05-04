@@ -17,10 +17,7 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Fill<T>(this IList<T> source, T value)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         for (var i = 0; i < source.Count; i++)
         {
@@ -47,10 +44,7 @@ public static class ListExtensions
     /// </exception>
     public static void Fill<T>(this IList<T> source, T value, int startIndex, int count)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         if (startIndex < 0)
         {
@@ -98,10 +92,7 @@ public static class ListExtensions
     [Pure]
     public static T Random<T>(this IReadOnlyList<T> source, Random? random = null)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         random ??= System.Random.Shared;
         return random.NextFrom(source);
@@ -119,10 +110,7 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Shuffle<T>(this IList<T> source, Random? random = null)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         random ??= System.Random.Shared;
 

@@ -18,10 +18,7 @@ public static class BoolListExtensions
     [Pure]
     public static byte PackByte(this IReadOnlyList<bool> source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         if (source.Count > 8)
         {
@@ -48,10 +45,7 @@ public static class BoolListExtensions
     [Pure]
     public static short PackInt16(this IReadOnlyList<bool> source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         if (source.Count > 16)
         {
@@ -78,10 +72,7 @@ public static class BoolListExtensions
     [Pure]
     public static int PackInt32(this IReadOnlyList<bool> source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         if (source.Count > 32)
         {
@@ -108,10 +99,7 @@ public static class BoolListExtensions
     [Pure]
     public static long PackInt64(this IReadOnlyList<bool> source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         if (source.Count > 64)
         {

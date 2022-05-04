@@ -12,8 +12,11 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="source">A sequence of <see cref="long" /> values that are used to calculate the product.</param>
     /// <returns>The product the values in the sequence.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static long Product(this IEnumerable<long> source)
     {
+        ArgumentNullException.ThrowIfNull(source);
+
         return source.Aggregate(1L, (current, value) => current * value);
     }
 
@@ -22,9 +25,12 @@ public static class Int64Extensions
     /// </summary>
     /// <param name="source">A sequence of <see cref="ulong" /> values that are used to calculate the product.</param>
     /// <returns>The product the values in the sequence.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static ulong Product(this IEnumerable<ulong> source)
     {
+        ArgumentNullException.ThrowIfNull(source);
+
         return source.Aggregate(1UL, (current, value) => current * value);
     }
 
@@ -36,8 +42,11 @@ public static class Int64Extensions
     /// <param name="selector">A transform function to apply to each element.</param>
     /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
     /// <returns>The product of the projected values.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static long Product<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
     {
+        ArgumentNullException.ThrowIfNull(source);
+
         return source.Select(selector).Product();
     }
 
@@ -49,9 +58,12 @@ public static class Int64Extensions
     /// <param name="selector">A transform function to apply to each element.</param>
     /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
     /// <returns>The product of the projected values.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static ulong Product<TSource>(this IEnumerable<TSource> source, Func<TSource, ulong> selector)
     {
+        ArgumentNullException.ThrowIfNull(source);
+
         return source.Select(selector).Product();
     }
 

@@ -15,10 +15,7 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static Color NextColorRgb(this Random random)
     {
-        if (random is null)
-        {
-            throw new ArgumentNullException(nameof(random));
-        }
+        ArgumentNullException.ThrowIfNull(random);
 
         int rgb = random.Next();
         return Color.FromArgb(0xFF, (byte)(rgb >> 16 & 0xFF), (byte)(rgb >> 8 & 0xFF), (byte)(rgb & 0xFF));
@@ -32,10 +29,7 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static Color NextColorArgb(this Random random)
     {
-        if (random is null)
-        {
-            throw new ArgumentNullException(nameof(random));
-        }
+        ArgumentNullException.ThrowIfNull(random);
 
         int argb = random.Next();
         return Color.FromArgb(argb);

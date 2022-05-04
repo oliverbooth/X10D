@@ -57,10 +57,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Base64Decode(this string value)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         return Convert.FromBase64String(value).ToString(Encoding.ASCII);
     }
@@ -75,10 +72,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Base64Encode(this string value)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         return Convert.ToBase64String(value.GetBytes(Encoding.ASCII));
     }
@@ -104,20 +98,9 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string ChangeEncoding(this string value, Encoding sourceEncoding, Encoding destinationEncoding)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
-
-        if (sourceEncoding is null)
-        {
-            throw new ArgumentNullException(nameof(sourceEncoding));
-        }
-
-        if (destinationEncoding is null)
-        {
-            throw new ArgumentNullException(nameof(destinationEncoding));
-        }
+        ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(sourceEncoding);
+        ArgumentNullException.ThrowIfNull(destinationEncoding);
 
         return value.GetBytes(sourceEncoding).ToString(destinationEncoding);
     }
@@ -156,10 +139,7 @@ public static class StringExtensions
     public static T EnumParse<T>(this string value, bool ignoreCase)
         where T : struct, Enum
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         value = value.Trim();
 
@@ -214,15 +194,8 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static byte[] GetBytes(this string value, Encoding encoding)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
-
-        if (encoding is null)
-        {
-            throw new ArgumentNullException(nameof(encoding));
-        }
+        ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(encoding);
 
         return encoding.GetBytes(value);
     }
@@ -238,10 +211,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsLower(this string value)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         for (var index = 0; index < value.Length; index++)
         {
@@ -275,10 +245,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsPalindrome(this string value)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -323,10 +290,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool IsUpper(this string value)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         for (var index = 0; index < value.Length; index++)
         {
@@ -358,10 +322,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Repeat(this string value, int count)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         switch (count)
         {
@@ -399,10 +360,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Randomize(this string source, int length, Random? random = null)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
+        ArgumentNullException.ThrowIfNull(source);
 
         if (length < 0)
         {
@@ -437,10 +395,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Reverse(this string value)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         if (value.Length < 2)
         {
@@ -471,10 +426,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string Shuffled(this string value, Random? random = null)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         random ??= Random.Shared;
 
@@ -497,10 +449,7 @@ public static class StringExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static IEnumerable<string> Split(this string value, int chunkSize)
     {
-        if (value is null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         if (chunkSize == 0)
         {
