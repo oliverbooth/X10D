@@ -25,10 +25,7 @@ public static class EndPointExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static string GetHost(this EndPoint endPoint)
     {
-        if (endPoint is null)
-        {
-            throw new ArgumentNullException(nameof(endPoint));
-        }
+        ArgumentNullException.ThrowIfNull(endPoint);
 
         return endPoint switch
         {
@@ -54,10 +51,7 @@ public static class EndPointExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static int GetPort(this EndPoint endPoint)
     {
-        if (endPoint is null)
-        {
-            throw new ArgumentNullException(nameof(endPoint));
-        }
+        ArgumentNullException.ThrowIfNull(endPoint);
 
         return endPoint switch
         {

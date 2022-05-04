@@ -504,10 +504,7 @@ public static class StreamExtensions
     /// <returns>The number of bytes written to the stream.</returns>
     public static int Write(this Stream stream, short value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -548,12 +545,10 @@ public static class StreamExtensions
     /// <param name="value">The four-byte signed integer to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, int value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -581,6 +576,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The eight-byte signed integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, long value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -594,12 +590,10 @@ public static class StreamExtensions
     /// <param name="value">The eight-byte signed integer to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, long value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -627,6 +621,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The two-byte unsigned integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ushort value)
     {
@@ -641,13 +636,11 @@ public static class StreamExtensions
     /// <param name="value">The two-byte unsigned integer to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ushort value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -675,6 +668,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The four-byte unsigned integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static int Write(this Stream stream, uint value)
     {
@@ -689,13 +683,11 @@ public static class StreamExtensions
     /// <param name="value">The four-byte unsigned integer to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static int Write(this Stream stream, uint value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -723,6 +715,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The eight-byte unsigned integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ulong value)
     {
@@ -737,13 +730,11 @@ public static class StreamExtensions
     /// <param name="value">The eight-byte signed integer to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ulong value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -772,12 +763,10 @@ public static class StreamExtensions
     /// <param name="value">The single-precision floating point value to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, float value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -806,12 +795,10 @@ public static class StreamExtensions
     /// <param name="value">The double-precision floating point value to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, double value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
@@ -840,12 +827,10 @@ public static class StreamExtensions
     /// <param name="value">The decimal value to write.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, decimal value, Endianness endianness)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        ArgumentNullException.ThrowIfNull(stream);
 
         if (!Enum.IsDefined(endianness))
         {
