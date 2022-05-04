@@ -25,10 +25,7 @@ public static class MemberInfoExtensions
     public static bool HasCustomAttribute<T>(this MemberInfo member)
         where T : Attribute
     {
-        if (member is null)
-        {
-            throw new ArgumentNullException(nameof(member));
-        }
+        ArgumentNullException.ThrowIfNull(member);
 
         return member.HasCustomAttribute(typeof(T));
     }
@@ -47,15 +44,8 @@ public static class MemberInfoExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static bool HasCustomAttribute(this MemberInfo member, Type attribute)
     {
-        if (member is null)
-        {
-            throw new ArgumentNullException(nameof(member));
-        }
-
-        if (attribute is null)
-        {
-            throw new ArgumentNullException(nameof(attribute));
-        }
+        ArgumentNullException.ThrowIfNull(member);
+        ArgumentNullException.ThrowIfNull(attribute);
 
         if (!attribute.Inherits<Attribute>())
         {
@@ -85,6 +75,9 @@ public static class MemberInfoExtensions
         Func<TAttribute, TReturn> selector)
         where TAttribute : Attribute
     {
+        ArgumentNullException.ThrowIfNull(member);
+        ArgumentNullException.ThrowIfNull(selector);
+
         return member.SelectFromCustomAttribute(selector, default);
     }
 
@@ -108,15 +101,8 @@ public static class MemberInfoExtensions
         Func<TAttribute, TReturn> selector, TReturn? defaultValue)
         where TAttribute : Attribute
     {
-        if (member is null)
-        {
-            throw new ArgumentNullException(nameof(member));
-        }
-
-        if (selector is null)
-        {
-            throw new ArgumentNullException(nameof(selector));
-        }
+        ArgumentNullException.ThrowIfNull(member);
+        ArgumentNullException.ThrowIfNull(selector);
 
         return member.GetCustomAttribute<TAttribute>() is { } attribute
             ? selector(attribute)
