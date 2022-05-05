@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.1.0-nightly]
+### Added
+- Readded Unity support:
+    - Added `GameObject.LookAt(GameObject[, Vector3])`
+    - Added `GameObject.LookAt(Transform[, Vector3])`
+    - Added `GameObject.LookAt(Vector3[, Vector3])`
+    - Added `GameObject.SetParent(GameObject[, bool])`
+    - Added `GameObject.SetParent(Transform[, bool])`
+    - Added `Random.NextColorArgb()`
+    - Added `Random.NextColor32Argb()`
+    - Added `Random.NextColorRgb()`
+    - Added `Random.NextColor32Rgb()`
+    - Added `Random.NextRotation()`
+    - Added `Random.NextRotationUniform()`
+    - Added `Random.NextUnitVector2()`
+    - Added `Random.NextUnitVector3()`
+    - Added `Transform.LookAt(GameObject[, Vector3])`
+    - Added `Transform.SetParent(GameObject[, bool])`
+- Added `ICollection<T>.ClearAndDisposeAll`
+- Added `ICollection<T>.ClearAndDisposeAllAsync`
+- Added `IEnumerable<T>.For` (#50)
+- Added `IEnumerable<T>.ForEach` (#50)
+- Added `IEnumerable<T>.DisposeAll`
+- Added `IEnumerable<T>.DisposeAllAsync`
+
 ## [3.0.0]
 
 In the midst of writing these release notes, I may have missed some important changes. If you notice an API change that is not documented here,
@@ -299,6 +324,7 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 ### ***Not documented***
 
+[3.1.0-nightly]: https://github.com/oliverbooth/X10D/tree/develop
 [3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0
 [2.6.0]: https://github.com/oliverbooth/X10D/releases/tag/2.6.0
 [2.5.0]: https://github.com/oliverbooth/X10D/releases/tag/2.5.0
