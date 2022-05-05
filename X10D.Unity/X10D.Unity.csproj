@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <LangVersion>10.0</LangVersion>
         <Optimize>true</Optimize>
         <ImplicitUsings>true</ImplicitUsings>
@@ -12,7 +12,7 @@
         <Description>Extension methods on crack.</Description>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageIconUrl/>
+        <PackageIconUrl />
         <PackageTags>dotnet extension-methods</PackageTags>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <VersionPrefix>3.1.0</VersionPrefix>
@@ -40,42 +40,26 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Unity3D.SDK" Version="2020.3.13.1" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\X10D\X10D.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
         <None Include="..\icon.png">
             <Pack>True</Pack>
-            <PackagePath/>
+            <PackagePath />
         </None>
         <None Include="..\LICENSE.md">
             <Pack>True</Pack>
-            <PackagePath/>
+            <PackagePath />
         </None>
         <None Include="..\CHANGELOG.md">
             <Pack>True</Pack>
-            <PackagePath/>
+            <PackagePath />
         </None>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Resource.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resource.resx</DependentUpon>
-        </Compile>
-        <Compile Update="src\ExceptionMessages.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>ExceptionMessages.resx</DependentUpon>
-        </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Update="Resource.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-        <EmbeddedResource Update="src\ExceptionMessages.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
     </ItemGroup>
 
 </Project>

@@ -2,7 +2,9 @@
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text;
+#if NET5_0_OR_GREATER
 using System.Text.Json;
+#endif
 using X10D.Collections;
 using X10D.Core;
 using X10D.IO;
@@ -23,7 +25,11 @@ public static class StringExtensions
     ///     <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfEmpty(this string? value)
     {
@@ -40,7 +46,11 @@ public static class StringExtensions
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfWhiteSpace(this string? value)
     {
@@ -54,10 +64,21 @@ public static class StringExtensions
     /// <returns>The plain text string representation of <paramref name="value" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string Base64Decode(this string value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         return Convert.FromBase64String(value).ToString(Encoding.ASCII);
     }
@@ -69,10 +90,21 @@ public static class StringExtensions
     /// <returns>The string representation, in base 64, of <paramref name="value" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string Base64Encode(this string value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         return Convert.ToBase64String(value.GetBytes(Encoding.ASCII));
     }
@@ -95,12 +127,37 @@ public static class StringExtensions
     ///     <paramref name="destinationEncoding" /> is <see langword="null" />.
     /// </exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string ChangeEncoding(this string value, Encoding sourceEncoding, Encoding destinationEncoding)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(sourceEncoding);
+#else
+        if (sourceEncoding is null)
+        {
+            throw new ArgumentNullException(nameof(sourceEncoding));
+        }
+#endif
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(destinationEncoding);
+#else
+        if (destinationEncoding is null)
+        {
+            throw new ArgumentNullException(nameof(destinationEncoding));
+        }
+#endif
 
         return value.GetBytes(sourceEncoding).ToString(destinationEncoding);
     }
@@ -116,7 +173,11 @@ public static class StringExtensions
     ///     (http://geekswithblogs.net/sdorman/Default.aspx).
     /// </remarks>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static T EnumParse<T>(this string value)
         where T : struct, Enum
     {
@@ -135,11 +196,22 @@ public static class StringExtensions
     ///     (http://geekswithblogs.net/sdorman/Default.aspx).
     /// </remarks>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static T EnumParse<T>(this string value, bool ignoreCase)
         where T : struct, Enum
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         value = value.Trim();
 
@@ -151,6 +223,7 @@ public static class StringExtensions
         return Enum.Parse<T>(value, ignoreCase);
     }
 
+#if NET5_0_OR_GREATER
     /// <summary>
     ///     Returns an object from the specified JSON string.
     /// </summary>
@@ -161,11 +234,11 @@ public static class StringExtensions
     ///     An object constructed from the JSON string, or <see langword="null" /> if deserialization could not be performed.
     /// </returns>
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static T? FromJson<T>(this string value, JsonSerializerOptions? options = null)
     {
         return JsonSerializer.Deserialize<T>(value, options);
     }
+#endif
 
     /// <summary>
     ///     Gets a <see cref="byte" />[] representing the value the <see cref="string" /> with
@@ -174,7 +247,11 @@ public static class StringExtensions
     /// <param name="value">The string to convert.</param>
     /// <returns>Returns a <see cref="byte" />[].</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static byte[] GetBytes(this string value)
     {
         return value.GetBytes(Encoding.UTF8);
@@ -191,11 +268,29 @@ public static class StringExtensions
     ///     <see langword="null" />.
     /// </exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static byte[] GetBytes(this string value, Encoding encoding)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(encoding);
+#else
+        if (encoding is null)
+        {
+            throw new ArgumentNullException(nameof(encoding));
+        }
+#endif
 
         return encoding.GetBytes(value);
     }
@@ -208,13 +303,25 @@ public static class StringExtensions
     ///     <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsLower(this string value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         for (var index = 0; index < value.Length; index++)
         {
+#if NETCOREAPP3_0_OR_GREATER
             var rune = new Rune(value[index]);
 
             if (!Rune.IsLetter(rune))
@@ -226,6 +333,19 @@ public static class StringExtensions
             {
                 return false;
             }
+#else
+            char current = value[index];
+
+            if (!char.IsLetter(current))
+            {
+                continue;
+            }
+
+            if (!char.IsLower(current))
+            {
+                return false;
+            }
+#endif
         }
 
         return true;
@@ -242,10 +362,21 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsPalindrome(this string value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -255,6 +386,7 @@ public static class StringExtensions
 
         for (int index = 0, endIndex = value.Length - 1; index < value.Length; index++, endIndex--)
         {
+#if NETCOREAPP3_0_OR_GREATER
             Rune startRune = new Rune(value[index]);
             Rune endRune = new Rune(value[endIndex]);
 
@@ -274,6 +406,27 @@ public static class StringExtensions
             {
                 return false;
             }
+#else
+            char startChar = value[index];
+            char endChar = value[endIndex];
+
+            if (!char.IsLetter(startChar) && !char.IsNumber(startChar))
+            {
+                endIndex++;
+                continue;
+            }
+
+            if (!char.IsLetter(endChar) && !char.IsNumber(endChar))
+            {
+                index--;
+                continue;
+            }
+
+            if (char.ToUpperInvariant(startChar) != char.ToUpperInvariant(endChar))
+            {
+                return false;
+            }
+#endif
         }
 
         return true;
@@ -287,13 +440,25 @@ public static class StringExtensions
     ///     <see langword="true" /> if all alpha characters in this string are uppercase; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsUpper(this string value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         for (var index = 0; index < value.Length; index++)
         {
+#if NETCOREAPP3_0_OR_GREATER
             var rune = new Rune(value[index]);
 
             if (!Rune.IsLetter(rune))
@@ -305,6 +470,19 @@ public static class StringExtensions
             {
                 return false;
             }
+#else
+            char current = value[index];
+
+            if (!char.IsLetter(current))
+            {
+                continue;
+            }
+
+            if (!char.IsUpper(current))
+            {
+                return false;
+            }
+#endif
         }
 
         return true;
@@ -319,10 +497,21 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string Repeat(this string value, int count)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         switch (count)
         {
@@ -357,10 +546,21 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string Randomize(this string source, int length, Random? random = null)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         if (length < 0)
         {
@@ -372,7 +572,7 @@ public static class StringExtensions
             return string.Empty;
         }
 
-        random ??= Random.Shared;
+        random ??= RandomExtensions.GetShared();
 
         char[] array = source.ToCharArray();
         var builder = new StringBuilder(length);
@@ -392,10 +592,21 @@ public static class StringExtensions
     /// <param name="value">The string to reverse.</param>
     /// <returns>A <see cref="string" /> whose characters are that of <paramref name="value" /> in reverse order.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string Reverse(this string value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         if (value.Length < 2)
         {
@@ -417,18 +628,29 @@ public static class StringExtensions
     /// </summary>
     /// <param name="value">The string to shuffle.</param>
     /// <param name="random">
-    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified,
-    ///     <see cref="System.Random.Shared" /> is used.
+    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified, a shared
+    ///     instance is used.
     /// </param>
     /// <returns>A new <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static string Shuffled(this string value, Random? random = null)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
-        random ??= Random.Shared;
+        random ??= RandomExtensions.GetShared();
 
         char[] array = value.ToCharArray();
         array.Shuffle(random);
@@ -446,10 +668,21 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static IEnumerable<string> Split(this string value, int chunkSize)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
 
         if (chunkSize == 0)
         {
@@ -473,7 +706,11 @@ public static class StringExtensions
     ///     <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     [return: NotNullIfNotNull("alternative")]
     public static string? WithEmptyAlternative(this string? value, string? alternative)
     {
@@ -491,7 +728,11 @@ public static class StringExtensions
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     [return: NotNullIfNotNull("alternative")]
     public static string? WithWhiteSpaceAlternative(this string? value, string? alternative)
     {

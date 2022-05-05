@@ -9,6 +9,8 @@ namespace X10D.Core;
 /// </summary>
 public static class RandomExtensions
 {
+    private static readonly Random Shared = new();
+
     /// <summary>
     ///     Returns a random value that defined in a specified enum.
     /// </summary>
@@ -21,7 +23,14 @@ public static class RandomExtensions
     public static T Next<T>(this Random random)
         where T : struct, Enum
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         var values = Enum.GetValues(typeof(T));
         return (T)values.GetValue(random.Next(values.Length))!;
@@ -41,7 +50,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static bool NextBoolean(this Random random)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         return random.NextDouble() >= 0.5;
     }
@@ -61,7 +77,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="maxValue" /> is less than 0.</exception>
     public static double NextDouble(this Random random, double maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         if (maxValue < 0)
         {
@@ -90,7 +113,14 @@ public static class RandomExtensions
     /// </exception>
     public static double NextDouble(this Random random, double minValue, double maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         if (maxValue < minValue)
         {
@@ -121,8 +151,22 @@ public static class RandomExtensions
     /// </example>
     public static T NextFrom<T>(this Random random, IEnumerable<T> source)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         if (source is T[] array)
         {
@@ -147,7 +191,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static byte NextByte(this Random random)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         return random.NextByte(byte.MaxValue);
     }
@@ -168,7 +219,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static byte NextByte(this Random random, byte maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         return random.NextByte(0, maxValue);
     }
@@ -194,7 +252,14 @@ public static class RandomExtensions
     /// </exception>
     public static byte NextByte(this Random random, byte minValue, byte maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         return (byte)random.Next(minValue, maxValue);
     }
@@ -209,7 +274,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static short NextInt16(this Random random)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         return random.NextInt16(short.MaxValue);
     }
@@ -231,7 +303,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="maxValue" /> is less than 0.</exception>
     public static short NextInt16(this Random random, short maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         if (maxValue < 0)
         {
@@ -262,10 +341,35 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static short NextInt16(this Random random, short minValue, short maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         return (short)random.Next(minValue, maxValue);
     }
+
+#if !NET6_0_OR_GREATER
+    /// <summary>
+    ///     Returns a random floating-point number that is greater than or equal to 0.0, and less than 1.0.
+    /// </summary>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <returns>A single-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+    public static float NextSingle(this Random random)
+    {
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+
+        return (float)random.NextDouble();
+    }
+#endif
 
     /// <summary>
     ///     Returns a non-negative random single-precision floating point number that is less than the specified maximum.
@@ -282,7 +386,14 @@ public static class RandomExtensions
     /// <exception cref="ArgumentException"><paramref name="maxValue" /> is less than 0.</exception>
     public static float NextSingle(this Random random, float maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         if (maxValue < 0)
         {
@@ -311,7 +422,14 @@ public static class RandomExtensions
     /// </exception>
     public static float NextSingle(this Random random, float minValue, float maxValue)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
 
         if (maxValue < minValue)
         {
@@ -339,8 +457,22 @@ public static class RandomExtensions
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
     public static string NextString(this Random random, IReadOnlyList<char> source, int length)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         if (length < 0)
         {
@@ -364,5 +496,14 @@ public static class RandomExtensions
         }
 
         return builder.ToString();
+    }
+
+    internal static Random GetShared()
+    {
+#if NET6_0_OR_GREATER
+        return Random.Shared;
+#else
+        return Shared;
+#endif
     }
 }

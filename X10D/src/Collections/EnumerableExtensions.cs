@@ -139,7 +139,14 @@ public static class EnumerableExtensions
     [Pure]
     public static IReadOnlyCollection<T> Shuffled<T>(this IEnumerable<T> source, Random? random = null)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         var list = new List<T>(source);
         list.Shuffle(random);

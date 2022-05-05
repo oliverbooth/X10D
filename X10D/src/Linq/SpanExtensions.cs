@@ -21,7 +21,14 @@ public static class SpanExtensions
     [Pure]
     public static bool All<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(predicate);
+#else
+        if (predicate is null)
+        {
+            throw new ArgumentNullException(nameof(predicate));
+        }
+#endif
 
         if (source.IsEmpty)
         {
@@ -53,7 +60,14 @@ public static class SpanExtensions
     [Pure]
     public static bool Any<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(predicate);
+#else
+        if (predicate is null)
+        {
+            throw new ArgumentNullException(nameof(predicate));
+        }
+#endif
 
         if (source.IsEmpty)
         {

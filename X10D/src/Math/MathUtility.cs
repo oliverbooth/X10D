@@ -18,7 +18,11 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Lerp(float value, float target, float alpha)
     {
         // rookie mistake: a + t * (b - a)
@@ -36,7 +40,11 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Lerp(double value, double target, double alpha)
     {
         // rookie mistake: a + t * (b - a)

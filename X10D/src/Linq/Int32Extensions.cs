@@ -15,7 +15,14 @@ public static class Int32Extensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static int Product(this IEnumerable<int> source)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Aggregate(1, (current, value) => current * value);
     }
@@ -29,7 +36,14 @@ public static class Int32Extensions
     [CLSCompliant(false)]
     public static uint Product(this IEnumerable<uint> source)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Aggregate(1u, (current, value) => current * value);
     }
@@ -45,7 +59,14 @@ public static class Int32Extensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static int Product<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Select(selector).Product();
     }
@@ -62,7 +83,14 @@ public static class Int32Extensions
     [CLSCompliant(false)]
     public static uint Product<TSource>(this IEnumerable<TSource> source, Func<TSource, uint> selector)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Select(selector).Product();
     }

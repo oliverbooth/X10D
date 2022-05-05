@@ -1,5 +1,6 @@
 ﻿using System.Buffers.Binary;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
 namespace X10D.IO;
@@ -31,10 +32,14 @@ public static class StreamExtensions
     public static byte[] GetHash<T>(this Stream stream)
         where T : HashAlgorithm
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
         if (!stream.CanRead)
         {
@@ -81,15 +86,26 @@ public static class StreamExtensions
     /// <returns>A decimal value read from the stream.</returns>
     public static decimal ReadDecimal(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         const int decimalSize = sizeof(decimal);
         const int int32Size = sizeof(int);
@@ -129,22 +145,38 @@ public static class StreamExtensions
     /// <returns>A double-precision floating point value read from the stream.</returns>
     public static double ReadDouble(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(double)];
         stream.Read(buffer);
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadDoubleLittleEndian(buffer)
-            : BinaryPrimitives.ReadDoubleBigEndian(buffer);
+        var value = MemoryMarshal.Read<double>(buffer);
+
+        if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
+        {
+            value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+        }
+
+        return value;
     }
 
     /// <summary>
@@ -167,15 +199,26 @@ public static class StreamExtensions
     /// <returns>An two-byte unsigned integer read from the stream.</returns>
     public static short ReadInt16(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(short)];
         stream.Read(buffer);
@@ -205,15 +248,26 @@ public static class StreamExtensions
     /// <returns>An four-byte unsigned integer read from the stream.</returns>
     public static int ReadInt32(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
@@ -243,15 +297,26 @@ public static class StreamExtensions
     /// <returns>An eight-byte unsigned integer read from the stream.</returns>
     public static long ReadInt64(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(long)];
         stream.Read(buffer);
@@ -281,22 +346,38 @@ public static class StreamExtensions
     /// <returns>A single-precision floating point value read from the stream.</returns>
     public static double ReadSingle(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(float)];
         stream.Read(buffer);
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadSingleLittleEndian(buffer)
-            : BinaryPrimitives.ReadSingleBigEndian(buffer);
+        var value = MemoryMarshal.Read<float>(buffer);
+
+        if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
+        {
+            value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+        }
+
+        return value;
     }
 
     /// <summary>
@@ -321,15 +402,26 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static ushort ReadUInt16(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(ushort)];
         stream.Read(buffer);
@@ -361,15 +453,26 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static uint ReadUInt32(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(uint)];
         stream.Read(buffer);
@@ -401,15 +504,26 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static ulong ReadUInt64(this Stream stream, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(ulong)];
         stream.Read(buffer);
@@ -445,10 +559,14 @@ public static class StreamExtensions
     public static bool TryWriteHash<T>(this Stream stream, Span<byte> destination, out int bytesWritten)
         where T : HashAlgorithm
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(stream);
+#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
+#endif
 
         if (!stream.CanRead)
         {
@@ -504,12 +622,26 @@ public static class StreamExtensions
     /// <returns>The number of bytes written to the stream.</returns>
     public static int Write(this Stream stream, short value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(short)];
 
@@ -548,12 +680,26 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, int value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(int)];
 
@@ -593,12 +739,26 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, long value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(long)];
 
@@ -640,12 +800,26 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ushort value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(ushort)];
 
@@ -687,12 +861,26 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static int Write(this Stream stream, uint value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(uint)];
 
@@ -734,12 +922,26 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ulong value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(ulong)];
 
@@ -766,22 +968,54 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, float value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(float)];
 
         if (endianness == Endianness.LittleEndian)
         {
+#if NET5_0_OR_GREATER
             BinaryPrimitives.WriteSingleLittleEndian(buffer, value);
+#else
+            if (BitConverter.IsLittleEndian)
+            {
+                value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            }
+
+            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+#endif
         }
         else
         {
+#if NET5_0_OR_GREATER
             BinaryPrimitives.WriteSingleBigEndian(buffer, value);
+#else
+            if (BitConverter.IsLittleEndian)
+            {
+                value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            }
+
+            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+#endif
         }
 
         return stream.WriteInternal(buffer);
@@ -798,22 +1032,54 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, double value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         Span<byte> buffer = stackalloc byte[sizeof(double)];
 
         if (endianness == Endianness.LittleEndian)
         {
+#if NET5_0_OR_GREATER
             BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
+#else
+            if (BitConverter.IsLittleEndian)
+            {
+                value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            }
+
+            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+#endif
         }
         else
         {
+#if NET5_0_OR_GREATER
             BinaryPrimitives.WriteDoubleBigEndian(buffer, value);
+#else
+            if (BitConverter.IsLittleEndian)
+            {
+                value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            }
+
+            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+#endif
         }
 
         return stream.WriteInternal(buffer);
@@ -830,12 +1096,26 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, decimal value, Endianness endianness)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
+#else
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+#endif
 
+#if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
         {
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
+#else
+        if (!Enum.IsDefined(typeof(Endianness), endianness))
+        {
+            throw new ArgumentOutOfRangeException(nameof(endianness));
+        }
+#endif
 
         int[] bits = decimal.GetBits(value);
         long preWritePosition = stream.Position;

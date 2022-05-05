@@ -18,7 +18,11 @@ public static class UInt16Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static ushort RotateLeft(this ushort value, int count)
     {
         return (ushort)((ushort)(value << count) | (ushort)(value >> (16 - count)));
@@ -33,7 +37,11 @@ public static class UInt16Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static ushort RotateRight(this ushort value, int count)
     {
         return (ushort)((ushort)(value >> count) | (ushort)(value << (16 - count)));

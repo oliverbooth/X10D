@@ -19,7 +19,14 @@ public static class ListOfByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static string AsString(this IReadOnlyList<byte> source)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToString(source.ToArray());
     }
@@ -47,7 +54,14 @@ public static class ListOfByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static double ToDouble(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToDouble(source.ToArray(), startIndex);
     }
@@ -72,7 +86,14 @@ public static class ListOfByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static short ToInt16(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToInt16(source.ToArray(), startIndex);
     }
@@ -97,7 +118,14 @@ public static class ListOfByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static int ToInt32(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToInt32(source.ToArray(), startIndex);
     }
@@ -122,7 +150,14 @@ public static class ListOfByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static long ToInt64(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToInt64(source.ToArray(), startIndex);
     }
@@ -149,7 +184,14 @@ public static class ListOfByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static float ToSingle(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToSingle(source.ToArray(), startIndex);
     }
@@ -167,8 +209,22 @@ public static class ListOfByteExtensions
     /// </exception>
     public static string ToString(this IReadOnlyList<byte> source, Encoding encoding)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(encoding);
+#else
+        if (encoding is null)
+        {
+            throw new ArgumentNullException(nameof(encoding));
+        }
+#endif
 
         return encoding.GetString(source.ToArray());
     }
@@ -195,7 +251,14 @@ public static class ListOfByteExtensions
     [CLSCompliant(false)]
     public static ushort ToUInt16(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToUInt16(source.ToArray(), startIndex);
     }
@@ -222,7 +285,14 @@ public static class ListOfByteExtensions
     [CLSCompliant(false)]
     public static uint ToUInt32(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToUInt32(source.ToArray(), startIndex);
     }
@@ -249,7 +319,14 @@ public static class ListOfByteExtensions
     [CLSCompliant(false)]
     public static ulong ToUInt64(this IReadOnlyList<byte> source, int startIndex)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return BitConverter.ToUInt64(source.ToArray(), startIndex);
     }

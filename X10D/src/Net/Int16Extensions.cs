@@ -15,7 +15,11 @@ public static class Int16Extensions
     /// <param name="value">The value to convert, expressed in host byte order.</param>
     /// <returns>An integer value, expressed in network byte order.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static short HostToNetworkOrder(this short value)
     {
         return IPAddress.HostToNetworkOrder(value);
@@ -27,7 +31,11 @@ public static class Int16Extensions
     /// <param name="value">The value to convert, expressed in network byte order.</param>
     /// <returns>An integer value, expressed in host byte order.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static short NetworkToHostOrder(this short value)
     {
         return IPAddress.NetworkToHostOrder(value);
