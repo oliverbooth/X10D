@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class DecimalExtensions
 {
+#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this decimal number.
     /// </summary>
@@ -20,6 +21,7 @@ public static class DecimalExtensions
     {
         return Complex.Sqrt((double)value);
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
@@ -30,7 +32,11 @@ public static class DecimalExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsEven(this decimal value)
     {
         return value % 2.0m == 0.0m;
@@ -45,7 +51,11 @@ public static class DecimalExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsOdd(this decimal value)
     {
         return !value.IsEven();
@@ -57,7 +67,11 @@ public static class DecimalExtensions
     /// <param name="value">The value to round.</param>
     /// <returns><paramref name="value" /> rounded to the nearest whole number.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static decimal Round(this decimal value)
     {
         return value.Round(1.0m);
@@ -70,7 +84,11 @@ public static class DecimalExtensions
     /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
     /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static decimal Round(this decimal value, decimal nearest)
     {
         return System.Math.Round(value / nearest) * nearest;
@@ -104,7 +122,11 @@ public static class DecimalExtensions
     ///     </list>
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static int Sign(this decimal value)
     {
         return System.Math.Sign(value);
@@ -138,13 +160,12 @@ public static class DecimalExtensions
     ///     </list>
     /// </returns>
     /// <exception cref="ArgumentException"><paramref name="value" /> is negative.</exception>
-    /// <remarks>
-    ///     For negative input, this method returns <see cref="double.NaN" />. To receive a complex number, see
-    ///     <see cref="Numerics.DoubleExtensions.ComplexSqrt" />.
-    /// </remarks>
-    /// <seealso cref="Numerics.DoubleExtensions.ComplexSqrt" />
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static decimal Sqrt(this decimal value)
     {
         switch (value)

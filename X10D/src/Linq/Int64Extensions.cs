@@ -15,7 +15,14 @@ public static class Int64Extensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static long Product(this IEnumerable<long> source)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Aggregate(1L, (current, value) => current * value);
     }
@@ -29,7 +36,14 @@ public static class Int64Extensions
     [CLSCompliant(false)]
     public static ulong Product(this IEnumerable<ulong> source)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Aggregate(1UL, (current, value) => current * value);
     }
@@ -45,7 +59,14 @@ public static class Int64Extensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static long Product<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Select(selector).Product();
     }
@@ -62,7 +83,14 @@ public static class Int64Extensions
     [CLSCompliant(false)]
     public static ulong Product<TSource>(this IEnumerable<TSource> source, Func<TSource, ulong> selector)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         return source.Select(selector).Product();
     }

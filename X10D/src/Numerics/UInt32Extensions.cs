@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.Contracts;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Numerics;
@@ -19,10 +18,14 @@ public static class UInt32Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static uint RotateLeft(this uint value, int count)
     {
-        return BitOperations.RotateLeft(value, count);
+        return (value << count) | (value >> (32 - count));
     }
 
     /// <summary>
@@ -34,9 +37,13 @@ public static class UInt32Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static uint RotateRight(this uint value, int count)
     {
-        return BitOperations.RotateRight(value, count);
+        return (value >> count) | (value << (32 - count));
     }
 }

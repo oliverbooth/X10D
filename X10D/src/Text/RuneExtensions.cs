@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+﻿#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -44,3 +45,4 @@ public static class RuneExtensions
         return Encoding.UTF8.GetString(buffer);
     }
 }
+#endif

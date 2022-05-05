@@ -17,7 +17,14 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Fill<T>(this IList<T> source, T value)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         for (var i = 0; i < source.Count; i++)
         {
@@ -44,7 +51,14 @@ public static class ListExtensions
     /// </exception>
     public static void Fill<T>(this IList<T> source, T value, int startIndex, int count)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
         if (startIndex < 0)
         {
@@ -78,8 +92,8 @@ public static class ListExtensions
     /// <typeparam name="T">The element type.</typeparam>
     /// <param name="source">The source collection from which to draw.</param>
     /// <param name="random">
-    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified,
-    ///     <see cref="System.Random.Shared" /> is used.
+    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified, a shared
+    ///     instance is used.
     /// </param>
     /// <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
@@ -92,9 +106,16 @@ public static class ListExtensions
     [Pure]
     public static T Random<T>(this IReadOnlyList<T> source, Random? random = null)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
-        random ??= System.Random.Shared;
+        random ??= RandomExtensions.GetShared();
         return random.NextFrom(source);
     }
 
@@ -104,15 +125,22 @@ public static class ListExtensions
     /// <typeparam name="T">The element type.</typeparam>
     /// <param name="source">The <see cref="IList{T}" /> to shuffle.</param>
     /// <param name="random">
-    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified,
-    ///     <see cref="System.Random.Shared" /> is used.
+    ///     The <see cref="System.Random" /> instance to use for the shuffling. If <see langword="null" /> is specified, a shared
+    ///     instance is used.
     /// </param>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Shuffle<T>(this IList<T> source, Random? random = null)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
 
-        random ??= System.Random.Shared;
+        random ??= RandomExtensions.GetShared();
 
         int count = source.Count;
         while (count > 0)

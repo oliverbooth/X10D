@@ -17,7 +17,11 @@ public static class Int16Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static short RotateLeft(this short value, int count)
     {
         var unsigned = unchecked((ushort)value);
@@ -33,7 +37,11 @@ public static class Int16Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static short RotateRight(this short value, int count)
     {
         var unsigned = unchecked((ushort)value);

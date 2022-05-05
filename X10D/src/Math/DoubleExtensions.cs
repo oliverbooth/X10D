@@ -20,7 +20,11 @@ public static class DoubleExtensions
     ///     is equal to <see cref="double.NaN" />, less than -1, or greater than 1, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Acos(this double value)
     {
         return System.Math.Acos(value);
@@ -38,7 +42,11 @@ public static class DoubleExtensions
     ///     <paramref name="value" /> is less than 1 or equal to <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Acosh(this double value)
     {
         return System.Math.Acosh(value);
@@ -56,7 +64,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Asin(this double value)
     {
         return System.Math.Asin(value);
@@ -74,7 +86,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Asinh(this double value)
     {
         return System.Math.Asinh(value);
@@ -91,7 +107,11 @@ public static class DoubleExtensions
     ///     <paramref name="value" /> is equal to <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Atan(this double value)
     {
         return System.Math.Atan(value);
@@ -110,12 +130,17 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Atanh(this double value)
     {
         return System.Math.Atanh(value);
     }
 
+#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this double-precision floating-point number.
     /// </summary>
@@ -141,6 +166,7 @@ public static class DoubleExtensions
                 return new Complex(0, System.Math.Sqrt(-value));
         }
     }
+#endif
 
     /// <summary>
     ///     Returns the cosine of the specified angle.
@@ -152,7 +178,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Cos(this double value)
     {
         return System.Math.Cos(value);
@@ -169,7 +199,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Cosh(this double value)
     {
         return System.Math.Cosh(value);
@@ -181,7 +215,11 @@ public static class DoubleExtensions
     /// <param name="value">The angle in degrees to convert.</param>
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double DegreesToRadians(this double value)
     {
         return value * (System.Math.PI / 180.0);
@@ -196,7 +234,11 @@ public static class DoubleExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsEven(this double value)
     {
         return System.Math.Abs(value % 2.0) < double.Epsilon;
@@ -211,7 +253,11 @@ public static class DoubleExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsOdd(this double value)
     {
         return !value.IsEven();
@@ -223,7 +269,11 @@ public static class DoubleExtensions
     /// <param name="value">The angle in radians to convert.</param>
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double RadiansToDegrees(this double value)
     {
         return value * (180.0 / System.Math.PI);
@@ -235,7 +285,11 @@ public static class DoubleExtensions
     /// <param name="value">The value to round.</param>
     /// <returns><paramref name="value" /> rounded to the nearest whole number.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Round(this double value)
     {
         return value.Round(1.0);
@@ -248,7 +302,11 @@ public static class DoubleExtensions
     /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
     /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Round(this double value, double nearest)
     {
         return System.Math.Round(value / nearest) * nearest;
@@ -264,7 +322,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Sin(this double value)
     {
         return System.Math.Sin(value);
@@ -280,7 +342,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Sinh(this double value)
     {
         return System.Math.Sinh(value);
@@ -315,7 +381,11 @@ public static class DoubleExtensions
     /// </returns>
     /// <exception cref="ArithmeticException"><paramref name="value" /> is equal to <see cref="double.NaN" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static int Sign(this double value)
     {
         return System.Math.Sign(value);
@@ -348,15 +418,14 @@ public static class DoubleExtensions
     ///         </item>
     ///     </list>
     /// </returns>
-    /// <remarks>
-    ///     For negative input, this method returns <see cref="double.NaN" />. To receive a complex number, see
-    ///     <see cref="Numerics.DoubleExtensions.ComplexSqrt" />.
-    /// </remarks>
-    /// <seealso cref="Numerics.DoubleExtensions.ComplexSqrt" />
     /// <author>SLenik https://stackoverflow.com/a/6755197/1467293</author>
     /// <license>CC BY-SA 3.0</license>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Sqrt(this double value)
     {
         switch (value)
@@ -395,7 +464,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Tan(this double value)
     {
         return System.Math.Tan(value);
@@ -412,7 +485,11 @@ public static class DoubleExtensions
     ///     <see cref="double.NaN" />, this method returns <see cref="double.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double Tanh(this double value)
     {
         return System.Math.Tanh(value);

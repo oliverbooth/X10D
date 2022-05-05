@@ -18,7 +18,11 @@ public static class ByteExtensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static byte RotateLeft(this byte value, int count)
     {
         count = count.Mod(8);
@@ -34,7 +38,11 @@ public static class ByteExtensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static byte RotateRight(this byte value, int count)
     {
         count = count.Mod(8);
