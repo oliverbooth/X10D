@@ -18,12 +18,12 @@
     - Added `Random.NextUnitVector3()`
     - Added `Transform.LookAt(GameObject[, Vector3])`
     - Added `Transform.SetParent(GameObject[, bool])`
-- Added `ICollection<T>.ClearAndDisposeAll`
-- Added `ICollection<T>.ClearAndDisposeAllAsync`
-- Added `IEnumerable<T>.For` (#50)
-- Added `IEnumerable<T>.ForEach` (#50)
-- Added `IEnumerable<T>.DisposeAll`
-- Added `IEnumerable<T>.DisposeAllAsync`
+- Added `ICollection<T>.ClearAndDisposeAll()`
+- Added `ICollection<T>.ClearAndDisposeAllAsync()`
+- Added `IEnumerable<T>.For()` (#50)
+- Added `IEnumerable<T>.ForEach()` (#50)
+- Added `IEnumerable<T>.DisposeAll()`
+- Added `IEnumerable<T>.DisposeAllAsync()`
 - Added `char.IsEmoji`
 - Added `Rune.IsEmoji`
 - Added `string.IsEmoji`
