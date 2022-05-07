@@ -3,6 +3,8 @@
 ## [3.1.0-nightly]
 ### Added
 - Readded Unity support:
+    - Added `Component.GetComponentsInChildrenOnly<T>()`
+    - Added `GameObject.GetComponentsInChildrenOnly<T>()`
     - Added `GameObject.LookAt(GameObject[, Vector3])`
     - Added `GameObject.LookAt(Transform[, Vector3])`
     - Added `GameObject.LookAt(Vector3[, Vector3])`

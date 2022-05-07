@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace X10D.Unity;
 
@@ -7,6 +7,35 @@ namespace X10D.Unity;
 /// </summary>
 public static class GameObjectExtensions
 {
+    /// <summary>
+    ///     Returns an array of components of the specified type, excluding components that live on this game object.
+    /// </summary>
+    /// <param name="gameObject">The game object whose child components to retrieve.</param>
+    /// <typeparam name="T">The type of the components to retrieve.</typeparam>
+    /// <returns>An array <typeparamref name="T" /> representing the child components.</returns>
+    public static T[] GetComponentsInChildrenOnly<T>(this GameObject gameObject)
+    {
+        var components = new List<T>(gameObject.GetComponentsInChildren<T>());
+
+        for (var index = 0; index < components.Count; index++)
+        {
+            if (components[index] is not Component childComponent)
+            {
+                // this shouldn't happen, since you can't add a non-Component to a game object,
+                // but GetComponentsInChildren<T> is not constrained, so this method shouldn't be either
+                continue;
+            }
+
+            if (childComponent.transform.parent != gameObject.transform)
+            {
+                components.RemoveAt(index);
+                index--;
+            }
+        }
+
+        return components.ToArray();
+    }
+
     /// <summary>
     ///     Rotates the transform component of this game object so the forward vector points at another game object.
     /// </summary>
