@@ -173,7 +173,8 @@ public static class StreamExtensions
 
         if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
         {
-            value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            value = BitConverter.Int64BitsToDouble(tmp);
         }
 
         return value;
@@ -374,7 +375,8 @@ public static class StreamExtensions
 
         if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
         {
-            value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            value = BitConverter.Int32BitsToSingle(tmp);
         }
 
         return value;

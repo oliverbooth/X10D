@@ -58,7 +58,8 @@ public static class DoubleExtensions
     {
         if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
         {
-            value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            value = BitConverter.Int64BitsToDouble(tmp);
         }
 
         return MemoryMarshal.TryWrite(destination, ref value);

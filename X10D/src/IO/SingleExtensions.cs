@@ -58,7 +58,8 @@ public static class SingleExtensions
     {
         if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
         {
-            value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            value = BitConverter.Int32BitsToSingle(tmp);
         }
 
         return MemoryMarshal.TryWrite(destination, ref value);
