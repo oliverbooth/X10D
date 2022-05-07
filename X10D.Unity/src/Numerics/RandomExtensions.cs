@@ -70,7 +70,7 @@ public static class RandomExtensions
     /// </summary>
     /// <param name="random">The <see cref="System.Random" /> instance</param>
     /// <returns>
-    ///     A <see cref="Vector2" /> whose <see cref="Vector2.Length()" /> returns 1, and whose components indicate a random
+    ///     A <see cref="Vector2" /> whose <see cref="Vector2.magnitude" /> returns 1, and whose components indicate a random
     ///     point on the unit circle.
     /// </returns>
     public static Vector2 NextUnitVector2(this Random random)
@@ -94,7 +94,7 @@ public static class RandomExtensions
     /// </summary>
     /// <param name="random">The <see cref="System.Random" /> instance</param>
     /// <returns>
-    ///     A <see cref="Vector3" /> whose <see cref="Vector3.Length()" /> returns 1, and whose components indicate a random
+    ///     A <see cref="Vector3" /> whose <see cref="Vector3.magnitude" /> returns 1, and whose components indicate a random
     ///     point on the unit sphere.
     /// </returns>
     public static Vector3 NextUnitVector3(this Random random)
