@@ -24,6 +24,9 @@
 - Added `IEnumerable<T>.ForEach` (#50)
 - Added `IEnumerable<T>.DisposeAll`
 - Added `IEnumerable<T>.DisposeAllAsync`
+- Added `char.IsEmoji`
+- Added `Rune.IsEmoji`
+- Added `string.IsEmoji`
 
 ## [3.0.0]
 
