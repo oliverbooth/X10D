@@ -12,7 +12,7 @@
         <Description>Extension methods on crack.</Description>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageIconUrl />
+        <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <VersionPrefix>3.1.0</VersionPrefix>
@@ -40,25 +40,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Unity3D.SDK" Version="2020.3.13.1" PrivateAssets="All" />
+        <PackageReference Include="Unity3D.SDK" Version="2020.3.13.1" PrivateAssets="All"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X10D\X10D.csproj" />
+        <ProjectReference Include="..\X10D\X10D.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <None Include="..\icon.png">
             <Pack>True</Pack>
-            <PackagePath />
+            <PackagePath/>
         </None>
         <None Include="..\LICENSE.md">
             <Pack>True</Pack>
-            <PackagePath />
+            <PackagePath/>
         </None>
         <None Include="..\CHANGELOG.md">
             <Pack>True</Pack>
-            <PackagePath />
+            <PackagePath/>
         </None>
     </ItemGroup>
 
