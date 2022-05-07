@@ -9,6 +9,25 @@ namespace X10D.Tests.Text;
 public class RuneTests
 {
     [TestMethod]
+    public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
+    {
+        Assert.IsTrue(new Rune('✂').IsEmoji());
+        Assert.IsTrue(new Rune('✅').IsEmoji());
+        Assert.IsTrue(new Rune('❎').IsEmoji());
+        Assert.IsTrue(new Rune('➕').IsEmoji());
+        Assert.IsTrue(new Rune('➖').IsEmoji());
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnFalse_GivenNonEmoji()
+    {
+        for (var letter = 'A'; letter <= 'Z'; letter++)
+        {
+            Assert.IsFalse(new Rune(letter).IsEmoji());
+        }
+    }
+
+    [TestMethod]
     public void RepeatShouldBeCorrect()
     {
         const string expected = "aaaaaaaaaa";

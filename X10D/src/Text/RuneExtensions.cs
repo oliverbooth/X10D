@@ -11,6 +11,18 @@ namespace X10D.Text;
 public static class RuneExtensions
 {
     /// <summary>
+    ///     Returns a value indicating whether this rune constitutes an emoji.
+    /// </summary>
+    /// <param name="value">The rune to check.</param>
+    /// <returns><see langword="true" /> if this rune is an emoji; otherwise, <see langword="false" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    public static bool IsEmoji(this Rune value)
+    {
+        return value.ToString().IsEmoji();
+    }
+
+    /// <summary>
     ///     Returns a string composed of the current rune repeated a specified number of times.
     /// </summary>
     /// <param name="value">The rune to repeat.</param>

@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 #if NET5_0_OR_GREATER
 using System.Text.Json.Serialization;
 #endif
@@ -197,6 +197,44 @@ public class StringTests
     public void GetBytes_ShouldThrow_GivenNullEncoding()
     {
         Assert.ThrowsException<ArgumentNullException>(() => "Hello World".GetBytes(null!));
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
+    {
+        Assert.IsTrue("😀".IsEmoji());
+        Assert.IsTrue("🤓".IsEmoji());
+        Assert.IsTrue("🟦".IsEmoji());
+        Assert.IsTrue("🟧".IsEmoji());
+        Assert.IsTrue("🟨".IsEmoji());
+        Assert.IsTrue("🟩".IsEmoji());
+        Assert.IsTrue("🟪".IsEmoji());
+        Assert.IsTrue("🟫".IsEmoji());
+        Assert.IsTrue("📱".IsEmoji());
+        Assert.IsTrue("🎨".IsEmoji());
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnTrue_GivenMultiByteEmoji()
+    {
+        string[] regionalIndicatorCodes = Enumerable.Range(0, 26)
+            .Select(i => Encoding.Unicode.GetString(new byte[] {0x3C, 0xD8, (byte)(0xE6 + i), 0xDD}))
+            .ToArray();
+
+        for (var i = 0; i < 26; i++)
+        for (var j = 0; j < 26; j++)
+        {
+            string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
+            Assert.IsTrue(flag.IsEmoji());
+        }
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnFalse_GivenNonEmoji()
+    {
+        Assert.IsFalse("Hello World".IsEmoji());
+        Assert.IsFalse("Hello".IsEmoji());
+        Assert.IsFalse("World".IsEmoji());
     }
 
     [TestMethod]

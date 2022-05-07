@@ -296,6 +296,31 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     Returns a value indicating whether this string constitutes an emoji.
+    /// </summary>
+    /// <param name="value">The input string.</param>
+    /// <returns><see langword="true" /> if this string is an emoji; otherwise, <see langword="false" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsEmoji(this string value)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
+        return EmojiRegex.Value.IsMatch(value);
+    }
+
+    /// <summary>
     ///     Determines if all alpha characters in this string are considered lowercase.
     /// </summary>
     /// <param name="value">The input string.</param>
