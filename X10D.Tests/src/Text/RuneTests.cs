@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿#if NETCOREAPP3_0_OR_GREATER
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Text;
 
@@ -37,3 +38,4 @@ public class RuneTests
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Rune('a').Repeat(-1));
     }
 }
+#endif

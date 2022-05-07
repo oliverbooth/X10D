@@ -67,10 +67,11 @@ public class CollectionTests
             Assert.IsTrue(IsDisposed = true);
         }
 
-        public ValueTask DisposeAsync()
+#pragma warning disable CS1998
+        public async ValueTask DisposeAsync()
+#pragma warning restore CS1998
         {
             Assert.IsTrue(IsDisposed = true);
-            return ValueTask.CompletedTask;
         }
     }
 }
