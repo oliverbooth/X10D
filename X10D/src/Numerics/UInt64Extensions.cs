@@ -44,6 +44,6 @@ public static class UInt64Extensions
 #endif
     public static ulong RotateRight(this ulong value, int count)
     {
-        return (value >> count) | (value << (32 - count));
+        return (value >> count) | (value << (64 - count));
     }
 }
