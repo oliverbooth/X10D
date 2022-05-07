@@ -1,7 +1,7 @@
 {
     "name": "me.olivr.x10d",
     "displayName": "X10D",
-    "version": "3.1.0-nightly.89",
+    "version": "3.1.0-nightly.90",
     "unity": "2020.3",
     "description": "Extension methods on crack",
     "keywords": ["dotnet", "extension-methods"]
