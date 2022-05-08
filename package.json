@@ -9,5 +9,7 @@
     "version": "3.1.0-nightly.91",
     "unity": "2021.2",
     "description": "Extension methods on crack",
-    "keywords": ["dotnet", "extension-methods"]
+    "keywords": ["dotnet", "extension-methods"],
+    "changelogUrl": "https://github.com/oliverbooth/X10D/blob/main/CHANGELOG.md",
+    "licensesUrl": "https://github.com/oliverbooth/X10D/blob/main/LICENSE.md"
 }
