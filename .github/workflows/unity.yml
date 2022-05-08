@@ -35,6 +35,7 @@ jobs:
 
       - name: Copy artifacts to project
         run: |
+          mkdir -p ./X10D.Unity.Tests/Assets/Libraries
           cp -r ./X10D/bin/Release/netstandard2.1/X10D.dll ./X10D.Unity.Tests/Assets/Libraries/X10D.dll
           cp -r ./X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.dll ./X10D.Unity.Tests/Assets/Libraries/X10D.Unity.dll
 
