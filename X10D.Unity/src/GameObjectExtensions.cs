@@ -172,6 +172,44 @@ public static class GameObjectExtensions
     }
 
     /// <summary>
+    ///      Sets the new layer of this game object and its children, recursively.
+    /// </summary>
+    /// <param name="gameObject">The game object whose layer, and that of its children recursively, to change.</param>
+    /// <param name="layer">The new layer.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="gameObject" /> is <see langword="null" />.</exception>
+    public static void SetLayerRecursively(this GameObject gameObject, int layer)
+    {
+        if (gameObject == null)
+        {
+            throw new ArgumentNullException(nameof(gameObject));
+        }
+
+        gameObject.layer = layer;
+
+        if (gameObject.transform.childCount == 0)
+        {
+            return;
+        }
+
+        var children = new Stack<Transform>(gameObject.transform.Cast<Transform>());
+        while (children.Count > 0)
+        {
+            Transform child = children.Pop();
+            child.gameObject.layer = layer;
+
+            if (child.childCount <= 0)
+            {
+                continue;
+            }
+
+            foreach (Transform grandChild in child)
+            {
+                children.Push(grandChild);
+            }
+        }
+    }
+
+    /// <summary>
     ///     Sets the parent of this game object.
     /// </summary>
     /// <param name="gameObject">The game object whose parent to change.</param>

@@ -62,6 +62,30 @@ namespace X10D.Unity.Tests
         }
 
         [UnityTest]
+        public IEnumerator SetLayerRecursively_ShouldSetLayerRecursively()
+        {
+            var parent = new GameObject();
+            var child = new GameObject();
+            var grandChild = new GameObject();
+
+            child.transform.SetParent(parent.transform);
+            grandChild.transform.SetParent(child.transform);
+
+            int layer = LayerMask.NameToLayer("UI");
+            Assert.AreNotEqual(layer, parent.layer);
+            Assert.AreNotEqual(layer, child.layer);
+            Assert.AreNotEqual(layer, grandChild.layer);
+
+            parent.SetLayerRecursively(layer);
+
+            Assert.AreEqual(layer, parent.layer);
+            Assert.AreEqual(layer, child.layer);
+            Assert.AreEqual(layer, grandChild.layer);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator SetParent_ShouldSetParent()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
