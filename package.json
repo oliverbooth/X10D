@@ -1,5 +1,10 @@
 {
     "name": "me.olivr.x10d",
+    "author": {
+        "name": "Oliver Booth",
+        "email": "me@olivr.me",
+        "url": "https://oliverbooth.dev"
+    },
     "displayName": "X10D",
     "version": "3.1.0-nightly.91",
     "unity": "2021.2",
