@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 using X10D.Unity.Drawing;
 using Random = System.Random;
 
-namespace Tests.Drawing
+namespace X10D.Unity.Tests.Drawing
 {
     public class RandomTests
     {
