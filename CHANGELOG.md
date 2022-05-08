@@ -2,33 +2,36 @@
 
 ## [3.1.0-nightly]
 ### Added
-- Readded Unity support:
-    - Added `Component.GetComponentsInChildrenOnly<T>()`
-    - Added `GameObject.GetComponentsInChildrenOnly<T>()`
-    - Added `GameObject.LookAt(GameObject[, Vector3])`
-    - Added `GameObject.LookAt(Transform[, Vector3])`
-    - Added `GameObject.LookAt(Vector3[, Vector3])`
-    - Added `GameObject.SetParent(GameObject[, bool])`
-    - Added `GameObject.SetParent(Transform[, bool])`
-    - Added `Random.NextColorArgb()`
-    - Added `Random.NextColor32Argb()`
-    - Added `Random.NextColorRgb()`
-    - Added `Random.NextColor32Rgb()`
-    - Added `Random.NextRotation()`
-    - Added `Random.NextRotationUniform()`
-    - Added `Random.NextUnitVector2()`
-    - Added `Random.NextUnitVector3()`
-    - Added `Transform.LookAt(GameObject[, Vector3])`
-    - Added `Transform.SetParent(GameObject[, bool])`
-- Added `ICollection<T>.ClearAndDisposeAll()`
-- Added `ICollection<T>.ClearAndDisposeAllAsync()`
-- Added `IEnumerable<T>.For()` (#50)
-- Added `IEnumerable<T>.ForEach()` (#50)
-- Added `IEnumerable<T>.DisposeAll()`
-- Added `IEnumerable<T>.DisposeAllAsync()`
-- Added `char.IsEmoji`
-- Added `Rune.IsEmoji`
-- Added `string.IsEmoji`
+- Reintroduced Unity support
+- X10D: Added `Color.Inverted()`
+- X10D: Added `ICollection<T>.ClearAndDisposeAll()`
+- X10D: Added `ICollection<T>.ClearAndDisposeAllAsync()`
+- X10D: Added `IEnumerable<T>.For()` (#50)
+- X10D: Added `IEnumerable<T>.ForEach()` (#50)
+- X10D: Added `IEnumerable<T>.DisposeAll()`
+- X10D: Added `IEnumerable<T>.DisposeAllAsync()`
+- X10D: Added `char.IsEmoji`
+- X10D: Added `Rune.IsEmoji`
+- X10D: Added `string.IsEmoji`
+- X10D.Unity: Added `Color.Inverted()`
+- X10D.Unity: Added `Color32.Inverted()`
+- X10D.Unity: Added `Component.GetComponentsInChildrenOnly<T>()`
+- X10D.Unity: Added `GameObject.GetComponentsInChildrenOnly<T>()`
+- X10D.Unity: Added `GameObject.LookAt(GameObject[, Vector3])`
+- X10D.Unity: Added `GameObject.LookAt(Transform[, Vector3])`
+- X10D.Unity: Added `GameObject.LookAt(Vector3[, Vector3])`
+- X10D.Unity: Added `GameObject.SetParent(GameObject[, bool])`
+- X10D.Unity: Added `GameObject.SetParent(Transform[, bool])`
+- X10D.Unity: Added `Random.NextColorArgb()`
+- X10D.Unity: Added `Random.NextColor32Argb()`
+- X10D.Unity: Added `Random.NextColorRgb()`
+- X10D.Unity: Added `Random.NextColor32Rgb()`
+- X10D.Unity: Added `Random.NextRotation()`
+- X10D.Unity: Added `Random.NextRotationUniform()`
+- X10D.Unity: Added `Random.NextUnitVector2()`
+- X10D.Unity: Added `Random.NextUnitVector3()`
+- X10D.Unity: Added `Transform.LookAt(GameObject[, Vector3])`
+- X10D.Unity: Added `Transform.SetParent(GameObject[, bool])`
 
 ## [3.0.0]
 
