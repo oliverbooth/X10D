@@ -146,13 +146,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "me.olivr.x10d": {
-      "version": "https://github.com/oliverbooth/X10D.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "7ee14cebfd7415c8c161b03d592956151552d6b5"
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
