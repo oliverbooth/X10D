@@ -4,9 +4,8 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using X10D.Unity;
 
-namespace Tests
+namespace X10D.Unity.Tests
 {
     public class TransformTests
     {

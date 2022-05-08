@@ -1,6 +1,6 @@
 {
     "name": "X10D.Unity.Tests",
-    "rootNamespace": "",
+    "rootNamespace": "X10D.Unity",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"

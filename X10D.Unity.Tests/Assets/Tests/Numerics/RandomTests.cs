@@ -6,7 +6,7 @@ using NUnit.Framework;
 using UnityEngine.TestTools;
 using X10D.Unity.Numerics;
 
-namespace Tests.Numerics
+namespace X10D.Unity.Tests.Numerics
 {
     public class RandomTests
     {
