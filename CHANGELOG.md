@@ -20,6 +20,7 @@
 - X10D.Unity: Added `GameObject.LookAt(GameObject[, Vector3])`
 - X10D.Unity: Added `GameObject.LookAt(Transform[, Vector3])`
 - X10D.Unity: Added `GameObject.LookAt(Vector3[, Vector3])`
+- X10D.Unity: Added `GameObject.SetLayerRecursively(int)`
 - X10D.Unity: Added `GameObject.SetParent(GameObject[, bool])`
 - X10D.Unity: Added `GameObject.SetParent(Transform[, bool])`
 - X10D.Unity: Added `Random.NextColorArgb()`
