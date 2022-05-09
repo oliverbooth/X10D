@@ -10,6 +10,30 @@ namespace X10D.Unity.Numerics;
 public static class Vector4Extensions
 {
     /// <summary>
+    ///     Converts the current vector to a <see cref="System.Numerics.Vector4" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The converted vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Numerics.Vector4 ToSystemVector(this Vector4 vector)
+    {
+        return new System.Numerics.Vector4(vector.x, vector.y, vector.z, vector.w);
+    }
+
+    /// <summary>
+    ///     Converts the current vector to a <see cref="Vector4" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The converted vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector4 ToUnityVector(this System.Numerics.Vector4 vector)
+    {
+        return new Vector4(vector.X, vector.Y, vector.Z, vector.W);
+    }
+
+    /// <summary>
     ///     Returns a vector whose Y, Z, and W components are the same as the specified vector, and whose X component is a new
     ///     value.
     /// </summary>
