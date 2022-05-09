@@ -20,4 +20,76 @@ public static class ColorExtensions
     {
         return new Color(1f - color.r, 1f - color.g, 1f - color.b, color.a);
     }
+
+    /// <summary>
+    ///     Returns a vector whose red, green, and blue components are the same as the specified color, and whose alpha component
+    ///     is a new value.
+    /// </summary>
+    /// <param name="color">The color to copy.</param>
+    /// <param name="a">The new alpha component value.</param>
+    /// <returns>
+    ///     A new instance of <see cref="Color" /> whose <see cref="Color.r" />, <see cref="Color.g" />, and
+    ///     <see cref="Color.b" /> components are the same as that of <paramref name="color" />, and whose
+    ///     <see cref="Color.a" /> component is <paramref name="a" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color WithA(this Color color, float a)
+    {
+        return color with {a = a};
+    }
+
+    /// <summary>
+    ///     Returns a vector whose red, green, and alpha components are the same as the specified color, and whose blue component
+    ///     is a new value.
+    /// </summary>
+    /// <param name="color">The color to copy.</param>
+    /// <param name="b">The new blue component value.</param>
+    /// <returns>
+    ///     A new instance of <see cref="Color" /> whose <see cref="Color.r" />, <see cref="Color.g" />, and
+    ///     <see cref="Color.a" /> components are the same as that of <paramref name="color" />, and whose
+    ///     <see cref="Color.b" /> component is <paramref name="b" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color WithB(this Color color, float b)
+    {
+        return color with {b = b};
+    }
+
+    /// <summary>
+    ///     Returns a vector whose red, blue, and alpha components are the same as the specified color, and whose green component
+    ///     is a new value.
+    /// </summary>
+    /// <param name="color">The color to copy.</param>
+    /// <param name="g">The new green component value.</param>
+    /// <returns>
+    ///     A new instance of <see cref="Color" /> whose <see cref="Color.r" />, <see cref="Color.b" />, and
+    ///     <see cref="Color.a" /> components are the same as that of <paramref name="color" />, and whose
+    ///     <see cref="Color.g" /> component is <paramref name="g" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color WithG(this Color color, float g)
+    {
+        return color with {g = g};
+    }
+
+    /// <summary>
+    ///     Returns a vector whose green, blue, and alpha components are the same as the specified color, and whose red component
+    ///     is a new value.
+    /// </summary>
+    /// <param name="color">The color to copy.</param>
+    /// <param name="r">The new red component value.</param>
+    /// <returns>
+    ///     A new instance of <see cref="Color" /> whose <see cref="Color.g" />, <see cref="Color.b" />, and
+    ///     <see cref="Color.a" /> components are the same as that of <paramref name="color" />, and whose
+    ///     <see cref="Color.r" /> component is <paramref name="r" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color WithR(this Color color, float r)
+    {
+        return color with {r = r};
+    }
 }
