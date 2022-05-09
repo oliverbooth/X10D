@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>X10D.Unity</name>
+    </assembly>
+    <members>
+        <member name="T:X10D.Unity.ComponentExtensions">
+            <summary>
+                Extension methods for <see cref="T:UnityEngine.Component" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.ComponentExtensions.GetComponentsInChildrenOnly``1(UnityEngine.Component)">
+            <summary>
+                Returns an array of components of the specified type, excluding components that live on the object to which this
+                component is attached.
+            </summary>
+            <param name="component">The component whose child components to retrieve.</param>
+            <typeparam name="T">The type of the components to retrieve.</typeparam>
+            <returns>An array <typeparamref name="T" /> representing the child components.</returns>
+        </member>
+        <member name="T:X10D.Unity.Drawing.Color32Extensions">
+            <summary>
+                Drawing-related extensions for <see cref="T:UnityEngine.Color32" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.Inverted(UnityEngine.Color32)">
+            <summary>
+                Returns a new <see cref="T:UnityEngine.Color32" /> with the red, green, and blue components inverted. Alpha is not affected.
+            </summary>
+            <param name="color">The color to invert.</param>
+            <returns>The inverted color.</returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.WithA(UnityEngine.Color32,System.Byte)">
+            <summary>
+                Returns a vector whose red, green, and blue components are the same as the specified color, and whose alpha component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="a">The new alpha component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color" /> whose <see cref="F:UnityEngine.Color32.r" />, <see cref="F:UnityEngine.Color32.g" />, and
+                <see cref="F:UnityEngine.Color32.b" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color32.a" /> component is <paramref name="a" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.WithB(UnityEngine.Color32,System.Byte)">
+            <summary>
+                Returns a vector whose red, green, and alpha components are the same as the specified color, and whose blue component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="b">The new blue component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color" /> whose <see cref="F:UnityEngine.Color32.r" />, <see cref="F:UnityEngine.Color32.g" />, and
+                <see cref="F:UnityEngine.Color32.a" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color32.b" /> component is <paramref name="b" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.WithG(UnityEngine.Color32,System.Byte)">
+            <summary>
+                Returns a vector whose red, blue, and alpha components are the same as the specified color, and whose green component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="g">The new green component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color32" /> whose <see cref="F:UnityEngine.Color32.r" />, <see cref="F:UnityEngine.Color32.g" />, and
+                <see cref="F:UnityEngine.Color32.b" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color32.g" /> component is <paramref name="g" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.WithR(UnityEngine.Color32,System.Byte)">
+            <summary>
+                Returns a vector whose green, blue, and alpha components are the same as the specified color, and whose red component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="r">The new red component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color32" /> whose <see cref="F:UnityEngine.Color32.g" />, <see cref="F:UnityEngine.Color32.b" />, and
+                <see cref="F:UnityEngine.Color32.a" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color32.r" /> component is <paramref name="r" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.Drawing.ColorExtensions">
+            <summary>
+                Drawing-related extensions for <see cref="T:UnityEngine.Color" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.Inverted(UnityEngine.Color)">
+            <summary>
+                Returns a new <see cref="T:UnityEngine.Color" /> with the red, green, and blue components inverted. Alpha is not affected.
+            </summary>
+            <param name="color">The color to invert.</param>
+            <returns>The inverted color.</returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.WithA(UnityEngine.Color,System.Single)">
+            <summary>
+                Returns a vector whose red, green, and blue components are the same as the specified color, and whose alpha component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="a">The new alpha component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color" /> whose <see cref="F:UnityEngine.Color.r" />, <see cref="F:UnityEngine.Color.g" />, and
+                <see cref="F:UnityEngine.Color.b" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color.a" /> component is <paramref name="a" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.WithB(UnityEngine.Color,System.Single)">
+            <summary>
+                Returns a vector whose red, green, and alpha components are the same as the specified color, and whose blue component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="b">The new blue component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color" /> whose <see cref="F:UnityEngine.Color.r" />, <see cref="F:UnityEngine.Color.g" />, and
+                <see cref="F:UnityEngine.Color.a" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color.b" /> component is <paramref name="b" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.WithG(UnityEngine.Color,System.Single)">
+            <summary>
+                Returns a vector whose red, blue, and alpha components are the same as the specified color, and whose green component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="g">The new green component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color" /> whose <see cref="F:UnityEngine.Color.r" />, <see cref="F:UnityEngine.Color.b" />, and
+                <see cref="F:UnityEngine.Color.a" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color.g" /> component is <paramref name="g" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.WithR(UnityEngine.Color,System.Single)">
+            <summary>
+                Returns a vector whose green, blue, and alpha components are the same as the specified color, and whose red component
+                is a new value.
+            </summary>
+            <param name="color">The color to copy.</param>
+            <param name="r">The new red component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Color" /> whose <see cref="F:UnityEngine.Color.g" />, <see cref="F:UnityEngine.Color.b" />, and
+                <see cref="F:UnityEngine.Color.a" /> components are the same as that of <paramref name="color" />, and whose
+                <see cref="F:UnityEngine.Color.r" /> component is <paramref name="r" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.Drawing.RandomExtensions">
+            <summary>
+                Extension methods for <see cref="T:System.Random" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Drawing.RandomExtensions.NextColorRgb(System.Random)">
+            <summary>
+                Returns an HDR color of random components for red, green, and blue.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance.</param>
+            <returns>A <see cref="T:UnityEngine.Color" /> whose red, green, and blue components are all random, and whose alpha is 255</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.Drawing.RandomExtensions.NextColorArgb(System.Random)">
+            <summary>
+                Returns an HDR color composed of random components for apha, red, green, and blue.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance.</param>
+            <returns>A <see cref="T:UnityEngine.Color" /> whose alpha, red, green, and blue components are all random.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.Drawing.RandomExtensions.NextColor32Rgb(System.Random)">
+            <summary>
+                Returns a color of random components for red, green, and blue.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance.</param>
+            <returns>A <see cref="T:UnityEngine.Color" /> whose red, green, and blue components are all random, and whose alpha is 255</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.Drawing.RandomExtensions.NextColor32Argb(System.Random)">
+            <summary>
+                Returns a color composed of random components for apha, red, green, and blue.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance.</param>
+            <returns>A <see cref="T:UnityEngine.Color" /> whose alpha, red, green, and blue components are all random.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="T:X10D.Unity.GameObjectExtensions">
+            <summary>
+                Extension methods for <see cref="T:UnityEngine.GameObject" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.GetComponentsInChildrenOnly``1(UnityEngine.GameObject)">
+            <summary>
+                Returns an array of components of the specified type, excluding components that live on this game object.
+            </summary>
+            <param name="gameObject">The game object whose child components to retrieve.</param>
+            <typeparam name="T">The type of the components to retrieve.</typeparam>
+            <returns>An array <typeparamref name="T" /> representing the child components.</returns>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary>
+                Rotates the transform component of this game object so the forward vector points at another game object.
+            </summary>
+            <param name="gameObject">The game object whose rotation will be changed.</param>
+            <param name="target">The game object to look at.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="target" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary>
+                Rotates the transform component of this game object so the forward vector points at <paramref name="target" />.
+            </summary>
+            <param name="gameObject">The game object whose rotation will be changed.</param>
+            <param name="target">The point to look at.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="gameObject" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.Transform)">
+            <summary>
+                Rotates the transform component of this game object so the forward vector points at a specified transform.
+            </summary>
+            <param name="gameObject">The game object whose rotation will be changed.</param>
+            <param name="target">The transform to look at.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="target" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary>
+                Rotates the transform component of this game object so the forward vector points at another game object.
+            </summary>
+            <param name="gameObject">The game object whose rotation will be changed.</param>
+            <param name="target">The game object to look at.</param>
+            <param name="worldUp">A vector specifying the upward direction.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="target" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+                Rotates the transform component of this game object so the forward vector points at <paramref name="target" />.
+            </summary>
+            <param name="gameObject">The game object whose rotation will be changed.</param>
+            <param name="target">The point to look at.</param>
+            <param name="worldUp">A vector specifying the upward direction.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="gameObject" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.Transform,UnityEngine.Vector3)">
+            <summary>
+                Rotates the transform component of this game object so the forward vector points at a specified transform.
+            </summary>
+            <param name="gameObject">The game object whose rotation will be changed.</param>
+            <param name="target">The transform to look at.</param>
+            <param name="worldUp">A vector specifying the upward direction.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="target" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.SetLayerRecursively(UnityEngine.GameObject,System.Int32)">
+            <summary>
+                 Sets the new layer of this game object and its children, recursively.
+            </summary>
+            <param name="gameObject">The game object whose layer, and that of its children recursively, to change.</param>
+            <param name="layer">The new layer.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="gameObject" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.SetParent(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary>
+                Sets the parent of this game object.
+            </summary>
+            <param name="gameObject">The game object whose parent to change.</param>
+            <param name="parent">The new parent.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="parent" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.SetParent(UnityEngine.GameObject,UnityEngine.Transform)">
+            <summary>
+                Sets the parent of this game object.
+            </summary>
+            <param name="gameObject">The game object whose parent to change.</param>
+            <param name="parent">The new parent.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="parent" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.SetParent(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary>
+                Sets the parent of this game object.
+            </summary>
+            <param name="gameObject">The game object whose parent to change.</param>
+            <param name="parent">The new parent.</param>
+            <param name="worldPositionStays">
+                <see langword="true" /> to modify the parent-relative position, scale and rotation such that the object keeps the same
+                world space position, rotation and scale as before; otherwise, <see langword="false" />.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="parent" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.GameObjectExtensions.SetParent(UnityEngine.GameObject,UnityEngine.Transform,System.Boolean)">
+            <summary>
+                Sets the parent of this game object.
+            </summary>
+            <param name="gameObject">The game object whose parent to change.</param>
+            <param name="parent">The new parent.</param>
+            <param name="worldPositionStays">
+                <see langword="true" /> to modify the parent-relative position, scale and rotation such that the object keeps the same
+                world space position, rotation and scale as before; otherwise, <see langword="false" />.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="gameObject" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="parent" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="T:X10D.Unity.Numerics.RandomExtensions">
+            <summary>
+                Extension methods for <see cref="T:System.Random" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.RandomExtensions.NextRotation(System.Random)">
+            <summary>
+                Returns a randomly generated rotation as represented by a <see cref="T:UnityEngine.Quaternion" />.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance.</param>
+            <returns>
+                A <see cref="T:UnityEngine.Quaternion" /> constructed from 3 random single-precision floating point numbers representing the
+                yaw, pitch, and roll.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.Numerics.RandomExtensions.NextRotationUniform(System.Random)">
+            <summary>
+                Returns a randomly generated rotation with uniform distribution.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance.</param>
+            <returns>A <see cref="T:UnityEngine.Quaternion" /> constructed with uniform distribution.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.Numerics.RandomExtensions.NextUnitVector2(System.Random)">
+            <summary>
+                Returns a <see cref="T:UnityEngine.Vector2" /> with magnitude 1 whose components indicate a random point on the unit circle.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance</param>
+            <returns>
+                A <see cref="T:UnityEngine.Vector2" /> whose <see cref="P:UnityEngine.Vector2.magnitude" /> returns 1, and whose components indicate a random
+                point on the unit circle.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.RandomExtensions.NextUnitVector3(System.Random)">
+            <summary>
+                Returns a <see cref="T:UnityEngine.Vector3" /> with magnitude 1 whose components indicate a random point on the unit sphere.
+            </summary>
+            <param name="random">The <see cref="T:System.Random" /> instance</param>
+            <returns>
+                A <see cref="T:UnityEngine.Vector3" /> whose <see cref="P:UnityEngine.Vector3.magnitude" /> returns 1, and whose components indicate a random
+                point on the unit sphere.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.Numerics.Vector2Extensions">
+            <summary>
+                Numeric-extensions for <see cref="T:UnityEngine.Vector2" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.WithX(UnityEngine.Vector2,System.Single)">
+            <summary>
+                Returns a vector whose Y component is the same as the specified vector, and whose X component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="x">The new X component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector2" /> whose <see cref="F:UnityEngine.Vector2.y" /> components is the same as that of
+                <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector2.x" /> component is <paramref name="x" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.WithY(UnityEngine.Vector2,System.Single)">
+            <summary>
+                Returns a vector whose X component is the same as the specified vector, and whose Y component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="y">The new Y component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector2" /> whose <see cref="F:UnityEngine.Vector2.x" /> components is the same as that of
+                <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector2.y" /> component is <paramref name="y" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.Numerics.Vector3Extensions">
+            <summary>
+                Numeric-extensions for <see cref="T:UnityEngine.Vector3" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3Extensions.WithX(UnityEngine.Vector3,System.Single)">
+            <summary>
+                Returns a vector whose Y and Z components are the same as the specified vector, and whose X component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="x">The new X component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector3" /> whose <see cref="F:UnityEngine.Vector3.y" /> and <see cref="F:UnityEngine.Vector3.z" /> components are
+                the same as that of <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector3.x" /> component is <paramref name="x" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3Extensions.WithY(UnityEngine.Vector3,System.Single)">
+            <summary>
+                Returns a vector whose X and Z components are the same as the specified vector, and whose Y component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="y">The new Y component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector3" /> whose <see cref="F:UnityEngine.Vector3.x" /> and <see cref="F:UnityEngine.Vector3.z" /> components are
+                the same as that of <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector3.y" /> component is <paramref name="y" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3Extensions.WithZ(UnityEngine.Vector3,System.Single)">
+            <summary>
+                Returns a vector whose X and Y components are the same as the specified vector, and whose Z component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="z">The new Z component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector3" /> whose <see cref="F:UnityEngine.Vector3.x" /> and <see cref="F:UnityEngine.Vector3.y" /> components are
+                the same as that of <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector3.z" /> component is <paramref name="z" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.Numerics.Vector4Extensions">
+            <summary>
+                Numeric-extensions for <see cref="T:UnityEngine.Vector4" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.WithX(UnityEngine.Vector4,System.Single)">
+            <summary>
+                Returns a vector whose Y, Z, and W components are the same as the specified vector, and whose X component is a new
+                value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="x">The new X component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector4" /> whose <see cref="F:UnityEngine.Vector4.y" />, <see cref="F:UnityEngine.Vector4.z" />, and
+                <see cref="F:UnityEngine.Vector4.w" /> components are the same as that of <paramref name="vector" />, and whose
+                <see cref="F:UnityEngine.Vector4.x" /> component is <paramref name="x" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.WithY(UnityEngine.Vector4,System.Single)">
+            <summary>
+                Returns a vector whose X, Z, and W components are the same as the specified vector, and whose Y component is a new
+                value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="y">The new Y component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector4" /> whose <see cref="F:UnityEngine.Vector4.x" />, <see cref="F:UnityEngine.Vector4.z" />, and
+                <see cref="F:UnityEngine.Vector4.w" /> components are the same as that of <paramref name="vector" />, and whose
+                <see cref="F:UnityEngine.Vector4.y" /> component is <paramref name="y" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.WithZ(UnityEngine.Vector4,System.Single)">
+            <summary>
+                Returns a vector whose X, Y, and W components are the same as the specified vector, and whose Z component is a new
+                value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="z">The new Z component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector4" /> whose <see cref="F:UnityEngine.Vector4.x" />, <see cref="F:UnityEngine.Vector4.y" />, and
+                <see cref="F:UnityEngine.Vector4.w" /> components are the same as that of <paramref name="vector" />, and whose
+                <see cref="F:UnityEngine.Vector4.z" /> component is <paramref name="z" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.WithW(UnityEngine.Vector4,System.Single)">
+            <summary>
+                Returns a vector whose X, Y, and Z components are the same as the specified vector, and whose W component is a new
+                value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="w">The new W component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector4" /> whose <see cref="F:UnityEngine.Vector4.x" />, <see cref="F:UnityEngine.Vector4.y" />, and
+                <see cref="F:UnityEngine.Vector4.z" /> components are the same as that of <paramref name="vector" />, and whose
+                <see cref="F:UnityEngine.Vector4.w" /> component is <paramref name="w" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.TransformExtensions">
+            <summary>
+                Extension methods for <see cref="T:UnityEngine.Transform" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.TransformExtensions.LookAt(UnityEngine.Transform,UnityEngine.GameObject)">
+            <summary>
+                Rotates this transform so the forward vector points at another game object.
+            </summary>
+            <param name="transform">The transform whose rotation will be changed.</param>
+            <param name="target">The game object to look at.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="transform" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="target" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.TransformExtensions.LookAt(UnityEngine.Transform,UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary>
+                Rotates this transform so the forward vector points at another game object.
+            </summary>
+            <param name="transform">The transform whose rotation will be changed.</param>
+            <param name="target">The game object to look at.</param>
+            <param name="worldUp">A vector specifying the upward direction.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="transform" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="target" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.TransformExtensions.SetParent(UnityEngine.Transform,UnityEngine.GameObject)">
+            <summary>
+                Sets the parent of this transform.
+            </summary>
+            <param name="transform">The transform whose parent to change.</param>
+            <param name="parent">The new parent.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="transform" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="parent" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Unity.TransformExtensions.SetParent(UnityEngine.Transform,UnityEngine.GameObject,System.Boolean)">
+            <summary>
+                Sets the parent of this transform.
+            </summary>
+            <param name="transform">The transform whose parent to change.</param>
+            <param name="parent">The new parent.</param>
+            <param name="worldPositionStays">
+                <see langword="true" /> to modify the parent-relative position, scale and rotation such that the object keeps the same
+                world space position, rotation and scale as before; otherwise, <see langword="false" />.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="transform" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="parent" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
+    </members>
+</doc>
