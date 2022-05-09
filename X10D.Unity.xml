@@ -327,6 +327,25 @@
                 <para><paramref name="parent" /> is <see langword="null" />.</para>
             </exception>
         </member>
+        <member name="T:X10D.Unity.Numerics.QuaternionExtensions">
+            <summary>
+                Numeric-extensions for <see cref="T:UnityEngine.Quaternion" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.QuaternionExtensions.ToSystemQuaternion(UnityEngine.Quaternion)">
+            <summary>
+                Converts the current quaternion to a <see cref="T:System.Numerics.Quaternion" />.
+            </summary>
+            <param name="quaternion">The quaternion to convert.</param>
+            <returns>The converted quaternion.</returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.QuaternionExtensions.ToUnityQuaternion(System.Numerics.Quaternion)">
+            <summary>
+                Converts the current quaternion to a <see cref="T:UnityEngine.Quaternion" />.
+            </summary>
+            <param name="quaternion">The quaternion to convert.</param>
+            <returns>The converted quaternion.</returns>
+        </member>
         <member name="T:X10D.Unity.Numerics.RandomExtensions">
             <summary>
                 Extension methods for <see cref="T:System.Random" />.
@@ -376,6 +395,20 @@
                 Numeric-extensions for <see cref="T:UnityEngine.Vector2" />.
             </summary>
         </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.ToSystemVector(UnityEngine.Vector2)">
+            <summary>
+                Converts the current vector to a <see cref="T:System.Numerics.Vector2" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The converted vector.</returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.ToUnityVector(System.Numerics.Vector2)">
+            <summary>
+                Converts the current vector to a <see cref="T:UnityEngine.Vector2" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The converted vector.</returns>
+        </member>
         <member name="M:X10D.Unity.Numerics.Vector2Extensions.WithX(UnityEngine.Vector2,System.Single)">
             <summary>
                 Returns a vector whose Y component is the same as the specified vector, and whose X component is a new value.
@@ -402,6 +435,20 @@
             <summary>
                 Numeric-extensions for <see cref="T:UnityEngine.Vector3" />.
             </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3Extensions.ToSystemVector(UnityEngine.Vector3)">
+            <summary>
+                Converts the current vector to a <see cref="T:System.Numerics.Vector3" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The converted vector.</returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3Extensions.ToUnityVector(System.Numerics.Vector3)">
+            <summary>
+                Converts the current vector to a <see cref="T:UnityEngine.Vector3" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The converted vector.</returns>
         </member>
         <member name="M:X10D.Unity.Numerics.Vector3Extensions.WithX(UnityEngine.Vector3,System.Single)">
             <summary>
@@ -440,6 +487,20 @@
             <summary>
                 Numeric-extensions for <see cref="T:UnityEngine.Vector4" />.
             </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.ToSystemVector(UnityEngine.Vector4)">
+            <summary>
+                Converts the current vector to a <see cref="T:System.Numerics.Vector4" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The converted vector.</returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.ToUnityVector(System.Numerics.Vector4)">
+            <summary>
+                Converts the current vector to a <see cref="T:UnityEngine.Vector4" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The converted vector.</returns>
         </member>
         <member name="M:X10D.Unity.Numerics.Vector4Extensions.WithX(UnityEngine.Vector4,System.Single)">
             <summary>
