@@ -17,6 +17,15 @@
 - X10D: Added `char.IsEmoji`
 - X10D: Added `Rune.IsEmoji`
 - X10D: Added `string.IsEmoji`
+- X10D: Added `Vector2.WithX()`
+- X10D: Added `Vector2.WithY()`
+- X10D: Added `Vector3.WithX()`
+- X10D: Added `Vector3.WithY()`
+- X10D: Added `Vector3.WithZ()`
+- X10D: Added `Vector4.WithX()`
+- X10D: Added `Vector4.WithY()`
+- X10D: Added `Vector4.WithZ()`
+- X10D: Added `Vector4.WithW()`
 - X10D.Unity: Added `Color.Inverted()`
 - X10D.Unity: Added `Color.WithA()`
 - X10D.Unity: Added `Color.WithB()`
@@ -45,6 +54,15 @@
 - X10D.Unity: Added `Random.NextUnitVector3()`
 - X10D.Unity: Added `Transform.LookAt(GameObject[, Vector3])`
 - X10D.Unity: Added `Transform.SetParent(GameObject[, bool])`
+- X10D.Unity: Added `Vector2.WithX()`
+- X10D.Unity: Added `Vector2.WithY()`
+- X10D.Unity: Added `Vector3.WithX()`
+- X10D.Unity: Added `Vector3.WithY()`
+- X10D.Unity: Added `Vector3.WithZ()`
+- X10D.Unity: Added `Vector4.WithX()`
+- X10D.Unity: Added `Vector4.WithY()`
+- X10D.Unity: Added `Vector4.WithZ()`
+- X10D.Unity: Added `Vector4.WithW()`
 
 ## [3.0.0]
 
