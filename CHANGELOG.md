@@ -44,6 +44,8 @@
 - X10D.Unity: Added `GameObject.SetLayerRecursively(int)`
 - X10D.Unity: Added `GameObject.SetParent(GameObject[, bool])`
 - X10D.Unity: Added `GameObject.SetParent(Transform[, bool])`
+- X10D.Unity: Added `System.Numerics.Quaternion.ToUnityQuaternion()`
+- X10D.Unity: Added `Quaternion.ToSystemQuaternion()`
 - X10D.Unity: Added `Random.NextColorArgb()`
 - X10D.Unity: Added `Random.NextColor32Argb()`
 - X10D.Unity: Added `Random.NextColorRgb()`
@@ -54,6 +56,12 @@
 - X10D.Unity: Added `Random.NextUnitVector3()`
 - X10D.Unity: Added `Transform.LookAt(GameObject[, Vector3])`
 - X10D.Unity: Added `Transform.SetParent(GameObject[, bool])`
+- X10D.Unity: Added `System.Numerics.Vector2.ToUnityVector()`
+- X10D.Unity: Added `System.Numerics.Vector3.ToUnityVector()`
+- X10D.Unity: Added `System.Numerics.Vector4.ToUnityVector()`
+- X10D.Unity: Added `Vector2.ToSystemVector()`
+- X10D.Unity: Added `Vector3.ToSystemVector()`
+- X10D.Unity: Added `Vector4.ToSystemVector()`
 - X10D.Unity: Added `Vector2.WithX()`
 - X10D.Unity: Added `Vector2.WithY()`
 - X10D.Unity: Added `Vector3.WithX()`
