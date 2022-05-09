@@ -184,27 +184,25 @@ public static class GameObjectExtensions
             throw new ArgumentNullException(nameof(gameObject));
         }
 
-        gameObject.layer = layer;
+        var children = new Stack<Transform>();
+        var transform = gameObject.transform;
+        children.Push(transform);
 
-        if (gameObject.transform.childCount == 0)
-        {
-            return;
-        }
-
-        var children = new Stack<Transform>(gameObject.transform.Cast<Transform>());
         while (children.Count > 0)
         {
             Transform child = children.Pop();
+            int childCount = child.childCount;
+
             child.gameObject.layer = layer;
 
-            if (child.childCount <= 0)
+            if (childCount <= 0)
             {
                 continue;
             }
 
-            foreach (Transform grandChild in child)
+            for (var childIndex = 0; childIndex < childCount; childIndex++)
             {
-                children.Push(grandChild);
+                children.Push(child.GetChild(childIndex));
             }
         }
     }
