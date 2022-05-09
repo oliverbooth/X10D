@@ -4,6 +4,10 @@
 ### Added
 - Reintroduced Unity support
 - X10D: Added `Color.Inverted()`
+- X10D: Added `Color.WithA()`
+- X10D: Added `Color.WithB()`
+- X10D: Added `Color.WithG()`
+- X10D: Added `Color.WithR()`
 - X10D: Added `ICollection<T>.ClearAndDisposeAll()`
 - X10D: Added `ICollection<T>.ClearAndDisposeAllAsync()`
 - X10D: Added `IEnumerable<T>.For()` (#50)
@@ -14,7 +18,15 @@
 - X10D: Added `Rune.IsEmoji`
 - X10D: Added `string.IsEmoji`
 - X10D.Unity: Added `Color.Inverted()`
+- X10D.Unity: Added `Color.WithA()`
+- X10D.Unity: Added `Color.WithB()`
+- X10D.Unity: Added `Color.WithG()`
+- X10D.Unity: Added `Color.WithR()`
 - X10D.Unity: Added `Color32.Inverted()`
+- X10D.Unity: Added `Color32.WithA()`
+- X10D.Unity: Added `Color32.WithB()`
+- X10D.Unity: Added `Color32.WithG()`
+- X10D.Unity: Added `Color32.WithR()`
 - X10D.Unity: Added `Component.GetComponentsInChildrenOnly<T>()`
 - X10D.Unity: Added `GameObject.GetComponentsInChildrenOnly<T>()`
 - X10D.Unity: Added `GameObject.LookAt(GameObject[, Vector3])`

@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Drawing;
 
@@ -36,5 +36,34 @@ public class ColorTests
         Color actual = Color.FromArgb(255, 255, 255, 255).Inverted();
 
         Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void WithA0_ShouldReturnSameColor_GivenWhite()
+    {
+        Color transparent = Color.FromArgb(0, 255, 255, 255);
+        Assert.AreEqual(transparent, White.WithA(0));
+        Assert.AreEqual(transparent, transparent.WithA(0));
+    }
+
+    [TestMethod]
+    public void WithB0_ShouldReturnYellow_GivenWhite()
+    {
+        Assert.AreEqual(Yellow, White.WithB(0));
+        Assert.AreEqual(Yellow, Yellow.WithB(0));
+    }
+
+    [TestMethod]
+    public void WithG0_ShouldReturnMagenta_GivenWhite()
+    {
+        Assert.AreEqual(Magenta, White.WithG(0));
+        Assert.AreEqual(Magenta, Magenta.WithG(0));
+    }
+
+    [TestMethod]
+    public void WithR0_ShouldReturnCyan_GivenWhite()
+    {
+        Assert.AreEqual(Cyan, White.WithR(0));
+        Assert.AreEqual(Cyan, Cyan.WithR(0));
     }
 }

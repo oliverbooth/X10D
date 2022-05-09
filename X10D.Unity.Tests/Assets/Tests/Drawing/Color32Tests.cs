@@ -42,5 +42,42 @@ namespace X10D.Unity.Tests.Drawing
 
             yield break;
         }
+
+        [UnityTest]
+        public IEnumerator WithA0_ShouldReturnSameColor_GivenWhite()
+        {
+            var transparent = new Color32(255, 255, 255, 0);
+            Assert.AreEqual(transparent, White.WithA(0));
+            Assert.AreEqual(transparent, transparent.WithA(0));
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator WithB0_ShouldReturnYellow_GivenWhite()
+        {
+            Assert.AreEqual(Yellow, White.WithB(0));
+            Assert.AreEqual(Yellow, Yellow.WithB(0));
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator WithG0_ShouldReturnMagenta_GivenWhite()
+        {
+            Assert.AreEqual(Magenta, White.WithG(0));
+            Assert.AreEqual(Magenta, Magenta.WithG(0));
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator WithR0_ShouldReturnCyan_GivenWhite()
+        {
+            Assert.AreEqual(Cyan, White.WithR(0));
+            Assert.AreEqual(Cyan, Cyan.WithR(0));
+
+            yield break;
+        }
     }
 }
