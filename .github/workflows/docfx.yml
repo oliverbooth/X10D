@@ -16,6 +16,8 @@ jobs:
         args: docfx_project/docfx.json
     - uses: maxheld83/ghpages@master
       name: Publish Documentation on GitHub Pages
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
       env:
         BUILD_DIR: docfx_project/_site
         GH_PAT: ${{ secrets.GH_PAT }}
