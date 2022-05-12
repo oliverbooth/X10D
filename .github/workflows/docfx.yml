@@ -14,10 +14,9 @@ jobs:
       name: Build Documentation
       with:
         args: docfx_project/docfx.json
-      env:
-        GH_PAT: ${{ secrets.GH_PAT }}
     - uses: maxheld83/ghpages@master
       name: Publish Documentation on GitHub Pages
       env:
         BUILD_DIR: docfx_project/_site
         GH_PAT: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
