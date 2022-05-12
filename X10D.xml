@@ -2346,6 +2346,18 @@
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
         </member>
+        <member name="M:X10D.Linq.ReadOnlySpanExtensions.Count``1(System.ReadOnlySpan{``0},System.Predicate{``0})">
+            <summary>
+                Returns a number that represents how many elements in the specified sequence satisfy a condition.
+            </summary>
+            <param name="source">A <see cref="T:System.ReadOnlySpan`1" /> that contains elements to be tested and counted.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
+            <returns>
+                A number that represents how many elements in the sequence satisfy the condition in the predicate function.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
+        </member>
         <member name="T:X10D.Linq.SingleExtensions">
             <summary>
                 LINQ-inspired extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Single" />.
@@ -2398,6 +2410,18 @@
             <returns>
                 <see langword="true" /> if the source span is not empty and at least one of its elements passes the test in the
                 specified predicate; otherwise, <see langword="false" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Linq.SpanExtensions.Count``1(System.Span{``0},System.Predicate{``0})">
+            <summary>
+                Returns a number that represents how many elements in the specified sequence satisfy a condition.
+            </summary>
+            <param name="source">A <see cref="T:System.Span`1" /> that contains elements to be tested and counted.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
+            <returns>
+                A number that represents how many elements in the sequence satisfy the condition in the predicate function.
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
         </member>
