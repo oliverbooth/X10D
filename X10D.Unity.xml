@@ -554,6 +554,24 @@
                 <see cref="F:UnityEngine.Vector4.w" /> component is <paramref name="w" />.
             </returns>
         </member>
+        <member name="T:X10D.Unity.Singleton`1">
+            <summary>
+                Represents a class which implements the singleton pattern for a specific <see cref="T:UnityEngine.MonoBehaviour" />. This class is not
+                thread-safe.
+            </summary>
+            <typeparam name="T">The type of the singleton.</typeparam>
+        </member>
+        <member name="P:X10D.Unity.Singleton`1.Instance">
+            <summary>
+                Gets the instance of the singleton.
+            </summary>
+            <value>The singleton instance.</value>
+        </member>
+        <member name="M:X10D.Unity.Singleton`1.OnDestroy">
+            <summary>
+                Called when the object is destroyed.
+            </summary>
+        </member>
         <member name="T:X10D.Unity.TransformExtensions">
             <summary>
                 Extension methods for <see cref="T:UnityEngine.Transform" />.
