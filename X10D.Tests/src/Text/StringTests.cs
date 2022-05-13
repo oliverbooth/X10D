@@ -1,5 +1,7 @@
 ﻿using System.Text;
+#if NET5_0_OR_GREATER
 using System.Text.Json.Serialization;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Text;
 
@@ -149,6 +151,7 @@ public class StringTests
         Assert.ThrowsException<ArgumentException>(() => " ".EnumParse<DayOfWeek>());
     }
 
+#if NET5_0_OR_GREATER
     [TestMethod]
     public void FromJson_ShouldDeserializeCorrectly_GivenJsonString()
     {
@@ -162,6 +165,7 @@ public class StringTests
         Assert.AreEqual(2, target.Values[1]);
         Assert.AreEqual(3, target.Values[2]);
     }
+#endif
 
     [TestMethod]
     public void GetBytes_ShouldReturnUtf8Bytes_GivenHelloWorld()
@@ -193,6 +197,44 @@ public class StringTests
     public void GetBytes_ShouldThrow_GivenNullEncoding()
     {
         Assert.ThrowsException<ArgumentNullException>(() => "Hello World".GetBytes(null!));
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
+    {
+        Assert.IsTrue("😀".IsEmoji());
+        Assert.IsTrue("🤓".IsEmoji());
+        Assert.IsTrue("🟦".IsEmoji());
+        Assert.IsTrue("🟧".IsEmoji());
+        Assert.IsTrue("🟨".IsEmoji());
+        Assert.IsTrue("🟩".IsEmoji());
+        Assert.IsTrue("🟪".IsEmoji());
+        Assert.IsTrue("🟫".IsEmoji());
+        Assert.IsTrue("📱".IsEmoji());
+        Assert.IsTrue("🎨".IsEmoji());
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnTrue_GivenMultiByteEmoji()
+    {
+        string[] regionalIndicatorCodes = Enumerable.Range(0, 26)
+            .Select(i => Encoding.Unicode.GetString(new byte[] {0x3C, 0xD8, (byte)(0xE6 + i), 0xDD}))
+            .ToArray();
+
+        for (var i = 0; i < 26; i++)
+        for (var j = 0; j < 26; j++)
+        {
+            string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
+            Assert.IsTrue(flag.IsEmoji());
+        }
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnFalse_GivenNonEmoji()
+    {
+        Assert.IsFalse("Hello World".IsEmoji());
+        Assert.IsFalse("Hello".IsEmoji());
+        Assert.IsFalse("World".IsEmoji());
     }
 
     [TestMethod]
@@ -441,9 +483,11 @@ public class StringTests
         Assert.AreEqual(alternative, ((string?)null).WithWhiteSpaceAlternative(alternative));
     }
 
+#if NET5_0_OR_GREATER
     private struct SampleStructure
     {
         [JsonPropertyName("values")]
         public int[] Values { get; set; }
     }
+#endif
 }

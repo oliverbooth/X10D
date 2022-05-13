@@ -16,7 +16,7 @@ public static class Extensions
     ///     An array of type <typeparamref name="T" /> with length 1, whose only element is <paramref name="value" />.
     /// </returns>
     [Pure]
-    public static T?[] AsArrayValue<T>(this T? value)
+    public static T[] AsArrayValue<T>(this T value)
     {
         return new[] {value};
     }
@@ -30,7 +30,7 @@ public static class Extensions
     ///     An enumerable collection of type <typeparamref name="T" />, whose only element is <paramref name="value" />.
     /// </returns>
     [Pure]
-    public static IEnumerable<T?> AsEnumerableValue<T>(this T? value)
+    public static IEnumerable<T> AsEnumerableValue<T>(this T value)
     {
         yield return value;
     }

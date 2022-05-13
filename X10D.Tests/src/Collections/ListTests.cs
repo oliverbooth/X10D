@@ -6,6 +6,7 @@ namespace X10D.Tests.Collections;
 [TestClass]
 public class ListTests
 {
+    [CLSCompliant(false)]
     [TestMethod]
     [DataRow(1)]
     [DataRow(1, 2, 3)]
@@ -25,6 +26,7 @@ public class ListTests
         CollectionAssert.AreEqual(all42, list);
     }
 
+    [CLSCompliant(false)]
     [TestMethod]
     [DataRow(1)]
     [DataRow(1, 2, 3)]

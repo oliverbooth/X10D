@@ -55,4 +55,28 @@ public class SpanTests
             return span.Any(null!);
         });
     }
+
+    [TestMethod]
+    public void Count_ShouldReturn0_GivenEmptySpan()
+    {
+        var span = new Span<int>();
+        Assert.AreEqual(0, span.Count(i => i % 2 == 0));
+    }
+
+    [TestMethod]
+    public void Count_ShouldReturn5_ForEvenNumbers_GivenNumbers1To10()
+    {
+        var span = new Span<int>(new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+        Assert.AreEqual(5, span.Count(i => i % 2 == 0));
+    }
+
+    [TestMethod]
+    public void Count_ShouldThrow_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() =>
+        {
+            var span = new Span<int>();
+            return span.Count(null!);
+        });
+    }
 }

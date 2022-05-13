@@ -15,10 +15,24 @@ public static class TypeExtensions
     /// <param name="value">The type whose interface list to check.</param>
     /// <typeparam name="T">The interface type.</typeparam>
     /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool Implements<T>(this Type value)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
         return value.Implements(typeof(T));
     }
 
@@ -28,19 +42,35 @@ public static class TypeExtensions
     /// <param name="value">The type whose interface list to check.</param>
     /// <param name="interfaceType">The interface type.</param>
     /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="value" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="interfaceType" /> is <see langword="null" />.</para>
+    /// </exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool Implements(this Type value, Type interfaceType)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(interfaceType);
+#else
         if (interfaceType is null)
         {
             throw new ArgumentNullException(nameof(interfaceType));
         }
+#endif
 
         if (!interfaceType.IsInterface)
         {
@@ -62,11 +92,26 @@ public static class TypeExtensions
     ///     <see langword="true" /> if the current type inherits <typeparamref name="T" />, or <see langword="false" />
     ///     otherwise.
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="value" /> is not a class.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool Inherits<T>(this Type value)
         where T : class
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
         return value.Inherits(typeof(T));
     }
 
@@ -79,19 +124,40 @@ public static class TypeExtensions
     ///     <see langword="true" /> if the current type inherits <paramref name="type" />, or <see langword="false" />
     ///     otherwise.
     /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="value" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="type" /> is <see langword="null" />.</para>
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    ///     <para><paramref name="value" /> is not a class.</para>
+    ///     -or-
+    ///     <para><paramref name="type" /> is not a class.</para>
+    /// </exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool Inherits(this Type value, Type type)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(type);
+#else
         if (type is null)
         {
             throw new ArgumentNullException(nameof(type));
         }
+#endif
 
         if (!value.IsClass)
         {

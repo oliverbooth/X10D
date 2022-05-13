@@ -18,7 +18,11 @@ public static class SByteExtensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static sbyte RotateLeft(this sbyte value, int count)
     {
         var signed = unchecked((byte)value);
@@ -34,7 +38,11 @@ public static class SByteExtensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static sbyte RotateRight(this sbyte value, int count)
     {
         var signed = unchecked((byte)value);

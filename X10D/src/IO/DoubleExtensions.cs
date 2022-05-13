@@ -1,5 +1,6 @@
 ﻿using System.Buffers.Binary;
 using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
 
 namespace X10D.IO;
 
@@ -55,8 +56,12 @@ public static class DoubleExtensions
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
     public static bool TryWriteBytes(this double value, Span<byte> destination, Endianness endianness)
     {
-        return endianness == Endianness.BigEndian
-            ? BinaryPrimitives.TryWriteDoubleBigEndian(destination, value)
-            : BinaryPrimitives.TryWriteDoubleLittleEndian(destination, value);
+        if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
+        {
+            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            value = BitConverter.Int64BitsToDouble(tmp);
+        }
+
+        return MemoryMarshal.TryWrite(destination, ref value);
     }
 }

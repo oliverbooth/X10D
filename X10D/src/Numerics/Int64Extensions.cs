@@ -17,7 +17,11 @@ public static class Int64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static long RotateLeft(this long value, int count)
     {
         var unsigned = unchecked((ulong)value);
@@ -33,7 +37,11 @@ public static class Int64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static long RotateRight(this long value, int count)
     {
         var unsigned = unchecked((ulong)value);
