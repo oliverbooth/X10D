@@ -1,13 +1,13 @@
 # Changelog
 
-## [3.1.0-nightly]
+## [3.1.0]
 ### Added
 - Reintroduced Unity support
-- X10D: Added `Color.Inverted()`
-- X10D: Added `Color.WithA()`
-- X10D: Added `Color.WithB()`
-- X10D: Added `Color.WithG()`
-- X10D: Added `Color.WithR()`
+- X10D: Added `Color.Inverted()` (#54)
+- X10D: Added `Color.WithA()` (#55)
+- X10D: Added `Color.WithB()` (#55)
+- X10D: Added `Color.WithG()` (#55)
+- X10D: Added `Color.WithR()` (#55)
 - X10D: Added `ICollection<T>.ClearAndDisposeAll()`
 - X10D: Added `ICollection<T>.ClearAndDisposeAllAsync()`
 - X10D: Added `IEnumerable<T>.For()` (#50)
@@ -19,32 +19,32 @@
 - X10D: Added `Rune.IsEmoji`
 - X10D: Added `Span<T>.Count(Predicate<T>)`
 - X10D: Added `string.IsEmoji`
-- X10D: Added `Vector2.WithX()`
-- X10D: Added `Vector2.WithY()`
-- X10D: Added `Vector3.WithX()`
-- X10D: Added `Vector3.WithY()`
-- X10D: Added `Vector3.WithZ()`
-- X10D: Added `Vector4.WithX()`
-- X10D: Added `Vector4.WithY()`
-- X10D: Added `Vector4.WithZ()`
-- X10D: Added `Vector4.WithW()`
+- X10D: Added `Vector2.WithX()` (#56)
+- X10D: Added `Vector2.WithY()` (#56)
+- X10D: Added `Vector3.WithX()` (#56)
+- X10D: Added `Vector3.WithY()` (#56)
+- X10D: Added `Vector3.WithZ()` (#56)
+- X10D: Added `Vector4.WithX()` (#56)
+- X10D: Added `Vector4.WithY()` (#56)
+- X10D: Added `Vector4.WithZ()` (#56)
+- X10D: Added `Vector4.WithW()` (#56)
 - X10D.Unity: Added `Singleton<T>` class
-- X10D.Unity: Added `Color.Inverted()`
-- X10D.Unity: Added `Color.WithA()`
-- X10D.Unity: Added `Color.WithB()`
-- X10D.Unity: Added `Color.WithG()`
-- X10D.Unity: Added `Color.WithR()`
-- X10D.Unity: Added `Color32.Inverted()`
-- X10D.Unity: Added `Color32.WithA()`
-- X10D.Unity: Added `Color32.WithB()`
-- X10D.Unity: Added `Color32.WithG()`
-- X10D.Unity: Added `Color32.WithR()`
+- X10D.Unity: Added `Color.Inverted()` (#54)
+- X10D.Unity: Added `Color.WithA()` (#55)
+- X10D.Unity: Added `Color.WithB()` (#55)
+- X10D.Unity: Added `Color.WithG()` (#55)
+- X10D.Unity: Added `Color.WithR()` (#55)
+- X10D.Unity: Added `Color32.Inverted()` (#54)
+- X10D.Unity: Added `Color32.WithA()` (#55)
+- X10D.Unity: Added `Color32.WithB()` (#55)
+- X10D.Unity: Added `Color32.WithG()` (#55)
+- X10D.Unity: Added `Color32.WithR()` (#55)
 - X10D.Unity: Added `Component.GetComponentsInChildrenOnly<T>()`
 - X10D.Unity: Added `GameObject.GetComponentsInChildrenOnly<T>()`
 - X10D.Unity: Added `GameObject.LookAt(GameObject[, Vector3])`
 - X10D.Unity: Added `GameObject.LookAt(Transform[, Vector3])`
 - X10D.Unity: Added `GameObject.LookAt(Vector3[, Vector3])`
-- X10D.Unity: Added `GameObject.SetLayerRecursively(int)`
+- X10D.Unity: Added `GameObject.SetLayerRecursively(int)` (#57)
 - X10D.Unity: Added `GameObject.SetParent(GameObject[, bool])`
 - X10D.Unity: Added `GameObject.SetParent(Transform[, bool])`
 - X10D.Unity: Added `System.Numerics.Quaternion.ToUnityQuaternion()`
@@ -65,15 +65,15 @@
 - X10D.Unity: Added `Vector2.ToSystemVector()`
 - X10D.Unity: Added `Vector3.ToSystemVector()`
 - X10D.Unity: Added `Vector4.ToSystemVector()`
-- X10D.Unity: Added `Vector2.WithX()`
-- X10D.Unity: Added `Vector2.WithY()`
-- X10D.Unity: Added `Vector3.WithX()`
-- X10D.Unity: Added `Vector3.WithY()`
-- X10D.Unity: Added `Vector3.WithZ()`
-- X10D.Unity: Added `Vector4.WithX()`
-- X10D.Unity: Added `Vector4.WithY()`
-- X10D.Unity: Added `Vector4.WithZ()`
-- X10D.Unity: Added `Vector4.WithW()`
+- X10D.Unity: Added `Vector2.WithX()` (#56)
+- X10D.Unity: Added `Vector2.WithY()` (#56)
+- X10D.Unity: Added `Vector3.WithX()` (#56)
+- X10D.Unity: Added `Vector3.WithY()` (#56)
+- X10D.Unity: Added `Vector3.WithZ()` (#56)
+- X10D.Unity: Added `Vector4.WithX()` (#56)
+- X10D.Unity: Added `Vector4.WithY()` (#56)
+- X10D.Unity: Added `Vector4.WithZ()` (#56)
+- X10D.Unity: Added `Vector4.WithW()` (#56)
 
 ## [3.0.0]
 
@@ -374,7 +374,7 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 ### ***Not documented***
 
-[3.1.0-nightly]: https://github.com/oliverbooth/X10D/tree/develop
+[3.1.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.1.0
 [3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0
 [2.6.0]: https://github.com/oliverbooth/X10D/releases/tag/2.6.0
 [2.5.0]: https://github.com/oliverbooth/X10D/releases/tag/2.5.0
