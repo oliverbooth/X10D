@@ -40,7 +40,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Unity3D.SDK" Version="2020.3.13.1" PrivateAssets="All"/>
+        <PackageReference Include="Unity3D.SDK" Version="2021.1.14.1" PrivateAssets="All"/>
     </ItemGroup>
 
     <ItemGroup>
