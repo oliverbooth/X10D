@@ -28,6 +28,7 @@
 - X10D: Added `Vector4.WithY()`
 - X10D: Added `Vector4.WithZ()`
 - X10D: Added `Vector4.WithW()`
+- X10D.Unity: Added `Singleton<T>` class
 - X10D.Unity: Added `Color.Inverted()`
 - X10D.Unity: Added `Color.WithA()`
 - X10D.Unity: Added `Color.WithB()`
