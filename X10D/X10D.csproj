@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
         <LangVersion>10.0</LangVersion>
         <Optimize>true</Optimize>
         <ImplicitUsings>true</ImplicitUsings>
@@ -15,7 +15,7 @@
         <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <VersionPrefix>3.0.0</VersionPrefix>
+        <VersionPrefix>3.1.0</VersionPrefix>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -76,6 +76,12 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\X10D.SourceGenerator\X10D.SourceGenerator.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
 </Project>

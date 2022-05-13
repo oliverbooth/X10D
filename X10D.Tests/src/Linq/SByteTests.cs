@@ -12,12 +12,12 @@ public class SByteTests
     {
         sbyte Cast(int i) => (sbyte)i;
 
-        Assert.AreEqual(0, Enumerable.Range(0, 10).Product());
-        Assert.AreEqual(1, Enumerable.Range(1, 1).Product());
-        Assert.AreEqual(2, Enumerable.Range(1, 2).Product());
-        Assert.AreEqual(6, Enumerable.Range(1, 3).Product());
-        Assert.AreEqual(24, Enumerable.Range(1, 4).Product());
-        Assert.AreEqual(120, Enumerable.Range(1, 5).Product());
+        Assert.AreEqual(0, Enumerable.Range(0, 10).Select(Cast).Product());
+        Assert.AreEqual(1, Enumerable.Range(1, 1).Select(Cast).Product());
+        Assert.AreEqual(2, Enumerable.Range(1, 2).Select(Cast).Product());
+        Assert.AreEqual(6, Enumerable.Range(1, 3).Select(Cast).Product());
+        Assert.AreEqual(24, Enumerable.Range(1, 4).Select(Cast).Product());
+        Assert.AreEqual(120, Enumerable.Range(1, 5).Select(Cast).Product());
 
         // 6! will overflow for sbyte
     }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿#if NETCOREAPP3_0_OR_GREATER
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Text;
 
@@ -7,6 +8,25 @@ namespace X10D.Tests.Text;
 [TestClass]
 public class RuneTests
 {
+    [TestMethod]
+    public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
+    {
+        Assert.IsTrue(new Rune('✂').IsEmoji());
+        Assert.IsTrue(new Rune('✅').IsEmoji());
+        Assert.IsTrue(new Rune('❎').IsEmoji());
+        Assert.IsTrue(new Rune('➕').IsEmoji());
+        Assert.IsTrue(new Rune('➖').IsEmoji());
+    }
+
+    [TestMethod]
+    public void IsEmoji_ShouldReturnFalse_GivenNonEmoji()
+    {
+        for (var letter = 'A'; letter <= 'Z'; letter++)
+        {
+            Assert.IsFalse(new Rune(letter).IsEmoji());
+        }
+    }
+
     [TestMethod]
     public void RepeatShouldBeCorrect()
     {
@@ -37,3 +57,4 @@ public class RuneTests
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Rune('a').Repeat(-1));
     }
 }
+#endif

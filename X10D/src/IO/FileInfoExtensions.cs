@@ -16,7 +16,7 @@ public static class FileInfoExtensions
     ///     The type of the <see cref="HashAlgorithm" /> whose <see cref="HashAlgorithm.ComputeHash(Stream)" /> is to be used for
     ///     computing the hash.
     /// </typeparam>
-    /// <returns>The hash of <paramref name="stream" /> represented as an array of bytes.</returns>
+    /// <returns>The hash of <paramref name="value" /> represented as an array of bytes.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     /// <exception cref="FileNotFoundException">The specified file was not found.</exception>
     /// <exception cref="IOException">The opened file stream cannot be read.</exception>
@@ -29,10 +29,14 @@ public static class FileInfoExtensions
     public static byte[] GetHash<T>(this FileInfo value)
         where T : HashAlgorithm
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
+#endif
 
         using FileStream stream = value.OpenRead();
         return stream.GetHash<T>();
@@ -65,10 +69,14 @@ public static class FileInfoExtensions
     public static bool TryWriteHash<T>(this FileInfo value, Span<byte> destination, out int bytesWritten)
         where T : HashAlgorithm
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
+#endif
 
         using FileStream stream = value.OpenRead();
         return stream.TryWriteHash<T>(destination, out bytesWritten);

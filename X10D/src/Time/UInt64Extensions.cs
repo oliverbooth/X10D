@@ -24,7 +24,11 @@ public static class UInt64Extensions
     ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
     /// </exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static DateTimeOffset FromUnixTimeMilliseconds(this ulong value)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds((long)value);
@@ -45,7 +49,11 @@ public static class UInt64Extensions
     ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
     /// </exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static DateTimeOffset FromUnixTimeSeconds(this ulong value)
     {
         return DateTimeOffset.FromUnixTimeSeconds((long)value);
@@ -60,7 +68,11 @@ public static class UInt64Extensions
     /// </returns>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value" /> is 0.</exception>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsLeapYear(this ulong value)
     {
         if (value == 0)
@@ -77,7 +89,11 @@ public static class UInt64Extensions
     /// <param name="value">The duration, in ticks.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Ticks(this ulong value)
     {
         return TimeSpan.FromTicks((long)value);
@@ -91,7 +107,11 @@ public static class UInt64Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Milliseconds(this ulong value)
     {
         return TimeSpan.FromMilliseconds((long)value);
@@ -105,7 +125,11 @@ public static class UInt64Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Seconds(this ulong value)
     {
         return TimeSpan.FromSeconds((long)value);
@@ -119,7 +143,11 @@ public static class UInt64Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Minutes(this ulong value)
     {
         return TimeSpan.FromMinutes((long)value);
@@ -133,7 +161,11 @@ public static class UInt64Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Hours(this ulong value)
     {
         return TimeSpan.FromHours((long)value);
@@ -145,7 +177,11 @@ public static class UInt64Extensions
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Days(this ulong value)
     {
         return TimeSpan.FromDays((long)value);
@@ -159,7 +195,11 @@ public static class UInt64Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static TimeSpan Weeks(this ulong value)
     {
         return TimeSpan.FromDays((long)value * 7);

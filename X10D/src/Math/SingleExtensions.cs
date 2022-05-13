@@ -20,7 +20,11 @@ public static class SingleExtensions
     ///     is equal to <see cref="float.NaN" />, less than -1, or greater than 1, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Acos(this float value)
     {
         return MathF.Acos(value);
@@ -38,7 +42,11 @@ public static class SingleExtensions
     ///     <paramref name="value" /> is less than 1 or equal to <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Acosh(this float value)
     {
         return MathF.Acosh(value);
@@ -56,7 +64,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Asin(this float value)
     {
         return MathF.Asin(value);
@@ -74,7 +86,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Asinh(this float value)
     {
         return MathF.Asinh(value);
@@ -91,7 +107,11 @@ public static class SingleExtensions
     ///     <paramref name="value" /> is equal to <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Atan(this float value)
     {
         return MathF.Atan(value);
@@ -110,12 +130,17 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Atanh(this float value)
     {
         return MathF.Atanh(value);
     }
 
+#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this single-precision floating-point number.
     /// </summary>
@@ -141,6 +166,7 @@ public static class SingleExtensions
                 return new Complex(0, MathF.Sqrt(-value));
         }
     }
+#endif
 
     /// <summary>
     ///     Returns the cosine of the specified angle.
@@ -152,7 +178,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Cos(this float value)
     {
         return MathF.Cos(value);
@@ -169,7 +199,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Cosh(this float value)
     {
         return MathF.Cosh(value);
@@ -181,7 +215,11 @@ public static class SingleExtensions
     /// <param name="value">The angle in degrees to convert.</param>
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float DegreesToRadians(this float value)
     {
         return value * (MathF.PI / 180.0f);
@@ -196,7 +234,11 @@ public static class SingleExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsEven(this float value)
     {
         return value % 2 == 0;
@@ -211,7 +253,11 @@ public static class SingleExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static bool IsOdd(this float value)
     {
         return !value.IsEven();
@@ -223,7 +269,11 @@ public static class SingleExtensions
     /// <param name="value">The angle in radians to convert.</param>
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float RadiansToDegrees(this float value)
     {
         return value * (180.0f / MathF.PI);
@@ -235,7 +285,11 @@ public static class SingleExtensions
     /// <param name="value">The value to round.</param>
     /// <returns><paramref name="value" /> rounded to the nearest whole number.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Round(this float value)
     {
         return value.Round(1.0f);
@@ -248,7 +302,11 @@ public static class SingleExtensions
     /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
     /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Round(this float value, float nearest)
     {
         return MathF.Round(value / nearest) * nearest;
@@ -282,7 +340,11 @@ public static class SingleExtensions
     ///     </list>
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static int Sign(this float value)
     {
         return MathF.Sign(value);
@@ -315,15 +377,14 @@ public static class SingleExtensions
     ///         </item>
     ///     </list>
     /// </returns>
-    /// <remarks>
-    ///     For negative input, this method returns <see cref="float.NaN" />. To receive a complex number, see
-    ///     <see cref="Numerics.SingleExtensions.ComplexSqrt" />.
-    /// </remarks>
-    /// <seealso cref="Numerics.SingleExtensions.ComplexSqrt" />
     /// <author>SLenik https://stackoverflow.com/a/6755197/1467293</author>
     /// <license>CC BY-SA 3.0</license>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Sqrt(this float value)
     {
         switch (value)
@@ -362,7 +423,11 @@ public static class SingleExtensions
     ///     <see cref="double.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Sin(this float value)
     {
         return MathF.Sin(value);
@@ -378,7 +443,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Sinh(this float value)
     {
         return MathF.Sinh(value);
@@ -394,7 +463,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Tan(this float value)
     {
         return MathF.Sin(value);
@@ -411,7 +484,11 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />, this method returns <see cref="float.NaN" />.
     /// </returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float Tanh(this float value)
     {
         return MathF.Tanh(value);

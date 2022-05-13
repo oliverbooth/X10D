@@ -20,7 +20,11 @@ public static class EnumExtensions
     public static T Next<T>(this T value)
         where T : struct, Enum
     {
+#if NET5_0_OR_GREATER
         T[] values = Enum.GetValues<T>();
+#else
+        T[] values = Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+#endif
         int index = Array.IndexOf(values, value) + 1;
         index %= values.Length;
         return values[index];
@@ -40,7 +44,11 @@ public static class EnumExtensions
     public static T NextUnchecked<T>(this T value)
         where T : struct, Enum
     {
+#if NET5_0_OR_GREATER
         T[] values = Enum.GetValues<T>();
+#else
+        T[] values = Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+#endif
         int index = Array.IndexOf(values, value) + 1;
         return values[index];
     }
@@ -58,7 +66,11 @@ public static class EnumExtensions
     public static T Previous<T>(this T value)
         where T : struct, Enum
     {
+#if NET5_0_OR_GREATER
         T[] values = Enum.GetValues<T>();
+#else
+        T[] values = Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+#endif
         int index = Array.IndexOf(values, value) - 1;
         int length = values.Length;
 
@@ -82,7 +94,11 @@ public static class EnumExtensions
     public static T PreviousUnchecked<T>(this T value)
         where T : struct, Enum
     {
+#if NET5_0_OR_GREATER
         T[] values = Enum.GetValues<T>();
+#else
+        T[] values = Enum.GetValues(typeof(T)).Cast<T>().ToArray();
+#endif
         int index = Array.IndexOf(values, value) - 1;
         return values[index];
     }

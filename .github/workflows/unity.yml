@@ -1,0 +1,50 @@
+name: Unity Test Runner
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: "Unity Test Runner"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Add GitHub NuGet source
+        run: dotnet nuget add source --username oliverbooth --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/oliverbooth/index.json"
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release
+
+      - name: Copy artifacts to project
+        run: |
+          mkdir -p ./X10D.Unity.Tests/Assets/Libraries
+          cp -r ./X10D/bin/Release/netstandard2.1/X10D.dll ./X10D.Unity.Tests/Assets/Libraries/X10D.dll
+          cp -r ./X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.dll ./X10D.Unity.Tests/Assets/Libraries/X10D.Unity.dll
+
+      - name: Unity - Test runner
+        uses: game-ci/unity-test-runner@v2.0.2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: X10D.Unity.Tests
+          githubToken: ${{ secrets.GITHUB_TOKEN }}

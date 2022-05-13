@@ -25,6 +25,7 @@ public class ArrayTests
         Assert.ThrowsException<ArgumentNullException>(array!.AsReadOnly);
     }
 
+    [CLSCompliant(false)]
     [TestMethod]
     [DataRow]
     [DataRow(1)]

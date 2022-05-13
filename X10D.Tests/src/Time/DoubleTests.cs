@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#if NET5_0_OR_GREATER
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
@@ -51,3 +52,4 @@ public class DoubleTests
         Assert.IsTrue((_negativeOne).Weeks() < TimeSpan.Zero);
     }
 }
+#endif
