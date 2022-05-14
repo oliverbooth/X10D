@@ -9,21 +9,21 @@ body:
     attributes:
       value: |
         Thanks for taking the time to suggest an extension method!
-  - type: textarea
+  - type: input
     id: fqn
     attributes:
       label: Type to extend
       description: Provide the fully qualified type name of the extension method you're suggesting.
       render: csharp
-      placeholder: "System.Drawing.Color"
+      placeholder: "Example: System.Drawing.Color"
     validations:
       required: true
   - type: textarea
     id: signature
     attributes:
       label: Signature
-      description: Provide the method signature here. __**DO NOT**__ include `public static` or the leading `this` parameter - these are inherent to extension methods. __**DO**__ include the return type and parameter names.
-      placeholder: "Color WithR(int r)"
+      description: Provide the method signature here. __**DO NOT**__ include `public static` or the leading `this` parameter - these are inherent to extension methods. __**DO**__ include the return type and parameter names. This will be automatically formatted into code, so no need for backticks.
+      placeholder: "Example: Color WithR(int r)"
       render: csharp
     validations:
       required: true
@@ -32,7 +32,7 @@ body:
     attributes:
       label: Summary
       description: Briefly but concisely document the method's purpose. i.e. This would be the `<summary`> entry in the XMLDoc.
-      placeholder: "Returns a new Color whose A, B and G components are the same as the specified color, and whose R component is a new value."
+      placeholder: "Example: Returns a new Color whose A, B and G components are the same as the specified color, and whose R component is a new value."
       render: md
     validations:
       required: true
@@ -45,8 +45,7 @@ body:
         |
         | Parameter | Type    | Description                        |
         | -         | -       | -                                  |
-        |r          | `float` | The new value for the R component. |
-      render: md
+        | r         | `float` | The new value for the R component. |
     validations:
       required: false
   - type: textarea
@@ -54,7 +53,7 @@ body:
     attributes:
       label: Benefits
       description: Give a reason as to why this method should be added. Does it add a need not satisfied by any other X10D method? Does .NET not offer similar functionality?
-      placeholder: "'with' expressions are not supported for Color, as the setters of R G and B are get-only."
+      placeholder: "Example: 'with' expressions are not supported for Color, as the setters of R G and B are get-only."
     validations:
       required: true
   - type: textarea
@@ -68,10 +67,10 @@ body:
     id: implementation-example
     attributes:
       label: Implementation Example
-      description: If you prefer, you can give an example of how this method might be implemented. __**DO NOT**__ include the signature here, only the body.
+      description: If you prefer, you can give an example of how this method might be implemented. __**DO NOT**__ include the signature here, only the body. This will be automatically formatted into code, so no need for backticks.
       placeholder:
         |
-        return Color.FromArgb(value.A, r, value.G, value.B);
+        Example: return Color.FromArgb(value.A, r, value.G, value.B);
       
       render: csharp
     validations:
