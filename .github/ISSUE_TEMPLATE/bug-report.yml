@@ -27,7 +27,7 @@ body:
     id: snippet
     attributes:
       label: MCVE
-      description: Provide a [minimal, reproducible example](https://stackoverflow.com/help/minimal-reproducible-example) of the code that causes the behaviour.
+      description: Provide a [minimal, reproducible example](https://stackoverflow.com/help/minimal-reproducible-example) of the code that causes the behaviour. This will be automatically formatted into code, so no need for backticks.
       render: csharp
     validations:
       required: false
