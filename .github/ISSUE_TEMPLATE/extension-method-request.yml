@@ -14,7 +14,6 @@ body:
     attributes:
       label: Type to extend
       description: Provide the fully qualified type name of the extension method you're suggesting.
-      render: csharp
       placeholder: "Example: System.Drawing.Color"
     validations:
       required: true
