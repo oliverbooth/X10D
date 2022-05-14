@@ -30,7 +30,7 @@ body:
     id: summary
     attributes:
       label: Summary
-      description: Briefly but concisely document the method's purpose. i.e. This would be the `<summary`> entry in the XMLDoc.
+      description: Briefly but concisely document the method's purpose. i.e. This would be the `<summary>` entry in the XMLDoc.
       placeholder: "Example: Returns a new Color whose A, B and G components are the same as the specified color, and whose R component is a new value."
       render: md
     validations:
