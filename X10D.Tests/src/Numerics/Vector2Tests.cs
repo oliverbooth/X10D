@@ -8,6 +8,16 @@ namespace X10D.Tests.Numerics;
 public class Vector2Tests
 {
     [TestMethod]
+    public void Deconstruct_ShouldReturnCorrectValues()
+    {
+        var vector = new Vector2(1, 2);
+        (float x, float y) = vector;
+
+        Assert.AreEqual(1, x);
+        Assert.AreEqual(2, y);
+    }
+
+    [TestMethod]
     public void WithX_ShouldReturnVectorWithNewX_GivenVector()
     {
         Assert.AreEqual(Vector2.UnitY, Vector2.One.WithX(0));

@@ -10,6 +10,22 @@ namespace X10D.Unity.Numerics;
 public static class Vector4Extensions
 {
     /// <summary>
+    ///     Deconstructs the current <see cref="Vector4" /> into its components.
+    /// </summary>
+    /// <param name="vector">The vector to deconstruct.</param>
+    /// <param name="x">The X component value.</param>
+    /// <param name="y">The Y component value.</param>
+    /// <param name="z">The Z component value.</param>
+    /// <param name="w">The W component value.</param>
+    public static void Deconstruct(this Vector4 vector, out float x, out float y, out float z, out float w)
+    {
+        x = vector.x;
+        y = vector.y;
+        z = vector.z;
+        w = vector.w;
+    }
+
+    /// <summary>
     ///     Converts the current vector to a <see cref="System.Numerics.Vector4" />.
     /// </summary>
     /// <param name="vector">The vector to convert.</param>

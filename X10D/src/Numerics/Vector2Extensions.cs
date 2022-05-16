@@ -10,6 +10,18 @@ namespace X10D.Numerics;
 public static class Vector2Extensions
 {
     /// <summary>
+    ///     Deconstructs the current <see cref="Vector2" /> into its components.
+    /// </summary>
+    /// <param name="vector">The vector to deconstruct.</param>
+    /// <param name="x">The X component value.</param>
+    /// <param name="y">The Y component value.</param>
+    public static void Deconstruct(this Vector2 vector, out float x, out float y)
+    {
+        x = vector.X;
+        y = vector.Y;
+    }
+
+    /// <summary>
     ///     Returns a vector whose Y component is the same as the specified vector, and whose X component is a new value.
     /// </summary>
     /// <param name="vector">The vector to copy.</param>

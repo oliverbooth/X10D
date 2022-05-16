@@ -8,6 +8,18 @@ namespace X10D.Tests.Numerics;
 public class Vector4Tests
 {
     [TestMethod]
+    public void Deconstruct_ShouldReturnCorrectValues()
+    {
+        var vector = new Vector4(1, 2, 3, 4);
+        (float x, float y, float z, float w) = vector;
+
+        Assert.AreEqual(1, x);
+        Assert.AreEqual(2, y);
+        Assert.AreEqual(3, z);
+        Assert.AreEqual(4, w);
+    }
+
+    [TestMethod]
     public void WithW_ShouldReturnVectorWithNewW_GivenVector()
     {
         Assert.AreEqual(new Vector4(1, 1, 1, 0), Vector4.One.WithW(0));

@@ -10,6 +10,18 @@ namespace X10D.Unity.Numerics;
 public static class Vector2Extensions
 {
     /// <summary>
+    ///     Deconstructs the current <see cref="Vector2" /> into its components.
+    /// </summary>
+    /// <param name="vector">The vector to deconstruct.</param>
+    /// <param name="x">The X component value.</param>
+    /// <param name="y">The Y component value.</param>
+    public static void Deconstruct(this Vector2 vector, out float x, out float y)
+    {
+        x = vector.x;
+        y = vector.y;
+    }
+
+    /// <summary>
     ///     Converts the current vector to a <see cref="System.Numerics.Vector2" />.
     /// </summary>
     /// <param name="vector">The vector to convert.</param>

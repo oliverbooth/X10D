@@ -11,6 +11,19 @@ namespace X10D.Unity.Tests.Numerics
     public class Vector3Tests
     {
         [UnityTest]
+        public IEnumerator Deconstruct_ShouldReturnCorrectValues()
+        {
+            var vector = new Vector3(1, 2, 3);
+            (float x, float y, float z) = vector;
+
+            Assert.AreEqual(1, x);
+            Assert.AreEqual(2, y);
+            Assert.AreEqual(3, z);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator ToSystemVector_ShouldReturnVector_WithEqualComponents()
         {
             var random = new Random();

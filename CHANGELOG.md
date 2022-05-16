@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.2.0
+### Added
+- X10D: Added `Vector2.Deconstruct()`
+- X10D: Added `Vector3.Deconstruct()`
+- X10D: Added `Vector4.Deconstruct()`
+- X10D.Unity: Added `Vector2.Deconstruct()`
+- X10D.Unity: Added `Vector3.Deconstruct()`
+- X10D.Unity: Added `Vector4.Deconstruct()`
+
 ## [3.1.0]
 ### Added
 - Reintroduced Unity support

@@ -11,6 +11,18 @@ namespace X10D.Unity.Tests.Numerics
     public class Vector2Tests
     {
         [UnityTest]
+        public IEnumerator Deconstruct_ShouldReturnCorrectValues()
+        {
+            var vector = new Vector2(1, 2);
+            (float x, float y) = vector;
+
+            Assert.AreEqual(1, x);
+            Assert.AreEqual(2, y);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator ToSystemVector_ShouldReturnVector_WithEqualComponents()
         {
             var random = new Random();
