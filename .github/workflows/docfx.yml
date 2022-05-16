@@ -3,23 +3,20 @@ name: DocFX
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
-
+  docfx:
     runs-on: ubuntu-latest
-
+    name: Publish Documentation
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@v1
+    - uses: nikeee/docfx-action@v1.0.0
+      name: Build Documentation
       with:
-        dotnet-version: 3.1.101
-    - name: Install DocFX
-      run: |
-        curl -L https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -o docfx.zip
-        unzip -d .docfx docfx.zip
-    - name: Build documentation
-      run: dotnet run .docfx/docfx.exe --project X10D.sln
+        args: docfx_project/docfx.json
+    - uses: maxheld83/ghpages@master
+      name: Publish Documentation on GitHub Pages
+      env:
+        BUILD_DIR: docfx_project/_site
+        GH_PAT: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
