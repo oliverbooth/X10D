@@ -25,8 +25,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Publish
-      run: dotnet publish -c Release -r linux-x64 --self-contained true
+    - name: Build
+      run: dotnet build -c Release
 
     - name: Build NuGet package
       run: |
