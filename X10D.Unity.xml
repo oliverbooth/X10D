@@ -30,6 +30,20 @@
             <param name="color">The color to invert.</param>
             <returns>The inverted color.</returns>
         </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.ToSystemDrawingColor(UnityEngine.Color32)">
+            <summary>
+                Converts the current color to a <see cref="T:System.Drawing.Color" />.
+            </summary>
+            <param name="color">The color to convert.</param>
+            <returns>The converted color.</returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.ToUnityColor32(System.Drawing.Color)">
+            <summary>
+                Converts the current color to a <see cref="T:UnityEngine.Color32" />.
+            </summary>
+            <param name="color">The color to convert.</param>
+            <returns>The converted color.</returns>
+        </member>
         <member name="M:X10D.Unity.Drawing.Color32Extensions.WithA(UnityEngine.Color32,System.Byte)">
             <summary>
                 Returns a vector whose red, green, and blue components are the same as the specified color, and whose alpha component
@@ -93,6 +107,20 @@
             </summary>
             <param name="color">The color to invert.</param>
             <returns>The inverted color.</returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.ToSystemDrawingColor(UnityEngine.Color)">
+            <summary>
+                Converts the current color to a <see cref="T:System.Drawing.Color" />.
+            </summary>
+            <param name="color">The color to convert.</param>
+            <returns>The converted color.</returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.ToUnityColor(System.Drawing.Color)">
+            <summary>
+                Converts the current color to a <see cref="T:UnityEngine.Color" />.
+            </summary>
+            <param name="color">The color to convert.</param>
+            <returns>The converted color.</returns>
         </member>
         <member name="M:X10D.Unity.Drawing.ColorExtensions.WithA(UnityEngine.Color,System.Single)">
             <summary>
@@ -395,6 +423,14 @@
                 Numeric-extensions for <see cref="T:UnityEngine.Vector2" />.
             </summary>
         </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.Deconstruct(UnityEngine.Vector2,System.Single@,System.Single@)">
+            <summary>
+                Deconstructs the current <see cref="T:UnityEngine.Vector2" /> into its components.
+            </summary>
+            <param name="vector">The vector to deconstruct.</param>
+            <param name="x">The X component value.</param>
+            <param name="y">The Y component value.</param>
+        </member>
         <member name="M:X10D.Unity.Numerics.Vector2Extensions.ToSystemVector(UnityEngine.Vector2)">
             <summary>
                 Converts the current vector to a <see cref="T:System.Numerics.Vector2" />.
@@ -435,6 +471,15 @@
             <summary>
                 Numeric-extensions for <see cref="T:UnityEngine.Vector3" />.
             </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3Extensions.Deconstruct(UnityEngine.Vector3,System.Single@,System.Single@,System.Single@)">
+            <summary>
+                Deconstructs the current <see cref="T:UnityEngine.Vector3" /> into its components.
+            </summary>
+            <param name="vector">The vector to deconstruct.</param>
+            <param name="x">The X component value.</param>
+            <param name="y">The Y component value.</param>
+            <param name="z">The Z component value.</param>
         </member>
         <member name="M:X10D.Unity.Numerics.Vector3Extensions.ToSystemVector(UnityEngine.Vector3)">
             <summary>
@@ -487,6 +532,16 @@
             <summary>
                 Numeric-extensions for <see cref="T:UnityEngine.Vector4" />.
             </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector4Extensions.Deconstruct(UnityEngine.Vector4,System.Single@,System.Single@,System.Single@,System.Single@)">
+            <summary>
+                Deconstructs the current <see cref="T:UnityEngine.Vector4" /> into its components.
+            </summary>
+            <param name="vector">The vector to deconstruct.</param>
+            <param name="x">The X component value.</param>
+            <param name="y">The Y component value.</param>
+            <param name="z">The Z component value.</param>
+            <param name="w">The W component value.</param>
         </member>
         <member name="M:X10D.Unity.Numerics.Vector4Extensions.ToSystemVector(UnityEngine.Vector4)">
             <summary>
