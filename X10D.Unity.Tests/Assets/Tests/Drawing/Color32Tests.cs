@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -37,6 +37,28 @@ namespace X10D.Unity.Tests.Drawing
         {
             var expected = new Color32(0, 0, 0, 255);
             var actual = new Color32(255, 255, 255, 255).Inverted();
+
+            Assert.AreEqual(expected, actual);
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator ToSystemDrawingColor_ShouldReturnEquivalentColor()
+        {
+            System.Drawing.Color expected = System.Drawing.Color.FromArgb(255, 255, 255);
+            System.Drawing.Color actual = White.ToSystemDrawingColor();
+
+            Assert.AreEqual(expected, actual);
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator ToUnityColor32_ShouldReturnEquivalentColor()
+        {
+            Color32 expected = White;
+            Color32 actual = System.Drawing.Color.FromArgb(255, 255, 255).ToUnityColor32();
 
             Assert.AreEqual(expected, actual);
 

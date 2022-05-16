@@ -22,6 +22,30 @@ public static class Color32Extensions
     }
 
     /// <summary>
+    ///     Converts the current color to a <see cref="System.Drawing.Color" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Drawing.Color ToSystemDrawingColor(this Color32 color)
+    {
+        return System.Drawing.Color.FromArgb(color.a, color.r, color.g, color.b);
+    }
+
+    /// <summary>
+    ///     Converts the current color to a <see cref="Color32" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color32 ToUnityColor32(this System.Drawing.Color color)
+    {
+        return new Color32(color.R, color.G, color.B, color.A);
+    }
+
+    /// <summary>
     ///     Returns a vector whose red, green, and blue components are the same as the specified color, and whose alpha component
     ///     is a new value.
     /// </summary>

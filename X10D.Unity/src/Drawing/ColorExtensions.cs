@@ -22,6 +22,35 @@ public static class ColorExtensions
     }
 
     /// <summary>
+    ///     Converts the current color to a <see cref="System.Drawing.Color" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Drawing.Color ToSystemDrawingColor(this Color color)
+    {
+        return System.Drawing.Color.FromArgb(
+            (int)(color.a * 255f),
+            (int)(color.r * 255f),
+            (int)(color.g * 255f),
+            (int)(color.b * 255f)
+        );
+    }
+
+    /// <summary>
+    ///     Converts the current color to a <see cref="Color" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color ToUnityColor(this System.Drawing.Color color)
+    {
+        return new Color(color.R / 255f, color.G / 255f, color.B / 255f, color.A / 255f);
+    }
+
+    /// <summary>
     ///     Returns a vector whose red, green, and blue components are the same as the specified color, and whose alpha component
     ///     is a new value.
     /// </summary>

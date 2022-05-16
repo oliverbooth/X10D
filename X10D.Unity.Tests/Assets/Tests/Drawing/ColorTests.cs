@@ -44,6 +44,28 @@ namespace X10D.Unity.Tests.Drawing
         }
 
         [UnityTest]
+        public IEnumerator ToSystemDrawingColor_ShouldReturnEquivalentColor()
+        {
+            System.Drawing.Color expected = System.Drawing.Color.FromArgb(255, 255, 255);
+            System.Drawing.Color actual = White.ToSystemDrawingColor();
+
+            Assert.AreEqual(expected, actual);
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator ToUnityColor_ShouldReturnEquivalentColor()
+        {
+            Color expected = White;
+            Color actual = System.Drawing.Color.FromArgb(255, 255, 255).ToUnityColor();
+
+            Assert.AreEqual(expected, actual);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator WithA0_ShouldReturnSameColor_GivenWhite()
         {
             var transparent = new Color(1, 1, 1, 0);
