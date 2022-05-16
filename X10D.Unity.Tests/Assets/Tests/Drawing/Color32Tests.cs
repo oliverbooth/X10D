@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -8,14 +8,14 @@ namespace X10D.Unity.Tests.Drawing
 {
     public class Color32Tests
     {
-        private static readonly Color32 Black = new(0, 0, 0, 1);
-        private static readonly Color32 White = new(255, 255, 255, 1);
-        private static readonly Color32 Red = new(255, 0, 0, 1);
-        private static readonly Color32 Green = new(0, 255, 0, 1);
-        private static readonly Color32 Blue = new(0, 0, 255, 1);
-        private static readonly Color32 Cyan = new(0, 255, 255, 1);
-        private static readonly Color32 Magenta = new(255, 0, 255, 1);
-        private static readonly Color32 Yellow = new(255, 255, 0, 1);
+        private static readonly Color32 Black = new(0, 0, 0, 255);
+        private static readonly Color32 White = new(255, 255, 255, 255);
+        private static readonly Color32 Red = new(255, 0, 0, 255);
+        private static readonly Color32 Green = new(0, 255, 0, 255);
+        private static readonly Color32 Blue = new(0, 0, 255, 255);
+        private static readonly Color32 Cyan = new(0, 255, 255, 255);
+        private static readonly Color32 Magenta = new(255, 0, 255, 255);
+        private static readonly Color32 Yellow = new(255, 255, 0, 255);
 
         [UnityTest]
         public IEnumerator Inverted_ShouldReturnInvertedColor()
