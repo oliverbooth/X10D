@@ -2,6 +2,7 @@
 
 ## 3.2.0
 ### Added
+- X10D: Added `RoundUpToPowerOf2()` for built-in integer types
 - X10D: Added `Vector2.Deconstruct()`
 - X10D: Added `Vector3.Deconstruct()`
 - X10D: Added `Vector4.Deconstruct()`

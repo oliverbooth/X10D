@@ -46,4 +46,23 @@ public static class UInt16Extensions
     {
         return (ushort)((ushort)(value >> count) | (ushort)(value << (16 - count)));
     }
+
+    /// <summary>
+    ///     Rounds the current value up to a power of two.
+    /// </summary>
+    /// <param name="value">The value to round.</param>
+    /// <returns>
+    ///     The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+    ///     is 0 or the result overflows.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ushort RoundUpToPowerOf2(this ushort value)
+    {
+        return (ushort)((uint)value).RoundUpToPowerOf2();
+    }
 }

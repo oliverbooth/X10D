@@ -39,4 +39,29 @@ public class ByteTests
         const byte value = 181; // 10110101
         Assert.AreEqual(value, value.RotateRight(8));
     }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
+    {
+        Assert.AreEqual(4, ((byte)3).RoundUpToPowerOf2());
+        Assert.AreEqual(8, ((byte)5).RoundUpToPowerOf2());
+        Assert.AreEqual(8, ((byte)6).RoundUpToPowerOf2());
+        Assert.AreEqual(8, ((byte)7).RoundUpToPowerOf2());
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
+    {
+        for (var i = 0; i < 8; i++)
+        {
+            var value = (byte)System.Math.Pow(2, i);
+            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+        }
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturn0_Given0()
+    {
+        Assert.AreEqual(0, ((byte)0).RoundUpToPowerOf2());
+    }
 }
