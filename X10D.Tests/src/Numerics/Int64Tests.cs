@@ -39,4 +39,29 @@ public class Int64Tests
         const long value = 5972019251303316844; // 01010010 11100000 11011111 11011110 00110001 10111010 01111101 01101100
         Assert.AreEqual(value, value.RotateRight(64));
     }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
+    {
+        Assert.AreEqual(4L, 3L.RoundUpToPowerOf2());
+        Assert.AreEqual(8L, 5L.RoundUpToPowerOf2());
+        Assert.AreEqual(8L, 6L.RoundUpToPowerOf2());
+        Assert.AreEqual(8L, 7L.RoundUpToPowerOf2());
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
+    {
+        for (var i = 0; i < 8; i++)
+        {
+            var value = (long)System.Math.Pow(2, i);
+            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+        }
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturn0_Given0()
+    {
+        Assert.AreEqual(0L, 0L.RoundUpToPowerOf2());
+    }
 }

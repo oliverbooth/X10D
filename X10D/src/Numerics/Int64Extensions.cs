@@ -47,4 +47,23 @@ public static class Int64Extensions
         var unsigned = unchecked((ulong)value);
         return unchecked((long)unsigned.RotateRight(count));
     }
+
+    /// <summary>
+    ///     Rounds the current value up to a power of two.
+    /// </summary>
+    /// <param name="value">The value to round.</param>
+    /// <returns>
+    ///     The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+    ///     is 0 or the result overflows.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long RoundUpToPowerOf2(this long value)
+    {
+        return (long)((ulong)value).RoundUpToPowerOf2();
+    }
 }

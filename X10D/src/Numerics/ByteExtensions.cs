@@ -48,4 +48,23 @@ public static class ByteExtensions
         count = count.Mod(8);
         return (byte)((value >> count) | (value << (8 - count)));
     }
+
+    /// <summary>
+    ///     Rounds the current value up to a power of two.
+    /// </summary>
+    /// <param name="value">The value to round.</param>
+    /// <returns>
+    ///     The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+    ///     is 0 or the result overflows.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static byte RoundUpToPowerOf2(this byte value)
+    {
+        return (byte)((uint)value).RoundUpToPowerOf2();
+    }
 }
