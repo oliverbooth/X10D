@@ -4131,6 +4131,16 @@
             </param>
             <returns>The rotated value.</returns>
         </member>
+        <member name="M:X10D.Numerics.ByteExtensions.RoundUpToPowerOf2(System.Byte)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
+        </member>
         <member name="T:X10D.Numerics.Int16Extensions">
             <summary>
                 Numeric-related extension methods for <see cref="T:System.Int16" />.
@@ -4155,6 +4165,16 @@
                 The number of bits by which to rotate. Any value outside the range [0..15] is treated as congruent mod 16.
             </param>
             <returns>The rotated value.</returns>
+        </member>
+        <member name="M:X10D.Numerics.Int16Extensions.RoundUpToPowerOf2(System.Int16)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
         </member>
         <member name="T:X10D.Numerics.Int32Extensions">
             <summary>
@@ -4181,6 +4201,16 @@
             </param>
             <returns>The rotated value.</returns>
         </member>
+        <member name="M:X10D.Numerics.Int32Extensions.RoundUpToPowerOf2(System.Int32)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
+        </member>
         <member name="T:X10D.Numerics.Int64Extensions">
             <summary>
                 Numeric-related extension methods for <see cref="T:System.Int64" />.
@@ -4205,6 +4235,16 @@
                 The number of bits by which to rotate. Any value outside the range [0..63] is treated as congruent mod 64.
             </param>
             <returns>The rotated value.</returns>
+        </member>
+        <member name="M:X10D.Numerics.Int64Extensions.RoundUpToPowerOf2(System.Int64)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
         </member>
         <member name="T:X10D.Numerics.RandomExtensions">
             <summary>
@@ -4275,6 +4315,16 @@
             </param>
             <returns>The rotated value.</returns>
         </member>
+        <member name="M:X10D.Numerics.SByteExtensions.RoundUpToPowerOf2(System.SByte)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
+        </member>
         <member name="T:X10D.Numerics.UInt16Extensions">
             <summary>
                 Numeric-related extension methods for <see cref="T:System.UInt16" />.
@@ -4299,6 +4349,16 @@
                 The number of bits by which to rotate. Any value outside the range [0..15] is treated as congruent mod 16.
             </param>
             <returns>The rotated value.</returns>
+        </member>
+        <member name="M:X10D.Numerics.UInt16Extensions.RoundUpToPowerOf2(System.UInt16)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
         </member>
         <member name="T:X10D.Numerics.UInt32Extensions">
             <summary>
@@ -4325,6 +4385,16 @@
             </param>
             <returns>The rotated value.</returns>
         </member>
+        <member name="M:X10D.Numerics.UInt32Extensions.RoundUpToPowerOf2(System.UInt32)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
+        </member>
         <member name="T:X10D.Numerics.UInt64Extensions">
             <summary>
                 Numeric-related extension methods for <see cref="T:System.UInt64" />.
@@ -4349,6 +4419,16 @@
                 The number of bits by which to rotate. Any value outside the range [0..63] is treated as congruent mod 64.
             </param>
             <returns>The rotated value.</returns>
+        </member>
+        <member name="M:X10D.Numerics.UInt64Extensions.RoundUpToPowerOf2(System.UInt64)">
+            <summary>
+                Rounds the current value up to a power of two.
+            </summary>
+            <param name="value">The value to round.</param>
+            <returns>
+                The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
+                is 0 or the result overflows.
+            </returns>
         </member>
         <member name="T:X10D.Numerics.Vector2Extensions">
             <summary>
