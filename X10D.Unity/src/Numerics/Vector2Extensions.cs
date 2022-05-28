@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -19,6 +20,30 @@ public static class Vector2Extensions
     {
         x = vector.x;
         y = vector.y;
+    }
+
+    /// <summary>
+    ///     Converts the current <see cref="Vector2" /> into a <see cref="PointF" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The resulting <see cref="PointF" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static PointF ToSystemPointF(this Vector2 vector)
+    {
+        return new PointF(vector.x, vector.y);
+    }
+
+    /// <summary>
+    ///     Converts the current <see cref="Vector2" /> into a <see cref="SizeF" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The resulting <see cref="SizeF" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static SizeF ToSystemSizeF(this Vector2 vector)
+    {
+        return new SizeF(vector.x, vector.y);
     }
 
     /// <summary>

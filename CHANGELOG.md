@@ -3,15 +3,35 @@
 ## 3.2.0
 ### Added
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
+- X10D: Added `Point.ToSize()`
+- X10D: Added `Point.ToSizeF()`
+- X10D: Added `Point.ToVector2()`
+- X10D: Added `PointF.ToSizeF()`
 - X10D: Added `RoundUpToPowerOf2()` for built-in integer types
+- X10D: Added `Size.ToPoint()`
+- X10D: Added `Size.ToPointF()`
+- X10D: Added `Size.ToVector2()`
 - X10D: Added `Vector2.Deconstruct()`
+- X10D: Added `Vector2.ToPointF()`
+- X10D: Added `Vector2.ToSizeF()`
 - X10D: Added `Vector3.Deconstruct()`
 - X10D: Added `Vector4.Deconstruct()`
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor()`
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor32()`
 - X10D.Unity: Added `Color.ToSystemDrawingColor()`
 - X10D.Unity: Added `Color32.ToSystemDrawingColor()`
+- X10D.Unity: Added `Point.ToUnityVector2()`
+- X10D.Unity: Added `Point.ToUnityVector2Int()`
+- X10D.Unity: Added `PointF.ToUnityVector2()`
+- X10D.Unity: Added `Rect.ToSystemRectangleF()`
+- X10D.Unity: Added `Rectangle.ToUnityRect()`
+- X10D.Unity: Added `RectangleF.ToUnityRect()`
+- X10D.Unity: Added `Size.ToUnityVector2()`
+- X10D.Unity: Added `Size.ToUnityVector2Int()`
+- X10D.Unity: Added `SizeF.ToUnityVector2()`
 - X10D.Unity: Added `Vector2.Deconstruct()`
+- X10D.Unity: Added `Vector2.ToSystemPointF()`
+- X10D.Unity: Added `Vector2.ToSystemSizeF()`
 - X10D.Unity: Added `Vector3.Deconstruct()`
 - X10D.Unity: Added `Vector4.Deconstruct()`
 

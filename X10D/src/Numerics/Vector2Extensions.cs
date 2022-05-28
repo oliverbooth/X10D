@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
@@ -19,6 +20,38 @@ public static class Vector2Extensions
     {
         x = vector.X;
         y = vector.Y;
+    }
+
+    /// <summary>
+    ///     Converts the current <see cref="Vector2" /> to a <see cref="PointF" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The resulting <see cref="PointF" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static PointF ToPointF(this Vector2 vector)
+    {
+        return new PointF(vector.X, vector.Y);
+    }
+
+    /// <summary>
+    ///     Converts the current <see cref="Vector2" /> to a <see cref="SizeF" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The resulting <see cref="SizeF" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static SizeF ToSizeF(this Vector2 vector)
+    {
+        return new SizeF(vector.X, vector.Y);
     }
 
     /// <summary>

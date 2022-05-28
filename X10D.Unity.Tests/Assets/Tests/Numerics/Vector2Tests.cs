@@ -23,6 +23,38 @@ namespace X10D.Unity.Tests.Numerics
         }
 
         [UnityTest]
+        public IEnumerator ToSystemPointF_ShouldReturnPoint_WithEquivalentMembers()
+        {
+            var random = new Random();
+            float x = random.NextSingle();
+            float y = random.NextSingle();
+
+            var vector = new Vector2(x, y);
+            var point = vector.ToSystemPointF();
+
+            Assert.AreEqual(vector.x, point.X, 1e-6f);
+            Assert.AreEqual(vector.y, point.Y, 1e-6f);
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator ToSystemSizeF_ShouldReturnPoint_WithEquivalentMembers()
+        {
+            var random = new Random();
+            float x = random.NextSingle();
+            float y = random.NextSingle();
+
+            var vector = new Vector2(x, y);
+            var point = vector.ToSystemSizeF();
+
+            Assert.AreEqual(vector.x, point.Width, 1e-6f);
+            Assert.AreEqual(vector.y, point.Height, 1e-6f);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator ToSystemVector_ShouldReturnVector_WithEqualComponents()
         {
             var random = new Random();
