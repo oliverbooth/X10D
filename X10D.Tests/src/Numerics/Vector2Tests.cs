@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using X10D.Core;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
@@ -15,6 +16,28 @@ public class Vector2Tests
 
         Assert.AreEqual(1, x);
         Assert.AreEqual(2, y);
+    }
+
+    [TestMethod]
+    public void ToPointF_ShouldReturnPoint_WithEquivalentMembers()
+    {
+        var random = new Random();
+        var vector = new Vector2(random.NextSingle(), random.NextSingle());
+        var point = vector.ToPointF();
+
+        Assert.AreEqual(vector.X, point.X, 1e-6f);
+        Assert.AreEqual(vector.Y, point.Y, 1e-6f);
+    }
+
+    [TestMethod]
+    public void ToSizeF_ShouldReturnSize_WithEquivalentMembers()
+    {
+        var random = new Random();
+        var vector = new Vector2(random.NextSingle(), random.NextSingle());
+        var size = vector.ToSizeF();
+
+        Assert.AreEqual(vector.X, size.Width);
+        Assert.AreEqual(vector.Y, size.Height);
     }
 
     [TestMethod]
