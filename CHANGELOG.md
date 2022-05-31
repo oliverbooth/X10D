@@ -32,7 +32,16 @@
 - X10D.Unity: Added `Vector2.Deconstruct()`
 - X10D.Unity: Added `Vector2.ToSystemPointF()`
 - X10D.Unity: Added `Vector2.ToSystemSizeF()`
+- X10D.Unity: Added `Vector2Int.Deconstruct()`
+- X10D.Unity: Added `Vector2Int.ToSystemPoint()`
+- X10D.Unity: Added `Vector2Int.ToSystemSize()`
+- X10D.Unity: Added `Vector2Int.WithX()`
+- X10D.Unity: Added `Vector2Int.WithY()`
 - X10D.Unity: Added `Vector3.Deconstruct()`
+- X10D.Unity: Added `Vector3Int.Deconstruct()`
+- X10D.Unity: Added `Vector3Int.WithX()`
+- X10D.Unity: Added `Vector3Int.WithY()`
+- X10D.Unity: Added `Vector3Int.WithZ()`
 - X10D.Unity: Added `Vector4.Deconstruct()`
 
 ## [3.1.0]
