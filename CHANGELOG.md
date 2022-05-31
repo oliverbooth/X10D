@@ -44,6 +44,9 @@
 - X10D.Unity: Added `Vector3Int.WithZ()`
 - X10D.Unity: Added `Vector4.Deconstruct()`
 
+### Changed
+- X10D.Unity: Obsolesced `Singleton<T>`
+
 ## [3.1.0]
 ### Added
 - Reintroduced Unity support
