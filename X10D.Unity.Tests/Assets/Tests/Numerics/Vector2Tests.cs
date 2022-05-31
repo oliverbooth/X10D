@@ -39,7 +39,7 @@ namespace X10D.Unity.Tests.Numerics
         }
 
         [UnityTest]
-        public IEnumerator ToSystemSizeF_ShouldReturnPoint_WithEquivalentMembers()
+        public IEnumerator ToSystemSizeF_ShouldReturnSize_WithEquivalentMembers()
         {
             var random = new Random();
             float x = random.NextSingle();
