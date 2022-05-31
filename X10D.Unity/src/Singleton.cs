@@ -7,6 +7,8 @@ namespace X10D.Unity;
 ///     thread-safe.
 /// </summary>
 /// <typeparam name="T">The type of the singleton.</typeparam>
+[Obsolete("This implementation of the singleton pattern is discouraged, and this class will be removed in future. " +
+          "DO NOT USE THIS TYPE IN PRODUCTION.")]
 public abstract class Singleton<T> : MonoBehaviour
     where T : Singleton<T>
 {
