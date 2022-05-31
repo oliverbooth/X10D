@@ -579,6 +579,55 @@
                 <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector2.y" /> component is <paramref name="y" />.
             </returns>
         </member>
+        <member name="T:X10D.Unity.Numerics.Vector2IntExtensions">
+            <summary>
+                Numeric-extensions for <see cref="T:UnityEngine.Vector2Int" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.Deconstruct(UnityEngine.Vector2Int,System.Int32@,System.Int32@)">
+            <summary>
+                Deconstructs the current <see cref="T:UnityEngine.Vector2" /> into its components.
+            </summary>
+            <param name="vector">The vector to deconstruct.</param>
+            <param name="x">The X component value.</param>
+            <param name="y">The Y component value.</param>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.ToSystemPoint(UnityEngine.Vector2Int)">
+            <summary>
+                Converts the current <see cref="T:UnityEngine.Vector2Int" /> into a <see cref="T:System.Drawing.Point" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The resulting <see cref="T:System.Drawing.Point" />.</returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.ToSystemSize(UnityEngine.Vector2Int)">
+            <summary>
+                Converts the current <see cref="T:UnityEngine.Vector2Int" /> into a <see cref="T:System.Drawing.Size" />.
+            </summary>
+            <param name="vector">The vector to convert.</param>
+            <returns>The resulting <see cref="T:System.Drawing.Size" />.</returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.WithX(UnityEngine.Vector2Int,System.Int32)">
+            <summary>
+                Returns a vector whose Y component is the same as the specified vector, and whose X component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="x">The new X component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector2Int" /> whose <see cref="P:UnityEngine.Vector2Int.y" /> components is the same as that of
+                <paramref name="vector" />, and whose <see cref="P:UnityEngine.Vector2Int.x" /> component is <paramref name="x" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.WithY(UnityEngine.Vector2Int,System.Int32)">
+            <summary>
+                Returns a vector whose X component is the same as the specified vector, and whose Y component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="y">The new Y component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector2Int" /> whose <see cref="P:UnityEngine.Vector2Int.x" /> components is the same as that of
+                <paramref name="vector" />, and whose <see cref="P:UnityEngine.Vector2Int.y" /> component is <paramref name="y" />.
+            </returns>
+        </member>
         <member name="T:X10D.Unity.Numerics.Vector3Extensions">
             <summary>
                 Numeric-extensions for <see cref="T:UnityEngine.Vector3" />.
@@ -638,6 +687,56 @@
             <returns>
                 A new instance of <see cref="T:UnityEngine.Vector3" /> whose <see cref="F:UnityEngine.Vector3.x" /> and <see cref="F:UnityEngine.Vector3.y" /> components are
                 the same as that of <paramref name="vector" />, and whose <see cref="F:UnityEngine.Vector3.z" /> component is <paramref name="z" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Unity.Numerics.Vector3IntExtensions">
+            <summary>
+                Numeric-extensions for <see cref="T:UnityEngine.Vector3Int" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3IntExtensions.Deconstruct(UnityEngine.Vector3Int,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+                Deconstructs the current <see cref="T:UnityEngine.Vector3Int" /> into its components.
+            </summary>
+            <param name="vector">The vector to deconstruct.</param>
+            <param name="x">The X component value.</param>
+            <param name="y">The Y component value.</param>
+            <param name="z">The Z component value.</param>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3IntExtensions.WithX(UnityEngine.Vector3Int,System.Int32)">
+            <summary>
+                Returns a vector whose Y and Z components are the same as the specified vector, and whose X component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="x">The new X component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector3Int" /> whose <see cref="P:UnityEngine.Vector3Int.y" /> and <see cref="P:UnityEngine.Vector3Int.z"/>
+                components are the same as that of <paramref name="vector" />, and whose <see cref="P:UnityEngine.Vector3Int.x" /> component is
+                <paramref name="x" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3IntExtensions.WithY(UnityEngine.Vector3Int,System.Int32)">
+            <summary>
+                Returns a vector whose X and Z components are the same as the specified vector, and whose Y component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="y">The new Y component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector3Int" /> whose <see cref="P:UnityEngine.Vector3Int.x" /> and <see cref="P:UnityEngine.Vector3Int.z"/>
+                components are the same as that of <paramref name="vector" />, and whose <see cref="P:UnityEngine.Vector3Int.y" /> component is
+                <paramref name="y" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector3IntExtensions.WithZ(UnityEngine.Vector3Int,System.Int32)">
+            <summary>
+                Returns a vector whose X and Y components are the same as the specified vector, and whose Z component is a new value.
+            </summary>
+            <param name="vector">The vector to copy.</param>
+            <param name="z">The new Z component value.</param>
+            <returns>
+                A new instance of <see cref="T:UnityEngine.Vector3Int" /> whose <see cref="P:UnityEngine.Vector3Int.x" /> and <see cref="P:UnityEngine.Vector3Int.y"/>
+                components are the same as that of <paramref name="vector" />, and whose <see cref="P:UnityEngine.Vector3Int.z" /> component is
+                <paramref name="z" />.
             </returns>
         </member>
         <member name="T:X10D.Unity.Numerics.Vector4Extensions">
