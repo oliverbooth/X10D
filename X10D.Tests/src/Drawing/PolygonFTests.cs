@@ -9,7 +9,7 @@ namespace X10D.Tests.Drawing;
 public class PolygonFTests
 {
     [TestMethod]
-    public void AddPoints_ShouldAddPoints()
+    public void AddVertices_ShouldAddVertices()
     {
         var polygon = PolygonF.Empty;
         polygon.AddVertices(new[] {new PointF(1, 2), new PointF(3, 4)});
@@ -20,7 +20,7 @@ public class PolygonFTests
     }
 
     [TestMethod]
-    public void ClearPoints_ShouldClearPoints()
+    public void ClearVertices_ShouldClearVertices()
     {
         var polygon = PolygonF.Empty;
         polygon.AddVertices(new[] {new Vector2(1, 2), new Vector2(3, 4)});
@@ -34,7 +34,7 @@ public class PolygonFTests
     }
 
     [TestMethod]
-    public void Constructor_ShouldPopulatePoints_GivenPolygon()
+    public void Constructor_ShouldPopulateVertices_GivenPolygon()
     {
         var pointPolygon = new PolygonF(new[] {new PointF(1, 2), new PointF(3, 4)});
         var vectorPolygon = new PolygonF(new[] {new Vector2(1, 2), new Vector2(3, 4)});
@@ -44,7 +44,7 @@ public class PolygonFTests
     }
 
     [TestMethod]
-    public void CopyConstructor_ShouldCopyPoints_GivenPolygon()
+    public void CopyConstructor_ShouldCopyVertices_GivenPolygon()
     {
         var first = PolygonF.Empty;
         first.AddVertices(new[] {new PointF(1, 2), new PointF(3, 4)});

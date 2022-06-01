@@ -8,7 +8,7 @@ namespace X10D.Tests.Drawing;
 public class PolygonTests
 {
     [TestMethod]
-    public void AddPoints_ShouldAddPoints()
+    public void AddVertices_ShouldAddVertices()
     {
         var polygon = Polygon.Empty;
         polygon.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
@@ -20,7 +20,7 @@ public class PolygonTests
     }
 
     [TestMethod]
-    public void ClearPoints_ShouldClearPoints()
+    public void ClearVertices_ShouldClearVertices()
     {
         var polygon = Polygon.Empty;
         polygon.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
@@ -34,7 +34,7 @@ public class PolygonTests
     }
 
     [TestMethod]
-    public void CopyConstructor_ShouldCopyPoints_GivenPolygon()
+    public void CopyConstructor_ShouldCopyVertices_GivenPolygon()
     {
         var first = Polygon.Empty;
         first.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
