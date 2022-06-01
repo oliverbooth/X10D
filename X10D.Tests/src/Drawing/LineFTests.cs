@@ -13,6 +13,18 @@ public class LineFTests
     }
 
     [TestMethod]
+    public void CompareTo_ShouldBeNegativeOne_GivenEmptyLineAndOneLineAsObject()
+    {
+        Assert.AreEqual(-1, LineF.Empty.CompareTo((object)LineF.One));
+    }
+
+    [TestMethod]
+    public void CompareTo_ShouldBeOne_GivenNull()
+    {
+        Assert.AreEqual(1, LineF.One.CompareTo(null));
+    }
+
+    [TestMethod]
     public void CompareTo_ShouldBeOne_GivenOneAndEmpty()
     {
         Assert.AreEqual(1, LineF.One.CompareTo(LineF.Empty));
@@ -23,6 +35,12 @@ public class LineFTests
     {
         var unitLineF = LineF.One;
         Assert.AreEqual(0, unitLineF.CompareTo(unitLineF));
+    }
+
+    [TestMethod]
+    public void CompareTo_ShouldThrowArgumentException_GivenInvalidType()
+    {
+        Assert.ThrowsException<ArgumentException>(() => LineF.Empty.CompareTo(new object()));
     }
 
     [TestMethod]
@@ -75,5 +93,47 @@ public class LineFTests
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = LineF.One.GetHashCode();
         Assert.AreEqual(hashCode, LineF.One.GetHashCode());
+    }
+
+    [TestMethod]
+    public void op_Explicit_ShouldReturnEquivalentLine_GivenLine()
+    {
+        LineF oneLine = LineF.One;
+        Line converted = (Line)oneLine;
+
+        Assert.AreEqual(oneLine, converted);
+        Assert.AreEqual(oneLine.Length, converted.Length);
+        Assert.AreEqual(oneLine.Start, converted.Start);
+        Assert.AreEqual(oneLine.End, converted.End);
+    }
+
+    [TestMethod]
+    public void op_GreaterThan_True_GivenUnitAndEmptyCircle()
+    {
+        Assert.IsTrue(LineF.One > LineF.Empty);
+        Assert.IsTrue(LineF.One >= LineF.Empty);
+        Assert.IsFalse(LineF.One < LineF.Empty);
+        Assert.IsFalse(LineF.One <= LineF.Empty);
+    }
+
+    [TestMethod]
+    public void op_Implicit_ShouldReturnEquivalentLine_GivenLine()
+    {
+        Line oneLine = Line.One;
+        LineF converted = oneLine;
+
+        Assert.AreEqual(oneLine, converted);
+        Assert.AreEqual(oneLine.Length, converted.Length);
+        Assert.AreEqual(oneLine.Start, converted.Start);
+        Assert.AreEqual(oneLine.End, converted.End);
+    }
+
+    [TestMethod]
+    public void op_LessThan_True_GivenEmptyAndUnitCircle()
+    {
+        Assert.IsTrue(LineF.Empty < LineF.One);
+        Assert.IsTrue(LineF.Empty <= LineF.One);
+        Assert.IsFalse(LineF.Empty > LineF.One);
+        Assert.IsFalse(LineF.Empty >= LineF.One);
     }
 }
