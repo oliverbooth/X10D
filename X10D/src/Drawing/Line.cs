@@ -69,15 +69,15 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     public Point Start { get; }
 
     /// <summary>
-    ///     Returns a value indicating whether two instances of <see cref="Line" /> are not equal.
+    ///     Returns a value indicating whether two instances of <see cref="Line" /> are equal.
     /// </summary>
     /// <param name="left">The first instance.</param>
     /// <param name="right">The second instance.</param>
     /// <returns>
-    ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+    ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(Line left, Line right)
+    public static bool operator ==(in Line left, in Line right)
     {
         return left.Equals(right);
     }
@@ -91,7 +91,7 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(Line left, Line right)
+    public static bool operator !=(in Line left, in Line right)
     {
         return !left.Equals(right);
     }
@@ -105,7 +105,7 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is less than that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator <(Line left, Line right)
+    public static bool operator <(in Line left, in Line right)
     {
         return left.CompareTo(right) < 0;
     }
@@ -119,7 +119,7 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is greater than that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator >(Line left, Line right)
+    public static bool operator >(in Line left, in Line right)
     {
         return left.CompareTo(right) > 0;
     }
@@ -133,7 +133,7 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is less than or equal to that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator <=(Line left, Line right)
+    public static bool operator <=(in Line left, in Line right)
     {
         return left.CompareTo(right) <= 0;
     }
@@ -147,7 +147,7 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is greater than or equal to that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator >=(Line left, Line right)
+    public static bool operator >=(in Line left, in Line right)
     {
         return left.CompareTo(right) >= 0;
     }
