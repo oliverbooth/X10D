@@ -196,7 +196,7 @@ public readonly struct CircleF : IEquatable<CircleF>, IComparable<CircleF>, ICom
     }
 
     /// <summary>
-    ///     Compares this instance to another <see cref="Circle" />.
+    ///     Compares this instance to another <see cref="CircleF" />.
     /// </summary>
     /// <param name="obj">The other object.</param>
     /// <returns>
