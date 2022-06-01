@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Numerics;
+using X10D.Numerics;
 
 namespace X10D.Drawing;
 
@@ -15,19 +17,56 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <summary>
     ///     The unit ellipse. That is, an ellipse whose center point is (0, 0) and whose two radii are 1.
     /// </summary>
-    public static readonly EllipseF Unit = new(PointF.Empty, 1.0f, 1.0f);
+    public static readonly EllipseF Unit = new(0.0f, 0.0f, 1.0f, 1.0f);
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="EllipseF" /> struct.
     /// </summary>
-    /// <param name="center">The center point of the ellipse.</param>
+    /// <param name="centerX">The X coordinate of the center point.</param>
+    /// <param name="centerY">The Y coordinate of the center point.</param>
     /// <param name="horizontalRadius">The horizontal radius of the ellipse.</param>
     /// <param name="verticalRadius">The vertical radius of the ellipse.</param>
-    public EllipseF(PointF center, float horizontalRadius, float verticalRadius)
+    public EllipseF(float centerX, float centerY, float horizontalRadius, float verticalRadius)
     {
-        Center = center;
+        Center = new PointF(centerX, centerY);
         HorizontalRadius = horizontalRadius;
         VerticalRadius = verticalRadius;
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Ellipse" /> struct.
+    /// </summary>
+    /// <param name="center">The center point of the ellipse.</param>
+    /// <param name="radius">The radius of the ellipse.</param>
+    public EllipseF(PointF center, SizeF radius)
+    {
+        Center = center;
+        HorizontalRadius = radius.Width;
+        VerticalRadius = radius.Height;
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Ellipse" /> struct.
+    /// </summary>
+    /// <param name="center">The center point of the ellipse.</param>
+    /// <param name="radius">The radius of the ellipse.</param>
+    public EllipseF(PointF center, Vector2 radius)
+    {
+        Center = center;
+        HorizontalRadius = radius.X;
+        VerticalRadius = radius.Y;
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Ellipse" /> struct.
+    /// </summary>
+    /// <param name="center">The center point of the ellipse.</param>
+    /// <param name="radius">The radius of the ellipse.</param>
+    public EllipseF(Vector2 center, Vector2 radius)
+    {
+        Center = center.ToPointF();
+        HorizontalRadius = radius.X;
+        VerticalRadius = radius.Y;
     }
 
     /// <summary>
@@ -73,6 +112,15 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     public float HorizontalRadius { get; }
 
     /// <summary>
+    ///     Gets the radius of the ellipse.
+    /// </summary>
+    /// <value>The radius.</value>
+    public SizeF Radius
+    {
+        get => new(HorizontalRadius, VerticalRadius);
+    }
+
+    /// <summary>
     ///     Gets the vertical radius of the ellipse.
     /// </summary>
     /// <value>The vertical radius.</value>
@@ -113,7 +161,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator EllipseF(Circle circle)
     {
-        return new EllipseF(circle.Center, circle.Radius, circle.Radius);
+        return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
     }
 
     /// <summary>
@@ -123,7 +171,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator EllipseF(CircleF circle)
     {
-        return new EllipseF(circle.Center, circle.Radius, circle.Radius);
+        return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
     }
 
     /// <summary>
@@ -133,7 +181,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator EllipseF(Ellipse ellipse)
     {
-        return new EllipseF(ellipse.Center, ellipse.HorizontalRadius, ellipse.VerticalRadius);
+        return new EllipseF(ellipse.Center, ellipse.Radius);
     }
 
     /// <summary>
@@ -144,7 +192,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     public static explicit operator Ellipse(EllipseF ellipse)
     {
         PointF center = ellipse.Center;
-        return new Ellipse(new Point((int)center.X, (int)center.Y), (int)ellipse.HorizontalRadius, (int)ellipse.VerticalRadius);
+        return new Ellipse((int)center.X, (int)center.Y, (int)ellipse.HorizontalRadius, (int)ellipse.VerticalRadius);
     }
 
     /// <inheritdoc />

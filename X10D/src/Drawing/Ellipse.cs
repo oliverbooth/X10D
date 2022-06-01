@@ -15,24 +15,30 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     /// <summary>
     ///     The unit ellipse. That is, an ellipse whose center point is (0, 0) and whose two radii are 1.
     /// </summary>
-    public static readonly Ellipse Unit = new(Point.Empty, 1, 1);
+    public static readonly Ellipse Unit = new(0, 0, 1, 1);
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Ellipse" /> struct.
+    /// </summary>
+    /// <param name="centerX">The X coordinate of the center point.</param>
+    /// <param name="centerY">The Y coordinate of the center point.</param>
+    /// <param name="horizontalRadius">The horizontal radius of the ellipse.</param>
+    /// <param name="verticalRadius">The vertical radius of the ellipse.</param>
+    public Ellipse(int centerX, int centerY, int horizontalRadius, int verticalRadius)
+        : this(new Point(centerX, centerY), new Size(horizontalRadius, verticalRadius))
+    {
+    }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="Ellipse" /> struct.
     /// </summary>
     /// <param name="center">The center point of the ellipse.</param>
-    /// <param name="horizontalRadius">The horizontal radius of the ellipse.</param>
-    /// <param name="verticalRadius">The vertical radius of the ellipse.</param>
-    public Ellipse(Point center, int horizontalRadius, int verticalRadius)
+    /// <param name="radius">The radius of the ellipse.</param>
+    public Ellipse(Point center, Size radius)
     {
         Center = center;
-        HorizontalRadius = horizontalRadius;
-        VerticalRadius = verticalRadius;
-    }
-
-    public static implicit operator Ellipse(Circle circle)
-    {
-        return new Ellipse(circle.Center, circle.Radius, circle.Radius);
+        HorizontalRadius = radius.Width;
+        VerticalRadius = radius.Height;
     }
 
     /// <summary>
@@ -78,6 +84,15 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     public int HorizontalRadius { get; }
 
     /// <summary>
+    ///     Gets the radius of the ellipse.
+    /// </summary>
+    /// <value>The radius.</value>
+    public Size Radius
+    {
+        get => new(HorizontalRadius, VerticalRadius);
+    }
+
+    /// <summary>
     ///     Gets the vertical radius of the ellipse.
     /// </summary>
     /// <value>The vertical radius.</value>
@@ -109,6 +124,16 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     public static bool operator !=(Ellipse left, Ellipse right)
     {
         return !left.Equals(right);
+    }
+
+    /// <summary>
+    ///     Implicitly converts a <see cref="Circle" /> to an <see cref="Ellipse" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted ellipse.</returns>
+    public static implicit operator Ellipse(Circle circle)
+    {
+        return new Ellipse(circle.Center, new Size(circle.Radius, circle.Radius));
     }
 
     /// <inheritdoc />
