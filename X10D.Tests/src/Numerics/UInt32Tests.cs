@@ -39,7 +39,9 @@ public class UInt32Tests
     {
         const uint value = 284719; // 00000000 00000100 01011000 00101111
         Assert.AreEqual(value, value.RotateRight(32));
-    }    [TestMethod]
+    }
+
+    [TestMethod]
     public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
     {
         Assert.AreEqual(4U, 3U.RoundUpToPowerOf2());

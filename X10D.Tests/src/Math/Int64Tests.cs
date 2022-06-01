@@ -35,7 +35,7 @@ public class Int64Tests
     {
         const long one = 1;
         const long two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -45,7 +45,7 @@ public class Int64Tests
     {
         const long one = 1;
         const long two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }

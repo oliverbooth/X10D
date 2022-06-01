@@ -10,7 +10,7 @@ public class Int16Tests
     public void ProductShouldBeCorrect()
     {
         short Cast(int i) => (short)i;
-        
+
         Assert.AreEqual(0, Enumerable.Range(0, 10).Select(Cast).Product());
         Assert.AreEqual(1, Enumerable.Range(1, 1).Select(Cast).Product());
         Assert.AreEqual(2, Enumerable.Range(1, 2).Select(Cast).Product());

@@ -35,7 +35,7 @@ public class Int32Tests
     {
         const int one = 1;
         const int two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -45,7 +45,7 @@ public class Int32Tests
     {
         const int one = 1;
         const int two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }

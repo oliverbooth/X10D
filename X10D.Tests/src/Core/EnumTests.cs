@@ -11,7 +11,7 @@ public class EnumTests
     // it's clearly Monday as defined by ISO 8601.
     // but Microsoft can't fix this without breaking compatibility.
     // I have feelings...
-    
+
     [TestMethod]
     public void Next()
     {
@@ -23,7 +23,7 @@ public class EnumTests
         Assert.AreEqual(DayOfWeek.Saturday, DayOfWeek.Friday.Next());
         Assert.AreEqual(DayOfWeek.Sunday, DayOfWeek.Saturday.Next()); // Saturday is the "last" day. wrap to "first"
     }
-    
+
     [TestMethod]
     public void NextUnchecked()
     {
@@ -35,7 +35,7 @@ public class EnumTests
         Assert.AreEqual(DayOfWeek.Saturday, DayOfWeek.Friday.NextUnchecked());
         Assert.ThrowsException<IndexOutOfRangeException>(() => DayOfWeek.Saturday.NextUnchecked());
     }
-    
+
     [TestMethod]
     public void Previous()
     {
@@ -47,7 +47,7 @@ public class EnumTests
         Assert.AreEqual(DayOfWeek.Thursday, DayOfWeek.Friday.Previous());
         Assert.AreEqual(DayOfWeek.Friday, DayOfWeek.Saturday.Previous());
     }
-    
+
     [TestMethod]
     public void PreviousUnchecked()
     {

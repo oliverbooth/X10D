@@ -40,7 +40,7 @@ public class UInt64Tests
     {
         const ulong one = 1;
         const ulong two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -50,7 +50,7 @@ public class UInt64Tests
     {
         const ulong one = 1;
         const ulong two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }

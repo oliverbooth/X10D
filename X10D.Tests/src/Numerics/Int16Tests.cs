@@ -56,7 +56,7 @@ public class Int16Tests
     {
         for (var i = 0; i < 8; i++)
         {
-            var value = (short) System.Math.Pow(2, i);
+            var value = (short)System.Math.Pow(2, i);
             Assert.AreEqual(value, value.RoundUpToPowerOf2());
         }
     }
