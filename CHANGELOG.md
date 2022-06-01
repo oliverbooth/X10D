@@ -8,6 +8,7 @@
 - X10D: Added `Point.ToSizeF()`
 - X10D: Added `Point.ToVector2()`
 - X10D: Added `PointF.ToSizeF()`
+- X10D: Added `PointF.ToVector2()` for .NET < 6
 - X10D: Added `RoundUpToPowerOf2()` for built-in integer types
 - X10D: Added `Size.ToPoint()`
 - X10D: Added `Size.ToPointF()`

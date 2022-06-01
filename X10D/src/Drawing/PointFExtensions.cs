@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Drawing;
@@ -24,4 +25,18 @@ public static class PointFExtensions
     {
         return new SizeF(point.X, point.Y);
     }
+
+#if !NET6_0_OR_GREATER
+    /// <summary>
+    ///     Converts the current <see cref="PointF" /> to a <see cref="Vector2" />.
+    /// </summary>
+    /// <param name="point">The point to convert.</param>
+    /// <returns>The resulting <see cref="Vector2" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector2 ToVector2(this PointF point)
+    {
+        return new Vector2(point.X, point.Y);
+    }
+#endif
 }
