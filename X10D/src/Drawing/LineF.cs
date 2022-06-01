@@ -180,7 +180,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     ///     Implicitly converts a <see cref="Line" /> to a <see cref="LineF" />.
     /// </summary>
     /// <param name="line">The line to convert.</param>
-    /// <returns>The line polygon.</returns>
+    /// <returns>The converted line.</returns>
     public static implicit operator LineF(Line line)
     {
         return new LineF(line.Start, line.End);
