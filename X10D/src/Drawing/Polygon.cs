@@ -22,7 +22,7 @@ public class Polygon : IEquatable<Polygon>
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="Polygon" /> struct by copying the specified polygon.
+    ///     Initializes a new instance of the <see cref="Polygon" /> class by copying the specified polygon.
     /// </summary>
     public Polygon(Polygon polygon)
         : this(polygon._vertices)
@@ -30,7 +30,7 @@ public class Polygon : IEquatable<Polygon>
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="Polygon" /> struct by constructing it from the specified vertices.
+    ///     Initializes a new instance of the <see cref="Polygon" /> class by constructing it from the specified vertices.
     /// </summary>
     /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
     public Polygon(IEnumerable<Point> vertices)
