@@ -10,7 +10,7 @@ public struct Polygon : IEquatable<Polygon>
     /// <summary>
     ///     The empty polygon. That is, a polygon with no points.
     /// </summary>
-    public static readonly Polygon Empty = new(ArraySegment<Point>.Empty);
+    public static readonly Polygon Empty = new();
 
     private Point[]? _points;
 
