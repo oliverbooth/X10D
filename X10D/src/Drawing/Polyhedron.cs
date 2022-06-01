@@ -23,7 +23,7 @@ public class Polyhedron : IEquatable<Polyhedron>
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="Polyhedron" /> struct by copying the specified polyhedron.
+    ///     Initializes a new instance of the <see cref="Polyhedron" /> class by copying the specified polyhedron.
     /// </summary>
     public Polyhedron(Polyhedron polyhedron)
         : this(polyhedron._vertices)
@@ -31,7 +31,7 @@ public class Polyhedron : IEquatable<Polyhedron>
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="Polyhedron" /> struct by constructing it from the specified vertices.
+    ///     Initializes a new instance of the <see cref="Polyhedron" /> class by constructing it from the specified vertices.
     /// </summary>
     /// <param name="vertices">An enumerable collection of vertices from which the polyhedron should be constructed.</param>
     public Polyhedron(IEnumerable<Vector3> vertices)
