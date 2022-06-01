@@ -889,6 +889,14 @@
                 The unit circle. That is, a circle whose center point is (0, 0) and whose radius is 1.
             </summary>
         </member>
+        <member name="M:X10D.Drawing.Circle.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Circle" /> struct.
+            </summary>
+            <param name="centerX">The X coordinate of the center point.</param>
+            <param name="centerY">The Y coordinate of the center point.</param>
+            <param name="radius">The radius of the circle.</param>
+        </member>
         <member name="M:X10D.Drawing.Circle.#ctor(System.Drawing.Point,System.Int32)">
             <summary>
                 Initializes a new instance of the <see cref="T:X10D.Drawing.Circle" /> struct.
@@ -1101,6 +1109,14 @@
                 The unit circle. That is, a circle whose center point is (0, 0) and whose radius is 1.
             </summary>
         </member>
+        <member name="M:X10D.Drawing.CircleF.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.CircleF" /> struct.
+            </summary>
+            <param name="centerX">The X coordinate of the center point.</param>
+            <param name="centerY">The Y coordinate of the center point.</param>
+            <param name="radius">The radius of the circle.</param>
+        </member>
         <member name="M:X10D.Drawing.CircleF.#ctor(System.Numerics.Vector2,System.Single)">
             <summary>
                 Initializes a new instance of the <see cref="T:X10D.Drawing.CircleF" /> struct.
@@ -1211,9 +1227,23 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
+        <member name="M:X10D.Drawing.CircleF.op_Explicit(X10D.Drawing.CircleF)~X10D.Drawing.Circle">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted circle.</returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_Implicit(X10D.Drawing.Circle)~X10D.Drawing.CircleF">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted circle.</returns>
+        </member>
         <member name="M:X10D.Drawing.CircleF.CompareTo(System.Object)">
              <summary>
-                 Compares this instance to another <see cref="T:X10D.Drawing.Circle" />.
+                 Compares this instance to another <see cref="T:X10D.Drawing.CircleF" />.
              </summary>
              <param name="obj">The other object.</param>
              <returns>
@@ -1369,9 +1399,496 @@
                 <see cref="P:System.Drawing.Color.R" /> component is <paramref name="r" />.
             </returns>
         </member>
+        <member name="T:X10D.Drawing.Cuboid">
+            <summary>
+                Represents a cuboid in 3D space, which uses single-precision floating-point numbers for its coordinates.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Cuboid.Empty">
+            <summary>
+                The empty cuboid. That is, a cuboid whose size is zero.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Cuboid.Cube">
+            <summary>
+                A cube. That is, a cuboid whose size is the same in all three dimensions.
+            </summary>
+            <value>A cube with the size (1, 1, 1).</value>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Cuboid" /> struct.
+            </summary>
+            <param name="centerX">The center X coordinate.</param>
+            <param name="centerY">The center Y coordinate.</param>
+            <param name="centerZ">The center Z coordinate.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="depth">The depth.</param>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Cuboid" /> struct.
+            </summary>
+            <param name="centerX">The center X coordinate.</param>
+            <param name="centerY">The center Y coordinate.</param>
+            <param name="centerZ">The center Z coordinate.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="depth">The depth.</param>
+            <param name="yaw">The yaw.</param>
+            <param name="pitch">The pitch.</param>
+            <param name="roll">The roll.</param>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.#ctor(System.Numerics.Vector3@,System.Numerics.Vector3@)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Cuboid" /> struct.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The size.</param>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.#ctor(System.Numerics.Vector3@,System.Numerics.Vector3@,System.Numerics.Vector3@)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Cuboid" /> struct.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The size.</param>
+            <param name="orientation">The orientation of the cuboid.</param>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.#ctor(System.Numerics.Vector3@,System.Numerics.Vector3@,System.Numerics.Quaternion@)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Cuboid" /> struct.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The size.</param>
+            <param name="orientation">The orientation of the cuboid.</param>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.Center">
+            <summary>
+                Gets the center point of the cuboid.
+            </summary>
+            <value>The center point.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.Orientation">
+            <summary>
+                Gets the orientation of this cuboid.
+            </summary>
+            <value>The orientation.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.Size">
+            <summary>
+                Gets the size of the cuboid.
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalFrontTopLeft">
+            <summary>
+                Gets the front-top-left corner of the box, in local space.
+            </summary>
+            <value>The front-top-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalFrontTopRight">
+            <summary>
+                Gets the front-top-right corner of the box, in local space.
+            </summary>
+            <value>The front-top-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalFrontBottomLeft">
+            <summary>
+                Gets the front-bottom-left corner of the box, in local space.
+            </summary>
+            <value>The front-bottom-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalFrontBottomRight">
+            <summary>
+                Gets the front-bottom-right corner of the box, in local space.
+            </summary>
+            <value>The front-bottom-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalBackTopLeft">
+            <summary>
+                Gets the back-top-left corner of the box, in local space.
+            </summary>
+            <value>The back-top-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalBackTopRight">
+            <summary>
+                Gets the back-top-right corner of the box, in local space.
+            </summary>
+            <value>The back-top-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalBackBottomLeft">
+            <summary>
+                Gets the back-bottom-left corner of the box, in local space.
+            </summary>
+            <value>The back-bottom-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.LocalBackBottomRight">
+            <summary>
+                Gets the back-bottom-right corner of the box, in local space.
+            </summary>
+            <value>The back-bottom-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.FrontTopLeft">
+            <summary>
+                Gets the front-top-left corner of the box, in world space.
+            </summary>
+            <value>The front-top-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.FrontTopRight">
+            <summary>
+                Gets the front-top-right corner of the box, in world space.
+            </summary>
+            <value>The front-top-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.FrontBottomLeft">
+            <summary>
+                Gets the front-bottom-left corner of the box, in world space.
+            </summary>
+            <value>The front-bottom-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.FrontBottomRight">
+            <summary>
+                Gets the front-bottom-right corner of the box, in world space.
+            </summary>
+            <value>The front-bottom-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.BackTopLeft">
+            <summary>
+                Gets the back-bottom-left corner of the box, in world space.
+            </summary>
+            <value>The back-bottom-left corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.BackTopRight">
+            <summary>
+                Gets the back-bottom-right corner of the box, in world space.
+            </summary>
+            <value>The back-bottom-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.BackBottomLeft">
+            <summary>
+                Gets the back-bottom-right corner of the box, in world space.
+            </summary>
+            <value>The back-bottom-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.BackBottomRight">
+            <summary>
+                Gets the back-bottom-right corner of the box, in world space.
+            </summary>
+            <value>The back-bottom-right corner.</value>
+        </member>
+        <member name="P:X10D.Drawing.Cuboid.Volume">
+            <summary>
+                Gets the volume of this cuboid.
+            </summary>
+            <value>The volume.</value>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.op_Equality(X10D.Drawing.Cuboid,X10D.Drawing.Cuboid)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Cuboid" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.op_Inequality(X10D.Drawing.Cuboid,X10D.Drawing.Cuboid)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Cuboid" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.Equals(X10D.Drawing.Cuboid)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Cuboid.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Drawing.Ellipse">
+            <summary>
+                Represents an ellipse that is composed of a 32-bit signed integer center point and radius.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Ellipse.Empty">
+            <summary>
+                The empty ellipse. That is, an ellipse whose center point is (0, 0) and whose two radii are 0.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Ellipse.Unit">
+            <summary>
+                The unit ellipse. That is, an ellipse whose center point is (0, 0) and whose two radii are 1.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Ellipse" /> struct.
+            </summary>
+            <param name="centerX">The X coordinate of the center point.</param>
+            <param name="centerY">The Y coordinate of the center point.</param>
+            <param name="horizontalRadius">The horizontal radius of the ellipse.</param>
+            <param name="verticalRadius">The vertical radius of the ellipse.</param>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.#ctor(System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Ellipse" /> struct.
+            </summary>
+            <param name="center">The center point of the ellipse.</param>
+            <param name="radius">The radius of the ellipse.</param>
+        </member>
+        <member name="P:X10D.Drawing.Ellipse.Area">
+            <summary>
+                Gets the area of the ellipse.
+            </summary>
+            <value>The area of the ellipse, calculated as <c>πab</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.Ellipse.Center">
+            <summary>
+                Gets the center point of the ellipse.
+            </summary>
+            <value>The center point.</value>
+        </member>
+        <member name="P:X10D.Drawing.Ellipse.ApproximateCircumference">
+            <summary>
+                Gets the approximate circumference of the ellipse.
+            </summary>
+            <value>
+                The approximate circumference of the ellipse, calculated as
+                <c>π(a+b)(3([(a-b)²]/(a+b)²(sqrt(-3(((a-b)²)/(a+b)²)+4+10))+1)</c>.
+            </value>
+        </member>
+        <member name="P:X10D.Drawing.Ellipse.HorizontalRadius">
+            <summary>
+                Gets the horizontal radius of the ellipse.
+            </summary>
+            <value>The horizontal radius.</value>
+        </member>
+        <member name="P:X10D.Drawing.Ellipse.Radius">
+            <summary>
+                Gets the radius of the ellipse.
+            </summary>
+            <value>The radius.</value>
+        </member>
+        <member name="P:X10D.Drawing.Ellipse.VerticalRadius">
+            <summary>
+                Gets the vertical radius of the ellipse.
+            </summary>
+            <value>The vertical radius.</value>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.op_Equality(X10D.Drawing.Ellipse@,X10D.Drawing.Ellipse@)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Ellipse" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.op_Inequality(X10D.Drawing.Ellipse@,X10D.Drawing.Ellipse@)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Ellipse" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.op_Implicit(X10D.Drawing.Circle@)~X10D.Drawing.Ellipse">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Circle" /> to an <see cref="T:X10D.Drawing.Ellipse" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.Equals(X10D.Drawing.Ellipse)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Drawing.EllipseF">
+            <summary>
+                Represents an ellipse that is composed of a single-precision floating-point center point and radius.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.EllipseF.Empty">
+            <summary>
+                The empty ellipse. That is, an ellipse whose center point is (0, 0) and whose two radii are 0.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.EllipseF.Unit">
+            <summary>
+                The unit ellipse. That is, an ellipse whose center point is (0, 0) and whose two radii are 1.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.EllipseF" /> struct.
+            </summary>
+            <param name="centerX">The X coordinate of the center point.</param>
+            <param name="centerY">The Y coordinate of the center point.</param>
+            <param name="horizontalRadius">The horizontal radius of the ellipse.</param>
+            <param name="verticalRadius">The vertical radius of the ellipse.</param>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.#ctor(System.Drawing.PointF,System.Drawing.SizeF)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Ellipse" /> struct.
+            </summary>
+            <param name="center">The center point of the ellipse.</param>
+            <param name="radius">The radius of the ellipse.</param>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.#ctor(System.Drawing.PointF,System.Numerics.Vector2)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Ellipse" /> struct.
+            </summary>
+            <param name="center">The center point of the ellipse.</param>
+            <param name="radius">The radius of the ellipse.</param>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.#ctor(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Ellipse" /> struct.
+            </summary>
+            <param name="center">The center point of the ellipse.</param>
+            <param name="radius">The radius of the ellipse.</param>
+        </member>
+        <member name="P:X10D.Drawing.EllipseF.Area">
+            <summary>
+                Gets the area of the ellipse.
+            </summary>
+            <value>The area of the ellipse, calculated as <c>πab</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.EllipseF.Center">
+            <summary>
+                Gets the center point of the ellipse.
+            </summary>
+            <value>The center point.</value>
+        </member>
+        <member name="P:X10D.Drawing.EllipseF.ApproximateCircumference">
+            <summary>
+                Gets the approximate circumference of the ellipse.
+            </summary>
+            <value>
+                The approximate circumference of the ellipse, calculated as
+                <c>π(a+b)(3([(a-b)²]/(a+b)²(sqrt(-3(((a-b)²)/(a+b)²)+4+10))+1)</c>.
+            </value>
+        </member>
+        <member name="P:X10D.Drawing.EllipseF.HorizontalRadius">
+            <summary>
+                Gets the horizontal radius of the ellipse.
+            </summary>
+            <value>The horizontal radius.</value>
+        </member>
+        <member name="P:X10D.Drawing.EllipseF.Radius">
+            <summary>
+                Gets the radius of the ellipse.
+            </summary>
+            <value>The radius.</value>
+        </member>
+        <member name="P:X10D.Drawing.EllipseF.VerticalRadius">
+            <summary>
+                Gets the vertical radius of the ellipse.
+            </summary>
+            <value>The vertical radius.</value>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.op_Equality(X10D.Drawing.EllipseF@,X10D.Drawing.EllipseF@)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.EllipseF" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.op_Inequality(X10D.Drawing.EllipseF@,X10D.Drawing.EllipseF@)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.EllipseF" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.op_Implicit(X10D.Drawing.Circle@)~X10D.Drawing.EllipseF">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Circle" /> to an <see cref="T:X10D.Drawing.EllipseF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.op_Implicit(X10D.Drawing.CircleF@)~X10D.Drawing.EllipseF">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.CircleF" /> to an <see cref="T:X10D.Drawing.EllipseF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.op_Implicit(X10D.Drawing.Ellipse@)~X10D.Drawing.EllipseF">
+            <summary>
+                Implicitly converts an <see cref="T:X10D.Drawing.Ellipse" /> to an <see cref="T:X10D.Drawing.EllipseF" />.
+            </summary>
+            <param name="ellipse">The ellipse to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.op_Explicit(X10D.Drawing.EllipseF@)~X10D.Drawing.Ellipse">
+            <summary>
+                Explicitly converts an <see cref="T:X10D.Drawing.EllipseF" /> to an <see cref="T:X10D.Drawing.Ellipse" />.
+            </summary>
+            <param name="ellipse">The ellipse to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.Equals(X10D.Drawing.EllipseF)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.GetHashCode">
+            <inheritdoc />
+        </member>
         <member name="T:X10D.Drawing.Line">
             <summary>
-                Represents a line that is composed of 32-bit signed integer X and Y coordinates.
+                Represents a line in 2D space that is composed of 32-bit signed integer X and Y coordinates.
             </summary>
         </member>
         <member name="F:X10D.Drawing.Line.Empty">
@@ -1425,7 +1942,18 @@
             </summary>
             <value>The start point.</value>
         </member>
-        <member name="M:X10D.Drawing.Line.op_Equality(X10D.Drawing.Line,X10D.Drawing.Line)">
+        <member name="M:X10D.Drawing.Line.op_Equality(X10D.Drawing.Line@,X10D.Drawing.Line@)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_Inequality(X10D.Drawing.Line@,X10D.Drawing.Line@)">
             <summary>
                 Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line" /> are not equal.
             </summary>
@@ -1436,18 +1964,7 @@
                 <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.Line.op_Inequality(X10D.Drawing.Line,X10D.Drawing.Line)">
-            <summary>
-                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line" /> are not equal.
-            </summary>
-            <param name="left">The first instance.</param>
-            <param name="right">The second instance.</param>
-            <returns>
-                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
-                <see langword="false" />.
-            </returns>
-        </member>
-        <member name="M:X10D.Drawing.Line.op_LessThan(X10D.Drawing.Line,X10D.Drawing.Line)">
+        <member name="M:X10D.Drawing.Line.op_LessThan(X10D.Drawing.Line@,X10D.Drawing.Line@)">
             <summary>
                 Returns a value indicating whether the length of one line is less than that of another.
             </summary>
@@ -1458,7 +1975,7 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.Line.op_GreaterThan(X10D.Drawing.Line,X10D.Drawing.Line)">
+        <member name="M:X10D.Drawing.Line.op_GreaterThan(X10D.Drawing.Line@,X10D.Drawing.Line@)">
             <summary>
                 Returns a value indicating whether the length of one line is greater than that of another.
             </summary>
@@ -1469,7 +1986,7 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.Line.op_LessThanOrEqual(X10D.Drawing.Line,X10D.Drawing.Line)">
+        <member name="M:X10D.Drawing.Line.op_LessThanOrEqual(X10D.Drawing.Line@,X10D.Drawing.Line@)">
             <summary>
                 Returns a value indicating whether the length of one line is less than or equal to that of another.
             </summary>
@@ -1480,7 +1997,7 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.Line.op_GreaterThanOrEqual(X10D.Drawing.Line,X10D.Drawing.Line)">
+        <member name="M:X10D.Drawing.Line.op_GreaterThanOrEqual(X10D.Drawing.Line@,X10D.Drawing.Line@)">
             <summary>
                 Returns a value indicating whether the length of one line is greater than or equal to that of another.
             </summary>
@@ -1588,9 +2105,261 @@
         <member name="M:X10D.Drawing.Line.GetHashCode">
             <inheritdoc />
         </member>
+        <member name="T:X10D.Drawing.Line3D">
+            <summary>
+                Represents a line in 3D space that is composed of 32-bit signed integer X, Y and Z coordinates.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line3D.Empty">
+            <summary>
+                The empty line. That is, a line whose start and end points are at (0, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line3D.One">
+            <summary>
+                The line whose start point is at (0, 0, 0) and end point is at (1, 1, 1).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line3D.UnitX">
+            <summary>
+                The line whose start point is at (0, 0, 0) and end point is at (1, 0, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line3D.UnitY">
+            <summary>
+                The line whose start point is at (0, 0, 0) and end point is at (0, 1, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line3D.UnitZ">
+            <summary>
+                The line whose start point is at (0, 0, 0) and end point is at (0, 0, 1).
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.#ctor(System.Numerics.Vector3@,System.Numerics.Vector3@)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Line3D" /> struct by taking the start and end points.
+            </summary>
+            <param name="start">The start point.</param>
+            <param name="end">The end point.</param>
+        </member>
+        <member name="P:X10D.Drawing.Line3D.End">
+            <summary>
+                Gets the end point of the line.
+            </summary>
+            <value>The end point.</value>
+        </member>
+        <member name="P:X10D.Drawing.Line3D.Length">
+            <summary>
+                Gets the length of this line.
+            </summary>
+            <value>The length.</value>
+        </member>
+        <member name="P:X10D.Drawing.Line3D.LengthSquared">
+            <summary>
+                Gets the length of this line, squared.
+            </summary>
+            <value>The squared length.</value>
+        </member>
+        <member name="P:X10D.Drawing.Line3D.Start">
+            <summary>
+                Gets the start point of the line.
+            </summary>
+            <value>The start point.</value>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_Equality(X10D.Drawing.Line3D,X10D.Drawing.Line3D)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line3D" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_Inequality(X10D.Drawing.Line3D,X10D.Drawing.Line3D)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line3D" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_LessThan(X10D.Drawing.Line3D@,X10D.Drawing.Line3D@)">
+            <summary>
+                Returns a value indicating whether the length of one line is less than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line3D.Length" /> of <paramref name="left" /> is less than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_GreaterThan(X10D.Drawing.Line3D@,X10D.Drawing.Line3D@)">
+            <summary>
+                Returns a value indicating whether the length of one line is greater than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line3D.Length" /> of <paramref name="left" /> is greater than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_LessThanOrEqual(X10D.Drawing.Line3D@,X10D.Drawing.Line3D@)">
+            <summary>
+                Returns a value indicating whether the length of one line is less than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line3D.Length" /> of <paramref name="left" /> is less than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_GreaterThanOrEqual(X10D.Drawing.Line3D@,X10D.Drawing.Line3D@)">
+            <summary>
+                Returns a value indicating whether the length of one line is greater than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line3D.Length" /> of <paramref name="left" /> is greater than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.Line">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.Line" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.LineF">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_Implicit(X10D.Drawing.Line@)~X10D.Drawing.Line3D">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.op_Implicit(X10D.Drawing.LineF@)~X10D.Drawing.Line3D">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.LineF" /> to a <see cref="T:X10D.Drawing.Line3D" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.CompareTo(System.Object)">
+             <summary>
+                 Compares this instance to another object.
+             </summary>
+             <param name="obj">The object with with which to compare</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="obj"/>.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line3D.Length" /> of this instance is less than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="obj" />, or the <see cref="P:X10D.Drawing.Line3D.Length" /> of both this instance
+                             and <paramref name="obj" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line3D.Length" /> of this instance is greater than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>
+                 Comparison internally measures the <see cref="P:X10D.Drawing.Line3D.LengthSquared" /> property to avoid calls to <see cref="M:System.MathF.Sqrt(System.Single)" />.
+             <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not an instance of <see cref="T:X10D.Drawing.Line3D" />.</exception>
+             </remarks>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.CompareTo(X10D.Drawing.Line3D)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Line3D" />.
+             </summary>
+             <param name="other"></param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="other" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line3D.Length" /> of this instance is less than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="other" />, or the <see cref="P:X10D.Drawing.Line3D.Length" /> of both this instance
+                             and <paramref name="other" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line3D.Length" /> of this instance is greater than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>
+                 Comparison internally measures the <see cref="P:X10D.Drawing.Line3D.LengthSquared" /> property to avoid calls to <see cref="M:System.MathF.Sqrt(System.Single)" />.
+             </remarks>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Line3D.Equals(X10D.Drawing.Line3D)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.GetHashCode">
+            <inheritdoc />
+        </member>
         <member name="T:X10D.Drawing.LineF">
             <summary>
-                Represents a line that is composed of single-precision floating-point X and Y coordinates.
+                Represents a line in 2D space that is composed of single-precision floating-point X and Y coordinates.
             </summary>
         </member>
         <member name="F:X10D.Drawing.LineF.Empty">
@@ -1651,7 +2420,18 @@
             </summary>
             <value>The start point.</value>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_Equality(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+        <member name="M:X10D.Drawing.LineF.op_Equality(X10D.Drawing.LineF@,X10D.Drawing.LineF@)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.LineF" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_Inequality(X10D.Drawing.LineF@,X10D.Drawing.LineF@)">
             <summary>
                 Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.LineF" /> are not equal.
             </summary>
@@ -1662,18 +2442,7 @@
                 <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_Inequality(X10D.Drawing.LineF,X10D.Drawing.LineF)">
-            <summary>
-                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.LineF" /> are not equal.
-            </summary>
-            <param name="left">The first instance.</param>
-            <param name="right">The second instance.</param>
-            <returns>
-                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
-                <see langword="false" />.
-            </returns>
-        </member>
-        <member name="M:X10D.Drawing.LineF.op_LessThan(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+        <member name="M:X10D.Drawing.LineF.op_LessThan(X10D.Drawing.LineF@,X10D.Drawing.LineF@)">
             <summary>
                 Returns a value indicating whether the length of one line is less than that of another.
             </summary>
@@ -1684,7 +2453,7 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_GreaterThan(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+        <member name="M:X10D.Drawing.LineF.op_GreaterThan(X10D.Drawing.LineF@,X10D.Drawing.LineF@)">
             <summary>
                 Returns a value indicating whether the length of one line is greater than that of another.
             </summary>
@@ -1695,7 +2464,7 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_LessThanOrEqual(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+        <member name="M:X10D.Drawing.LineF.op_LessThanOrEqual(X10D.Drawing.LineF@,X10D.Drawing.LineF@)">
             <summary>
                 Returns a value indicating whether the length of one line is less than or equal to that of another.
             </summary>
@@ -1706,7 +2475,7 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_GreaterThanOrEqual(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+        <member name="M:X10D.Drawing.LineF.op_GreaterThanOrEqual(X10D.Drawing.LineF@,X10D.Drawing.LineF@)">
             <summary>
                 Returns a value indicating whether the length of one line is greater than or equal to that of another.
             </summary>
@@ -1717,19 +2486,19 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_Explicit(X10D.Drawing.LineF)~X10D.Drawing.Line">
+        <member name="M:X10D.Drawing.LineF.op_Explicit(X10D.Drawing.LineF@)~X10D.Drawing.Line">
             <summary>
                 Explicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
             </summary>
             <param name="line">The line to convert.</param>
             <returns>The converted line.</returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_Implicit(X10D.Drawing.Line)~X10D.Drawing.LineF">
+        <member name="M:X10D.Drawing.LineF.op_Implicit(X10D.Drawing.Line@)~X10D.Drawing.LineF">
             <summary>
                 Implicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
             </summary>
             <param name="line">The line to convert.</param>
-            <returns>The line polygon.</returns>
+            <returns>The converted line.</returns>
         </member>
         <member name="M:X10D.Drawing.LineF.CompareTo(System.Object)">
              <summary>
@@ -1866,26 +2635,39 @@
             <param name="point">The point to convert.</param>
             <returns>The resulting <see cref="T:System.Drawing.SizeF" />.</returns>
         </member>
+        <member name="M:X10D.Drawing.PointFExtensions.ToVector2(System.Drawing.PointF)">
+            <summary>
+                Converts the current <see cref="T:System.Drawing.PointF" /> to a <see cref="T:System.Numerics.Vector2" />.
+            </summary>
+            <param name="point">The point to convert.</param>
+            <returns>The resulting <see cref="T:System.Numerics.Vector2" />.</returns>
+        </member>
         <member name="T:X10D.Drawing.Polygon">
             <summary>
-                Represents a 2D polygon composed of 32-bit signed integer points.
+                Represents a 2D polygon composed of 32-bit signed integer vertices.
             </summary>
         </member>
-        <member name="F:X10D.Drawing.Polygon.Empty">
+        <member name="M:X10D.Drawing.Polygon.#ctor">
             <summary>
-                The empty polygon. That is, a polygon with no points.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> class.
             </summary>
         </member>
         <member name="M:X10D.Drawing.Polygon.#ctor(X10D.Drawing.Polygon)">
             <summary>
-                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> struct by copying the specified polygon.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> class by copying the specified polygon.
             </summary>
         </member>
         <member name="M:X10D.Drawing.Polygon.#ctor(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
             <summary>
-                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> struct by constructing it from the specified points.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> class by constructing it from the specified vertices.
             </summary>
-            <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
+            <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+        </member>
+        <member name="P:X10D.Drawing.Polygon.Empty">
+            <summary>
+                Gets an empty polygon. That is, a polygon with no vertices.
+            </summary>
+            <value>An empty polygon.</value>
         </member>
         <member name="P:X10D.Drawing.Polygon.IsConvex">
             <summary>
@@ -1893,17 +2675,19 @@
             </summary>
             <value><see langword="true" /> if this polygon is convex; otherwise, <see langword="false" />.</value>
         </member>
-        <member name="P:X10D.Drawing.Polygon.PointCount">
+        <member name="P:X10D.Drawing.Polygon.VertexCount">
             <summary>
-                Gets the number of points in this polygon.
+                Gets the number of vertices in this polygon.
             </summary>
-            <value>An <see cref="T:System.Int32" /> value, representing the number of points in this polygon.</value>
+            <value>An <see cref="T:System.Int32" /> value, representing the number of vertices in this polygon.</value>
         </member>
-        <member name="P:X10D.Drawing.Polygon.Points">
+        <member name="P:X10D.Drawing.Polygon.Vertices">
             <summary>
-                Gets a read-only view of the points in this polygon.
+                Gets a read-only view of the vertices in this polygon.
             </summary>
-            <value>A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Drawing.Point" /> values, representing the points of this polygon.</value>
+            <value>
+                A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Drawing.Point" /> values, representing the vertices of this polygon.
+            </value>
         </member>
         <member name="M:X10D.Drawing.Polygon.op_Equality(X10D.Drawing.Polygon,X10D.Drawing.Polygon)">
             <summary>
@@ -1927,22 +2711,22 @@
                 <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.Polygon.AddPoint(System.Drawing.Point)">
+        <member name="M:X10D.Drawing.Polygon.AddVertex(System.Drawing.Point)">
             <summary>
-                Adds a point to this polygon.
+                Adds a vertex to this polygon.
             </summary>
-            <param name="point">The point to add.</param>
+            <param name="vertex">The vertex to add.</param>
         </member>
-        <member name="M:X10D.Drawing.Polygon.AddPoints(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
+        <member name="M:X10D.Drawing.Polygon.AddVertices(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
             <summary>
-                Adds a collection of points to this polygon.
+                Adds a collection of vertices to this polygon.
             </summary>
-            <param name="points">An enumerable collection of points to add.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+            <param name="vertices">An enumerable collection of vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
         </member>
-        <member name="M:X10D.Drawing.Polygon.ClearPoints">
+        <member name="M:X10D.Drawing.Polygon.ClearVertices">
             <summary>
-                Clears all points from this polygon.
+                Clears all vertices from this polygon.
             </summary>
         </member>
         <member name="M:X10D.Drawing.Polygon.Equals(System.Object)">
@@ -1963,31 +2747,37 @@
         </member>
         <member name="T:X10D.Drawing.PolygonF">
             <summary>
-                Represents a 2D polygon composed of single-precision floating-point points.
+                Represents a 2D polygon composed of single-precision floating-vertex vertices.
             </summary>
         </member>
-        <member name="F:X10D.Drawing.PolygonF.Empty">
+        <member name="M:X10D.Drawing.PolygonF.#ctor">
             <summary>
-                The empty polygon. That is, a polygon with no points.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> class.
             </summary>
         </member>
         <member name="M:X10D.Drawing.PolygonF.#ctor(X10D.Drawing.PolygonF)">
             <summary>
-                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> struct by copying the specified polygon.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> class by copying the specified polygon.
             </summary>
         </member>
         <member name="M:X10D.Drawing.PolygonF.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
             <summary>
-                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> struct by constructing it from the specified points.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> class by constructing it from the specified vertices.
             </summary>
-            <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
+            <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
         </member>
         <member name="M:X10D.Drawing.PolygonF.#ctor(System.Collections.Generic.IEnumerable{System.Drawing.PointF})">
             <summary>
-                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> struct by constructing it from the specified points.
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> class by constructing it from the specified vertices.
             </summary>
-            <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+            <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="P:X10D.Drawing.PolygonF.Empty">
+            <summary>
+                Gets an empty polygon. That is, a polygon with no vertices.
+            </summary>
+            <value>An empty polygon.</value>
         </member>
         <member name="P:X10D.Drawing.PolygonF.IsConvex">
             <summary>
@@ -1995,17 +2785,19 @@
             </summary>
             <value><see langword="true" /> if this polygon is convex; otherwise, <see langword="false" />.</value>
         </member>
-        <member name="P:X10D.Drawing.PolygonF.PointCount">
+        <member name="P:X10D.Drawing.PolygonF.VertexCount">
             <summary>
-                Gets the number of points in this polygon.
+                Gets the number of vertices in this polygon.
             </summary>
-            <value>An <see cref="T:System.Int32" /> value, representing the number of points in this polygon.</value>
+            <value>An <see cref="T:System.Int32" /> value, representing the number of vertices in this polygon.</value>
         </member>
-        <member name="P:X10D.Drawing.PolygonF.Points">
+        <member name="P:X10D.Drawing.PolygonF.Vertices">
             <summary>
-                Gets a read-only view of the points in this polygon.
+                Gets a read-only view of the vertices in this polygon.
             </summary>
-            <value>A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Drawing.PointF" /> values, representing the points of this polygon.</value>
+            <value>
+                A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Drawing.PointF" /> values, representing the vertices of this polygon.
+            </value>
         </member>
         <member name="M:X10D.Drawing.PolygonF.op_Equality(X10D.Drawing.PolygonF,X10D.Drawing.PolygonF)">
             <summary>
@@ -2043,35 +2835,35 @@
             <param name="polygon">The polygon to convert.</param>
             <returns>The converted polygon.</returns>
         </member>
-        <member name="M:X10D.Drawing.PolygonF.AddPoint(System.Drawing.PointF)">
+        <member name="M:X10D.Drawing.PolygonF.AddVertex(System.Drawing.PointF)">
             <summary>
-                Adds a point to this polygon.
+                Adds a vertex to this polygon.
             </summary>
-            <param name="point">The point to add.</param>
+            <param name="vertex">The vertex to add.</param>
         </member>
-        <member name="M:X10D.Drawing.PolygonF.AddPoint(System.Numerics.Vector2)">
+        <member name="M:X10D.Drawing.PolygonF.AddVertex(System.Numerics.Vector2)">
             <summary>
-                Adds a point to this polygon.
+                Adds a vertex to this polygon.
             </summary>
-            <param name="point">The point to add.</param>
+            <param name="vertex">The vertex to add.</param>
         </member>
-        <member name="M:X10D.Drawing.PolygonF.AddPoints(System.Collections.Generic.IEnumerable{System.Drawing.PointF})">
+        <member name="M:X10D.Drawing.PolygonF.AddVertices(System.Collections.Generic.IEnumerable{System.Drawing.PointF})">
             <summary>
-                Adds a collection of points to this polygon.
+                Adds a collection of vertices to this polygon.
             </summary>
-            <param name="points">An enumerable collection of points to add.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+            <param name="vertices">An enumerable collection of vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
         </member>
-        <member name="M:X10D.Drawing.PolygonF.AddPoints(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+        <member name="M:X10D.Drawing.PolygonF.AddVertices(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
             <summary>
-                Adds a collection of points to this polygon.
+                Adds a collection of vertices to this polygon.
             </summary>
-            <param name="points">An enumerable collection of points to add.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+            <param name="vertices">An enumerable collection of vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
         </member>
-        <member name="M:X10D.Drawing.PolygonF.ClearPoints">
+        <member name="M:X10D.Drawing.PolygonF.ClearVertices">
             <summary>
-                Clears all points from this polygon.
+                Clears all vertices from this polygon.
             </summary>
         </member>
         <member name="M:X10D.Drawing.PolygonF.Equals(System.Object)">
@@ -2088,6 +2880,123 @@
             </returns>
         </member>
         <member name="M:X10D.Drawing.PolygonF.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Drawing.Polyhedron">
+            <summary>
+                Represents a 3D polyhedron composed of single-precision floating-point points.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polyhedron" /> class.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.#ctor(X10D.Drawing.Polyhedron)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polyhedron" /> class by copying the specified polyhedron.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polyhedron" /> class by constructing it from the specified vertices.
+            </summary>
+            <param name="vertices">An enumerable collection of vertices from which the polyhedron should be constructed.</param>
+        </member>
+        <member name="P:X10D.Drawing.Polyhedron.Empty">
+            <summary>
+                Gets an empty polyhedron. That is, a polygon with no vertices.
+            </summary>
+            <value>An empty polyhedron.</value>
+        </member>
+        <member name="P:X10D.Drawing.Polyhedron.IsConvex">
+            <summary>
+                Returns a value indicating whether this polyhedron is convex.
+            </summary>
+            <value><see langword="true" /> if this polyhedron is convex; otherwise, <see langword="false" />.</value>
+        </member>
+        <member name="P:X10D.Drawing.Polyhedron.VertexCount">
+            <summary>
+                Gets the number of vertices in this polyhedron.
+            </summary>
+            <value>An <see cref="T:System.Int32" /> value, representing the number of vertices in this polyhedron.</value>
+        </member>
+        <member name="P:X10D.Drawing.Polyhedron.Vertices">
+            <summary>
+                Gets a read-only view of the vertices in this polyhedron.
+            </summary>
+            <value>
+                A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Numerics.Vector3" /> values, representing the vertices of this polyhedron.
+            </value>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.op_Equality(X10D.Drawing.Polyhedron,X10D.Drawing.Polyhedron)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Polyhedron" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.op_Inequality(X10D.Drawing.Polyhedron,X10D.Drawing.Polyhedron)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Polyhedron" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.op_Implicit(X10D.Drawing.Polygon)~X10D.Drawing.Polyhedron">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.Polyhedron" />.
+            </summary>
+            <param name="polygon">The polyhedron to convert.</param>
+            <returns>The converted polyhedron.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.op_Implicit(X10D.Drawing.PolygonF)~X10D.Drawing.Polyhedron">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.PolygonF" /> to a <see cref="T:X10D.Drawing.Polyhedron" />.
+            </summary>
+            <param name="polygon">The polyhedron to convert.</param>
+            <returns>The converted polyhedron.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.AddVertex(System.Numerics.Vector3)">
+            <summary>
+                Adds a vertex to this polyhedron.
+            </summary>
+            <param name="vertex">The vertex to add.</param>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.AddVertices(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
+            <summary>
+                Adds a collection of vertices to this polyhedron.
+            </summary>
+            <param name="vertices">An enumerable collection of vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.ClearVertices">
+            <summary>
+                Clears all vertices from this polyhedron.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.Equals(X10D.Drawing.Polyhedron)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.GetHashCode">
             <inheritdoc />
         </member>
         <member name="T:X10D.Drawing.RandomExtensions">
@@ -2136,6 +3045,227 @@
             </summary>
             <param name="size">The size to convert.</param>
             <returns>The resulting <see cref="T:System.Numerics.Vector2" />.</returns>
+        </member>
+        <member name="T:X10D.Drawing.Sphere">
+            <summary>
+                Represents a sphere in 3D space, which uses single-precision floating-point numbers for its coordinates.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Sphere.Empty">
+            <summary>
+                The empty sphere. That is, a sphere with a radius of zero.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Sphere.Unit">
+            <summary>
+                The unit sphere. That is, a sphere with a radius of 1.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Sphere" /> struct.
+            </summary>
+            <param name="centerX">The X coordinate of the center point.</param>
+            <param name="centerY">The Y coordinate of the center point.</param>
+            <param name="centerZ">The Z coordinate of the center point.</param>
+            <param name="radius">The radius.</param>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.#ctor(System.Numerics.Vector3,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Sphere" /> struct.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="radius">The radius.</param>
+        </member>
+        <member name="P:X10D.Drawing.Sphere.Center">
+            <summary>
+                Gets the center-point of the sphere.
+            </summary>
+            <value>The center point.</value>
+        </member>
+        <member name="P:X10D.Drawing.Sphere.Circumference">
+            <summary>
+                Gets the circumference of the sphere.
+            </summary>
+            <value>The circumference of the sphere, calculated as <c>2πr</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.Sphere.Diameter">
+            <summary>
+                Gets the diameter of the sphere.
+            </summary>
+            <value>The diameter.</value>
+        </member>
+        <member name="P:X10D.Drawing.Sphere.Radius">
+            <summary>
+                Gets the radius of the sphere.
+            </summary>
+            <value>The radius.</value>
+        </member>
+        <member name="P:X10D.Drawing.Sphere.Volume">
+            <summary>
+                Gets the volume of this sphere.
+            </summary>
+            <value>The volume.</value>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.op_Equality(X10D.Drawing.Sphere,X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Sphere" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.op_Inequality(X10D.Drawing.Sphere,X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Sphere" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.op_LessThan(X10D.Drawing.Sphere,X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is less than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Sphere.Radius" /> of <paramref name="left" /> is less than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.op_GreaterThan(X10D.Drawing.Sphere,X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is greater than to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Sphere.Radius" /> of <paramref name="left" /> is greater than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.op_LessThanOrEqual(X10D.Drawing.Sphere,X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is less than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Sphere.Radius" /> of <paramref name="left" /> is less than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.op_GreaterThanOrEqual(X10D.Drawing.Sphere,X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is greater than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Sphere.Radius" /> of <paramref name="left" /> is greater than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.CompareTo(System.Object)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Sphere" />.
+             </summary>
+             <param name="obj">The other object.</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="obj" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Sphere.Radius" /> of this instance is less than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="obj" />, or the <see cref="P:X10D.Drawing.Sphere.Radius" /> of both this instance
+                             and <paramref name="obj" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Sphere.Radius" /> of this instance is greater than that of <paramref name="obj" />, or
+                             <paramref name="obj" /> is <see langword="null" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>Comparison only takes into consideration the <see cref="P:X10D.Drawing.Sphere.Radius" />.</remarks>
+             <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not an instance of <see cref="T:X10D.Drawing.Sphere" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.CompareTo(X10D.Drawing.Sphere)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Sphere" />.
+             </summary>
+             <param name="other">The other sphere.</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="other" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Sphere.Radius" /> of this instance is less than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="other" />, or the <see cref="P:X10D.Drawing.Sphere.Radius" /> of both this instance
+                             and <paramref name="other" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Sphere.Radius" /> of this instance is greater than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>Comparison only takes into consideration the <see cref="P:X10D.Drawing.Sphere.Radius" />.</remarks>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Sphere.Equals(X10D.Drawing.Sphere)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Sphere.GetHashCode">
+            <inheritdoc />
         </member>
         <member name="T:X10D.Endianness">
             <summary>
@@ -5443,6 +6573,19 @@
                 The smallest power of two that's greater than or equal to <paramref name="value" />, or 0 if <paramref name="value" />
                 is 0 or the result overflows.
             </returns>
+        </member>
+        <member name="T:X10D.Numerics.QuaternionExtensions">
+            <summary>
+                Numeric-related extension methods for <see cref="T:System.Numerics.Quaternion" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Numerics.QuaternionExtensions.Multiply(System.Numerics.Quaternion@,System.Numerics.Vector3@)">
+            <summary>
+                Rotates the specified point with the specified rotation.
+            </summary>
+            <param name="rotation">The rotation.</param>
+            <param name="point">The point.</param>
+            <returns>The rotated point.</returns>
         </member>
         <member name="T:X10D.Numerics.RandomExtensions">
             <summary>
