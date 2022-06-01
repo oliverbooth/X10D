@@ -14,7 +14,7 @@ public class UInt16Tests
         Assert.AreEqual(4, value.DigitalRoot());
         Assert.AreEqual(4, (-value).DigitalRoot());
     }
-    
+
     [TestMethod]
     public void FactorialShouldBeCorrect()
     {
@@ -36,7 +36,7 @@ public class UInt16Tests
     {
         const ushort one = 1;
         const ushort two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -46,7 +46,7 @@ public class UInt16Tests
     {
         const ushort one = 1;
         const ushort two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }

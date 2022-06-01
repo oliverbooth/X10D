@@ -10,7 +10,7 @@ public class Int16Tests
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
         bool[] bits = ((short)0b11010100).Unpack();
-        
+
         Assert.AreEqual(16, bits.Length);
 
         Assert.IsFalse(bits[0]);
