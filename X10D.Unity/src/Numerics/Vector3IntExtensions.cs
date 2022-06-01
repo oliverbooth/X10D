@@ -24,6 +24,18 @@ public static class Vector3IntExtensions
     }
 
     /// <summary>
+    ///     Converts the current vector to a <see cref="System.Numerics.Vector3" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The converted vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Numerics.Vector3 ToSystemVector(this Vector3Int vector)
+    {
+        return new System.Numerics.Vector3(vector.x, vector.y, vector.z);
+    }
+
+    /// <summary>
     ///     Returns a vector whose Y and Z components are the same as the specified vector, and whose X component is a new value.
     /// </summary>
     /// <param name="vector">The vector to copy.</param>
