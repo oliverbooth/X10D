@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Drawing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
@@ -18,6 +19,18 @@ public class EllipseTests
     {
         var unitEllipse = Ellipse.Unit;
         Assert.AreEqual(2 * MathF.PI, unitEllipse.ApproximateCircumference, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Constructor_ShouldGiveCorrectEllipse()
+    {
+        var ellipse = new Ellipse(Point.Empty, new Size(2, 1));
+        Assert.AreEqual(new Point(0, 0), ellipse.Center);
+        Assert.AreEqual(new Size(2, 1), ellipse.Radius);
+        
+        ellipse = new Ellipse(0, 0, 2, 1);
+        Assert.AreEqual(new Point(0, 0), ellipse.Center);
+        Assert.AreEqual(new Size(2, 1), ellipse.Radius);
     }
 
     [TestMethod]
