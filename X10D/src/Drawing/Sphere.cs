@@ -53,7 +53,16 @@ public readonly struct Sphere : IEquatable<Sphere>, IComparable<Sphere>, ICompar
     public float Radius { get; }
 
     /// <summary>
-    ///     Returns a value indicating whether two instances of <see cref="Cuboid" /> are equal.
+    ///     Gets the volume of this sphere.
+    /// </summary>
+    /// <value>The volume.</value>
+    public float Volume
+    {
+        get => (4f / 3f) * MathF.PI * Radius * Radius * Radius;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether two instances of <see cref="Sphere" /> are equal.
     /// </summary>
     /// <param name="left">The first instance.</param>
     /// <param name="right">The second instance.</param>

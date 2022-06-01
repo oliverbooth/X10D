@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 using X10D.Numerics;
 
 namespace X10D.Drawing;
@@ -255,6 +255,19 @@ public readonly struct Cuboid : IEquatable<Cuboid>
     public Vector3 BackBottomRight
     {
         get => LocalBackBottomRight + Center;
+    }
+
+    /// <summary>
+    ///     Gets the volume of this cuboid.
+    /// </summary>
+    /// <value>The volume.</value>
+    public float Volume
+    {
+        get
+        {
+            Vector3 size = Size;
+            return size.X * size.Y * size.Z;
+        }
     }
 
     /// <summary>
