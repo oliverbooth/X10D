@@ -135,7 +135,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(EllipseF left, EllipseF right)
+    public static bool operator ==(in EllipseF left, in EllipseF right)
     {
         return left.Equals(right);
     }
@@ -149,7 +149,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(EllipseF left, EllipseF right)
+    public static bool operator !=(in EllipseF left, in EllipseF right)
     {
         return !left.Equals(right);
     }
@@ -159,7 +159,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// </summary>
     /// <param name="circle">The circle to convert.</param>
     /// <returns>The converted ellipse.</returns>
-    public static implicit operator EllipseF(Circle circle)
+    public static implicit operator EllipseF(in Circle circle)
     {
         return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
     }
@@ -169,7 +169,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// </summary>
     /// <param name="circle">The circle to convert.</param>
     /// <returns>The converted ellipse.</returns>
-    public static implicit operator EllipseF(CircleF circle)
+    public static implicit operator EllipseF(in CircleF circle)
     {
         return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
     }
@@ -179,7 +179,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// </summary>
     /// <param name="ellipse">The ellipse to convert.</param>
     /// <returns>The converted ellipse.</returns>
-    public static implicit operator EllipseF(Ellipse ellipse)
+    public static implicit operator EllipseF(in Ellipse ellipse)
     {
         return new EllipseF(ellipse.Center, ellipse.Radius);
     }
@@ -189,7 +189,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// </summary>
     /// <param name="ellipse">The ellipse to convert.</param>
     /// <returns>The converted ellipse.</returns>
-    public static explicit operator Ellipse(EllipseF ellipse)
+    public static explicit operator Ellipse(in EllipseF ellipse)
     {
         PointF center = ellipse.Center;
         return new Ellipse((int)center.X, (int)center.Y, (int)ellipse.HorizontalRadius, (int)ellipse.VerticalRadius);

@@ -107,7 +107,7 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(Ellipse left, Ellipse right)
+    public static bool operator ==(in Ellipse left, in Ellipse right)
     {
         return left.Equals(right);
     }
@@ -121,7 +121,7 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(Ellipse left, Ellipse right)
+    public static bool operator !=(in Ellipse left, in Ellipse right)
     {
         return !left.Equals(right);
     }
@@ -131,7 +131,7 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     /// </summary>
     /// <param name="circle">The circle to convert.</param>
     /// <returns>The converted ellipse.</returns>
-    public static implicit operator Ellipse(Circle circle)
+    public static implicit operator Ellipse(in Circle circle)
     {
         return new Ellipse(circle.Center, new Size(circle.Radius, circle.Radius));
     }

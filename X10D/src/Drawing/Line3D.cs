@@ -38,7 +38,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     /// </summary>
     /// <param name="start">The start point.</param>
     /// <param name="end">The end point.</param>
-    public Line3D(Vector3 start, Vector3 end)
+    public Line3D(in Vector3 start, in Vector3 end)
     {
         End = end;
         Start = start;
@@ -75,12 +75,12 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     public Vector3 Start { get; }
 
     /// <summary>
-    ///     Returns a value indicating whether two instances of <see cref="Line3D" /> are not equal.
+    ///     Returns a value indicating whether two instances of <see cref="Line3D" /> are equal.
     /// </summary>
     /// <param name="left">The first instance.</param>
     /// <param name="right">The second instance.</param>
     /// <returns>
-    ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+    ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
     public static bool operator ==(Line3D left, Line3D right)
@@ -111,7 +111,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is less than that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator <(Line3D left, Line3D right)
+    public static bool operator <(in Line3D left, in Line3D right)
     {
         return left.CompareTo(right) < 0;
     }
@@ -125,7 +125,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is greater than that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator >(Line3D left, Line3D right)
+    public static bool operator >(in Line3D left, in Line3D right)
     {
         return left.CompareTo(right) > 0;
     }
@@ -139,7 +139,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is less than or equal to that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator <=(Line3D left, Line3D right)
+    public static bool operator <=(in Line3D left, in Line3D right)
     {
         return left.CompareTo(right) <= 0;
     }
@@ -153,7 +153,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is greater than or equal to that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator >=(Line3D left, Line3D right)
+    public static bool operator >=(in Line3D left, in Line3D right)
     {
         return left.CompareTo(right) >= 0;
     }
@@ -163,7 +163,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
-    public static explicit operator Line(Line3D line)
+    public static explicit operator Line(in Line3D line)
     {
         Vector3 start = line.Start;
         Vector3 end = line.End;
@@ -175,7 +175,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
-    public static explicit operator LineF(Line3D line)
+    public static explicit operator LineF(in Line3D line)
     {
         Vector3 start = line.Start;
         Vector3 end = line.End;
@@ -187,7 +187,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
-    public static implicit operator Line3D(Line line)
+    public static implicit operator Line3D(in Line line)
     {
         Point start = line.Start;
         Point end = line.End;
@@ -199,7 +199,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
-    public static implicit operator Line3D(LineF line)
+    public static implicit operator Line3D(in LineF line)
     {
         PointF start = line.Start;
         PointF end = line.End;

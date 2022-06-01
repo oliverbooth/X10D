@@ -81,15 +81,15 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     public PointF Start { get; }
 
     /// <summary>
-    ///     Returns a value indicating whether two instances of <see cref="LineF" /> are not equal.
+    ///     Returns a value indicating whether two instances of <see cref="LineF" /> are equal.
     /// </summary>
     /// <param name="left">The first instance.</param>
     /// <param name="right">The second instance.</param>
     /// <returns>
-    ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+    ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(LineF left, LineF right)
+    public static bool operator ==(in LineF left, in LineF right)
     {
         return left.Equals(right);
     }
@@ -103,7 +103,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(LineF left, LineF right)
+    public static bool operator !=(in LineF left, in LineF right)
     {
         return !left.Equals(right);
     }
@@ -117,7 +117,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is less than that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator <(LineF left, LineF right)
+    public static bool operator <(in LineF left, in LineF right)
     {
         return left.CompareTo(right) < 0;
     }
@@ -131,7 +131,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is greater than that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator >(LineF left, LineF right)
+    public static bool operator >(in LineF left, in LineF right)
     {
         return left.CompareTo(right) > 0;
     }
@@ -145,7 +145,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is less than or equal to that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator <=(LineF left, LineF right)
+    public static bool operator <=(in LineF left, in LineF right)
     {
         return left.CompareTo(right) <= 0;
     }
@@ -159,7 +159,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     ///     <see langword="true" /> if the <see cref="Length" /> of <paramref name="left" /> is greater than or equal to that of
     ///     <paramref name="right" />; otherwise, <see langword="false" />.
     /// </returns>
-    public static bool operator >=(LineF left, LineF right)
+    public static bool operator >=(in LineF left, in LineF right)
     {
         return left.CompareTo(right) >= 0;
     }
@@ -169,7 +169,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
-    public static explicit operator Line(LineF line)
+    public static explicit operator Line(in LineF line)
     {
         PointF start = line.Start;
         PointF end = line.End;
@@ -181,7 +181,7 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
-    public static implicit operator LineF(Line line)
+    public static implicit operator LineF(in Line line)
     {
         return new LineF(line.Start, line.End);
     }
