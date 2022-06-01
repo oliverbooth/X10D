@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-using UnityEngine;
+﻿using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Drawing;
-using X10D.Unity.Numerics;
 using Color = UnityEngine.Color;
 
 namespace X10D.Unity.Tests
@@ -25,17 +23,17 @@ namespace X10D.Unity.Tests
             DebugEx.DrawEllipse(ellipse, 25, new Vector2(0.0f, 1.5f), Color.white);
 
             var hexagon = new PolygonF();
-            hexagon.AddPoint(new Vector2(-0.5f, 0.5f));
-            hexagon.AddPoint(new Vector2(-0.25f, 1.0f));
-            hexagon.AddPoint(new Vector2(0.25f, 1.0f));
-            hexagon.AddPoint(new Vector2(0.5f, 0.5f));
-            hexagon.AddPoint(new Vector2(0.25f, 0));
-            hexagon.AddPoint(new Vector2(-0.25f, 0));
+            hexagon.AddVertex(new Vector2(-0.5f, 0.5f));
+            hexagon.AddVertex(new Vector2(-0.25f, 1.0f));
+            hexagon.AddVertex(new Vector2(0.25f, 1.0f));
+            hexagon.AddVertex(new Vector2(0.5f, 0.5f));
+            hexagon.AddVertex(new Vector2(0.25f, 0));
+            hexagon.AddVertex(new Vector2(-0.25f, 0));
             DebugEx.DrawPolygon(hexagon, new Vector2(3.0f, 0.0f), Color.white);
 
             var sphere = new Sphere(System.Numerics.Vector3.Zero, 0.5f);
             DebugEx.DrawSphere(sphere, 25, new Vector2(0.0f, -1.5f), Color.white);
-            
+
             DebugEx.Assert(true);
         }
     }

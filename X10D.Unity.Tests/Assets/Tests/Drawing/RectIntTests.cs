@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using X10D.Core;
 using X10D.Unity.Drawing;
 using Random = System.Random;
 
