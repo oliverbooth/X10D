@@ -12,6 +12,7 @@
 - X10D: Added `Size.ToPoint()`
 - X10D: Added `Size.ToPointF()`
 - X10D: Added `Size.ToVector2()`
+- X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator
 - X10D: Added `Vector2.Deconstruct()`
 - X10D: Added `Vector2.ToPointF()`
 - X10D: Added `Vector2.ToSizeF()`
