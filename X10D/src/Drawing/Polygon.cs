@@ -3,32 +3,39 @@
 namespace X10D.Drawing;
 
 /// <summary>
-///     Represents a 2D polygon composed of 32-bit signed integer points.
+///     Represents a 2D polygon composed of 32-bit signed integer vertices.
 /// </summary>
-public struct Polygon : IEquatable<Polygon>
+public class Polygon : IEquatable<Polygon>
 {
     /// <summary>
-    ///     The empty polygon. That is, a polygon with no points.
+    ///     The empty polygon. That is, a polygon with no vertices.
     /// </summary>
     public static readonly Polygon Empty = new();
 
-    private Point[]? _points;
+    private readonly List<Point> _vertices = new();
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Polygon" /> class.
+    /// </summary>
+    public Polygon()
+    {
+    }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="Polygon" /> struct by copying the specified polygon.
     /// </summary>
     public Polygon(Polygon polygon)
-        : this(polygon._points ?? ArraySegment<Point>.Empty)
+        : this(polygon._vertices)
     {
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="Polygon" /> struct by constructing it from the specified points.
+    ///     Initializes a new instance of the <see cref="Polygon" /> struct by constructing it from the specified vertices.
     /// </summary>
-    /// <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
-    public Polygon(IEnumerable<Point> points)
+    /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+    public Polygon(IEnumerable<Point> vertices)
     {
-        _points = points.ToArray();
+        _vertices = new List<Point>(vertices);
     }
 
     /// <summary>
@@ -39,18 +46,18 @@ public struct Polygon : IEquatable<Polygon>
     {
         get
         {
-            if (_points is null || _points.Length < 3)
+            if (_vertices.Count < 3)
             {
                 return false;
             }
 
             var positive = false;
             var negative = false;
-            Point p0 = _points[0];
+            Point p0 = _vertices[0];
 
-            for (var index = 1; index < _points.Length; index++)
+            for (var index = 1; index < _vertices.Count; index++)
             {
-                Point p1 = _points[index];
+                Point p1 = _vertices[index];
                 int d = (p1.X - p0.X) * (p1.Y + p0.Y);
 
                 if (d > 0)
@@ -75,21 +82,23 @@ public struct Polygon : IEquatable<Polygon>
     }
 
     /// <summary>
-    ///     Gets the number of points in this polygon.
+    ///     Gets the number of vertices in this polygon.
     /// </summary>
-    /// <value>An <see cref="int" /> value, representing the number of points in this polygon.</value>
-    public int PointCount
+    /// <value>An <see cref="int" /> value, representing the number of vertices in this polygon.</value>
+    public int VertexCount
     {
-        get => _points?.Length ?? 0;
+        get => _vertices.Count;
     }
 
     /// <summary>
-    ///     Gets a read-only view of the points in this polygon.
+    ///     Gets a read-only view of the vertices in this polygon.
     /// </summary>
-    /// <value>A <see cref="IReadOnlyList{T}" /> of <see cref="Point" /> values, representing the points of this polygon.</value>
-    public IReadOnlyList<Point> Points
+    /// <value>
+    ///     A <see cref="IReadOnlyList{T}" /> of <see cref="Point" /> values, representing the vertices of this polygon.
+    /// </value>
+    public IReadOnlyList<Point> Vertices
     {
-        get => _points?.ToArray() ?? ArraySegment<Point>.Empty;
+        get => _vertices.AsReadOnly();
     }
 
     /// <summary>
@@ -121,46 +130,42 @@ public struct Polygon : IEquatable<Polygon>
     }
 
     /// <summary>
-    ///     Adds a point to this polygon.
+    ///     Adds a vertex to this polygon.
     /// </summary>
-    /// <param name="point">The point to add.</param>
-    public void AddPoint(Point point)
+    /// <param name="vertex">The vertex to add.</param>
+    public void AddVertex(Point vertex)
     {
-        _points ??= Array.Empty<Point>();
-        Span<Point> span = stackalloc Point[_points.Length + 1];
-        _points.CopyTo(span);
-        span[^1] = point;
-        _points = span.ToArray();
+        _vertices.Add(vertex);
     }
 
     /// <summary>
-    ///     Adds a collection of points to this polygon.
+    ///     Adds a collection of vertices to this polygon.
     /// </summary>
-    /// <param name="points">An enumerable collection of points to add.</param>
-    /// <exception cref="ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
-    public void AddPoints(IEnumerable<Point> points)
+    /// <param name="vertices">An enumerable collection of vertices to add.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
+    public void AddVertices(IEnumerable<Point> vertices)
     {
 #if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(points);
+        ArgumentNullException.ThrowIfNull(vertices);
 #else
-        if (points is null)
+        if (vertices is null)
         {
-            throw new ArgumentNullException(nameof(points));
+            throw new ArgumentNullException(nameof(vertices));
         }
 #endif
 
-        foreach (Point point in points)
+        foreach (Point vertex in vertices)
         {
-            AddPoint(point);
+            AddVertex(vertex);
         }
     }
 
     /// <summary>
-    ///     Clears all points from this polygon.
+    ///     Clears all vertices from this polygon.
     /// </summary>
-    public void ClearPoints()
+    public void ClearVertices()
     {
-        _points = Array.Empty<Point>();
+        _vertices.Clear();
     }
 
     /// <inheritdoc />
@@ -179,19 +184,12 @@ public struct Polygon : IEquatable<Polygon>
     /// </returns>
     public bool Equals(Polygon other)
     {
-        return _points switch
-        {
-            null when other._points is null => true,
-            null => false,
-            not null when other._points is null => false,
-            _ => _points.SequenceEqual(other._points)
-        };
+        return _vertices.SequenceEqual(other._vertices);
     }
 
     /// <inheritdoc />
     public override int GetHashCode()
     {
-        Point[] points = _points ?? Array.Empty<Point>();
-        return points.Aggregate(0, HashCode.Combine);
+        return _vertices.Aggregate(0, HashCode.Combine);
     }
 }

@@ -5,59 +5,66 @@ using X10D.Numerics;
 namespace X10D.Drawing;
 
 /// <summary>
-///     Represents a 2D polygon composed of single-precision floating-point points.
+///     Represents a 2D polygon composed of single-precision floating-vertex vertices.
 /// </summary>
-public struct PolygonF
+public class PolygonF
 {
     /// <summary>
-    ///     The empty polygon. That is, a polygon with no points.
+    ///     The empty polygon. That is, a polygon with no vertices.
     /// </summary>
     public static readonly PolygonF Empty = new();
 
-    private PointF[]? _points;
+    private readonly List<PointF> _vertices = new();
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="PolygonF" /> struct by copying the specified polygon.
+    ///     Initializes a new instance of the <see cref="PolygonF" /> class.
+    /// </summary>
+    public PolygonF()
+    {
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="PolygonF" /> class by copying the specified polygon.
     /// </summary>
     public PolygonF(PolygonF polygon)
-        : this(polygon._points ?? Array.Empty<PointF>())
+        : this(polygon._vertices)
     {
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="PolygonF" /> struct by constructing it from the specified points.
+    ///     Initializes a new instance of the <see cref="PolygonF" /> class by constructing it from the specified vertices.
     /// </summary>
-    /// <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
-    public PolygonF(IEnumerable<Vector2> points)
-        : this(points.Select(p => p.ToPointF()))
+    /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+    public PolygonF(IEnumerable<Vector2> vertices)
+        : this(vertices.Select(p => p.ToPointF()))
     {
 #if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(points);
+        ArgumentNullException.ThrowIfNull(vertices);
 #else
-        if (points is null)
+        if (vertices is null)
         {
-            throw new ArgumentNullException(nameof(points));
+            throw new ArgumentNullException(nameof(vertices));
         }
 #endif
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="PolygonF" /> struct by constructing it from the specified points.
+    ///     Initializes a new instance of the <see cref="PolygonF" /> class by constructing it from the specified vertices.
     /// </summary>
-    /// <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
-    /// <exception cref="ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
-    public PolygonF(IEnumerable<PointF> points)
+    /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
+    public PolygonF(IEnumerable<PointF> vertices)
     {
 #if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(points);
+        ArgumentNullException.ThrowIfNull(vertices);
 #else
-        if (points is null)
+        if (vertices is null)
         {
-            throw new ArgumentNullException(nameof(points));
+            throw new ArgumentNullException(nameof(vertices));
         }
 #endif
 
-        _points = points.ToArray();
+        _vertices = new List<PointF>(vertices);
     }
 
     /// <summary>
@@ -68,18 +75,18 @@ public struct PolygonF
     {
         get
         {
-            if (_points is null || _points.Length < 3)
+            if (_vertices.Count < 3)
             {
                 return false;
             }
 
             var positive = false;
             var negative = false;
-            PointF p0 = _points[0];
+            PointF p0 = _vertices[0];
 
-            for (var index = 1; index < _points.Length; index++)
+            for (var index = 1; index < _vertices.Count; index++)
             {
-                PointF p1 = _points[index];
+                PointF p1 = _vertices[index];
                 float d = (p1.X - p0.X) * (p1.Y + p0.Y);
 
                 if (d > 0)
@@ -104,21 +111,23 @@ public struct PolygonF
     }
 
     /// <summary>
-    ///     Gets the number of points in this polygon.
+    ///     Gets the number of vertices in this polygon.
     /// </summary>
-    /// <value>An <see cref="int" /> value, representing the number of points in this polygon.</value>
-    public int PointCount
+    /// <value>An <see cref="int" /> value, representing the number of vertices in this polygon.</value>
+    public int VertexCount
     {
-        get => _points?.Length ?? 0;
+        get => _vertices.Count;
     }
 
     /// <summary>
-    ///     Gets a read-only view of the points in this polygon.
+    ///     Gets a read-only view of the vertices in this polygon.
     /// </summary>
-    /// <value>A <see cref="IReadOnlyList{T}" /> of <see cref="PointF" /> values, representing the points of this polygon.</value>
-    public IReadOnlyList<PointF> Points
+    /// <value>
+    ///     A <see cref="IReadOnlyList{T}" /> of <see cref="PointF" /> values, representing the vertices of this polygon.
+    /// </value>
+    public IReadOnlyList<PointF> Vertices
     {
-        get => _points?.ToArray() ?? ArraySegment<PointF>.Empty;
+        get => _vertices.AsReadOnly();
     }
 
     /// <summary>
@@ -156,14 +165,14 @@ public struct PolygonF
     /// <returns>The converted polygon.</returns>
     public static explicit operator Polygon(PolygonF polygon)
     {
-        var points = new List<Point>();
+        var vertices = new List<Point>();
 
-        foreach (PointF point in polygon.Points)
+        foreach (PointF vertex in polygon.Vertices)
         {
-            points.Add(new Point((int)point.X, (int)point.Y));
+            vertices.Add(new Point((int)vertex.X, (int)vertex.Y));
         }
 
-        return new Polygon(points);
+        return new Polygon(vertices);
     }
 
     /// <summary>
@@ -173,88 +182,84 @@ public struct PolygonF
     /// <returns>The converted polygon.</returns>
     public static implicit operator PolygonF(Polygon polygon)
     {
-        var points = new List<PointF>();
+        var vertices = new List<PointF>();
 
-        foreach (Point point in polygon.Points)
+        foreach (Point vertex in polygon.Vertices)
         {
-            points.Add(point);
+            vertices.Add(vertex);
         }
 
-        return new PolygonF(points);
+        return new PolygonF(vertices);
     }
 
     /// <summary>
-    ///     Adds a point to this polygon.
+    ///     Adds a vertex to this polygon.
     /// </summary>
-    /// <param name="point">The point to add.</param>
-    public void AddPoint(PointF point)
+    /// <param name="vertex">The vertex to add.</param>
+    public void AddVertex(PointF vertex)
     {
-        _points ??= Array.Empty<PointF>();
-        Span<PointF> span = stackalloc PointF[_points.Length + 1];
-        _points.CopyTo(span);
-        span[^1] = point;
-        _points = span.ToArray();
+        _vertices.Add(vertex);
     }
 
     /// <summary>
-    ///     Adds a point to this polygon.
+    ///     Adds a vertex to this polygon.
     /// </summary>
-    /// <param name="point">The point to add.</param>
-    public void AddPoint(Vector2 point)
+    /// <param name="vertex">The vertex to add.</param>
+    public void AddVertex(Vector2 vertex)
     {
-        AddPoint(point.ToPointF());
+        AddVertex(vertex.ToPointF());
     }
 
     /// <summary>
-    ///     Adds a collection of points to this polygon.
+    ///     Adds a collection of vertices to this polygon.
     /// </summary>
-    /// <param name="points">An enumerable collection of points to add.</param>
-    /// <exception cref="ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
-    public void AddPoints(IEnumerable<PointF> points)
+    /// <param name="vertices">An enumerable collection of vertices to add.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
+    public void AddVertices(IEnumerable<PointF> vertices)
     {
 #if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(points);
+        ArgumentNullException.ThrowIfNull(vertices);
 #else
-        if (points is null)
+        if (vertices is null)
         {
-            throw new ArgumentNullException(nameof(points));
+            throw new ArgumentNullException(nameof(vertices));
         }
 #endif
 
-        foreach (PointF point in points)
+        foreach (PointF vertex in vertices)
         {
-            AddPoint(point);
+            AddVertex(vertex);
         }
     }
 
     /// <summary>
-    ///     Adds a collection of points to this polygon.
+    ///     Adds a collection of vertices to this polygon.
     /// </summary>
-    /// <param name="points">An enumerable collection of points to add.</param>
-    /// <exception cref="ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
-    public void AddPoints(IEnumerable<Vector2> points)
+    /// <param name="vertices">An enumerable collection of vertices to add.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
+    public void AddVertices(IEnumerable<Vector2> vertices)
     {
 #if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(points);
+        ArgumentNullException.ThrowIfNull(vertices);
 #else
-        if (points is null)
+        if (vertices is null)
         {
-            throw new ArgumentNullException(nameof(points));
+            throw new ArgumentNullException(nameof(vertices));
         }
 #endif
 
-        foreach (Vector2 point in points)
+        foreach (Vector2 vertex in vertices)
         {
-            AddPoint(point);
+            AddVertex(vertex);
         }
     }
 
     /// <summary>
-    ///     Clears all points from this polygon.
+    ///     Clears all vertices from this polygon.
     /// </summary>
-    public void ClearPoints()
+    public void ClearVertices()
     {
-        _points = Array.Empty<PointF>();
+        _vertices.Clear();
     }
 
     /// <inheritdoc />
@@ -273,19 +278,12 @@ public struct PolygonF
     /// </returns>
     public bool Equals(PolygonF other)
     {
-        return _points switch
-        {
-            null when other._points is null => true,
-            null => false,
-            not null when other._points is null => false,
-            _ => _points.SequenceEqual(other._points)
-        };
+        return _vertices.SequenceEqual(other._vertices);
     }
 
     /// <inheritdoc />
     public override int GetHashCode()
     {
-        PointF[] points = _points ?? Array.Empty<PointF>();
-        return points.Aggregate(0, HashCode.Combine);
+        return _vertices.Aggregate(0, HashCode.Combine);
     }
 }
