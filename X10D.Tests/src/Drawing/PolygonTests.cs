@@ -11,44 +11,44 @@ public class PolygonTests
     public void AddPoints_ShouldAddPoints()
     {
         var polygon = Polygon.Empty;
-        polygon.AddPoints(new[] {new Point(1, 2), new Point(3, 4)});
-        Assert.AreEqual(2, polygon.PointCount);
+        polygon.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
+        Assert.AreEqual(2, polygon.VertexCount);
 
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, Polygon.Empty.PointCount);
+        Assert.AreEqual(0, Polygon.Empty.VertexCount);
     }
 
     [TestMethod]
     public void ClearPoints_ShouldClearPoints()
     {
         var polygon = Polygon.Empty;
-        polygon.AddPoints(new[] {new Point(1, 2), new Point(3, 4)});
-        Assert.AreEqual(2, polygon.PointCount);
+        polygon.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
+        Assert.AreEqual(2, polygon.VertexCount);
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
 
-        polygon.ClearPoints();
-        Assert.AreEqual(0, polygon.PointCount);
+        polygon.ClearVertices();
+        Assert.AreEqual(0, polygon.VertexCount);
     }
 
     [TestMethod]
     public void CopyConstructor_ShouldCopyPoints_GivenPolygon()
     {
         var first = Polygon.Empty;
-        first.AddPoints(new[] {new Point(1, 2), new Point(3, 4)});
+        first.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
 
         var second = new Polygon(first);
-        Assert.AreEqual(2, first.PointCount);
-        Assert.AreEqual(2, second.PointCount);
+        Assert.AreEqual(2, first.VertexCount);
+        Assert.AreEqual(2, second.VertexCount);
 
         // we cannot use CollectionAssert here for reasons I am not entirely sure of.
         // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
-        Assert.IsTrue(first.Points.SequenceEqual(second.Points));
+        Assert.IsTrue(first.Vertices.SequenceEqual(second.Vertices));
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, Polygon.Empty.PointCount);
+        Assert.AreEqual(0, Polygon.Empty.VertexCount);
     }
 
     [TestMethod]
@@ -121,18 +121,18 @@ public class PolygonTests
     public void PointCount_ShouldBe1_GivenPolygonWith1Point()
     {
         var polygon = Polygon.Empty;
-        polygon.AddPoint(new Point(1, 1));
+        polygon.AddVertex(new Point(1, 1));
 
-        Assert.AreEqual(1, polygon.PointCount);
+        Assert.AreEqual(1, polygon.VertexCount);
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, Polygon.Empty.PointCount);
+        Assert.AreEqual(0, Polygon.Empty.VertexCount);
     }
 
     [TestMethod]
     public void PointCount_ShouldBe0_GivenEmptyPolygon()
     {
-        Assert.AreEqual(0, Polygon.Empty.PointCount);
+        Assert.AreEqual(0, Polygon.Empty.VertexCount);
     }
 
     [TestMethod]
@@ -146,23 +146,23 @@ public class PolygonTests
     internal static Polygon CreateHexagon()
     {
         var hexagon = new Polygon();
-        hexagon.AddPoint(new Point(0, 0));
-        hexagon.AddPoint(new Point(1, 0));
-        hexagon.AddPoint(new Point(1, 1));
-        hexagon.AddPoint(new Point(0, 1));
-        hexagon.AddPoint(new Point(-1, 1));
-        hexagon.AddPoint(new Point(-1, 0));
+        hexagon.AddVertex(new Point(0, 0));
+        hexagon.AddVertex(new Point(1, 0));
+        hexagon.AddVertex(new Point(1, 1));
+        hexagon.AddVertex(new Point(0, 1));
+        hexagon.AddVertex(new Point(-1, 1));
+        hexagon.AddVertex(new Point(-1, 0));
         return hexagon;
     }
 
     internal static Polygon CreateConcavePolygon()
     {
         var hexagon = new Polygon();
-        hexagon.AddPoint(new Point(0, 0));
-        hexagon.AddPoint(new Point(2, 0));
-        hexagon.AddPoint(new Point(1, 1));
-        hexagon.AddPoint(new Point(2, 1));
-        hexagon.AddPoint(new Point(0, 1));
+        hexagon.AddVertex(new Point(0, 0));
+        hexagon.AddVertex(new Point(2, 0));
+        hexagon.AddVertex(new Point(1, 1));
+        hexagon.AddVertex(new Point(2, 1));
+        hexagon.AddVertex(new Point(0, 1));
         return hexagon;
     }
 }

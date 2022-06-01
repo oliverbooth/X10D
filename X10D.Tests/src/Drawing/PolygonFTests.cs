@@ -12,25 +12,25 @@ public class PolygonFTests
     public void AddPoints_ShouldAddPoints()
     {
         var polygon = PolygonF.Empty;
-        polygon.AddPoints(new[] {new PointF(1, 2), new PointF(3, 4)});
-        Assert.AreEqual(2, polygon.PointCount);
+        polygon.AddVertices(new[] {new PointF(1, 2), new PointF(3, 4)});
+        Assert.AreEqual(2, polygon.VertexCount);
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
     }
 
     [TestMethod]
     public void ClearPoints_ShouldClearPoints()
     {
         var polygon = PolygonF.Empty;
-        polygon.AddPoints(new[] {new Vector2(1, 2), new Vector2(3, 4)});
-        Assert.AreEqual(2, polygon.PointCount);
+        polygon.AddVertices(new[] {new Vector2(1, 2), new Vector2(3, 4)});
+        Assert.AreEqual(2, polygon.VertexCount);
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
 
-        polygon.ClearPoints();
-        Assert.AreEqual(0, polygon.PointCount);
+        polygon.ClearVertices();
+        Assert.AreEqual(0, polygon.VertexCount);
     }
 
     [TestMethod]
@@ -39,26 +39,26 @@ public class PolygonFTests
         var pointPolygon = new PolygonF(new[] {new PointF(1, 2), new PointF(3, 4)});
         var vectorPolygon = new PolygonF(new[] {new Vector2(1, 2), new Vector2(3, 4)});
 
-        Assert.AreEqual(2, pointPolygon.PointCount);
-        Assert.AreEqual(2, vectorPolygon.PointCount);
+        Assert.AreEqual(2, pointPolygon.VertexCount);
+        Assert.AreEqual(2, vectorPolygon.VertexCount);
     }
 
     [TestMethod]
     public void CopyConstructor_ShouldCopyPoints_GivenPolygon()
     {
         var first = PolygonF.Empty;
-        first.AddPoints(new[] {new PointF(1, 2), new PointF(3, 4)});
+        first.AddVertices(new[] {new PointF(1, 2), new PointF(3, 4)});
 
         var second = new PolygonF(first);
-        Assert.AreEqual(2, first.PointCount);
-        Assert.AreEqual(2, second.PointCount);
+        Assert.AreEqual(2, first.VertexCount);
+        Assert.AreEqual(2, second.VertexCount);
 
         // we cannot use CollectionAssert here for reasons I am not entirely sure of.
         // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
-        Assert.IsTrue(first.Points.SequenceEqual(second.Points));
+        Assert.IsTrue(first.Vertices.SequenceEqual(second.Vertices));
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
     }
 
     [TestMethod]
@@ -135,9 +135,9 @@ public class PolygonFTests
 
         Assert.AreEqual(polygon, converted);
         Assert.AreEqual(polygon.IsConvex, converted.IsConvex);
-        Assert.AreEqual(polygon.PointCount, converted.PointCount);
+        Assert.AreEqual(polygon.VertexCount, converted.VertexCount);
 
-        Assert.IsTrue(polygon.Points.SequenceEqual(converted.Points.Select(p => (PointF)p)));
+        Assert.IsTrue(polygon.Vertices.SequenceEqual(converted.Vertices.Select(p => (PointF)p)));
     }
 
     [TestMethod]
@@ -148,27 +148,27 @@ public class PolygonFTests
 
         Assert.AreEqual(polygon, converted);
         Assert.AreEqual(polygon.IsConvex, converted.IsConvex);
-        Assert.AreEqual(polygon.PointCount, converted.PointCount);
+        Assert.AreEqual(polygon.VertexCount, converted.VertexCount);
 
-        Assert.IsTrue(converted.Points.SequenceEqual(polygon.Points.Select(p => (PointF)p)));
+        Assert.IsTrue(converted.Vertices.SequenceEqual(polygon.Vertices.Select(p => (PointF)p)));
     }
 
     [TestMethod]
     public void PointCount_ShouldBe1_GivenPolygonFWith1Point()
     {
         var polygon = new PolygonF();
-        polygon.AddPoint(new Point(1, 1));
+        polygon.AddVertex(new Point(1, 1));
 
-        Assert.AreEqual(1, polygon.PointCount);
+        Assert.AreEqual(1, polygon.VertexCount);
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
     }
 
     [TestMethod]
     public void PointCount_ShouldBe0_GivenEmptyPolygon()
     {
-        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
     }
 
     [TestMethod]
@@ -182,23 +182,23 @@ public class PolygonFTests
     internal static PolygonF CreateHexagon()
     {
         var hexagon = new PolygonF();
-        hexagon.AddPoint(new Vector2(0, 0));
-        hexagon.AddPoint(new Vector2(1, 0));
-        hexagon.AddPoint(new Vector2(1, 1));
-        hexagon.AddPoint(new Vector2(0, 1));
-        hexagon.AddPoint(new Vector2(-1, 1));
-        hexagon.AddPoint(new Vector2(-1, 0));
+        hexagon.AddVertex(new Vector2(0, 0));
+        hexagon.AddVertex(new Vector2(1, 0));
+        hexagon.AddVertex(new Vector2(1, 1));
+        hexagon.AddVertex(new Vector2(0, 1));
+        hexagon.AddVertex(new Vector2(-1, 1));
+        hexagon.AddVertex(new Vector2(-1, 0));
         return hexagon;
     }
 
     internal static PolygonF CreateConcavePolygon()
     {
         var hexagon = new PolygonF();
-        hexagon.AddPoint(new Vector2(0, 0));
-        hexagon.AddPoint(new Vector2(2, 0));
-        hexagon.AddPoint(new Vector2(1, 1));
-        hexagon.AddPoint(new Vector2(2, 1));
-        hexagon.AddPoint(new Vector2(0, 1));
+        hexagon.AddVertex(new Vector2(0, 0));
+        hexagon.AddVertex(new Vector2(2, 0));
+        hexagon.AddVertex(new Vector2(1, 1));
+        hexagon.AddVertex(new Vector2(2, 1));
+        hexagon.AddVertex(new Vector2(0, 1));
         return hexagon;
     }
 }
