@@ -22,6 +22,38 @@ public readonly struct Cuboid : IEquatable<Cuboid>
     /// <summary>
     ///     Initializes a new instance of the <see cref="Cuboid" /> struct.
     /// </summary>
+    /// <param name="centerX">The center X coordinate.</param>
+    /// <param name="centerY">The center Y coordinate.</param>
+    /// <param name="centerZ">The center Z coordinate.</param>
+    /// <param name="width">The width.</param>
+    /// <param name="height">The height.</param>
+    /// <param name="depth">The depth.</param>
+    public Cuboid(float centerX, float centerY, float centerZ, float width, float height, float depth)
+        : this(centerX, centerY, centerZ, width, height, depth, 0, 0, 0)
+    {
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Cuboid" /> struct.
+    /// </summary>
+    /// <param name="centerX">The center X coordinate.</param>
+    /// <param name="centerY">The center Y coordinate.</param>
+    /// <param name="centerZ">The center Z coordinate.</param>
+    /// <param name="width">The width.</param>
+    /// <param name="height">The height.</param>
+    /// <param name="depth">The depth.</param>
+    /// <param name="yaw">The yaw.</param>
+    /// <param name="pitch">The pitch.</param>
+    /// <param name="roll">The roll.</param>
+    public Cuboid(float centerX, float centerY, float centerZ, float width, float height, float depth, float yaw, float pitch,
+        float roll)
+        : this(new Vector3(centerX, centerY, centerZ), new Vector3(width, height, depth), new Vector3(pitch, yaw, roll))
+    {
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Cuboid" /> struct.
+    /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The size.</param>
     public Cuboid(in Vector3 center, in Vector3 size)
@@ -35,6 +67,17 @@ public readonly struct Cuboid : IEquatable<Cuboid>
         LocalFrontTopRight = new Vector3(halfExtents.X, halfExtents.Y, -halfExtents.Z);
         LocalFrontBottomLeft = new Vector3(-halfExtents.X, -halfExtents.Y, -halfExtents.Z);
         LocalFrontBottomRight = new Vector3(halfExtents.X, -halfExtents.Y, -halfExtents.Z);
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Cuboid" /> struct.
+    /// </summary>
+    /// <param name="center">The center point.</param>
+    /// <param name="size">The size.</param>
+    /// <param name="orientation">The orientation of the cuboid.</param>
+    public Cuboid(in Vector3 center, in Vector3 size, in Vector3 orientation)
+        : this(center, size, Quaternion.CreateFromYawPitchRoll(orientation.Y, orientation.X, orientation.Z))
+    {
     }
 
     /// <summary>
