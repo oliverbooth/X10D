@@ -17,7 +17,18 @@ public readonly struct CircleF : IEquatable<CircleF>, IComparable<CircleF>, ICom
     /// <summary>
     ///     The unit circle. That is, a circle whose center point is (0, 0) and whose radius is 1.
     /// </summary>
-    public static readonly CircleF Unit = new(Vector2.Zero, 1.0f);
+    public static readonly CircleF Unit = new(0f, 0f, 1.0f);
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="CircleF" /> struct.
+    /// </summary>
+    /// <param name="centerX">The X coordinate of the center point.</param>
+    /// <param name="centerY">The Y coordinate of the center point.</param>
+    /// <param name="radius">The radius of the circle.</param>
+    public CircleF(float centerX, float centerY, float radius)
+        : this(new Vector2(centerX, centerY), radius)
+    {
+    }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="CircleF" /> struct.
