@@ -8,6 +8,98 @@ namespace X10D.Tests.Drawing;
 public class PolygonTests
 {
     [TestMethod]
+    public void AddPoints_ShouldAddPoints()
+    {
+        var polygon = Polygon.Empty;
+        polygon.AddPoints(new[] {new Point(1, 2), new Point(3, 4)});
+        Assert.AreEqual(2, polygon.PointCount);
+
+
+        // assert that the empty polygon was not modified
+        Assert.AreEqual(0, Polygon.Empty.PointCount);
+    }
+
+    [TestMethod]
+    public void ClearPoints_ShouldClearPoints()
+    {
+        var polygon = Polygon.Empty;
+        polygon.AddPoints(new[] {new Point(1, 2), new Point(3, 4)});
+        Assert.AreEqual(2, polygon.PointCount);
+
+        // assert that the empty polygon was not modified
+        Assert.AreEqual(0, PolygonF.Empty.PointCount);
+
+        polygon.ClearPoints();
+        Assert.AreEqual(0, polygon.PointCount);
+    }
+
+    [TestMethod]
+    public void CopyConstructor_ShouldCopyPoints_GivenPolygon()
+    {
+        var first = Polygon.Empty;
+        first.AddPoints(new[] {new Point(1, 2), new Point(3, 4)});
+
+        var second = new Polygon(first);
+        Assert.AreEqual(2, first.PointCount);
+        Assert.AreEqual(2, second.PointCount);
+
+        // we cannot use CollectionAssert here for reasons I am not entirely sure of.
+        // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
+        Assert.IsTrue(first.Points.SequenceEqual(second.Points));
+
+        // assert that the empty polygon was not modified
+        Assert.AreEqual(0, Polygon.Empty.PointCount);
+    }
+
+    [TestMethod]
+    public void Equals_ShouldBeTrue_GivenTwoEmptyPolygons()
+    {
+        var first = Polygon.Empty;
+        var second = Polygon.Empty;
+
+        Assert.AreEqual(first, second);
+        Assert.AreEqual(second, first);
+        Assert.IsTrue(first.Equals(second));
+        Assert.IsTrue(second.Equals(first));
+        Assert.IsTrue(first == second);
+        Assert.IsTrue(second == first);
+        Assert.IsFalse(first != second);
+        Assert.IsFalse(second != first);
+    }
+
+    [TestMethod]
+    public void Equals_ShouldBeTrue_GivenTwoHexagons()
+    {
+        Polygon first = CreateHexagon();
+        Polygon second = CreateHexagon();
+
+        Assert.AreEqual(first, second);
+        Assert.AreEqual(second, first);
+        Assert.IsTrue(first.Equals(second));
+        Assert.IsTrue(second.Equals(first));
+        Assert.IsTrue(first == second);
+        Assert.IsTrue(second == first);
+        Assert.IsFalse(first != second);
+        Assert.IsFalse(second != first);
+    }
+
+    [TestMethod]
+    public void Equals_ShouldBeFalse_GivenHexagonAndEmptyPolygon()
+    {
+        Polygon first = CreateHexagon();
+        Polygon second = Polygon.Empty;
+
+        Assert.AreNotEqual(first, second);
+        Assert.AreNotEqual(second, first);
+        Assert.IsFalse(first.Equals(second));
+        Assert.IsFalse(second.Equals(first));
+        Assert.IsFalse(first == second);
+        Assert.IsFalse(second == first);
+        Assert.IsTrue(first != second);
+        Assert.IsTrue(second != first);
+    }
+
+    [TestMethod]
     public void IsConvex_ShouldBeFalse_GivenEmptyPolygon()
     {
         Assert.IsFalse(Polygon.Empty.IsConvex);
@@ -20,9 +112,15 @@ public class PolygonTests
     }
 
     [TestMethod]
+    public void IsConvex_ShouldBeFalse_GivenConcavePolygon()
+    {
+        Assert.IsFalse(CreateConcavePolygon().IsConvex);
+    }
+
+    [TestMethod]
     public void PointCount_ShouldBe1_GivenPolygonWith1Point()
     {
-        var polygon = new Polygon();
+        var polygon = Polygon.Empty;
         polygon.AddPoint(new Point(1, 1));
 
         Assert.AreEqual(1, polygon.PointCount);
@@ -38,16 +136,6 @@ public class PolygonTests
     }
 
     [TestMethod]
-    public void Equals_ShouldBeTrue_GivenTwoUnitCircles()
-    {
-        var emptyPolygon1 = Polygon.Empty;
-        var emptyPolygon2 = Polygon.Empty;
-        Assert.AreEqual(emptyPolygon1, emptyPolygon2);
-        Assert.IsTrue(emptyPolygon1 == emptyPolygon2);
-        Assert.IsFalse(emptyPolygon1 != emptyPolygon2);
-    }
-
-    [TestMethod]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyCircle()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
@@ -55,7 +143,7 @@ public class PolygonTests
         Assert.AreEqual(hashCode, Polygon.Empty.GetHashCode());
     }
 
-    private static Polygon CreateHexagon()
+    internal static Polygon CreateHexagon()
     {
         var hexagon = new Polygon();
         hexagon.AddPoint(new Point(0, 0));
@@ -64,6 +152,17 @@ public class PolygonTests
         hexagon.AddPoint(new Point(0, 1));
         hexagon.AddPoint(new Point(-1, 1));
         hexagon.AddPoint(new Point(-1, 0));
+        return hexagon;
+    }
+
+    internal static Polygon CreateConcavePolygon()
+    {
+        var hexagon = new Polygon();
+        hexagon.AddPoint(new Point(0, 0));
+        hexagon.AddPoint(new Point(2, 0));
+        hexagon.AddPoint(new Point(1, 1));
+        hexagon.AddPoint(new Point(2, 1));
+        hexagon.AddPoint(new Point(0, 1));
         return hexagon;
     }
 }

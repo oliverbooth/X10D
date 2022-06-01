@@ -10,14 +10,14 @@ public class CircleFTests
     public void Area_ShouldBePiRadiusRadius_GivenUnitCircle()
     {
         var unitCircle = CircleF.Unit;
-        Assert.AreEqual(MathF.PI * unitCircle.Radius * unitCircle.Radius, unitCircle.Area);
+        Assert.AreEqual(MathF.PI, unitCircle.Area);
     }
 
     [TestMethod]
     public void Circumference_ShouldBe2PiRadius_GivenUnitCircle()
     {
         var unitCircle = CircleF.Unit;
-        Assert.AreEqual(2.0f * MathF.PI * unitCircle.Radius, unitCircle.Circumference, 1e-6f);
+        Assert.AreEqual(2 * MathF.PI, unitCircle.Circumference, 1e-6f);
     }
 
     [TestMethod]
@@ -33,10 +33,28 @@ public class CircleFTests
     }
 
     [TestMethod]
+    public void CompareTo_ShouldBeNegativeOne_GivenEmptyCircleAndUnitCircleAsObject()
+    {
+        Assert.AreEqual(-1, CircleF.Empty.CompareTo((object)CircleF.Unit));
+    }
+
+    [TestMethod]
+    public void CompareTo_ShouldBeOne_GivenNull()
+    {
+        Assert.AreEqual(1, CircleF.Unit.CompareTo(null));
+    }
+
+    [TestMethod]
     public void CompareTo_ShouldBeZero_GivenUnitCircle()
     {
         var unitCircle = CircleF.Unit;
         Assert.AreEqual(0, unitCircle.CompareTo(unitCircle));
+    }
+
+    [TestMethod]
+    public void CompareTo_ShouldThrowArgumentException_GivenInvalidType()
+    {
+        Assert.ThrowsException<ArgumentException>(() => CircleF.Unit.CompareTo(new object()));
     }
 
     [TestMethod]
@@ -77,6 +95,46 @@ public class CircleFTests
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = CircleF.Unit.GetHashCode();
         Assert.AreEqual(hashCode, CircleF.Unit.GetHashCode());
+    }
+
+    [TestMethod]
+    public void op_Explicit_ShouldReturnEquivalentCircle_GivenCircle()
+    {
+        CircleF unitCircle = CircleF.Unit;
+        Circle converted = (Circle)unitCircle;
+
+        Assert.AreEqual(unitCircle, converted);
+        Assert.AreEqual(unitCircle.Radius, converted.Radius);
+        Assert.AreEqual(unitCircle.Center, converted.Center);
+    }
+
+    [TestMethod]
+    public void op_GreaterThan_True_GivenUnitAndEmptyCircle()
+    {
+        Assert.IsTrue(CircleF.Unit > CircleF.Empty);
+        Assert.IsTrue(CircleF.Unit >= CircleF.Empty);
+        Assert.IsFalse(CircleF.Unit < CircleF.Empty);
+        Assert.IsFalse(CircleF.Unit <= CircleF.Empty);
+    }
+
+    [TestMethod]
+    public void op_Implicit_ShouldReturnEquivalentCircle_GivenCircle()
+    {
+        Circle unitCircle = Circle.Unit;
+        CircleF converted = unitCircle;
+
+        Assert.AreEqual(unitCircle, converted);
+        Assert.AreEqual(unitCircle.Radius, converted.Radius);
+        Assert.AreEqual(unitCircle.Center, converted.Center);
+    }
+
+    [TestMethod]
+    public void op_LessThan_True_GivenEmptyAndUnitCircle()
+    {
+        Assert.IsTrue(CircleF.Empty < CircleF.Unit);
+        Assert.IsTrue(CircleF.Empty <= CircleF.Unit);
+        Assert.IsFalse(CircleF.Empty > CircleF.Unit);
+        Assert.IsFalse(CircleF.Empty >= CircleF.Unit);
     }
 
     [TestMethod]
