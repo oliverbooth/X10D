@@ -254,6 +254,13 @@
             <param name="rectangle">The rectangle to convert.</param>
             <returns>The converted rectangle.</returns>
         </member>
+        <member name="M:X10D.Unity.Drawing.RectangleExtensions.ToUnityRectInt(System.Drawing.Rectangle)">
+            <summary>
+                Converts the current <see cref="T:System.Drawing.Rectangle" /> to a <see cref="T:UnityEngine.RectInt" />.
+            </summary>
+            <param name="rectangle">The rectangle to convert.</param>
+            <returns>The converted rectangle.</returns>
+        </member>
         <member name="T:X10D.Unity.Drawing.RectangleFExtensions">
             <summary>
                 Drawing-related extension methods for <see cref="T:System.Drawing.RectangleF" />.
@@ -274,6 +281,25 @@
         <member name="M:X10D.Unity.Drawing.RectExtensions.ToSystemRectangleF(UnityEngine.Rect)">
             <summary>
                 Converts the current <see cref="T:UnityEngine.Rect" /> to a <see cref="T:System.Drawing.RectangleF" />.
+            </summary>
+            <param name="rectangle">The rectangle to convert.</param>
+            <returns>The converted rectangle.</returns>
+        </member>
+        <member name="T:X10D.Unity.Drawing.RectIntExtensions">
+            <summary>
+                Drawing-related extension methods for <see cref="T:UnityEngine.RectInt" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.Drawing.RectIntExtensions.ToSystemRectangle(UnityEngine.RectInt)">
+            <summary>
+                Converts the current <see cref="T:UnityEngine.RectInt" /> to a <see cref="T:System.Drawing.Rectangle" />.
+            </summary>
+            <param name="rectangle">The rectangle to convert.</param>
+            <returns>The converted rectangle.</returns>
+        </member>
+        <member name="M:X10D.Unity.Drawing.RectIntExtensions.ToSystemRectangleF(UnityEngine.RectInt)">
+            <summary>
+                Converts the current <see cref="T:UnityEngine.RectInt" /> to a <see cref="T:System.Drawing.RectangleF" />.
             </summary>
             <param name="rectangle">The rectangle to convert.</param>
             <returns>The converted rectangle.</returns>
