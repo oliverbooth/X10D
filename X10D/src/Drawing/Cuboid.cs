@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using X10D.Numerics;
 
 namespace X10D.Drawing;
@@ -8,6 +8,17 @@ namespace X10D.Drawing;
 /// </summary>
 public readonly struct Cuboid : IEquatable<Cuboid>
 {
+    /// <summary>
+    ///     The empty cuboid. That is, a cuboid whose size is zero.
+    /// </summary>
+    public static readonly Cuboid Empty = new();
+
+    /// <summary>
+    ///     A cube. That is, a cuboid whose size is the same in all three dimensions.
+    /// </summary>
+    /// <value>A cube with the size (1, 1, 1).</value>
+    public static readonly Cuboid Cube = new(0, 0, 0, 1, 1, 1);
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="Cuboid" /> struct.
     /// </summary>

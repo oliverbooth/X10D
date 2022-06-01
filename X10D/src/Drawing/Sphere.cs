@@ -8,6 +8,16 @@ namespace X10D.Drawing;
 public readonly struct Sphere : IEquatable<Sphere>, IComparable<Sphere>, IComparable
 {
     /// <summary>
+    ///     The empty sphere. That is, a sphere with a radius of zero.
+    /// </summary>
+    public static readonly Sphere Empty = new();
+
+    /// <summary>
+    ///     The unit sphere. That is, a sphere with a radius of 1.
+    /// </summary>
+    public static readonly Sphere Unit = new(0, 0, 0, 1f);
+
+    /// <summary>
     ///     Initializes a new instance of the <see cref="Sphere" /> struct.
     /// </summary>
     /// <param name="centerX">The X coordinate of the center point.</param>
