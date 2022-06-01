@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace X10D.Drawing;
 
@@ -45,6 +45,24 @@ public readonly struct Sphere : IEquatable<Sphere>, IComparable<Sphere>, ICompar
     /// </summary>
     /// <value>The center point.</value>
     public Vector3 Center { get; }
+
+    /// <summary>
+    ///     Gets the circumference of the sphere.
+    /// </summary>
+    /// <value>The circumference of the sphere, calculated as <c>2πr</c>.</value>
+    public float Circumference
+    {
+        get => 2 * MathF.PI * Radius;
+    }
+
+    /// <summary>
+    ///     Gets the diameter of the sphere.
+    /// </summary>
+    /// <value>The diameter.</value>
+    public float Diameter
+    {
+        get => Radius * 2;
+    }
 
     /// <summary>
     ///     Gets the radius of the sphere.
