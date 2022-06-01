@@ -15,7 +15,18 @@ public readonly struct Circle : IEquatable<Circle>, IComparable<Circle>, ICompar
     /// <summary>
     ///     The unit circle. That is, a circle whose center point is (0, 0) and whose radius is 1.
     /// </summary>
-    public static readonly Circle Unit = new(Point.Empty, 1);
+    public static readonly Circle Unit = new(0, 0, 1);
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="Circle" /> struct.
+    /// </summary>
+    /// <param name="centerX">The X coordinate of the center point.</param>
+    /// <param name="centerY">The Y coordinate of the center point.</param>
+    /// <param name="radius">The radius of the circle.</param>
+    public Circle(int centerX, int centerY, int radius)
+        : this(new Point(centerX, centerY), radius)
+    {
+    }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="Circle" /> struct.
