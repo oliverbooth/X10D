@@ -64,11 +64,12 @@ public class LineFTests
     [TestMethod]
     public void Equals_ShouldBeTrue_GivenTwoUnitLines()
     {
-        var unitLineF1 = LineF.One;
-        var unitLineF2 = LineF.One;
-        Assert.AreEqual(unitLineF1, unitLineF2);
-        Assert.IsTrue(unitLineF1 == unitLineF2);
-        Assert.IsFalse(unitLineF1 != unitLineF2);
+        LineF first = LineF.One;
+        LineF second = LineF.One;
+
+        Assert.AreEqual(first, second);
+        Assert.IsTrue(first == second);
+        Assert.IsFalse(first != second);
     }
 
     [TestMethod]
