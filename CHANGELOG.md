@@ -18,6 +18,7 @@
 - X10D: Added `Vector2.ToSizeF()`
 - X10D: Added `Vector3.Deconstruct()`
 - X10D: Added `Vector4.Deconstruct()`
+- X10D.Unity: Added `DebugEx`, which mimics `UnityEngine.Debug` while offering more useful primitive drawing methods
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor()`
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor32()`
 - X10D.Unity: Added `Color.ToSystemDrawingColor()`
