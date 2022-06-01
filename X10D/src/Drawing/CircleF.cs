@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Numerics;
 using X10D.Numerics;
 
@@ -161,6 +161,27 @@ public readonly struct CircleF : IEquatable<CircleF>, IComparable<CircleF>, ICom
     public static bool operator >=(CircleF left, CircleF right)
     {
         return left.CompareTo(right) >= 0;
+    }
+
+    /// <summary>
+    ///     Explicitly converts a <see cref="Circle" /> to a <see cref="CircleF" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted circle.</returns>
+    public static explicit operator Circle(CircleF circle)
+    {
+        PointF center = circle.Center;
+        return new Circle(new Point((int)center.X, (int)center.Y), (int)circle.Radius);
+    }
+
+    /// <summary>
+    ///     Implicitly converts a <see cref="Circle" /> to a <see cref="CircleF" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted circle.</returns>
+    public static implicit operator CircleF(Circle circle)
+    {
+        return new CircleF(circle.Center, circle.Radius);
     }
 
     /// <summary>
