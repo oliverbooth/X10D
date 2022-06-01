@@ -874,6 +874,437 @@
             </exception>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
         </member>
+        <member name="T:X10D.Drawing.Circle">
+            <summary>
+                Represents a circle that is composed of a 32-bit signed integer center point and radius.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Circle.Empty">
+            <summary>
+                The empty circle. That is, a circle whose center point is (0, 0) and whose radius is 0.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Circle.Unit">
+            <summary>
+                The unit circle. That is, a circle whose center point is (0, 0) and whose radius is 1.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Circle.#ctor(System.Drawing.Point,System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Circle" /> struct.
+            </summary>
+            <param name="center">The center point of the circle.</param>
+            <param name="radius">The radius of the circle.</param>
+        </member>
+        <member name="P:X10D.Drawing.Circle.Area">
+            <summary>
+                Gets the area of the circle.
+            </summary>
+            <value>The area of the circle, calculated as <c>πr²</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.Circle.Center">
+            <summary>
+                Gets the center point of the circle.
+            </summary>
+            <value>The center point.</value>
+        </member>
+        <member name="P:X10D.Drawing.Circle.Circumference">
+            <summary>
+                Gets the circumference of the circle.
+            </summary>
+            <value>The circumference of the circle, calculated as <c>2πr</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.Circle.Diameter">
+            <summary>
+                Gets the diameter of the circle.
+            </summary>
+            <value>The diameter. This is always twice the <see cref="P:X10D.Drawing.Circle.Radius" />.</value>
+        </member>
+        <member name="P:X10D.Drawing.Circle.Radius">
+            <summary>
+                Gets the radius of the circle.
+            </summary>
+            <value>The radius.</value>
+        </member>
+        <member name="M:X10D.Drawing.Circle.op_Equality(X10D.Drawing.Circle,X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Circle" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.op_Inequality(X10D.Drawing.Circle,X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Circle" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.op_LessThan(X10D.Drawing.Circle,X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is less than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Circle.Radius" /> of <paramref name="left" /> is less than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.op_GreaterThan(X10D.Drawing.Circle,X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is greater than to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Circle.Radius" /> of <paramref name="left" /> is greater than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.op_LessThanOrEqual(X10D.Drawing.Circle,X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is less than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Circle.Radius" /> of <paramref name="left" /> is less than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.op_GreaterThanOrEqual(X10D.Drawing.Circle,X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is greater than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Circle.Radius" /> of <paramref name="left" /> is greater than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.CompareTo(System.Object)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Circle" />.
+             </summary>
+             <param name="obj">The other object.</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="obj" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Circle.Radius" /> of this instance is less than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="obj" />, or the <see cref="P:X10D.Drawing.Circle.Radius" /> of both this instance
+                             and <paramref name="obj" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Circle.Radius" /> of this instance is greater than that of <paramref name="obj" />, or
+                             <paramref name="obj" /> is <see langword="null" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>Comparison only takes into consideration the <see cref="P:X10D.Drawing.Circle.Radius" />.</remarks>
+             <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not an instance of <see cref="T:X10D.Drawing.Circle" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.Circle.CompareTo(X10D.Drawing.Circle)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Circle" />.
+             </summary>
+             <param name="other">The other circle.</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="other" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Circle.Radius" /> of this instance is less than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="other" />, or the <see cref="P:X10D.Drawing.Circle.Radius" /> of both this instance
+                             and <paramref name="other" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Circle.Radius" /> of this instance is greater than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>Comparison only takes into consideration the <see cref="P:X10D.Drawing.Circle.Radius" />.</remarks>
+        </member>
+        <member name="M:X10D.Drawing.Circle.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Circle.Equals(X10D.Drawing.Circle)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Drawing.CircleF">
+            <summary>
+                Represents a circle that is composed of a single-precision floating-point center point and radius.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.CircleF.Empty">
+            <summary>
+                The empty circle. That is, a circle whose center point is (0, 0) and whose radius is 0.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.CircleF.Unit">
+            <summary>
+                The unit circle. That is, a circle whose center point is (0, 0) and whose radius is 1.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.#ctor(System.Numerics.Vector2,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.CircleF" /> struct.
+            </summary>
+            <param name="center">The center point of the circle.</param>
+            <param name="radius">The radius of the circle.</param>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.#ctor(System.Drawing.PointF,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.CircleF" /> struct.
+            </summary>
+            <param name="center">The center point of the circle.</param>
+            <param name="radius">The radius of the circle.</param>
+        </member>
+        <member name="P:X10D.Drawing.CircleF.Area">
+            <summary>
+                Gets the area of the circle.
+            </summary>
+            <value>The area of the circle, calculated as <c>πr²</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.CircleF.Center">
+            <summary>
+                Gets the center point of the circle.
+            </summary>
+            <value>The center point.</value>
+        </member>
+        <member name="P:X10D.Drawing.CircleF.Circumference">
+            <summary>
+                Gets the circumference of the circle.
+            </summary>
+            <value>The circumference of the circle, calculated as <c>2πr</c>.</value>
+        </member>
+        <member name="P:X10D.Drawing.CircleF.Diameter">
+            <summary>
+                Gets the diameter of the circle.
+            </summary>
+            <value>The diameter. This is always twice the <see cref="P:X10D.Drawing.CircleF.Radius" />.</value>
+        </member>
+        <member name="P:X10D.Drawing.CircleF.Radius">
+            <summary>
+                Gets the radius of the circle.
+            </summary>
+            <value>The radius.</value>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_Equality(X10D.Drawing.CircleF,X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.CircleF" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_Inequality(X10D.Drawing.CircleF,X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.CircleF" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_LessThan(X10D.Drawing.CircleF,X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is less than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.CircleF.Radius" /> of <paramref name="left" /> is less than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_GreaterThan(X10D.Drawing.CircleF,X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is greater than to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.CircleF.Radius" /> of <paramref name="left" /> is greater than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_LessThanOrEqual(X10D.Drawing.CircleF,X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is less than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.CircleF.Radius" /> of <paramref name="left" /> is less than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.op_GreaterThanOrEqual(X10D.Drawing.CircleF,X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether the radius of one circle is greater than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.CircleF.Radius" /> of <paramref name="left" /> is greater than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.CompareTo(System.Object)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Circle" />.
+             </summary>
+             <param name="obj">The other object.</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="obj" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.CircleF.Radius" /> of this instance is less than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="obj" />, or the <see cref="P:X10D.Drawing.CircleF.Radius" /> of both this instance
+                             and <paramref name="obj" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.CircleF.Radius" /> of this instance is greater than that of <paramref name="obj" />, or
+                             <paramref name="obj" /> is <see langword="null" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>Comparison only takes into consideration the <see cref="P:X10D.Drawing.CircleF.Radius" />.</remarks>
+             <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not an instance of <see cref="T:X10D.Drawing.CircleF" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.CompareTo(X10D.Drawing.CircleF)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.CircleF" />.
+             </summary>
+             <param name="other">The other circle.</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="other" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.CircleF.Radius" /> of this instance is less than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="other" />, or the <see cref="P:X10D.Drawing.CircleF.Radius" /> of both this instance
+                             and <paramref name="other" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.CircleF.Radius" /> of this instance is greater than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>Comparison only takes into consideration the <see cref="P:X10D.Drawing.CircleF.Radius" />.</remarks>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.CircleF.Equals(X10D.Drawing.CircleF)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.CircleF.GetHashCode">
+            <inheritdoc />
+        </member>
         <member name="T:X10D.Drawing.ColorExtensions">
             <summary>
                 Drawing-related extensions for <see cref="T:System.Drawing.Color" />.
@@ -938,6 +1369,465 @@
                 <see cref="P:System.Drawing.Color.R" /> component is <paramref name="r" />.
             </returns>
         </member>
+        <member name="T:X10D.Drawing.Line">
+            <summary>
+                Represents a line that is composed of 32-bit signed integer X and Y coordinates.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line.Empty">
+            <summary>
+                The empty line. That is, a line whose start and end points are at (0, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line.One">
+            <summary>
+                The line whose start point is at (0, 0) and end point is at (1, 1).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line.UnitX">
+            <summary>
+                The line whose start point is at (0, 0) and end point is at (1, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Line.UnitY">
+            <summary>
+                The line whose start point is at (0, 0) and end point is at (0, 1).
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Line.#ctor(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Line" /> struct by taking the start and end points.
+            </summary>
+            <param name="start">The start point.</param>
+            <param name="end">The end point.</param>
+        </member>
+        <member name="P:X10D.Drawing.Line.End">
+            <summary>
+                Gets the end point of the line.
+            </summary>
+            <value>The end point.</value>
+        </member>
+        <member name="P:X10D.Drawing.Line.Length">
+            <summary>
+                Gets the length of this line.
+            </summary>
+            <value>The length.</value>
+        </member>
+        <member name="P:X10D.Drawing.Line.LengthSquared">
+            <summary>
+                Gets the length of this line, squared.
+            </summary>
+            <value>The squared length.</value>
+        </member>
+        <member name="P:X10D.Drawing.Line.Start">
+            <summary>
+                Gets the start point of the line.
+            </summary>
+            <value>The start point.</value>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_Equality(X10D.Drawing.Line,X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_Inequality(X10D.Drawing.Line,X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Line" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_LessThan(X10D.Drawing.Line,X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether the length of one line is less than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line.Length" /> of <paramref name="left" /> is less than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_GreaterThan(X10D.Drawing.Line,X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether the length of one line is greater than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line.Length" /> of <paramref name="left" /> is greater than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_LessThanOrEqual(X10D.Drawing.Line,X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether the length of one line is less than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line.Length" /> of <paramref name="left" /> is less than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_GreaterThanOrEqual(X10D.Drawing.Line,X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether the length of one line is greater than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.Line.Length" /> of <paramref name="left" /> is greater than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.CompareTo(System.Object)">
+             <summary>
+                 Compares this instance to another object.
+             </summary>
+             <param name="obj">The object with with which to compare</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="obj"/>.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line.Length" /> of this instance is less than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="obj" />, or the <see cref="P:X10D.Drawing.Line.Length" /> of both this instance
+                             and <paramref name="obj" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line.Length" /> of this instance is greater than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>
+                 Comparison internally measures the <see cref="P:X10D.Drawing.Line.LengthSquared" /> property to avoid calls to <see cref="M:System.MathF.Sqrt(System.Single)" />.
+             <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not an instance of <see cref="T:X10D.Drawing.Line" />.</exception>
+             </remarks>
+        </member>
+        <member name="M:X10D.Drawing.Line.CompareTo(X10D.Drawing.Line)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Line" />.
+             </summary>
+             <param name="other"></param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="other" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line.Length" /> of this instance is less than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="other" />, or the <see cref="P:X10D.Drawing.Line.Length" /> of both this instance
+                             and <paramref name="other" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.Line.Length" /> of this instance is greater than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>
+                 Comparison internally measures the <see cref="P:X10D.Drawing.Line.LengthSquared" /> property to avoid calls to <see cref="M:System.MathF.Sqrt(System.Single)" />.
+             </remarks>
+        </member>
+        <member name="M:X10D.Drawing.Line.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Line.Equals(X10D.Drawing.Line)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Drawing.LineF">
+            <summary>
+                Represents a line that is composed of single-precision floating-point X and Y coordinates.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.LineF.Empty">
+            <summary>
+                The empty line. That is, a line whose start and end points are at (0, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.LineF.One">
+            <summary>
+                The line whose start point is at (0, 0) and end point is at (1, 1).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.LineF.UnitX">
+            <summary>
+                The line whose start point is at (0, 0) and end point is at (1, 0).
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.LineF.UnitY">
+            <summary>
+                The line whose start point is at (0, 0) and end point is at (0, 1).
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.LineF.#ctor(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.LineF" /> struct by taking the start and end points.
+            </summary>
+            <param name="start">The start point.</param>
+            <param name="end">The end point.</param>
+        </member>
+        <member name="M:X10D.Drawing.LineF.#ctor(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.LineF" /> struct by taking the start and end points.
+            </summary>
+            <param name="start">The start point.</param>
+            <param name="end">The end point.</param>
+        </member>
+        <member name="P:X10D.Drawing.LineF.End">
+            <summary>
+                Gets the end point of the line.
+            </summary>
+            <value>The end point.</value>
+        </member>
+        <member name="P:X10D.Drawing.LineF.Length">
+            <summary>
+                Gets the length of this line.
+            </summary>
+            <value>The length.</value>
+        </member>
+        <member name="P:X10D.Drawing.LineF.LengthSquared">
+            <summary>
+                Gets the length of this line, squared.
+            </summary>
+            <value>The squared length.</value>
+        </member>
+        <member name="P:X10D.Drawing.LineF.Start">
+            <summary>
+                Gets the start point of the line.
+            </summary>
+            <value>The start point.</value>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_Equality(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.LineF" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_Inequality(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.LineF" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_LessThan(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether the length of one line is less than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.LineF.Length" /> of <paramref name="left" /> is less than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_GreaterThan(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether the length of one line is greater than that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.LineF.Length" /> of <paramref name="left" /> is greater than that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_LessThanOrEqual(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether the length of one line is less than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.LineF.Length" /> of <paramref name="left" /> is less than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_GreaterThanOrEqual(X10D.Drawing.LineF,X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether the length of one line is greater than or equal to that of another.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if the <see cref="P:X10D.Drawing.LineF.Length" /> of <paramref name="left" /> is greater than or equal to that of
+                <paramref name="right" />; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_Explicit(X10D.Drawing.LineF)~X10D.Drawing.Line">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.op_Implicit(X10D.Drawing.Line)~X10D.Drawing.LineF">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The line polygon.</returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.CompareTo(System.Object)">
+             <summary>
+                 Compares this instance to another object.
+             </summary>
+             <param name="obj">The object with with which to compare</param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="obj"/>.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.LineF.Length" /> of this instance is less than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="obj" />, or the <see cref="P:X10D.Drawing.LineF.Length" /> of both this instance
+                             and <paramref name="obj" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.LineF.Length" /> of this instance is greater than that of <paramref name="obj" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>
+                 Comparison internally measures the <see cref="P:X10D.Drawing.LineF.LengthSquared" /> property to avoid calls to <see cref="M:System.MathF.Sqrt(System.Single)" />.
+             <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not an instance of <see cref="T:X10D.Drawing.Line" />.</exception>
+             </remarks>
+        </member>
+        <member name="M:X10D.Drawing.LineF.CompareTo(X10D.Drawing.LineF)">
+             <summary>
+                 Compares this instance to another <see cref="T:X10D.Drawing.Line" />.
+             </summary>
+             <param name="other"></param>
+             <returns>
+                 A signed number indicating the relative values of this instance and <paramref name="other" />.
+            
+                 <list type="table">
+                     <listheader>
+                         <term>Return value</term>
+                         <description>Meaning</description>
+                     </listheader>
+            
+                     <item>
+                         <term>Less than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.LineF.Length" /> of this instance is less than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Zero</term>
+                         <description>
+                             This instance is equal to <paramref name="other" />, or the <see cref="P:X10D.Drawing.LineF.Length" /> of both this instance
+                             and <paramref name="other" /> are not a number (<see cref="F:System.Single.NaN" />),
+                             <see cref="F:System.Single.PositiveInfinity" />, or <see cref="F:System.Single.NegativeInfinity" />.
+                         </description>
+                     </item>
+                     <item>
+                         <term>Greater than zero</term>
+                         <description>
+                             The <see cref="P:X10D.Drawing.LineF.Length" /> of this instance is greater than that of <paramref name="other" />.
+                         </description>
+                     </item>
+                 </list>
+             </returns>
+             <remarks>
+                 Comparison internally measures the <see cref="P:X10D.Drawing.LineF.LengthSquared" /> property to avoid calls to <see cref="M:System.MathF.Sqrt(System.Single)" />.
+             </remarks>
+        </member>
+        <member name="M:X10D.Drawing.LineF.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.LineF.Equals(X10D.Drawing.LineF)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.GetHashCode">
+            <inheritdoc />
+        </member>
         <member name="T:X10D.Drawing.PointExtensions">
             <summary>
                 Drawing-related extension methods for <see cref="T:System.Drawing.Point" />.
@@ -975,6 +1865,230 @@
             </summary>
             <param name="point">The point to convert.</param>
             <returns>The resulting <see cref="T:System.Drawing.SizeF" />.</returns>
+        </member>
+        <member name="T:X10D.Drawing.Polygon">
+            <summary>
+                Represents a 2D polygon composed of 32-bit signed integer points.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.Polygon.Empty">
+            <summary>
+                The empty polygon. That is, a polygon with no points.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.#ctor(X10D.Drawing.Polygon)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> struct by copying the specified polygon.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.#ctor(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.Polygon" /> struct by constructing it from the specified points.
+            </summary>
+            <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
+        </member>
+        <member name="P:X10D.Drawing.Polygon.IsConvex">
+            <summary>
+                Returns a value indicating whether this polygon is convex.
+            </summary>
+            <value><see langword="true" /> if this polygon is convex; otherwise, <see langword="false" />.</value>
+        </member>
+        <member name="P:X10D.Drawing.Polygon.PointCount">
+            <summary>
+                Gets the number of points in this polygon.
+            </summary>
+            <value>An <see cref="T:System.Int32" /> value, representing the number of points in this polygon.</value>
+        </member>
+        <member name="P:X10D.Drawing.Polygon.Points">
+            <summary>
+                Gets a read-only view of the points in this polygon.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Drawing.Point" /> values, representing the points of this polygon.</value>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.op_Equality(X10D.Drawing.Polygon,X10D.Drawing.Polygon)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Polygon" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.op_Inequality(X10D.Drawing.Polygon,X10D.Drawing.Polygon)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.Polygon" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.AddPoint(System.Drawing.Point)">
+            <summary>
+                Adds a point to this polygon.
+            </summary>
+            <param name="point">The point to add.</param>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.AddPoints(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
+            <summary>
+                Adds a collection of points to this polygon.
+            </summary>
+            <param name="points">An enumerable collection of points to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.ClearPoints">
+            <summary>
+                Clears all points from this polygon.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.Polygon.Equals(X10D.Drawing.Polygon)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Drawing.PolygonF">
+            <summary>
+                Represents a 2D polygon composed of single-precision floating-point points.
+            </summary>
+        </member>
+        <member name="F:X10D.Drawing.PolygonF.Empty">
+            <summary>
+                The empty polygon. That is, a polygon with no points.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.#ctor(X10D.Drawing.PolygonF)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> struct by copying the specified polygon.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> struct by constructing it from the specified points.
+            </summary>
+            <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.#ctor(System.Collections.Generic.IEnumerable{System.Drawing.PointF})">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> struct by constructing it from the specified points.
+            </summary>
+            <param name="points">An enumerable collection of points from which the polygon should be constructed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="P:X10D.Drawing.PolygonF.IsConvex">
+            <summary>
+                Returns a value indicating whether this polygon is convex.
+            </summary>
+            <value><see langword="true" /> if this polygon is convex; otherwise, <see langword="false" />.</value>
+        </member>
+        <member name="P:X10D.Drawing.PolygonF.PointCount">
+            <summary>
+                Gets the number of points in this polygon.
+            </summary>
+            <value>An <see cref="T:System.Int32" /> value, representing the number of points in this polygon.</value>
+        </member>
+        <member name="P:X10D.Drawing.PolygonF.Points">
+            <summary>
+                Gets a read-only view of the points in this polygon.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> of <see cref="T:System.Drawing.PointF" /> values, representing the points of this polygon.</value>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.op_Equality(X10D.Drawing.PolygonF,X10D.Drawing.PolygonF)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.PolygonF" /> are equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.op_Inequality(X10D.Drawing.PolygonF,X10D.Drawing.PolygonF)">
+            <summary>
+                Returns a value indicating whether two instances of <see cref="T:X10D.Drawing.PolygonF" /> are not equal.
+            </summary>
+            <param name="left">The first instance.</param>
+            <param name="right">The second instance.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.op_Explicit(X10D.Drawing.PolygonF)~X10D.Drawing.Polygon">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
+            </summary>
+            <param name="polygon">The polygon to convert.</param>
+            <returns>The converted polygon.</returns>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.op_Implicit(X10D.Drawing.Polygon)~X10D.Drawing.PolygonF">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
+            </summary>
+            <param name="polygon">The polygon to convert.</param>
+            <returns>The converted polygon.</returns>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.AddPoint(System.Drawing.PointF)">
+            <summary>
+                Adds a point to this polygon.
+            </summary>
+            <param name="point">The point to add.</param>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.AddPoint(System.Numerics.Vector2)">
+            <summary>
+                Adds a point to this polygon.
+            </summary>
+            <param name="point">The point to add.</param>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.AddPoints(System.Collections.Generic.IEnumerable{System.Drawing.PointF})">
+            <summary>
+                Adds a collection of points to this polygon.
+            </summary>
+            <param name="points">An enumerable collection of points to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.AddPoints(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
+            <summary>
+                Adds a collection of points to this polygon.
+            </summary>
+            <param name="points">An enumerable collection of points to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="points" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.ClearPoints">
+            <summary>
+                Clears all points from this polygon.
+            </summary>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.Equals(X10D.Drawing.PolygonF)">
+            <summary>
+                Returns a value indicating whether this instance and another instance are equal.
+            </summary>
+            <param name="other">The instance with which to compare.</param>
+            <returns>
+                <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.GetHashCode">
+            <inheritdoc />
         </member>
         <member name="T:X10D.Drawing.RandomExtensions">
             <summary>
