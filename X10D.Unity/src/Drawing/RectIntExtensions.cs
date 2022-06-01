@@ -6,31 +6,31 @@ using UnityEngine;
 namespace X10D.Unity.Drawing;
 
 /// <summary>
-///     Drawing-related extension methods for <see cref="Rectangle" />.
+///     Drawing-related extension methods for <see cref="RectInt" />.
 /// </summary>
-public static class RectangleExtensions
+public static class RectIntExtensions
 {
     /// <summary>
-    ///     Converts the current <see cref="Rectangle" /> to a <see cref="Rect" />.
+    ///     Converts the current <see cref="RectInt" /> to a <see cref="Rectangle" />.
     /// </summary>
     /// <param name="rectangle">The rectangle to convert.</param>
     /// <returns>The converted rectangle.</returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Rect ToUnityRect(this Rectangle rectangle)
+    public static Rectangle ToSystemRectangle(this RectInt rectangle)
     {
-        return new Rect(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+        return new Rectangle(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
     /// <summary>
-    ///     Converts the current <see cref="Rectangle" /> to a <see cref="RectInt" />.
+    ///     Converts the current <see cref="RectInt" /> to a <see cref="RectangleF" />.
     /// </summary>
     /// <param name="rectangle">The rectangle to convert.</param>
     /// <returns>The converted rectangle.</returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static RectInt ToUnityRectInt(this Rectangle rectangle)
+    public static RectangleF ToSystemRectangleF(this RectInt rectangle)
     {
-        return new RectInt(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+        return new RectangleF(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 }
