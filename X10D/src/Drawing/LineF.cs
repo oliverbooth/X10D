@@ -5,7 +5,7 @@ using X10D.Numerics;
 namespace X10D.Drawing;
 
 /// <summary>
-///     Represents a line that is composed of single-precision floating-point X and Y coordinates.
+///     Represents a line in 2D space that is composed of single-precision floating-point X and Y coordinates.
 /// </summary>
 public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparable
 {

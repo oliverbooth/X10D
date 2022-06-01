@@ -46,11 +46,12 @@ public class LineTests
     [TestMethod]
     public void Equals_ShouldBeTrue_GivenTwoUnitLines()
     {
-        var unitLine1 = Line.One;
-        var unitLine2 = Line.One;
-        Assert.AreEqual(unitLine1, unitLine2);
-        Assert.IsTrue(unitLine1 == unitLine2);
-        Assert.IsFalse(unitLine1 != unitLine2);
+        Line first = Line.One;
+        Line second = Line.One;
+
+        Assert.AreEqual(first, second);
+        Assert.IsTrue(first == second);
+        Assert.IsFalse(first != second);
     }
 
     [TestMethod]
