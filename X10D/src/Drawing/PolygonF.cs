@@ -12,7 +12,7 @@ public struct PolygonF
     /// <summary>
     ///     The empty polygon. That is, a polygon with no points.
     /// </summary>
-    public static readonly PolygonF Empty = new(ArraySegment<PointF>.Empty);
+    public static readonly PolygonF Empty = new();
 
     private PointF[]? _points;
 
