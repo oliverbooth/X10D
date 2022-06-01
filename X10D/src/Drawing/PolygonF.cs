@@ -9,11 +9,6 @@ namespace X10D.Drawing;
 /// </summary>
 public class PolygonF
 {
-    /// <summary>
-    ///     The empty polygon. That is, a polygon with no vertices.
-    /// </summary>
-    public static readonly PolygonF Empty = new();
-
     private readonly List<PointF> _vertices = new();
 
     /// <summary>
@@ -65,6 +60,15 @@ public class PolygonF
 #endif
 
         _vertices = new List<PointF>(vertices);
+    }
+
+    /// <summary>
+    ///     Gets an empty polygon. That is, a polygon with no vertices.
+    /// </summary>
+    /// <value>An empty polygon.</value>
+    public static PolygonF Empty
+    {
+        get => new();
     }
 
     /// <summary>

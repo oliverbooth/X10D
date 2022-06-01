@@ -7,11 +7,6 @@ namespace X10D.Drawing;
 /// </summary>
 public class Polygon : IEquatable<Polygon>
 {
-    /// <summary>
-    ///     The empty polygon. That is, a polygon with no vertices.
-    /// </summary>
-    public static readonly Polygon Empty = new();
-
     private readonly List<Point> _vertices = new();
 
     /// <summary>
@@ -36,6 +31,15 @@ public class Polygon : IEquatable<Polygon>
     public Polygon(IEnumerable<Point> vertices)
     {
         _vertices = new List<Point>(vertices);
+    }
+
+    /// <summary>
+    ///     Gets an empty polygon. That is, a polygon with no vertices.
+    /// </summary>
+    /// <value>An empty polygon.</value>
+    public static Polygon Empty
+    {
+        get => new();
     }
 
     /// <summary>

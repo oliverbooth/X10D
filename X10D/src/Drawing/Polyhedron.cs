@@ -8,11 +8,6 @@ namespace X10D.Drawing;
 /// </summary>
 public class Polyhedron : IEquatable<Polyhedron>
 {
-    /// <summary>
-    ///     The empty polyhedron. That is, a polyhedron with no points.
-    /// </summary>
-    public static readonly Polyhedron Empty = new();
-
     private readonly List<Vector3> _vertices = new();
 
     /// <summary>
@@ -46,6 +41,15 @@ public class Polyhedron : IEquatable<Polyhedron>
 #endif
 
         _vertices = new List<Vector3>(vertices);
+    }
+
+    /// <summary>
+    ///     Gets an empty polyhedron. That is, a polygon with no vertices.
+    /// </summary>
+    /// <value>An empty polyhedron.</value>
+    public static Polyhedron Empty
+    {
+        get => new();
     }
 
     /// <summary>
