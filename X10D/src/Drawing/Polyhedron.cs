@@ -138,14 +138,14 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <returns>The converted polyhedron.</returns>
     public static implicit operator Polyhedron(Polygon polygon)
     {
-        var points = new List<Vector3>();
+        List<Vector3> vertices = new List<Vector3>();
 
-        foreach (Point point in polygon.Vertices)
+        foreach (Point vertex in polygon.Vertices)
         {
-            points.Add(new Vector3(point.X, point.Y, 0));
+            vertices.Add(new Vector3(vertex.X, vertex.Y, 0));
         }
 
-        return new Polyhedron(points);
+        return new Polyhedron(vertices);
     }
 
     /// <summary>
@@ -155,14 +155,14 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <returns>The converted polyhedron.</returns>
     public static implicit operator Polyhedron(PolygonF polygon)
     {
-        var points = new List<Vector3>();
+        List<Vector3> vertices = new List<Vector3>();
 
-        foreach (PointF point in polygon.Vertices)
+        foreach (PointF vertex in polygon.Vertices)
         {
-            points.Add(new Vector3(point.X, point.Y, 0));
+            vertices.Add(new Vector3(vertex.X, vertex.Y, 0));
         }
 
-        return new Polyhedron(points);
+        return new Polyhedron(vertices);
     }
 
     /// <summary>
