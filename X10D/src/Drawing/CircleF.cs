@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Numerics;
 using X10D.Numerics;
 
@@ -208,7 +208,7 @@ public readonly struct CircleF : IEquatable<CircleF>, IComparable<CircleF>, ICom
             return 1;
         }
 
-        if (obj is not Circle other)
+        if (obj is not CircleF other)
         {
             throw new ArgumentException($"Object must be of type {GetType()}");
         }
