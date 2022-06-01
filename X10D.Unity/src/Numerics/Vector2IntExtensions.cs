@@ -47,6 +47,18 @@ public static class Vector2IntExtensions
     }
 
     /// <summary>
+    ///     Converts the current vector to a <see cref="System.Numerics.Vector2" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The converted vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Numerics.Vector2 ToSystemVector(this Vector2Int vector)
+    {
+        return new System.Numerics.Vector2(vector.x, vector.y);
+    }
+
+    /// <summary>
     ///     Returns a vector whose Y component is the same as the specified vector, and whose X component is a new value.
     /// </summary>
     /// <param name="vector">The vector to copy.</param>
