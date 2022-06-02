@@ -4,239 +4,6 @@
         <name>X10D.Unity</name>
     </assembly>
     <members>
-        <member name="T:X10D.Unity.Box">
-            <summary>
-                Represents a box that can be drawn using the <see cref="T:X10D.Unity.DebugEx" /> class.
-            </summary>
-            <remarks>
-                This structure serves no real purpose except to be used in tandem with <see cref="T:X10D.Unity.DebugEx" />. For creating a logical
-                cuboid, consider using the <see cref="T:X10D.Drawing.Cuboid" /> structure.
-            </remarks>
-        </member>
-        <member name="M:X10D.Unity.Box.#ctor(UnityEngine.Vector3,UnityEngine.Vector3)">
-            <summary>
-                Initializes a new instance of the <see cref="T:X10D.Unity.Box" /> struct.
-            </summary>
-            <param name="origin">The origin of the box.</param>
-            <param name="halfExtents">The half extents of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.Box.#ctor(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion)">
-            <summary>
-                Initializes a new instance of the <see cref="T:X10D.Unity.Box" /> struct.
-            </summary>
-            <param name="origin">The origin of the box.</param>
-            <param name="halfExtents">The half extents of the box.</param>
-            <param name="orientation">The orientation of the box.</param>
-        </member>
-        <member name="P:X10D.Unity.Box.Origin">
-            <summary>
-                Gets the origin of the box.
-            </summary>
-            <value>The origin.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalFrontTopLeft">
-            <summary>
-                Gets the front-top-left corner of the box, in local space.
-            </summary>
-            <value>The front-top-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalFrontTopRight">
-            <summary>
-                Gets the front-top-right corner of the box, in local space.
-            </summary>
-            <value>The front-top-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalFrontBottomLeft">
-            <summary>
-                Gets the front-bottom-left corner of the box, in local space.
-            </summary>
-            <value>The front-bottom-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalFrontBottomRight">
-            <summary>
-                Gets the front-bottom-right corner of the box, in local space.
-            </summary>
-            <value>The front-bottom-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalBackTopLeft">
-            <summary>
-                Gets the back-top-left corner of the box, in local space.
-            </summary>
-            <value>The back-top-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalBackTopRight">
-            <summary>
-                Gets the back-top-right corner of the box, in local space.
-            </summary>
-            <value>The back-top-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalBackBottomLeft">
-            <summary>
-                Gets the back-bottom-left corner of the box, in local space.
-            </summary>
-            <value>The back-bottom-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.LocalBackBottomRight">
-            <summary>
-                Gets the back-bottom-right corner of the box, in local space.
-            </summary>
-            <value>The back-bottom-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.FrontTopLeft">
-            <summary>
-                Gets the front-top-left corner of the box, in world space.
-            </summary>
-            <value>The front-top-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.FrontTopRight">
-            <summary>
-                Gets the front-top-right corner of the box, in world space.
-            </summary>
-            <value>The front-top-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.FrontBottomLeft">
-            <summary>
-                Gets the front-bottom-left corner of the box, in world space.
-            </summary>
-            <value>The front-bottom-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.FrontBottomRight">
-            <summary>
-                Gets the front-bottom-right corner of the box, in world space.
-            </summary>
-            <value>The front-bottom-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.BackTopLeft">
-            <summary>
-                Gets the back-bottom-left corner of the box, in world space.
-            </summary>
-            <value>The back-bottom-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.BackTopRight">
-            <summary>
-                Gets the back-bottom-right corner of the box, in world space.
-            </summary>
-            <value>The back-bottom-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.BackBottomLeft">
-            <summary>
-                Gets the back-bottom-right corner of the box, in world space.
-            </summary>
-            <value>The back-bottom-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box.BackBottomRight">
-            <summary>
-                Gets the back-bottom-right corner of the box, in world space.
-            </summary>
-            <value>The back-bottom-right corner.</value>
-        </member>
-        <member name="M:X10D.Unity.Box.op_Implicit(UnityEngine.Bounds)~X10D.Unity.Box">
-            <summary>
-                Implicitly converts an instance of <see cref="T:UnityEngine.Bounds" /> to an instance of <see cref="T:X10D.Unity.Box" />.
-            </summary>
-            <param name="bounds">The <see cref="T:UnityEngine.Bounds" /> to convert.</param>
-            <returns>A new instance of <see cref="T:X10D.Unity.Box" />.</returns>
-        </member>
-        <member name="M:X10D.Unity.Box.op_Implicit(UnityEngine.BoundsInt)~X10D.Unity.Box">
-            <summary>
-                Implicitly converts an instance of <see cref="T:UnityEngine.Bounds" /> to an instance of <see cref="T:X10D.Unity.Box" />.
-            </summary>
-            <param name="bounds">The <see cref="T:UnityEngine.Bounds" /> to convert.</param>
-            <returns>A new instance of <see cref="T:X10D.Unity.Box" />.</returns>
-        </member>
-        <member name="T:X10D.Unity.Box2D">
-            <summary>
-                Represents a 2D box that can be drawn using the <see cref="T:X10D.Unity.DebugEx" /> class.
-            </summary>
-            <remarks>
-                This structure serves no real purpose except to be used in tandem with <see cref="T:X10D.Unity.DebugEx" />. For creating a logical
-                rectangle, consider using the <see cref="T:System.Drawing.Rectangle" />, <see cref="T:System.Drawing.RectangleF" />, <see cref="T:UnityEngine.Rect" />, or
-                <see cref="T:UnityEngine.RectInt" /> structures.
-            </remarks>
-        </member>
-        <member name="M:X10D.Unity.Box2D.#ctor(UnityEngine.Vector2,UnityEngine.Vector2)">
-            <summary>
-                Initializes a new instance of the <see cref="T:X10D.Unity.Box2D" /> struct.
-            </summary>
-            <param name="origin">The origin of the box.</param>
-            <param name="halfExtents">The half extents of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.Box2D.#ctor(UnityEngine.Vector2,UnityEngine.Vector2,System.Single)">
-            <summary>
-                Initializes a new instance of the <see cref="T:X10D.Unity.Box2D" /> struct.
-            </summary>
-            <param name="origin">The origin of the box.</param>
-            <param name="halfExtents">The half extents of the box.</param>
-            <param name="rotation">The rotation of the box.</param>
-        </member>
-        <member name="P:X10D.Unity.Box2D.Origin">
-            <summary>
-                Gets the origin of the box.
-            </summary>
-            <value>The origin.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.LocalTopLeft">
-            <summary>
-                Gets the top-left corner of the box, in local space.
-            </summary>
-            <value>The top-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.LocalTopRight">
-            <summary>
-                Gets the top-right corner of the box, in local space.
-            </summary>
-            <value>The top-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.LocalBottomLeft">
-            <summary>
-                Gets the bottom-left corner of the box, in local space.
-            </summary>
-            <value>The bottom-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.LocalBottomRight">
-            <summary>
-                Gets the bottom-right corner of the box, in local space.
-            </summary>
-            <value>The bottom-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.TopLeft">
-            <summary>
-                Gets the top-left corner of the box, in world space.
-            </summary>
-            <value>The top-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.TopRight">
-            <summary>
-                Gets the top-right corner of the box, in world space.
-            </summary>
-            <value>The top-right corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.BottomLeft">
-            <summary>
-                Gets the bottom-left corner of the box, in world space.
-            </summary>
-            <value>The bottom-left corner.</value>
-        </member>
-        <member name="P:X10D.Unity.Box2D.BottomRight">
-            <summary>
-                Gets the bottom-right corner of the box, in world space.
-            </summary>
-            <value>The bottom-right corner.</value>
-        </member>
-        <member name="M:X10D.Unity.Box2D.op_Implicit(UnityEngine.Rect)~X10D.Unity.Box2D">
-            <summary>
-                Implicitly converts an instance of <see cref="T:UnityEngine.Rect" /> to an instance of <see cref="T:X10D.Unity.Box2D" />.
-            </summary>
-            <param name="rect">The <see cref="T:UnityEngine.Rect" /> to convert.</param>
-            <returns>A new instance of <see cref="T:X10D.Unity.Box2D" />.</returns>
-        </member>
-        <member name="M:X10D.Unity.Box2D.op_Implicit(UnityEngine.RectInt)~X10D.Unity.Box2D">
-            <summary>
-                Implicitly converts an instance of <see cref="T:UnityEngine.RectInt" /> to an instance of <see cref="T:X10D.Unity.Box2D" />.
-            </summary>
-            <param name="rect">The <see cref="T:UnityEngine.RectInt" /> to convert.</param>
-            <returns>A new instance of <see cref="T:X10D.Unity.Box2D" />.</returns>
-        </member>
         <member name="T:X10D.Unity.ComponentExtensions">
             <summary>
                 Extension methods for <see cref="T:UnityEngine.Component" />.
@@ -256,364 +23,6 @@
                 An extended version of Unity's <see cref="T:UnityEngine.Debug" /> utility class which offers support for drawing simple
                 primitives.
             </summary>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3)">
-            <summary>
-                Draws a box.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion)">
-            <summary>
-                Draws a box with the specified orientation.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="orientation">The orientation of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
-            <summary>
-                Draws a box with the specified color.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@)">
-            <summary>
-                Draws a box with the specified orientation and color.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="orientation">The orientation of the box.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a box with the specified color and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a box with the specified orientation, color, and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="orientation">The orientation of the box.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a box with the specified color and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a box with the specified orientation, color, and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="orientation">The orientation of the box.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(X10D.Unity.Box,UnityEngine.Color@)">
-            <summary>
-                Draws a box with the specified color.
-            </summary>
-            <param name="box">The box to draw.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(X10D.Unity.Box,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a box with the specified color and duration.
-            </summary>
-            <param name="box">The box to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawBox(X10D.Unity.Box,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a box with the specified color and duration.
-            </summary>
-            <param name="box">The box to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2)">
-            <summary>
-                Draws a rectangle.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,System.Single)">
-            <summary>
-                Draws a rectangle with the specified rotation.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="rotation">The rotation of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified color.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,System.Single,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified rotation and color.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="rotation">The rotation of the box.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,System.Single,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified rotation, color, and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="rotation">The rotation of the box.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,System.Single,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified rotation, color, and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="halfExtents">The extents of the box, halved.</param>
-            <param name="rotation">The rotation of the box.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(X10D.Unity.Box2D,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified color.
-            </summary>
-            <param name="box">The box to draw.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(X10D.Unity.Box2D,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="box">The box to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(X10D.Unity.Box2D,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="box">The box to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified color.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified color.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified color.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@)">
-            <summary>
-                Draws a rectangle with the specified color.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="rect">The rectangle to draw.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
-            </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32)">
             <summary>
@@ -1854,6 +1263,171 @@
                 <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+                Draws a rectangle.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@)">
+            <summary>
+                Draws a rectangle with the specified color.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@)">
+            <summary>
+                Draws a rectangle with the specified color.
+            </summary>
+            <param name="rect">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rect">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rect">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@)">
+            <summary>
+                Draws a rectangle with the specified color.
+            </summary>
+            <param name="rect">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rect">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rect">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@)">
+            <summary>
+                Draws a rectangle with the specified color.
+            </summary>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@)">
+            <summary>
+                Draws a rectangle with the specified color.
+            </summary>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32)">
             <summary>
                 Draws a sphere with the specified color.
@@ -2000,6 +1574,160 @@
             <param name="depthTest">
                 <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
                 <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@)">
+            <summary>
+                Draws an axis-aligned bounding box.
+            </summary>
+            <param name="bounds">The bounding box to draw.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@)">
+            <summary>
+                Draws an axis-aligned bounding box.
+            </summary>
+            <param name="bounds">The bounding box to draw.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws an axis-aligned bounding box.
+            </summary>
+            <param name="bounds">The bounding box to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws an axis-aligned bounding box.
+            </summary>
+            <param name="bounds">The bounding box to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+                Draws a wireframe cube with a center and a size.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+                Draws a wireframe cube with the specified orientation.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="orientation">The orientation of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
+            <summary>
+                Draws a wireframe cube with the specified color.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@)">
+            <summary>
+                Draws a wireframe cube with the specified orientation and color.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="orientation">The orientation of the box.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a wireframe cube with the specified color and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a wireframe cube with the specified orientation, color, and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="orientation">The orientation of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a wireframe cube with the specified color and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a wireframe cube with the specified orientation, color, and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="orientation">The orientation of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@)">
+            <summary>
+                Draws a wireframe cube with the specified color.
+            </summary>
+            <param name="cuboid">The cuboid to draw.</param>
+            <param name="color">The color of the box.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a wireframe cube with the specified color and duration.
+            </summary>
+            <param name="cuboid">The cuboid to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a wireframe cube with the specified color and duration.
+            </summary>
+            <param name="cuboid">The cuboid to draw.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="T:X10D.Unity.Drawing.Color32Extensions">
