@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Numerics;
 
@@ -6,6 +6,55 @@ namespace X10D.Unity;
 
 public static partial class DebugEx
 {
+    /// <summary>
+    ///     Draws an axis-aligned bounding box.
+    /// </summary>
+    /// <param name="bounds">The bounding box to draw.</param>
+    public static void DrawWireCube(in Bounds bounds)
+    {
+        DrawWireCube(bounds.center, bounds.size, Color.white, DefaultDrawDuration, DefaultDepthTest);
+    }
+
+    /// <summary>
+    ///     Draws an axis-aligned bounding box.
+    /// </summary>
+    /// <param name="bounds">The bounding box to draw.</param>
+    /// <param name="color">The color of the box.</param>
+    public static void DrawWireCube(in Bounds bounds, in Color color)
+    {
+        DrawWireCube(bounds.center, bounds.size, color, DefaultDrawDuration, DefaultDepthTest);
+    }
+
+    /// <summary>
+    ///     Draws an axis-aligned bounding box.
+    /// </summary>
+    /// <param name="bounds">The bounding box to draw.</param>
+    /// <param name="color">The color of the box.</param>
+    /// <param name="duration">
+    ///     The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+    /// </param>
+    public static void DrawWireCube(in Bounds bounds, in Color color, float duration)
+    {
+        DrawWireCube(bounds.center, bounds.size, color, duration, DefaultDepthTest);
+    }
+
+    /// <summary>
+    ///     Draws an axis-aligned bounding box.
+    /// </summary>
+    /// <param name="bounds">The bounding box to draw.</param>
+    /// <param name="color">The color of the box.</param>
+    /// <param name="duration">
+    ///     The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+    /// </param>
+    /// <param name="depthTest">
+    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+    /// </param>
+    public static void DrawWireCube(in Bounds bounds, in Color color, float duration, bool depthTest)
+    {
+        DrawWireCube(bounds.center, bounds.size, color, duration, depthTest);
+    }
+
     /// <summary>
     ///     Draws a wireframe cube with a center and a size.
     /// </summary>
