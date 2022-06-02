@@ -13,7 +13,7 @@ namespace X10D.Unity.Tests
             DebugEx.DrawLine(Vector3.zero, Vector3.up, Color.green);
             DebugEx.DrawLine(Vector3.zero, Vector3.forward, Color.blue);
 
-            DebugEx.DrawBox(new Vector3(1.5f, 0.5f, 0), Vector3.one * 0.5f, Color.yellow);
+            DebugEx.DrawWireCube(new Vector3(1.5f, 0.5f, 0), Vector3.one * 0.5f, Color.yellow);
             DebugEx.DrawRectangle(new Vector2(-1.5f, 0.5f), Vector2.one * -0.5f, Color.cyan);
 
             var circle = new CircleF(0.0f, 0.0f, 0.5f);
