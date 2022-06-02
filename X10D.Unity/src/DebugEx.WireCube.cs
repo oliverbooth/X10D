@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Numerics;
 
@@ -17,7 +17,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified orientation.
+    ///     Draws a wireframe cube with the specified orientation.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -29,7 +29,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified color.
+    ///     Draws a wireframe cube with the specified color.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -40,7 +40,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified orientation and color.
+    ///     Draws a wireframe cube with the specified orientation and color.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -53,7 +53,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified color and duration.
+    ///     Draws a wireframe cube with the specified color and duration.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -67,7 +67,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified orientation, color, and duration.
+    ///     Draws a wireframe cube with the specified orientation, color, and duration.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -83,7 +83,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified color and duration.
+    ///     Draws a wireframe cube with the specified color and duration.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -101,7 +101,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified orientation, color, and duration.
+    ///     Draws a wireframe cube with the specified orientation, color, and duration.
     /// </summary>
     /// <param name="center">The center point.</param>
     /// <param name="size">The extents of the box.</param>
@@ -122,7 +122,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified color.
+    ///     Draws a wireframe cube with the specified color.
     /// </summary>
     /// <param name="cuboid">The cuboid to draw.</param>
     /// <param name="color">The color of the box.</param>
@@ -132,7 +132,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified color and duration.
+    ///     Draws a wireframe cube with the specified color and duration.
     /// </summary>
     /// <param name="cuboid">The cuboid to draw.</param>
     /// <param name="color">The color of the box.</param>
@@ -145,7 +145,7 @@ public static partial class DebugEx
     }
 
     /// <summary>
-    ///     Draws a box with the specified color and duration.
+    ///     Draws a wireframe cube with the specified color and duration.
     /// </summary>
     /// <param name="cuboid">The cuboid to draw.</param>
     /// <param name="color">The color of the box.</param>
