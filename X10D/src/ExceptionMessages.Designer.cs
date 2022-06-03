@@ -79,6 +79,24 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The end index must be less than the list count..
+        /// </summary>
+        internal static string EndIndexGreaterThanCount {
+            get {
+                return ResourceManager.GetString("EndIndexGreaterThanCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The end index must be greater than or equal to the start index..
+        /// </summary>
+        internal static string EndIndexLessThanStartIndex {
+            get {
+                return ResourceManager.GetString("EndIndexLessThanStartIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HashAlgorithm&apos;s Create method returned null reference..
         /// </summary>
         internal static string HashAlgorithmCreateReturnedNull {

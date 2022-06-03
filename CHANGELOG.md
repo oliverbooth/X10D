@@ -4,6 +4,7 @@
 ### Added
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
 - X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
+- X10D: Added `IList<T>.RemoveRange(Range)`
 - X10D: Added `Point.ToSize()`
 - X10D: Added `Point.ToSizeF()`
 - X10D: Added `Point.ToVector2()`

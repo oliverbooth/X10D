@@ -26,6 +26,12 @@
     <data name="BufferTooSmall" xml:space="preserve">
         <value>The buffer is too small to contain the data.</value>
     </data>
+    <data name="EndIndexLessThanStartIndex" xml:space="preserve">
+        <value>The end index must be greater than or equal to the start index.</value>
+    </data>
+    <data name="EndIndexGreaterThanCount" xml:space="preserve">
+        <value>The end index must be less than the list count.</value>
+    </data>
     <data name="TypeIsNotClass" xml:space="preserve">
         <value>{0} is not a class.</value>
     </data>
