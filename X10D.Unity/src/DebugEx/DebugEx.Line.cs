@@ -52,8 +52,8 @@ public static partial class DebugEx
     ///     The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the line be obscured by objects closer to the camera.
     /// </param>
     public static void DrawLine(Vector3 start, Vector3 end, in Color color, float duration, bool depthTest)
     {
@@ -101,8 +101,8 @@ public static partial class DebugEx
     ///     The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the line be obscured by objects closer to the camera.
     /// </param>
     public static void DrawLine(Line line, in Color color, float duration, bool depthTest)
     {
@@ -150,8 +150,8 @@ public static partial class DebugEx
     ///     The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the line be obscured by objects closer to the camera.
     /// </param>
     public static void DrawLine(LineF line, in Color color, float duration, bool depthTest)
     {
@@ -199,8 +199,8 @@ public static partial class DebugEx
     ///     The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the line be obscured by objects closer to the camera.
     /// </param>
     public static void DrawLine(Line3D line, in Color color, float duration, bool depthTest)
     {
