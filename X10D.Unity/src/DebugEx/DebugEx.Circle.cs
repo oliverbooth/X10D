@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using X10D.Drawing;
 using X10D.Numerics;
 using X10D.Unity.Numerics;
@@ -13,10 +13,10 @@ public static partial class DebugEx
     /// </summary>
     /// <param name="center">The center point of the circle.</param>
     /// <param name="radius">The radius of the circle.</param>
-    /// <param name="sides">The number of sides to generate.</param>
-    public static void DrawCircle(Vector2 center, float radius, int sides)
+    /// <param name="segments">The number of segments to generate.</param>
+    public static void DrawCircle(Vector2 center, float radius, int segments)
     {
-        DrawCircle(center, radius, sides, Color.white, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle(center, radius, segments, Color.white, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
@@ -24,11 +24,11 @@ public static partial class DebugEx
     /// </summary>
     /// <param name="center">The center point of the circle.</param>
     /// <param name="radius">The radius of the circle.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
-    public static void DrawCircle(Vector2 center, float radius, int sides, in Color color)
+    public static void DrawCircle(Vector2 center, float radius, int segments, in Color color)
     {
-        DrawCircle(center, radius, sides, color, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle(center, radius, segments, color, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
@@ -36,14 +36,14 @@ public static partial class DebugEx
     /// </summary>
     /// <param name="center">The center point of the circle.</param>
     /// <param name="radius">The radius of the circle.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
-    public static void DrawCircle(Vector2 center, float radius, int sides, in Color color, float duration)
+    public static void DrawCircle(Vector2 center, float radius, int segments, in Color color, float duration)
     {
-        DrawCircle(center, radius, sides, Vector2.zero, color, duration, DefaultDepthTest);
+        DrawCircle(center, radius, segments, Vector2.zero, color, duration, DefaultDepthTest);
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ public static partial class DebugEx
     /// </summary>
     /// <param name="center">The center point of the circle.</param>
     /// <param name="radius">The radius of the circle.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
@@ -60,9 +60,9 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(Vector2 center, float radius, int sides, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(Vector2 center, float radius, int segments, in Color color, float duration, bool depthTest)
     {
-        DrawCircle(center, radius, sides, Vector2.zero, color, duration, depthTest);
+        DrawCircle(center, radius, segments, Vector2.zero, color, duration, depthTest);
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public static partial class DebugEx
     /// </summary>
     /// <param name="center">The center point of the circle.</param>
     /// <param name="radius">The radius of the circle.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
@@ -80,90 +80,90 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(Vector2 center, float radius, int sides, in Vector3 offset, in Color color, float duration,
+    public static void DrawCircle(Vector2 center, float radius, int segments, in Vector3 offset, in Color color, float duration,
         bool depthTest)
     {
-        DrawCircle(new CircleF(center.ToSystemVector(), radius), sides, offset, color, duration, depthTest);
+        DrawCircle(new CircleF(center.ToSystemVector(), radius), segments, offset, color, duration, depthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
-    public static void DrawCircle(in Circle circle, int sides)
+    /// <param name="segments">The number of segments to generate.</param>
+    public static void DrawCircle(in Circle circle, int segments)
     {
-        DrawCircle((CircleF)circle, sides, Vector2.zero, Color.white, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle((CircleF)circle, segments, Vector2.zero, Color.white, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
-    public static void DrawCircle(in Circle circle, int sides, in Vector3 offset)
+    public static void DrawCircle(in Circle circle, int segments, in Vector3 offset)
     {
-        DrawCircle((CircleF)circle, sides, offset, Color.white, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle((CircleF)circle, segments, offset, Color.white, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
-    public static void DrawCircle(in Circle circle, int sides, in Color color)
+    public static void DrawCircle(in Circle circle, int segments, in Color color)
     {
-        DrawCircle((CircleF)circle, sides, Vector2.zero, color, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle((CircleF)circle, segments, Vector2.zero, color, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
-    public static void DrawCircle(in Circle circle, int sides, in Vector3 offset, in Color color)
+    public static void DrawCircle(in Circle circle, int segments, in Vector3 offset, in Color color)
     {
-        DrawCircle((CircleF)circle, sides, offset, color, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle((CircleF)circle, segments, offset, color, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color and duration.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
-    public static void DrawCircle(in Circle circle, int sides, in Color color, float duration)
+    public static void DrawCircle(in Circle circle, int segments, in Color color, float duration)
     {
-        DrawCircle((CircleF)circle, sides, Vector2.zero, color, duration, DefaultDepthTest);
+        DrawCircle((CircleF)circle, segments, Vector2.zero, color, duration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color and duration.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
-    public static void DrawCircle(in Circle circle, int sides, in Vector3 offset, in Color color, float duration)
+    public static void DrawCircle(in Circle circle, int segments, in Vector3 offset, in Color color, float duration)
     {
-        DrawCircle((CircleF)circle, sides, offset, color, duration, DefaultDepthTest);
+        DrawCircle((CircleF)circle, segments, offset, color, duration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color and duration.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
@@ -172,16 +172,16 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(in Circle circle, int sides, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(in Circle circle, int segments, in Color color, float duration, bool depthTest)
     {
-        DrawCircle((CircleF)circle, sides, Vector2.zero, color, duration, depthTest);
+        DrawCircle((CircleF)circle, segments, Vector2.zero, color, duration, depthTest);
     }
 
     /// <summary>
     ///     Draws a circle.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
@@ -191,89 +191,89 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(in Circle circle, int sides, in Vector3 offset, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(in Circle circle, int segments, in Vector3 offset, in Color color, float duration, bool depthTest)
     {
-        DrawCircle((CircleF)circle, sides, offset, color, duration, depthTest);
+        DrawCircle((CircleF)circle, segments, offset, color, duration, depthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
-    public static void DrawCircle(in CircleF circle, int sides)
+    /// <param name="segments">The number of segments to generate.</param>
+    public static void DrawCircle(in CircleF circle, int segments)
     {
-        DrawCircle(circle, sides, Color.white, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle(circle, segments, Color.white, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
-    public static void DrawCircle(in CircleF circle, int sides, in Vector3 offset)
+    public static void DrawCircle(in CircleF circle, int segments, in Vector3 offset)
     {
-        DrawCircle(circle, sides, offset, Color.white, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle(circle, segments, offset, Color.white, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
-    public static void DrawCircle(in CircleF circle, int sides, in Color color)
+    public static void DrawCircle(in CircleF circle, int segments, in Color color)
     {
-        DrawCircle(circle, sides, Vector2.zero, color, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle(circle, segments, Vector2.zero, color, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
-    public static void DrawCircle(in CircleF circle, int sides, in Vector3 offset, in Color color)
+    public static void DrawCircle(in CircleF circle, int segments, in Vector3 offset, in Color color)
     {
-        DrawCircle(circle, sides, offset, color, DefaultDrawDuration, DefaultDepthTest);
+        DrawCircle(circle, segments, offset, color, DefaultDrawDuration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color and duration.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
-    public static void DrawCircle(in CircleF circle, int sides, in Color color, float duration)
+    public static void DrawCircle(in CircleF circle, int segments, in Color color, float duration)
     {
-        DrawCircle(circle, sides, Vector2.zero, color, duration, DefaultDepthTest);
+        DrawCircle(circle, segments, Vector2.zero, color, duration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color and duration.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
-    public static void DrawCircle(in CircleF circle, int sides, in Vector3 offset, in Color color, float duration)
+    public static void DrawCircle(in CircleF circle, int segments, in Vector3 offset, in Color color, float duration)
     {
-        DrawCircle(circle, sides, offset, color, duration, DefaultDepthTest);
+        DrawCircle(circle, segments, offset, color, duration, DefaultDepthTest);
     }
 
     /// <summary>
     ///     Draws a circle with the specified color and duration.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
@@ -282,16 +282,16 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(in CircleF circle, int sides, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(in CircleF circle, int segments, in Color color, float duration, bool depthTest)
     {
-        DrawCircle(circle, sides, Vector2.zero, color, duration, depthTest);
+        DrawCircle(circle, segments, Vector2.zero, color, duration, depthTest);
     }
 
     /// <summary>
     ///     Draws a circle.
     /// </summary>
     /// <param name="circle">The circle to draw.</param>
-    /// <param name="sides">The number of sides to generate.</param>
+    /// <param name="segments">The number of segments to generate.</param>
     /// <param name="offset">The drawing offset of the circle.</param>
     /// <param name="color">The color of the circle.</param>
     /// <param name="duration">
@@ -301,15 +301,15 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(in CircleF circle, int sides, in Vector3 offset, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(in CircleF circle, int segments, in Vector3 offset, in Color color, float duration, bool depthTest)
     {
-        DrawPolyhedron(CreateCircle(circle.Radius, sides, Vector3.zero), offset, color, duration, depthTest);
+        DrawPolyhedron(CreateCircle(circle.Radius, segments, Vector3.zero), offset, color, duration, depthTest);
     }
 
-    private static Polyhedron CreateCircle(float radius, int sides, in Vector3 axis)
+    private static Polyhedron CreateCircle(float radius, int segments, in Vector3 axis)
     {
         const float max = 2.0f * MathF.PI;
-        float step = max / sides;
+        float step = max / segments;
 
         var points = new List<System.Numerics.Vector3>();
         for (var theta = 0f; theta < max; theta += step)
