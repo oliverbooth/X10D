@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using X10D.Core;
 
 namespace X10D.Collections;
@@ -117,6 +117,48 @@ public static class ListExtensions
 
         random ??= RandomExtensions.GetShared();
         return random.NextFrom(source);
+    }
+
+    /// <summary>
+    ///     Removes a range of elements from the list.
+    /// </summary>
+    /// <param name="source">The list whose elements to remove.</param>
+    /// <param name="range">The range of elements to remove.</param>
+    /// <typeparam name="T">The type of the elements in <paramref name="source" />.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="range" /> defines an invalid range.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <paramref name="range" /> defines an end index whose value is greater than or equal to the count of elements in the
+    ///     list.
+    /// </exception>
+    public static void RemoveRange<T>(this IList<T> source, Range range)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        int start = range.Start.IsFromEnd ? source.Count - range.Start.Value : range.Start.Value;
+        int end = range.End.IsFromEnd ? source.Count - range.End.Value : range.End.Value;
+
+        if (end < start)
+        {
+            throw new ArgumentException(ExceptionMessages.EndIndexLessThanStartIndex);
+        }
+
+        if (end >= source.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(range), ExceptionMessages.EndIndexGreaterThanCount);
+        }
+
+        for (int index = end; index >= start; index--)
+        {
+            source.RemoveAt(index);
+        }
     }
 
     /// <summary>

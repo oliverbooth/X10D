@@ -80,6 +80,63 @@ public class ListTests
     }
 
     [TestMethod]
+    public void Random_ShouldReturnContainedObject_GivenNotNull()
+    {
+        var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
+        int random = list.Random();
+
+        Assert.IsTrue(list.Contains(random));
+    }
+
+    [TestMethod]
+    public void Random_ShouldThrow_GivenNull()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Random());
+    }
+
+    [TestMethod]
+    public void RemoveRange_ShouldThrowArgumentNullException_GivenNull()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.RemoveRange(new Range()));
+    }
+
+    [TestMethod]
+    public void RemoveRange_ShouldThrowArgumentException_GivenEndIndexLessThanStart()
+    {
+        Assert.ThrowsException<ArgumentException>(() => new List<int>().RemoveRange(2..0));
+    }
+
+    [TestMethod]
+    public void RemoveRange_ShouldThrowArgumentOutOfRangeException_GivenEndIndexGreaterThanOrEqualToCount()
+    {
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new List<int>().RemoveRange(..0));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new List<int> {1}.RemoveRange(..2));
+    }
+
+    [TestMethod]
+    public void RemoveRange_ShouldRemoveElements_GivenList()
+    {
+        var list = new List<int>
+        {
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        };
+
+        Assert.AreEqual(10, list.Count);
+        list.RemoveRange(2..5);
+        Assert.AreEqual(6, list.Count);
+        CollectionAssert.AreEqual(new[] {1, 2, 7, 8, 9, 10}, list);
+    }
+
+    [TestMethod]
     public void Shuffle_ShouldReorder_GivenNotNull()
     {
         var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
@@ -96,20 +153,5 @@ public class ListTests
     public void Shuffle_ShouldThrow_GivenNull()
     {
         Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Shuffle());
-    }
-
-    [TestMethod]
-    public void Random_ShouldReturnContainedObject_GivenNotNull()
-    {
-        var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
-        int random = list.Random();
-
-        Assert.IsTrue(list.Contains(random));
-    }
-
-    [TestMethod]
-    public void Random_ShouldThrow_GivenNull()
-    {
-        Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Random());
     }
 }
