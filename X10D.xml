@@ -536,6 +536,20 @@
                 </code>
             </example>
         </member>
+        <member name="M:X10D.Collections.ListExtensions.RemoveRange``1(System.Collections.Generic.IList{``0},System.Range)">
+            <summary>
+                Removes a range of elements from the list.
+            </summary>
+            <param name="source">The list whose elements to remove.</param>
+            <param name="range">The range of elements to remove.</param>
+            <typeparam name="T">The type of the elements in <paramref name="source" />.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="range" /> defines an invalid range.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="range" /> defines an end index whose value is greater than or equal to the count of elements in the
+                list.
+            </exception>
+        </member>
         <member name="M:X10D.Collections.ListExtensions.Shuffle``1(System.Collections.Generic.IList{``0},System.Random)">
             <summary>
                 Reorganizes the elements in a list by implementing a Fisher-Yates shuffle.
@@ -3306,6 +3320,16 @@
         <member name="P:X10D.ExceptionMessages.CountMustBeGreaterThanOrEqualTo0">
             <summary>
               Looks up a localized string similar to count must be greater than or equal to 0..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.EndIndexGreaterThanCount">
+            <summary>
+              Looks up a localized string similar to The end index must be less than the list count..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.EndIndexLessThanStartIndex">
+            <summary>
+              Looks up a localized string similar to The end index must be greater than or equal to the start index..
             </summary>
         </member>
         <member name="P:X10D.ExceptionMessages.HashAlgorithmCreateReturnedNull">
