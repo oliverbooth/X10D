@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using X10D.Drawing;
 using X10D.Numerics;
 using X10D.Unity.Numerics;
@@ -57,8 +57,8 @@ public static partial class DebugEx
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
     public static void DrawCircle(Vector2 center, float radius, int sides, in Color color, float duration, bool depthTest)
     {
@@ -77,8 +77,8 @@ public static partial class DebugEx
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
     public static void DrawCircle(Vector2 center, float radius, int sides, in Vector3 offset, in Color color, float duration,
         bool depthTest)
@@ -169,8 +169,8 @@ public static partial class DebugEx
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
     public static void DrawCircle(in Circle circle, int sides, in Color color, float duration, bool depthTest)
     {
@@ -188,8 +188,8 @@ public static partial class DebugEx
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
     public static void DrawCircle(in Circle circle, int sides, in Vector3 offset, in Color color, float duration, bool depthTest)
     {
@@ -279,8 +279,8 @@ public static partial class DebugEx
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
     public static void DrawCircle(in CircleF circle, int sides, in Color color, float duration, bool depthTest)
     {
@@ -298,8 +298,8 @@ public static partial class DebugEx
     ///     The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
     public static void DrawCircle(in CircleF circle, int sides, in Vector3 offset, in Color color, float duration, bool depthTest)
     {

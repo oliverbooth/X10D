@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using X10D.Drawing;
 
 namespace X10D.Unity;
@@ -54,8 +54,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(Vector2 center, Vector2 radius, int sides, in Color color, float duration, bool depthTest)
     {
@@ -74,8 +74,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(Vector2 center, Vector2 radius, int sides, Vector2 offset, in Color color, float duration,
         bool depthTest)
@@ -136,8 +136,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(Vector2 center, float radiusX, float radiusY, int sides, in Color color, float duration,
         bool depthTest)
@@ -158,8 +158,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(Vector2 center, float radiusX, float radiusY, int sides, Vector2 offset, in Color color,
         float duration, bool depthTest)
@@ -250,8 +250,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(Ellipse ellipse, int sides, in Color color, float duration, bool depthTest)
     {
@@ -269,8 +269,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(Ellipse ellipse, int sides, Vector2 offset, in Color color, float duration, bool depthTest)
     {
@@ -360,8 +360,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(EllipseF ellipse, int sides, in Color color, float duration, bool depthTest)
     {
@@ -379,8 +379,8 @@ public static partial class DebugEx
     ///     The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
     /// </param>
     public static void DrawEllipse(EllipseF ellipse, int sides, Vector2 offset, in Color color, float duration, bool depthTest)
     {

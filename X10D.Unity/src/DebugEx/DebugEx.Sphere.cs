@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Numerics;
 
@@ -55,8 +55,8 @@ public static partial class DebugEx
     ///     The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
     /// </param>
     public static void DrawSphere(Vector3 center, float radius, int sides, in Color color, float duration, bool depthTest)
     {
@@ -75,8 +75,8 @@ public static partial class DebugEx
     ///     The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
     /// </param>
     public static void DrawSphere(Vector3 center, float radius, int sides, Vector2 offset, in Color color, float duration,
         bool depthTest)
@@ -167,8 +167,8 @@ public static partial class DebugEx
     ///     The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
     /// </param>
     public static void DrawSphere(Sphere sphere, int sides, in Color color, float duration, bool depthTest)
     {
@@ -186,8 +186,8 @@ public static partial class DebugEx
     ///     The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
     /// </param>
     public static void DrawSphere(Sphere sphere, int sides, in Vector3 offset, in Color color, float duration, bool depthTest)
     {

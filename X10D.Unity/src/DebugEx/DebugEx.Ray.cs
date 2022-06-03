@@ -45,8 +45,8 @@ public static partial class DebugEx
     ///     The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the line be obscured by objects closer to the camera.
     /// </param>
     public static void DrawRay(Ray ray, in Color color, float duration, bool depthTest)
     {
@@ -98,8 +98,8 @@ public static partial class DebugEx
     ///     The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the line be obscured by objects closer to the camera.
     /// </param>
     public static void DrawRay(Vector3 start, Vector3 direction, in Color color, float duration, bool depthTest)
     {

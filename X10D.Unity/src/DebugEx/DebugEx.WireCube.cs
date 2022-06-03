@@ -47,8 +47,8 @@ public static partial class DebugEx
     ///     The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
     /// </param>
     public static void DrawWireCube(in Bounds bounds, in Color color, float duration, bool depthTest)
     {
@@ -141,8 +141,8 @@ public static partial class DebugEx
     ///     The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
     /// </param>
     public static void DrawWireCube(Vector3 center, Vector3 size, in Color color, float duration, bool depthTest)
     {
@@ -160,8 +160,8 @@ public static partial class DebugEx
     ///     The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
     /// </param>
     public static void DrawWireCube(Vector3 center, Vector3 size, Quaternion orientation, in Color color, float duration,
         bool depthTest)
@@ -202,8 +202,8 @@ public static partial class DebugEx
     ///     The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
     /// </param>
     /// <param name="depthTest">
-    ///     <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-    ///     <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
     /// </param>
     public static void DrawWireCube(in Cuboid cuboid, in Color color, float duration, bool depthTest)
     {
