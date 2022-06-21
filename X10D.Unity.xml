@@ -30,7 +30,7 @@
             </summary>
             <param name="center">The center point of the circle.</param>
             <param name="radius">The radius of the circle.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@)">
             <summary>
@@ -38,7 +38,7 @@
             </summary>
             <param name="center">The center point of the circle.</param>
             <param name="radius">The radius of the circle.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
@@ -47,7 +47,7 @@
             </summary>
             <param name="center">The center point of the circle.</param>
             <param name="radius">The radius of the circle.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
@@ -59,14 +59,14 @@
             </summary>
             <param name="center">The center point of the circle.</param>
             <param name="radius">The radius of the circle.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -75,15 +75,15 @@
             </summary>
             <param name="center">The center point of the circle.</param>
             <param name="radius">The radius of the circle.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32)">
@@ -91,14 +91,14 @@
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@)">
@@ -106,7 +106,7 @@
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@)">
@@ -114,7 +114,7 @@
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
         </member>
@@ -123,7 +123,7 @@
                 Draws a circle with the specified color and duration.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
@@ -134,7 +134,7 @@
                 Draws a circle with the specified color and duration.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
@@ -146,14 +146,14 @@
                 Draws a circle with the specified color and duration.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -161,15 +161,15 @@
                 Draws a circle.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32)">
@@ -177,14 +177,14 @@
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@)">
@@ -192,7 +192,7 @@
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@)">
@@ -200,7 +200,7 @@
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
         </member>
@@ -209,7 +209,7 @@
                 Draws a circle with the specified color and duration.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
@@ -220,7 +220,7 @@
                 Draws a circle with the specified color and duration.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
@@ -232,14 +232,14 @@
                 Draws a circle with the specified color and duration.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -247,15 +247,15 @@
                 Draws a circle.
             </summary>
             <param name="circle">The circle to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
             <param name="duration">
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the circle be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="F:X10D.Unity.DebugEx.DefaultDrawDuration">
@@ -504,7 +504,7 @@
             </summary>
             <param name="center">The center point of the ellipse.</param>
             <param name="radius">The radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@)">
             <summary>
@@ -512,7 +512,7 @@
             </summary>
             <param name="center">The center point of the ellipse.</param>
             <param name="radius">The radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@,System.Single)">
@@ -521,7 +521,7 @@
             </summary>
             <param name="center">The center point of the ellipse.</param>
             <param name="radius">The radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
@@ -533,14 +533,14 @@
             </summary>
             <param name="center">The center point of the ellipse.</param>
             <param name="radius">The radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -549,15 +549,15 @@
             </summary>
             <param name="center">The center point of the ellipse.</param>
             <param name="radius">The radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32)">
@@ -567,7 +567,7 @@
             <param name="center">The center point of the ellipse.</param>
             <param name="radiusX">The horizontal radius of the ellipse.</param>
             <param name="radiusY">The vertical radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@)">
             <summary>
@@ -576,7 +576,7 @@
             <param name="center">The center point of the ellipse.</param>
             <param name="radiusX">The horizontal radius of the ellipse.</param>
             <param name="radiusY">The vertical radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
@@ -586,7 +586,7 @@
             <param name="center">The center point of the ellipse.</param>
             <param name="radiusX">The horizontal radius of the ellipse.</param>
             <param name="radiusY">The vertical radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
@@ -599,14 +599,14 @@
             <param name="center">The center point of the ellipse.</param>
             <param name="radiusX">The horizontal radius of the ellipse.</param>
             <param name="radiusY">The vertical radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -616,15 +616,15 @@
             <param name="center">The center point of the ellipse.</param>
             <param name="radiusX">The horizontal radius of the ellipse.</param>
             <param name="radiusY">The vertical radius of the ellipse.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32)">
@@ -632,14 +632,14 @@
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@)">
@@ -647,7 +647,7 @@
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
@@ -655,7 +655,7 @@
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
@@ -664,7 +664,7 @@
                 Draws an ellipse with the specified color and duration.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
@@ -675,7 +675,7 @@
                 Draws an ellipse with the specified color and duration.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
@@ -687,14 +687,14 @@
                 Draws an ellipse with the specified color and duration.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -702,15 +702,15 @@
                 Draws an ellipse.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32)">
@@ -718,14 +718,14 @@
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@)">
@@ -733,7 +733,7 @@
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
@@ -741,7 +741,7 @@
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
@@ -750,7 +750,7 @@
                 Draws an ellipse with the specified color and duration.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
@@ -761,7 +761,7 @@
                 Draws an ellipse with the specified color and duration.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
@@ -773,14 +773,14 @@
                 Draws an ellipse with the specified color and duration.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -788,15 +788,15 @@
                 Draws an ellipse.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
             <param name="duration">
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the ellipse be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3)">
@@ -836,8 +836,8 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line)">
@@ -873,8 +873,8 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.LineF)">
@@ -910,8 +910,8 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line3D)">
@@ -947,8 +947,8 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon)">
@@ -1218,8 +1218,8 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3)">
@@ -1259,8 +1259,8 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the line be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2)">
@@ -1300,8 +1300,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@)">
@@ -1331,8 +1331,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@)">
@@ -1362,8 +1362,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@)">
@@ -1393,8 +1393,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@)">
@@ -1424,8 +1424,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32)">
@@ -1434,7 +1434,7 @@
             </summary>
             <param name="center">The center point of the sphere.</param>
             <param name="radius">The radius of the sphere.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@)">
             <summary>
@@ -1442,7 +1442,7 @@
             </summary>
             <param name="center">The center point of the sphere.</param>
             <param name="radius">The radius of the sphere.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
@@ -1451,7 +1451,7 @@
             </summary>
             <param name="center">The center point of the sphere.</param>
             <param name="radius">The radius of the sphere.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
@@ -1463,14 +1463,14 @@
             </summary>
             <param name="center">The center point of the sphere.</param>
             <param name="radius">The radius of the sphere.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -1479,15 +1479,15 @@
             </summary>
             <param name="center">The center point of the sphere.</param>
             <param name="radius">The radius of the sphere.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the sphere.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32)">
@@ -1495,14 +1495,14 @@
                 Draws a sphere with the specified color.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the sphere.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@)">
@@ -1510,7 +1510,7 @@
                 Draws a sphere with the specified color.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
@@ -1518,7 +1518,7 @@
                 Draws a sphere with the specified color.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the sphere.</param>
             <param name="color">The color of the sphere.</param>
         </member>
@@ -1527,7 +1527,7 @@
                 Draws a sphere with the specified color and duration.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
@@ -1538,7 +1538,7 @@
                 Draws a sphere with the specified color and duration.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the sphere.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
@@ -1550,14 +1550,14 @@
                 Draws a sphere with the specified color and duration.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -1565,15 +1565,15 @@
                 Draws a sphere.
             </summary>
             <param name="sphere">The sphere to draw.</param>
-            <param name="sides">The number of sides to generate.</param>
+            <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the sphere.</param>
             <param name="color">The color of the sphere.</param>
             <param name="duration">
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the sphere be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@)">
@@ -1609,8 +1609,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3)">
@@ -1679,8 +1679,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single,System.Boolean)">
@@ -1695,8 +1695,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@)">
@@ -1726,8 +1726,8 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
             <param name="depthTest">
-                <see langword="DefaultDepthTest" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="DefaultDepthTest" /> will have the box be obscured by objects closer to the camera.
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
         <member name="T:X10D.Unity.Drawing.Color32Extensions">
