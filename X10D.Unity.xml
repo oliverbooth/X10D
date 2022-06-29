@@ -1910,6 +1910,18 @@
                 Drawing-related extension methods for <see cref="T:System.Drawing.PointF" />.
             </summary>
         </member>
+        <member name="M:X10D.Unity.Drawing.PointFExtensions.IsOnLine(System.Drawing.PointF,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.PointF" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
         <member name="M:X10D.Unity.Drawing.PointFExtensions.ToUnityVector2(System.Drawing.PointF)">
             <summary>
                 Converts the current <see cref="T:System.Drawing.Point" /> to a <see cref="T:UnityEngine.Vector2" />.
@@ -2352,6 +2364,41 @@
             <param name="x">The X component value.</param>
             <param name="y">The Y component value.</param>
         </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.IsOnLine(UnityEngine.Vector2,X10D.Drawing.LineF)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="line">The line on which the point may lie.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.IsOnLine(UnityEngine.Vector2,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2Extensions.IsOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
         <member name="M:X10D.Unity.Numerics.Vector2Extensions.ToSystemPointF(UnityEngine.Vector2)">
             <summary>
                 Converts the current <see cref="T:UnityEngine.Vector2" /> into a <see cref="T:System.Drawing.PointF" />.
@@ -2414,6 +2461,53 @@
             <param name="vector">The vector to deconstruct.</param>
             <param name="x">The X component value.</param>
             <param name="y">The Y component value.</param>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.IsOnLine(UnityEngine.Vector2Int,X10D.Drawing.LineF)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2Int" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="line">The line on which the point may lie.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.IsOnLine(UnityEngine.Vector2Int,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2Int" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.IsOnLine(UnityEngine.Vector2Int,UnityEngine.Vector2Int,UnityEngine.Vector2Int)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2Int" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.IsOnLine(UnityEngine.Vector2Int,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+                Determines if the current <see cref="T:UnityEngine.Vector2Int" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
         </member>
         <member name="M:X10D.Unity.Numerics.Vector2IntExtensions.ToSystemPoint(UnityEngine.Vector2Int)">
             <summary>

@@ -2616,6 +2616,41 @@
                 Drawing-related extension methods for <see cref="T:System.Drawing.Point" />.
             </summary>
         </member>
+        <member name="M:X10D.Drawing.PointExtensions.IsOnLine(System.Drawing.Point,X10D.Drawing.LineF)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.Point" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="line">The line on which the point may lie.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PointExtensions.IsOnLine(System.Drawing.Point,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.Point" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PointExtensions.IsOnLine(System.Drawing.Point,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.Point" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
         <member name="M:X10D.Drawing.PointExtensions.ToSize(System.Drawing.Point)">
             <summary>
                 Converts the current <see cref="T:System.Drawing.Point" /> to a <see cref="T:System.Drawing.Size" />.
@@ -2641,6 +2676,41 @@
             <summary>
                 Drawing-related extension methods for <see cref="T:System.Drawing.PointF" />.
             </summary>
+        </member>
+        <member name="M:X10D.Drawing.PointFExtensions.IsOnLine(System.Drawing.PointF,X10D.Drawing.LineF)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.PointF" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="line">The line on which the point may lie.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PointFExtensions.IsOnLine(System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.PointF" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.PointFExtensions.IsOnLine(System.Drawing.PointF,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+                Determines if the current <see cref="T:System.Drawing.PointF" /> lies on the specified <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
         </member>
         <member name="M:X10D.Drawing.PointFExtensions.ToSizeF(System.Drawing.PointF)">
             <summary>
@@ -6855,6 +6925,41 @@
             <param name="vector">The vector to deconstruct.</param>
             <param name="x">The X component value.</param>
             <param name="y">The Y component value.</param>
+        </member>
+        <member name="M:X10D.Numerics.Vector2Extensions.IsOnLine(System.Numerics.Vector2,X10D.Drawing.LineF)">
+            <summary>
+                Determines if the current <see cref="T:System.Numerics.Vector2" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="line">The line on which the point may lie.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Numerics.Vector2Extensions.IsOnLine(System.Numerics.Vector2,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+                Determines if the current <see cref="T:System.Numerics.Vector2" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Numerics.Vector2Extensions.IsOnLine(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+                Determines if the current <see cref="T:System.Numerics.Vector2" /> lies on the specified line.
+            </summary>
+            <param name="point">The point to check.</param>
+            <param name="start">The starting point of the line.</param>
+            <param name="end">The ending point of the line.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+                <paramref name="end" />; otherwise <see langword="false" />.
+            </returns>
         </member>
         <member name="M:X10D.Numerics.Vector2Extensions.ToPointF(System.Numerics.Vector2)">
             <summary>
