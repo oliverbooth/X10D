@@ -6,6 +6,8 @@
 - X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
 - X10D: Added `DirectoryInfo.Clear([bool])`
 - X10D: Added `IList<T>.RemoveRange(Range)`
+- X10D: Added `Point.IsOnLine(LineF)`, `Point.IsOnLine(PointF, PointF)`, and `Point.IsOnLine(Vector2, Vector2)`
+- X10D: Added `PointF.IsOnLine(LineF)`, `PointF.IsOnLine(PointF, PointF)`, and `PointF.IsOnLine(Vector2, Vector2)`
 - X10D: Added `Point.ToSize()`
 - X10D: Added `Point.ToSizeF()`
 - X10D: Added `Point.ToVector2()`
@@ -17,6 +19,7 @@
 - X10D: Added `Size.ToVector2()`
 - X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator
 - X10D: Added `Vector2.Deconstruct()`
+- X10D: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
 - X10D: Added `Vector2.ToPointF()`
 - X10D: Added `Vector2.ToSizeF()`
 - X10D: Added `Vector3.Deconstruct()`
@@ -39,6 +42,8 @@
 - X10D.Unity: Added `Size.ToUnityVector2Int()`
 - X10D.Unity: Added `SizeF.ToUnityVector2()`
 - X10D.Unity: Added `Vector2.Deconstruct()`
+- X10D.Unity: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
+- X10D.Unity: Added `Vector2Int.IsOnLine(LineF)`, `Vector2Int.IsOnLine(PointF, PointF)`, `Vector2Int.IsOnLine(Vector2, Vector2)`, and `Vector2Int.IsOnLine(Vector2Int, Vector2Int)`
 - X10D.Unity: Added `Vector2.ToSystemPointF()`
 - X10D.Unity: Added `Vector2.ToSystemSizeF()`
 - X10D.Unity: Added `Vector2Int.Deconstruct()`

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.Drawing;
 
 namespace X10D.Numerics;
 
@@ -20,6 +21,71 @@ public static class Vector2Extensions
     {
         x = vector.X;
         y = vector.Y;
+    }
+
+    /// <summary>
+    ///     Determines if the current <see cref="Vector2" /> lies on the specified line.
+    /// </summary>
+    /// <param name="point">The point to check.</param>
+    /// <param name="line">The line on which the point may lie.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+    ///     <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsOnLine(this Vector2 point, LineF line)
+    {
+        (float x1, float x2) = (line.Start.X, line.End.X);
+        (float y1, float y2) = (line.Start.Y, line.End.Y);
+        (float x, float y) = (point.X, point.Y);
+        return System.Math.Abs((y2 - y1) * (x - x2) - (y - y2) * (x2 - x1)) < float.Epsilon;
+    }
+
+    /// <summary>
+    ///     Determines if the current <see cref="Vector2" /> lies on the specified line.
+    /// </summary>
+    /// <param name="point">The point to check.</param>
+    /// <param name="start">The starting point of the line.</param>
+    /// <param name="end">The ending point of the line.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+    ///     <paramref name="end" />; otherwise <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsOnLine(this Vector2 point, PointF start, PointF end)
+    {
+        return point.IsOnLine(new LineF(start, end));
+    }
+
+    /// <summary>
+    ///     Determines if the current <see cref="Vector2" /> lies on the specified line.
+    /// </summary>
+    /// <param name="point">The point to check.</param>
+    /// <param name="start">The starting point of the line.</param>
+    /// <param name="end">The ending point of the line.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+    ///     <paramref name="end" />; otherwise <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsOnLine(this Vector2 point, Vector2 start, Vector2 end)
+    {
+        return point.IsOnLine(new LineF(start, end));
     }
 
     /// <summary>
