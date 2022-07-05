@@ -4,6 +4,7 @@
 ### Added
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
 - X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
+- X10D: Added `DateTime.GetIso8601WeekOfYear()` and `DateTimeOffset.GetIso8601WeekOfYear()`
 - X10D: Added `DirectoryInfo.Clear([bool])`
 - X10D: Added `IList<T>.RemoveRange(Range)`
 - X10D: Added `Point.IsOnLine(LineF)`, `Point.IsOnLine(PointF, PointF)`, and `Point.IsOnLine(Vector2, Vector2)`
