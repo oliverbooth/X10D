@@ -74,7 +74,7 @@ public static class PointFExtensions
     {
         return point.IsOnLine(new LineF(start, end));
     }
-    
+
     /// <summary>
     ///     Converts the current <see cref="PointF" /> to a <see cref="SizeF" />.
     /// </summary>
