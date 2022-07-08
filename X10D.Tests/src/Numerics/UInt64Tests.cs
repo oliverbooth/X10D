@@ -8,6 +8,24 @@ namespace X10D.Tests.Numerics;
 public class UInt64Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, 0UL.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, 0b11010101UL.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe64_Given1111111111111111111111111111111111111111111111111111111111111111()
+    {
+        Assert.AreEqual(64, 0b1111111111111111111111111111111111111111111111111111111111111111UL.PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const ulong value = 5972019251303316844;     // 01010010 11100000 11011111 11011110 00110001 10111010 01111101 01101100

@@ -8,6 +8,24 @@ namespace X10D.Tests.Numerics;
 public class UInt32Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, 0U.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, 0b11010101U.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe32_Given11111111111111111111111111111111()
+    {
+        Assert.AreEqual(32, 0b11111111111111111111111111111111U.PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const uint value = 284719;        // 00000000 00000100 01011000 00101111

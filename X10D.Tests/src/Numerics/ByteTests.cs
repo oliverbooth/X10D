@@ -7,6 +7,24 @@ namespace X10D.Tests.Numerics;
 public class ByteTests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, ((byte)0).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, ((byte)0b11010101).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe8_Given11111111()
+    {
+        Assert.AreEqual(8, ((byte)0b11111111).PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const byte value = 181;   // 10110101
