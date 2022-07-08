@@ -191,7 +191,8 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(in Circle circle, int segments, in Vector3 offset, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(in Circle circle, int segments, in Vector3 offset, in Color color, float duration,
+        bool depthTest)
     {
         DrawCircle((CircleF)circle, segments, offset, color, duration, depthTest);
     }
@@ -301,7 +302,8 @@ public static partial class DebugEx
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the circle be obscured by objects closer to the camera.
     /// </param>
-    public static void DrawCircle(in CircleF circle, int segments, in Vector3 offset, in Color color, float duration, bool depthTest)
+    public static void DrawCircle(in CircleF circle, int segments, in Vector3 offset, in Color color, float duration,
+        bool depthTest)
     {
         DrawPolyhedron(CreateCircle(circle.Radius, segments, Vector3.zero), offset, color, duration, depthTest);
     }
