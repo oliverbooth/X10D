@@ -8,6 +8,24 @@ namespace X10D.Tests.Numerics;
 public class UInt16Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, ((ushort)0).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, ((ushort)0b11010101).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe16_Given1111111111111111()
+    {
+        Assert.AreEqual(16, ((ushort)0b1111111111111111).PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const ushort value = 2896;     // 00001011 01010000

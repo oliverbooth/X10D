@@ -8,6 +8,24 @@ namespace X10D.Tests.Numerics;
 public class SByteTests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, ((sbyte)0).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe4_Given01010101()
+    {
+        Assert.AreEqual(4, ((sbyte)0b01010101).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe7_Given01111111()
+    {
+        Assert.AreEqual(7, ((sbyte)0b01111111).PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const sbyte value = 117;   // 01110101

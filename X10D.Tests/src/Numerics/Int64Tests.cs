@@ -7,6 +7,24 @@ namespace X10D.Tests.Numerics;
 public class Int64Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, 0L.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, 0b11010101L.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe63_Given0111111111111111111111111111111111111111111111111111111111111111()
+    {
+        Assert.AreEqual(63, 0b0111111111111111111111111111111111111111111111111111111111111111L.PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const long value = 5972019251303316844;     // 01010010 11100000 11011111 11011110 00110001 10111010 01111101 01101100

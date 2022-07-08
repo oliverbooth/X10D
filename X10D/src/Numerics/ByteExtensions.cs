@@ -10,6 +10,26 @@ namespace X10D.Numerics;
 public static class ByteExtensions
 {
     /// <summary>
+    ///     Returns the population count (number of bits set) of a mask.
+    /// </summary>
+    /// <param name="value">The mask.</param>
+    /// <returns>The population count of <paramref name="value" />.</returns>
+    /// <remarks>
+    ///     This method is similar in behavior to the x86 instruction
+    ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+    /// </remarks>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int PopCount(this byte value)
+    {
+        return ((uint)value).PopCount();
+    }
+
+    /// <summary>
     ///     Rotates the current value left by the specified number of bits.
     /// </summary>
     /// <param name="value">The value to rotate.</param>

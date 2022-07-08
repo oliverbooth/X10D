@@ -11,6 +11,39 @@ namespace X10D.Numerics;
 public static class UInt32Extensions
 {
     /// <summary>
+    ///     Returns the population count (number of bits set) of a mask.
+    /// </summary>
+    /// <param name="value">The mask.</param>
+    /// <returns>The population count of <paramref name="value" />.</returns>
+    /// <remarks>
+    ///     This method is similar in behavior to the x86 instruction
+    ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+    /// </remarks>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int PopCount(this uint value)
+    {
+#if NETCOREAPP3_1_OR_GREATER
+        return BitOperations.PopCount(value);
+#else
+        const uint c1 = 0x_55555555u;
+        const uint c2 = 0x_33333333u;
+        const uint c3 = 0x_0F0F0F0Fu;
+        const uint c4 = 0x_01010101u;
+
+        value -= (value >> 1) & c1;
+        value = (value & c2) + ((value >> 2) & c2);
+        value = (((value + (value >> 4)) & c3) * c4) >> 24;
+
+        return (int)value;
+#endif
+    }
+
+    /// <summary>
     ///     Rotates the current value left by the specified number of bits.
     /// </summary>
     /// <param name="value">The value to rotate.</param>
