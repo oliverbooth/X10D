@@ -6581,6 +6581,17 @@
                 Numeric-related extension methods for <see cref="T:System.Byte" />.
             </summary>
         </member>
+        <member name="M:X10D.Numerics.ByteExtensions.PopCount(System.Byte)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
+        </member>
         <member name="M:X10D.Numerics.ByteExtensions.RotateLeft(System.Byte,System.Int32)">
             <summary>
                 Rotates the current value left by the specified number of bits.
@@ -6615,6 +6626,17 @@
             <summary>
                 Numeric-related extension methods for <see cref="T:System.Int16" />.
             </summary>
+        </member>
+        <member name="M:X10D.Numerics.Int16Extensions.PopCount(System.Int16)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
         </member>
         <member name="M:X10D.Numerics.Int16Extensions.RotateLeft(System.Int16,System.Int32)">
             <summary>
@@ -6651,6 +6673,17 @@
                 Numeric-related extension methods for <see cref="T:System.Int32" />.
             </summary>
         </member>
+        <member name="M:X10D.Numerics.Int32Extensions.PopCount(System.Int32)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
+        </member>
         <member name="M:X10D.Numerics.Int32Extensions.RotateLeft(System.Int32,System.Int32)">
             <summary>
                 Rotates the current value left by the specified number of bits.
@@ -6685,6 +6718,17 @@
             <summary>
                 Numeric-related extension methods for <see cref="T:System.Int64" />.
             </summary>
+        </member>
+        <member name="M:X10D.Numerics.Int64Extensions.PopCount(System.Int64)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
         </member>
         <member name="M:X10D.Numerics.Int64Extensions.RotateLeft(System.Int64,System.Int32)">
             <summary>
@@ -6778,6 +6822,17 @@
                 Numeric-related extension methods for <see cref="T:System.SByte" />.
             </summary>
         </member>
+        <member name="M:X10D.Numerics.SByteExtensions.PopCount(System.SByte)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
+        </member>
         <member name="M:X10D.Numerics.SByteExtensions.RotateLeft(System.SByte,System.Int32)">
             <summary>
                 Rotates the current value left by the specified number of bits.
@@ -6812,6 +6867,17 @@
             <summary>
                 Numeric-related extension methods for <see cref="T:System.UInt16" />.
             </summary>
+        </member>
+        <member name="M:X10D.Numerics.UInt16Extensions.PopCount(System.UInt16)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
         </member>
         <member name="M:X10D.Numerics.UInt16Extensions.RotateLeft(System.UInt16,System.Int32)">
             <summary>
@@ -6848,6 +6914,17 @@
                 Numeric-related extension methods for <see cref="T:System.UInt32" />.
             </summary>
         </member>
+        <member name="M:X10D.Numerics.UInt32Extensions.PopCount(System.UInt32)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
+        </member>
         <member name="M:X10D.Numerics.UInt32Extensions.RotateLeft(System.UInt32,System.Int32)">
             <summary>
                 Rotates the current value left by the specified number of bits.
@@ -6882,6 +6959,17 @@
             <summary>
                 Numeric-related extension methods for <see cref="T:System.UInt64" />.
             </summary>
+        </member>
+        <member name="M:X10D.Numerics.UInt64Extensions.PopCount(System.UInt64)">
+            <summary>
+                Returns the population count (number of bits set) of a mask.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The population count of <paramref name="value" />.</returns>
+            <remarks>
+                This method is similar in behavior to the x86 instruction
+                <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
+            </remarks>
         </member>
         <member name="M:X10D.Numerics.UInt64Extensions.RotateLeft(System.UInt64,System.Int32)">
             <summary>
@@ -7686,6 +7774,21 @@
             <inheritdoc cref="M:X10D.Time.DateTimeOffsetExtensions.FirstDayOfMonth(System.DateTimeOffset)" />
             <returns>A <see cref="T:System.DateTime" /> representing the first day of the current month.</returns>
         </member>
+        <member name="M:X10D.Time.DateTimeExtensions.GetIso8601WeekOfYear(System.DateTime)">
+            <summary>
+                Gets the ISO-8601 week number of the year for the current date.
+            </summary>
+            <param name="value">The date whose week number to return.</param>
+            <returns>The ISO-8601 week number of the year.</returns>
+            <author>Shawn Steele, Microsoft</author>
+            <remarks>
+                This implementation is directly inspired from a
+                <a href="https://docs.microsoft.com/en-gb/archive/blogs/shawnste/iso-8601-week-of-year-format-in-microsoft-net">
+                    blog post
+                </a>.
+                about this subject.
+            </remarks>
+        </member>
         <member name="M:X10D.Time.DateTimeExtensions.IsLeapYear(System.DateTime)">
             <summary>
                 Returns a value indicating whether the year represented by the current <see cref="T:System.DateTime" /> is a leap year.
@@ -7759,6 +7862,21 @@
             </summary>
             <param name="value">The current date.</param>
             <returns>A <see cref="T:System.DateTimeOffset" /> representing the first day of the current month.</returns>
+        </member>
+        <member name="M:X10D.Time.DateTimeOffsetExtensions.GetIso8601WeekOfYear(System.DateTimeOffset)">
+            <summary>
+                Gets the ISO-8601 week number of the year for the current date.
+            </summary>
+            <param name="value">The date whose week number to return.</param>
+            <returns>The ISO-8601 week number of the year.</returns>
+            <author>Shawn Steele, Microsoft</author>
+            <remarks>
+                This implementation is directly inspired from a
+                <a href="https://docs.microsoft.com/en-gb/archive/blogs/shawnste/iso-8601-week-of-year-format-in-microsoft-net">
+                    blog post
+                </a>.
+                about this subject.
+            </remarks>
         </member>
         <member name="M:X10D.Time.DateTimeOffsetExtensions.IsLeapYear(System.DateTimeOffset)">
             <summary>
