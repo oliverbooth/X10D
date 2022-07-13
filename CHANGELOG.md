@@ -4,6 +4,7 @@
 ### Added
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
 - X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
+- X10D: Added `Color.GetClosestConsoleColor()`
 - X10D: Added `DateTime.GetIso8601WeekOfYear()` and `DateTimeOffset.GetIso8601WeekOfYear()`
 - X10D: Added `DirectoryInfo.Clear([bool])`
 - X10D: Added `IList<T>.RemoveRange(Range)`
@@ -33,7 +34,9 @@
 - X10D.Unity: Added `DebugEx`, which mimics `UnityEngine.Debug` while offering more useful primitive drawing methods
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor()`
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor32()`
+- X10D.Unity: Added `Color.GetClosestConsoleColor()`
 - X10D.Unity: Added `Color.ToSystemDrawingColor()`
+- X10D.Unity: Added `Color32.GetClosestConsoleColor()`
 - X10D.Unity: Added `Color32.ToSystemDrawingColor()`
 - X10D.Unity: Added `Point.ToUnityVector2()`
 - X10D.Unity: Added `Point.ToUnityVector2Int()`

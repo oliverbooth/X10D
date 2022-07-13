@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -16,6 +19,24 @@ namespace X10D.Unity.Tests.Drawing
         private static readonly Color Cyan = new(0, 1, 1);
         private static readonly Color Magenta = new(1, 0, 1);
         private static readonly Color Yellow = new(1, 1, 0);
+
+        [UnityTest]
+        public IEnumerator GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
+        {
+            Assert.AreEqual(ConsoleColor.Red, Color.red.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Green, Color.green.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Blue, Color.blue.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.White, Color.white.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Black, Color.black.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Yellow, Color.yellow.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Cyan, Color.cyan.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Magenta, Color.magenta.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Gray, Color.gray.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Gray, Color.grey.GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Black, Color.clear.GetClosestConsoleColor());
+
+            yield break;
+        }
 
         [UnityTest]
         public IEnumerator Inverted_ShouldReturnInvertedColor()

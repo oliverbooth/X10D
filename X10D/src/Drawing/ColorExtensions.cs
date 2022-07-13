@@ -10,6 +10,58 @@ namespace X10D.Drawing;
 public static class ColorExtensions
 {
     /// <summary>
+    ///     Returns a <see cref="ConsoleColor" /> which most closely resembles the current color.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <returns>The closest <see cref="ConsoleColor" />.</returns>
+    /// <author>Glenn Slayden, https://stackoverflow.com/a/12340136/1467293</author>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ConsoleColor GetClosestConsoleColor(this Color color)
+    {
+        ConsoleColor result = 0;
+        double red = color.R;
+        double green = color.G;
+        double blue = color.B;
+        var delta = double.MaxValue;
+
+#if NET5_0_OR_GREATER
+        foreach (ConsoleColor consoleColor in Enum.GetValues<ConsoleColor>())
+#else
+        foreach (ConsoleColor consoleColor in Enum.GetValues(typeof(ConsoleColor)))
+#endif
+        {
+#if NET5_0_OR_GREATER
+            string name = Enum.GetName(consoleColor)!;
+#else
+            string name = Enum.GetName(typeof(ConsoleColor), consoleColor)!;
+#endif
+            Color currentColor = Color.FromName(name == "DarkYellow" ? "Orange" : name); // bug fix
+            double r = currentColor.R - red;
+            double g = currentColor.G - green;
+            double b = currentColor.B - blue;
+            double t = r * r + g * g + b * b;
+
+            if (t == 0.0)
+            {
+                return consoleColor;
+            }
+
+            if (t < delta)
+            {
+                delta = t;
+                result = consoleColor;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
     ///     Returns a new <see cref="Color" /> with the red, green, and blue components inverted. Alpha is not affected.
     /// </summary>
     /// <param name="color">The color to invert.</param>

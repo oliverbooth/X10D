@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -16,6 +17,26 @@ namespace X10D.Unity.Tests.Drawing
         private static readonly Color32 Cyan = new(0, 255, 255, 255);
         private static readonly Color32 Magenta = new(255, 0, 255, 255);
         private static readonly Color32 Yellow = new(255, 255, 0, 255);
+
+        [UnityTest]
+        public IEnumerator GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
+        {
+            // I know it's just casting... but aim for 100% coverage babyyyy
+
+            Assert.AreEqual(ConsoleColor.Red, ((Color32)Color.red).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Green, ((Color32)Color.green).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Blue, ((Color32)Color.blue).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.White, ((Color32)Color.white).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Black, ((Color32)Color.black).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Yellow, ((Color32)Color.yellow).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Cyan, ((Color32)Color.cyan).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Magenta, ((Color32)Color.magenta).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Gray, ((Color32)Color.gray).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Gray, ((Color32)Color.grey).GetClosestConsoleColor());
+            Assert.AreEqual(ConsoleColor.Black, ((Color32)Color.clear).GetClosestConsoleColor());
+
+            yield break;
+        }
 
         [UnityTest]
         public IEnumerator Inverted_ShouldReturnInvertedColor()
