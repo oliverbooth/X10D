@@ -11,6 +11,60 @@ namespace X10D.Unity.Drawing;
 public static class Color32Extensions
 {
     /// <summary>
+    ///     Deconstructs the current color into its RGB components.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <param name="a">
+    ///     When this method returns, contains the <see cref="Color32.a" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="r">
+    ///     When this method returns, contains the <see cref="Color32.r" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="g">
+    ///     When this method returns, contains the <see cref="Color32.g" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="b">
+    ///     When this method returns, contains the <see cref="Color32.b" /> component of <paramref name="color" />.
+    /// </param>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static void Deconstruct(this Color32 color, out byte a, out byte r, out byte g, out byte b)
+    {
+        a = color.a;
+        (r, g, b) = color;
+    }
+
+    /// <summary>
+    ///     Deconstructs the current color into its RGB components.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <param name="r">
+    ///     When this method returns, contains the <see cref="Color32.r" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="g">
+    ///     When this method returns, contains the <see cref="Color32.g" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="b">
+    ///     When this method returns, contains the <see cref="Color32.b" /> component of <paramref name="color" />.
+    /// </param>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static void Deconstruct(this Color32 color, out byte r, out byte g, out byte b)
+    {
+        r = color.r;
+        g = color.g;
+        b = color.b;
+    }
+
+    /// <summary>
     ///     Returns a <see cref="ConsoleColor" /> which most closely resembles the current color.
     /// </summary>
     /// <param name="color">The source color.</param>
