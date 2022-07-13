@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using X10D.Math;
 
 namespace X10D.Unity.Numerics;
 
@@ -21,6 +22,34 @@ public static class Vector3Extensions
         x = vector.x;
         y = vector.y;
         z = vector.z;
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector3" /> to the nearest integer.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector3 Round(this Vector3 vector)
+    {
+        return vector.Round(1.0f);
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector3" /> to the nearest multiple of a specified number.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector3 Round(this Vector3 vector, float nearest)
+    {
+        float x = vector.x.Round(nearest);
+        float y = vector.y.Round(nearest);
+        float z = vector.z.Round(nearest);
+        return new Vector3(x, y, z);
     }
 
     /// <summary>

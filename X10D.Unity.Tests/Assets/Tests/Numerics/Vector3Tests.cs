@@ -24,6 +24,32 @@ namespace X10D.Unity.Tests.Numerics
         }
 
         [UnityTest]
+        public IEnumerator Round_ShouldRoundToNearestInteger_GivenNoParameters()
+        {
+            var vector = new Vector3(1.5f, 2.6f, -5.2f);
+            var rounded = vector.Round();
+
+            Assert.AreEqual(2, rounded.x);
+            Assert.AreEqual(3, rounded.y);
+            Assert.AreEqual(-5, rounded.z);
+
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator Round_ShouldRoundToNearest10_GivenPrecision10()
+        {
+            var vector = new Vector3(1.5f, 25.2f, -12.5f);
+            var rounded = vector.Round(10);
+
+            Assert.AreEqual(0, rounded.x);
+            Assert.AreEqual(30, rounded.y);
+            Assert.AreEqual(-10, rounded.z);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator ToSystemVector_ShouldReturnVector_WithEqualComponents()
         {
             var random = new Random();
