@@ -1735,6 +1735,39 @@
                 Drawing-related extensions for <see cref="T:UnityEngine.Color32" />.
             </summary>
         </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.Deconstruct(UnityEngine.Color32,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+                Deconstructs the current color into its RGB components.
+            </summary>
+            <param name="color">The source color.</param>
+            <param name="a">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.a" /> component of <paramref name="color" />.
+            </param>
+            <param name="r">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.r" /> component of <paramref name="color" />.
+            </param>
+            <param name="g">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.g" /> component of <paramref name="color" />.
+            </param>
+            <param name="b">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.b" /> component of <paramref name="color" />.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.Deconstruct(UnityEngine.Color32,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+                Deconstructs the current color into its RGB components.
+            </summary>
+            <param name="color">The source color.</param>
+            <param name="r">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.r" /> component of <paramref name="color" />.
+            </param>
+            <param name="g">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.g" /> component of <paramref name="color" />.
+            </param>
+            <param name="b">
+                When this method returns, contains the <see cref="F:UnityEngine.Color32.b" /> component of <paramref name="color" />.
+            </param>
+        </member>
         <member name="M:X10D.Unity.Drawing.Color32Extensions.GetClosestConsoleColor(UnityEngine.Color32)">
             <summary>
                 Returns a <see cref="T:System.ConsoleColor" /> which most closely resembles the current color.
@@ -1819,6 +1852,39 @@
             <summary>
                 Drawing-related extensions for <see cref="T:UnityEngine.Color" />.
             </summary>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.Deconstruct(UnityEngine.Color,System.Single@,System.Single@,System.Single@,System.Single@)">
+            <summary>
+                Deconstructs the current color into its ARGB components.
+            </summary>
+            <param name="color">The source color.</param>
+            <param name="a">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.a" /> component of <paramref name="color" />.
+            </param>
+            <param name="r">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.r" /> component of <paramref name="color" />.
+            </param>
+            <param name="g">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.g" /> component of <paramref name="color" />.
+            </param>
+            <param name="b">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.b" /> component of <paramref name="color" />.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.Deconstruct(UnityEngine.Color,System.Single@,System.Single@,System.Single@)">
+            <summary>
+                Deconstructs the current color into its RGB components.
+            </summary>
+            <param name="color">The source color.</param>
+            <param name="r">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.r" /> component of <paramref name="color" />.
+            </param>
+            <param name="g">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.g" /> component of <paramref name="color" />.
+            </param>
+            <param name="b">
+                When this method returns, contains the <see cref="F:UnityEngine.Color.b" /> component of <paramref name="color" />.
+            </param>
         </member>
         <member name="M:X10D.Unity.Drawing.ColorExtensions.GetClosestConsoleColor(UnityEngine.Color)">
             <summary>

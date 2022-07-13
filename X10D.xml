@@ -1354,6 +1354,39 @@
                 Drawing-related extensions for <see cref="T:System.Drawing.Color" />.
             </summary>
         </member>
+        <member name="M:X10D.Drawing.ColorExtensions.Deconstruct(System.Drawing.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+                Deconstructs the current color into its ARGB components.
+            </summary>
+            <param name="color">The source color.</param>
+            <param name="a">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.A" /> component of <paramref name="color" />.
+            </param>
+            <param name="r">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.R" /> component of <paramref name="color" />.
+            </param>
+            <param name="g">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.G" /> component of <paramref name="color" />.
+            </param>
+            <param name="b">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.B" /> component of <paramref name="color" />.
+            </param>
+        </member>
+        <member name="M:X10D.Drawing.ColorExtensions.Deconstruct(System.Drawing.Color,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+                Deconstructs the current color into its RGB components.
+            </summary>
+            <param name="color">The source color.</param>
+            <param name="r">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.R" /> component of <paramref name="color" />.
+            </param>
+            <param name="g">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.G" /> component of <paramref name="color" />.
+            </param>
+            <param name="b">
+                When this method returns, contains the <see cref="P:System.Drawing.Color.B" /> component of <paramref name="color" />.
+            </param>
+        </member>
         <member name="M:X10D.Drawing.ColorExtensions.GetClosestConsoleColor(System.Drawing.Color)">
             <summary>
                 Returns a <see cref="T:System.ConsoleColor" /> which most closely resembles the current color.
