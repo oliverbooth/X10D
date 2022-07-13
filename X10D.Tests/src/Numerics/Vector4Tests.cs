@@ -20,6 +20,30 @@ public class Vector4Tests
     }
 
     [TestMethod]
+    public void Round_ShouldRoundToNearestInteger_GivenNoParameters()
+    {
+        var vector = new Vector4(1.5f, 2.6f, -5.2f, 0.3f);
+        var rounded = vector.Round();
+
+        Assert.AreEqual(2, rounded.X);
+        Assert.AreEqual(3, rounded.Y);
+        Assert.AreEqual(-5, rounded.Z);
+        Assert.AreEqual(0, rounded.W);
+    }
+
+    [TestMethod]
+    public void Round_ShouldRoundToNearest10_GivenPrecision10()
+    {
+        var vector = new Vector4(1.5f, 25.2f, -12.5f, 101.2f);
+        var rounded = vector.Round(10);
+
+        Assert.AreEqual(0, rounded.X);
+        Assert.AreEqual(30, rounded.Y);
+        Assert.AreEqual(-10, rounded.Z);
+        Assert.AreEqual(100, rounded.W);
+    }
+
+    [TestMethod]
     public void WithW_ShouldReturnVectorWithNewW_GivenVector()
     {
         Assert.AreEqual(new Vector4(1, 1, 1, 0), Vector4.One.WithW(0));

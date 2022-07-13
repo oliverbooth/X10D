@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.Math;
 
 namespace X10D.Drawing;
 
@@ -73,6 +74,41 @@ public static class PointFExtensions
     public static bool IsOnLine(this PointF point, Vector2 start, Vector2 end)
     {
         return point.IsOnLine(new LineF(start, end));
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="PointF" /> to the nearest integer.
+    /// </summary>
+    /// <param name="point">The point whose components to round.</param>
+    /// <returns>The rounded point.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static PointF Round(this PointF point)
+    {
+        return point.Round(1.0f);
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="PointF" /> to the nearest multiple of a specified number.
+    /// </summary>
+    /// <param name="point">The point whose components to round.</param>
+    /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
+    /// <returns>The rounded point.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static PointF Round(this PointF point, float nearest)
+    {
+        float x = point.X.Round(nearest);
+        float y = point.Y.Round(nearest);
+        return new PointF(x, y);
     }
 
     /// <summary>
