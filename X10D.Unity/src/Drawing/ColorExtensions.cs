@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using X10D.Drawing;
 
 namespace X10D.Unity.Drawing;
 
@@ -9,6 +10,18 @@ namespace X10D.Unity.Drawing;
 /// </summary>
 public static class ColorExtensions
 {
+    /// <summary>
+    ///     Returns a <see cref="ConsoleColor" /> which most closely resembles the current color.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <returns>The closest <see cref="ConsoleColor" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ConsoleColor GetClosestConsoleColor(this Color color)
+    {
+        return color.ToSystemDrawingColor().GetClosestConsoleColor();
+    }
+
     /// <summary>
     ///     Returns a new <see cref="Color" /> with the red, green, and blue components inverted. Alpha is not affected.
     /// </summary>
