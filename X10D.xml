@@ -1354,6 +1354,14 @@
                 Drawing-related extensions for <see cref="T:System.Drawing.Color" />.
             </summary>
         </member>
+        <member name="M:X10D.Drawing.ColorExtensions.GetClosestConsoleColor(System.Drawing.Color)">
+            <summary>
+                Returns a <see cref="T:System.ConsoleColor" /> which most closely resembles the current color.
+            </summary>
+            <param name="color">The source color.</param>
+            <returns>The closest <see cref="T:System.ConsoleColor" />.</returns>
+            <author>Glenn Slayden, https://stackoverflow.com/a/12340136/1467293</author>
+        </member>
         <member name="M:X10D.Drawing.ColorExtensions.Inverted(System.Drawing.Color)">
             <summary>
                 Returns a new <see cref="T:System.Drawing.Color" /> with the red, green, and blue components inverted. Alpha is not affected.

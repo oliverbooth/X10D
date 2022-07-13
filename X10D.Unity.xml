@@ -1735,6 +1735,13 @@
                 Drawing-related extensions for <see cref="T:UnityEngine.Color32" />.
             </summary>
         </member>
+        <member name="M:X10D.Unity.Drawing.Color32Extensions.GetClosestConsoleColor(UnityEngine.Color32)">
+            <summary>
+                Returns a <see cref="T:System.ConsoleColor" /> which most closely resembles the current color.
+            </summary>
+            <param name="color">The source color.</param>
+            <returns>The closest <see cref="T:System.ConsoleColor" />.</returns>
+        </member>
         <member name="M:X10D.Unity.Drawing.Color32Extensions.Inverted(UnityEngine.Color32)">
             <summary>
                 Returns a new <see cref="T:UnityEngine.Color32" /> with the red, green, and blue components inverted. Alpha is not affected.
@@ -1812,6 +1819,13 @@
             <summary>
                 Drawing-related extensions for <see cref="T:UnityEngine.Color" />.
             </summary>
+        </member>
+        <member name="M:X10D.Unity.Drawing.ColorExtensions.GetClosestConsoleColor(UnityEngine.Color)">
+            <summary>
+                Returns a <see cref="T:System.ConsoleColor" /> which most closely resembles the current color.
+            </summary>
+            <param name="color">The source color.</param>
+            <returns>The closest <see cref="T:System.ConsoleColor" />.</returns>
         </member>
         <member name="M:X10D.Unity.Drawing.ColorExtensions.Inverted(UnityEngine.Color)">
             <summary>
