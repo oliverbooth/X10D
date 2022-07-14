@@ -2952,5 +2952,147 @@
                 <para><paramref name="parent" /> is <see langword="null" />.</para>
             </exception>
         </member>
+        <member name="T:X10D.Unity.WaitForFrames">
+            <summary>
+                Represents a yield instruction that waits for a specific number of frames.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.WaitForFrames.#ctor(System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForFrames" /> struct.
+            </summary>
+            <param name="frameCount">The frame count.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForFrames.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForFrames.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForFrames.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Unity.WaitForKeyDown">
+            <summary>
+                Represents a yield instruction that waits for a key to be pressed.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.WaitForKeyDown.#ctor(UnityEngine.KeyCode)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForKeyDown" /> struct.
+            </summary>
+            <param name="keyCode">The key to wait for.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForKeyDown.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForKeyDown.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForKeyDown.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Unity.WaitForKeyUp">
+            <summary>
+                Represents a yield instruction that waits for a key to be released.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.WaitForKeyUp.#ctor(UnityEngine.KeyCode)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForKeyUp" /> struct.
+            </summary>
+            <param name="keyCode">The key to wait for.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForKeyUp.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForKeyUp.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForKeyUp.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Unity.WaitForSecondsNoAlloc">
+            <summary>
+                Represents a yield instruction which waits for a specified amount of seconds.
+            </summary>
+            <remarks>This struct exists as an allocation-free alternative to <see cref="T:UnityEngine.WaitForSeconds" />.</remarks>
+        </member>
+        <member name="M:X10D.Unity.WaitForSecondsNoAlloc.#ctor(System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForTimeSpan" /> struct.
+            </summary>
+            <param name="duration">The duration of the pause, in seconds.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForSecondsNoAlloc.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForSecondsNoAlloc.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForSecondsNoAlloc.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Unity.WaitForSecondsRealtimeNoAlloc">
+            <summary>
+                Represents a yield instruction which waits for a given amount of time, as provided by a <see cref="T:System.TimeSpan" />.
+            </summary>
+            <remarks>This struct exists as an allocation-free alternative to <see cref="T:UnityEngine.WaitForSecondsRealtime" />.</remarks>
+        </member>
+        <member name="M:X10D.Unity.WaitForSecondsRealtimeNoAlloc.#ctor(System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForTimeSpan" /> struct.
+            </summary>
+            <param name="duration">The duration of the pause, in seconds.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForSecondsRealtimeNoAlloc.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForSecondsRealtimeNoAlloc.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForSecondsRealtimeNoAlloc.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Unity.WaitForTimeSpan">
+            <summary>
+                Represents a yield instruction which waits for a given amount of time, as provided by a <see cref="T:System.TimeSpan" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.WaitForTimeSpan.#ctor(System.TimeSpan)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForTimeSpan" /> struct.
+            </summary>
+            <param name="duration">The duration of the pause.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForTimeSpan.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForTimeSpan.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForTimeSpan.Reset">
+            <inheritdoc />
+        </member>
+        <member name="T:X10D.Unity.WaitForTimeSpanRealtime">
+            <summary>
+                Represents a yield instruction which waits for a given amount of time, as provided by a <see cref="T:System.TimeSpan" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.WaitForTimeSpanRealtime.#ctor(System.TimeSpan)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Unity.WaitForTimeSpanRealtime" /> struct.
+            </summary>
+            <param name="duration">The duration of the pause.</param>
+        </member>
+        <member name="P:X10D.Unity.WaitForTimeSpanRealtime.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForTimeSpanRealtime.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:X10D.Unity.WaitForTimeSpanRealtime.Reset">
+            <inheritdoc />
+        </member>
     </members>
 </doc>
