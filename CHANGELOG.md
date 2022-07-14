@@ -75,6 +75,13 @@
 - X10D.Unity: Added `Vector3Int.WithZ()`
 - X10D.Unity: Added `Vector4.Deconstruct()`
 - X10D.Unity: Added `Vector4.Round([float])`
+- X10D.Unity: Added `WaitForFrames` yield instruction
+- X10D.Unity: Added `WaitForKeyDown` yield instruction
+- X10D.Unity: Added `WaitForKeyUp` yield instruction
+- X10D.Unity: Added `WaitForSecondsNoAlloc` yield instruction
+- X10D.Unity: Added `WaitForSecondsRealtimeNoAlloc` yield instruction
+- X10D.Unity: Added `WaitForTimeSpanNoAlloc` yield instruction
+- X10D.Unity: Added `WaitForTimeSpanRealtimeNoAlloc` yield instruction
 
 ### Changed
 - X10D.Unity: Obsolesced `Singleton<T>`
