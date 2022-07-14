@@ -562,6 +562,19 @@
             </param>
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
         </member>
+        <member name="M:X10D.Collections.ListExtensions.Swap``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+                Swaps all elements in a list with the elements in another list.
+            </summary>
+            <param name="source">The first list.</param>
+            <param name="other">The second list.</param>
+            <typeparam name="T">The type of the elements in <paramref name="source" /> and <paramref name="other" />.</typeparam>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="source" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="other" /> is <see langword="null" />.</para>
+            </exception>
+        </member>
         <member name="T:X10D.Core.EnumExtensions">
             <summary>
                 Extension methods for <see langword="enum" /> types.
