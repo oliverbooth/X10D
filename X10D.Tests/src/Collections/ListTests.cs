@@ -154,4 +154,57 @@ public class ListTests
     {
         Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Shuffle());
     }
+
+    [TestMethod]
+    public void Swap_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IList<int>?)null)!.Swap(new List<int>()));
+    }
+
+    [TestMethod]
+    public void Swap_ShouldThrowArgumentNullException_GivenNullTarget()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => new List<int>().Swap(null!));
+    }
+
+    [TestMethod]
+    public void Swap_ShouldSwapElements_GivenMatchingElementCount()
+    {
+        var first = new List<int> {1, 2, 3};
+        var second = new List<int> {4, 5, 6};
+
+        first.Swap(second);
+
+        CollectionAssert.AreEqual(new[] {4, 5, 6}, first, string.Join(' ', first));
+        CollectionAssert.AreEqual(new[] {1, 2, 3}, second, string.Join(' ', second));
+
+        first.Swap(second);
+
+        CollectionAssert.AreEqual(new[] {1, 2, 3}, first, string.Join(' ', first));
+        CollectionAssert.AreEqual(new[] {4, 5, 6}, second, string.Join(' ', second));
+    }
+
+    [TestMethod]
+    public void Swap_ShouldSwapElements_GivenDifferentElementCount()
+    {
+        var first = new List<int>
+        {
+            1,
+            2,
+            3,
+            4,
+            5
+        };
+        var second = new List<int> {6, 7};
+
+        first.Swap(second);
+
+        CollectionAssert.AreEqual(new[] {6, 7}, first, string.Join(' ', first));
+        CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5}, second, string.Join(' ', second));
+
+        first.Swap(second);
+
+        CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5}, first, string.Join(' ', first));
+        CollectionAssert.AreEqual(new[] {6, 7}, second, string.Join(' ', second));
+    }
 }

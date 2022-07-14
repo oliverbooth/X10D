@@ -191,4 +191,56 @@ public static class ListExtensions
             (source[count], source[index]) = (source[index], source[count]);
         }
     }
+
+    /// <summary>
+    ///     Swaps all elements in a list with the elements in another list.
+    /// </summary>
+    /// <param name="source">The first list.</param>
+    /// <param name="other">The second list.</param>
+    /// <typeparam name="T">The type of the elements in <paramref name="source" /> and <paramref name="other" />.</typeparam>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="source" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="other" /> is <see langword="null" />.</para>
+    /// </exception>
+    public static void Swap<T>(this IList<T> source, IList<T> other)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(other);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (other is null)
+        {
+            throw new ArgumentNullException(nameof(other));
+        }
+#endif
+
+        int min = System.Math.Min(source.Count, other.Count);
+        for (var index = 0; index < min; index++)
+        {
+            (source[index], other[index]) = (other[index], source[index]);
+        }
+
+        if (other.Count < source.Count)
+        {
+            for (int index = min; index < source.Count;)
+            {
+                other.Add(source[index]);
+                source.RemoveAt(index);
+            }
+        }
+        else if (source.Count < other.Count)
+        {
+            for (int index = min; index < other.Count;)
+            {
+                source.Add(other[index]);
+                other.RemoveAt(index);
+            }
+        }
+    }
 }
