@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Unity", "X10D.Unity\X1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.SourceGenerator", "X10D.SourceGenerator\X10D.SourceGenerator.csproj", "{077A5D33-AD55-4C55-8A67-972CEBC32C7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.DSharpPlus", "X10D.DSharpPlus\X10D.DSharpPlus.csproj", "{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Hosting", "X10D.Hosting\X10D.Hosting.csproj", "{B04AF429-30CF-4B69-81BA-38F560CA9126}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,14 @@ Global
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
