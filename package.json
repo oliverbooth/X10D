@@ -6,7 +6,7 @@
         "url": "https://oliverbooth.dev"
     },
     "displayName": "X10D",
-    "version": "3.2.0-nightly.128",
+    "version": "3.2.0-nightly.129",
     "unity": "2021.2",
     "description": "Extension methods on crack",
     "keywords": ["dotnet", "extension-methods"],
