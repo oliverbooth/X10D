@@ -8,6 +8,34 @@ namespace X10D.DSharpPlus;
 public static class DiscordEmbedBuilderExtensions
 {
     /// <summary>
+    ///     Adds a field of any value type to the embed.
+    /// </summary>
+    /// <param name="builder">The <see cref="DiscordEmbedBuilder" /> to modify.</param>
+    /// <param name="name">The name of the embed field.</param>
+    /// <param name="value">The value of the embed field.</param>
+    /// <param name="inline"><see langword="true" /> to display this field inline; otherwise, <see langword="false" />.</param>
+    /// <typeparam name="T">The type of <paramref name="value" />.</typeparam>
+    /// <returns>The current instance of <see cref="DiscordEmbedBuilder" />; that is, <paramref name="builder" />.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="builder" /> is <see langword="null" />.</exception>
+    public static DiscordEmbedBuilder AddField<T>(
+        this DiscordEmbedBuilder builder,
+        string name,
+        T? value,
+        bool inline = false)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(builder);
+#else
+        if (builder is null)
+        {
+            throw new ArgumentNullException(nameof(builder));
+        }
+#endif
+
+        return builder.AddField(name, value?.ToString(), inline);
+    }
+
+    /// <summary>
     ///     Conditionally adds a field to the embed.
     /// </summary>
     /// <param name="builder">The <see cref="DiscordEmbedBuilder" /> to modify.</param>
