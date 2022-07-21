@@ -1,4 +1,4 @@
-﻿using DSharpPlus;
+using DSharpPlus;
 using DSharpPlus.Entities;
 using DSharpPlus.Exceptions;
 
@@ -136,7 +136,7 @@ public static class DiscordUserExtensions
     ///     -or-
     ///     <para><paramref name="client" /> is <see langword="null" /></para>
     /// </exception>
-    public static async Task<DiscordGuild> NormalizeClientAsync(this DiscordUser user, DiscordClient client)
+    public static async Task<DiscordUser> NormalizeClientAsync(this DiscordUser user, DiscordClient client)
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(user);
@@ -153,6 +153,6 @@ public static class DiscordUserExtensions
         }
 #endif
 
-        return await client.GetGuildAsync(user.Id);
+        return await client.GetUserAsync(user.Id);
     }
 }
