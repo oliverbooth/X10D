@@ -234,6 +234,6 @@ public static class DiscordEmbedBuilderExtensions
         }
 #endif
 
-        return builder.WithAuthor(user.Username, user.AvatarUrl);
+        return builder.WithAuthor(user.Username, iconUrl: user.AvatarUrl);
     }
 }
