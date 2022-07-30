@@ -360,6 +360,51 @@
                 Extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" />.
             </summary>
         </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.CountWhereNot``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Returns a number that represents how many elements in the specified sequence do not satisfy a condition.
+            </summary>
+            <param name="source">A sequence that contains elements to be tested and counted.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+            <returns>
+                A number that represents how many elements in the sequence do not satisfy the condition in the
+                <paramref name="predicate" /> function.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+            <exception cref="T:System.OverflowException">
+                The number of elements in <paramref name="source" /> is larger than <see cref="F:System.Int32.MaxValue" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.FirstWhereNot``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Returns the first element in a sequence that does not satisfy a specified condition.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return an element from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" /></typeparam>
+            <returns>The first element in the sequence that fails the test in the specified predicate function.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+            <exception cref="T:System.InvalidOperationException">
+                <para>No element satisfies the condition in predicate.</para>
+                 -or-
+                <para>The source sequence is empty.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.FirstWhereNotOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Returns the first element in a sequence that does not satisfy a specified condition.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return an element from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" /></typeparam>
+            <returns>
+                <see langword="default(TSource)" /> if <paramref name="source" /> is empty or if no element passes the test specified
+                by <paramref name="predicate"/>; otherwise, the first element in <paramref name="source" /> that fails the test
+                specified by <paramref name="predicate" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+        </member>
         <member name="M:X10D.Collections.EnumerableExtensions.For``1(System.Collections.Generic.IEnumerable{``0},System.Action{System.Int32,``0})">
             <summary>
                 Performs the specified action on each element of the <see cref="T:System.Collections.Generic.IEnumerable`1" />.
@@ -414,6 +459,35 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
             <seealso cref="M:X10D.Collections.CollectionExtensions.ClearAndDisposeAllAsync``1(System.Collections.Generic.ICollection{``0})" />
         </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.LastWhereNot``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Returns the last element in a sequence that does not satisfy a specified condition.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return an element from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" /></typeparam>
+            <returns>The last element in the sequence that fails the test in the specified predicate function.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+            <exception cref="T:System.InvalidOperationException">
+                <para>No element satisfies the condition in predicate.</para>
+                 -or-
+                <para>The source sequence is empty.</para>
+            </exception>
+        </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.LastWhereNotOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Returns the last element in a sequence that does not satisfy a specified condition.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to return an element from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" /></typeparam>
+            <returns>
+                <see langword="default(TSource)" /> if <paramref name="source" /> is empty or if no element passes the test specified
+                by <paramref name="predicate"/>; otherwise, the last element in <paramref name="source" /> that fails the test
+                specified by <paramref name="predicate" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+        </member>
         <member name="M:X10D.Collections.EnumerableExtensions.Shuffled``1(System.Collections.Generic.IEnumerable{``0},System.Random)">
             <summary>
                 Reorganizes the elements in an enumerable by implementing a Fisher-Yates shuffle, and returns th shuffled result.
@@ -423,6 +497,18 @@
             <param name="random">Optional. The <see cref="T:System.Random" /> instance to use for the shuffling.</param>
             <returns>The shuffled collection.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.WhereNot``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Filters a sequence of values based on a predicate, such that all elements in the result do not match the predicate.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to filter.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+            <returns>
+                An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains elements from the input sequence that do not satisfy the condition.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
         </member>
         <member name="T:X10D.Collections.Int16Extensions">
             <summary>
