@@ -102,6 +102,55 @@ public class StringTests
     }
 
     [TestMethod]
+    public void CountSubstring_ShouldHonor_StringComparison()
+    {
+        Assert.AreEqual(0, "Hello World".CountSubstring('E'));
+        Assert.AreEqual(0, "Hello World".CountSubstring("E"));
+        Assert.AreEqual(1, "Hello World".CountSubstring("E", StringComparison.OrdinalIgnoreCase));
+        Assert.AreEqual(0, "Hello World".AsSpan().CountSubstring('E'));
+        Assert.AreEqual(1, "Hello World".AsSpan().CountSubstring("E".AsSpan(), StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldReturn0_GivenNoInstanceChar()
+    {
+        Assert.AreEqual(0, "Hello World".CountSubstring('z'));
+        Assert.AreEqual(0, "Hello World".CountSubstring("z"));
+        Assert.AreEqual(0, "Hello World".CountSubstring("z", StringComparison.OrdinalIgnoreCase));
+        Assert.AreEqual(0, "Hello World".AsSpan().CountSubstring('z'));
+        Assert.AreEqual(0, "Hello World".AsSpan().CountSubstring("z".AsSpan(), StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldReturn1_GivenSingleInstanceChar()
+    {
+        Assert.AreEqual(1, "Hello World".CountSubstring('e'));
+        Assert.AreEqual(1, "Hello World".CountSubstring("e"));
+        Assert.AreEqual(1, "Hello World".CountSubstring("e", StringComparison.OrdinalIgnoreCase));
+        Assert.AreEqual(1, "Hello World".AsSpan().CountSubstring('e'));
+        Assert.AreEqual(1, "Hello World".AsSpan().CountSubstring("e".AsSpan(), StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldReturn0_GivenEmptyHaystack()
+    {
+        Assert.AreEqual(0, string.Empty.CountSubstring('\0'));
+        Assert.AreEqual(0, string.Empty.CountSubstring(string.Empty));
+        Assert.AreEqual(0, string.Empty.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
+        Assert.AreEqual(0, string.Empty.AsSpan().CountSubstring('\0'));
+        Assert.AreEqual(0, string.Empty.AsSpan().CountSubstring(string.Empty.AsSpan(), StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldThrow_GivenNullHaystack()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null!).CountSubstring('\0'));
+        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null!).CountSubstring(string.Empty));
+        Assert.ThrowsException<ArgumentNullException>(() =>
+            ((string?)null!).CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
     public void EnumParse_ShouldReturnCorrectValue_GivenString()
     {
         Assert.AreEqual(DayOfWeek.Monday, "Monday".EnumParse<DayOfWeek>(false));

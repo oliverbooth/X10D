@@ -163,6 +163,159 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     Counts the occurrences of a character within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this Span<char> haystack, char needle)
+    {
+        return CountSubstring((ReadOnlySpan<char>)haystack, needle);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this ReadOnlySpan<char> haystack, char needle)
+    {
+        var count = 0;
+
+        for (var index = 0; index < haystack.Length; index++)
+        {
+            if (haystack[index] == needle)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current string.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, char needle)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(haystack);
+#else
+        if (haystack is null)
+        {
+            throw new ArgumentNullException(nameof(haystack));
+        }
+#endif
+
+        return haystack.AsSpan().CountSubstring(needle);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character span to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this ReadOnlySpan<char> haystack, ReadOnlySpan<char> needle)
+    {
+        return CountSubstring(haystack, needle, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current character span, using a specified string comparison method.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character span to count.</param>
+    /// <param name="comparison">The string comparison method used for determining substring count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this ReadOnlySpan<char> haystack, ReadOnlySpan<char> needle, StringComparison comparison)
+    {
+        if (haystack.IsEmpty || needle.IsEmpty)
+        {
+            return 0;
+        }
+
+        int haystackLength = haystack.Length;
+        int needleLength = needle.Length;
+        var count = 0;
+
+        for (var index = 0; index < haystackLength - needleLength - 1; index++)
+        {
+            if (haystack[index..(index + needleLength)].Equals(needle, comparison))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character span to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this Span<char> haystack, Span<char> needle)
+    {
+        return CountSubstring(haystack, needle, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current character span, using a specified string comparison method.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character span to count.</param>
+    /// <param name="comparison">The string comparison method used for determining substring count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this Span<char> haystack, Span<char> needle, StringComparison comparison)
+    {
+        return CountSubstring((ReadOnlySpan<char>)haystack, needle, comparison);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current string.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The substring to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, string? needle)
+    {
+        return CountSubstring(haystack, needle, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current string, using a specified string comparison method.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The substring to count.</param>
+    /// <param name="comparison">The string comparison method used for determining substring count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, string? needle, StringComparison comparison)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(haystack);
+#else
+        if (haystack is null)
+        {
+            throw new ArgumentNullException(nameof(haystack));
+        }
+#endif
+
+        if (string.IsNullOrWhiteSpace(needle))
+        {
+            return 0;
+        }
+
+        return haystack.AsSpan().CountSubstring(needle, comparison);
+    }
+
+    /// <summary>
     ///     Parses a <see cref="string" /> into an <see cref="Enum" />.
     /// </summary>
     /// <typeparam name="T">The type of the <see cref="Enum" />.</typeparam>
