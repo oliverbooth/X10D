@@ -28,10 +28,16 @@
 - X10D: Added `PointF.ToSizeF()`
 - X10D: Added `PointF.ToVector2()` for .NET < 6
 - X10D: Added `PopCount()` for built-in integer types
+- X10D: Added `ReadOnlySpan<char>.CountSubstring(char)`
+- X10D: Added `ReadOnlySpan<char>.CountSubstring(ReadOnlySpan<char>[, StringComparison])`
 - X10D: Added `RoundUpToPowerOf2()` for built-in integer types
 - X10D: Added `Size.ToPoint()`
 - X10D: Added `Size.ToPointF()`
 - X10D: Added `Size.ToVector2()`
+- X10D: Added `Span<char>.CountSubstring(char)`
+- X10D: Added `Span<char>.CountSubstring(Span<char>[, StringComparison])`
+- X10D: Added `string.CountSubstring(char)`
+- X10D: Added `string.CountSubstring(string[, StringComparison])`
 - X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator
 - X10D: Added `Vector2.Deconstruct()`
 - X10D: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
