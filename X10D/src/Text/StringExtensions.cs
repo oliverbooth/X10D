@@ -254,7 +254,6 @@ public static class StringExtensions
         return count;
     }
 
-
     /// <summary>
     ///     Counts the occurrences of a substring within the current character span.
     /// </summary>
