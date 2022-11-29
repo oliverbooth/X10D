@@ -1,6 +1,8 @@
 using System.Diagnostics.Contracts;
 using X10D.Core;
 
+#pragma warning disable CA5394
+
 namespace X10D.Collections;
 
 /// <summary>
