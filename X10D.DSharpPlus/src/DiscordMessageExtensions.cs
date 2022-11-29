@@ -26,8 +26,8 @@ public static class DiscordMessageExtensions
         }
 #endif
 
-        await Task.Delay(delay);
-        await message.DeleteAsync(reason);
+        await Task.Delay(delay).ConfigureAwait(true);
+        await message.DeleteAsync(reason).ConfigureAwait(true);
     }
 
     /// <summary>
@@ -48,8 +48,8 @@ public static class DiscordMessageExtensions
         }
 #endif
 
-        DiscordMessage message = await task;
-        await message.DeleteAfterAsync(delay, reason);
+        DiscordMessage message = await task.ConfigureAwait(true);
+        await message.DeleteAfterAsync(delay, reason).ConfigureAwait(true);
     }
 
     /// <summary>
@@ -83,7 +83,7 @@ public static class DiscordMessageExtensions
         }
 #endif
 
-        DiscordChannel channel = await message.Channel.NormalizeClientAsync(client);
-        return await channel.GetMessageAsync(message.Id);
+        DiscordChannel channel = await message.Channel.NormalizeClientAsync(client).ConfigureAwait(true);
+        return await channel.GetMessageAsync(message.Id).ConfigureAwait(true);
     }
 }

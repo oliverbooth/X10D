@@ -52,7 +52,7 @@ public static class DiscordUserExtensions
 
         try
         {
-            return await guild.GetMemberAsync(user.Id);
+            return await guild.GetMemberAsync(user.Id).ConfigureAwait(true);
         }
         catch (NotFoundException)
         {
@@ -113,7 +113,7 @@ public static class DiscordUserExtensions
 
         try
         {
-            DiscordMember? member = await guild.GetMemberAsync(user.Id);
+            DiscordMember? member = await guild.GetMemberAsync(user.Id).ConfigureAwait(true);
             return member is not null;
         }
         catch (NotFoundException)
@@ -153,6 +153,6 @@ public static class DiscordUserExtensions
         }
 #endif
 
-        return await client.GetUserAsync(user.Id);
+        return await client.GetUserAsync(user.Id).ConfigureAwait(true);
     }
 }
