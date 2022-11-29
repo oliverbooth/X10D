@@ -67,7 +67,7 @@ public static class DiscordMemberExtensions
         }
 #endif
 
-        DiscordGuild guild = await member.Guild.NormalizeClientAsync(client);
-        return await guild.GetMemberAsync(member.Id);
+        DiscordGuild guild = await member.Guild.NormalizeClientAsync(client).ConfigureAwait(true);
+        return await guild.GetMemberAsync(member.Id).ConfigureAwait(true);
     }
 }
