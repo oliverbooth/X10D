@@ -159,39 +159,13 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     }
 
     /// <summary>
-    ///     Explicitly converts a <see cref="Line3D" /> to a <see cref="Line" />.
-    /// </summary>
-    /// <param name="line">The line to convert.</param>
-    /// <returns>The converted line.</returns>
-    public static explicit operator Line(in Line3D line)
-    {
-        Vector3 start = line.Start;
-        Vector3 end = line.End;
-        return new Line(new Point((int)start.X, (int)start.Y), new Point((int)end.X, (int)end.Y));
-    }
-
-    /// <summary>
-    ///     Explicitly converts a <see cref="Line3D" /> to a <see cref="LineF" />.
-    /// </summary>
-    /// <param name="line">The line to convert.</param>
-    /// <returns>The converted line.</returns>
-    public static explicit operator LineF(in Line3D line)
-    {
-        Vector3 start = line.Start;
-        Vector3 end = line.End;
-        return new LineF(new PointF(start.X, start.Y), new PointF(end.X, end.Y));
-    }
-
-    /// <summary>
     ///     Implicitly converts a <see cref="Line" /> to a <see cref="LineF" />.
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
     public static implicit operator Line3D(in Line line)
     {
-        Point start = line.Start;
-        Point end = line.End;
-        return new Line3D(new Vector3(start.X, start.Y, 0), new Vector3(end.X, end.Y, 0));
+        return FromLine(line);
     }
 
     /// <summary>
@@ -200,6 +174,28 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
     public static implicit operator Line3D(in LineF line)
+    {
+        return FromLineF(line);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Line" /> to a <see cref="LineF" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static Line3D FromLine(in Line line)
+    {
+        Point start = line.Start;
+        Point end = line.End;
+        return new Line3D(new Vector3(start.X, start.Y, 0), new Vector3(end.X, end.Y, 0));
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="LineF" /> to a <see cref="Line3D" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static Line3D FromLineF(in LineF line)
     {
         PointF start = line.Start;
         PointF end = line.End;

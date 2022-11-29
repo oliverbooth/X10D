@@ -163,6 +163,27 @@ public readonly struct Circle : IEquatable<Circle>, IComparable<Circle>, ICompar
     }
 
     /// <summary>
+    ///     Explicitly converts a <see cref="Circle" /> to a <see cref="CircleF" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted circle.</returns>
+    public static explicit operator Circle(CircleF circle)
+    {
+        return Circle.FromCircleF(circle);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Circle" /> to a <see cref="CircleF" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted circle.</returns>
+    public static Circle FromCircleF(CircleF circle)
+    {
+        PointF center = circle.Center;
+        return new Circle(new Point((int)center.X, (int)center.Y), (int)circle.Radius);
+    }
+
+    /// <summary>
     ///     Compares this instance to another <see cref="Circle" />.
     /// </summary>
     /// <param name="obj">The other object.</param>

@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Numerics;
 
 namespace X10D.Drawing;
@@ -135,10 +135,44 @@ public class Polyhedron : IEquatable<Polyhedron>
     ///     Implicitly converts a <see cref="Polygon" /> to a <see cref="Polyhedron" />.
     /// </summary>
     /// <param name="polygon">The polyhedron to convert.</param>
-    /// <returns>The converted polyhedron.</returns>
-    public static implicit operator Polyhedron(Polygon polygon)
+    /// <returns>
+    ///     The converted polyhedron, or <see langword="null" /> if <paramref name="polygon" /> is <see langword="null" />.
+    /// </returns>
+    public static implicit operator Polyhedron?(Polygon? polygon)
     {
-        List<Vector3> vertices = new List<Vector3>();
+        return polygon is null ? null : FromPolygon(polygon);
+    }
+
+    /// <summary>
+    ///     Implicitly converts a <see cref="PolygonF" /> to a <see cref="Polyhedron" />.
+    /// </summary>
+    /// <param name="polygon">The polyhedron to convert.</param>
+    /// <returns>
+    ///     The converted polyhedron, or <see langword="null" /> if <paramref name="polygon" /> is <see langword="null" />.
+    /// </returns>
+    public static implicit operator Polyhedron?(PolygonF? polygon)
+    {
+        return polygon is null ? null : FromPolygonF(polygon);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Polygon" /> to a <see cref="Polyhedron" />.
+    /// </summary>
+    /// <param name="polygon">The polyhedron to convert.</param>
+    /// <returns>The converted polyhedron.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
+    public static Polyhedron FromPolygon(Polygon polygon)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(polygon);
+#else
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+#endif
+
+        var vertices = new List<Vector3>();
 
         foreach (Point vertex in polygon.Vertices)
         {
@@ -149,13 +183,23 @@ public class Polyhedron : IEquatable<Polyhedron>
     }
 
     /// <summary>
-    ///     Implicitly converts a <see cref="PolygonF" /> to a <see cref="Polyhedron" />.
+    ///     Converts a <see cref="PolygonF" /> to a <see cref="Polyhedron" />.
     /// </summary>
     /// <param name="polygon">The polyhedron to convert.</param>
     /// <returns>The converted polyhedron.</returns>
-    public static implicit operator Polyhedron(PolygonF polygon)
+    /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
+    public static Polyhedron FromPolygonF(PolygonF polygon)
     {
-        List<Vector3> vertices = new List<Vector3>();
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(polygon);
+#else
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+#endif
+
+        var vertices = new List<Vector3>();
 
         foreach (PointF vertex in polygon.Vertices)
         {
