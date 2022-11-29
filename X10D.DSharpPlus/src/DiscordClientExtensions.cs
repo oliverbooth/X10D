@@ -15,8 +15,18 @@ public static class DiscordClientExtensions
     ///     <see langword="true" /> to automatically rejoin a thread if this client was removed; otherwise,
     ///     <see langword="false" />.
     /// </param>
+    /// <exception cref="ArgumentNullException"><paramref name="client" /> is <see langword="null" />.</exception>
     public static void AutoJoinThreads(this DiscordClient client, bool rejoinIfRemoved = true)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(client);
+#else
+        if (client is null)
+        {
+            throw new ArgumentNullException(nameof(client));
+        }
+#endif
+
         client.GuildAvailable += (_, args) => args.Guild.JoinAllThreadsAsync();
         client.ThreadCreated += (_, args) => args.Thread.JoinThreadAsync();
 
