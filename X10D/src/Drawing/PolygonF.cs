@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Numerics;
 using X10D.Numerics;
 
@@ -169,6 +170,7 @@ public class PolygonF
     /// </summary>
     /// <param name="polygon">The polygon to convert.</param>
     /// <returns>The converted polygon.</returns>
+    [return: NotNullIfNotNull("polygon")]
     public static implicit operator PolygonF?(Polygon? polygon)
     {
         return polygon is null ? null : FromPolygon(polygon);
