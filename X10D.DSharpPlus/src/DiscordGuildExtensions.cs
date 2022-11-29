@@ -24,7 +24,7 @@ public static class DiscordGuildExtensions
         }
 #endif
 
-        await Task.WhenAll(guild.Threads.Values.Select(t => t.JoinThreadAsync())).ConfigureAwait(true);
+        await Task.WhenAll(guild.Threads.Values.Select(t => t.JoinThreadAsync())).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -58,6 +58,6 @@ public static class DiscordGuildExtensions
         }
 #endif
 
-        return await client.GetGuildAsync(guild.Id).ConfigureAwait(true);
+        return await client.GetGuildAsync(guild.Id).ConfigureAwait(false);
     }
 }
