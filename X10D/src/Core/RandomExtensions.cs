@@ -1,6 +1,8 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
 using X10D.Math;
+
+#pragma warning disable CA5394
 
 namespace X10D.Core;
 
