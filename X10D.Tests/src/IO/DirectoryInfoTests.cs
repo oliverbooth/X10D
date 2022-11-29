@@ -31,7 +31,7 @@ public class DirectoryInfoTests
 
         Assert.AreEqual(1, directory.GetFiles().Length);
         Assert.AreEqual(1, directory.GetDirectories().Length);
-        directory.Clear(false);
+        directory.Clear();
         Assert.AreEqual(0, directory.GetFiles().Length);
         Assert.AreEqual(0, directory.GetDirectories().Length);
         Assert.IsTrue(directory.Exists);
@@ -48,29 +48,16 @@ public class DirectoryInfoTests
     }
 
     [TestMethod]
-    public void Clear_ShouldNotThrow_WhenThrowOnErrorIsFalse()
-    {
-        var directory = new DirectoryInfo(@"/@12#3");
-        Assert.IsFalse(directory.Exists);
-
-        directory.Clear();
-        directory.Clear(false);
-
-        Assert.IsTrue(true); // if this assertion passes, then the test passed
-    }
-
-    [TestMethod]
     public void Clear_ShouldThrowArgumentNullException_GivenNull()
     {
         Assert.ThrowsException<ArgumentNullException>(() => ((DirectoryInfo?)null)!.Clear());
-        Assert.ThrowsException<ArgumentNullException>(() => ((DirectoryInfo?)null)!.Clear(true));
     }
 
     [TestMethod]
     public void Clear_ShouldThrowDirectoryNotFoundException_GivenInvalidDirectory()
     {
         var directory = new DirectoryInfo(@"123:/@12#3");
-        Assert.ThrowsException<DirectoryNotFoundException>(() => directory.Clear(true));
+        Assert.ThrowsException<DirectoryNotFoundException>(() => directory.Clear());
     }
 
     [TestMethod]
@@ -78,6 +65,6 @@ public class DirectoryInfoTests
     {
         var directory = new DirectoryInfo(@"/@12#3");
         Assert.IsFalse(directory.Exists);
-        Assert.ThrowsException<DirectoryNotFoundException>(() => directory.Clear(true));
+        Assert.ThrowsException<DirectoryNotFoundException>(() => directory.Clear());
     }
 }
