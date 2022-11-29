@@ -16,7 +16,7 @@ public ref struct SpanSplitEnumerator<T> where T : struct, IEquatable<T>
     /// </summary>
     /// <param name="source">The source span.</param>
     /// <param name="delimiter">The delimiting span of elements.</param>
-    public SpanSplitEnumerator(in ReadOnlySpan<T> source, ReadOnlySpan<T> delimiter)
+    public SpanSplitEnumerator(ReadOnlySpan<T> source, ReadOnlySpan<T> delimiter)
     {
         _usingSpanDelimiter = true;
         _source = source;
@@ -30,7 +30,7 @@ public ref struct SpanSplitEnumerator<T> where T : struct, IEquatable<T>
     /// </summary>
     /// <param name="source">The source span.</param>
     /// <param name="delimiter">The delimiting element.</param>
-    public SpanSplitEnumerator(in ReadOnlySpan<T> source, T delimiter)
+    public SpanSplitEnumerator(ReadOnlySpan<T> source, T delimiter)
     {
         _usingSpanDelimiter = false;
         _source = source;
