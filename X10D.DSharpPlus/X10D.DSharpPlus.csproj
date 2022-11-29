@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>net7.0;net6.0;netstandard2.1</TargetFrameworks>
         <LangVersion>10.0</LangVersion>
         <Optimize>true</Optimize>
         <ImplicitUsings>true</ImplicitUsings>

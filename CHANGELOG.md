@@ -4,6 +4,7 @@
 ### Added
 - Added new library X10D.DSharpPlus
 - Added new library X10D.Hosting
+- Added .NET 7 target
 
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
 - X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
