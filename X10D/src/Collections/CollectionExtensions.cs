@@ -69,7 +69,7 @@ public static class CollectionExtensions
                 continue;
             }
 
-            await item.DisposeAsync().ConfigureAwait(true);
+            await item.DisposeAsync().ConfigureAwait(false);
         }
 
         source.Clear();

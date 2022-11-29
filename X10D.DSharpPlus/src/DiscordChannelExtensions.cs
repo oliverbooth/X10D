@@ -75,6 +75,6 @@ public static class DiscordChannelExtensions
         }
 #endif
 
-        return await client.GetChannelAsync(channel.Id).ConfigureAwait(true);
+        return await client.GetChannelAsync(channel.Id).ConfigureAwait(false);
     }
 }
