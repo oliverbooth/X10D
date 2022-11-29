@@ -40,7 +40,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DSharpPlus" Version="4.3.0-nightly-01155" PrivateAssets="All"/>
+        <PackageReference Include="DSharpPlus" Version="4.3.0-nightly-01189" PrivateAssets="All"/>
     </ItemGroup>
 
     <ItemGroup>
