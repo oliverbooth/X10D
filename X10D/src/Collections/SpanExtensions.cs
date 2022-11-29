@@ -64,7 +64,7 @@ public static class SpanExtensions
     public static SpanSplitEnumerator<T> Split<T>(this in Span<T> source, T delimiter)
         where T : struct, IEquatable<T>
     {
-        return source.AsReadOnly().Split(delimiter);
+        return new SpanSplitEnumerator<T>(source, delimiter);
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public static class SpanExtensions
     public static SpanSplitEnumerator<T> Split<T>(this in Span<T> source, in ReadOnlySpan<T> delimiter)
         where T : struct, IEquatable<T>
     {
-        return source.AsReadOnly().Split(delimiter);
+        return new SpanSplitEnumerator<T>(source, delimiter);
     }
 
     /// <summary>
