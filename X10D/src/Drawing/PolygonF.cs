@@ -163,20 +163,13 @@ public class PolygonF
     }
 
     /// <summary>
-    ///     Explicitly converts a <see cref="Polygon" /> to a <see cref="PolygonF" />.
+    ///     Implicitly converts a <see cref="Polygon" /> to a <see cref="PolygonF" />.
     /// </summary>
     /// <param name="polygon">The polygon to convert.</param>
     /// <returns>The converted polygon.</returns>
-    public static explicit operator Polygon(PolygonF polygon)
+    public static implicit operator PolygonF?(Polygon? polygon)
     {
-        var vertices = new List<Point>();
-
-        foreach (PointF vertex in polygon.Vertices)
-        {
-            vertices.Add(new Point((int)vertex.X, (int)vertex.Y));
-        }
-
-        return new Polygon(vertices);
+        return polygon is null ? null : FromPolygon(polygon);
     }
 
     /// <summary>
@@ -184,8 +177,18 @@ public class PolygonF
     /// </summary>
     /// <param name="polygon">The polygon to convert.</param>
     /// <returns>The converted polygon.</returns>
-    public static implicit operator PolygonF(Polygon polygon)
+    /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
+    public static PolygonF FromPolygon(Polygon polygon)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(polygon);
+#else
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+#endif
+
         var vertices = new List<PointF>();
 
         foreach (Point vertex in polygon.Vertices)

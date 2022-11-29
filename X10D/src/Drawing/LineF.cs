@@ -165,25 +165,45 @@ public readonly struct LineF : IEquatable<LineF>, IComparable<LineF>, IComparabl
     }
 
     /// <summary>
-    ///     Explicitly converts a <see cref="Line" /> to a <see cref="LineF" />.
-    /// </summary>
-    /// <param name="line">The line to convert.</param>
-    /// <returns>The converted line.</returns>
-    public static explicit operator Line(in LineF line)
-    {
-        PointF start = line.Start;
-        PointF end = line.End;
-        return new Line(new Point((int)start.X, (int)start.Y), new Point((int)end.X, (int)end.Y));
-    }
-
-    /// <summary>
     ///     Implicitly converts a <see cref="Line" /> to a <see cref="LineF" />.
     /// </summary>
     /// <param name="line">The line to convert.</param>
     /// <returns>The converted line.</returns>
     public static implicit operator LineF(in Line line)
     {
+        return FromLine(line);
+    }
+
+    /// <summary>
+    ///     Explicitly converts a <see cref="Line3D" /> to a <see cref="LineF" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static explicit operator LineF(in Line3D line)
+    {
+        return FromLine3D(line);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Line" /> to a <see cref="LineF" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static LineF FromLine(in Line line)
+    {
         return new LineF(line.Start, line.End);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Line3D" /> to a <see cref="LineF" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static LineF FromLine3D(in Line3D line)
+    {
+        Vector3 start = line.Start;
+        Vector3 end = line.End;
+        return new LineF(new PointF(start.X, start.Y), new PointF(end.X, end.Y));
     }
 
     /// <summary>

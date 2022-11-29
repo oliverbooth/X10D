@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Numerics;
 
 namespace X10D.Drawing;
 
@@ -150,6 +151,50 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
     public static bool operator >=(in Line left, in Line right)
     {
         return left.CompareTo(right) >= 0;
+    }
+
+    /// <summary>
+    ///     Explicitly converts a <see cref="Line" /> to a <see cref="LineF" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static explicit operator Line(in LineF line)
+    {
+        return FromLineF(line);
+    }
+
+    /// <summary>
+    ///     Explicitly converts a <see cref="Line3D" /> to a <see cref="Line" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static explicit operator Line(in Line3D line)
+    {
+        return FromLine3D(line);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Line3D" /> to a <see cref="Line" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static Line FromLine3D(in Line3D line)
+    {
+        Vector3 start = line.Start;
+        Vector3 end = line.End;
+        return new Line(new Point((int)start.X, (int)start.Y), new Point((int)end.X, (int)end.Y));
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Line" /> to a <see cref="LineF" />.
+    /// </summary>
+    /// <param name="line">The line to convert.</param>
+    /// <returns>The converted line.</returns>
+    public static Line FromLineF(in LineF line)
+    {
+        PointF start = line.Start;
+        PointF end = line.End;
+        return new Line(new Point((int)start.X, (int)start.Y), new Point((int)end.X, (int)end.Y));
     }
 
     /// <summary>

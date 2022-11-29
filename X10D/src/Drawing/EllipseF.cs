@@ -161,7 +161,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator EllipseF(in Circle circle)
     {
-        return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
+        return FromCircle(circle);
     }
 
     /// <summary>
@@ -171,7 +171,7 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator EllipseF(in CircleF circle)
     {
-        return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
+        return FromCircleF(circle);
     }
 
     /// <summary>
@@ -181,18 +181,37 @@ public readonly struct EllipseF : IEquatable<EllipseF>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator EllipseF(in Ellipse ellipse)
     {
-        return new EllipseF(ellipse.Center, ellipse.Radius);
+        return FromEllipse(ellipse);
     }
 
     /// <summary>
-    ///     Explicitly converts an <see cref="EllipseF" /> to an <see cref="Ellipse" />.
+    ///     Converts a <see cref="Circle" /> to an <see cref="EllipseF" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted ellipse.</returns>
+    public static EllipseF FromCircle(in Circle circle)
+    {
+        return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="CircleF" /> to an <see cref="EllipseF" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted ellipse.</returns>
+    public static EllipseF FromCircleF(in CircleF circle)
+    {
+        return new EllipseF(circle.Center, new SizeF(circle.Radius, circle.Radius));
+    }
+
+    /// <summary>
+    ///     Converts an <see cref="Ellipse" /> to an <see cref="EllipseF" />.
     /// </summary>
     /// <param name="ellipse">The ellipse to convert.</param>
     /// <returns>The converted ellipse.</returns>
-    public static explicit operator Ellipse(in EllipseF ellipse)
+    public static EllipseF FromEllipse(in Ellipse ellipse)
     {
-        PointF center = ellipse.Center;
-        return new Ellipse((int)center.X, (int)center.Y, (int)ellipse.HorizontalRadius, (int)ellipse.VerticalRadius);
+        return new EllipseF(ellipse.Center, ellipse.Radius);
     }
 
     /// <inheritdoc />

@@ -133,7 +133,38 @@ public readonly struct Ellipse : IEquatable<Ellipse>
     /// <returns>The converted ellipse.</returns>
     public static implicit operator Ellipse(in Circle circle)
     {
+        return FromCircle(circle);
+    }
+
+    /// <summary>
+    ///     Explicitly converts an <see cref="EllipseF" /> to an <see cref="Ellipse" />.
+    /// </summary>
+    /// <param name="ellipse">The ellipse to convert.</param>
+    /// <returns>The converted ellipse.</returns>
+    public static explicit operator Ellipse(in EllipseF ellipse)
+    {
+        return FromEllipseF(ellipse);
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="Circle" /> to an <see cref="Ellipse" />.
+    /// </summary>
+    /// <param name="circle">The circle to convert.</param>
+    /// <returns>The converted ellipse.</returns>
+    public static Ellipse FromCircle(in Circle circle)
+    {
         return new Ellipse(circle.Center, new Size(circle.Radius, circle.Radius));
+    }
+
+    /// <summary>
+    ///     Converts an <see cref="EllipseF" /> to an <see cref="Ellipse" />.
+    /// </summary>
+    /// <param name="ellipse">The ellipse to convert.</param>
+    /// <returns>The converted ellipse.</returns>
+    public static Ellipse FromEllipseF(in EllipseF ellipse)
+    {
+        PointF center = ellipse.Center;
+        return new Ellipse((int)center.X, (int)center.Y, (int)ellipse.HorizontalRadius, (int)ellipse.VerticalRadius);
     }
 
     /// <inheritdoc />
