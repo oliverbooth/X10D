@@ -21,8 +21,9 @@ public class PolygonF
     /// <summary>
     ///     Initializes a new instance of the <see cref="PolygonF" /> class by copying the specified polygon.
     /// </summary>
+    /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public PolygonF(PolygonF polygon)
-        : this(polygon._vertices)
+        : this(polygon?._vertices ?? throw new ArgumentNullException(nameof(polygon)))
     {
     }
 
@@ -30,6 +31,7 @@ public class PolygonF
     ///     Initializes a new instance of the <see cref="PolygonF" /> class by constructing it from the specified vertices.
     /// </summary>
     /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public PolygonF(IEnumerable<Vector2> vertices)
         : this(vertices.Select(p => p.ToPointF()))
     {
@@ -143,9 +145,9 @@ public class PolygonF
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(PolygonF left, PolygonF right)
+    public static bool operator ==(PolygonF? left, PolygonF? right)
     {
-        return left.Equals(right);
+        return Equals(left, right);
     }
 
     /// <summary>
@@ -157,9 +159,9 @@ public class PolygonF
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(PolygonF left, PolygonF right)
+    public static bool operator !=(PolygonF? left, PolygonF? right)
     {
-        return !left.Equals(right);
+        return !(left == right);
     }
 
     /// <summary>
@@ -283,9 +285,9 @@ public class PolygonF
     ///     <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public bool Equals(PolygonF other)
+    public bool Equals(PolygonF? other)
     {
-        return _vertices.SequenceEqual(other._vertices);
+        return other is not null && _vertices.SequenceEqual(other._vertices);
     }
 
     /// <inheritdoc />
