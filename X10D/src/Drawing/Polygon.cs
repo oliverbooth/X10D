@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace X10D.Drawing;
 
@@ -20,7 +20,7 @@ public class Polygon : IEquatable<Polygon>
     ///     Initializes a new instance of the <see cref="Polygon" /> class by copying the specified polygon.
     /// </summary>
     public Polygon(Polygon polygon)
-        : this(polygon._vertices)
+        : this(polygon?._vertices ?? throw new ArgumentNullException(nameof(polygon)))
     {
     }
 
@@ -114,9 +114,9 @@ public class Polygon : IEquatable<Polygon>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(Polygon left, Polygon right)
+    public static bool operator ==(Polygon? left, Polygon? right)
     {
-        return left.Equals(right);
+        return Equals(left, right);
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public class Polygon : IEquatable<Polygon>
     /// </returns>
     public static bool operator !=(Polygon left, Polygon right)
     {
-        return !left.Equals(right);
+        return !(left == right);
     }
 
     /// <summary>
@@ -223,9 +223,9 @@ public class Polygon : IEquatable<Polygon>
     ///     <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public bool Equals(Polygon other)
+    public bool Equals(Polygon? other)
     {
-        return _vertices.SequenceEqual(other._vertices);
+        return other is not null && _vertices.SequenceEqual(other._vertices);
     }
 
     /// <inheritdoc />

@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Numerics;
 
 namespace X10D.Drawing;
@@ -20,8 +20,9 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <summary>
     ///     Initializes a new instance of the <see cref="Polyhedron" /> class by copying the specified polyhedron.
     /// </summary>
+    /// <exception cref="ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
     public Polyhedron(Polyhedron polyhedron)
-        : this(polyhedron._vertices)
+        : this(polyhedron?._vertices ?? throw new ArgumentNullException(nameof(polyhedron)))
     {
     }
 
@@ -29,6 +30,7 @@ public class Polyhedron : IEquatable<Polyhedron>
     ///     Initializes a new instance of the <see cref="Polyhedron" /> class by constructing it from the specified vertices.
     /// </summary>
     /// <param name="vertices">An enumerable collection of vertices from which the polyhedron should be constructed.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public Polyhedron(IEnumerable<Vector3> vertices)
     {
 #if NET6_0_OR_GREATER
@@ -112,9 +114,9 @@ public class Polyhedron : IEquatable<Polyhedron>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator ==(Polyhedron left, Polyhedron right)
+    public static bool operator ==(Polyhedron? left, Polyhedron? right)
     {
-        return left.Equals(right);
+        return Equals(left, right);
     }
 
     /// <summary>
@@ -126,9 +128,9 @@ public class Polyhedron : IEquatable<Polyhedron>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(Polyhedron left, Polyhedron right)
+    public static bool operator !=(Polyhedron? left, Polyhedron? right)
     {
-        return !left.Equals(right);
+        return !(left == right);
     }
 
     /// <summary>
@@ -262,9 +264,9 @@ public class Polyhedron : IEquatable<Polyhedron>
     ///     <see langword="true" /> if this instance and <paramref name="other" /> are considered equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public bool Equals(Polyhedron other)
+    public bool Equals(Polyhedron? other)
     {
-        return _vertices.SequenceEqual(other._vertices);
+        return other is not null && _vertices.SequenceEqual(other._vertices);
     }
 
     /// <inheritdoc />
