@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace X10D.Drawing;
 
@@ -128,7 +129,7 @@ public class Polygon : IEquatable<Polygon>
     ///     <see langword="true" /> if <paramref name="left" /> and <paramref name="right" /> are considered not equal; otherwise,
     ///     <see langword="false" />.
     /// </returns>
-    public static bool operator !=(Polygon left, Polygon right)
+    public static bool operator !=(Polygon? left, Polygon? right)
     {
         return !(left == right);
     }
@@ -138,6 +139,7 @@ public class Polygon : IEquatable<Polygon>
     /// </summary>
     /// <param name="polygon">The polygon to convert.</param>
     /// <returns>The converted polygon.</returns>
+    [return: NotNullIfNotNull("polygon")]
     public static explicit operator Polygon?(PolygonF? polygon)
     {
         return polygon is null ? null : FromPolygonF(polygon);

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Numerics;
 
 namespace X10D.Drawing;
@@ -140,6 +141,7 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <returns>
     ///     The converted polyhedron, or <see langword="null" /> if <paramref name="polygon" /> is <see langword="null" />.
     /// </returns>
+    [return: NotNullIfNotNull("polygon")]
     public static implicit operator Polyhedron?(Polygon? polygon)
     {
         return polygon is null ? null : FromPolygon(polygon);
@@ -152,6 +154,7 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <returns>
     ///     The converted polyhedron, or <see langword="null" /> if <paramref name="polygon" /> is <see langword="null" />.
     /// </returns>
+    [return: NotNullIfNotNull("polygon")]
     public static implicit operator Polyhedron?(PolygonF? polygon)
     {
         return polygon is null ? null : FromPolygonF(polygon);
