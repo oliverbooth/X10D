@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using X10D.Core;
 
@@ -318,6 +317,80 @@ public static class ListExtensions
             int index = random.Next(count--);
             (source[count], source[index]) = (source[index], source[count]);
         }
+    }
+
+    /// <summary>
+    ///     Forms a slice out of the current list that begins at a specified index.
+    /// </summary>
+    /// <param name="source">The list to slice.</param>
+    /// <param name="start">The index at which to begin the slice.</param>
+    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     A list that consists of all elements of the current list from <paramref name="start" /> to the end of the list.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <paramref name="start" /> is less than zero or greater than <see cref="IReadOnlyList{T}.Count" />.
+    /// </exception>
+    public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> source, int start)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        return source.Slice(start, source.Count - start);
+    }
+
+    /// <summary>
+    ///     Forms a slice out of the current list that begins at a specified index for a specified length.
+    /// </summary>
+    /// <param name="source">The list to slice.</param>
+    /// <param name="start">The index at which to begin the slice.</param>
+    /// <param name="length">The desired length for the slice.</param>
+    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     A list that consists of all elements of the current list from <paramref name="start" /> to the end of the list.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <paramref name="start" /> or <paramref name="start" /> + <paramref name="length" /> is less than zero or greater than
+    ///     <see cref="IReadOnlyList{T}.Count" />.
+    /// </exception>
+    public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> source, int start, int length)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        if (start < 0 || start > source.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(start), ExceptionMessages.IndexOutOfRange);
+        }
+
+        if (length < 0 || length > source.Count - start)
+        {
+            throw new ArgumentOutOfRangeException(nameof(length), ExceptionMessages.CountMustBeInRange);
+        }
+
+        var sliced = new List<T>();
+
+        int endIndex = start + length;
+        for (int index = start; index < endIndex; index++)
+        {
+            sliced.Add(source[index]);
+        }
+
+        return sliced.AsReadOnly();
     }
 
     /// <summary>

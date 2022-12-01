@@ -217,6 +217,58 @@ public class ListTests
     }
 
     [TestMethod]
+    public void Slice_ShouldReturnCorrectValue_GivenStartIndex()
+    {
+        int[] array = {0, 1, 2, 3, 4, 5};
+        CollectionAssert.AreEqual(new[] {2, 3, 4, 5}, array.Slice(2).ToArray());
+    }
+
+    [TestMethod]
+    public void Slice_ShouldReturnCorrectValue_GivenStartIndexAndLength()
+    {
+        int[] array = {0, 1, 2, 3, 4, 5};
+        CollectionAssert.AreEqual(new[] {2, 3, 4}, array.Slice(2, 3).ToArray());
+    }
+
+    [TestMethod]
+    public void Slice_ShouldReturnEmptyList_ForEmptyList()
+    {
+        int[] array = Array.Empty<int>();
+        CollectionAssert.AreEqual(Array.Empty<int>(), array.Slice(0).ToArray());
+        CollectionAssert.AreEqual(Array.Empty<int>(), array.Slice(0, 0).ToArray());
+    }
+
+    [TestMethod]
+    public void Slice_ShouldThrowArgumentNullException_GivenNullList()
+    {
+        int[]? array = null;
+        Assert.ThrowsException<ArgumentNullException>(() => array!.Slice(0));
+        Assert.ThrowsException<ArgumentNullException>(() => array!.Slice(0, 0));
+    }
+
+    [TestMethod]
+    public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
+    {
+        int[] array = Array.Empty<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(0, -1));
+    }
+
+    [TestMethod]
+    public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
+    {
+        int[] array = Array.Empty<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(-1));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(-1, 0));
+    }
+
+    [TestMethod]
+    public void Slice_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
+    {
+        int[] array = {0, 1, 2};
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(2, 4));
+    }
+
+    [TestMethod]
     public void Swap_ShouldThrowArgumentNullException_GivenNullSource()
     {
         Assert.ThrowsException<ArgumentNullException>(() => ((IList<int>?)null)!.Swap(new List<int>()));

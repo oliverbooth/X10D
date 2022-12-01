@@ -21,6 +21,7 @@
 - X10D: Added `IList<T>.RemoveRange(Range)`
 - X10D: Added `IList<T>.Swap(IList<T>)` (#62)
 - X10D: Added `IReadOnlyList<T>.IndexOf(T[, int[, int]])`
+- X10D: Added `IReadOnlyList<T>.Slice(int[, int]])`
 - X10D: Added `Point.IsOnLine(LineF)`, `Point.IsOnLine(PointF, PointF)`, and `Point.IsOnLine(Vector2, Vector2)`
 - X10D: Added `PointF.IsOnLine(LineF)`, `PointF.IsOnLine(PointF, PointF)`, and `PointF.IsOnLine(Vector2, Vector2)`
 - X10D: Added `Point.ToSize()`
