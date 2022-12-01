@@ -191,7 +191,7 @@ public readonly struct CircleF : IEquatable<CircleF>, IComparable<CircleF>, ICom
     /// <returns>The converted circle.</returns>
     public static CircleF FromCircle(Circle circle)
     {
-        return new Circle(circle.Center, circle.Radius);
+        return new CircleF(circle.Center, circle.Radius);
     }
 
     /// <summary>
