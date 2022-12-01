@@ -40,14 +40,6 @@ public class DirectoryInfoTests
     }
 
     [TestMethod]
-    public void Clear_ShouldDoNothing_GivenNonExistentDirectory()
-    {
-        var directory = new DirectoryInfo(@"/@12#3");
-        Assert.IsFalse(directory.Exists);
-        directory.Clear();
-    }
-
-    [TestMethod]
     public void Clear_ShouldThrowArgumentNullException_GivenNull()
     {
         Assert.ThrowsException<ArgumentNullException>(() => ((DirectoryInfo?)null)!.Clear());
