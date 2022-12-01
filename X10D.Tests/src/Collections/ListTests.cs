@@ -80,6 +80,67 @@ public class ListTests
     }
 
     [TestMethod]
+    public void IndexOf_ShouldReturnCorrectValue_FromStartOfList()
+    {
+        int[] array = {0, 1, 2, 3, 4};
+        Assert.AreEqual(2, array.IndexOf(2));
+        Assert.AreEqual(2, array.IndexOf(2, 0));
+        Assert.AreEqual(2, array.IndexOf(2, 0, 5));
+    }
+
+    [TestMethod]
+    public void IndexOf_ShouldReturnCorrectValue_GivenSubRange()
+    {
+        int[] array = {0, 1, 2, 3, 4, 0};
+        Assert.AreEqual(0, array.IndexOf(0));
+        Assert.AreEqual(0, array.IndexOf(0, 0));
+        Assert.AreEqual(0, array.IndexOf(0, 0, 5));
+
+        Assert.AreEqual(5, array.IndexOf(0, 1));
+        Assert.AreEqual(5, array.IndexOf(0, 1, 5));
+    }
+
+    [TestMethod]
+    public void IndexOf_ShouldReturnNegative1_ForEmptyList()
+    {
+        int[] array = Array.Empty<int>();
+        Assert.AreEqual(-1, array.IndexOf(0));
+        Assert.AreEqual(-1, array.IndexOf(0, 0));
+        Assert.AreEqual(-1, array.IndexOf(0, 0, 0));
+    }
+
+    [TestMethod]
+    public void IndexOf_ShouldThrowArgumentNullException_GivenNullList()
+    {
+        int[]? array = null;
+        Assert.ThrowsException<ArgumentNullException>(() => array!.IndexOf(0));
+        Assert.ThrowsException<ArgumentNullException>(() => array!.IndexOf(0, 0));
+        Assert.ThrowsException<ArgumentNullException>(() => array!.IndexOf(0, 0, 0));
+    }
+
+    [TestMethod]
+    public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
+    {
+        int[] array = Array.Empty<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, 0, -1));
+    }
+
+    [TestMethod]
+    public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
+    {
+        int[] array = Array.Empty<int>();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1, 0));
+    }
+
+    [TestMethod]
+    public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
+    {
+        int[] array = {0, 1, 2};
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, 2, 4));
+    }
+
+    [TestMethod]
     public void Random_ShouldReturnContainedObject_GivenNotNull()
     {
         var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order

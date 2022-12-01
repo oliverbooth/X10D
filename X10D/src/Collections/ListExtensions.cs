@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using X10D.Core;
 
@@ -86,6 +87,131 @@ public static class ListExtensions
         {
             source[index] = value;
         }
+    }
+
+    /// <summary>
+    ///     Searches for the specified object and returns the zero-based index of the first occurrence within the entire
+    ///     <see cref="IReadOnlyList{T}" />.
+    /// </summary>
+    /// <param name="source">The list to search</param>
+    /// <param name="item">
+    ///     The object to locate in the <see cref="IReadOnlyList{T}" />. The value can be <see langword="true" /> for reference
+    ///     types.
+    /// </param>
+    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     The zero-based index of the first occurrence of item within the entire <see cref="List{T}" />, if found; otherwise,
+    ///     -1.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    public static int IndexOf<T>(this IReadOnlyList<T?> source, T? item)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        return source.IndexOf(item, 0, source.Count);
+    }
+
+    /// <summary>
+    ///     Searches for the specified object and returns the zero-based index of the first occurrence within the range of
+    ///     elements in the <see cref="IReadOnlyList{T}" /> that extends from the specified index to the last element.
+    /// </summary>
+    /// <param name="source">The list to search</param>
+    /// <param name="item">
+    ///     The object to locate in the <see cref="IReadOnlyList{T}" />. The value can be <see langword="true" /> for reference
+    ///     types.
+    /// </param>
+    /// <param name="startIndex">The zero-based starting index of the search. 0 (zero) is valid in an empty list.</param>
+    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     The zero-based index of the first occurrence of item within the range of elements in the
+    ///     <see cref="IReadOnlyList{T}" /> that starts at index and contains count number of elements, if found; otherwise, -1.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <paramref name="startIndex" /> is outside the range of valid indexes for the <see cref="IReadOnlyList{T}" />.
+    /// </exception>
+    public static int IndexOf<T>(this IReadOnlyList<T?> source, T? item, int startIndex)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        return source.IndexOf(item, startIndex, source.Count - startIndex);
+    }
+
+    /// <summary>
+    ///     Searches for the specified object and returns the zero-based index of the first occurrence within the range of
+    ///     elements in the <see cref="IReadOnlyList{T}" /> that starts at the specified index and contains the specified number
+    ///     of elements.
+    /// </summary>
+    /// <param name="source">The list to search</param>
+    /// <param name="item">
+    ///     The object to locate in the <see cref="IReadOnlyList{T}" />. The value can be <see langword="true" /> for reference
+    ///     types.
+    /// </param>
+    /// <param name="startIndex">The zero-based starting index of the search. 0 (zero) is valid in an empty list.</param>
+    /// <param name="count">The number of elements in the section to search.</param>
+    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     The zero-based index of the first occurrence of item within the range of elements in the
+    ///     <see cref="IReadOnlyList{T}" /> that starts at index and contains count number of elements, if found; otherwise, -1.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    ///     <para>
+    ///         <paramref name="startIndex" /> is outside the range of valid indexes for the <see cref="IReadOnlyList{T}" />.
+    ///     </para>
+    ///     -or-
+    ///     <para><paramref name="count" /> is less than 0.</para>
+    ///     -or-
+    ///     <para>
+    ///         <paramref name="startIndex" /> and <paramref name="count" /> do not specify a valid section in the
+    ///         <see cref="IReadOnlyList{T}" />.
+    ///     </para>
+    /// </exception>
+    public static int IndexOf<T>(this IReadOnlyList<T?> source, T? item, int startIndex, int count)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        if (startIndex < 0 || startIndex > source.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(startIndex), ExceptionMessages.IndexOutOfRange);
+        }
+
+        if (count < 0 || count > source.Count - startIndex)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.CountMustBeInRange);
+        }
+
+        int endIndex = startIndex + count;
+        for (int index = startIndex; index < endIndex; index++)
+        {
+            if (EqualityComparer<T>.Default.Equals(source[index]!, item!))
+            {
+                return index;
+            }
+        }
+
+        return -1;
     }
 
     /// <summary>
