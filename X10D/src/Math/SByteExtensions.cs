@@ -79,7 +79,7 @@ public static class SByteExtensions
 #endif
     public static bool IsEven(this sbyte value)
     {
-        return value % 2 == 0;
+        return (value & 1) == 0;
     }
 
     /// <summary>
