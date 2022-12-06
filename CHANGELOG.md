@@ -31,6 +31,8 @@
 - X10D: Added `PointF.ToSizeF()`
 - X10D: Added `PointF.ToVector2()` for .NET < 6
 - X10D: Added `PopCount()` for built-in integer types
+- X10D: Added `Quaternion.ToAxisAngle(out float, out float)`
+- X10D: Added `Quaternion.ToVector3()`
 - X10D: Added `ReadOnlySpan<char>.CountSubstring(char)`
 - X10D: Added `ReadOnlySpan<char>.CountSubstring(ReadOnlySpan<char>[, StringComparison])`
 - X10D: Added `ReadOnlySpan<T>.Split(T)`
