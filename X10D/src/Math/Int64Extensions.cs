@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -117,9 +117,8 @@ public static class Int64Extensions
     {
         switch (value)
         {
-            case < 2: return false;
-            case 2:
-            case 3: return true;
+            case <= 1: return false;
+            case <= 3: return true;
         }
 
         if (value % 2 == 0 || value % 3 == 0)
