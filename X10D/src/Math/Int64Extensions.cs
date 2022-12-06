@@ -121,7 +121,7 @@ public static class Int64Extensions
             case <= 3: return true;
         }
 
-        if (value % 2 == 0 || value % 3 == 0)
+        if ((value & 1) == 0 || value % 3 == 0)
         {
             return false;
         }

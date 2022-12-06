@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -97,7 +97,7 @@ public static class UInt64Extensions
             case <= 3: return true;
         }
 
-        if (value % 2 == 0 || value % 3 == 0)
+        if ((value & 1) == 0 || value % 3 == 0)
         {
             return false;
         }
