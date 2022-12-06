@@ -38,4 +38,35 @@ public static class QuaternionExtensions
             (xz - wy) * px + (yz + wx) * py + (1.0f - (xx + yy)) * pz
         );
     }
+
+    /// <summary>
+    ///     Converts this quaternion to an axis/angle pair.
+    /// </summary>
+    /// <param name="value">The quaternion to convert.</param>
+    /// <returns>A tuple containing the converted axis, and the angle in radians.</returns>
+    public static (Vector3 Axis, float Angle) ToAxisAngle(this in Quaternion value)
+    {
+        float angle = 2.0f * MathF.Acos(value.W);
+        Vector3 axis = Vector3.Normalize(new Vector3(value.X, value.Y, value.Z));
+        return (axis, angle);
+    }
+
+    /// <summary>
+    ///     Converts this quaternion to a <see cref="Vector3" /> containing an Euler representation of the rotation. 
+    /// </summary>
+    /// <param name="value">The quaternion to convert.</param>
+    /// <returns>The Euler representation of <paramref name="value" />, in radians.</returns>
+    public static Vector3 ToVector3(this in Quaternion value)
+    {
+        Quaternion normalized = Quaternion.Normalize(value);
+        float qx = normalized.X;
+        float qy = normalized.Y;
+        float qz = normalized.Z;
+        float qw = normalized.W;
+
+        float x = MathF.Atan2(2 * (qx * qw - qy * qz), 1 - 2 * (qx * qx + qz * qz));
+        float y = MathF.Asin(2 * (qx * qz + qy * qw));
+        float z = MathF.Atan2(2 * (qz * qw - qx * qy), 1 - 2 * (qy * qy + qz * qz));
+        return new Vector3(x, y, z);
+    }
 }
