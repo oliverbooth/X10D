@@ -603,6 +603,76 @@
                 <para><paramref name="startIndex" /> + <paramref name="count" /> exceeds the bounds of the list.</para>
             </exception>
         </member>
+        <member name="M:X10D.Collections.ListExtensions.IndexOf``1(System.Collections.Generic.IReadOnlyList{``0},``0)">
+            <summary>
+                Searches for the specified object and returns the zero-based index of the first occurrence within the entire
+                <see cref="T:System.Collections.Generic.IReadOnlyList`1" />.
+            </summary>
+            <param name="source">The list to search</param>
+            <param name="item">
+                The object to locate in the <see cref="T:System.Collections.Generic.IReadOnlyList`1" />. The value can be <see langword="true" /> for reference
+                types.
+            </param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                The zero-based index of the first occurrence of item within the entire <see cref="T:System.Collections.Generic.List`1" />, if found; otherwise,
+                -1.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Collections.ListExtensions.IndexOf``1(System.Collections.Generic.IReadOnlyList{``0},``0,System.Int32)">
+            <summary>
+                Searches for the specified object and returns the zero-based index of the first occurrence within the range of
+                elements in the <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> that extends from the specified index to the last element.
+            </summary>
+            <param name="source">The list to search</param>
+            <param name="item">
+                The object to locate in the <see cref="T:System.Collections.Generic.IReadOnlyList`1" />. The value can be <see langword="true" /> for reference
+                types.
+            </param>
+            <param name="startIndex">The zero-based starting index of the search. 0 (zero) is valid in an empty list.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                The zero-based index of the first occurrence of item within the range of elements in the
+                <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> that starts at index and contains count number of elements, if found; otherwise, -1.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="startIndex" /> is outside the range of valid indexes for the <see cref="T:System.Collections.Generic.IReadOnlyList`1" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Collections.ListExtensions.IndexOf``1(System.Collections.Generic.IReadOnlyList{``0},``0,System.Int32,System.Int32)">
+            <summary>
+                Searches for the specified object and returns the zero-based index of the first occurrence within the range of
+                elements in the <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> that starts at the specified index and contains the specified number
+                of elements.
+            </summary>
+            <param name="source">The list to search</param>
+            <param name="item">
+                The object to locate in the <see cref="T:System.Collections.Generic.IReadOnlyList`1" />. The value can be <see langword="true" /> for reference
+                types.
+            </param>
+            <param name="startIndex">The zero-based starting index of the search. 0 (zero) is valid in an empty list.</param>
+            <param name="count">The number of elements in the section to search.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                The zero-based index of the first occurrence of item within the range of elements in the
+                <see cref="T:System.Collections.Generic.IReadOnlyList`1" /> that starts at index and contains count number of elements, if found; otherwise, -1.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <para>
+                    <paramref name="startIndex" /> is outside the range of valid indexes for the <see cref="T:System.Collections.Generic.IReadOnlyList`1" />.
+                </para>
+                -or-
+                <para><paramref name="count" /> is less than 0.</para>
+                -or-
+                <para>
+                    <paramref name="startIndex" /> and <paramref name="count" /> do not specify a valid section in the
+                    <see cref="T:System.Collections.Generic.IReadOnlyList`1" />.
+                </para>
+            </exception>
+        </member>
         <member name="M:X10D.Collections.ListExtensions.Random``1(System.Collections.Generic.IReadOnlyList{``0},System.Random)">
             <summary>
                 Returns a random element from the current list using a specified <see cref="T:System.Random" /> instance.
@@ -648,6 +718,38 @@
             </param>
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
         </member>
+        <member name="M:X10D.Collections.ListExtensions.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>
+                Forms a slice out of the current list that begins at a specified index.
+            </summary>
+            <param name="source">The list to slice.</param>
+            <param name="start">The index at which to begin the slice.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                A list that consists of all elements of the current list from <paramref name="start" /> to the end of the list.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="start" /> is less than zero or greater than <see cref="!:IReadOnlyList&lt;T&gt;.Count" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Collections.ListExtensions.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32)">
+            <summary>
+                Forms a slice out of the current list that begins at a specified index for a specified length.
+            </summary>
+            <param name="source">The list to slice.</param>
+            <param name="start">The index at which to begin the slice.</param>
+            <param name="length">The desired length for the slice.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                A list that consists of all elements of the current list from <paramref name="start" /> to the end of the list.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="start" /> or <paramref name="start" /> + <paramref name="length" /> is less than zero or greater than
+                <see cref="!:IReadOnlyList&lt;T&gt;.Count" />.
+            </exception>
+        </member>
         <member name="M:X10D.Collections.ListExtensions.Swap``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
             <summary>
                 Swaps all elements in a list with the elements in another list.
@@ -660,6 +762,126 @@
                 -or-
                 <para><paramref name="other" /> is <see langword="null" />.</para>
             </exception>
+        </member>
+        <member name="T:X10D.Collections.SpanExtensions">
+            <summary>
+                Extension methods for <see cref="T:System.Span`1" /> and <see cref="T:System.ReadOnlySpan`1" />
+            </summary>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.Count``1(System.Span{``0}@,``0)">
+            <summary>
+                Returns the number of times that a specified element appears in a span of elements of the same type.
+            </summary>
+            <param name="source">The source to search.</param>
+            <param name="element">The element to count.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>The number of times that <paramref name="element" /> appears in <paramref name="source" />.</returns>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.Count``1(System.ReadOnlySpan{``0}@,``0)">
+            <summary>
+                Returns the number of times that a specified element appears in a read-only span of elements of the same type.
+            </summary>
+            <param name="source">The source to search.</param>
+            <param name="element">The element to count.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>The number of times that <paramref name="element" /> appears in <paramref name="source" />.</returns>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.AsReadOnly``1(System.Span{``0}@)">
+            <summary>
+                Returns a read-only <see cref="T:System.ReadOnlySpan`1" /> wrapper for the current span.
+            </summary>
+            <param name="source">The source span.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>A <see cref="T:System.ReadOnlySpan`1" /> which wraps the elements in <paramref name="source" />.</returns>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.Split``1(System.Span{``0}@,``0)">
+            <summary>
+                Splits a span of elements into sub-spans based on a delimiting element.
+            </summary>
+            <param name="source">The span to split.</param>
+            <param name="delimiter">The delimiting element.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                An enumerator which wraps <paramref name="source"/> and delimits the elements based on <paramref name="delimiter" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.Split``1(System.ReadOnlySpan{``0}@,``0)">
+            <summary>
+                Splits a span of elements into sub-spans based on a delimiting element.
+            </summary>
+            <param name="source">The span to split.</param>
+            <param name="delimiter">The delimiting element.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                An enumerator which wraps <paramref name="source"/> and delimits the elements based on <paramref name="delimiter" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.Split``1(System.Span{``0}@,System.ReadOnlySpan{``0}@)">
+            <summary>
+                Splits a span of elements into sub-spans based on a span of delimiting elements.
+            </summary>
+            <param name="source">The span to split.</param>
+            <param name="delimiter">The span of delimiting elements.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                An enumerator which wraps <paramref name="source"/> and delimits the elements based on <paramref name="delimiter" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Collections.SpanExtensions.Split``1(System.ReadOnlySpan{``0}@,System.ReadOnlySpan{``0}@)">
+            <summary>
+                Splits a span of elements into sub-spans based on a span of delimiting elements.
+            </summary>
+            <param name="source">The span to split.</param>
+            <param name="delimiter">The span of delimiting elements.</param>
+            <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
+            <returns>
+                An enumerator which wraps <paramref name="source"/> and delimits the elements based on <paramref name="delimiter" />.
+            </returns>
+        </member>
+        <member name="T:X10D.Collections.SpanSplitEnumerator`1">
+            <summary>
+                Enumerates the elements of a <see cref="T:System.ReadOnlySpan`1" />.
+            </summary>
+            <typeparam name="T">The type of elements in the span.</typeparam>
+        </member>
+        <member name="M:X10D.Collections.SpanSplitEnumerator`1.#ctor(System.ReadOnlySpan{`0},System.ReadOnlySpan{`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Collections.SpanSplitEnumerator`1" /> struct.
+            </summary>
+            <param name="source">The source span.</param>
+            <param name="delimiter">The delimiting span of elements.</param>
+        </member>
+        <member name="M:X10D.Collections.SpanSplitEnumerator`1.#ctor(System.ReadOnlySpan{`0},`0)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Collections.SpanSplitEnumerator`1" /> struct.
+            </summary>
+            <param name="source">The source span.</param>
+            <param name="delimiter">The delimiting element.</param>
+        </member>
+        <member name="P:X10D.Collections.SpanSplitEnumerator`1.Current">
+            <summary>
+                Gets the element at the current position of the enumerator.
+            </summary>
+            <value>The element in the <see cref="T:System.ReadOnlySpan`1" /> at the current position of the enumerator.</value>
+        </member>
+        <member name="M:X10D.Collections.SpanSplitEnumerator`1.GetEnumerator">
+            <summary>
+                Returns the current enumerator.
+            </summary>
+            <returns>The current instance of <see cref="T:X10D.Collections.SpanSplitEnumerator`1" />.</returns>
+            <remarks>
+                This method exists to provide the ability to enumerate within a <c>foreach</c> loop. It should not be called
+                manually.
+            </remarks>
+        </member>
+        <member name="M:X10D.Collections.SpanSplitEnumerator`1.MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the <see cref="T:System.ReadOnlySpan`1" />.
+            </summary>
+            <returns>
+                <see langword="true" /> if the enumerator was successfully advanced to the next element; <see langword="false" />
+                if the enumerator has passed the end of the span.
+            </returns>
         </member>
         <member name="T:X10D.Core.EnumExtensions">
             <summary>
@@ -1113,6 +1335,20 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
+        <member name="M:X10D.Drawing.Circle.op_Explicit(X10D.Drawing.CircleF)~X10D.Drawing.Circle">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted circle.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Circle.FromCircleF(X10D.Drawing.CircleF)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted circle.</returns>
+        </member>
         <member name="M:X10D.Drawing.Circle.CompareTo(System.Object)">
              <summary>
                  Compares this instance to another <see cref="T:X10D.Drawing.Circle" />.
@@ -1340,16 +1576,16 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.CircleF.op_Explicit(X10D.Drawing.CircleF)~X10D.Drawing.Circle">
+        <member name="M:X10D.Drawing.CircleF.op_Implicit(X10D.Drawing.Circle)~X10D.Drawing.CircleF">
             <summary>
-                Explicitly converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
+                Implicitly converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
             </summary>
             <param name="circle">The circle to convert.</param>
             <returns>The converted circle.</returns>
         </member>
-        <member name="M:X10D.Drawing.CircleF.op_Implicit(X10D.Drawing.Circle)~X10D.Drawing.CircleF">
+        <member name="M:X10D.Drawing.CircleF.FromCircle(X10D.Drawing.Circle)">
             <summary>
-                Implicitly converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
+                Converts a <see cref="T:X10D.Drawing.Circle" /> to a <see cref="T:X10D.Drawing.CircleF" />.
             </summary>
             <param name="circle">The circle to convert.</param>
             <returns>The converted circle.</returns>
@@ -1874,6 +2110,27 @@
             <param name="circle">The circle to convert.</param>
             <returns>The converted ellipse.</returns>
         </member>
+        <member name="M:X10D.Drawing.Ellipse.op_Explicit(X10D.Drawing.EllipseF@)~X10D.Drawing.Ellipse">
+            <summary>
+                Explicitly converts an <see cref="T:X10D.Drawing.EllipseF" /> to an <see cref="T:X10D.Drawing.Ellipse" />.
+            </summary>
+            <param name="ellipse">The ellipse to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.FromCircle(X10D.Drawing.Circle@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Circle" /> to an <see cref="T:X10D.Drawing.Ellipse" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Ellipse.FromEllipseF(X10D.Drawing.EllipseF@)">
+            <summary>
+                Converts an <see cref="T:X10D.Drawing.EllipseF" /> to an <see cref="T:X10D.Drawing.Ellipse" />.
+            </summary>
+            <param name="ellipse">The ellipse to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
         <member name="M:X10D.Drawing.Ellipse.Equals(System.Object)">
             <inheritdoc />
         </member>
@@ -2017,9 +2274,23 @@
             <param name="ellipse">The ellipse to convert.</param>
             <returns>The converted ellipse.</returns>
         </member>
-        <member name="M:X10D.Drawing.EllipseF.op_Explicit(X10D.Drawing.EllipseF@)~X10D.Drawing.Ellipse">
+        <member name="M:X10D.Drawing.EllipseF.FromCircle(X10D.Drawing.Circle@)">
             <summary>
-                Explicitly converts an <see cref="T:X10D.Drawing.EllipseF" /> to an <see cref="T:X10D.Drawing.Ellipse" />.
+                Converts a <see cref="T:X10D.Drawing.Circle" /> to an <see cref="T:X10D.Drawing.EllipseF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.FromCircleF(X10D.Drawing.CircleF@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.CircleF" /> to an <see cref="T:X10D.Drawing.EllipseF" />.
+            </summary>
+            <param name="circle">The circle to convert.</param>
+            <returns>The converted ellipse.</returns>
+        </member>
+        <member name="M:X10D.Drawing.EllipseF.FromEllipse(X10D.Drawing.Ellipse@)">
+            <summary>
+                Converts an <see cref="T:X10D.Drawing.Ellipse" /> to an <see cref="T:X10D.Drawing.EllipseF" />.
             </summary>
             <param name="ellipse">The ellipse to convert.</param>
             <returns>The converted ellipse.</returns>
@@ -2161,6 +2432,34 @@
                 <see langword="true" /> if the <see cref="P:X10D.Drawing.Line.Length" /> of <paramref name="left" /> is greater than or equal to that of
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_Explicit(X10D.Drawing.LineF@)~X10D.Drawing.Line">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.Line">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.Line" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.FromLine3D(X10D.Drawing.Line3D@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.Line" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line.FromLineF(X10D.Drawing.LineF@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
         </member>
         <member name="M:X10D.Drawing.Line.CompareTo(System.Object)">
              <summary>
@@ -2386,20 +2685,6 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.Line3D.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.Line">
-            <summary>
-                Explicitly converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.Line" />.
-            </summary>
-            <param name="line">The line to convert.</param>
-            <returns>The converted line.</returns>
-        </member>
-        <member name="M:X10D.Drawing.Line3D.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.LineF">
-            <summary>
-                Explicitly converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.LineF" />.
-            </summary>
-            <param name="line">The line to convert.</param>
-            <returns>The converted line.</returns>
-        </member>
         <member name="M:X10D.Drawing.Line3D.op_Implicit(X10D.Drawing.Line@)~X10D.Drawing.Line3D">
             <summary>
                 Implicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
@@ -2410,6 +2695,20 @@
         <member name="M:X10D.Drawing.Line3D.op_Implicit(X10D.Drawing.LineF@)~X10D.Drawing.Line3D">
             <summary>
                 Implicitly converts a <see cref="T:X10D.Drawing.LineF" /> to a <see cref="T:X10D.Drawing.Line3D" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.FromLine(X10D.Drawing.Line@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Line3D.FromLineF(X10D.Drawing.LineF@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.LineF" /> to a <see cref="T:X10D.Drawing.Line3D" />.
             </summary>
             <param name="line">The line to convert.</param>
             <returns>The converted line.</returns>
@@ -2640,16 +2939,30 @@
                 <paramref name="right" />; otherwise, <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_Explicit(X10D.Drawing.LineF@)~X10D.Drawing.Line">
+        <member name="M:X10D.Drawing.LineF.op_Implicit(X10D.Drawing.Line@)~X10D.Drawing.LineF">
             <summary>
-                Explicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+                Implicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
             </summary>
             <param name="line">The line to convert.</param>
             <returns>The converted line.</returns>
         </member>
-        <member name="M:X10D.Drawing.LineF.op_Implicit(X10D.Drawing.Line@)~X10D.Drawing.LineF">
+        <member name="M:X10D.Drawing.LineF.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.LineF">
             <summary>
-                Implicitly converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+                Explicitly converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.FromLine(X10D.Drawing.Line@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Line" /> to a <see cref="T:X10D.Drawing.LineF" />.
+            </summary>
+            <param name="line">The line to convert.</param>
+            <returns>The converted line.</returns>
+        </member>
+        <member name="M:X10D.Drawing.LineF.FromLine3D(X10D.Drawing.Line3D@)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Line3D" /> to a <see cref="T:X10D.Drawing.LineF" />.
             </summary>
             <param name="line">The line to convert.</param>
             <returns>The converted line.</returns>
@@ -2950,6 +3263,21 @@
                 <see langword="false" />.
             </returns>
         </member>
+        <member name="M:X10D.Drawing.Polygon.op_Explicit(X10D.Drawing.PolygonF)~X10D.Drawing.Polygon">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
+            </summary>
+            <param name="polygon">The polygon to convert.</param>
+            <returns>The converted polygon.</returns>
+        </member>
+        <member name="M:X10D.Drawing.Polygon.FromPolygonF(X10D.Drawing.PolygonF)">
+            <summary>
+                Explicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
+            </summary>
+            <param name="polygon">The polygon to convert.</param>
+            <returns>The converted polygon.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
+        </member>
         <member name="M:X10D.Drawing.Polygon.AddVertex(System.Drawing.Point)">
             <summary>
                 Adds a vertex to this polygon.
@@ -2998,12 +3326,14 @@
             <summary>
                 Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> class by copying the specified polygon.
             </summary>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Drawing.PolygonF.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector2})">
             <summary>
                 Initializes a new instance of the <see cref="T:X10D.Drawing.PolygonF" /> class by constructing it from the specified vertices.
             </summary>
             <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Drawing.PolygonF.#ctor(System.Collections.Generic.IEnumerable{System.Drawing.PointF})">
             <summary>
@@ -3060,19 +3390,20 @@
                 <see langword="false" />.
             </returns>
         </member>
-        <member name="M:X10D.Drawing.PolygonF.op_Explicit(X10D.Drawing.PolygonF)~X10D.Drawing.Polygon">
-            <summary>
-                Explicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
-            </summary>
-            <param name="polygon">The polygon to convert.</param>
-            <returns>The converted polygon.</returns>
-        </member>
         <member name="M:X10D.Drawing.PolygonF.op_Implicit(X10D.Drawing.Polygon)~X10D.Drawing.PolygonF">
             <summary>
                 Implicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
             </summary>
             <param name="polygon">The polygon to convert.</param>
             <returns>The converted polygon.</returns>
+        </member>
+        <member name="M:X10D.Drawing.PolygonF.FromPolygon(X10D.Drawing.Polygon)">
+            <summary>
+                Implicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.PolygonF" />.
+            </summary>
+            <param name="polygon">The polygon to convert.</param>
+            <returns>The converted polygon.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Drawing.PolygonF.AddVertex(System.Drawing.PointF)">
             <summary>
@@ -3135,12 +3466,14 @@
             <summary>
                 Initializes a new instance of the <see cref="T:X10D.Drawing.Polyhedron" /> class by copying the specified polyhedron.
             </summary>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Drawing.Polyhedron.#ctor(System.Collections.Generic.IEnumerable{System.Numerics.Vector3})">
             <summary>
                 Initializes a new instance of the <see cref="T:X10D.Drawing.Polyhedron" /> class by constructing it from the specified vertices.
             </summary>
             <param name="vertices">An enumerable collection of vertices from which the polyhedron should be constructed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
         </member>
         <member name="P:X10D.Drawing.Polyhedron.Empty">
             <summary>
@@ -3195,14 +3528,34 @@
                 Implicitly converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.Polyhedron" />.
             </summary>
             <param name="polygon">The polyhedron to convert.</param>
-            <returns>The converted polyhedron.</returns>
+            <returns>
+                The converted polyhedron, or <see langword="null" /> if <paramref name="polygon" /> is <see langword="null" />.
+            </returns>
         </member>
         <member name="M:X10D.Drawing.Polyhedron.op_Implicit(X10D.Drawing.PolygonF)~X10D.Drawing.Polyhedron">
             <summary>
                 Implicitly converts a <see cref="T:X10D.Drawing.PolygonF" /> to a <see cref="T:X10D.Drawing.Polyhedron" />.
             </summary>
             <param name="polygon">The polyhedron to convert.</param>
+            <returns>
+                The converted polyhedron, or <see langword="null" /> if <paramref name="polygon" /> is <see langword="null" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.FromPolygon(X10D.Drawing.Polygon)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.Polygon" /> to a <see cref="T:X10D.Drawing.Polyhedron" />.
+            </summary>
+            <param name="polygon">The polyhedron to convert.</param>
             <returns>The converted polyhedron.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Drawing.Polyhedron.FromPolygonF(X10D.Drawing.PolygonF)">
+            <summary>
+                Converts a <see cref="T:X10D.Drawing.PolygonF" /> to a <see cref="T:X10D.Drawing.Polyhedron" />.
+            </summary>
+            <param name="polygon">The polyhedron to convert.</param>
+            <returns>The converted polyhedron.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Drawing.Polyhedron.AddVertex(System.Numerics.Vector3)">
             <summary>
@@ -3547,6 +3900,11 @@
               Looks up a localized string similar to count must be greater than or equal to 0..
             </summary>
         </member>
+        <member name="P:X10D.ExceptionMessages.CountMustBeInRange">
+            <summary>
+              Looks up a localized string similar to Count must be positive and count must refer to a location within the string/array/collection..
+            </summary>
+        </member>
         <member name="P:X10D.ExceptionMessages.EndIndexGreaterThanCount">
             <summary>
               Looks up a localized string similar to The end index must be less than the list count..
@@ -3565,6 +3923,11 @@
         <member name="P:X10D.ExceptionMessages.HashAlgorithmNoCreateMethod">
             <summary>
               Looks up a localized string similar to HashAlgorithm does not offer Create method..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.IndexOutOfRange">
+            <summary>
+              Looks up a localized string similar to Index was out of range. Must be non-negative and less than or equal to the size of the collection..
             </summary>
         </member>
         <member name="P:X10D.ExceptionMessages.LengthGreaterThanOrEqualTo0">
@@ -3672,19 +4035,8 @@
                 Removes all files and subdirectories in this directory, recursively, without deleting this directory.
             </summary>
             <param name="directory">The directory to clear.</param>
-        </member>
-        <member name="M:X10D.IO.DirectoryInfoExtensions.Clear(System.IO.DirectoryInfo,System.Boolean)">
-            <summary>
-                Removes all files and subdirectories in this directory, recursively, without deleting this directory.
-            </summary>
-            <param name="directory">The directory to clear.</param>
-            <param name="throwOnError">
-                <see langword="true" /> to throw any exceptions which were caught during the operation; otherwise,
-                <see langword="false." />
-            </param>
             <exception cref="T:System.IO.DirectoryNotFoundException">
-                The directory described by this <see cref="T:System.IO.DirectoryInfo" /> object does not exist or could not be found. This
-                exception is not thrown if <paramref name="throwOnError" /> is <see langword="false" />.
+                The directory described by this <see cref="T:System.IO.DirectoryInfo" /> object does not exist or could not be found.
             </exception>
             <exception cref="T:System.IO.IOException">
                 A target file is open or memory-mapped on a computer running Microsoft Windows NT.
@@ -3700,15 +4052,9 @@
                 -or-
                 There is an open handle on the directory or on one of its files, and the operating system is Windows XP or earlier.
                 This open handle can result from enumerating directories and files.
-                This exception is not thrown if <paramref name="throwOnError" /> is <see langword="false" />.
             </exception>
-            <exception cref="T:System.Security.SecurityException">
-                The caller does not have the required permission. This exception is not thrown if <paramref name="throwOnError" /> is
-                <see langword="false" />.
-            </exception>
-            <exception cref="T:System.UnauthorizedAccessException">This directory or one of its children contain a read-only file. This
-                exception is not thrown if <paramref name="throwOnError" /> is <see langword="false" />.
-            </exception>
+            <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+            <exception cref="T:System.UnauthorizedAccessException">This directory or one of its children contain a read-only file.</exception>
         </member>
         <member name="T:X10D.IO.DoubleExtensions">
             <summary>
@@ -6928,6 +7274,20 @@
             <param name="point">The point.</param>
             <returns>The rotated point.</returns>
         </member>
+        <member name="M:X10D.Numerics.QuaternionExtensions.ToAxisAngle(System.Numerics.Quaternion@)">
+            <summary>
+                Converts this quaternion to an axis/angle pair.
+            </summary>
+            <param name="value">The quaternion to convert.</param>
+            <returns>A tuple containing the converted axis, and the angle in radians.</returns>
+        </member>
+        <member name="M:X10D.Numerics.QuaternionExtensions.ToVector3(System.Numerics.Quaternion@)">
+            <summary>
+                Converts this quaternion to a <see cref="T:System.Numerics.Vector3" /> containing an Euler representation of the rotation. 
+            </summary>
+            <param name="value">The quaternion to convert.</param>
+            <returns>The Euler representation of <paramref name="value" />, in radians.</returns>
+        </member>
         <member name="T:X10D.Numerics.RandomExtensions">
             <summary>
                 Extension methods for <see cref="T:System.Random" />.
@@ -7546,6 +7906,45 @@
                 A <see cref="T:System.String" /> composed of <paramref name="value" /> repeated <paramref name="count" /> times.
             </returns>
         </member>
+        <member name="T:X10D.Text.CharSpanExtensions">
+            <summary>
+                Extension methods for <see cref="T:System.ReadOnlySpan`1" /> and <see cref="T:System.Span`1" /> of <see cref="T:System.Char" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.Span{System.Char},System.Span{System.Char})">
+            <summary>
+                Counts the occurrences of a substring within the current character span.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character span to count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.Span{System.Char},System.Span{System.Char},System.StringComparison)">
+            <summary>
+                Counts the occurrences of a substring within the current character span, using a specified string comparison method.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character span to count.</param>
+            <param name="comparison">The string comparison method used for determining substring count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+            <summary>
+                Counts the occurrences of a substring within the current character span.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character span to count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+            <summary>
+                Counts the occurrences of a substring within the current character span, using a specified string comparison method.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character span to count.</param>
+            <param name="comparison">The string comparison method used for determining substring count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
         <member name="T:X10D.Text.StringBuilderReader">
             <summary>
                 Represents a <see cref="T:System.IO.TextReader"/> reads from a <see cref="T:System.Text.StringBuilder" />.
@@ -7688,6 +8087,47 @@
                 -or
                 <paramref name="destinationEncoding" /> is <see langword="null" />.
             </exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.CountSubstring(System.Span{System.Char},System.Char)">
+            <summary>
+                Counts the occurrences of a character within the current character span.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character to count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.CountSubstring(System.ReadOnlySpan{System.Char},System.Char)">
+            <summary>
+                Counts the occurrences of a character within the current character span.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character to count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.CountSubstring(System.String,System.Char)">
+            <summary>
+                Counts the occurrences of a character within the current string.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The character to count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.CountSubstring(System.String,System.String)">
+            <summary>
+                Counts the occurrences of a substring within the current string.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The substring to count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.CountSubstring(System.String,System.String,System.StringComparison)">
+            <summary>
+                Counts the occurrences of a substring within the current string, using a specified string comparison method.
+            </summary>
+            <param name="haystack">The haystack search space.</param>
+            <param name="needle">The substring to count.</param>
+            <param name="comparison">The string comparison method used for determining substring count.</param>
+            <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
         </member>
         <member name="M:X10D.Text.StringExtensions.EnumParse``1(System.String)">
             <summary>
