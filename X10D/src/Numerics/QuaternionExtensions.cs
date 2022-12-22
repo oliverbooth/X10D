@@ -52,7 +52,7 @@ public static class QuaternionExtensions
     }
 
     /// <summary>
-    ///     Converts this quaternion to a <see cref="Vector3" /> containing an Euler representation of the rotation. 
+    ///     Converts this quaternion to a <see cref="Vector3" /> containing an Euler representation of the rotation.
     /// </summary>
     /// <param name="value">The quaternion to convert.</param>
     /// <returns>The Euler representation of <paramref name="value" />, in radians.</returns>
