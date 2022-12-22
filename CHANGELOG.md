@@ -108,6 +108,7 @@
 - X10D.Unity: Added `WaitForTimeSpanRealtimeNoAlloc` yield instruction
 
 ### Changed
+- X10D: `TimeSpanParser.TryParse` now accepts a nullable string, and returns false if this input is null or empty
 - X10D.Unity: Obsolesced `Singleton<T>`
 
 ## [3.1.0]

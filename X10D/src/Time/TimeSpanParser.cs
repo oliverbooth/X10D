@@ -1,4 +1,6 @@
-﻿namespace X10D.Time;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace X10D.Time;
 
 /// <summary>
 ///     Represents a class which contains a <see cref="string" /> parser which converts into <see cref="TimeSpan" />.
@@ -54,15 +56,15 @@ public static class TimeSpanParser
     /// </param>
     /// <param name="result">When this method returns, contains the parsed result.</param>
     /// <returns><see langword="true" /> if the parse was successful, <see langword="false" /> otherwise.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
-    public static bool TryParse(string value, out TimeSpan result)
+    public static bool TryParse([NotNullWhen(true)] string? value, out TimeSpan result)
     {
-        if (value is null)
+        result = TimeSpan.Zero;
+
+        if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentNullException(nameof(value));
+            return false;
         }
 
-        result = TimeSpan.Zero;
         var unitValue = 0;
 
         for (var index = 0; index < value.Length; index++)
