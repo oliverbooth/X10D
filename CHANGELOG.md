@@ -35,6 +35,7 @@
 - X10D: Added `Quaternion.ToVector3()`
 - X10D: Added `ReadOnlySpan<char>.CountSubstring(char)`
 - X10D: Added `ReadOnlySpan<char>.CountSubstring(ReadOnlySpan<char>[, StringComparison])`
+- X10D: Added `ReadOnlySpan<char>.ToTimeSpan()`
 - X10D: Added `ReadOnlySpan<T>.Split(T)`
 - X10D: Added `ReadOnlySpan<T>.Split(ReadOnlySpan<T>)`
 - X10D: Added `RoundUpToPowerOf2()` for built-in integer types
@@ -47,6 +48,7 @@
 - X10D: Added `Span<T>.Split(Span<T>)`
 - X10D: Added `string.CountSubstring(char)`
 - X10D: Added `string.CountSubstring(string[, StringComparison])`
+- X10D: Added `TimeSpan.TryParse(ReadOnlySpan<char>, out TimeSpan)`
 - X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator
 - X10D: Added `Vector2.Deconstruct()`
 - X10D: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
