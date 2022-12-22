@@ -1,18 +1,19 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Time;
 
 /// <summary>
-///     Time-related extension methods for <see cref="string" />.
+///     Time-related extension methods for <see cref="ReadOnlySpan{T}" /> of <see cref="char" />.
 /// </summary>
-public static class StringExtensions
+public static class CharSpanExtensions
 {
     /// <summary>
-    ///     Parses a shorthand time span string (e.g. 3w 2d 1h) and converts it to an instance of <see cref="TimeSpan" />.
+    ///     Parses this span of characters as a shorthand time span (e.g. 3w 2d 1h) and converts it to an instance of
+    ///     <see cref="TimeSpan" />.
     /// </summary>
     /// <param name="input">
-    ///     The input string. Floating point is not supported, but integers with the following units are supported:
+    ///     The input span of characters. Floating point is not supported, but integers with the following units are supported:
     ///
     ///     <list type="table">
     ///         <listheader>
@@ -55,22 +56,14 @@ public static class StringExtensions
     ///     </list>
     /// </param>
     /// <returns>A new instance of <see cref="TimeSpan" />.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="input" /> is <see langword="null" />.</exception>
     [Pure]
 #if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
-    public static TimeSpan ToTimeSpan(this string input)
+    public static TimeSpan ToTimeSpan(this ReadOnlySpan<char> input)
     {
-        if (input is null)
-        {
-            throw new ArgumentNullException(nameof(input));
-        }
-
-        return TimeSpanParser.TryParse(input, out TimeSpan result)
-            ? result
-            : default;
+        return TimeSpanParser.TryParse(input, out TimeSpan result) ? result : default;
     }
 }
