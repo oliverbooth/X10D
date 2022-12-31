@@ -7,12 +7,11 @@ namespace X10D.Unity;
 ///     thread-safe.
 /// </summary>
 /// <typeparam name="T">The type of the singleton.</typeparam>
-[Obsolete("This implementation of the singleton pattern is discouraged, and this class will be removed in future. " +
-          "DO NOT USE THIS TYPE IN PRODUCTION.")]
 public abstract class Singleton<T> : MonoBehaviour
     where T : Singleton<T>
 {
     private static Lazy<T> s_instanceLazy = new(CreateLazyInstanceInternal, false);
+    private static T? s_instance;
 
     /// <summary>
     ///     Gets the instance of the singleton.
@@ -20,7 +19,15 @@ public abstract class Singleton<T> : MonoBehaviour
     /// <value>The singleton instance.</value>
     public static T Instance
     {
-        get => s_instanceLazy.Value;
+        get => s_instance ? s_instance! : s_instanceLazy.Value;
+    }
+
+    /// <summary>
+    ///     Called when the script instance is being loaded.
+    /// </summary>
+    protected virtual void Awake()
+    {
+        s_instance = (T?)this;
     }
 
     /// <summary>
@@ -28,17 +35,24 @@ public abstract class Singleton<T> : MonoBehaviour
     /// </summary>
     protected virtual void OnDestroy()
     {
+        s_instance = null;
         s_instanceLazy = new Lazy<T>(CreateLazyInstanceInternal, false);
     }
 
     private static T CreateLazyInstanceInternal()
     {
+        if (s_instance)
+        {
+            return s_instance!;
+        }
+
         if (FindObjectOfType<T>() is { } instance)
         {
+            s_instance = instance;
             return instance;
         }
 
         var gameObject = new GameObject {name = typeof(T).Name};
-        return gameObject.AddComponent<T>();
+        return s_instance = gameObject.AddComponent<T>();
     }
 }

@@ -111,7 +111,7 @@
 
 ### Changed
 - X10D: `TimeSpanParser.TryParse` now accepts a nullable string, and returns false if this input is null or empty
-- X10D.Unity: Obsolesced `Singleton<T>`
+- X10D.Unity: `Singleton<T>` now caches instance where possible
 
 ## [3.1.0]
 ### Added
