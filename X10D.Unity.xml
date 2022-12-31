@@ -2889,6 +2889,11 @@
             </summary>
             <value>The singleton instance.</value>
         </member>
+        <member name="M:X10D.Unity.Singleton`1.Awake">
+            <summary>
+                Called when the script instance is being loaded.
+            </summary>
+        </member>
         <member name="M:X10D.Unity.Singleton`1.OnDestroy">
             <summary>
                 Called when the object is destroyed.
