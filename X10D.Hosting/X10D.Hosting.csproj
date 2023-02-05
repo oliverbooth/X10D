@@ -21,6 +21,10 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(VersionSuffix)' != '' And '$(BuildNumber)' == ''">
         <Version>$(VersionPrefix)-$(VersionSuffix)</Version>
         <AssemblyVersion>$(VersionPrefix).0</AssemblyVersion>
