@@ -99,4 +99,34 @@ public static class MathUtility
         // "precise" method: (1 - t) * a + t * b
         return ((1.0 - alpha) * value) + (alpha * target);
     }
+
+    /// <summary>
+    ///     Converts a value from being a percentage of one range, to being the same percentage in a new range.
+    /// </summary>
+    /// <param name="value">The value to convert.</param>
+    /// <param name="oldMin">The old minimum value.</param>
+    /// <param name="oldMax">The old maximum value.</param>
+    /// <param name="newMin">The new minimum value.</param>
+    /// <param name="newMax">The new maximum value.</param>
+    /// <returns>The scaled value.</returns>
+    public static float ScaleRange(float value, float oldMin, float oldMax, float newMin, float newMax)
+    {
+        float alpha = InverseLerp(value, oldMin, oldMax);
+        return Lerp(newMin, newMax, alpha);
+    }
+
+    /// <summary>
+    ///     Converts a value from being a percentage of one range, to being the same percentage in a new range.
+    /// </summary>
+    /// <param name="value">The value to convert.</param>
+    /// <param name="oldMin">The old minimum value.</param>
+    /// <param name="oldMax">The old maximum value.</param>
+    /// <param name="newMin">The new minimum value.</param>
+    /// <param name="newMax">The new maximum value.</param>
+    /// <returns>The scaled value.</returns>
+    public static double ScaleRange(double value, double oldMin, double oldMax, double newMin, double newMax)
+    {
+        double alpha = InverseLerp(value, oldMin, oldMax);
+        return Lerp(newMin, newMax, alpha);
+    }
 }
