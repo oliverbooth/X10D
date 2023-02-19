@@ -1,4 +1,6 @@
 ﻿using DSharpPlus;
+using DSharpPlus.Entities;
+using DSharpPlus.Exceptions;
 
 namespace X10D.DSharpPlus;
 
@@ -39,6 +41,39 @@ public static class DiscordClientExtensions
 
                 return Task.CompletedTask;
             };
+        }
+    }
+
+    /// <summary>
+    ///     Gets a user by their ID. If the user is not found, <see langword="null" /> is returned instead of
+    ///     <see cref="NotFoundException" /> being thrown.
+    /// </summary>
+    /// <param name="client">The Discord client.</param>
+    /// <param name="userId">The ID of the user to retrieve.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="client" /> is <see langword="null" />.</exception>
+    public static async Task<DiscordUser?> GetUserOrNullAsync(this DiscordClient client, ulong userId)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(client);
+#else
+        if (client is null)
+        {
+            throw new ArgumentNullException(nameof(client));
+        }
+#endif
+
+        try
+        {
+            // we should never use exceptions for flow control but this is D#+ we're talking about.
+            // NotFoundException isn't even documented, and yet it gets thrown when a user doesn't exist.
+            // so this method should hopefully clearly express that - and at least using exceptions for flow control *here*,
+            // removes the need to do the same in consumer code.
+            // god I hate this.
+            return await client.GetUserAsync(userId).ConfigureAwait(false);
+        }
+        catch (NotFoundException)
+        {
+            return null;
         }
     }
 }
