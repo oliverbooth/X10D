@@ -6409,6 +6409,28 @@
                 The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
             </returns>
         </member>
+        <member name="M:X10D.Math.MathUtility.ScaleRange(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+                Converts a value from being a percentage of one range, to being the same percentage in a new range.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="oldMin">The old minimum value.</param>
+            <param name="oldMax">The old maximum value.</param>
+            <param name="newMin">The new minimum value.</param>
+            <param name="newMax">The new maximum value.</param>
+            <returns>The scaled value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.ScaleRange(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                Converts a value from being a percentage of one range, to being the same percentage in a new range.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="oldMin">The old minimum value.</param>
+            <param name="oldMax">The old maximum value.</param>
+            <param name="newMin">The new minimum value.</param>
+            <param name="newMax">The new maximum value.</param>
+            <returns>The scaled value.</returns>
+        </member>
         <member name="T:X10D.Math.SByteExtensions">
             <summary>
                 Math-related extension methods for <see cref="T:System.SByte" />.
