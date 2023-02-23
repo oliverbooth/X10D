@@ -1,6 +1,6 @@
 <h1 align="center"><img src="https://raw.githubusercontent.com/oliverbooth/X10D/develop/banner.png"></h1>
 <p align="center">
-<a href="https://github.com/oliverbooth/X10D/actions?query=workflow%3A%22.NET%22"><img src="https://img.shields.io/github/actions/workflow/status/oliverbooth/X10D/dotnet.yml" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
+<a href="https://github.com/oliverbooth/X10D/actions/workflows/dotnet.yml"><img src="https://img.shields.io/github/actions/workflow/status/oliverbooth/X10D/dotnet.yml" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
 <a href="https://github.com/oliverbooth/X10D/issues"><img src="https://img.shields.io/github/issues/oliverbooth/X10D" alt="GitHub Issues" title="GitHub Issues"></a>
 <a href="https://sonarcloud.io/dashboard?id=oliverbooth_X10D"><img src="https://img.shields.io/sonar/coverage/oliverbooth_X10D?server=https%3A%2F%2Fsonarcloud.io" alt="Coverage"></a>
 <a href="https://www.nuget.org/packages/X10D/"><img src="https://img.shields.io/nuget/dt/X10D" alt="NuGet Downloads" title="NuGet Downloads"></a>
