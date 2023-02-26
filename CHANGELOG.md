@@ -13,6 +13,7 @@
 - X10D: Added `Color.GetClosestConsoleColor()`
 - X10D: Added `DateTime.GetIso8601WeekOfYear()` and `DateTimeOffset.GetIso8601WeekOfYear()`
 - X10D: Added `DirectoryInfo.Clear()`
+- X10D: Added `GreatestCommonFactor` for built-in integer types
 - X10D: Added `IEnumerable<T>.CountWhereNot(Func<T, bool>)`
 - X10D: Added `IEnumerable<T>.FirstWhereNot(Func<T, bool>)`
 - X10D: Added `IEnumerable<T>.FirstWhereNotOrDefault(Func<T, bool>)`

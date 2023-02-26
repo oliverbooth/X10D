@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -55,6 +55,23 @@ public static class ByteExtensions
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///     Calculates the greatest common factor between the current 8-bit unsigned integer, and another 8-bit unsigned integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static byte GreatestCommonFactor(this byte value, byte other)
+    {
+        return (byte)((long)value).GreatestCommonFactor(other);
     }
 
     /// <summary>
