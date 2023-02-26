@@ -7,7 +7,7 @@ public static class NullableExtensions
 {
     /// <summary>
     ///     Attempts to get the value of a <see cref="Nullable{T}" />, and returns a value indicating the success of the
-    ///     operation. 
+    ///     operation.
     /// </summary>
     /// <param name="value">The nullable value.</param>
     /// <param name="result">
