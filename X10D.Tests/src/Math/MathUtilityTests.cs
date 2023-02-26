@@ -8,6 +8,26 @@ namespace X10D.Tests.Math;
 public class MathUtilityTests
 {
     [TestMethod]
+    public void GammaToLinear_ShouldReturnQuarter_GivenQuarterAndGamma1()
+    {
+        double doubleResult = MathUtility.GammaToLinear(0.25, 1.0);
+        float floatResult = MathUtility.GammaToLinear(0.25f, 1.0f);
+
+        Assert.AreEqual(0.25, doubleResult);
+        Assert.AreEqual(0.25f, floatResult);
+    }
+
+    [TestMethod]
+    public void GammaToLinear_ShouldReturn1_Given1AndDefaultGamma()
+    {
+        double doubleResult = MathUtility.GammaToLinear(1.0);
+        float floatResult = MathUtility.GammaToLinear(1.0f);
+
+        Assert.AreEqual(1.0, doubleResult);
+        Assert.AreEqual(1.0f, floatResult);
+    }
+
+    [TestMethod]
     public void InverseLerp_ShouldReturn0_5_Given0_5_0_1()
     {
         double doubleResult = MathUtility.InverseLerp(0.5, 0.0, 1.0);
@@ -42,5 +62,25 @@ public class MathUtilityTests
 
         Assert.AreEqual(0.0, doubleResult, 1e-6);
         Assert.AreEqual(0.0f, floatResult, 1e-6f);
+    }
+
+    [TestMethod]
+    public void LinearToGamma_ShouldReturnQuarter_GivenQuarterAndGamma1()
+    {
+        double doubleResult = MathUtility.LinearToGamma(0.25, 1.0);
+        float floatResult = MathUtility.LinearToGamma(0.25f, 1.0f);
+
+        Assert.AreEqual(0.25, doubleResult);
+        Assert.AreEqual(0.25f, floatResult);
+    }
+
+    [TestMethod]
+    public void LinearToGamma_ShouldReturn1_Given1AndDefaultGamma()
+    {
+        double doubleResult = MathUtility.LinearToGamma(1.0);
+        float floatResult = MathUtility.LinearToGamma(1.0f);
+
+        Assert.AreEqual(1.0, doubleResult);
+        Assert.AreEqual(1.0f, floatResult);
     }
 }
