@@ -31,6 +31,28 @@ public class Int64Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const long first = 5L;
+        const long second = 7L;
+
+        long multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1L, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const long first = 12L;
+        const long second = 18L;
+
+        long multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6L, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const long one = 1;

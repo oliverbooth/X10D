@@ -58,6 +58,24 @@ public static class UInt32Extensions
     }
 
     /// <summary>
+    ///     Calculates the greatest common factor between the current 32-bit unsigned integer, and another 32-bit unsigned
+    ///     integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static uint GreatestCommonFactor(this uint value, uint other)
+    {
+        return (uint)((long)value).GreatestCommonFactor(other);
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>

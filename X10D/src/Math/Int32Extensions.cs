@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -60,6 +60,23 @@ public static class Int32Extensions
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///     Calculates the greatest common factor between the current 32-bit signed integer, and another 32-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int GreatestCommonFactor(this int value, int other)
+    {
+        return (int)((long)value).GreatestCommonFactor(other);
     }
 
     /// <summary>
