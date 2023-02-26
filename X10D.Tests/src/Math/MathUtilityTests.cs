@@ -83,4 +83,18 @@ public class MathUtilityTests
         Assert.AreEqual(1.0, doubleResult);
         Assert.AreEqual(1.0f, floatResult);
     }
+
+    [TestMethod]
+    public void ScaleRangeDouble_ShouldScaleRange_GivenItsValues()
+    {
+        double result = MathUtility.ScaleRange(0.5, 0.0, 1.0, 5.0, 10.0);
+        Assert.AreEqual(7.5, result);
+    }
+
+    [TestMethod]
+    public void ScaleRangeSingle_ShouldScaleRange_GivenItsValues()
+    {
+        float result = MathUtility.ScaleRange(0.5f, 0.0f, 1.0f, 5.0f, 10.0f);
+        Assert.AreEqual(7.5f, result);
+    }
 }
