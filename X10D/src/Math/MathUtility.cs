@@ -246,8 +246,10 @@ public static class MathUtility
     /// <returns>The scaled value.</returns>
     public static float ScaleRange(float value, float oldMin, float oldMax, float newMin, float newMax)
     {
-        float alpha = InverseLerp(value, oldMin, oldMax);
-        return Lerp(newMin, newMax, alpha);
+        float oldRange = oldMax - oldMin;
+        float newRange = newMax - newMin;
+        float alpha = (value - oldMin) / oldRange;
+        return (alpha * newRange) + newMin;
     }
 
     /// <summary>
@@ -261,7 +263,9 @@ public static class MathUtility
     /// <returns>The scaled value.</returns>
     public static double ScaleRange(double value, double oldMin, double oldMax, double newMin, double newMax)
     {
-        double alpha = InverseLerp(value, oldMin, oldMax);
-        return Lerp(newMin, newMax, alpha);
+        double oldRange = oldMax - oldMin;
+        double newRange = newMax - newMin;
+        double alpha = (value - oldMin) / oldRange;
+        return (alpha * newRange) + newMin;
     }
 }
