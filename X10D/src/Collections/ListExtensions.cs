@@ -330,7 +330,7 @@ public static class ListExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
-    ///     <paramref name="start" /> is less than zero or greater than <see cref="IReadOnlyList{T}.Count" />.
+    ///     <paramref name="start" /> is less than zero or greater than <see cref="IReadOnlyCollection{T}.Count" />.
     /// </exception>
     public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> source, int start)
     {
@@ -359,7 +359,7 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     ///     <paramref name="start" /> or <paramref name="start" /> + <paramref name="length" /> is less than zero or greater than
-    ///     <see cref="IReadOnlyList{T}.Count" />.
+    ///     <see cref="IReadOnlyCollection{T}.Count" />.
     /// </exception>
     public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> source, int start, int length)
     {
