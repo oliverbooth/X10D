@@ -969,6 +969,28 @@
             <returns>An enumerable collection containing <paramref name="value" /> repeated <paramref name="count" /> times.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> is less than 0.</exception>
         </member>
+        <member name="T:X10D.Core.NullableExtensions">
+            <summary>
+                Extension methods for <see cref="T:System.Nullable`1" />
+            </summary>
+        </member>
+        <member name="M:X10D.Core.NullableExtensions.TryGetValue``1(System.Nullable{``0},``0@)">
+            <summary>
+                Attempts to get the value of a <see cref="T:System.Nullable`1" />, and returns a value indicating the success of the
+                operation.
+            </summary>
+            <param name="value">The nullable value.</param>
+            <param name="result">
+                When this method returns, contains the result of <see cref="P:System.Nullable`1.Value" />, if
+                <see cref="P:System.Nullable`1.HasValue" /> is <see langword="true" />; otherwise, returns the default value for
+                <typeparamref name="T" />.
+            </param>
+            <typeparam name="T">The type of the value.</typeparam>
+            <returns>
+                <see langword="true" /> if the value's <see cref="P:System.Nullable`1.HasValue" /> is <see langword="true" />; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
         <member name="T:X10D.Core.RandomExtensions">
             <summary>
                 Extension methods for <see cref="T:System.Random" />.
