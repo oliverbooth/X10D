@@ -244,6 +244,12 @@ public static class MathUtility
     /// <param name="newMin">The new minimum value.</param>
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static float ScaleRange(float value, float oldMin, float oldMax, float newMin, float newMax)
     {
         float oldRange = oldMax - oldMin;
@@ -261,6 +267,12 @@ public static class MathUtility
     /// <param name="newMin">The new minimum value.</param>
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static double ScaleRange(double value, double oldMin, double oldMax, double newMin, double newMax)
     {
         double oldRange = oldMax - oldMin;
