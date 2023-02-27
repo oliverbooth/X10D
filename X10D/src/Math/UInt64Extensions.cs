@@ -209,4 +209,40 @@ public static class UInt64Extensions
 
         return persistence;
     }
+
+    /// <summary>
+    ///     Wraps the current 64-bit unsigned integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ulong Wrap(this ulong value, ulong low, ulong high)
+    {
+        ulong difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current 64-bit unsigned integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ulong Wrap(this ulong value, ulong length)
+    {
+        return ((value % length) + length) % length;
+    }
 }

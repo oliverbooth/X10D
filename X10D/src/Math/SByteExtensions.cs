@@ -218,4 +218,39 @@ public static class SByteExtensions
     {
         return System.Math.Sign(value);
     }
+
+    /// <summary>
+    ///     Wraps the current 8-bit signed integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static sbyte Wrap(this sbyte value, sbyte low, sbyte high)
+    {
+        return (sbyte)((long)value).Wrap(low, high);
+    }
+
+    /// <summary>
+    ///     Wraps the current 8-bit signed integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static sbyte Wrap(this sbyte value, sbyte length)
+    {
+        return (sbyte)((long)value).Wrap(length);
+    }
 }
