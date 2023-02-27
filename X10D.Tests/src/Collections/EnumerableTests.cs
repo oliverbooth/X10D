@@ -287,6 +287,27 @@ public class EnumerableTests
         Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.WhereNot(x => x % 2 == 0));
     }
 
+    [TestMethod]
+    public void WhereNotNull_ShouldContainNoNullElements()
+    {
+        object?[] array = Enumerable.Repeat(new object(), 10).ToArray();
+        array[1] = null;
+        array[2] = null;
+        array[8] = null;
+        array[9] = null;
+
+        const int expectedCount = 6;
+        var actualCount = 0;
+
+        foreach (object o in array.WhereNotNull())
+        {
+            Assert.IsNotNull(o);
+            actualCount++;
+        }
+
+        Assert.AreEqual(expectedCount, actualCount);
+    }
+
     private class DummyClass
     {
         public int Value { get; set; }
