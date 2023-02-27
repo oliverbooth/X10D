@@ -19,6 +19,25 @@ namespace X10D.Unity.Tests.Drawing
         private static readonly Color32 Yellow = new(255, 255, 0, 255);
 
         [UnityTest]
+        public IEnumerator Deconstruct_ShouldDeconstruct_ToCorrectValues()
+        {
+            byte a, r, g, b;
+
+            (r, g, b) = White;
+            Assert.AreEqual(255, r);
+            Assert.AreEqual(255, g);
+            Assert.AreEqual(255, b);
+
+            (a, r, g, b) = Yellow;
+            Assert.AreEqual(255, a);
+            Assert.AreEqual(255, r);
+            Assert.AreEqual(255, g);
+            Assert.AreEqual(0, b);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
         {
             // I know it's just casting... but aim for 100% coverage babyyyy

@@ -21,6 +21,25 @@ namespace X10D.Unity.Tests.Drawing
         private static readonly Color Yellow = new(1, 1, 0);
 
         [UnityTest]
+        public IEnumerator Deconstruct_ShouldDeconstruct_ToCorrectValues()
+        {
+            float a, r, g, b;
+
+            (r, g, b) = White;
+            Assert.AreEqual(1.0f, r);
+            Assert.AreEqual(1.0f, g);
+            Assert.AreEqual(1.0f, b);
+
+            (a, r, g, b) = Yellow;
+            Assert.AreEqual(1.0f, a);
+            Assert.AreEqual(1.0f, r);
+            Assert.AreEqual(1.0f, g);
+            Assert.AreEqual(0.0f, b);
+
+            yield break;
+        }
+
+        [UnityTest]
         public IEnumerator GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
         {
             Assert.AreEqual(ConsoleColor.Red, Color.red.GetClosestConsoleColor());
