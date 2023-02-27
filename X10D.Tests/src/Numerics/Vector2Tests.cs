@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Core;
+using X10D.Drawing;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
@@ -16,6 +17,32 @@ public class Vector2Tests
 
         Assert.AreEqual(1, x);
         Assert.AreEqual(2, y);
+    }
+
+    [TestMethod]
+    public void IsOnLine_ShouldReturnTrue_ForPointOnLine()
+    {
+        Vector2 start = Vector2.Zero;
+        Vector2 end = Vector2.UnitX;
+        Vector2 point = new Vector2(0.5f, 0.0f);
+        var line = new LineF(start, end);
+        
+        Assert.IsTrue(point.IsOnLine(line));
+        Assert.IsTrue(point.IsOnLine(line.Start, line.End));
+        Assert.IsTrue(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+    }
+
+    [TestMethod]
+    public void IsOnLine_ShouldReturnFalse_ForPointNotOnLine()
+    {
+        Vector2 start = Vector2.Zero;
+        Vector2 end = Vector2.UnitX;
+        Vector2 point = new Vector2(0.5f, 1.0f);
+        var line = new LineF(start, end);
+        
+        Assert.IsFalse(point.IsOnLine(line));
+        Assert.IsFalse(point.IsOnLine(line.Start, line.End));
+        Assert.IsFalse(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
     }
 
     [TestMethod]
