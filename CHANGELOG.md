@@ -26,6 +26,7 @@
 - X10D: Added `IList<T>.Swap(IList<T>)` (#62)
 - X10D: Added `IReadOnlyList<T>.IndexOf(T[, int[, int]])`
 - X10D: Added `IReadOnlyList<T>.Slice(int[, int]])`
+- X10D: Added `Wrap(T[, T])` for built-in numeric types (#60)
 - X10D: Added `Nullable<T>.TryGetValue(out T)` (#61)
 - X10D: Added `Point.IsOnLine(LineF)`, `Point.IsOnLine(PointF, PointF)`, and `Point.IsOnLine(Vector2, Vector2)`
 - X10D: Added `PointF.IsOnLine(LineF)`, `PointF.IsOnLine(PointF, PointF)`, and `PointF.IsOnLine(Vector2, Vector2)`

@@ -217,4 +217,39 @@ public static class Int16Extensions
     {
         return System.Math.Sign(value);
     }
+
+    /// <summary>
+    ///     Wraps the current 16-bit signed integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static short Wrap(this short value, short low, short high)
+    {
+        return (short)((long)value).Wrap(low, high);
+    }
+
+    /// <summary>
+    ///     Wraps the current 16-bit signed integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static short Wrap(this short value, short length)
+    {
+        return (short)((long)value).Wrap(length);
+    }
 }

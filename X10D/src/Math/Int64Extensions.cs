@@ -277,4 +277,40 @@ public static class Int64Extensions
     {
         return System.Math.Sign(value);
     }
+
+    /// <summary>
+    ///     Wraps the current 64-bit signed integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long Wrap(this long value, long low, long high)
+    {
+        long difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current 64-bit signed integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long Wrap(this long value, long length)
+    {
+        return ((value % length) + length) % length;
+    }
 }
