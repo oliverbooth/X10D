@@ -22,6 +22,7 @@
 - X10D: Added `IEnumerable<T>.LastWhereNot(Func<T, bool>)`
 - X10D: Added `IEnumerable<T>.LastWhereNotOrDefault(Func<T, bool>)`
 - X10D: Added `IEnumerable<T>.WhereNot(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.WhereNotNull()`
 - X10D: Added `IList<T>.RemoveRange(Range)`
 - X10D: Added `IList<T>.Swap(IList<T>)` (#62)
 - X10D: Added `IReadOnlyList<T>.IndexOf(T[, int[, int]])`

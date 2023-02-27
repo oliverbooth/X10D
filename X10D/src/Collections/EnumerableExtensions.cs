@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 
 namespace X10D.Collections;
 
@@ -351,5 +351,29 @@ public static class EnumerableExtensions
 #endif
 
         return source.Where(item => !predicate(item));
+    }
+
+    /// <summary>
+    ///     Filters a sequence of values by omitting elements that are <see langword="null" /> (<see langword="Nothing" /> in
+    ///     Visual Basic).
+    /// </summary>
+    /// <param name="source">An <see cref="IEnumerable{T}" /> to filter.</param>
+    /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     An <see cref="IEnumerable{T}" /> that contains elements from the input sequence that are not <see langword="null" />
+    ///     (<see langword="Nothing" /> in Visual Basic).
+    /// </returns>
+    public static IEnumerable<TSource> WhereNotNull<TSource>(this IEnumerable<TSource?> source)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        return source.Where(item => item is not null).Select(item => item!);
     }
 }
