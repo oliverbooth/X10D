@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
@@ -133,7 +133,7 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    ///     Returns the square root of this double-precision floating-point number.
+    ///     Returns the square root of this decimal number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>
