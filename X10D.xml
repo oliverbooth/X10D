@@ -510,6 +510,18 @@
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
         </member>
+        <member name="M:X10D.Collections.EnumerableExtensions.WhereNotNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+                Filters a sequence of values by omitting elements that are <see langword="null" /> (<see langword="Nothing" /> in
+                Visual Basic).
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to filter.</param>
+            <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+            <returns>
+                An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains elements from the input sequence that are not <see langword="null" />
+                (<see langword="Nothing" /> in Visual Basic).
+            </returns>
+        </member>
         <member name="T:X10D.Collections.Int16Extensions">
             <summary>
                 Collection-related extension methods for <see cref="T:System.Int16" />.
@@ -730,7 +742,7 @@
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-                <paramref name="start" /> is less than zero or greater than <see cref="!:IReadOnlyList&lt;T&gt;.Count" />.
+                <paramref name="start" /> is less than zero or greater than <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count" />.
             </exception>
         </member>
         <member name="M:X10D.Collections.ListExtensions.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32)">
@@ -747,7 +759,7 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
                 <paramref name="start" /> or <paramref name="start" /> + <paramref name="length" /> is less than zero or greater than
-                <see cref="!:IReadOnlyList&lt;T&gt;.Count" />.
+                <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count" />.
             </exception>
         </member>
         <member name="M:X10D.Collections.ListExtensions.Swap``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
@@ -1075,6 +1087,53 @@
             var number = random.NextFrom(list);
             </code>
             </example>
+        </member>
+        <member name="M:X10D.Core.RandomExtensions.NextFrom``1(System.Random,System.Span{``0})">
+             <summary>
+                 Returns a random element from the specified span of elements using the current <see cref="T:System.Random" /> instance.
+             </summary>
+             <typeparam name="T">The element type.</typeparam>
+             <param name="random">The <see cref="T:System.Random" /> instance.</param>
+             <param name="source">The span of elements from which to draw.</param>
+             <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
+             <exception cref="T:System.ArgumentNullException">
+                 <paramref name="random" /> is is <see langword="null" />
+                 -or-
+                 <paramref name="source" /> is <see langword="null" />.
+             </exception>
+             <example>
+                 <code lang="csharp">
+             Span&lt;int&gt; span = stackalloc span[5];
+             // populate the span ...
+            
+             var random = new Random();
+             var number = random.NextFrom(span);
+             </code>
+             </example>
+        </member>
+        <member name="M:X10D.Core.RandomExtensions.NextFrom``1(System.Random,System.ReadOnlySpan{``0})">
+             <summary>
+                 Returns a random element from the specified readonly span of elements using the current <see cref="T:System.Random" />
+                 instance.
+             </summary>
+             <typeparam name="T">The element type.</typeparam>
+             <param name="random">The <see cref="T:System.Random" /> instance.</param>
+             <param name="source">The readonly span of elements from which to draw.</param>
+             <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
+             <exception cref="T:System.ArgumentNullException">
+                 <paramref name="random" /> is is <see langword="null" />
+                 -or-
+                 <paramref name="source" /> is <see langword="null" />.
+             </exception>
+             <example>
+                 <code lang="csharp">
+             Span&lt;int&gt; span = stackalloc span[5];
+             // populate the span ...
+            
+             var random = new Random();
+             var number = random.NextFrom(span.AsReadOnly());
+             </code>
+             </example>
         </member>
         <member name="M:X10D.Core.RandomExtensions.NextByte(System.Random)">
             <summary>
@@ -5422,6 +5481,14 @@
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
         </member>
+        <member name="M:X10D.Math.ByteExtensions.GreatestCommonFactor(System.Byte,System.Byte)">
+            <summary>
+                Calculates the greatest common factor between the current 8-bit unsigned integer, and another 8-bit unsigned integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
         <member name="M:X10D.Math.ByteExtensions.IsEven(System.Byte)">
             <summary>
                 Returns a value indicating whether the current value is evenly divisible by 2.
@@ -5460,6 +5527,23 @@
             <remarks>
                 Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
             </remarks>
+        </member>
+        <member name="M:X10D.Math.ByteExtensions.Wrap(System.Byte,System.Byte,System.Byte)">
+            <summary>
+                Wraps the current 8-bit unsigned integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.ByteExtensions.Wrap(System.Byte,System.Byte)">
+            <summary>
+                Wraps the current 8-bit unsigned integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
         </member>
         <member name="T:X10D.Math.ComparableExtensions">
             <summary>
@@ -5747,7 +5831,7 @@
         </member>
         <member name="M:X10D.Math.DecimalExtensions.Sqrt(System.Decimal)">
              <summary>
-                 Returns the square root of this double-precision floating-point number.
+                 Returns the square root of this decimal number.
              </summary>
              <param name="value">The number whose square root is to be found.</param>
              <returns>
@@ -5774,6 +5858,23 @@
                  </list>
              </returns>
              <exception cref="T:System.ArgumentException"><paramref name="value" /> is negative.</exception>
+        </member>
+        <member name="M:X10D.Math.DecimalExtensions.Wrap(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+                Wraps the current decimal number between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.DecimalExtensions.Wrap(System.Decimal,System.Decimal)">
+            <summary>
+                Wraps the current decimal number between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
         </member>
         <member name="T:X10D.Math.DoubleExtensions">
             <summary>
@@ -6035,6 +6136,23 @@
                 <see cref="F:System.Double.NaN" />, this method returns <see cref="F:System.Double.NaN" />.
             </returns>
         </member>
+        <member name="M:X10D.Math.DoubleExtensions.Wrap(System.Double,System.Double,System.Double)">
+            <summary>
+                Wraps the current double-precision floating-point number between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.DoubleExtensions.Wrap(System.Double,System.Double)">
+            <summary>
+                Wraps the current double-precision floating-point number between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.InclusiveOptions">
             <summary>
                 Provides options for <see cref="M:X10D.Math.ComparableExtensions.Between``3(``0,``1,``2,X10D.Math.InclusiveOptions)" /> clusivity.
@@ -6083,6 +6201,14 @@
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
             <exception cref="T:System.ArithmeticException"><paramref name="value" /> is less than 0.</exception>
+        </member>
+        <member name="M:X10D.Math.Int16Extensions.GreatestCommonFactor(System.Int16,System.Int16)">
+            <summary>
+                Calculates the greatest common factor between the current 16-bit signed integer, and another 16-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.Int16Extensions.IsEven(System.Int16)">
             <summary>
@@ -6168,6 +6294,23 @@
                  </list>
              </returns>
         </member>
+        <member name="M:X10D.Math.Int16Extensions.Wrap(System.Int16,System.Int16,System.Int16)">
+            <summary>
+                Wraps the current 16-bit signed integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.Int16Extensions.Wrap(System.Int16,System.Int16)">
+            <summary>
+                Wraps the current 16-bit signed integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.Int32Extensions">
             <summary>
                 Extension methods for <see cref="T:System.Int32" />.
@@ -6191,6 +6334,14 @@
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
             <exception cref="T:System.ArithmeticException"><paramref name="value" /> is less than 0.</exception>
+        </member>
+        <member name="M:X10D.Math.Int32Extensions.GreatestCommonFactor(System.Int32,System.Int32)">
+            <summary>
+                Calculates the greatest common factor between the current 32-bit signed integer, and another 32-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.Int32Extensions.IsEven(System.Int32)">
             <summary>
@@ -6276,6 +6427,23 @@
                  </list>
              </returns>
         </member>
+        <member name="M:X10D.Math.Int32Extensions.Wrap(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Wraps the current 32-bit signed integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.Int32Extensions.Wrap(System.Int32,System.Int32)">
+            <summary>
+                Wraps the current 32-bit signed integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.Int64Extensions">
             <summary>
                 Extension methods for <see cref="T:System.Int64" />.
@@ -6299,6 +6467,14 @@
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
             <exception cref="T:System.ArithmeticException"><paramref name="value" /> is less than 0.</exception>
+        </member>
+        <member name="M:X10D.Math.Int64Extensions.GreatestCommonFactor(System.Int64,System.Int64)">
+            <summary>
+                Calculates the greatest common factor between the current 64-bit signed integer, and another 64-bit unsigned integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.Int64Extensions.IsEven(System.Int64)">
             <summary>
@@ -6384,10 +6560,57 @@
                  </list>
              </returns>
         </member>
+        <member name="M:X10D.Math.Int64Extensions.Wrap(System.Int64,System.Int64,System.Int64)">
+            <summary>
+                Wraps the current 64-bit signed integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.Int64Extensions.Wrap(System.Int64,System.Int64)">
+            <summary>
+                Wraps the current 64-bit signed integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.MathUtility">
             <summary>
                 Provides static helpers methods for mathematical functions not found in the .NET <see cref="T:System.Math" /> class.
             </summary>
+        </member>
+        <member name="M:X10D.Math.MathUtility.GammaToLinear(System.Single)">
+            <summary>
+                Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
+            </summary>
+            <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+            <returns>The linear value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.GammaToLinear(System.Single,System.Single)">
+            <summary>
+                Converts a gamma-encoded value to a linear value using the specified gamma value.
+            </summary>
+            <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+            <param name="gamma">The gamma value to use for decoding.</param>
+            <returns>The linear value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.GammaToLinear(System.Double)">
+            <summary>
+                Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
+            </summary>
+            <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+            <returns>The linear value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.GammaToLinear(System.Double,System.Double)">
+            <summary>
+                Converts a gamma-encoded value to a linear value using the specified gamma value.
+            </summary>
+            <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+            <param name="gamma">The gamma value to use for decoding.</param>
+            <returns>The linear value.</returns>
         </member>
         <member name="M:X10D.Math.MathUtility.InverseLerp(System.Single,System.Single,System.Single)">
             <summary>
@@ -6430,6 +6653,36 @@
             <returns>
                 The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
             </returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.LinearToGamma(System.Single)">
+            <summary>
+                Converts a linear value to a gamma-encoded value using a gamma value of <c>2.2</c>.
+            </summary>
+            <param name="value">The linear value to convert. Expected range is [0, 1].</param>
+            <returns>The gamma-encoded value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.LinearToGamma(System.Single,System.Single)">
+            <summary>
+                Converts a linear value to a gamma-encoded value using the specified gamma value.
+            </summary>
+            <param name="value">The linear value to convert. Expected range is [0, 1].</param>
+            <param name="gamma">The gamma value to use for encoding.</param>
+            <returns>The gamma-encoded value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.LinearToGamma(System.Double)">
+            <summary>
+                Converts a linear value to a gamma-encoded value using a gamma value of <c>2.2</c>.
+            </summary>
+            <param name="value">The linear value to convert. Expected range is [0, 1].</param>
+            <returns>The gamma-encoded value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.LinearToGamma(System.Double,System.Double)">
+            <summary>
+                Converts a linear value to a gamma-encoded value using the specified gamma value.
+            </summary>
+            <param name="value">The linear value to convert. Expected range is [0, 1].</param>
+            <param name="gamma">The gamma value to use for encoding.</param>
+            <returns>The gamma-encoded value.</returns>
         </member>
         <member name="M:X10D.Math.MathUtility.ScaleRange(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
@@ -6476,6 +6729,14 @@
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
             <exception cref="T:System.ArithmeticException"><paramref name="value" /> is less than 0.</exception>
+        </member>
+        <member name="M:X10D.Math.SByteExtensions.GreatestCommonFactor(System.SByte,System.SByte)">
+            <summary>
+                Calculates the greatest common factor between the current 8-bit signed integer, and another 8-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.SByteExtensions.IsEven(System.SByte)">
             <summary>
@@ -6560,6 +6821,23 @@
                      </item>
                  </list>
              </returns>
+        </member>
+        <member name="M:X10D.Math.SByteExtensions.Wrap(System.SByte,System.SByte,System.SByte)">
+            <summary>
+                Wraps the current 8-bit signed integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.SByteExtensions.Wrap(System.SByte,System.SByte)">
+            <summary>
+                Wraps the current 8-bit signed integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
         </member>
         <member name="T:X10D.Math.SingleExtensions">
             <summary>
@@ -6820,6 +7098,23 @@
                 <see cref="F:System.Single.NaN" />, this method returns <see cref="F:System.Single.NaN" />.
             </returns>
         </member>
+        <member name="M:X10D.Math.SingleExtensions.Wrap(System.Single,System.Single,System.Single)">
+            <summary>
+                Wraps the current single-precision floating-point number between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.SingleExtensions.Wrap(System.Single,System.Single)">
+            <summary>
+                Wraps the current single-precision floating-point number between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.UInt16Extensions">
             <summary>
                 Extension methods for <see cref="T:System.UInt16" />.
@@ -6842,6 +7137,15 @@
             </summary>
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
+        </member>
+        <member name="M:X10D.Math.UInt16Extensions.GreatestCommonFactor(System.UInt16,System.UInt16)">
+            <summary>
+                Calculates the greatest common factor between the current 16-bit unsigned integer, and another 16-bit unsigned
+                integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.UInt16Extensions.IsEven(System.UInt16)">
             <summary>
@@ -6882,6 +7186,23 @@
                 Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
             </remarks>
         </member>
+        <member name="M:X10D.Math.UInt16Extensions.Wrap(System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+                Wraps the current 16-bit unsigned integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.UInt16Extensions.Wrap(System.UInt16,System.UInt16)">
+            <summary>
+                Wraps the current 16-bit unsigned integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.UInt32Extensions">
             <summary>
                 Extension methods for <see cref="T:System.UInt32" />.
@@ -6904,6 +7225,15 @@
             </summary>
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
+        </member>
+        <member name="M:X10D.Math.UInt32Extensions.GreatestCommonFactor(System.UInt32,System.UInt32)">
+            <summary>
+                Calculates the greatest common factor between the current 32-bit unsigned integer, and another 32-bit unsigned
+                integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.UInt32Extensions.IsEven(System.UInt32)">
             <summary>
@@ -6944,6 +7274,23 @@
                 Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
             </remarks>
         </member>
+        <member name="M:X10D.Math.UInt32Extensions.Wrap(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+                Wraps the current 32-bit unsigned integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.UInt32Extensions.Wrap(System.UInt32,System.UInt32)">
+            <summary>
+                Wraps the current 32-bit unsigned integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.UInt64Extensions">
             <summary>
                 Extension methods for <see cref="T:System.UInt64" />.
@@ -6966,6 +7313,15 @@
             </summary>
             <param name="value">The value whose factorial to compute.</param>
             <returns>The factorial of <paramref name="value" />.</returns>
+        </member>
+        <member name="M:X10D.Math.UInt64Extensions.GreatestCommonFactor(System.UInt64,System.UInt64)">
+            <summary>
+                Calculates the greatest common factor between the current 64-bit unsigned integer, and another 64-bit unsigned
+                integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.UInt64Extensions.IsEven(System.UInt64)">
             <summary>
@@ -7005,6 +7361,23 @@
             <remarks>
                 Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
             </remarks>
+        </member>
+        <member name="M:X10D.Math.UInt64Extensions.Wrap(System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+                Wraps the current 64-bit unsigned integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.UInt64Extensions.Wrap(System.UInt64,System.UInt64)">
+            <summary>
+                Wraps the current 64-bit unsigned integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
         </member>
         <member name="T:X10D.Net.EndPointExtensions">
             <summary>
@@ -8225,6 +8598,16 @@
             <param name="value">The input string.</param>
             <returns><see langword="true" /> if this string is an emoji; otherwise, <see langword="false" />.</returns>
         </member>
+        <member name="M:X10D.Text.StringExtensions.IsEmpty(System.String)">
+            <summary>
+                Returns a value indicating whether the current string represents an empty string.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> is empty; otherwise, <see langword="false" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        </member>
         <member name="M:X10D.Text.StringExtensions.IsLower(System.String)">
             <summary>
                 Determines if all alpha characters in this string are considered lowercase.
@@ -8232,6 +8615,28 @@
             <param name="value">The input string.</param>
             <returns>
                 <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+                Returns a value indicating whether the current string is <see langword="null" /> (<see langword="Nothing" /> in Visual
+                Basic), or represents an empty string.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.IsNullOrWhiteSpace(System.String)">
+            <summary>
+                Returns a value indicating whether the current string is <see langword="null" /> (<see langword="Nothing" /> in Visual
+                Basic), represents an empty string, or consists of only whitespace characters.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
+                whitespace; otherwise, <see langword="false" />.
             </returns>
         </member>
         <member name="M:X10D.Text.StringExtensions.IsPalindrome(System.String)">
@@ -8254,6 +8659,18 @@
             <returns>
                 <see langword="true" /> if all alpha characters in this string are uppercase; otherwise, <see langword="false" />.
             </returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.IsWhiteSpace(System.String)">
+            <summary>
+                Returns a value indicating whether the current string represents an empty string, or consists of only whitespace
+                characters.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> is empty or consists of only whitespace; otherwise,
+                <see langword="false" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.Repeat(System.String,System.Int32)">
             <summary>
