@@ -56,6 +56,10 @@
 - X10D: Added `Span<T>.Split(Span<T>)`
 - X10D: Added `string.CountSubstring(char)`
 - X10D: Added `string.CountSubstring(string[, StringComparison])`
+- X10D: Added `string.IsEmpty()`
+- X10D: Added `string.IsWhiteSpace()`
+- X10D: Added `string.IsNullOrEmpty()`
+- X10D: Added `string.IsNullOrWhiteSpace()`
 - X10D: Added `TimeSpan.TryParse(ReadOnlySpan<char>, out TimeSpan)`
 - X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator
 - X10D: Added `Vector2.Deconstruct()`
