@@ -80,7 +80,7 @@ public static class Int32Extensions
                 var shuffle = Avx2.Shuffle(vec, mask1);
                 var and = Avx2.AndNot(shuffle, mask2);
                 var cmp = Avx2.CompareEqual(and, Vector256<byte>.Zero);
-                var correctness = Avx2.And(cmp, Vector256.Create((byte)0x01));                
+                var correctness = Avx2.And(cmp, Vector256.Create((byte)0x01));
                 
                 Avx.Store((byte*)pDestination, correctness);
             }
@@ -110,6 +110,7 @@ public static class Int32Extensions
                 and = Sse2.AndNot(shuffle, mask2);
                 cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
                 correctness = Sse2.And(cmp, one);
+
                 Sse2.Store((byte*)pDestination + 16, correctness);
             }
         }
