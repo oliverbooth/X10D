@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace X10D.Unity.Numerics;
@@ -18,7 +19,8 @@ public static class Vector4Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static System.Numerics.Vector4 ToSystemVector(this Vector4 vector)
     {
-        return new System.Numerics.Vector4(vector.x, vector.y, vector.z, vector.w);
+        return UnsafeUtility.As<Vector4, System.Numerics.Vector4>(ref vector);
+
     }
 
     /// <summary>
@@ -30,7 +32,7 @@ public static class Vector4Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector4 ToUnityVector(this System.Numerics.Vector4 vector)
     {
-        return new Vector4(vector.X, vector.Y, vector.Z, vector.W);
+        return UnsafeUtility.As<System.Numerics.Vector4, Vector4>(ref vector);
     }
 
     /// <summary>
