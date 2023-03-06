@@ -7,6 +7,13 @@ namespace X10D.Tests.Collections;
 public class BoolListTests
 {
     [TestMethod]
+    public void Pack8BitSpan_Should_Pack_Correctly()
+    {
+        Span<bool> span = stackalloc bool[8] { true, false, true, false, true, false, true, false };
+        Assert.AreEqual(85, span.PackByte()); // 01010101
+    }
+
+    [TestMethod]
     public void Pack8Bit_Should_Pack_Correctly()
     {
         var array = new[] {true, false, true, false, true, false, true, false};

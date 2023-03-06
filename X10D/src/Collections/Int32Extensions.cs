@@ -22,7 +22,7 @@ public static class Int32Extensions
     [Pure]
     public static bool[] Unpack(this int value)
     {
-        bool[] ret = new bool[Size];
+        var ret = new bool[Size];
         value.Unpack(ret);
         return ret;
     }
@@ -97,7 +97,7 @@ public static class Int32Extensions
                 var mask1Hi = Vector128.Create((byte)2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3);
 
                 var one = Vector128.Create((byte)0x01);
-                
+
                 var vec = Vector128.Create(value).AsByte();
                 var shuffle = Ssse3.Shuffle(vec, mask1Lo);
                 var and = Sse2.AndNot(shuffle, mask2);

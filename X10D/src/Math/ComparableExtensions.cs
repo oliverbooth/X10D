@@ -133,7 +133,7 @@ public static class ComparableExtensions
         if (lower.GreaterThan(upper))
         {
             throw new ArgumentException(
-                string.Format(null, ExceptionMessages.LowerCannotBeGreaterThanUpper, lower, upper),
+                string.Format(CultureInfo.CurrentCulture, ExceptionMessages.LowerCannotBeGreaterThanUpper, lower, upper),
                 nameof(lower));
         }
 

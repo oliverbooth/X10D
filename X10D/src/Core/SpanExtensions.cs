@@ -2,6 +2,12 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+#if NETCOREAPP3_0_OR_GREATER
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.Intrinsics.X86;
+#endif
+
 namespace X10D.Core;
 
 /// <summary>
@@ -99,5 +105,94 @@ public static class SpanExtensions
 
         return false;
 #endif  // NET6_0_OR_GREATER
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="Span{T}"/> of booleans into a <see cref="byte" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static byte PackByte(this Span<bool> source)
+    {
+        return PackByte((ReadOnlySpan<bool>)source);
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="ReadOnlySpan{T}"/> of booleans into a <see cref="byte" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
+    [Pure]
+    public static byte PackByte(this ReadOnlySpan<bool> source)
+    {
+        switch (source.Length)
+        {
+            case > 8: throw new ArgumentException("Source cannot contain more than 8 elements.", nameof(source));
+            case 8:
+#if NETSTANDARD2_1
+                // TODO: Think of a way to do fast boolean correctness.
+                goto default;
+#else
+                unsafe
+                {
+                    ulong reinterpret;
+
+                    // Boolean correctness.
+                    if (Sse2.IsSupported)
+                    {
+                        fixed (bool* pSource = source)
+                        {
+                            var vec = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
+                            var cmp = Sse2.CompareEqual(vec, Vector128<byte>.Zero);
+                            var correctness = Sse2.AndNot(cmp, Vector128.Create((byte)1));
+
+                            reinterpret = correctness.AsUInt64().GetElement(0);
+                        }
+                    }
+                    else if (AdvSimd.IsSupported)
+                    {
+                        // Haven't tested since March 6th 2023 (Reason: Unavailable hardware).
+                        fixed (bool* pSource = source)
+                        {
+                            var vec = AdvSimd.LoadVector64((byte*)pSource);
+                            var cmp = AdvSimd.CompareEqual(vec, Vector64<byte>.Zero);
+                            var correctness = AdvSimd.BitwiseSelect(cmp, vec, Vector64<byte>.Zero);
+
+                            reinterpret = Unsafe.As<Vector64<byte>, ulong>(ref correctness);
+                        }
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+
+                    if (BitConverter.IsLittleEndian)
+                    {
+                        const ulong magic = 0b0000_0001_0000_0010_0000_0100_0000_1000_0001_0000_0010_0000_0100_0000_1000_0000;
+
+                        return unchecked((byte)(magic * reinterpret >> 56));
+                    }
+                    else
+                    {
+                        // Haven't tested since March 6th 2023 (Reason: Unavailable hardware).
+                        const ulong magic = 0b1000_0000_0100_0000_0010_0000_0001_0000_0000_1000_0000_0100_0000_0010_0000_0001;
+                        return unchecked((byte)(magic * reinterpret >> 56));
+                    }
+                }
+#endif
+            default:
+                byte result = 0;
+
+                for (var i = 0; i < source.Length; i++)
+                {
+                    result |= (byte)(source[i] ? 1 << i : 0);
+                }
+
+                return result;
+        }
     }
 }

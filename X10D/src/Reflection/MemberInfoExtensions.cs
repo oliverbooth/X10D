@@ -37,7 +37,6 @@ public static class MemberInfoExtensions
             throw new ArgumentNullException(nameof(member));
         }
 #endif
-        
         return Attribute.IsDefined(member, typeof(T));
     }
 
