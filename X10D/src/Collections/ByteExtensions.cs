@@ -22,9 +22,9 @@ public static class ByteExtensions
     [Pure]
     public static bool[] Unpack(this byte value)
     {
-        Span<bool> buffer = stackalloc bool[Size];
+        bool[] buffer = new bool[Size];
         value.Unpack(buffer);
-        return buffer.ToArray();
+        return buffer;
     }
 
     /// <summary>
