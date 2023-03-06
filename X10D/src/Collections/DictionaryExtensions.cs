@@ -66,12 +66,12 @@ public static class DictionaryExtensions
 
         return value;
 #else
-        if (dictionary.TryGetValue(key, out var old))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            var newValue = updateValueFactory(key, old);
-            dictionary[key] = newValue;
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
 
-            return newValue;
+            return updated;
         }
         else
         {
@@ -124,12 +124,12 @@ public static class DictionaryExtensions
         }
 #endif
 
-        if (dictionary.TryGetValue(key, out var old))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            var newValue = updateValueFactory(key, old);
-            dictionary[key] = newValue;
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
 
-            return newValue;
+            return updated;
         }
         else
         {
@@ -192,7 +192,7 @@ public static class DictionaryExtensions
 #endif
 
 #if NET6_0_OR_GREATER
-        ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
         if (exists)
         {
             value = updateValueFactory(key, value!);
@@ -204,12 +204,12 @@ public static class DictionaryExtensions
 
         return value;
 #else
-        if (dictionary.TryGetValue(key, out var old))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            var update = updateValueFactory(key, old);
-            dictionary[key] = update;
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
 
-            return update;
+            return updated;
         }
         else
         {
@@ -274,12 +274,12 @@ public static class DictionaryExtensions
         }
 #endif
 
-        if (dictionary.TryGetValue(key, out var old))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            var update = updateValueFactory(key, old);
-            dictionary[key] = update;
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
 
-            return update;
+            return updated;
         }
         else
         {
@@ -350,7 +350,7 @@ public static class DictionaryExtensions
 #endif
 
 #if NET6_0_OR_GREATER
-        ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
         if (exists)
         {
             value = updateValueFactory(key, value!, factoryArgument);
@@ -362,12 +362,12 @@ public static class DictionaryExtensions
 
         return value;
 #else
-        if (dictionary.TryGetValue(key, out var old))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            var update = updateValueFactory(key, old, factoryArgument);
-            dictionary[key] = update;
+            var updated = updateValueFactory(key, old, factoryArgument);
+            dictionary[key] = updated;
 
-            return update;
+            return updated;
         }
         else
         {
@@ -438,12 +438,12 @@ public static class DictionaryExtensions
         }
 #endif
 
-        if (dictionary.TryGetValue(key, out var old))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            var update = updateValueFactory(key, old, factoryArgument);
-            dictionary[key] = update;
+            var updated = updateValueFactory(key, old, factoryArgument);
+            dictionary[key] = updated;
 
-            return update;
+            return updated;
         }
         else
         {

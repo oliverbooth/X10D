@@ -17,7 +17,7 @@ public static class Int64Extensions
     [Pure]
     public static bool[] Unpack(this long value)
     {
-        bool[] ret = new bool[Size];
+        var ret = new bool[Size];
         value.Unpack(ret);
         return ret;
     }

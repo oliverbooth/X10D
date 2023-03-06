@@ -22,7 +22,7 @@ public static class ByteExtensions
     [Pure]
     public static bool[] Unpack(this byte value)
     {
-        bool[] buffer = new bool[Size];
+        var buffer = new bool[Size];
         value.Unpack(buffer);
         return buffer;
     }
@@ -59,10 +59,10 @@ public static class ByteExtensions
                     0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
                     0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80
                 );
-                var mask1Lo = Vector128.Create((byte)0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
+                var mask1 = Vector128.Create((byte)0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
 
                 var vec = Vector128.Create(value).AsByte();
-                var shuffle = Ssse3.Shuffle(vec, mask1Lo);
+                var shuffle = Ssse3.Shuffle(vec, mask1);
                 var and = Sse2.AndNot(shuffle, mask2);
                 var cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
                 var correctness = Sse2.And(cmp, Vector128.Create((byte)0x01));

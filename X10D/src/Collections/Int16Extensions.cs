@@ -22,7 +22,7 @@ public static class Int16Extensions
     [Pure]
     public static bool[] Unpack(this short value)
     {
-        bool[] ret = new bool[Size];
+        var ret = new bool[Size];
         value.Unpack(ret);
         return ret;
     }
