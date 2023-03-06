@@ -16,9 +16,9 @@ public static class Int32Extensions
     [Pure]
     public static byte[] GetBytes(this int value)
     {
-        Span<byte> buffer = stackalloc byte[4];
+        byte[] buffer = new byte[4];
         value.TryWriteBytes(buffer);
-        return buffer.ToArray();
+        return buffer;
     }
 
     /// <summary>
