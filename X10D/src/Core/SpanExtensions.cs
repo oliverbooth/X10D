@@ -22,7 +22,7 @@ public static class SpanExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
-    public static bool Contains<T>(this Span<T> span, T value) where T : Enum
+    public static bool Contains<T>(this Span<T> span, T value) where T : struct, Enum
     {
         return Contains((ReadOnlySpan<T>)span, value);
     }
@@ -40,11 +40,14 @@ public static class SpanExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
-    public static bool Contains<T>(this ReadOnlySpan<T> span, T value)
+    public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
+#if NET6_0_OR_GREATER
         // Use MemoryMarshal.CreateSpan instead of using creating new Span instance from pointer will trim down a lot of instructions
         // on Release mode.
         // https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AXEBDAzgWwB8ABABgAJiBGAOgCUBXAOwwEt8YaBJFmKCAA4BlPgDdWYGLgDcAWABQZSrUYt2nAMIR8A1gBs+IqOMkyFxAExVzFIQAtsUAQBlsweszYc588wGZyGCYGfHIAFSkMAFFg0JByVhZyAG8FcnTyAEE0cgAhHI0cgBE0BQBfBX9KC3INFLSMgG0AKVYMAHEgvgkACgwATwEYCAAzHojcaNiASmmAXQb0xoBZGAw7CAATLh09HtX1rZ2BPQB5ATYIJlwaTIBzO9hcXFZRGB49RMS78kJyA4221250u11uDyeLzeIPYrAAXthQfNFpQAtQkORmLhsCMYORgBAIHp/mtAVQADxhAB8PSEAmwTEpVPIuHpTByYXIomwegYMGm5AA7nY+HjOfEYiF6vIMrLyLARgkkkEQrhyABeeUwRUAVWuOM4mVwlJyiQwNIVJPw0H6y0cuAcehonQwdG1oqYkh6rIZsx8coyxAA7FabXaoA6eTQNLBETA6QyepaVfhcDkfUwaM4gnd1tNo1cMNhErgenrsbjbsawqaWBbtVyeXy/SiKjKMiiWm1OkxumA+oNhmMJlMQrMFu2lgCjrt9qSZycYVcbvdHlIoe8mJ8mN9fiTDkDFxdWMvwWvnq8YDD8PDESemMjJ6jlBisQb8YTidPNhYmbS2UyLJshyja8vyQoirA4TkBKsTSgG6TBuQvaCuQCaMmaNLlgaVYAAoQGafBJg2qzWlAtr2o6zprG6uKwJ6MDemyszpmyWY5nmBYsMW1xlvqlZGiaSrmsRircmBLZPm2ZRAA===
+
+        // Also use reference instead of MemoryMarshal.Cast to remove boundary check (or something, it just result in something like that).
 
         // TODO: Figure out some kind of way to directly pass the Span directly into Contains call, which make method smaller and more prone to inlining...
         unsafe
@@ -85,5 +88,16 @@ public static class SpanExtensions
             }
 #pragma warning restore CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
         }
+#else   // NET6_0_OR_GREATER
+        foreach (var it in span)
+        {
+            if (EqualityComparer<T>.Default.Equals(it, value))
+            {
+                return true;
+            }
+        }
+
+        return false;
+#endif  // NET6_0_OR_GREATER
     }
 }

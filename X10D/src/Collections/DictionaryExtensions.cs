@@ -58,7 +58,8 @@ public static class DictionaryExtensions
         if (exists)
         {
             value = updateValueFactory(key, value!);
-        } else
+        }
+        else
         {
             value = addValue;
         }
@@ -67,11 +68,15 @@ public static class DictionaryExtensions
 #else
         if (dictionary.TryGetValue(key, out var old))
         {
-            dictionary[key] = updateValueFactory(key, old);
+            var newValue = updateValueFactory(key, old);
+            dictionary[key] = newValue;
+
+            return newValue;
         }
         else
         {
             dictionary.Add(key, addValue);
+            return addValue;
         }
 #endif
     }
@@ -121,14 +126,16 @@ public static class DictionaryExtensions
 
         if (dictionary.TryGetValue(key, out var old))
         {
-            dictionary[key] = updateValueFactory(key, old);
+            var newValue = updateValueFactory(key, old);
+            dictionary[key] = newValue;
+
+            return newValue;
         }
         else
         {
             dictionary.Add(key, addValue);
+            return addValue;
         }
-
-        return dictionary[key];
     }
 
     /// <summary>
@@ -199,14 +206,18 @@ public static class DictionaryExtensions
 #else
         if (dictionary.TryGetValue(key, out var old))
         {
-            dictionary[key] = updateValueFactory(key, old);
+            var update = updateValueFactory(key, old);
+            dictionary[key] = update;
+
+            return update;
         }
         else
         {
-            dictionary.Add(key, addValueFactory(key));
-        }
+            var add = addValueFactory(key);
+            dictionary.Add(key, add);
 
-        return dictionary[key];
+            return add;
+        }
 #endif
     }
 
@@ -265,14 +276,18 @@ public static class DictionaryExtensions
 
         if (dictionary.TryGetValue(key, out var old))
         {
-            dictionary[key] = updateValueFactory(key, old);
+            var update = updateValueFactory(key, old);
+            dictionary[key] = update;
+
+            return update;
         }
         else
         {
-            dictionary.Add(key, addValueFactory(key));
-        }
+            var add = addValueFactory(key);
+            dictionary.Add(key, add);
 
-        return dictionary[key];
+            return add;
+        }
     }
 
     /// <summary>
@@ -349,14 +364,18 @@ public static class DictionaryExtensions
 #else
         if (dictionary.TryGetValue(key, out var old))
         {
-            dictionary[key] = updateValueFactory(key, old, factoryArgument);
+            var update = updateValueFactory(key, old, factoryArgument);
+            dictionary[key] = update;
+
+            return update;
         }
         else
         {
-            dictionary.Add(key, addValueFactory(key, factoryArgument));
-        }
+            var add = addValueFactory(key, factoryArgument);
+            dictionary.Add(key, add);
 
-        return dictionary[key];
+            return add;
+        }
 #endif
     }
 
@@ -421,14 +440,18 @@ public static class DictionaryExtensions
 
         if (dictionary.TryGetValue(key, out var old))
         {
-            dictionary[key] = updateValueFactory(key, old, factoryArgument);
+            var update = updateValueFactory(key, old, factoryArgument);
+            dictionary[key] = update;
+
+            return update;
         }
         else
         {
-            dictionary.Add(key, addValueFactory(key, factoryArgument));
-        }
+            var add = addValueFactory(key, factoryArgument);
+            dictionary.Add(key, add);
 
-        return dictionary[key];
+            return add;
+        }
     }
 
     /// <summary>

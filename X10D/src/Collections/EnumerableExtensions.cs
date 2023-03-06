@@ -124,7 +124,7 @@ public static class EnumerableExtensions
                 continue;
             }
 
-            await item.DisposeAsync();
+            await item.DisposeAsync().ConfigureAwait(false);
         }
     }
 

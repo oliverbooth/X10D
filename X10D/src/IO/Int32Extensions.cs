@@ -30,7 +30,7 @@ public static class Int32Extensions
     [Pure]
     public static byte[] GetBytes(this int value, Endianness endianness)
     {
-        Span<byte> buffer = stackalloc byte[4];
+        byte[] buffer = new byte[4];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
     }
