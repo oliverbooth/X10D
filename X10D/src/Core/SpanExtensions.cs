@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Numerics;
 
 #if NETCOREAPP3_0_OR_GREATER
+using X10D.Core;
 using System.Runtime.Intrinsics;
-using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
+using System.Runtime.Intrinsics.Arm;
 #endif
 
 namespace X10D.Core;
@@ -134,52 +136,38 @@ public static class SpanExtensions
             case > 8: throw new ArgumentException("Source cannot contain more than 8 elements.", nameof(source));
             case 8:
 #if NETSTANDARD2_1
-                // TODO: Think of a way to do fast boolean correctness.
+                // TODO: Think of a way to do fast boolean correctness without using SIMD API.
                 goto default;
 #else
                 unsafe
                 {
                     ulong reinterpret;
 
-                    // Boolean correctness.
-                    if (Sse2.IsSupported)
-                    {
-                        fixed (bool* pSource = source)
+                    fixed (bool* pSource = source) {
+                        if (Sse2.IsSupported)
                         {
-                            var vec = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
-                            var cmp = Sse2.CompareEqual(vec, Vector128<byte>.Zero);
-                            var correctness = Sse2.AndNot(cmp, Vector128.Create((byte)1));
-
-                            reinterpret = correctness.AsUInt64().GetElement(0);
+                            reinterpret = Sse2.LoadScalarVector128((ulong*)pSource).AsByte().CorrectBoolean().AsUInt64().GetElement(0);
                         }
-                    }
-                    else if (AdvSimd.IsSupported)
-                    {
-                        // Haven't tested since March 6th 2023 (Reason: Unavailable hardware).
-                        fixed (bool* pSource = source)
+                        else if (AdvSimd.IsSupported)
                         {
-                            var vec = AdvSimd.LoadVector64((byte*)pSource);
-                            var cmp = AdvSimd.CompareEqual(vec, Vector64<byte>.Zero);
-                            var correctness = AdvSimd.BitwiseSelect(cmp, vec, Vector64<byte>.Zero);
-
-                            reinterpret = Unsafe.As<Vector64<byte>, ulong>(ref correctness);
+                            // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                            reinterpret = AdvSimd.LoadVector64((byte*)pSource).CorrectBoolean().AsUInt64().GetElement(0);
                         }
-                    }
-                    else
-                    {
-                        goto default;
+                        else
+                        {
+                            goto default;
+                        }
                     }
 
                     if (BitConverter.IsLittleEndian)
                     {
-                        const ulong magic = 0b0000_0001_0000_0010_0000_0100_0000_1000_0001_0000_0010_0000_0100_0000_1000_0000;
-
+                        const ulong magic = 0x0102040810204080;
                         return unchecked((byte)(magic * reinterpret >> 56));
                     }
                     else
                     {
-                        // Haven't tested since March 6th 2023 (Reason: Unavailable hardware).
-                        const ulong magic = 0b1000_0000_0100_0000_0010_0000_0001_0000_0000_1000_0000_0100_0000_0010_0000_0001;
+                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                        const ulong magic = 0x8040201008040201;
                         return unchecked((byte)(magic * reinterpret >> 56));
                     }
                 }
@@ -190,6 +178,177 @@ public static class SpanExtensions
                 for (var i = 0; i < source.Length; i++)
                 {
                     result |= (byte)(source[i] ? 1 << i : 0);
+                }
+
+                return result;
+        }
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="Span{T}"/> of booleans into a <see cref="short" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static short PackInt16(this Span<bool> source)
+    {
+        return PackInt16((ReadOnlySpan<bool>)source);
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="ReadOnlySpan{T}"/> of booleans into a <see cref="short" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
+    [Pure]
+    public static short PackInt16(this ReadOnlySpan<bool> source)
+    {
+        switch (source.Length)
+        {
+            case > 16: throw new ArgumentException("Source cannot contain more than than 16 elements.", nameof(source));
+            case 16:
+#if NETSTANDARD2_1
+                // TODO: Think of a way to do fast boolean correctness without using SIMD API.
+                goto default;
+#else
+                unsafe
+                {
+                    ulong reinterpret1, reinterpret2;
+
+                    fixed (bool* pSource = source)
+                    {
+                        if (Sse2.IsSupported)
+                        {
+                            var vector = Sse2.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                            reinterpret1 = vector.GetElement(0);
+                            reinterpret2 = vector.GetElement(1);
+                        }
+                        else if (AdvSimd.IsSupported)
+                        {
+                            // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                            var vector = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                            reinterpret1 = vector.GetElement(0);
+                            reinterpret2 = vector.GetElement(1);
+                        }
+                        else
+                        {
+                            goto default;
+                        }
+                    }
+
+                    if (BitConverter.IsLittleEndian)
+                    {
+                        const ulong magic = 0x0102040810204080;
+
+                        ulong calc1 = unchecked(magic * reinterpret1 >> 56);
+                        ulong calc2 = unchecked(magic * reinterpret2 >> 56);
+
+                        return (short)(calc1 | (calc2 << 8));
+                    }
+                    else
+                    {
+                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                        const ulong magic = 0x8040201008040201;
+
+                        ulong calc1 = unchecked(magic * reinterpret1 >> 56);
+                        ulong calc2 = unchecked(magic * reinterpret2 >> 56);
+
+                        return (short)(calc2 | (calc1 << 8));
+                    }
+                }
+#endif
+
+            default:
+                short result = 0;
+
+                for (var i = 0; i < source.Length; i++)
+                {
+                    result |= (short)(source[i] ? 1 << i : 0);
+                }
+
+                return result;
+        }
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="Span{T}"/> of booleans into a <see cref="int" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int PackInt32(this Span<bool> source)
+    {
+        return PackInt32((ReadOnlySpan<bool>)source);
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="ReadOnlySpan{T}"/> of booleans into a <see cref="int" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
+    [Pure]
+    public static int PackInt32(this ReadOnlySpan<bool> source)
+    {
+        switch (source.Length)
+        {
+            case > 32: throw new ArgumentException("Source cannot contain more than than 32 elements.", nameof(source));
+            case 32:
+                // TODO: Accelerate this.
+                goto default;
+
+            default:
+                int result = 0;
+
+                for (var i = 0; i < source.Length; i++)
+                {
+                    result |= source[i] ? 1 << i : 0;
+                }
+
+                return result;
+        }
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="Span{T}"/> of booleans into a <see cref="long" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static long PackInt64(this Span<bool> source)
+    {
+        return PackInt64((ReadOnlySpan<bool>)source);
+    }
+
+    /// <summary>
+    ///     Packs a <see cref="ReadOnlySpan{T}"/> of booleans into a <see cref="long" />.
+    /// </summary>
+    /// <param name="source">The span of booleans to pack.</param>
+    /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
+    /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
+    [Pure]
+    public static long PackInt64(this ReadOnlySpan<bool> source)
+    {
+        switch (source.Length)
+        {
+            case > 64: throw new ArgumentException("Source cannot contain more than than 64 elements.", nameof(source));
+            case 64:
+                // TODO: Accelerate this.
+                goto default;
+
+            default:
+                long result = 0;
+
+                for (var i = 0; i < source.Length; i++)
+                {
+                    result |= source[i] ? 1U << i : 0;
                 }
 
                 return result;
