@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 
+#pragma warning disable CA5394
+
 namespace X10D.Drawing;
 
 /// <summary>

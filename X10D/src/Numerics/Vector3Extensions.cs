@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.Math;
 
 namespace X10D.Numerics;
 
@@ -9,6 +10,56 @@ namespace X10D.Numerics;
 /// </summary>
 public static class Vector3Extensions
 {
+    /// <summary>
+    ///     Deconstructs the current <see cref="Vector3" /> into its components.
+    /// </summary>
+    /// <param name="vector">The vector to deconstruct.</param>
+    /// <param name="x">The X component value.</param>
+    /// <param name="y">The Y component value.</param>
+    /// <param name="z">The Z component value.</param>
+    public static void Deconstruct(this Vector3 vector, out float x, out float y, out float z)
+    {
+        x = vector.X;
+        y = vector.Y;
+        z = vector.Z;
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector3" /> to the nearest integer.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static Vector3 Round(this Vector3 vector)
+    {
+        return vector.Round(1.0f);
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector3" /> to the nearest multiple of a specified number.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static Vector3 Round(this Vector3 vector, float nearest)
+    {
+        float x = vector.X.Round(nearest);
+        float y = vector.Y.Round(nearest);
+        float z = vector.Z.Round(nearest);
+        return new Vector3(x, y, z);
+    }
+
     /// <summary>
     ///     Returns a vector whose Y and Z components are the same as the specified vector, and whose X component is a new value.
     /// </summary>

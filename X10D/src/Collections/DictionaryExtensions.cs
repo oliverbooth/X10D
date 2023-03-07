@@ -482,7 +482,7 @@ public static class DictionaryExtensions
                 return string.Empty;
             }
 
-            return value.Contains(' ', StringComparison.InvariantCulture) ? $"\"{value}\"" : value;
+            return value.Contains(' ', StringComparison.Ordinal) ? $"\"{value}\"" : value;
         }
 
         static string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
@@ -537,7 +537,7 @@ public static class DictionaryExtensions
                 return string.Empty;
             }
 
-            return value.Contains(' ', StringComparison.InvariantCulture) ? $"\"{value}\"" : value;
+            return value.Contains(' ', StringComparison.Ordinal) ? $"\"{value}\"" : value;
         }
 
         string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
@@ -606,7 +606,7 @@ public static class DictionaryExtensions
                 return string.Empty;
             }
 
-            return value.Contains(' ', StringComparison.InvariantCulture) ? $"\"{value}\"" : value;
+            return value.Contains(' ', StringComparison.Ordinal) ? $"\"{value}\"" : value;
         }
 
         string GetQueryParameter(KeyValuePair<TKey, TValue> pair)

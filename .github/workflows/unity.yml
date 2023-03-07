@@ -40,7 +40,7 @@ jobs:
           cp -r ./X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.dll ./X10D.Unity.Tests/Assets/Libraries/X10D.Unity.dll
 
       - name: Unity - Test runner
-        uses: game-ci/unity-test-runner@v2.0.2
+        uses: game-ci/unity-test-runner@v2.1.0
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}

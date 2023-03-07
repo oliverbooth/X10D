@@ -1,5 +1,130 @@
 # Changelog
 
+## 3.2.0
+### Added
+- Added new library X10D.DSharpPlus
+- Added new library X10D.Hosting
+- Added .NET 7 target
+
+- X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
+- X10D: Added `MathUtility.ScaleRange(float, float, float, float, float)` and `MathUtility.ScaleRange(double, double, double, double, double)`
+- X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
+- X10D: Added `Color.Deconstruct()` - with optional alpha parameter
+- X10D: Added `Color.GetClosestConsoleColor()`
+- X10D: Added `DateTime.GetIso8601WeekOfYear()` and `DateTimeOffset.GetIso8601WeekOfYear()`
+- X10D: Added `DirectoryInfo.Clear()`
+- X10D: Added `double.LinearToGamma([gamma])` and `float.LinearToGamma([gamma])` (#60)
+- X10D: Added `double.GammaToLinear([gamma])` and `float.GammaToLinear([gamma])` (#60)
+- X10D: Added `GreatestCommonFactor` for built-in integer types
+- X10D: Added `IEnumerable<T>.CountWhereNot(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.FirstWhereNot(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.FirstWhereNotOrDefault(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.LastWhereNot(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.LastWhereNotOrDefault(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.WhereNot(Func<T, bool>)`
+- X10D: Added `IEnumerable<T>.WhereNotNull()`
+- X10D: Added `IList<T>.RemoveRange(Range)`
+- X10D: Added `IList<T>.Swap(IList<T>)` (#62)
+- X10D: Added `IReadOnlyList<T>.IndexOf(T[, int[, int]])`
+- X10D: Added `IReadOnlyList<T>.Slice(int[, int]])`
+- X10D: Added `Wrap(T[, T])` for built-in numeric types (#60)
+- X10D: Added `Nullable<T>.TryGetValue(out T)` (#61)
+- X10D: Added `Point.IsOnLine(LineF)`, `Point.IsOnLine(PointF, PointF)`, and `Point.IsOnLine(Vector2, Vector2)`
+- X10D: Added `PointF.IsOnLine(LineF)`, `PointF.IsOnLine(PointF, PointF)`, and `PointF.IsOnLine(Vector2, Vector2)`
+- X10D: Added `Point.ToSize()`
+- X10D: Added `Point.ToSizeF()`
+- X10D: Added `Point.ToVector2()`
+- X10D: Added `PointF.Round([float])`
+- X10D: Added `PointF.ToSizeF()`
+- X10D: Added `PointF.ToVector2()` for .NET < 6
+- X10D: Added `PopCount()` for built-in integer types
+- X10D: Added `Quaternion.ToAxisAngle(out float, out float)`
+- X10D: Added `Quaternion.ToVector3()`
+- X10D: Added `Random.NextFrom(Span<T>)` and `Random.NextFrom(ReadOnlySpan<T>)`
+- X10D: Added `ReadOnlySpan<char>.CountSubstring(char)`
+- X10D: Added `ReadOnlySpan<char>.CountSubstring(ReadOnlySpan<char>[, StringComparison])`
+- X10D: Added `ReadOnlySpan<char>.ToTimeSpan()`
+- X10D: Added `ReadOnlySpan<T>.Split(T)`
+- X10D: Added `ReadOnlySpan<T>.Split(ReadOnlySpan<T>)`
+- X10D: Added `RoundUpToPowerOf2()` for built-in integer types
+- X10D: Added `Size.ToPoint()`
+- X10D: Added `Size.ToPointF()`
+- X10D: Added `Size.ToVector2()`
+- X10D: Added `Span<char>.CountSubstring(char)`
+- X10D: Added `Span<char>.CountSubstring(Span<char>[, StringComparison])`
+- X10D: Added `Span<T>.Split(T)`
+- X10D: Added `Span<T>.Split(Span<T>)`
+- X10D: Added `string.CountSubstring(char)`
+- X10D: Added `string.CountSubstring(string[, StringComparison])`
+- X10D: Added `string.IsEmpty()`
+- X10D: Added `string.IsWhiteSpace()`
+- X10D: Added `string.IsNullOrEmpty()`
+- X10D: Added `string.IsNullOrWhiteSpace()`
+- X10D: Added `TimeSpan.TryParse(ReadOnlySpan<char>, out TimeSpan)`
+- X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator
+- X10D: Added `Vector2.Deconstruct()`
+- X10D: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
+- X10D: Added `Vector2.Round([float])`
+- X10D: Added `Vector2.ToPointF()`
+- X10D: Added `Vector2.ToSizeF()`
+- X10D: Added `Vector3.Deconstruct()`
+- X10D: Added `Vector3.Round([float])`
+- X10D: Added `Vector4.Deconstruct()`
+- X10D: Added `Vector4.Round([float])`
+- X10D.Unity: Added `DebugEx`, which mimics `UnityEngine.Debug` while offering more useful primitive drawing methods
+- X10D.Unity: Added `System.Drawing.Color.ToUnityColor()`
+- X10D.Unity: Added `System.Drawing.Color.ToUnityColor32()`
+- X10D.Unity: Added `Color.Deconstruct()` - with optional alpha parameter
+- X10D.Unity: Added `Color.GetClosestConsoleColor()`
+- X10D.Unity: Added `Color.ToSystemDrawingColor()`
+- X10D.Unity: Added `Color32.Deconstruct()` - with optional alpha parameter
+- X10D.Unity: Added `Color32.GetClosestConsoleColor()`
+- X10D.Unity: Added `Color32.ToSystemDrawingColor()`
+- X10D.Unity: Added `Point.ToUnityVector2()`
+- X10D.Unity: Added `Point.ToUnityVector2Int()`
+- X10D.Unity: Added `PointF.ToUnityVector2()`
+- X10D.Unity: Added `Rect.ToSystemRectangleF()`
+- X10D.Unity: Added `RectInt.ToSystemRectangle()`
+- X10D.Unity: Added `RectInt.ToSystemRectangleF()`
+- X10D.Unity: Added `Rectangle.ToUnityRect()`
+- X10D.Unity: Added `Rectangle.ToUnityRectInt()`
+- X10D.Unity: Added `RectangleF.ToUnityRect()`
+- X10D.Unity: Added `Size.ToUnityVector2()`
+- X10D.Unity: Added `Size.ToUnityVector2Int()`
+- X10D.Unity: Added `SizeF.ToUnityVector2()`
+- X10D.Unity: Added `Vector2.Deconstruct()`
+- X10D.Unity: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
+- X10D.Unity: Added `Vector2Int.IsOnLine(LineF)`, `Vector2Int.IsOnLine(PointF, PointF)`, `Vector2Int.IsOnLine(Vector2, Vector2)`, and `Vector2Int.IsOnLine(Vector2Int, Vector2Int)`
+- X10D.Unity: Added `Vector2.Round([float])`
+- X10D.Unity: Added `Vector2.ToSystemPointF()`
+- X10D.Unity: Added `Vector2.ToSystemSizeF()`
+- X10D.Unity: Added `Vector2Int.Deconstruct()`
+- X10D.Unity: Added `Vector2Int.ToSystemPoint()`
+- X10D.Unity: Added `Vector2Int.ToSystemSize()`
+- X10D.Unity: Added `Vector2Int.ToSystemVector()`
+- X10D.Unity: Added `Vector2Int.WithX()`
+- X10D.Unity: Added `Vector2Int.WithY()`
+- X10D.Unity: Added `Vector3.Deconstruct()`
+- X10D.Unity: Added `Vector3.Round([float])`
+- X10D.Unity: Added `Vector3Int.Deconstruct()`
+- X10D.Unity: Added `Vector3Int.ToSystemVector()`
+- X10D.Unity: Added `Vector3Int.WithX()`
+- X10D.Unity: Added `Vector3Int.WithY()`
+- X10D.Unity: Added `Vector3Int.WithZ()`
+- X10D.Unity: Added `Vector4.Deconstruct()`
+- X10D.Unity: Added `Vector4.Round([float])`
+- X10D.Unity: Added `WaitForFrames` yield instruction
+- X10D.Unity: Added `WaitForKeyDown` yield instruction
+- X10D.Unity: Added `WaitForKeyUp` yield instruction
+- X10D.Unity: Added `WaitForSecondsNoAlloc` yield instruction
+- X10D.Unity: Added `WaitForSecondsRealtimeNoAlloc` yield instruction
+- X10D.Unity: Added `WaitForTimeSpanNoAlloc` yield instruction
+- X10D.Unity: Added `WaitForTimeSpanRealtimeNoAlloc` yield instruction
+
+### Changed
+- X10D: `TimeSpanParser.TryParse` now accepts a nullable string, and returns false if this input is null or empty
+- X10D.Unity: `Singleton<T>` now caches instance where possible
+
 ## [3.1.0]
 ### Added
 - Reintroduced Unity support

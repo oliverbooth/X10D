@@ -36,11 +36,33 @@ public class UInt64Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const ulong first = 5UL;
+        const ulong second = 7UL;
+
+        ulong multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1UL, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const ulong first = 12UL;
+        const ulong second = 18UL;
+
+        ulong multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6UL, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const ulong one = 1;
         const ulong two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -50,7 +72,7 @@ public class UInt64Tests
     {
         const ulong one = 1;
         const ulong two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }

@@ -31,11 +31,33 @@ public class Int16Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const short first = 5;
+        const short second = 7;
+
+        short multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const short first = 12;
+        const short second = 18;
+
+        short multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const short one = 1;
         const short two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -45,7 +67,7 @@ public class Int16Tests
     {
         const short one = 1;
         const short two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }
