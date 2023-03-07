@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Numerics;
 
 #if NETCOREAPP3_0_OR_GREATER
 using X10D.Core;
@@ -17,6 +16,10 @@ namespace X10D.Core;
 /// </summary>
 public static class SpanExtensions
 {
+#if NETCOREAPP3_0_OR_GREATER
+    private const ulong IntegerPackingMagic = 0x0102040810204080;
+#endif
+
     /// <summary>
     ///     Indicate whether a specific enumeration value is found in a span.
     /// </summary>
@@ -129,7 +132,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    public static byte PackByte(this ReadOnlySpan<bool> source)
+    public static unsafe byte PackByte(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
@@ -139,36 +142,29 @@ public static class SpanExtensions
                 // TODO: Think of a way to do fast boolean correctness without using SIMD API.
                 goto default;
 #else
-                unsafe
+                // TODO: Acceleration in Big Endian environment.
+                if (!BitConverter.IsLittleEndian)
                 {
-                    ulong reinterpret;
+                    goto default;
+                }
 
-                    fixed (bool* pSource = source) {
-                        if (Sse2.IsSupported)
-                        {
-                            reinterpret = Sse2.LoadScalarVector128((ulong*)pSource).AsByte().CorrectBoolean().AsUInt64().GetElement(0);
-                        }
-                        else if (AdvSimd.IsSupported)
-                        {
-                            // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                            reinterpret = AdvSimd.LoadVector64((byte*)pSource).CorrectBoolean().AsUInt64().GetElement(0);
-                        }
-                        else
-                        {
-                            goto default;
-                        }
-                    }
+                fixed (bool* pSource = source) {
+                    // TODO: .NET 8.0 Wasm support.
 
-                    if (BitConverter.IsLittleEndian)
+                    if (Sse2.IsSupported)
                     {
-                        const ulong magic = 0x0102040810204080;
-                        return unchecked((byte)(magic * reinterpret >> 56));
+                        var scalar = Sse2.LoadScalarVector128((ulong*)pSource).AsByte().CorrectBoolean().AsUInt64();
+                        return unchecked((byte)(IntegerPackingMagic * scalar.GetElement(0) >> 56));
+                    }
+                    else if (AdvSimd.IsSupported)
+                    {
+                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                        var scalar = AdvSimd.LoadVector64((byte*)pSource).CorrectBoolean().AsUInt64();
+                        return unchecked((byte)(IntegerPackingMagic * scalar.GetElement(0) >> 56));
                     }
                     else
                     {
-                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        const ulong magic = 0x8040201008040201;
-                        return unchecked((byte)(magic * reinterpret >> 56));
+                        goto default;
                     }
                 }
 #endif
@@ -204,59 +200,47 @@ public static class SpanExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
     [Pure]
-    public static short PackInt16(this ReadOnlySpan<bool> source)
+    public static unsafe short PackInt16(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
             case > 16: throw new ArgumentException("Source cannot contain more than than 16 elements.", nameof(source));
+            case 8: return PackByte(source);    // Potential optimization
+
             case 16:
 #if NETSTANDARD2_1
                 // TODO: Think of a way to do fast boolean correctness without using SIMD API.
                 goto default;
 #else
-                unsafe
+                // TODO: Acceleration in Big Endian environment.
+                if (!BitConverter.IsLittleEndian)
                 {
-                    ulong reinterpret1, reinterpret2;
+                    goto default;
+                }
 
-                    fixed (bool* pSource = source)
+                fixed (bool* pSource = source)
+                {
+                    // TODO: .NET 8.0 Wasm support.
+                    // TODO: Implement a replacement for UInt64 vector multiplication (there are no instruction for this built-in).
+
+                    if (Sse2.IsSupported)
                     {
-                        if (Sse2.IsSupported)
-                        {
-                            var vector = Sse2.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
-                            reinterpret1 = vector.GetElement(0);
-                            reinterpret2 = vector.GetElement(1);
-                        }
-                        else if (AdvSimd.IsSupported)
-                        {
-                            // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                            var vector = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
-                            reinterpret1 = vector.GetElement(0);
-                            reinterpret2 = vector.GetElement(1);
-                        }
-                        else
-                        {
-                            goto default;
-                        }
+                        var vector = Sse2.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                        var calc = Sse2.ShiftRightLogical(IntrinsicUtility.Multiply(Vector128.Create(IntegerPackingMagic), vector), 56);
+
+                        return (short)(calc.GetElement(0) | (calc.GetElement(1) << 8));
                     }
-
-                    if (BitConverter.IsLittleEndian)
+                    else if (AdvSimd.IsSupported)
                     {
-                        const ulong magic = 0x0102040810204080;
+                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                        var vector = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                        var calc = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(Vector128.Create(IntegerPackingMagic), vector), 56);
 
-                        ulong calc1 = unchecked(magic * reinterpret1 >> 56);
-                        ulong calc2 = unchecked(magic * reinterpret2 >> 56);
-
-                        return (short)(calc1 | (calc2 << 8));
+                        return (short)(calc.GetElement(0) | (calc.GetElement(1) << 8));
                     }
                     else
                     {
-                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        const ulong magic = 0x8040201008040201;
-
-                        ulong calc1 = unchecked(magic * reinterpret1 >> 56);
-                        ulong calc2 = unchecked(magic * reinterpret2 >> 56);
-
-                        return (short)(calc2 | (calc1 << 8));
+                        goto default;
                     }
                 }
 #endif
@@ -293,14 +277,81 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    public static int PackInt32(this ReadOnlySpan<bool> source)
+    public static unsafe int PackInt32(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
             case > 32: throw new ArgumentException("Source cannot contain more than than 32 elements.", nameof(source));
+            case 8: return PackByte(source);
+            case 16: return PackInt16(source);
+
             case 32:
-                // TODO: Accelerate this.
+#if NETSTANDARD2_1
+                // TODO: Think of a way to do fast boolean correctness without using SIMD API.
                 goto default;
+#else
+                // TODO: Acceleration in Big Endian environment.
+                if (!BitConverter.IsLittleEndian)
+                {
+                    goto default;
+                }
+
+                fixed (bool* pSource = source)
+                {
+                    // TODO: .NET 8.0 Wasm support.
+                    // TODO: Implement a replacement for UInt64 vector multiplication (there are no instruction for this built-in).
+
+                    if (Avx2.IsSupported)
+                    {
+                        var vector = Avx.LoadVector256((byte*)pSource).CorrectBoolean().AsUInt64();
+
+                        var calc = Avx2.ShiftRightLogical(IntrinsicUtility.Multiply(Vector256.Create(IntegerPackingMagic), vector), 56);
+                        var shift = Avx2.ShiftLeftLogicalVariable(calc, Vector256.Create(0UL, 8, 16, 24));
+
+                        var p1 = Avx2.Permute4x64(shift, 0b10_11_00_01);
+                        var or1 = Avx2.Or(shift, p1);
+                        var p2 = Avx2.Permute4x64(or1, 0b00_00_10_10);
+                        var or2 = Avx2.Or(or1, p2);
+
+                        return (int)or2.GetElement(0);
+                    }
+                    if (Sse2.IsSupported)
+                    {
+                        var vector1 = Sse2.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                        var vector2 = Sse2.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
+
+                        var magic = Vector128.Create(IntegerPackingMagic);
+
+                        var calc1 = Sse2.ShiftRightLogical(IntrinsicUtility.Multiply(magic, vector1), 56);
+                        var calc2 = Sse2.ShiftRightLogical(IntrinsicUtility.Multiply(magic, vector2), 56);
+
+                        var shift1 = Sse2.ShiftLeftLogical(calc1, Vector128.Create(0UL, 8UL));
+                        var shift2 = Sse2.ShiftLeftLogical(calc2, Vector128.Create(16UL, 24UL));
+
+                        return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
+                    }
+                    else if (AdvSimd.IsSupported)
+                    {
+                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                        var vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                        var vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
+
+                        var magic = Vector128.Create(IntegerPackingMagic);
+
+                        var calc1 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(magic, vector1), 56);
+                        var calc2 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(magic, vector2), 56);
+
+                        var shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
+                        var shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
+
+                        return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                }
+#endif
 
             default:
                 int result = 0;
@@ -334,14 +385,14 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    public static long PackInt64(this ReadOnlySpan<bool> source)
+    public static unsafe long PackInt64(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
             case > 64: throw new ArgumentException("Source cannot contain more than than 64 elements.", nameof(source));
             case 64:
-                // TODO: Accelerate this.
-                goto default;
+                // TODO: Reimplement when Vector512 is in standard API.
+                return (long)PackInt32(source[..32]) | ((long)PackInt32(source[32..]) << 32);
 
             default:
                 long result = 0;
