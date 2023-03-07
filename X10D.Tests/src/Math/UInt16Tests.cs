@@ -14,7 +14,7 @@ public class UInt16Tests
         Assert.AreEqual(4, value.DigitalRoot());
         Assert.AreEqual(4, (-value).DigitalRoot());
     }
-    
+
     [TestMethod]
     public void FactorialShouldBeCorrect()
     {
@@ -32,11 +32,33 @@ public class UInt16Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const ushort first = 5;
+        const ushort second = 7;
+
+        ushort multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const ushort first = 12;
+        const ushort second = 18;
+
+        ushort multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const ushort one = 1;
         const ushort two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -46,7 +68,7 @@ public class UInt16Tests
     {
         const ushort one = 1;
         const ushort two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
     }

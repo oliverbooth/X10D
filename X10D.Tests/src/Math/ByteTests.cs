@@ -31,6 +31,28 @@ public class ByteTests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const byte first = 5;
+        const byte second = 7;
+
+        byte multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const byte first = 12;
+        const byte second = 18;
+
+        byte multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const byte one = 1;

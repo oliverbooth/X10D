@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -163,6 +163,95 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     Counts the occurrences of a character within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this Span<char> haystack, char needle)
+    {
+        return CountSubstring((ReadOnlySpan<char>)haystack, needle);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this ReadOnlySpan<char> haystack, char needle)
+    {
+        var count = 0;
+
+        for (var index = 0; index < haystack.Length; index++)
+        {
+            if (haystack[index] == needle)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current string.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, char needle)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(haystack);
+#else
+        if (haystack is null)
+        {
+            throw new ArgumentNullException(nameof(haystack));
+        }
+#endif
+
+        return haystack.AsSpan().CountSubstring(needle);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current string.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The substring to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, string? needle)
+    {
+        return CountSubstring(haystack, needle, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current string, using a specified string comparison method.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The substring to count.</param>
+    /// <param name="comparison">The string comparison method used for determining substring count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, string? needle, StringComparison comparison)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(haystack);
+#else
+        if (haystack is null)
+        {
+            throw new ArgumentNullException(nameof(haystack));
+        }
+#endif
+
+        if (string.IsNullOrWhiteSpace(needle))
+        {
+            return 0;
+        }
+
+        return haystack.AsSpan().CountSubstring(needle, comparison);
+    }
+
+    /// <summary>
     ///     Parses a <see cref="string" /> into an <see cref="Enum" />.
     /// </summary>
     /// <typeparam name="T">The type of the <see cref="Enum" />.</typeparam>
@@ -321,6 +410,34 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     Returns a value indicating whether the current string represents an empty string.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is empty; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsEmpty(this string value)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
+        return value.Length == 0;
+    }
+
+    /// <summary>
     ///     Determines if all alpha characters in this string are considered lowercase.
     /// </summary>
     /// <param name="value">The input string.</param>
@@ -374,6 +491,46 @@ public static class StringExtensions
         }
 
         return true;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current string is <see langword="null" /> (<see langword="Nothing" /> in Visual
+    ///     Basic), or represents an empty string.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsNullOrEmpty([NotNullWhen(false)] this string? value)
+    {
+        return string.IsNullOrEmpty(value);
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current string is <see langword="null" /> (<see langword="Nothing" /> in Visual
+    ///     Basic), represents an empty string, or consists of only whitespace characters.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
+    ///     whitespace; otherwise, <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? value)
+    {
+        return string.IsNullOrWhiteSpace(value);
     }
 
     /// <summary>
@@ -508,6 +665,49 @@ public static class StringExtensions
                 return false;
             }
 #endif
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current string represents an empty string, or consists of only whitespace
+    ///     characters.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is empty or consists of only whitespace; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsWhiteSpace(this string value)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
+        if (value.Length == 0)
+        {
+            return true;
+        }
+
+        for (var index = 0; index < value.Length; index++)
+        {
+            if (!char.IsWhiteSpace(value[index]))
+            {
+                return false;
+            }
         }
 
         return true;

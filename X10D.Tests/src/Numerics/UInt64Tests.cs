@@ -8,6 +8,24 @@ namespace X10D.Tests.Numerics;
 public class UInt64Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, 0UL.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, 0b11010101UL.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe64_Given1111111111111111111111111111111111111111111111111111111111111111()
+    {
+        Assert.AreEqual(64, 0b1111111111111111111111111111111111111111111111111111111111111111UL.PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const ulong value = 5972019251303316844;     // 01010010 11100000 11011111 11011110 00110001 10111010 01111101 01101100
@@ -39,5 +57,30 @@ public class UInt64Tests
     {
         const ulong value = 5972019251303316844; // 01010010 11100000 11011111 11011110 00110001 10111010 01111101 01101100
         Assert.AreEqual(value, value.RotateRight(64));
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
+    {
+        Assert.AreEqual(4UL, 3UL.RoundUpToPowerOf2());
+        Assert.AreEqual(8UL, 5UL.RoundUpToPowerOf2());
+        Assert.AreEqual(8UL, 6UL.RoundUpToPowerOf2());
+        Assert.AreEqual(8UL, 7UL.RoundUpToPowerOf2());
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
+    {
+        for (var i = 0; i < 8; i++)
+        {
+            var value = (ulong)System.Math.Pow(2, i);
+            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+        }
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturn0_Given0()
+    {
+        Assert.AreEqual(0UL, 0UL.RoundUpToPowerOf2());
     }
 }

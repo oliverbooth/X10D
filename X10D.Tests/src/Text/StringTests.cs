@@ -102,6 +102,47 @@ public class StringTests
     }
 
     [TestMethod]
+    public void CountSubstring_ShouldHonor_StringComparison()
+    {
+        Assert.AreEqual(0, "Hello World".CountSubstring('E'));
+        Assert.AreEqual(0, "Hello World".CountSubstring("E"));
+        Assert.AreEqual(1, "Hello World".CountSubstring("E", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldReturn0_GivenNoInstanceChar()
+    {
+        Assert.AreEqual(0, "Hello World".CountSubstring('z'));
+        Assert.AreEqual(0, "Hello World".CountSubstring("z"));
+        Assert.AreEqual(0, "Hello World".CountSubstring("z", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldReturn1_GivenSingleInstanceChar()
+    {
+        Assert.AreEqual(1, "Hello World".CountSubstring('e'));
+        Assert.AreEqual(1, "Hello World".CountSubstring("e"));
+        Assert.AreEqual(1, "Hello World".CountSubstring("e", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldReturn0_GivenEmptyHaystack()
+    {
+        Assert.AreEqual(0, string.Empty.CountSubstring('\0'));
+        Assert.AreEqual(0, string.Empty.CountSubstring(string.Empty));
+        Assert.AreEqual(0, string.Empty.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
+    public void CountSubstring_ShouldThrow_GivenNullHaystack()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null!).CountSubstring('\0'));
+        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null!).CountSubstring(string.Empty));
+        Assert.ThrowsException<ArgumentNullException>(() =>
+            ((string?)null!).CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
+    }
+
+    [TestMethod]
     public void EnumParse_ShouldReturnCorrectValue_GivenString()
     {
         Assert.AreEqual(DayOfWeek.Monday, "Monday".EnumParse<DayOfWeek>(false));
@@ -238,6 +279,32 @@ public class StringTests
     }
 
     [TestMethod]
+    public void IsEmpty_ShouldReturnTrue_GivenEmptyString()
+    {
+        Assert.IsTrue("".IsEmpty());
+        Assert.IsTrue(string.Empty.IsEmpty());
+    }
+
+    [TestMethod]
+    public void IsEmpty_ShouldReturnFalse_GivenWhiteSpaceString()
+    {
+        Assert.IsFalse(" ".IsEmpty());
+    }
+
+    [TestMethod]
+    public void IsEmpty_ShouldReturnFalse_GivenNonEmptyString()
+    {
+        Assert.IsFalse("Hello World".IsEmpty());
+    }
+
+    [TestMethod]
+    public void IsEmpty_ShouldThrowArgumentNullException_GivenNullString()
+    {
+        string? value = null;
+        Assert.ThrowsException<ArgumentNullException>(() => value!.IsEmpty());
+    }
+
+    [TestMethod]
     public void IsLower_ShouldReturnTrue_GivenLowercaseString()
     {
         Assert.IsTrue("hello world".IsLower());
@@ -260,6 +327,58 @@ public class StringTests
     {
         string? value = null;
         Assert.ThrowsException<ArgumentNullException>(() => value!.IsLower());
+    }
+
+    [TestMethod]
+    public void IsNullOrEmpty_ShouldReturnTrue_GivenEmptyString()
+    {
+        Assert.IsTrue("".IsNullOrEmpty());
+        Assert.IsTrue(string.Empty.IsNullOrEmpty());
+    }
+
+    [TestMethod]
+    public void IsNullOrEmpty_ShouldReturnFalse_GivenWhiteSpaceString()
+    {
+        Assert.IsFalse("   ".IsNullOrEmpty());
+    }
+
+    [TestMethod]
+    public void IsNullOrEmpty_ShouldReturnFalse_GivenNonEmptyString()
+    {
+        Assert.IsFalse("Hello World".IsNullOrEmpty());
+    }
+
+    [TestMethod]
+    public void IsNullOrEmpty_ShouldReturnTrue_GivenNullString()
+    {
+        string? value = null;
+        Assert.IsTrue(value.IsNullOrEmpty());
+    }
+
+    [TestMethod]
+    public void IsNullOrWhiteSpace_ShouldReturnTrue_GivenEmptyString()
+    {
+        Assert.IsTrue("".IsNullOrWhiteSpace());
+        Assert.IsTrue(string.Empty.IsNullOrWhiteSpace());
+    }
+
+    [TestMethod]
+    public void IsNullOrWhiteSpace_ShouldReturnTrue_GivenWhiteSpaceString()
+    {
+        Assert.IsTrue("   ".IsNullOrWhiteSpace());
+    }
+
+    [TestMethod]
+    public void IsNullOrWhiteSpace_ShouldReturnFalse_GivenNonEmptyString()
+    {
+        Assert.IsFalse("Hello World".IsNullOrWhiteSpace());
+    }
+
+    [TestMethod]
+    public void IsNullOrWhiteSpace_ShouldReturnTrue_GivenNullString()
+    {
+        string? value = null;
+        Assert.IsTrue(value.IsNullOrWhiteSpace());
     }
 
     [TestMethod]
@@ -315,6 +434,32 @@ public class StringTests
     {
         string? value = null;
         Assert.ThrowsException<ArgumentNullException>(() => value!.IsUpper());
+    }
+
+    [TestMethod]
+    public void IsWhiteSpace_ShouldReturnTrue_GivenEmptyString()
+    {
+        Assert.IsTrue("".IsWhiteSpace());
+        Assert.IsTrue(string.Empty.IsWhiteSpace());
+    }
+
+    [TestMethod]
+    public void IsWhiteSpace_ShouldReturnTrue_GivenWhiteSpaceString()
+    {
+        Assert.IsTrue("   ".IsWhiteSpace());
+    }
+
+    [TestMethod]
+    public void IsWhiteSpace_ShouldReturnFalse_GivenNonEmptyString()
+    {
+        Assert.IsFalse("Hello World".IsWhiteSpace());
+    }
+
+    [TestMethod]
+    public void IsWhiteSpace_ShouldThrowArgumentNullException_GivenNullString()
+    {
+        string? value = null;
+        Assert.ThrowsException<ArgumentNullException>(() => value!.IsWhiteSpace());
     }
 
     [TestMethod]

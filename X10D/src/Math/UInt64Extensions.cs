@@ -58,6 +58,29 @@ public static class UInt64Extensions
     }
 
     /// <summary>
+    ///     Calculates the greatest common factor between the current 64-bit unsigned integer, and another 64-bit unsigned
+    ///     integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ulong GreatestCommonFactor(this ulong value, ulong other)
+    {
+        while (other != 0)
+        {
+            (value, other) = (other, value % other);
+        }
+
+        return value;
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -93,12 +116,11 @@ public static class UInt64Extensions
     {
         switch (value)
         {
-            case < 2: return false;
-            case 2:
-            case 3: return true;
+            case <= 1: return false;
+            case <= 3: return true;
         }
 
-        if (value % 2 == 0 || value % 3 == 0)
+        if ((value & 1) == 0 || value % 3 == 0)
         {
             return false;
         }
@@ -186,5 +208,41 @@ public static class UInt64Extensions
         }
 
         return persistence;
+    }
+
+    /// <summary>
+    ///     Wraps the current 64-bit unsigned integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ulong Wrap(this ulong value, ulong low, ulong high)
+    {
+        ulong difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current 64-bit unsigned integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static ulong Wrap(this ulong value, ulong length)
+    {
+        return ((value % length) + length) % length;
     }
 }

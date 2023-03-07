@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
