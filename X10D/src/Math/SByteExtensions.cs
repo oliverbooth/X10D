@@ -64,6 +64,23 @@ public static class SByteExtensions
     }
 
     /// <summary>
+    ///     Calculates the greatest common factor between the current 8-bit signed integer, and another 8-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static sbyte GreatestCommonFactor(this sbyte value, sbyte other)
+    {
+        return (sbyte)((long)value).GreatestCommonFactor(other);
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -79,7 +96,7 @@ public static class SByteExtensions
 #endif
     public static bool IsEven(this sbyte value)
     {
-        return value % 2 == 0;
+        return (value & 1) == 0;
     }
 
     /// <summary>
@@ -200,5 +217,40 @@ public static class SByteExtensions
     public static int Sign(this sbyte value)
     {
         return System.Math.Sign(value);
+    }
+
+    /// <summary>
+    ///     Wraps the current 8-bit signed integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static sbyte Wrap(this sbyte value, sbyte low, sbyte high)
+    {
+        return (sbyte)((long)value).Wrap(low, high);
+    }
+
+    /// <summary>
+    ///     Wraps the current 8-bit signed integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static sbyte Wrap(this sbyte value, sbyte length)
+    {
+        return (sbyte)((long)value).Wrap(length);
     }
 }

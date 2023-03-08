@@ -493,4 +493,39 @@ public static class SingleExtensions
     {
         return MathF.Tanh(value);
     }
+
+    /// <summary>
+    ///     Wraps the current single-precision floating-point number between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static float Wrap(this float value, float low, float high)
+    {
+        return (float)((double)value).Wrap(low, high);
+    }
+
+    /// <summary>
+    ///     Wraps the current single-precision floating-point number between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static float Wrap(this float value, float length)
+    {
+        return (float)((double)value).Wrap(length);
+    }
 }

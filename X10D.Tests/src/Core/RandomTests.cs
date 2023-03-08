@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using X10D.Collections;
 using X10D.Core;
 
 namespace X10D.Tests.Core;
@@ -124,6 +125,48 @@ public class RandomTests
 
         var random = new Random(1234);
         Assert.AreEqual(0, random.NextFrom(Source()));
+    }
+
+    [TestMethod]
+    public void NextFromSpan_ShouldThrow_GivenNullRandom()
+    {
+        Random? random = null;
+        Assert.ThrowsException<ArgumentNullException>(() =>
+        {
+            Span<int> span = stackalloc int[1];
+            return random!.NextFrom(span);
+        });
+    }
+
+    [TestMethod]
+    public void NextFromReadOnlySpan_ShouldThrow_GivenNullRandom()
+    {
+        Random? random = null;
+        Assert.ThrowsException<ArgumentNullException>(() =>
+        {
+            Span<int> span = stackalloc int[1];
+            return random!.NextFrom(span.AsReadOnly());
+        });
+    }
+
+    [TestMethod]
+    public void NextFromSpan_ShouldReturnOnlyValue_GivenSpanWithLength1()
+    {
+        Span<int> span = stackalloc int[1];
+        span[0] = 42;
+
+        var random = new Random(1234);
+        Assert.AreEqual(42, random.NextFrom(span));
+    }
+
+    [TestMethod]
+    public void NextFromReadOnlySpan_ShouldReturnOnlyValue_GivenSpanWithLength1()
+    {
+        Span<int> span = stackalloc int[1];
+        span[0] = 42;
+
+        var random = new Random(1234);
+        Assert.AreEqual(42, random.NextFrom(span.AsReadOnly()));
     }
 
     [TestMethod]
