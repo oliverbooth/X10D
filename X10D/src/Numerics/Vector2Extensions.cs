@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.Drawing;
+using X10D.Math;
 
 namespace X10D.Numerics;
 
@@ -9,6 +12,150 @@ namespace X10D.Numerics;
 /// </summary>
 public static class Vector2Extensions
 {
+    /// <summary>
+    ///     Deconstructs the current <see cref="Vector2" /> into its components.
+    /// </summary>
+    /// <param name="vector">The vector to deconstruct.</param>
+    /// <param name="x">The X component value.</param>
+    /// <param name="y">The Y component value.</param>
+    public static void Deconstruct(this Vector2 vector, out float x, out float y)
+    {
+        x = vector.X;
+        y = vector.Y;
+    }
+
+    /// <summary>
+    ///     Determines if the current <see cref="Vector2" /> lies on the specified line.
+    /// </summary>
+    /// <param name="point">The point to check.</param>
+    /// <param name="line">The line on which the point may lie.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="line" />; otherwise
+    ///     <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsOnLine(this Vector2 point, LineF line)
+    {
+        (float x1, float x2) = (line.Start.X, line.End.X);
+        (float y1, float y2) = (line.Start.Y, line.End.Y);
+        (float x, float y) = (point.X, point.Y);
+        return System.Math.Abs((y2 - y1) * (x - x2) - (y - y2) * (x2 - x1)) < float.Epsilon;
+    }
+
+    /// <summary>
+    ///     Determines if the current <see cref="Vector2" /> lies on the specified line.
+    /// </summary>
+    /// <param name="point">The point to check.</param>
+    /// <param name="start">The starting point of the line.</param>
+    /// <param name="end">The ending point of the line.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+    ///     <paramref name="end" />; otherwise <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsOnLine(this Vector2 point, PointF start, PointF end)
+    {
+        return point.IsOnLine(new LineF(start, end));
+    }
+
+    /// <summary>
+    ///     Determines if the current <see cref="Vector2" /> lies on the specified line.
+    /// </summary>
+    /// <param name="point">The point to check.</param>
+    /// <param name="start">The starting point of the line.</param>
+    /// <param name="end">The ending point of the line.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="point" /> lies on the line defined by <paramref name="start" /> and
+    ///     <paramref name="end" />; otherwise <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsOnLine(this Vector2 point, Vector2 start, Vector2 end)
+    {
+        return point.IsOnLine(new LineF(start, end));
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector2" /> to the nearest integer.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static Vector2 Round(this Vector2 vector)
+    {
+        return vector.Round(1.0f);
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector2" /> to the nearest multiple of a specified number.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static Vector2 Round(this Vector2 vector, float nearest)
+    {
+        float x = vector.X.Round(nearest);
+        float y = vector.Y.Round(nearest);
+        return new Vector2(x, y);
+    }
+
+    /// <summary>
+    ///     Converts the current <see cref="Vector2" /> to a <see cref="PointF" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The resulting <see cref="PointF" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static PointF ToPointF(this Vector2 vector)
+    {
+        return new PointF(vector.X, vector.Y);
+    }
+
+    /// <summary>
+    ///     Converts the current <see cref="Vector2" /> to a <see cref="SizeF" />.
+    /// </summary>
+    /// <param name="vector">The vector to convert.</param>
+    /// <returns>The resulting <see cref="SizeF" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static SizeF ToSizeF(this Vector2 vector)
+    {
+        return new SizeF(vector.X, vector.Y);
+    }
+
     /// <summary>
     ///     Returns a vector whose Y component is the same as the specified vector, and whose X component is a new value.
     /// </summary>

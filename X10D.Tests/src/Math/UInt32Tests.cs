@@ -32,6 +32,28 @@ public class UInt32Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const uint first = 5U;
+        const uint second = 7U;
+
+        uint multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1U, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const uint first = 12U;
+        const uint second = 18U;
+
+        uint multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6U, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const uint one = 1;

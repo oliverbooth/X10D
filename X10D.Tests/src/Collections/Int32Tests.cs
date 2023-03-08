@@ -10,7 +10,7 @@ public class Int32Tests
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
         bool[] bits = 0b11010100.Unpack();
-        
+
         Assert.AreEqual(32, bits.Length);
 
         Assert.IsFalse(bits[0]);

@@ -32,6 +32,28 @@ public class SByteTests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const sbyte first = 5;
+        const sbyte second = 7;
+
+        sbyte multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const sbyte first = 12;
+        const sbyte second = 18;
+
+        sbyte multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const sbyte one = 1;

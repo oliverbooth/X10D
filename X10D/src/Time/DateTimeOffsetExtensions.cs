@@ -85,6 +85,25 @@ public static class DateTimeOffsetExtensions
     }
 
     /// <summary>
+    ///     Gets the ISO-8601 week number of the year for the current date.
+    /// </summary>
+    /// <param name="value">The date whose week number to return.</param>
+    /// <returns>The ISO-8601 week number of the year.</returns>
+    /// <author>Shawn Steele, Microsoft</author>
+    /// <remarks>
+    ///     This implementation is directly inspired from a
+    ///     <a href="https://docs.microsoft.com/en-gb/archive/blogs/shawnste/iso-8601-week-of-year-format-in-microsoft-net">
+    ///         blog post
+    ///     </a>.
+    ///     about this subject.
+    /// </remarks>
+    [Pure]
+    public static int GetIso8601WeekOfYear(this DateTimeOffset value)
+    {
+        return value.DateTime.GetIso8601WeekOfYear();
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the year represented by the current <see cref="DateTimeOffset" /> is a leap year.
     /// </summary>
     /// <param name="value">The date whose year to check.</param>
