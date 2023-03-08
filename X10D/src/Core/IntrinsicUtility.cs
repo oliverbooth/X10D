@@ -17,6 +17,8 @@ public static class IntrinsicUtility
     // ANYTHING OPERATION OPERATION ON ANYTHING THAT ISN'T FLOAT IS NOT SSE COMPATIBLE, MUST BE SSE2 AND BEYOND VERSION
     // FOR API CONSISTENCY.
 
+    // TODO: Fallback? No idea if it is worth it since even CPU made from before 2000 support SSE and SSE2.
+
     /// <summary>
     ///     <br>Correcting <see cref="Vector64{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.</br>
     ///     <br>Operation (raw):</br>
@@ -33,8 +35,9 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
     /// <remarks>API avaliable on ARM NEON (untested) hardware.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't suppot ARM NEON intrinsic set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector64<byte> CorrectBoolean(Vector64<byte> vector)
@@ -47,12 +50,14 @@ public static class IntrinsicUtility
 
             return result;
         }
-        if (Sse.IsSupported)
+
+        // No comparison, bitwise AND with 64-bit vector on SSE and beyond.
+        if (Sse2.IsSupported)
         {
-            throw new PlatformNotSupportedException("Cannot correct boolean of Vector64<byte> on SSE intrinsic set.");
+            throw new PlatformNotSupportedException("Operation is not supported on SSE2 instruction set.");
         }
 
-        throw new PlatformNotSupportedException("Unknown Intrinsic platform.");
+        throw new PlatformNotSupportedException("Unknown intrinsic instruction set.");
     }
 
     /// <summary>
@@ -71,8 +76,9 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
     /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM NEON (untested) hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM NEON or SSE2 instruction set.</exception> 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<byte> CorrectBoolean(Vector128<byte> vector)
@@ -93,7 +99,7 @@ public static class IntrinsicUtility
             return result;
         }
 
-        throw new PlatformNotSupportedException("Unknown Intrinsic platform.");
+        throw new PlatformNotSupportedException("Unknown intrinsic instruction set.");
     }
 
     /// <summary>
@@ -112,8 +118,9 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
     /// <remarks>API avaliable on AVX2 hardware.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support AVX2 instruction set.</exception> 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector256<byte> CorrectBoolean(Vector256<byte> vector)
@@ -125,12 +132,13 @@ public static class IntrinsicUtility
 
             return result;
         }
+
         if (AdvSimd.IsSupported)
         {
-            throw new PlatformNotSupportedException("Cannot correct boolean of Vector256<byte> on ARM intrinsic set.");
+            throw new PlatformNotSupportedException("Operation is not supported on ARM NEON instruction set.");
         }
 
-        throw new PlatformNotSupportedException("Unknown Intrinsic platform.");
+        throw new PlatformNotSupportedException("Unknown intrinsic instruction set.");
     }
 
     /// <summary>
@@ -143,8 +151,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
     /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM NEON (untested) hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support SSE2 or ARM NEON instruction set.</exception>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -192,8 +201,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
     /// <remarks>API avaliable on AVX2 hardware.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support AVX2 instruction set.</exception>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -227,8 +237,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="long"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
     /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM NEON (untested) hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support SSE2 or ARM NEON instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<long> Multiply(Vector128<long> lhs, Vector128<long> rhs)
@@ -248,8 +259,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
     /// <remarks>API avaliable on AVX2 hardware.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support AVX2 instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector256<long> Multiply(Vector256<long> lhs, Vector256<long> rhs)
@@ -269,8 +281,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="float"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
     /// <remarks>API avaliable on SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM64 NEON (untested) hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM64 NEON or SSE instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<float> HorizontalOr(Vector128<float> lhs, Vector128<float> rhs)
@@ -306,8 +319,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="int"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
     /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM64 NEON (untested) hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM64 NEON or SSE instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<int> HorizontalOr(Vector128<int> lhs, Vector128<int> rhs)
@@ -327,8 +341,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="uint"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
     /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM64 NEON (untested) hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM64 NEON or SSE2 instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [CLSCompliant(false)]
@@ -347,8 +362,9 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Input vector.</param>
-    /// <returns></returns>
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="ulong"/> with elements the same as input vector except their positions/indices are reversed.</returns>
     /// <remarks>API available on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2 hardwares.</remarks>
+    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support SSE2 instruction set.</exception>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]

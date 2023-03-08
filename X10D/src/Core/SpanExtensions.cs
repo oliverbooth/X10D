@@ -112,9 +112,9 @@ public static class SpanExtensions
                 default:
 #if NET7_0_OR_GREATER
                     throw new UnreachableException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
-#else
+#else   // NET7_0_OR_GREATER
                     throw new ArgumentException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
-#endif
+#endif  // NET7_0_OR_GREATER
             }
 #pragma warning restore CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
         }
