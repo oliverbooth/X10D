@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Numerics;
 
 #if NETCOREAPP3_0_OR_GREATER
 using X10D.Core;
@@ -112,13 +111,13 @@ public static class SpanExtensions
                 default:
 #if NET7_0_OR_GREATER
                     throw new UnreachableException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
-#else   // NET7_0_OR_GREATER
+#else
                     throw new ArgumentException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
-#endif  // NET7_0_OR_GREATER
+#endif
             }
 #pragma warning restore CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
         }
-#else   // NET6_0_OR_GREATER
+#else
         foreach (var it in span)
         {
             if (EqualityComparer<T>.Default.Equals(it, value))
@@ -128,7 +127,7 @@ public static class SpanExtensions
         }
 
         return false;
-#endif  // NET6_0_OR_GREATER
+#endif
     }
 
     /// <summary>

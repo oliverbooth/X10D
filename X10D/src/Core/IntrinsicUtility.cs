@@ -17,8 +17,6 @@ public static class IntrinsicUtility
     // ANYTHING OPERATION OPERATION ON ANYTHING THAT ISN'T FLOAT IS NOT SSE COMPATIBLE, MUST BE SSE2 AND BEYOND VERSION
     // FOR API CONSISTENCY.
 
-    // TODO: Fallback? No idea if it is worth it since even CPU made from before 2000 support SSE and SSE2.
-
     /// <summary>
     ///     <br>Correcting <see cref="Vector64{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.</br>
     ///     <br>Operation (raw):</br>
@@ -36,8 +34,6 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
     /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
-    /// <remarks>API avaliable on ARM NEON (untested) hardware.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't suppot ARM NEON intrinsic set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector64<byte> CorrectBoolean(Vector64<byte> vector)
@@ -51,13 +47,20 @@ public static class IntrinsicUtility
             return result;
         }
 
-        // No comparison, bitwise AND with 64-bit vector on SSE and beyond.
-        if (Sse2.IsSupported)
+        var output = GetUninitializedVector64<byte>();
+
+        for (int i = 0; i < Vector64<byte>.Count; i++)
         {
-            throw new PlatformNotSupportedException("Operation is not supported on SSE2 instruction set.");
+            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref output), i);
+#if NET7_0_OR_GREATER
+            writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
+#else
+            var element = Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref vector), i);
+            writeElement = element == 0 ? (byte)0 : (byte)1;
+#endif
         }
 
-        throw new PlatformNotSupportedException("Unknown intrinsic instruction set.");
+        return output;
     }
 
     /// <summary>
@@ -76,9 +79,7 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
-    /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM NEON (untested) hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM NEON or SSE2 instruction set.</exception> 
+    /// <returns>A <see cref="Vector128{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<byte> CorrectBoolean(Vector128<byte> vector)
@@ -99,7 +100,20 @@ public static class IntrinsicUtility
             return result;
         }
 
-        throw new PlatformNotSupportedException("Unknown intrinsic instruction set.");
+        var output = GetUninitializedVector128<byte>();
+
+        for (int i = 0; i < Vector128<byte>.Count; i++)
+        {
+            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref output), i);
+#if NET7_0_OR_GREATER
+            writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
+#else
+            var element = Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref vector), i);
+            writeElement = element == 0 ? (byte)0 : (byte)1;
+#endif
+        }
+
+        return output;
     }
 
     /// <summary>
@@ -118,9 +132,7 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
-    /// <remarks>API avaliable on AVX2 hardware.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support AVX2 instruction set.</exception> 
+    /// <returns>A <see cref="Vector256{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector256<byte> CorrectBoolean(Vector256<byte> vector)
@@ -133,12 +145,20 @@ public static class IntrinsicUtility
             return result;
         }
 
-        if (AdvSimd.IsSupported)
+        var output = GetUninitializedVector256<byte>();
+
+        for (int i = 0; i < Vector256<byte>.Count; i++)
         {
-            throw new PlatformNotSupportedException("Operation is not supported on ARM NEON instruction set.");
+            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), i);
+#if NET7_0_OR_GREATER
+            writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
+#else
+            var element = Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), i);
+            writeElement = element == 0 ? (byte)0 : (byte)1;
+#endif
         }
 
-        throw new PlatformNotSupportedException("Unknown intrinsic instruction set.");
+        return output;
     }
 
     /// <summary>
@@ -152,8 +172,6 @@ public static class IntrinsicUtility
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
     /// <returns>A <see cref="Vector128{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
-    /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM NEON (untested) hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support SSE2 or ARM NEON instruction set.</exception>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -186,7 +204,15 @@ public static class IntrinsicUtility
             return AdvSimd.MultiplyWideningLowerAndAdd(AdvSimd.ShiftLeftLogical(mul.AsUInt64(), 32), a, b);
         }
 
-        throw new PlatformNotSupportedException("Unsupported SIMD platform.");
+        var output = GetUninitializedVector128<ulong>();
+
+        Unsafe.As<Vector128<ulong>, ulong>(ref output) =
+            Unsafe.As<Vector128<ulong>, ulong>(ref lhs) * Unsafe.As<Vector128<ulong>, ulong>(ref rhs);
+
+        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = 
+            Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref lhs), 1) * Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref rhs), 1);
+
+        return output;
     }
 
     /// <summary>
@@ -202,8 +228,6 @@ public static class IntrinsicUtility
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
     /// <returns>A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
-    /// <remarks>API avaliable on AVX2 hardware.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support AVX2 instruction set.</exception>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -224,7 +248,15 @@ public static class IntrinsicUtility
             return Avx2.Add(high, ac);
         }
 
-        throw new PlatformNotSupportedException("Unsupported SIMD platform.");
+        var output = GetUninitializedVector256<ulong>();
+
+        for (int i = 0; i < Vector256<ulong>.Count; i++)
+        {
+            Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref output), i) =
+                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref lhs), i) * Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref rhs), i);
+        }
+
+        return output;
     }
 
     /// <summary>
@@ -238,8 +270,6 @@ public static class IntrinsicUtility
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
     /// <returns>A <see cref="Vector128{T}"/> of <see langword="long"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
-    /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM NEON (untested) hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support SSE2 or ARM NEON instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<long> Multiply(Vector128<long> lhs, Vector128<long> rhs)
@@ -260,8 +290,6 @@ public static class IntrinsicUtility
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
     /// <returns>A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
-    /// <remarks>API avaliable on AVX2 hardware.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support AVX2 instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector256<long> Multiply(Vector256<long> lhs, Vector256<long> rhs)
@@ -282,8 +310,6 @@ public static class IntrinsicUtility
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
     /// <returns>A <see cref="Vector128{T}"/> of <see langword="float"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
-    /// <remarks>API avaliable on SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM64 NEON (untested) hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM64 NEON or SSE instruction set.</exception>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<float> HorizontalOr(Vector128<float> lhs, Vector128<float> rhs)
@@ -304,7 +330,21 @@ public static class IntrinsicUtility
             return AdvSimd.Or(s1, s2);
         }
 
-        throw new PlatformNotSupportedException("Unsupported SIMD platform.");
+        Vector128<float> output = GetUninitializedVector128<float>();
+
+        Unsafe.As<Vector128<float>, uint>(ref output) = 
+            Unsafe.As<Vector128<float>, uint>(ref lhs) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 1);
+
+        Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 1) =
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 2) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 3);
+
+        Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 2) =
+            Unsafe.As<Vector128<float>, uint>(ref rhs) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 1);
+
+        Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 3) =
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 2) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 3);
+
+        return output;
     }
 
     /// <summary>
@@ -374,10 +414,47 @@ public static class IntrinsicUtility
         {
             return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
         }
-        
-        //  No idea how to implement this in ARM NEON (Reason: Unavailable hardware)
 
-        throw new PlatformNotSupportedException("Unsupported SIMD platform.");
+        Vector128<ulong> output = GetUninitializedVector128<ulong>();
+
+        Unsafe.As<Vector128<ulong>, ulong>(ref output) = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref vector), 1);
+        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = Unsafe.As<Vector128<ulong>, ulong>(ref vector);
+
+        return output;
+    }
+
+    // Helper methods
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    private static Vector64<T> GetUninitializedVector64<T>() where T : struct
+    {
+#if NET6_0_OR_GREATER
+        Unsafe.SkipInit(out Vector64<T> output);
+        return output;
+#else
+        return default;
+#endif
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    private static Vector128<T> GetUninitializedVector128<T>() where T : struct
+    {
+#if NET6_0_OR_GREATER
+        Unsafe.SkipInit(out Vector128<T> output);
+        return output;
+#else
+        return default;
+#endif
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    private static Vector256<T> GetUninitializedVector256<T>() where T : struct
+    {
+#if NET6_0_OR_GREATER
+        Unsafe.SkipInit(out Vector256<T> output);
+        return output;
+#else
+        return default;
+#endif
     }
 }
 
