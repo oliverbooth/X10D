@@ -158,7 +158,6 @@ public static class ListOfByteExtensions
             throw new ArgumentNullException(nameof(source));
         }
 #endif
-
         return BitConverter.ToInt64(source.ToArray(), startIndex);
     }
 
