@@ -1,6 +1,8 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
+using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace X10D.Text;
@@ -44,17 +46,42 @@ public static class RuneExtensions
                 return value.ToString();
         }
 
-        int utf8SequenceLength = value.Utf8SequenceLength;
-        Span<byte> utf8 = stackalloc byte[utf8SequenceLength];
-        value.EncodeToUtf8(utf8);
-
-        Span<byte> buffer = stackalloc byte[utf8.Length * count];
-        for (var index = 0; index < count; index++)
+        // Helpful documentation: https://en.wikipedia.org/wiki/UTF-8
+        switch (value.Utf8SequenceLength)
         {
-            utf8.CopyTo(buffer.Slice(index * utf8.Length, utf8.Length));
-        }
+            case 1:
+                {
+                    Unsafe.SkipInit(out byte bytes);
+                    value.EncodeToUtf8(MemoryMarshal.CreateSpan(ref bytes, 1));
 
-        return Encoding.UTF8.GetString(buffer);
+                    return new string((char)value.Value, count);
+                }
+
+            case 2:
+                {
+                    Span<byte> bytes = stackalloc byte[2];
+                    value.EncodeToUtf8(bytes);
+
+                    return new string(Encoding.UTF8.GetString(bytes)[0], count);
+                }
+
+            default:
+                {
+                    int utf8SequenceLength = value.Utf8SequenceLength;
+                    Span<byte> utf8 = stackalloc byte[utf8SequenceLength];
+                    value.EncodeToUtf8(utf8);
+
+                    // Limit to maximum 1024 bytes stack allocation (Rune.Utf8SequenceLength return value in range of [1; 4])
+                    Span<byte> buffer = count <= 256 ? stackalloc byte[utf8.Length * count] : new byte[utf8.Length * count];
+
+                    for (var index = 0; index < count; index++)
+                    {
+                        utf8.CopyTo(buffer.Slice(index * utf8.Length, utf8.Length));
+                    }
+
+                    return Encoding.UTF8.GetString(buffer);
+                }
+        }
     }
 }
 #endif
