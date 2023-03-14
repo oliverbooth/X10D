@@ -77,14 +77,5 @@ namespace X10D {
                 return ResourceManager.GetString("EnumParseNotEnumException", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rune.Utf8SequenceLength returns value outside range 1 to 4 (inclusive), which is unexpected according to the official documentation..
-        /// </summary>
-        internal static string RuneUtf8SequenceLengthUnexpectedValue {
-            get {
-                return ResourceManager.GetString("RuneUtf8SequenceLengthUnexpectedValue", resourceCulture);
-            }
-        }
     }
 }

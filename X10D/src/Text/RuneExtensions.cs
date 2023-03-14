@@ -1,6 +1,7 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -46,9 +47,11 @@ public static class RuneExtensions
                 return value.ToString();
         }
 
+        int length = value.Utf8SequenceLength;
+
         // Helpful documentation: https://en.wikipedia.org/wiki/UTF-8
         // This probably gonna break interning but whatever.
-        switch (value.Utf8SequenceLength)
+        switch (length)
         {
             case 1:
                 {
@@ -66,7 +69,7 @@ public static class RuneExtensions
                     // Codepoint 0x0080 to 0x07FF convert into 1 .NET character string, directly use string constructor.
                     unsafe
                     {
-                        Span<byte> bytes = stackalloc byte[value.Utf8SequenceLength];
+                        Span<byte> bytes = stackalloc byte[length];
                         value.EncodeToUtf8(bytes);
 
                         char character;
@@ -94,10 +97,11 @@ public static class RuneExtensions
                 }
 
             default:
+                var msg = string.Format(CultureInfo.CurrentCulture, ExceptionMessages.UnexpectedRuneUtf8SequenceLength, length);
 #if NET7_0_OR_GREATER
-                throw new UnreachableException(Resource.RuneUtf8SequenceLengthUnexpectedValue);
+                throw new UnreachableException(msg);
 #else
-                throw new InvalidOperationException(Resource.RuneUtf8SequenceLengthUnexpectedValue);
+                throw new InvalidOperationException(msg);
 #endif
         }
     }
