@@ -356,8 +356,11 @@ public static class SpanExtensions
                         Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
                         Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
 
-                        Vector128<ulong> calc1 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1), 56);
-                        Vector128<ulong> calc2 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2), 56);
+                        Vector128<ulong> calc1 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1);
+                        Vector128<ulong> calc2 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2);
+
+                        calc1 = AdvSimd.ShiftRightLogical(calc1, 56);
+                        calc2 = AdvSimd.ShiftRightLogical(calc2, 56);
 
                         Vector128<ulong> shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
                         Vector128<ulong> shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
