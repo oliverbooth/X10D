@@ -19,7 +19,7 @@ namespace X10D {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -75,6 +75,15 @@ namespace X10D {
         internal static string EnumParseNotEnumException {
             get {
                 return ResourceManager.GetString("EnumParseNotEnumException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rune.Utf8SequenceLength returns value outside range 1 to 4 (inclusive), which is unexpected according to the official documentation..
+        /// </summary>
+        internal static string RuneUtf8SequenceLengthUnexpectedValue {
+            get {
+                return ResourceManager.GetString("RuneUtf8SequenceLengthUnexpectedValue", resourceCulture);
             }
         }
     }

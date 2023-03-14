@@ -173,9 +173,8 @@ public static class SpanExtensions
                     if (Sse2.IsSupported)
                     {
                         var load = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
-                        var correct = IntrinsicUtility.CorrectBoolean(load);
 
-                        return unchecked((byte)(IntegerPackingMagic * correct.AsUInt64().GetElement(0) >> 56));
+                        return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
                     }
 
                     // Probably should remove this piece of code because it is untested, but I see no reason why it should fail
@@ -185,14 +184,11 @@ public static class SpanExtensions
                     {
                         // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
                         var load = AdvSimd.LoadVector64((byte*)pSource);
-                        var correct = IntrinsicUtility.CorrectBoolean(load);
 
-                        return unchecked((byte)(IntegerPackingMagic * correct.AsUInt64().GetElement(0) >> 56));
+                        return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
                     }
-                    else
-                    {
-                        goto default;
-                    }
+
+                    goto default;
                 }
 #endif
             default:
@@ -252,10 +248,10 @@ public static class SpanExtensions
                 {
                     fixed (bool* pSource = source)
                     {
-                        var load = Sse2.LoadVector128((byte*)pSource);
-                        var correct = IntrinsicUtility.CorrectBoolean(load).AsUInt64();
-                        var multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        var shift = Sse2.ShiftRightLogical(multiply, 56);
+                        Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
+                        Vector128<ulong> correct = load.CorrectBoolean().AsUInt64();
+                        Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
+                        Vector128<ulong> shift = Sse2.ShiftRightLogical(multiply, 56);
 
                         return (short)(shift.GetElement(0) | (shift.GetElement(1) << 8));
                     }
@@ -319,52 +315,52 @@ public static class SpanExtensions
                 {
                     if (Avx2.IsSupported)
                     {
-                        var load = Avx.LoadVector256((byte*)pSource);
-                        var correct = IntrinsicUtility.CorrectBoolean(load).AsUInt64();
+                        Vector256<byte> load = Avx.LoadVector256((byte*)pSource);
+                        Vector256<ulong> correct = load.CorrectBoolean().AsUInt64();
 
-                        var multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV256, correct);
-                        var shift = Avx2.ShiftRightLogical(multiply, 56);
+                        Vector256<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV256, correct);
+                        Vector256<ulong> shift = Avx2.ShiftRightLogical(multiply, 56);
                         shift = Avx2.ShiftLeftLogicalVariable(shift, Vector256.Create(0UL, 8, 16, 24));
 
-                        var p1 = Avx2.Permute4x64(shift, 0b10_11_00_01);
-                        var or1 = Avx2.Or(shift, p1);
-                        var p2 = Avx2.Permute4x64(or1, 0b00_00_10_10);
-                        var or2 = Avx2.Or(or1, p2);
+                        Vector256<ulong> p1 = Avx2.Permute4x64(shift, 0b10_11_00_01);
+                        Vector256<ulong> or1 = Avx2.Or(shift, p1);
+                        Vector256<ulong> p2 = Avx2.Permute4x64(or1, 0b00_00_10_10);
+                        Vector256<ulong> or2 = Avx2.Or(or1, p2);
 
                         return (int)or2.GetElement(0);
                     }
                     if (Sse2.IsSupported)
                     {
-                        var load = Sse2.LoadVector128((byte*)pSource);
-                        var correct = IntrinsicUtility.CorrectBoolean(load).AsUInt64();
+                        Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
+                        Vector128<ulong> correct = load.CorrectBoolean().AsUInt64();
 
-                        var multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        var shift1 = Sse2.ShiftRightLogical(multiply, 56);
+                        Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
+                        Vector128<ulong> shift1 = Sse2.ShiftRightLogical(multiply, 56);
                         shift1 = Sse2.ShiftLeftLogical(shift1, Vector128.Create(0UL, 8UL));
 
                         load = Sse2.LoadVector128((byte*)(pSource + 16));
-                        correct = IntrinsicUtility.CorrectBoolean(load).AsUInt64();
+                        correct = load.CorrectBoolean().AsUInt64();
 
                         multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        var shift2 = Sse2.ShiftRightLogical(multiply, 56);
+                        Vector128<ulong> shift2 = Sse2.ShiftRightLogical(multiply, 56);
                         shift2 = Sse2.ShiftLeftLogical(shift2, Vector128.Create(16UL, 24UL));
 
-                        var or1 = Sse2.Or(shift1, shift2);
-                        var or2 = Sse2.Or(or1, IntrinsicUtility.ReverseElements(or1));
+                        Vector128<ulong> or1 = Sse2.Or(shift1, shift2);
+                        Vector128<ulong> or2 = Sse2.Or(or1, or1.ReverseElements());
 
                         return (int)or2.GetElement(0);
                     }
                     if (AdvSimd.IsSupported)
                     {
                         // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        var vector1 = IntrinsicUtility.CorrectBoolean(AdvSimd.LoadVector128((byte*)pSource)).AsUInt64();
-                        var vector2 = IntrinsicUtility.CorrectBoolean(AdvSimd.LoadVector128((byte*)(pSource + 16))).AsUInt64();
+                        Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                        Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
 
-                        var calc1 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1), 56);
-                        var calc2 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2), 56);
+                        Vector128<ulong> calc1 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1), 56);
+                        Vector128<ulong> calc2 = AdvSimd.ShiftRightLogical(IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2), 56);
 
-                        var shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
-                        var shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
+                        Vector128<ulong> shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
+                        Vector128<ulong> shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
 
                         return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
                     }

@@ -1,5 +1,5 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
-using System;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -47,40 +47,58 @@ public static class RuneExtensions
         }
 
         // Helpful documentation: https://en.wikipedia.org/wiki/UTF-8
+        // This probably gonna break interning but whatever.
         switch (value.Utf8SequenceLength)
         {
             case 1:
                 {
-                    Unsafe.SkipInit(out byte bytes);
-                    value.EncodeToUtf8(MemoryMarshal.CreateSpan(ref bytes, 1));
-
+                    // Codepoint 0 to 0x00FF can be directly turn into char value without any conversion.
                     return new string((char)value.Value, count);
                 }
 
+            // Codepoint 0x0080 to 0x07FF takes 2 UTF-8 bytes, and it can be represented by 1 UTF-16 character (.NET runtime use
+            // UTF-16 encoding).
+            // Source: https://stackoverflow.com/questions/63905684
             case 2:
+            // Codepoint 0x0800 to 0xFFFF takes 3 UTF-8 bytes, and can also be represented by 1 UTF-16 character.
+            case 3:
                 {
-                    Span<byte> bytes = stackalloc byte[2];
-                    value.EncodeToUtf8(bytes);
+                    // Codepoint 0x0080 to 0x07FF convert into 1 .NET character string, directly use string constructor.
+                    unsafe
+                    {
+                        Span<byte> bytes = stackalloc byte[value.Utf8SequenceLength];
+                        value.EncodeToUtf8(bytes);
 
-                    return new string(Encoding.UTF8.GetString(bytes)[0], count);
+                        char character;
+                        Encoding.UTF8.GetChars(bytes, new Span<char>(&character, 1));
+
+                        return new string(character, count);
+                    }
+                }
+
+            // Codepoint 0x10000 and beyond will takes **only** 2 UTF-16 character.
+            case 4:
+                {
+                    return string.Create(count * 2, value, (span, rune) =>
+                    {
+                        unsafe {
+                            Span<byte> bytes = stackalloc byte[4];
+                            value.EncodeToUtf8(bytes);
+
+                            int characters; // 2 characters, fit inside 1 32-bit integer.
+                            Encoding.UTF8.GetChars(bytes, new Span<char>(&characters, 2));
+
+                            MemoryMarshal.Cast<char, int>(span).Fill(characters);
+                        }
+                    });
                 }
 
             default:
-                {
-                    int utf8SequenceLength = value.Utf8SequenceLength;
-                    Span<byte> utf8 = stackalloc byte[utf8SequenceLength];
-                    value.EncodeToUtf8(utf8);
-
-                    // Limit to maximum 1024 bytes stack allocation (Rune.Utf8SequenceLength return value in range of [1; 4])
-                    Span<byte> buffer = count <= 256 ? stackalloc byte[utf8.Length * count] : new byte[utf8.Length * count];
-
-                    for (var index = 0; index < count; index++)
-                    {
-                        utf8.CopyTo(buffer.Slice(index * utf8.Length, utf8.Length));
-                    }
-
-                    return Encoding.UTF8.GetString(buffer);
-                }
+#if NET7_0_OR_GREATER
+                throw new UnreachableException(Resource.RuneUtf8SequenceLengthUnexpectedValue);
+#else
+                throw new InvalidOperationException(Resource.RuneUtf8SequenceLengthUnexpectedValue);
+#endif
         }
     }
 }
