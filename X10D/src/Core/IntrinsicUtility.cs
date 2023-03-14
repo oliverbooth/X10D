@@ -14,149 +14,14 @@ namespace X10D.Core;
 public static class IntrinsicUtility
 {
     // NOTE:
-    // ANY METHOD THAT OPERATE ON ANYTHING THAT ISN'T FLOAT IS NOT SSE COMPATIBLE, MUST BE SSE2 AND BEYOND VERSION
+    // ANY METHOD THAT OPERATE ON ANYTHING THAT ISN'T FLOAT IS NOT SSE COMPATIBLE, MUST BE SSE2 AND BEYONDS
     // FOR API CONSISTENCY.
 
     /// <summary>
-    ///     <br>
-    ///     Correcting <see cref="Vector64{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.
-    ///     </br>
-    ///     <br>Operation (raw):</br>
-    ///     <code>
-    ///     for (int i = 0; i &lt; 8; i++) {
-    ///         dest[i] = ~(vector[i] == 0 ? 0xFF : 0x00) &amp; 1;
-    ///     }
-    ///     </code>
-    ///     <br>Operation (simplified):</br>
-    ///     <code>
-    ///     for (int i = 0; i &lt; 8; i++) {
-    ///         dest[i] = vector[i] == 0 ? 0 : 1;
-    ///     }
-    ///     </code>
-    /// </summary>
-    /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>
-    /// A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector64<byte> CorrectBoolean(Vector64<byte> vector)
-    {
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation. (?)
-
-        var output = GetUninitializedVector64<byte>();
-
-        for (int i = 0; i < Vector64<byte>.Count; i++)
-        {
-            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref output), i);
-#if NET7_0_OR_GREATER
-            writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
-#else
-            var element = Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref vector), i);
-            writeElement = element == 0 ? (byte)0 : (byte)1;
-#endif
-        }
-
-        return output;
-    }
-
-    /// <summary>
-    ///     <br>
-    ///     Correcting <see cref="Vector128{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.
-    ///     </br>
-    ///     <br>Operation (raw):</br>
-    ///     <code>
-    ///     for (int i = 0; i &lt; 16; i++) {
-    ///         dest[i] = ~(vector[i] == 0 ? 0xFF : 0x00) &amp; 1;
-    ///     }
-    ///     </code>
-    ///     <br>Operation (simplified):</br>
-    ///     <code>
-    ///     for (int i = 0; i &lt; 16; i++) {
-    ///         dest[i] = vector[i] == 0 ? 0 : 1;
-    ///     }
-    ///     </code>
-    /// </summary>
-    /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>
-    /// A <see cref="Vector128{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector128<byte> CorrectBoolean(Vector128<byte> vector)
-    {
-        if (Sse2.IsSupported)
-        {
-            var cmp = Sse2.CompareEqual(vector, Vector128<byte>.Zero);
-            var result = Sse2.AndNot(cmp, Vector128.Create((byte)1));
-
-            return result;
-        }
-
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation.
-
-        var output = GetUninitializedVector128<byte>();
-
-        for (int i = 0; i < Vector128<byte>.Count; i++)
-        {
-            Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref output), i) =
-                Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref vector), i) == 0 ? (byte)0 : (byte)1;
-        }
-
-        return output;
-    }
-
-    /// <summary>
-    ///     <br>
-    ///     Correcting <see cref="Vector256{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.
-    ///     </br>
-    ///     <br>Operation (raw):</br>
-    ///     <code>
-    ///     for (int i = 0; i &lt; 16; i++) {
-    ///         dest[i] = ~(vector[i] == 0 ? 0xFF : 0x00) &amp; 1;
-    ///     }
-    ///     </code>
-    ///     <br>Operation (simplified):</br>
-    ///     <code>
-    ///     for (int i = 0; i &lt; 16; i++) {
-    ///         dest[i] = vector[i] == 0 ? 0 : 1;
-    ///     }
-    ///     </code>
-    /// </summary>
-    /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>
-    /// A <see cref="Vector256{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector256<byte> CorrectBoolean(Vector256<byte> vector)
-    {
-        if (Avx2.IsSupported)
-        {
-            var cmp = Avx2.CompareEqual(vector, Vector256<byte>.Zero);
-            var result = Avx2.AndNot(cmp, Vector256.Create((byte)1));
-
-            return result;
-        }
-
-        var output = GetUninitializedVector256<byte>();
-
-        for (int i = 0; i < Vector256<byte>.Count; i++)
-        {
-            Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), i) =
-                Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), i) == 0 ? (byte)0 : (byte)1;
-        }
-
-        return output;
-    }
-
-    /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Multiply packed 64-bit unsigned integer elements in a and b and truncate the results to 64-bit integer.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
     ///     dest[1] = lhs[1] * rhs[1];
@@ -203,10 +68,10 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Multiply packed 64-bit unsigned integer elements in a and b and truncate the results to 64-bit integer.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
     ///     dest[1] = lhs[1] * rhs[1];
@@ -252,10 +117,10 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Multiply packed 64-bit signed integer elements in a and b and truncate the results to 64-bit integer.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
     ///     dest[1] = lhs[1] * rhs[1];
@@ -274,10 +139,10 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Multiply packed 64-bit signed integer elements in a and b and truncate the results to 64-bit integer.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
     ///     dest[1] = lhs[1] * rhs[1];
@@ -298,11 +163,11 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Horizontally apply OR operation on adjacent pairs of single-precision (32-bit) floating-point elements in lhs and
     ///     rhs.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] | lhs[1];
     ///     dest[1] = lhs[2] | lhs[3];
@@ -353,10 +218,10 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Horizontally apply OR operation on adjacent pairs of 32-bit integer elements in lhs and rhs.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] | lhs[1];
     ///     dest[1] = lhs[2] | lhs[3];
@@ -378,10 +243,10 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>
+    ///     <para>
     ///     Horizontally apply OR operation on adjacent pairs of 32-bit unsigned integer elements in lhs and rhs.
-    ///     </br>
-    ///     <br>Operation:</br>
+    ///     </para>
+    ///     Operation:<br/>
     ///     <code>
     ///     dest[0] = lhs[0] | lhs[1];
     ///     dest[1] = lhs[2] | lhs[3];
@@ -403,41 +268,9 @@ public static class IntrinsicUtility
         return HorizontalOr(lhs.AsSingle(), rhs.AsSingle()).AsUInt32();
     }
 
-    /// <summary>
-    ///     <br>Reverse position of 2 64-bit unsigned integer.</br>
-    ///     <br>Operation:</br>
-    ///     <code>
-    ///     ulong tmp = vector[0];
-    ///     vector[0] = vector[1];
-    ///     vector[1] = tmp;
-    ///     </code>
-    /// </summary>
-    /// <param name="vector">Input vector.</param>
-    /// <returns>
-    /// A <see cref="Vector128{T}"/> of <see langword="ulong"/> with elements the same as input vector except their positions
-    /// (or indices) are reversed.
-    /// </returns>
-    [Pure]
-    [CLSCompliant(false)]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector128<ulong> ReverseElements(Vector128<ulong> vector)
-    {
-        if (Sse2.IsSupported)
-        {
-            return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
-        }
-
-        Vector128<ulong> output = GetUninitializedVector128<ulong>();
-
-        Unsafe.As<Vector128<ulong>, ulong>(ref output) = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref vector), 1);
-        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = Unsafe.As<Vector128<ulong>, ulong>(ref vector);
-
-        return output;
-    }
-
     // Helper methods
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    private static Vector64<T> GetUninitializedVector64<T>() where T : struct
+    internal static Vector64<T> GetUninitializedVector64<T>() where T : struct
     {
 #if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector64<T> output);
@@ -448,7 +281,7 @@ public static class IntrinsicUtility
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    private static Vector128<T> GetUninitializedVector128<T>() where T : struct
+    internal static Vector128<T> GetUninitializedVector128<T>() where T : struct
     {
 #if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector128<T> output);
@@ -459,7 +292,7 @@ public static class IntrinsicUtility
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    private static Vector256<T> GetUninitializedVector256<T>() where T : struct
+    internal static Vector256<T> GetUninitializedVector256<T>() where T : struct
     {
 #if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector256<T> output);
