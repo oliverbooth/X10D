@@ -411,6 +411,9 @@ public static class SpanExtensions
         switch (source.Length)
         {
             case > 64: throw new ArgumentException("Source cannot contain more than than 64 elements.", nameof(source));
+            case 8: return PackByte(source);
+            case 16: return PackInt16(source);
+            case 32: return PackInt32(source);
             case 64:
                 // TODO: Reimplement when Vector512 is in standard API.
                 return (long)PackInt32(source[..32]) | ((long)PackInt32(source[32..]) << 32);

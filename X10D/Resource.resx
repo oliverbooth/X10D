@@ -123,7 +123,4 @@
   <data name="EnumParseNotEnumException" xml:space="preserve">
     <value>Type provided must be an Enum.</value>
   </data>
-  <data name="RuneUtf8SequenceLengthUnexpectedValue" xml:space="preserve">
-    <value>Rune.Utf8SequenceLength returns value outside range 1 to 4 (inclusive), which is unexpected according to the official documentation.</value>
-  </data>
 </root>
