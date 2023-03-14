@@ -18,7 +18,9 @@ public static class IntrinsicUtility
     // FOR API CONSISTENCY.
 
     /// <summary>
-    ///     <br>Correcting <see cref="Vector64{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.</br>
+    ///     <br>
+    ///     Correcting <see cref="Vector64{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.
+    ///     </br>
     ///     <br>Operation (raw):</br>
     ///     <code>
     ///     for (int i = 0; i &lt; 8; i++) {
@@ -33,19 +35,15 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
+    /// <returns>
+    /// A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector64<byte> CorrectBoolean(Vector64<byte> vector)
     {
-        if (AdvSimd.IsSupported)
-        {
-            // Haven't tested since March 6th 2023 (Reason: Unavailable hardware).
-            var cmp = AdvSimd.CompareEqual(vector, Vector64<byte>.Zero);
-            var result = AdvSimd.BitwiseSelect(cmp, vector, Vector64<byte>.Zero);
-
-            return result;
-        }
+        // TODO: AdvSimd implementation.
+        // TODO: WasmSimd implementation. (?)
 
         var output = GetUninitializedVector64<byte>();
 
@@ -64,7 +62,9 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>Correcting <see cref="Vector128{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.</br>
+    ///     <br>
+    ///     Correcting <see cref="Vector128{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.
+    ///     </br>
     ///     <br>Operation (raw):</br>
     ///     <code>
     ///     for (int i = 0; i &lt; 16; i++) {
@@ -79,7 +79,9 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<byte> CorrectBoolean(Vector128<byte> vector)
@@ -91,33 +93,25 @@ public static class IntrinsicUtility
 
             return result;
         }
-        if (AdvSimd.IsSupported)
-        {
-            // Haven't tested since March 6th 2023 (Reason: Unavailable hardware).
-            var cmp = AdvSimd.CompareEqual(vector, Vector128<byte>.Zero);
-            var result = AdvSimd.BitwiseSelect(cmp, vector, Vector128<byte>.Zero);
 
-            return result;
-        }
+        // TODO: AdvSimd implementation.
+        // TODO: WasmSimd implementation.
 
         var output = GetUninitializedVector128<byte>();
 
         for (int i = 0; i < Vector128<byte>.Count; i++)
         {
-            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref output), i);
-#if NET7_0_OR_GREATER
-            writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
-#else
-            var element = Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref vector), i);
-            writeElement = element == 0 ? (byte)0 : (byte)1;
-#endif
+            Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref output), i) =
+                Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref vector), i) == 0 ? (byte)0 : (byte)1;
         }
 
         return output;
     }
 
     /// <summary>
-    ///     <br>Correcting <see cref="Vector256{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.</br>
+    ///     <br>
+    ///     Correcting <see cref="Vector256{T}"/> of <see langword="byte"/> into 0 and 1 depend on their boolean truthiness.
+    ///     </br>
     ///     <br>Operation (raw):</br>
     ///     <code>
     ///     for (int i = 0; i &lt; 16; i++) {
@@ -132,7 +126,9 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Vector of byte to correct.</param>
-    /// <returns>A <see cref="Vector256{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.</returns>
+    /// <returns>
+    /// A <see cref="Vector256{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector256<byte> CorrectBoolean(Vector256<byte> vector)
@@ -149,20 +145,17 @@ public static class IntrinsicUtility
 
         for (int i = 0; i < Vector256<byte>.Count; i++)
         {
-            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), i);
-#if NET7_0_OR_GREATER
-            writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
-#else
-            var element = Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), i);
-            writeElement = element == 0 ? (byte)0 : (byte)1;
-#endif
+            Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), i) =
+                Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), i) == 0 ? (byte)0 : (byte)1;
         }
 
         return output;
     }
 
     /// <summary>
-    ///     <br>Multiply packed 64-bit unsigned integer elements in a and b and truncate the results to 64-bit integer.</br>
+    ///     <br>
+    ///     Multiply packed 64-bit unsigned integer elements in a and b and truncate the results to 64-bit integer.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
@@ -171,7 +164,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.
+    /// </returns>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -191,32 +186,26 @@ public static class IntrinsicUtility
 
             return Sse2.Add(high, ac);
         }
-        if (AdvSimd.IsSupported)
-        {
-            // https://stackoverflow.com/questions/60236627/facing-problem-in-implementing-multiplication-of-64-bit-variables-using-arm-neon
 
-            // Hasn't been tested since March 7th 2023 (Reason: Unavailable hardware)
-            var a = AdvSimd.ExtractNarrowingLower(lhs);
-            var b = AdvSimd.ExtractNarrowingLower(rhs);
-
-            var mul = AdvSimd.Multiply(rhs.AsUInt32(), AdvSimd.ReverseElement32(lhs).AsUInt32());
-
-            return AdvSimd.MultiplyWideningLowerAndAdd(AdvSimd.ShiftLeftLogical(mul.AsUInt64(), 32), a, b);
-        }
+        // TODO: AdvSimd implementation.
+        // TODO: WasmSimd implementation.
 
         var output = GetUninitializedVector128<ulong>();
 
         Unsafe.As<Vector128<ulong>, ulong>(ref output) =
             Unsafe.As<Vector128<ulong>, ulong>(ref lhs) * Unsafe.As<Vector128<ulong>, ulong>(ref rhs);
 
-        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = 
-            Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref lhs), 1) * Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref rhs), 1);
+        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) =
+            Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref lhs), 1) *
+            Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref rhs), 1);
 
         return output;
     }
 
     /// <summary>
-    ///     <br>Multiply packed 64-bit unsigned integer elements in a and b and truncate the results to 64-bit integer.</br>
+    ///     <br>
+    ///     Multiply packed 64-bit unsigned integer elements in a and b and truncate the results to 64-bit integer.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
@@ -227,7 +216,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
+    /// <returns>
+    /// A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.
+    /// </returns>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -253,14 +244,17 @@ public static class IntrinsicUtility
         for (int i = 0; i < Vector256<ulong>.Count; i++)
         {
             Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref output), i) =
-                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref lhs), i) * Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref rhs), i);
+                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref lhs), i) *
+                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref rhs), i);
         }
 
         return output;
     }
 
     /// <summary>
-    ///     <br>Multiply packed 64-bit signed integer elements in a and b and truncate the results to 64-bit integer.</br>
+    ///     <br>
+    ///     Multiply packed 64-bit signed integer elements in a and b and truncate the results to 64-bit integer.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
@@ -269,7 +263,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="long"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="long"/> whose elements is 64-bit truncated product of lhs and rhs.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<long> Multiply(Vector128<long> lhs, Vector128<long> rhs)
@@ -278,7 +274,9 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>Multiply packed 64-bit signed integer elements in a and b and truncate the results to 64-bit integer.</br>
+    ///     <br>
+    ///     Multiply packed 64-bit signed integer elements in a and b and truncate the results to 64-bit integer.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] * rhs[0];
@@ -289,7 +287,9 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.</returns>
+    /// <returns>
+    /// A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector256<long> Multiply(Vector256<long> lhs, Vector256<long> rhs)
@@ -298,7 +298,10 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>Horizontally apply OR operation on adjacent pairs of single-precision (32-bit) floating-point elements in lhs and rhs.</br>
+    ///     <br>
+    ///     Horizontally apply OR operation on adjacent pairs of single-precision (32-bit) floating-point elements in lhs and
+    ///     rhs.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] | lhs[1];
@@ -309,7 +312,10 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="float"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="float"/> with all elements is result of OR operation on adjacent pairs of
+    /// elements in lhs and rhs.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<float> HorizontalOr(Vector128<float> lhs, Vector128<float> rhs)
@@ -321,34 +327,35 @@ public static class IntrinsicUtility
 
             return Sse.Or(s1, s2);
         }
-        if (AdvSimd.Arm64.IsSupported)
-        {
-            // Hasn't been tested since March 7th 2023 (Reason: Unavailable hardware).
-            var s1 = AdvSimd.Arm64.UnzipEven(lhs, rhs);
-            var s2 = AdvSimd.Arm64.UnzipOdd(lhs, rhs);
 
-            return AdvSimd.Or(s1, s2);
-        }
+        // TODO: AdvSimd implementation.
+        // TODO: WasmSimd implementation. (?)
 
         Vector128<float> output = GetUninitializedVector128<float>();
 
-        Unsafe.As<Vector128<float>, uint>(ref output) = 
-            Unsafe.As<Vector128<float>, uint>(ref lhs) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 1);
+        Unsafe.As<Vector128<float>, uint>(ref output) =
+            Unsafe.As<Vector128<float>, uint>(ref lhs) |
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 1);
 
         Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 1) =
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 2) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 3);
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 2) |
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 3);
 
         Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 2) =
-            Unsafe.As<Vector128<float>, uint>(ref rhs) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 1);
+            Unsafe.As<Vector128<float>, uint>(ref rhs) |
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 1);
 
         Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 3) =
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 2) | Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 3);
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 2) |
+            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 3);
 
         return output;
     }
 
     /// <summary>
-    ///     <br>Horizontally apply OR operation on adjacent pairs of 32-bit integer elements in lhs and rhs.</br>
+    ///     <br>
+    ///     Horizontally apply OR operation on adjacent pairs of 32-bit integer elements in lhs and rhs.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] | lhs[1];
@@ -359,9 +366,10 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="int"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
-    /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM64 NEON (untested) hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM64 NEON or SSE instruction set.</exception>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="int"/> with all elements is result of OR operation on adjacent pairs of
+    /// elements in lhs and rhs.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector128<int> HorizontalOr(Vector128<int> lhs, Vector128<int> rhs)
@@ -370,7 +378,9 @@ public static class IntrinsicUtility
     }
 
     /// <summary>
-    ///     <br>Horizontally apply OR operation on adjacent pairs of 32-bit unsigned integer elements in lhs and rhs.</br>
+    ///     <br>
+    ///     Horizontally apply OR operation on adjacent pairs of 32-bit unsigned integer elements in lhs and rhs.
+    ///     </br>
     ///     <br>Operation:</br>
     ///     <code>
     ///     dest[0] = lhs[0] | lhs[1];
@@ -381,9 +391,10 @@ public static class IntrinsicUtility
     /// </summary>
     /// <param name="lhs">Left vector.</param>
     /// <param name="rhs">Right vector.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="uint"/> with all elements is result of OR operation on adjacent pairs of elements in lhs and rhs.</returns>
-    /// <remarks>API avaliable on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, ARM64 NEON (untested) hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support ARM64 NEON or SSE2 instruction set.</exception>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="uint"/> with all elements is result of OR operation on adjacent pairs of
+    /// elements in lhs and rhs.
+    /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [CLSCompliant(false)]
@@ -402,9 +413,10 @@ public static class IntrinsicUtility
     ///     </code>
     /// </summary>
     /// <param name="vector">Input vector.</param>
-    /// <returns>A <see cref="Vector128{T}"/> of <see langword="ulong"/> with elements the same as input vector except their positions/indices are reversed.</returns>
-    /// <remarks>API available on SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2 hardwares.</remarks>
-    /// <exception cref="PlatformNotSupportedException">Hardware doesn't support SSE2 instruction set.</exception>
+    /// <returns>
+    /// A <see cref="Vector128{T}"/> of <see langword="ulong"/> with elements the same as input vector except their positions
+    /// (or indices) are reversed.
+    /// </returns>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]

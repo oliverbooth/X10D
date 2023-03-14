@@ -72,13 +72,14 @@ public static class SpanExtensions
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
 #if NET6_0_OR_GREATER
-        // Use MemoryMarshal.CreateSpan instead of using creating new Span instance from pointer will trim down a lot of instructions
-        // on Release mode.
-        // https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AXEBDAzgWwB8ABABgAJiBGAOgCUBXAOwwEt8YaBJFmKCAA4BlPgDdWYGLgDcAWABQZSrUYt2nAMIR8A1gBs+IqOMkyFxAExVzFIQAtsUAQBlsweszYc588wGZyGCYGfHIAFSkMAFFg0JByVhZyAG8FcnTyAEE0cgAhHI0cgBE0BQBfBX9KC3INFLSMgG0AKVYMAHEgvgkACgwATwEYCAAzHojcaNiASmmAXQb0xoBZGAw7CAATLh09HtX1rZ2BPQB5ATYIJlwaTIBzO9hcXFZRGB49RMS78kJyA4221250u11uDyeLzeIPYrAAXthQfNFpQAtQkORmLhsCMYORgBAIHp/mtAVQADxhAB8PSEAmwTEpVPIuHpTByYXIomwegYMGm5AA7nY+HjOfEYiF6vIMrLyLARgkkkEQrhyABeeUwRUAVWuOM4mVwlJyiQwNIVJPw0H6y0cuAcehonQwdG1oqYkh6rIZsx8coyxAA7FabXaoA6eTQNLBETA6QyepaVfhcDkfUwaM4gnd1tNo1cMNhErgenrsbjbsawqaWBbtVyeXy/SiKjKMiiWm1OkxumA+oNhmMJlMQrMFu2lgCjrt9qSZycYVcbvdHlIoe8mJ8mN9fiTDkDFxdWMvwWvnq8YDD8PDESemMjJ6jlBisQb8YTidPNhYmbS2UyLJshyja8vyQoirA4TkBKsTSgG6TBuQvaCuQCaMmaNLlgaVYAAoQGafBJg2qzWlAtr2o6zprG6uKwJ6MDemyszpmyWY5nmBYsMW1xlvqlZGiaSrmsRircmBLZPm2ZRAA===
+        // Use MemoryMarshal.CreateSpan instead of using creating new Span instance from pointer will trim down a lot of
+        // instructions on Release mode.
 
-        // Also use reference instead of MemoryMarshal.Cast to remove boundary check (or something, it just result in something like that).
+        // Also use reference instead of MemoryMarshal.Cast to remove boundary check (or something, it just result in something
+        // like that).
 
-        // TODO: Figure out some kind of way to directly pass the Span directly into Contains call, which make method smaller and more prone to inlining...
+        // TODO: Figure out some kind of way to directly pass the Span directly into Contains call, which make method smaller and
+        // more prone to inlining...
         unsafe
         {
 #pragma warning disable CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
@@ -176,6 +177,10 @@ public static class SpanExtensions
 
                         return unchecked((byte)(IntegerPackingMagic * correct.AsUInt64().GetElement(0) >> 56));
                     }
+
+                    // Probably should remove this piece of code because it is untested, but I see no reason why it should fail
+                    // unless vld1_u8 reverse positions of 8 bytes for some reason.
+
                     if (AdvSimd.IsSupported)
                     {
                         // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
@@ -240,12 +245,12 @@ public static class SpanExtensions
                     goto default;
                 }
 
-                fixed (bool* pSource = source)
-                {
-                    // TODO: .NET 8.0 Wasm support.
-                    // TODO: Implement a replacement for UInt64 vector multiplication (there are no instruction for this built-in).
+                // TODO: AdvSimd implementation.
+                // TODO: WasmSimd implementation.
 
-                    if (Sse2.IsSupported)
+                if (Sse2.IsSupported)
+                {
+                    fixed (bool* pSource = source)
                     {
                         var load = Sse2.LoadVector128((byte*)pSource);
                         var correct = IntrinsicUtility.CorrectBoolean(load).AsUInt64();
@@ -254,21 +259,9 @@ public static class SpanExtensions
 
                         return (short)(shift.GetElement(0) | (shift.GetElement(1) << 8));
                     }
-                    if (AdvSimd.IsSupported)
-                    {
-                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        var load = AdvSimd.LoadVector128((byte*)pSource);
-                        var correct = IntrinsicUtility.CorrectBoolean(load).AsUInt64();
-                        var multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        var shift = AdvSimd.ShiftRightLogical(multiply, 56);
-
-                        return (short)(shift.GetElement(0) | (shift.GetElement(1) << 8));
-                    }
-                    else
-                    {
-                        goto default;
-                    }
                 }
+
+                goto default;
 #endif
 
             default:
@@ -324,9 +317,6 @@ public static class SpanExtensions
 
                 fixed (bool* pSource = source)
                 {
-                    // TODO: .NET 8.0 Wasm support.
-                    // TODO: Implement a replacement for UInt64 vector multiplication (there are no instruction for this built-in).
-
                     if (Avx2.IsSupported)
                     {
                         var load = Avx.LoadVector256((byte*)pSource);
