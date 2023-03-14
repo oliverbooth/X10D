@@ -42,7 +42,7 @@ public static class Int32Extensions
 
 #if NETCOREAPP3_0_OR_GREATER
         // TODO: AdvSimd support.
-        
+
         // https://stackoverflow.com/questions/24225786/fastest-way-to-unpack-32-bits-to-a-32-byte-simd-vector
         if (Avx2.IsSupported)
         {
@@ -64,15 +64,15 @@ public static class Int32Extensions
             fixed (bool* pDestination = destination)
             {
                 var mask1 = Vector256.Create(
-                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-                    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 
-                    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 
+                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+                    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
                     0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03
                 ).AsByte();
                 var mask2 = Vector256.Create(
-                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 
-                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 
-                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 
+                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
+                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
+                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
                     0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80
                 );
 
@@ -81,7 +81,7 @@ public static class Int32Extensions
                 var and = Avx2.AndNot(shuffle, mask2);
                 var cmp = Avx2.CompareEqual(and, Vector256<byte>.Zero);
                 var correctness = Avx2.And(cmp, Vector256.Create((byte)0x01));
-                
+
                 Avx.Store((byte*)pDestination, correctness);
             }
         }
@@ -103,9 +103,9 @@ public static class Int32Extensions
                 var and = Sse2.AndNot(shuffle, mask2);
                 var cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
                 var correctness = Sse2.And(cmp, one);
-                
+
                 Sse2.Store((byte*)pDestination, correctness);
-                
+
                 shuffle = Ssse3.Shuffle(vec, mask1Hi);
                 and = Sse2.AndNot(shuffle, mask2);
                 cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);

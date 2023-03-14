@@ -47,7 +47,7 @@ public static class ByteExtensions
             return;
         }
 #endif
-        
+
         FallbackImplementation(value, destination);
 
 #if NETCOREAPP3_0_OR_GREATER

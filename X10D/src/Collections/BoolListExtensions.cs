@@ -26,7 +26,7 @@ public static class BoolListExtensions
             throw new ArgumentNullException(nameof(source));
         }
 #endif
-        
+
         if (source.Count > 8)
         {
             throw new ArgumentException("Source cannot contain more than than 8 elements.", nameof(source));
