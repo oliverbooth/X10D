@@ -179,7 +179,7 @@ public static class SpanExtensions
 
                     if (Sse2.IsSupported)
                     {
-                        var load = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
+                        Vector128<byte> load = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
 
                         return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
                     }
@@ -190,7 +190,7 @@ public static class SpanExtensions
                     if (AdvSimd.IsSupported)
                     {
                         // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        var load = AdvSimd.LoadVector64((byte*)pSource);
+                        Vector64<byte> load = AdvSimd.LoadVector64((byte*)pSource);
 
                         return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
                     }
