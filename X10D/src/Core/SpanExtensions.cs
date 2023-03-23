@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -201,9 +201,9 @@ public static class SpanExtensions
             default:
                 byte result = 0;
 
-                for (var i = 0; i < source.Length; i++)
+                for (var index = 0; index < source.Length; index++)
                 {
-                    result |= (byte)(source[i] ? 1 << i : 0);
+                    result |= (byte)(source[index] ? 1 << index : 0);
                 }
 
                 return result;
@@ -270,9 +270,9 @@ public static class SpanExtensions
             default:
                 short result = 0;
 
-                for (var i = 0; i < source.Length; i++)
+                for (var index = 0; index < source.Length; index++)
                 {
-                    result |= (short)(source[i] ? 1 << i : 0);
+                    result |= (short)(source[index] ? 1 << index : 0);
                 }
 
                 return result;
@@ -428,9 +428,9 @@ public static class SpanExtensions
             default:
                 long result = 0;
 
-                for (var i = 0; i < source.Length; i++)
+                for (var index = 0; index < source.Length; index++)
                 {
-                    result |= source[i] ? 1U << i : 0;
+                    result |= source[index] ? 1U << index : 0;
                 }
 
                 return result;
