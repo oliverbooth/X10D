@@ -37,8 +37,7 @@ public static class MemberInfoExtensions
             throw new ArgumentNullException(nameof(member));
         }
 #endif
-
-        return member.HasCustomAttribute(typeof(T));
+        return Attribute.IsDefined(member, typeof(T));
     }
 
     /// <summary>
@@ -82,7 +81,7 @@ public static class MemberInfoExtensions
                 attribute, typeof(Attribute)), nameof(attribute));
         }
 
-        return member.GetCustomAttribute(attribute) is not null;
+        return Attribute.IsDefined(member, attribute);
     }
 
     /// <summary>

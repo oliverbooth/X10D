@@ -16,9 +16,9 @@ public static class Int16Extensions
     [Pure]
     public static byte[] GetBytes(this short value)
     {
-        Span<byte> buffer = stackalloc byte[2];
+        byte[] buffer = new byte[2];
         value.TryWriteBytes(buffer);
-        return buffer.ToArray();
+        return buffer;
     }
 
     /// <summary>
@@ -30,9 +30,9 @@ public static class Int16Extensions
     [Pure]
     public static byte[] GetBytes(this short value, Endianness endianness)
     {
-        Span<byte> buffer = stackalloc byte[2];
+        byte[] buffer = new byte[2];
         value.TryWriteBytes(buffer, endianness);
-        return buffer.ToArray();
+        return buffer;
     }
 
     /// <summary>

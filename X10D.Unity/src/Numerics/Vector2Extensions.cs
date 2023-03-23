@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using X10D.Drawing;
 using X10D.Math;
@@ -135,7 +136,7 @@ public static class Vector2Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static System.Numerics.Vector2 ToSystemVector(this Vector2 vector)
     {
-        return new System.Numerics.Vector2(vector.x, vector.y);
+        return UnsafeUtility.As<Vector2, System.Numerics.Vector2>(ref vector);
     }
 
     /// <summary>
@@ -147,7 +148,7 @@ public static class Vector2Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector2 ToUnityVector(this System.Numerics.Vector2 vector)
     {
-        return new Vector2(vector.X, vector.Y);
+        return UnsafeUtility.As<System.Numerics.Vector2, Vector2>(ref vector);
     }
 
     /// <summary>
