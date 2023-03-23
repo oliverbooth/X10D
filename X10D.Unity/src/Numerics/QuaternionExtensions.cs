@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace X10D.Unity.Numerics;
@@ -18,7 +19,7 @@ public static class QuaternionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static System.Numerics.Quaternion ToSystemQuaternion(this Quaternion quaternion)
     {
-        return new System.Numerics.Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
+        return UnsafeUtility.As<Quaternion, System.Numerics.Quaternion>(ref quaternion);
     }
 
     /// <summary>
@@ -30,6 +31,6 @@ public static class QuaternionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Quaternion ToUnityQuaternion(this System.Numerics.Quaternion quaternion)
     {
-        return new Quaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
+        return UnsafeUtility.As<System.Numerics.Quaternion, Quaternion>(ref quaternion);
     }
 }

@@ -46,6 +46,38 @@ public class RuneTests
     }
 
     [TestMethod]
+    public void RepeatCodepoint_0000_007F_ShouldCorrect()
+    {
+        string repeated = new Rune(69).Repeat(16);
+        Assert.AreEqual(16, repeated.Length);
+        Assert.AreEqual("EEEEEEEEEEEEEEEE", repeated);
+    }
+
+    [TestMethod]
+    public void RepeatCodepoint_0080_07FF_ShouldCorrect()
+    {
+        string repeated = new Rune(192).Repeat(8);
+        Assert.AreEqual(8, repeated.Length);
+        Assert.AreEqual("ÀÀÀÀÀÀÀÀ", repeated);
+    }
+
+    [TestMethod]
+    public void RepeatCodepoint_0800_FFFF_ShouldCorrect()
+    {
+        string repeated = new Rune(0x0800).Repeat(5);
+        Assert.AreEqual(5, repeated.Length);
+        Assert.AreEqual("ࠀࠀࠀࠀࠀ", repeated);
+    }
+
+    [TestMethod]
+    public void RepeatCodepointBeyondU10000ShouldCorrect()
+    {
+        string repeated = new Rune('\uD800', '\uDC00').Repeat(6);
+        Assert.AreEqual(12, repeated.Length);
+        Assert.AreEqual("𐀀𐀀𐀀𐀀𐀀𐀀", repeated);
+    }
+
+    [TestMethod]
     public void RepeatZeroCountShouldBeEmpty()
     {
         Assert.AreEqual(string.Empty, new Rune('a').Repeat(0));

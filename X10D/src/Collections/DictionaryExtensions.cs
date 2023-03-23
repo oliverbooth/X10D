@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
 using System.Web;
 
 namespace X10D.Collections;
@@ -8,6 +10,77 @@ namespace X10D.Collections;
 /// </summary>
 public static class DictionaryExtensions
 {
+    /// <summary>
+    ///     Adds a key/value pair to the <see cref="Dictionary{TKey,TValue}" /> if the key does not already exist, or updates a
+    ///     key/value pair in the <see cref="Dictionary{TKey,TValue}" /> by using the specified function if the key already
+    ///     exists.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to update.</param>
+    /// <param name="key">The key to be added or whose value should be updated.</param>
+    /// <param name="addValue">The value to be added for an absent key.</param>
+    /// <param name="updateValueFactory">
+    ///     The function used to generate a new value for an existing key based on the key's existing value.
+    /// </param>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+    /// <returns>
+    ///     The new value for the key. This will be either be <paramref name="addValue" /> (if the key was absent) or the result
+    ///     of <paramref name="updateValueFactory" /> (if the key was present).
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="dictionary" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="updateValueFactory" /> is <see langword="null" />.</para>
+    /// </exception>
+    public static TValue AddOrUpdate<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue addValue,
+        Func<TKey, TValue, TValue> updateValueFactory)
+        where TKey : notnull
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(dictionary);
+#else
+        if (dictionary is null)
+        {
+            throw new ArgumentNullException(nameof(dictionary));
+        }
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
+#else
+        if (updateValueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(updateValueFactory));
+        }
+#endif
+
+#if NET6_0_OR_GREATER
+        ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        if (exists)
+        {
+            value = updateValueFactory(key, value!);
+        }
+        else
+        {
+            value = addValue;
+        }
+
+        return value;
+#else
+        if (dictionary.TryGetValue(key, out TValue? old))
+        {
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
+
+            return updated;
+        }
+        else
+        {
+            dictionary.Add(key, addValue);
+            return addValue;
+        }
+#endif
+    }
+
     /// <summary>
     ///     Adds a key/value pair to the <see cref="IDictionary{TKey,TValue}" /> if the key does not already exist, or updates a
     ///     key/value pair in the <see cref="IDictionary{TKey,TValue}" /> by using the specified function if the key already
@@ -51,16 +124,101 @@ public static class DictionaryExtensions
         }
 #endif
 
-        if (dictionary.ContainsKey(key))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            dictionary[key] = updateValueFactory(key, dictionary[key]);
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
+
+            return updated;
         }
         else
         {
             dictionary.Add(key, addValue);
+            return addValue;
+        }
+    }
+
+    /// <summary>
+    ///     Uses the specified functions to add a key/value pair to the <see cref="Dictionary{TKey,TValue}" /> if the key does
+    ///     not already exist, or to update a key/value pair in the <see cref="Dictionary{TKey,TValue}" /> if the key already
+    ///     exists.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to update.</param>
+    /// <param name="key">The key to be added or whose value should be updated.</param>
+    /// <param name="addValueFactory">The function used to generate a value for an absent key.</param>
+    /// <param name="updateValueFactory">
+    ///     The function used to generate a new value for an existing key based on the key's existing value.
+    /// </param>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+    /// <returns>
+    ///     The new value for the key. This will be either be the result of <paramref name="addValueFactory "/> (if the key was
+    ///     absent) or the result of <paramref name="updateValueFactory" /> (if the key was present).
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="dictionary" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="addValueFactory" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="updateValueFactory" /> is <see langword="null" />.</para>
+    /// </exception>
+    public static TValue AddOrUpdate<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key,
+        Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
+        where TKey : notnull
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(dictionary);
+#else
+        if (dictionary is null)
+        {
+            throw new ArgumentNullException(nameof(dictionary));
+        }
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(addValueFactory);
+#else
+        if (addValueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(addValueFactory));
+        }
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
+#else
+        if (updateValueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(updateValueFactory));
+        }
+#endif
+
+#if NET6_0_OR_GREATER
+        ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        if (exists)
+        {
+            value = updateValueFactory(key, value!);
+        }
+        else
+        {
+            value = addValueFactory(key);
         }
 
-        return dictionary[key];
+        return value;
+#else
+        if (dictionary.TryGetValue(key, out TValue? old))
+        {
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
+
+            return updated;
+        }
+        else
+        {
+            var add = addValueFactory(key);
+            dictionary.Add(key, add);
+
+            return add;
+        }
+#endif
     }
 
     /// <summary>
@@ -116,16 +274,109 @@ public static class DictionaryExtensions
         }
 #endif
 
-        if (dictionary.ContainsKey(key))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            dictionary[key] = updateValueFactory(key, dictionary[key]);
+            var updated = updateValueFactory(key, old);
+            dictionary[key] = updated;
+
+            return updated;
         }
         else
         {
-            dictionary.Add(key, addValueFactory(key));
+            var add = addValueFactory(key);
+            dictionary.Add(key, add);
+
+            return add;
+        }
+    }
+
+    /// <summary>
+    ///     Uses the specified functions and argument to add a key/value pair to the <see cref="Dictionary{TKey,TValue}" /> if
+    ///     the key does not already exist, or to update a key/value pair in the <see cref="Dictionary{TKey,TValue}" /> if th
+    ///     key already exists.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to update.</param>
+    /// <param name="key">The key to be added or whose value should be updated.</param>
+    /// <param name="addValueFactory">The function used to generate a value for an absent key.</param>
+    /// <param name="updateValueFactory">
+    ///     The function used to generate a new value for an existing key based on the key's existing value.
+    /// </param>
+    /// <param name="factoryArgument">
+    ///     An argument to pass into <paramref name="addValueFactory" /> and <paramref name="updateValueFactory" />.
+    /// </param>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+    /// <typeparam name="TArg">
+    ///     The type of an argument to pass into <paramref name="addValueFactory" /> and <paramref name="updateValueFactory" />.
+    /// </typeparam>
+    /// <returns>
+    ///     The new value for the key. This will be either be the result of <paramref name="addValueFactory "/> (if the key was
+    ///     absent) or the result of <paramref name="updateValueFactory" /> (if the key was present).
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="dictionary" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="addValueFactory" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="updateValueFactory" /> is <see langword="null" />.</para>
+    /// </exception>
+    public static TValue AddOrUpdate<TKey, TValue, TArg>(this Dictionary<TKey, TValue> dictionary, TKey key,
+        Func<TKey, TArg, TValue> addValueFactory, Func<TKey, TValue, TArg, TValue> updateValueFactory, TArg factoryArgument)
+        where TKey : notnull
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(dictionary);
+#else
+        if (dictionary is null)
+        {
+            throw new ArgumentNullException(nameof(dictionary));
+        }
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(addValueFactory);
+#else
+        if (addValueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(addValueFactory));
+        }
+#endif
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
+#else
+        if (updateValueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(updateValueFactory));
+        }
+#endif
+
+#if NET6_0_OR_GREATER
+        ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        if (exists)
+        {
+            value = updateValueFactory(key, value!, factoryArgument);
+        }
+        else
+        {
+            value = addValueFactory(key, factoryArgument);
         }
 
-        return dictionary[key];
+        return value;
+#else
+        if (dictionary.TryGetValue(key, out TValue? old))
+        {
+            var updated = updateValueFactory(key, old, factoryArgument);
+            dictionary[key] = updated;
+
+            return updated;
+        }
+        else
+        {
+            var add = addValueFactory(key, factoryArgument);
+            dictionary.Add(key, add);
+
+            return add;
+        }
+#endif
     }
 
     /// <summary>
@@ -187,16 +438,20 @@ public static class DictionaryExtensions
         }
 #endif
 
-        if (dictionary.ContainsKey(key))
+        if (dictionary.TryGetValue(key, out TValue? old))
         {
-            dictionary[key] = updateValueFactory(key, dictionary[key], factoryArgument);
+            var updated = updateValueFactory(key, old, factoryArgument);
+            dictionary[key] = updated;
+
+            return updated;
         }
         else
         {
-            dictionary.Add(key, addValueFactory(key, factoryArgument));
-        }
+            var add = addValueFactory(key, factoryArgument);
+            dictionary.Add(key, add);
 
-        return dictionary[key];
+            return add;
+        }
     }
 
     /// <summary>

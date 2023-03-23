@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using X10D.Math;
 
@@ -61,7 +62,7 @@ public static class Vector3Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static System.Numerics.Vector3 ToSystemVector(this Vector3 vector)
     {
-        return new System.Numerics.Vector3(vector.x, vector.y, vector.z);
+        return UnsafeUtility.As<Vector3, System.Numerics.Vector3>(ref vector);
     }
 
     /// <summary>
@@ -73,7 +74,7 @@ public static class Vector3Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector3 ToUnityVector(this System.Numerics.Vector3 vector)
     {
-        return new Vector3(vector.X, vector.Y, vector.Z);
+        return UnsafeUtility.As<System.Numerics.Vector3, Vector3>(ref vector);
     }
 
     /// <summary>

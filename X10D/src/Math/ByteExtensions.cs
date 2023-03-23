@@ -9,7 +9,7 @@ namespace X10D.Math;
 public static class ByteExtensions
 {
     /// <summary>
-    ///     Computes the digital root of this 16-bit integer.
+    ///     Computes the digital root of this 8-bit integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>
     /// <returns>The digital root of <paramref name="value" />.</returns>

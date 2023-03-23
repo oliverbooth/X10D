@@ -17,9 +17,9 @@ public static class Int64Extensions
     [Pure]
     public static bool[] Unpack(this long value)
     {
-        Span<bool> buffer = stackalloc bool[Size];
-        value.Unpack(buffer);
-        return buffer.ToArray();
+        var ret = new bool[Size];
+        value.Unpack(ret);
+        return ret;
     }
 
     /// <summary>
