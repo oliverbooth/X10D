@@ -39,13 +39,16 @@ public static class SpanExtensions
 #endif
 
     /// <summary>
-    ///     Indicate whether a specific enumeration value is found in a span.
+    ///     Returns a value indicating whether a specific enumeration value is contained with the current span of elements.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="span">The span to search from.</param>
-    /// <param name="value">The enum to search for.</param>
-    /// <returns><see langword="true"/> if found, <see langword="false"/> otherwise.</returns>
-    /// <exception cref="ArgumentException">Unexpected enum memory size.</exception>
+    /// <typeparam name="T">The type of the elements in <paramref name="span" />.</typeparam>
+    /// <param name="span">The span of elements.</param>
+    /// <param name="value">The value to search for.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is contained with <paramref name="span" />; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
 #if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #else
@@ -57,13 +60,17 @@ public static class SpanExtensions
     }
 
     /// <summary>
-    ///     Indicate whether a specific enumeration value is found in a span.
+    ///     Returns a value indicating whether a specific enumeration value is contained with the current readonly span of
+    ///     elements.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="span">The span to search from.</param>
-    /// <param name="value">The enum to search for.</param>
-    /// <returns><see langword="true"/> if found, <see langword="false"/> otherwise.</returns>
-    /// <exception cref="ArgumentException">Unexpected enum memory size.</exception>
+    /// <typeparam name="T">The type of the elements in <paramref name="span" />.</typeparam>
+    /// <param name="span">The readonly span of elements.</param>
+    /// <param name="value">The value to search for.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is contained with <paramref name="span" />; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
 #if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #else
