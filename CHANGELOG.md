@@ -1,14 +1,23 @@
 # Changelog
 
-## 3.2.0
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## 3.2.0 - [Unreleased]
+
 ### Added
+
 - Added new library X10D.DSharpPlus
 - Added new library X10D.Hosting
 - Added .NET 7 target
-
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
-- X10D: Added `MathUtility.ScaleRange(float, float, float, float, float)` and `MathUtility.ScaleRange(double, double, double, double, double)`
-- X10D: Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`, and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
+- X10D: Added `MathUtility.ScaleRange(float, float, float, float, float)`
+  and `MathUtility.ScaleRange(double, double, double, double, double)`
+- X10D:
+  Added `Circle`, `CircleF`, `Cuboid`, `Ellipse`, `EllipseF`, `Line3D`, `Line`, `LineF`, `Polygon`, `PolygonF`, `Polyhedron`,
+  and `Sphere`, to complement System.Drawing structs such as `Point` and `Rectangle`
 - X10D: Added `Color.Deconstruct()` - with optional alpha parameter
 - X10D: Added `Color.GetClosestConsoleColor()`
 - X10D: Added `DateTime.GetIso8601WeekOfYear()` and `DateTimeOffset.GetIso8601WeekOfYear()`
@@ -27,6 +36,7 @@
 - X10D: Added `IList<T>.Swap(IList<T>)` (#62)
 - X10D: Added `IReadOnlyList<T>.IndexOf(T[, int[, int]])`
 - X10D: Added `IReadOnlyList<T>.Slice(int[, int]])`
+- X10D: Added `LowestCommonMultiple` for built-in integer types
 - X10D: Added `Wrap(T[, T])` for built-in numeric types (#60)
 - X10D: Added `Nullable<T>.TryGetValue(out T)` (#61)
 - X10D: Added `Point.IsOnLine(LineF)`, `Point.IsOnLine(PointF, PointF)`, and `Point.IsOnLine(Vector2, Vector2)`
@@ -94,7 +104,8 @@
 - X10D.Unity: Added `SizeF.ToUnityVector2()`
 - X10D.Unity: Added `Vector2.Deconstruct()`
 - X10D.Unity: Added `Vector2.IsOnLine(LineF)`, `Vector2.IsOnLine(PointF, PointF)`, and `Vector2.IsOnLine(Vector2, Vector2)`
-- X10D.Unity: Added `Vector2Int.IsOnLine(LineF)`, `Vector2Int.IsOnLine(PointF, PointF)`, `Vector2Int.IsOnLine(Vector2, Vector2)`, and `Vector2Int.IsOnLine(Vector2Int, Vector2Int)`
+- X10D.Unity: Added `Vector2Int.IsOnLine(LineF)`, `Vector2Int.IsOnLine(PointF, PointF)`, `Vector2Int.IsOnLine(Vector2, Vector2)`,
+  and `Vector2Int.IsOnLine(Vector2Int, Vector2Int)`
 - X10D.Unity: Added `Vector2.Round([float])`
 - X10D.Unity: Added `Vector2.ToSystemPointF()`
 - X10D.Unity: Added `Vector2.ToSystemSizeF()`
@@ -122,11 +133,14 @@
 - X10D.Unity: Added `WaitForTimeSpanRealtimeNoAlloc` yield instruction
 
 ### Changed
+
 - X10D: `TimeSpanParser.TryParse` now accepts a nullable string, and returns false if this input is null or empty
 - X10D.Unity: `Singleton<T>` now caches instance where possible
 
-## [3.1.0]
+## [3.1.0] - 2022-05-13
+
 ### Added
+
 - Reintroduced Unity support
 - X10D: Added `Color.Inverted()` (#54)
 - X10D: Added `Color.WithA()` (#55)
@@ -200,12 +214,14 @@
 - X10D.Unity: Added `Vector4.WithZ()` (#56)
 - X10D.Unity: Added `Vector4.WithW()` (#56)
 
-## [3.0.0]
+## [3.0.0] - 2022-04-30
 
-In the midst of writing these release notes, I may have missed some important changes. If you notice an API change that is not documented here,
+In the midst of writing these release notes, I may have missed some important changes. If you notice an API change that is not
+documented here,
 please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 ### Added
+
 - Added `T.AsArrayValue()`
 - Added `T.AsEnumerableValue()`
 - Added `T.RepeatValue(int)`
@@ -226,7 +242,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 - Added `IComparable<T1>.Max(T)` (#23)
 - Added `IComparable<T1>.Min(T)` (#23)
 - Added `IDictionary<TKey, TValue>.AddOrUpdate()`
-- Added `IEnumerable<TSource>.Product()` and `IEnumerable<TSource>.Product<TResult>(Func<TSource>, TResult)` for all built-in numeric types, computing the product of all (optionally transformed) elements
+- Added `IEnumerable<TSource>.Product()` and `IEnumerable<TSource>.Product<TResult>(Func<TSource>, TResult)` for all built-in
+  numeric types, computing the product of all (optionally transformed) elements
 - Added `IList<T>.Fill(T)` and `IList<T>.Fill(T, int, int)`
 - Added `IPAddress.IsIPv4()` and `IPAddress.IsIPv6()`
 - Added `IReadOnlyList<byte>.Pack8Bit()`
@@ -295,36 +312,54 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 - Added `IsLeapYear` function for `DateTime` and `DateTimeOffset`, as well as built-in numeric types
 - Added `MultiplicativePersistence` function for built-in integer types
 - Added `RotateLeft` and `RotateRight` for built-in integer types
-- Added trigonometric functions for built-in numeric types, including `Acos()`, `Asin()`, `Atan()`, `Atan2()`, `Cos()`, `Sin()`, `Tan()` (#49)
-- Added time-related extension methods for built-in numeric types, including `Milliseconds()`, `Seconds()`, `Minutes()`, `Hours()`, `Days()`, and `Weeks()`. `Ticks()` is also available, but only for integers; not floating point
-- Added `StringBuilderReader` (inheriting `TextReader`) which allows reading from a `StringBuilder` without consuming the underlying string
+- Added trigonometric functions for built-in numeric types,
+  including `Acos()`, `Asin()`, `Atan()`, `Atan2()`, `Cos()`, `Sin()`, `Tan()` (#49)
+- Added time-related extension methods for built-in numeric types,
+  including `Milliseconds()`, `Seconds()`, `Minutes()`, `Hours()`, `Days()`, and `Weeks()`. `Ticks()` is also available, but only
+  for integers; not floating point
+- Added `StringBuilderReader` (inheriting `TextReader`) which allows reading from a `StringBuilder` without consuming the
+  underlying string
 - Added extension methods for `System.Decimal`
 
 ### Changed
+
 - Updated to .NET 6 (#45)
 - Methods defined to accept `byte[]` have been changed accept `IReadOnlyList<byte>`
 - Extension methods are now defined in appropriate child namespaces to reduce the risk of name collisions (#7)
-- `char[].Random(int)`, `char[].Random(int, int)`, `IEnumerable<char>.Random(int)`, and `IEnumerable<char>.Random(int, int)` have been redefined as `Random.NextString(IReadOnlyList<char>, int)`
-- `IComparable<T>.Between(T, T)` has been redefined as `IComparable<T1>.Between(T2, T3, [InclusiveOptions])` to allow comparison of disparate yet comparable types, and also offers inclusivity options
+- `char[].Random(int)`, `char[].Random(int, int)`, `IEnumerable<char>.Random(int)`, and `IEnumerable<char>.Random(int, int)` have
+  been redefined as `Random.NextString(IReadOnlyList<char>, int)`
+- `IComparable<T>.Between(T, T)` has been redefined as `IComparable<T1>.Between(T2, T3, [InclusiveOptions])` to allow comparison
+  of disparate yet comparable types, and also offers inclusivity options
 - `DateTime` extensions now wrap `DateTimeOffset` extensions
 - `DateTime.ToUnixTimestamp([bool])` has been redefined as `DateTime.ToUnixTimeMilliseconds()` and `DateTime.ToUnixTimeSeconds()`
-- `Dictionary<T1, T2>.ToGetParameters()`, `IDictionary<T1, T2>.ToGetParameters()`, and `IReadOnlyDictionary<T1, T2>.ToGetParameters()`, has been redefined as `IEnumerable<KeyValuePair<T1, T2>>.ToGetParameters()`
-- `Dictionary<T1, T2>.ToConnectionString()`, `IDictionary<T1, T2>.ToConnectionString()`, and `IReadOnlyDictionary<T1, T2>.ToConnectionString()`, has been redefined as `IEnumerable<KeyValuePair<T1, T2>>.ToConnectionString()`
-- `IList<T>.OneOf([Random])` and `IEnumerable<T>.OneOf([Random])` have been redefined as `Random.NextFrom<T>(IEnumerable<T>)` to fall in line with the naming convention of `System.Random` (#21)
+- `Dictionary<T1, T2>.ToGetParameters()`, `IDictionary<T1, T2>.ToGetParameters()`,
+  and `IReadOnlyDictionary<T1, T2>.ToGetParameters()`, has been redefined as `IEnumerable<KeyValuePair<T1, T2>>.ToGetParameters()`
+- `Dictionary<T1, T2>.ToConnectionString()`, `IDictionary<T1, T2>.ToConnectionString()`,
+  and `IReadOnlyDictionary<T1, T2>.ToConnectionString()`, has been redefined
+  as `IEnumerable<KeyValuePair<T1, T2>>.ToConnectionString()`
+- `IList<T>.OneOf([Random])` and `IEnumerable<T>.OneOf([Random])` have been redefined as `Random.NextFrom<T>(IEnumerable<T>)` to
+  fall in line with the naming convention of `System.Random` (#21)
 - `IList<T>.Shuffle([Random])` now uses a Fisher-Yates shuffle implementation
 - `IList<T>.Shuffle([Random])` has been repurposed to shuffle the list in place, rather than returning a new enumerable
-  - `IEnumerable<T>.Shuffle([Random])` has been renamed to `IEnumerable<T>.Shuffled([Random])` to avoid confusion with `IList<T>.Shuffle([Random])`
+    - `IEnumerable<T>.Shuffle([Random])` has been renamed to `IEnumerable<T>.Shuffled([Random])` to avoid confusion
+      with `IList<T>.Shuffle([Random])`
 - `Random.CoinToss()` has been redefined as `Random.NextBoolean()` to fall in line with the naming convention of `System.Random`
-- `Random.OneOf<T>(T[])` and `Random.OneOf<T>(IList<T>)` have been redefined as `Random.NextFrom<T>(IEnumerable<T>)` to fall in line with the naming convention of `System.Random`
-- `Enum.Next([bool])` and `Enum.Previous([bool])` have been redefined as `Enum.Next()`, `Enum.Previous()`, `Enum.NextUnchecked()`, `Enum.PreviousUnchecked()`. The `Unchecked` variants of these methods do not perform index validation, and will throw `IndexOutOfRangeException` when attempting to access an invalid index. The checked variants will perform a modulo to wrap the index
-- Seperated `string.WithAlternative(string, [bool])` to `string.WithEmptyAlternative(string)` and `string.WithWhiteSpaceAlternative(string)`
+- `Random.OneOf<T>(T[])` and `Random.OneOf<T>(IList<T>)` have been redefined as `Random.NextFrom<T>(IEnumerable<T>)` to fall in
+  line with the naming convention of `System.Random`
+- `Enum.Next([bool])` and `Enum.Previous([bool])` have been redefined
+  as `Enum.Next()`, `Enum.Previous()`, `Enum.NextUnchecked()`, `Enum.PreviousUnchecked()`. The `Unchecked` variants of these
+  methods do not perform index validation, and will throw `IndexOutOfRangeException` when attempting to access an invalid index.
+  The checked variants will perform a modulo to wrap the index
+- Seperated `string.WithAlternative(string, [bool])` to `string.WithEmptyAlternative(string)`
+  and `string.WithWhiteSpaceAlternative(string)`
 - `string.AsNullIfEmpty()` and `string.AsNullIfWhiteSpace()` now accept a nullable `string`
 - `IEnumerable<byte>.GetString([Encoding])` has been renamed to `IReadOnlyList<byte>.ToString` and its `Encoding` parameter has
   been made non-optional
 - Fixed a bug where `IEnumerable<KeyValuePair<K,V>>.ToConnectionString()` would not sanitize types with custom `ToString()`
   implementation (#20)
   Renamed `string.Random(int[, Random])` to `string.Randomize(int[, Random])`
-- Redefined `char[].Random(int)`, `char[].Random(int, Random)`, `IEnumerable<char>.Random(int)`, and `IEnumerable<char>.Random(int, Random)`, as `Random.NextString(IReadOnlyList<char>, int)`
+- Redefined `char[].Random(int)`, `char[].Random(int, Random)`, `IEnumerable<char>.Random(int)`,
+  and `IEnumerable<char>.Random(int, Random)`, as `Random.NextString(IReadOnlyList<char>, int)`
 - Improved performance for:
     - `string.IsLower()`
     - `string.IsUpper()`
@@ -332,7 +367,9 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
     - `TimeSpanParser`
 
 ### Removed
-- Indefinitely suspended Unity support, until such a time that Unity can be updated to a newer version of .NET. See: https://forum.unity.com/threads/unity-future-net-development-status.1092205/
+
+- Indefinitely suspended Unity support, until such a time that Unity can be updated to a newer version of .NET.
+  See: https://forum.unity.com/threads/unity-future-net-development-status.1092205/
 - Removed `bool.And(bool)`
 - Removed `bool.NAnd(bool)`
 - Removed `bool.NOr(bool)`
@@ -350,7 +387,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 - Removed `IConvertible.ToOrNull<T>(out T, [IFormatProvider])` (#13)
 - Removed `IConvertible.ToOrOther<T>(T, [IFormatProvider])` (#13)
 - Removed `IConvertible.ToOrOther<T>(out T, T, [IFormatProvider])` (#13)
-- Removed `IEnumerable<T>.Split(int)` - this functionality is now provided by .NET in the form of the `Chunk` method. See: https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.chunk?view=net-6.0
+- Removed `IEnumerable<T>.Split(int)` - this functionality is now provided by .NET in the form of the `Chunk` method.
+  See: https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.chunk?view=net-6.0
 - Removed `MemberInfo.GetDefaultValue()` (use `SelectFromCustomAttribute()` instead)
 - Removed `MemberInfo.GetDescription()` (use `SelectFromCustomAttribute()` instead)
 - Removed `int.ToBoolean()`
@@ -359,7 +397,10 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 - Removed `uint.ToBoolean()`
 - Removed `ushort.ToBoolean()`
 - Removed `ulong.ToBoolean()`
-- Removed `WaitHandle.WaitOneAsync()`. For suspensions of execution during asynchronous operations, favour `TaskCompletionSource` or `TaskCompletionSource<T>`. See: https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource?view=net-6.0 and https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource-1?view=net-6.0 
+- Removed `WaitHandle.WaitOneAsync()`. For suspensions of execution during asynchronous operations, favour `TaskCompletionSource`
+  or `TaskCompletionSource<T>`.
+  See: https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource?view=net-6.0
+  and https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource-1?view=net-6.0
 
 ## [2.6.0] - 2020-10-20
 
@@ -497,8 +538,9 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 ## Earlier versions
 
-### ***Not documented***
+Earlier versions of this package are undocumented and unlisted from package results.
 
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.1.0...develop
 [3.1.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.1.0
 [3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0
 [2.6.0]: https://github.com/oliverbooth/X10D/releases/tag/2.6.0
