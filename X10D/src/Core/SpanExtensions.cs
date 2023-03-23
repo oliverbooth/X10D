@@ -158,7 +158,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    public static byte PackByte(this ReadOnlySpan<bool> source)
+    public static unsafe byte PackByte(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
@@ -230,7 +230,7 @@ public static class SpanExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
     [Pure]
-    public static short PackInt16(this ReadOnlySpan<bool> source)
+    public static unsafe short PackInt16(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
@@ -299,7 +299,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    public static int PackInt32(this ReadOnlySpan<bool> source)
+    public static unsafe int PackInt32(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
@@ -413,7 +413,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    public static long PackInt64(this ReadOnlySpan<bool> source)
+    public static unsafe long PackInt64(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
