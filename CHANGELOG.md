@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added new library X10D.DSharpPlus.
 - Added new library X10D.Hosting.
 - Added .NET 7 target.
-- X10D: Added `IntrinsicExtensions` and `IntrinsicUtility` which offer methods for vectors in `System.Runtime.Instrinsics`. (#68)
+- X10D: Added `IntrinsicExtensions` and `IntrinsicUtility` which offer methods for vectors in `System.Runtime.Instrinsics`. (#70)
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
 - X10D: Added `MathUtility.ScaleRange(float, float, float, float, float)`
   and `MathUtility.ScaleRange(double, double, double, double, double)`
@@ -141,13 +141,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- X10D: Performance for integer `Unpack` has been dramatically improved using vector parallelization. (#68)
-- X10D: Performance for `MemberInfo.HasCustomAttribute` has been improved. (#68)
-- X10D: Performance for `Rune.Repeat` has been improved. (#68)
+- X10D: Performance for integer `Unpack` has been dramatically improved using vector parallelization. (#70)
+- X10D: Performance for `MemberInfo.HasCustomAttribute` has been improved. (#70)
+- X10D: Performance for `Rune.Repeat` has been improved. (#70)
 - X10D: `TimeSpanParser.TryParse` now accepts a nullable string, and returns false if this input is null or empty.
 - X10D.Unity: `Singleton<T>` now caches instance where possible.
 - X10D.Unity: Conversions between equivalent structures in `System.Numerics` and `UnityEngine` now make use of "unsafe"
-  reinterpretation, rather than constructing new instances. (#68)
+  reinterpretation, rather than constructing new instances. (#70)
 
 ## [3.1.0] - 2022-05-13
 
