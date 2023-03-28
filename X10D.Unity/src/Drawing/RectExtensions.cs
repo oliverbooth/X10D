@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace X10D.Unity.Drawing;
@@ -19,6 +20,6 @@ public static class RectExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RectangleF ToSystemRectangleF(this Rect rectangle)
     {
-        return new RectangleF(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        return UnsafeUtility.As<Rect, RectangleF>(ref rectangle);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Numerics;
@@ -38,6 +39,6 @@ public static class PointFExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector2 ToUnityVector2(this PointF point)
     {
-        return new Vector2(point.X, point.Y);
+        return UnsafeUtility.As<PointF, Vector2>(ref point);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace X10D.Unity.Drawing;
@@ -19,6 +20,6 @@ public static class SizeFExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector2 ToUnityVector2(this SizeF size)
     {
-        return new Vector2(size.Width, size.Height);
+        return UnsafeUtility.As<SizeF, Vector2>(ref size);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace X10D.Unity.Drawing;
@@ -19,7 +20,7 @@ public static class RectIntExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Rectangle ToSystemRectangle(this RectInt rectangle)
     {
-        return new Rectangle(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        return UnsafeUtility.As<RectInt, Rectangle>(ref rectangle);
     }
 
     /// <summary>
@@ -31,6 +32,7 @@ public static class RectIntExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RectangleF ToSystemRectangleF(this RectInt rectangle)
     {
-        return new RectangleF(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        // REMARKS: implicit conversion already exists, this method is largely pointless
+        return rectangle.ToSystemRectangle();
     }
 }
