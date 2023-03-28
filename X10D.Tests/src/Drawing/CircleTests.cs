@@ -74,11 +74,27 @@ public class CircleTests
     }
 
     [TestMethod]
+    public void Equals_ShouldBeTrue_GivenUnitCirclesAsObjects()
+    {
+        Circle unitCircle1 = Circle.Unit;
+        object unitCircle2 = Circle.Unit;
+        Assert.AreEqual(unitCircle1, unitCircle2);
+        Assert.IsTrue(unitCircle1.Equals(unitCircle2));
+    }
+
+    [TestMethod]
     public void Equals_ShouldBeFalse_GivenDifferentCircles()
     {
         Assert.AreNotEqual(Circle.Unit, Circle.Empty);
         Assert.IsFalse(Circle.Unit == Circle.Empty);
         Assert.IsTrue(Circle.Unit != Circle.Empty);
+    }
+
+    [TestMethod]
+    public void Equals_ShouldBeFalse_GivenDifferentObjects()
+    {
+        Assert.AreNotEqual((object?)null, Circle.Empty);
+        Assert.IsFalse(Circle.Empty.Equals(null));
     }
 
     [TestMethod]
