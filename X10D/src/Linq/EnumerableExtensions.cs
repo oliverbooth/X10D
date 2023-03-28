@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿#if NET5_0_OR_GREATER
+using System.Runtime.InteropServices;
+#endif
 
 namespace X10D.Linq;
 
@@ -50,37 +52,15 @@ public static class EnumerableExtensions
 #endif
 
         comparer ??= Comparer<T>.Default;
-        T? minValue;
-        T? maxValue;
 
         // ReSharper disable once PossibleMultipleEnumeration
         if (source.TryGetSpan(out ReadOnlySpan<T> span))
         {
-            if (span.IsEmpty)
-            {
-                throw new InvalidOperationException("Source contains no elements");
-            }
-
-            minValue = span[0];
-            maxValue = minValue;
-
-            for (var index = 1; (uint)index < (uint)span.Length; index++)
-            {
-                T current = span[index];
-
-                if (comparer.Compare(current, minValue) < 0)
-                {
-                    minValue = current;
-                }
-
-                if (comparer.Compare(current, maxValue) > 0)
-                {
-                    maxValue = current;
-                }
-            }
-
-            return (minValue, maxValue);
+            return MinMaxSpan(comparer, span);
         }
+
+        T? minValue;
+        T? maxValue;
 
         // ReSharper disable once PossibleMultipleEnumeration
         using (IEnumerator<T> enumerator = source.GetEnumerator())
@@ -175,37 +155,15 @@ public static class EnumerableExtensions
 #endif
 
         comparer ??= Comparer<TResult>.Default;
-        TResult? minValue;
-        TResult? maxValue;
 
         // ReSharper disable once PossibleMultipleEnumeration
         if (source.TryGetSpan(out ReadOnlySpan<TSource> span))
         {
-            if (span.IsEmpty)
-            {
-                throw new InvalidOperationException("Source contains no elements");
-            }
-
-            minValue = selector(span[0]);
-            maxValue = minValue;
-
-            for (var index = 1; (uint)index < (uint)span.Length; index++)
-            {
-                TResult current = selector(span[index]);
-
-                if (minValue is null || comparer.Compare(current, minValue) < 0)
-                {
-                    minValue = current;
-                }
-
-                if (maxValue is null || comparer.Compare(current, maxValue) > 0)
-                {
-                    maxValue = current;
-                }
-            }
-
-            return (minValue, maxValue);
+            return MinMaxSpan(selector, comparer, span);
         }
+
+        TResult? minValue;
+        TResult? maxValue;
 
         // ReSharper disable once PossibleMultipleEnumeration
         using (IEnumerator<TSource> enumerator = source.GetEnumerator())
@@ -305,31 +263,7 @@ public static class EnumerableExtensions
         // ReSharper disable once PossibleMultipleEnumeration
         if (source.TryGetSpan(out ReadOnlySpan<TSource> span))
         {
-            if (span.IsEmpty)
-            {
-                throw new InvalidOperationException("Source contains no elements");
-            }
-
-            minValue = span[0];
-            maxValue = minValue;
-
-            for (var index = 1; (uint)index < (uint)span.Length; index++)
-            {
-                TSource current = span[index];
-                TResult transformedCurrent = keySelector(current);
-
-                if (minValue is null || comparer.Compare(transformedCurrent, keySelector(minValue)) < 0)
-                {
-                    minValue = current;
-                }
-
-                if (maxValue is null || comparer.Compare(transformedCurrent, keySelector(maxValue)) > 0)
-                {
-                    maxValue = current;
-                }
-            }
-
-            return (minValue, maxValue);
+            return MinMaxSelectedSpan(keySelector, comparer, span);
         }
 
         // ReSharper disable once PossibleMultipleEnumeration
@@ -357,6 +291,95 @@ public static class EnumerableExtensions
                 {
                     maxValue = current;
                 }
+            }
+        }
+
+        return (minValue, maxValue);
+    }
+
+    private static (T? Minimum, T? Maximum) MinMaxSpan<T>(IComparer<T> comparer, ReadOnlySpan<T> span)
+    {
+        if (span.IsEmpty)
+        {
+            throw new InvalidOperationException("Source contains no elements");
+        }
+
+        T minValue = span[0];
+        T maxValue = minValue;
+
+        for (var index = 1; (uint)index < (uint)span.Length; index++)
+        {
+            T current = span[index];
+
+            if (comparer.Compare(current, minValue) < 0)
+            {
+                minValue = current;
+            }
+
+            if (comparer.Compare(current, maxValue) > 0)
+            {
+                maxValue = current;
+            }
+        }
+
+        return (minValue, maxValue);
+    }
+
+    private static (TSource? Minimum, TSource? Maximum) MinMaxSelectedSpan<TSource, TResult>(Func<TSource, TResult> keySelector,
+        IComparer<TResult> comparer,
+        ReadOnlySpan<TSource> span)
+    {
+        if (span.IsEmpty)
+        {
+            throw new InvalidOperationException("Source contains no elements");
+        }
+
+        TSource minValue = span[0];
+        TSource maxValue = minValue;
+
+        for (var index = 1; (uint)index < (uint)span.Length; index++)
+        {
+            TSource current = span[index];
+            TResult transformedCurrent = keySelector(current);
+
+            if (minValue is null || comparer.Compare(transformedCurrent, keySelector(minValue)) < 0)
+            {
+                minValue = current;
+            }
+
+            if (maxValue is null || comparer.Compare(transformedCurrent, keySelector(maxValue)) > 0)
+            {
+                maxValue = current;
+            }
+        }
+
+        return (minValue, maxValue);
+    }
+
+    private static (TResult?, TResult?) MinMaxSpan<TSource, TResult>(Func<TSource, TResult> selector,
+        IComparer<TResult> comparer,
+        ReadOnlySpan<TSource> span)
+    {
+        if (span.IsEmpty)
+        {
+            throw new InvalidOperationException("Source contains no elements");
+        }
+
+        TResult minValue = selector(span[0]);
+        TResult maxValue = minValue;
+
+        for (var index = 1; (uint)index < (uint)span.Length; index++)
+        {
+            TResult current = selector(span[index]);
+
+            if (minValue is null || comparer.Compare(current, minValue) < 0)
+            {
+                minValue = current;
+            }
+
+            if (maxValue is null || comparer.Compare(current, maxValue) > 0)
+            {
+                maxValue = current;
             }
         }
 
