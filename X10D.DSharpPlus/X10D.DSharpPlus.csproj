@@ -14,7 +14,7 @@
         <PackageIcon>icon.png</PackageIcon>
         <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
-        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(SolutionDir)/CHANGELOG.md"))</PackageReleaseNotes>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
         <VersionPrefix>3.2.0</VersionPrefix>
         <Nullable>enable</Nullable>
