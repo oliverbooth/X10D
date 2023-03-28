@@ -17,6 +17,7 @@ internal sealed class EmojiRegexGenerator : ISourceGenerator
     public void Initialize(GeneratorInitializationContext context)
     {
         string response = HttpClient.GetStringAsync(TwemojiRegexUrl).GetAwaiter().GetResult();
+        var regex = new Regex(@"export default /(?<regex>.+)/g;", RegexOptions.Compiled, Regex.InfiniteMatchTimeout);
         using var reader = new StringReader(response);
 
         while (reader.ReadLine() is { } line)
@@ -26,7 +27,7 @@ internal sealed class EmojiRegexGenerator : ISourceGenerator
                 continue;
             }
 
-            Match match = Regex.Match(line, @"export default /(?<regex>.+)/g;");
+            Match match = regex.Match(line);
             if (!match.Success)
             {
                 continue;
