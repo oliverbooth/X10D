@@ -13,6 +13,11 @@ public class EnumerableTests
         (int minimum, int maximum) = source.MinMax();
         Assert.AreEqual(1, minimum);
         Assert.AreEqual(10, maximum);
+
+        source = Enumerable.Range(1, 10).ToArray();
+        (minimum, maximum) = source.MinMax();
+        Assert.AreEqual(1, minimum);
+        Assert.AreEqual(10, maximum);
     }
 
     [TestMethod]
@@ -20,6 +25,11 @@ public class EnumerableTests
     {
         IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
         (int minimum, int maximum) = source.MinMax(p => p.Age);
+        Assert.AreEqual(1, minimum);
+        Assert.AreEqual(10, maximum);
+
+        source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
+        (minimum, maximum) = source.MinMax(p => p.Age);
         Assert.AreEqual(1, minimum);
         Assert.AreEqual(10, maximum);
     }
@@ -31,13 +41,21 @@ public class EnumerableTests
         (int minimum, int maximum) = source.MinMax(p => p.Age, new InverseComparer<int>());
         Assert.AreEqual(10, minimum);
         Assert.AreEqual(1, maximum);
+
+        source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
+        (minimum, maximum) = source.MinMax(p => p.Age, new InverseComparer<int>());
+        Assert.AreEqual(10, minimum);
+        Assert.AreEqual(1, maximum);
     }
 
     [TestMethod]
     public void MinMax_ShouldReturnOppositeValues_UsingInverseComparer()
     {
-        IEnumerable<int> source = Enumerable.Range(1, 10);
-        (int minimum, int maximum) = source.MinMax(new InverseComparer<int>());
+        (int minimum, int maximum) = Enumerable.Range(1, 10).MinMax(new InverseComparer<int>());
+        Assert.AreEqual(10, minimum);
+        Assert.AreEqual(1, maximum);
+
+        (minimum, maximum) = Enumerable.Range(1, 10).ToArray().MinMax(new InverseComparer<int>());
         Assert.AreEqual(10, minimum);
         Assert.AreEqual(1, maximum);
     }
@@ -45,8 +63,8 @@ public class EnumerableTests
     [TestMethod]
     public void MinMax_ShouldThrowArgumentNullException_GivenNullSelector()
     {
-        IEnumerable<int> source = Enumerable.Range(1, 10);
-        Assert.ThrowsException<ArgumentNullException>(() => source.MinMax((Func<int, int>?)null!));
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Range(1, 10).MinMax((Func<int, int>?)null!));
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Range(1, 10).ToArray().MinMax((Func<int, int>?)null!));
     }
 
     [TestMethod]
@@ -59,8 +77,13 @@ public class EnumerableTests
     [TestMethod]
     public void MinMax_ShouldThrowInvalidOperationException_GivenEmptySource()
     {
-        IEnumerable<int> source = ArraySegment<int>.Empty;
-        Assert.ThrowsException<InvalidOperationException>(() => source.MinMax());
+        Assert.ThrowsException<InvalidOperationException>(() => Enumerable.Empty<int>().MinMax());
+        Assert.ThrowsException<InvalidOperationException>(() => Array.Empty<int>().MinMax());
+        Assert.ThrowsException<InvalidOperationException>(() => new List<int>().MinMax());
+
+        Assert.ThrowsException<InvalidOperationException>(() => Enumerable.Empty<int>().MinMax(i => i * 2));
+        Assert.ThrowsException<InvalidOperationException>(() => Array.Empty<int>().MinMax(i => i * 2));
+        Assert.ThrowsException<InvalidOperationException>(() => new List<int>().MinMax(i => i * 2));
     }
 
     [TestMethod]
@@ -68,6 +91,11 @@ public class EnumerableTests
     {
         IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
         (Person minimum, Person maximum) = source.MinMaxBy(p => p.Age);
+        Assert.AreEqual(1, minimum.Age);
+        Assert.AreEqual(10, maximum.Age);
+
+        source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
+        (minimum, maximum) = source.MinMaxBy(p => p.Age);
         Assert.AreEqual(1, minimum.Age);
         Assert.AreEqual(10, maximum.Age);
     }
@@ -79,13 +107,27 @@ public class EnumerableTests
         (Person minimum, Person maximum) = source.MinMaxBy(p => p.Age, new InverseComparer<int>());
         Assert.AreEqual(10, minimum.Age);
         Assert.AreEqual(1, maximum.Age);
+
+        source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
+        (minimum, maximum) = source.MinMaxBy(p => p.Age, new InverseComparer<int>());
+        Assert.AreEqual(10, minimum.Age);
+        Assert.AreEqual(1, maximum.Age);
     }
 
     [TestMethod]
     public void MinMaxBy_ShouldThrowArgumentNullException_GivenNullSelector()
     {
-        IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
-        Assert.ThrowsException<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>?)null!));
+        Assert.ThrowsException<ArgumentNullException>(() =>
+        {
+            IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
+            return source.MinMaxBy((Func<Person, int>?)null!);
+        });
+
+        Assert.ThrowsException<ArgumentNullException>(() =>
+        {
+            Person[] source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
+            return source.MinMaxBy((Func<Person, int>?)null!);
+        });
     }
 
     [TestMethod]
@@ -98,8 +140,17 @@ public class EnumerableTests
     [TestMethod]
     public void MinMaxBy_ShouldThrowInvalidOperationException_GivenEmptySource()
     {
-        IEnumerable<Person> source = ArraySegment<Person>.Empty;
-        Assert.ThrowsException<InvalidOperationException>(() => source.MinMaxBy(p => p.Age));
+        Assert.ThrowsException<InvalidOperationException>(() =>
+        {
+            IEnumerable<Person> source = Enumerable.Empty<Person>();
+            return source.MinMaxBy(p => p.Age);
+        });
+
+        Assert.ThrowsException<InvalidOperationException>(() =>
+        {
+            Person[] source = Array.Empty<Person>();
+            return source.MinMaxBy(p => p.Age);
+        });
     }
 
     private struct InverseComparer<T> : IComparer<T> where T : IComparable<T>
