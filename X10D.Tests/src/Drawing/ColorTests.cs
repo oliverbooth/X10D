@@ -17,6 +17,54 @@ public class ColorTests
     private static readonly Color Yellow = Color.FromArgb(255, 255, 0);
 
     [TestMethod]
+    public void Deconstruct_ShouldDeconstructColor_GivenColor()
+    {
+        (byte r, byte g, byte b) = Black;
+        Assert.AreEqual(0, r);
+        Assert.AreEqual(0, g);
+        Assert.AreEqual(0, b);
+
+        (byte a, r, g, b) = Black;
+        Assert.AreEqual(255, a);
+        Assert.AreEqual(0, r);
+        Assert.AreEqual(0, g);
+        Assert.AreEqual(0, b);
+
+        (r, g, b) = Red;
+        Assert.AreEqual(255, r);
+        Assert.AreEqual(0, g);
+        Assert.AreEqual(0, b);
+
+        (a, r, g, b) = Red;
+        Assert.AreEqual(255, a);
+        Assert.AreEqual(255, r);
+        Assert.AreEqual(0, g);
+        Assert.AreEqual(0, b);
+
+        (r, g, b) = Green;
+        Assert.AreEqual(0, r);
+        Assert.AreEqual(255, g);
+        Assert.AreEqual(0, b);
+
+        (a, r, g, b) = Green;
+        Assert.AreEqual(255, a);
+        Assert.AreEqual(0, r);
+        Assert.AreEqual(255, g);
+        Assert.AreEqual(0, b);
+
+        (r, g, b) = Blue;
+        Assert.AreEqual(0, r);
+        Assert.AreEqual(0, g);
+        Assert.AreEqual(255, b);
+
+        (a, r, g, b) = Blue;
+        Assert.AreEqual(255, a);
+        Assert.AreEqual(0, r);
+        Assert.AreEqual(0, g);
+        Assert.AreEqual(255, b);
+    }
+
+    [TestMethod]
     public void GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
     {
         Assert.AreEqual(ConsoleColor.White, Color.Transparent.GetClosestConsoleColor());
