@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace X10D.Unity.Drawing;
@@ -19,7 +20,8 @@ public static class SizeExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector2 ToUnityVector2(this Size size)
     {
-        return new Vector2(size.Width, size.Height);
+        // REMARKS: implicit conversion already exists, this method is largely pointless
+        return size.ToUnityVector2Int();
     }
 
     /// <summary>
@@ -31,6 +33,6 @@ public static class SizeExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector2Int ToUnityVector2Int(this Size size)
     {
-        return new Vector2Int(size.Width, size.Height);
+        return UnsafeUtility.As<Size, Vector2Int>(ref size);
     }
 }

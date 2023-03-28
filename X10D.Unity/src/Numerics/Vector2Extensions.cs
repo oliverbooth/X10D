@@ -112,7 +112,7 @@ public static class Vector2Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static PointF ToSystemPointF(this Vector2 vector)
     {
-        return new PointF(vector.x, vector.y);
+        return UnsafeUtility.As<Vector2, PointF>(ref vector);
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public static class Vector2Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static SizeF ToSystemSizeF(this Vector2 vector)
     {
-        return new SizeF(vector.x, vector.y);
+        return UnsafeUtility.As<Vector2, SizeF>(ref vector);
     }
 
     /// <summary>
