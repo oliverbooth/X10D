@@ -28,6 +28,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.DSharpPlus", "X10D.DSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Hosting", "X10D.Hosting\X10D.Hosting.csproj", "{B04AF429-30CF-4B69-81BA-38F560CA9126}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{1FC74E58-F3BA-4F1A-8693-5F80895DA69D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\activate-unity.yml = .github\workflows\activate-unity.yml
+		.github\workflows\docfx.yml = .github\workflows\docfx.yml
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\nightly.yml = .github\workflows\nightly.yml
+		.github\workflows\prerelease.yml = .github\workflows\prerelease.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\sonarcloud.yml = .github\workflows\sonarcloud.yml
+		.github\workflows\source_validator.yml = .github\workflows\source_validator.yml
+		.github\workflows\unity.yml = .github\workflows\unity.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
