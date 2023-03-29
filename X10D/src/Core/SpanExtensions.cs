@@ -22,6 +22,7 @@ public static class SpanExtensions
 {
 #if NETCOREAPP3_0_OR_GREATER
     private const ulong IntegerPackingMagic = 0x0102040810204080;
+
     private static Vector64<ulong> IntegerPackingMagicV64
     {
         get => Vector64.Create(IntegerPackingMagic);
@@ -174,7 +175,8 @@ public static class SpanExtensions
                     goto default;
                 }
 
-                fixed (bool* pSource = source) {
+                fixed (bool* pSource = source)
+                {
                     // TODO: .NET 8.0 Wasm support.
 
                     if (Sse2.IsSupported)
@@ -235,7 +237,7 @@ public static class SpanExtensions
         switch (source.Length)
         {
             case > 16: throw new ArgumentException("Source cannot contain more than than 16 elements.", nameof(source));
-            case 8: return PackByte(source);    // Potential optimization
+            case 8: return PackByte(source); // Potential optimization
 
             case 16:
 #if NETSTANDARD2_1
@@ -336,6 +338,7 @@ public static class SpanExtensions
 
                         return (int)or2.GetElement(0);
                     }
+
                     if (Sse2.IsSupported)
                     {
                         Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
@@ -357,6 +360,7 @@ public static class SpanExtensions
 
                         return (int)or2.GetElement(0);
                     }
+
                     if (AdvSimd.IsSupported)
                     {
                         // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).

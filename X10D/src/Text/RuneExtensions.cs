@@ -84,7 +84,8 @@ public static class RuneExtensions
                 {
                     return string.Create(count * 2, value, (span, rune) =>
                     {
-                        unsafe {
+                        unsafe
+                        {
                             Span<byte> bytes = stackalloc byte[4];
                             value.EncodeToUtf8(bytes);
 

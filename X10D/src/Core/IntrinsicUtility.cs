@@ -187,8 +187,8 @@ public static class IntrinsicUtility
     {
         if (Sse.IsSupported)
         {
-            var s1 = Sse.Shuffle(lhs, rhs, 0b10_00_10_00);  // s1 = { lhs[0] ; lhs[2] ; rhs[0] ; rhs[2] }
-            var s2 = Sse.Shuffle(lhs, rhs, 0b11_01_11_01);  // s2 = { lhs[1] ; lhs[3] ; rhs[1] ; rhs[3] }
+            var s1 = Sse.Shuffle(lhs, rhs, 0b10_00_10_00); // s1 = { lhs[0] ; lhs[2] ; rhs[0] ; rhs[2] }
+            var s2 = Sse.Shuffle(lhs, rhs, 0b11_01_11_01); // s2 = { lhs[1] ; lhs[3] ; rhs[1] ; rhs[3] }
 
             return Sse.Or(s1, s2);
         }

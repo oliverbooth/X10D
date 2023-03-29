@@ -26,7 +26,7 @@ public class Vector2Tests
         Vector2 end = Vector2.UnitX;
         Vector2 point = new Vector2(0.5f, 0.0f);
         var line = new LineF(start, end);
-        
+
         Assert.IsTrue(point.IsOnLine(line));
         Assert.IsTrue(point.IsOnLine(line.Start, line.End));
         Assert.IsTrue(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
@@ -39,7 +39,7 @@ public class Vector2Tests
         Vector2 end = Vector2.UnitX;
         Vector2 point = new Vector2(0.5f, 1.0f);
         var line = new LineF(start, end);
-        
+
         Assert.IsFalse(point.IsOnLine(line));
         Assert.IsFalse(point.IsOnLine(line.Start, line.End));
         Assert.IsFalse(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
