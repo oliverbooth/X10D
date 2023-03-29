@@ -32,11 +32,11 @@ public class EllipseFTests
         ellipse = new EllipseF(0, 0, 2, 1);
         Assert.AreEqual(new PointF(0, 0), ellipse.Center);
         Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);
-        
+
         ellipse = new EllipseF(PointF.Empty, new Vector2(2, 1));
         Assert.AreEqual(new PointF(0, 0), ellipse.Center);
         Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);
-        
+
         ellipse = new EllipseF(Vector2.Zero, new Vector2(2, 1));
         Assert.AreEqual(new PointF(0, 0), ellipse.Center);
         Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);

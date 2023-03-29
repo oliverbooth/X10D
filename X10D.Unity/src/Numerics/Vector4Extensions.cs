@@ -66,7 +66,6 @@ public static class Vector4Extensions
     public static System.Numerics.Vector4 ToSystemVector(this Vector4 vector)
     {
         return UnsafeUtility.As<Vector4, System.Numerics.Vector4>(ref vector);
-
     }
 
     /// <summary>

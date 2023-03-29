@@ -49,6 +49,7 @@ public static class Int32Extensions
             Avx2Implementation(value, destination);
             return;
         }
+
         if (Ssse3.IsSupported)
         {
             Ssse3Implementation(value, destination);
@@ -85,6 +86,7 @@ public static class Int32Extensions
                 Avx.Store((byte*)pDestination, correctness);
             }
         }
+
         unsafe static void Ssse3Implementation(int value, Span<bool> destination)
         {
             fixed (bool* pDestination = destination)

@@ -11,7 +11,7 @@ public class CuboidTests
     public void Corners_ShouldBeCorrect_GivenCubeOfSize1()
     {
         Cuboid cube = Cuboid.Cube;
-        
+
         Assert.AreEqual(new Vector3(0.5f, 0.5f, -0.5f), cube.FrontTopRight);
         Assert.AreEqual(new Vector3(-0.5f, 0.5f, -0.5f), cube.FrontTopLeft);
         Assert.AreEqual(new Vector3(0.5f, -0.5f, -0.5f), cube.FrontBottomRight);

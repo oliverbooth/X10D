@@ -27,7 +27,7 @@ public class EllipseTests
         var ellipse = new Ellipse(Point.Empty, new Size(2, 1));
         Assert.AreEqual(new Point(0, 0), ellipse.Center);
         Assert.AreEqual(new Size(2, 1), ellipse.Radius);
-        
+
         ellipse = new Ellipse(0, 0, 2, 1);
         Assert.AreEqual(new Point(0, 0), ellipse.Center);
         Assert.AreEqual(new Size(2, 1), ellipse.Radius);
