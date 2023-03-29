@@ -59,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `ReadOnlySpan<T>.Split(T)`.
 - X10D: Added `ReadOnlySpan<T>.Split(ReadOnlySpan<T>)`.
 - X10D: Added `RoundUpToPowerOf2()` for built-in integer types.
+- X10D: Added `Saturate()` for built-in floating-point types.
 - X10D: Added `Size.ToPoint()`.
 - X10D: Added `Size.ToPointF()`.
 - X10D: Added `Size.ToVector2()`.

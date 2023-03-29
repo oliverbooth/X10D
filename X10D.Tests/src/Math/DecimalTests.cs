@@ -83,6 +83,24 @@ public class DecimalTests
     }
 
     [TestMethod]
+    public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
+    {
+        Assert.AreEqual(1.0m, 1.5m.Saturate(), 1e-6m);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo0_GivenLessThan0()
+    {
+        Assert.AreEqual(0.0m, (-0.5m).Saturate(), 1e-6m);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
+    {
+        Assert.AreEqual(0.5m, 0.5m.Saturate(), 1e-6m);
+    }
+
+    [TestMethod]
     public void Sign_ShouldBeMinus1_GivenNegative()
     {
         Assert.AreEqual(-1, -1.0m.Sign());

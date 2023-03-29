@@ -95,6 +95,23 @@ public static class DecimalExtensions
     }
 
     /// <summary>
+    ///     Saturates this decimal number.
+    /// </summary>
+    /// <param name="value">The value to saturate.</param>
+    /// <returns>The saturated value.</returns>
+    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static decimal Saturate(this decimal value)
+    {
+        return System.Math.Clamp(value, 0.0m, 1.0m);
+    }
+
+    /// <summary>
     ///     Returns an integer that indicates the sign of this decimal number.
     /// </summary>
     /// <param name="value">A signed number.</param>
