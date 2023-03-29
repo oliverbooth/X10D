@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 		.github\workflows\unity.yml = .github\workflows\unity.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.UpmPackageGenerator", "X10D.UpmPackageGenerator\X10D.UpmPackageGenerator.csproj", "{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,11 +77,17 @@ Global
 		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F733785-8837-410C-BD91-C4AD1F0A6914}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
