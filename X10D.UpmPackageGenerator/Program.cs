@@ -7,17 +7,19 @@ if (args.Length == 0 || string.IsNullOrWhiteSpace(args[0]))
 {
     version = Environment.GetEnvironmentVariable("GITHUB_SHA") ?? "0.0.0";
 }
-
-string path = args[0];
-var assembly = Assembly.LoadFrom(path);
-var attribute = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
-if (attribute is null || string.IsNullOrWhiteSpace(attribute.InformationalVersion))
-{
-    version = Environment.GetEnvironmentVariable("GITHUB_SHA") ?? "0.0.0";
-}
 else
 {
-    version = attribute.InformationalVersion;
+    string path = args[0];
+    var assembly = Assembly.LoadFrom(path);
+    var attribute = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+    if (attribute is null || string.IsNullOrWhiteSpace(attribute.InformationalVersion))
+    {
+        version = Environment.GetEnvironmentVariable("GITHUB_SHA") ?? "0.0.0";
+    }
+    else
+    {
+        version = attribute.InformationalVersion;
+    }
 }
 
 var package = new
@@ -33,4 +35,5 @@ var package = new
     licensesUrl = "https://github.com/oliverbooth/X10D/blob/main/LICENSE.md"
 };
 
-Console.WriteLine(JsonSerializer.Serialize(package, new JsonSerializerOptions {WriteIndented = true}));
+using FileStream outputStream = File.Create("package.json");
+JsonSerializer.Serialize(outputStream, package, new JsonSerializerOptions {WriteIndented = true});
