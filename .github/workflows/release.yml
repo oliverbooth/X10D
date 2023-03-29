@@ -47,3 +47,25 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
+
+    - name: Checkout upm branch
+      uses: actions/checkout@v3
+      with:
+        ref: upm
+        path: upm
+
+    - name: Commit update
+      run: |
+        cd upm
+        cp ../X10D/bin/Release/netstandard2.1/X10D.dll ./X10D.dll
+        cp ../X10D/bin/Release/netstandard2.1/X10D.xml ./X10D.xml
+        cp ../X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.dll ./X10D.Unity.dll
+        cp ../X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.xml ./X10D.Unity.xml
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add X10D.dll
+        git add X10D.Unity.dll
+        git add X10D.xml
+        git add X10D.Unity.xml
+        git commit -m "Update upm branch ($GITHUB_SHA)"
+        git push
