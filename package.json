@@ -1,15 +1,18 @@
 {
-    "name": "me.olivr.x10d",
-    "author": {
-        "name": "Oliver Booth",
-        "email": "me@olivr.me",
-        "url": "https://oliverbooth.dev"
-    },
-    "displayName": "X10D",
-    "version": "3.2.0-nightly.163",
-    "unity": "2021.2",
-    "description": "Extension methods on crack",
-    "keywords": ["dotnet", "extension-methods"],
-    "changelogUrl": "https://github.com/oliverbooth/X10D/blob/main/CHANGELOG.md",
-    "licensesUrl": "https://github.com/oliverbooth/X10D/blob/main/LICENSE.md"
+  "name": "me.olivr.x10d",
+  "author": {
+    "name": "Oliver Booth",
+    "email": "me@olivr.me",
+    "url": "https://oliverbooth.dev"
+  },
+  "displayName": "X10D",
+  "version": "3.2.0-nightly.174",
+  "unity": "2021.3",
+  "description": "Extension methods on crack",
+  "keywords": [
+    "dotnet",
+    "extension-methods"
+  ],
+  "changelogUrl": "https://github.com/oliverbooth/X10D/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/oliverbooth/X10D/blob/main/LICENSE.md"
 }

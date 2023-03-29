@@ -6060,6 +6060,14 @@
             <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
             <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
         </member>
+        <member name="M:X10D.Math.DecimalExtensions.Saturate(System.Decimal)">
+            <summary>
+                Saturates this decimal number.
+            </summary>
+            <param name="value">The value to saturate.</param>
+            <returns>The saturated value.</returns>
+            <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
+        </member>
         <member name="M:X10D.Math.DecimalExtensions.Sign(System.Decimal)">
              <summary>
                  Returns an integer that indicates the sign of this decimal number.
@@ -6289,6 +6297,14 @@
             <param name="value">The value to round.</param>
             <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
             <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
+        </member>
+        <member name="M:X10D.Math.DoubleExtensions.Saturate(System.Double)">
+            <summary>
+                Saturates this double-precision floating-point number.
+            </summary>
+            <param name="value">The value to saturate.</param>
+            <returns>The saturated value.</returns>
+            <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
         </member>
         <member name="M:X10D.Math.DoubleExtensions.Sin(System.Double)">
             <summary>
@@ -7252,6 +7268,14 @@
             <param name="value">The value to round.</param>
             <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
             <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
+        </member>
+        <member name="M:X10D.Math.SingleExtensions.Saturate(System.Single)">
+            <summary>
+                Saturates this single-precision floating-point number.
+            </summary>
+            <param name="value">The value to saturate.</param>
+            <returns>The saturated value.</returns>
+            <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
         </member>
         <member name="M:X10D.Math.SingleExtensions.Sign(System.Single)">
              <summary>
