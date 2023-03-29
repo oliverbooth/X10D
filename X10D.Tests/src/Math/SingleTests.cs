@@ -118,6 +118,24 @@ public class SingleTests
     }
 
     [TestMethod]
+    public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
+    {
+        Assert.AreEqual(1.0f, 1.5f.Saturate(), 1e-6f);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo0_GivenLessThan0()
+    {
+        Assert.AreEqual(0.0f, (-0.5f).Saturate(), 1e-6f);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
+    {
+        Assert.AreEqual(0.5f, 0.5f.Saturate(), 1e-6f);
+    }
+
+    [TestMethod]
     public void Sign_ShouldBeMinus1_GivenNegative()
     {
         Assert.AreEqual(-1, -1.0f.Sign());

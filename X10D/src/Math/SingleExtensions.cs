@@ -313,6 +313,23 @@ public static class SingleExtensions
     }
 
     /// <summary>
+    ///     Saturates this single-precision floating-point number.
+    /// </summary>
+    /// <param name="value">The value to saturate.</param>
+    /// <returns>The saturated value.</returns>
+    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static float Saturate(this float value)
+    {
+        return System.Math.Clamp(value, 0.0f, 1.0f);
+    }
+
+    /// <summary>
     ///     Returns an integer that indicates the sign of this single-precision floating-point number.
     /// </summary>
     /// <param name="value">A signed number.</param>

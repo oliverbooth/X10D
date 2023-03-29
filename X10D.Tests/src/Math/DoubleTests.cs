@@ -118,6 +118,24 @@ public class DoubleTests
     }
 
     [TestMethod]
+    public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
+    {
+        Assert.AreEqual(1.0, 1.5.Saturate(), 1e-6);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo0_GivenLessThan0()
+    {
+        Assert.AreEqual(0.0, (-0.5).Saturate(), 1e-6);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
+    {
+        Assert.AreEqual(0.5, 0.5.Saturate(), 1e-6);
+    }
+
+    [TestMethod]
     public void Sign_ShouldBeMinus1_GivenNegative()
     {
         Assert.AreEqual(-1, -1.0.Sign());
