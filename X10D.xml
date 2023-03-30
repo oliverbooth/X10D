@@ -8830,6 +8830,74 @@
             <param name="comparison">The string comparison method used for determining substring count.</param>
             <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
         </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureEndsWith(System.String,System.Char)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureEndsWith(System.String,System.Char,System.StringComparison)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureEndsWith(System.String,System.String)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureEndsWith(System.String,System.String,System.StringComparison)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureStartsWith(System.String,System.Char)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureStartsWith(System.String,System.Char,System.StringComparison)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureStartsWith(System.String,System.String)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <returns>The combined string.</returns>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.EnsureStartsWith(System.String,System.String,System.StringComparison)">
+            <summary>
+                Ensures that the current string starts with a specified substring.
+            </summary>
+            <param name="value">The string to check.</param>
+            <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+            <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+            <returns>The combined string.</returns>
+        </member>
         <member name="M:X10D.Text.StringExtensions.EnumParse``1(System.String)">
             <summary>
                 Parses a <see cref="T:System.String" /> into an <see cref="T:System.Enum" />.
@@ -8900,6 +8968,7 @@
             <returns>
                 <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
             </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.IsNullOrEmpty(System.String)">
             <summary>
@@ -9010,6 +9079,37 @@
                 greater than <paramref name="chunkSize" /> in length.
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.StartsWithAny(System.String,System.String[])">
+            <summary>
+                Determines whether the beginning of this string instance matches any of the specified strings using the current
+                culture for comparison.
+            </summary>
+            <param name="value">The value to compare.</param>
+            <param name="startValues">An array of string to compare.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> starts with any of the <paramref name="startValues" />;
+                otherwise, <see langword="false" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="startValues" />, or at least one of its elements, is <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.StartsWithAny(System.String,System.StringComparison,System.String[])">
+            <summary>
+                Determines whether the beginning of this string instance matches any of the specified strings when compared using the
+                specified comparison option.
+            </summary>
+            <param name="value">The value to compare.</param>
+            <param name="comparison">One of the enumeration values that determines how this string and value are compared.</param>
+            <param name="startValues">An array of string to compare.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> starts with any of the <paramref name="startValues" />;
+                otherwise, <see langword="false" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="startValues" />, or at least one of its elements, is <see langword="null" />.
+            </exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.WithEmptyAlternative(System.String,System.String)">
             <summary>
