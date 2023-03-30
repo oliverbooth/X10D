@@ -69,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `Span<T>.Split(Span<T>)`.
 - X10D: Added `string.CountSubstring(char)`.
 - X10D: Added `string.CountSubstring(string[, StringComparison])`.
+- X10D: Added `string.EnsureStartsWith()` and `string.EnsureEndsWith()`.
 - X10D: Added `string.IsEmpty()`.
 - X10D: Added `string.IsWhiteSpace()`.
 - X10D: Added `string.IsNullOrEmpty()`.

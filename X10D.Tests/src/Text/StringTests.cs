@@ -143,6 +143,76 @@ public class StringTests
     }
 
     [TestMethod]
+    public void EnsureEndsWith_ShouldPrependChar_GivenEndsWithReturnFalse()
+    {
+        const string value = "Hello Worl";
+        const char substring = 'd';
+
+        Assert.AreEqual("Hello World", value.EnsureEndsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureEndsWith_ShouldReturnChar_GivenEndsWithReturnTrue()
+    {
+        const string value = "A";
+        const char substring = 'A';
+
+        Assert.AreEqual(value, value.EnsureEndsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureStartsWith_ShouldPrependChar_GivenEndsWithReturnFalse()
+    {
+        const string value = "B";
+        const char substring = 'A';
+
+        Assert.AreEqual("AB", value.EnsureStartsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureStartsWith_ShouldReturnChar_GivenEndsWithReturnTrue()
+    {
+        const string value = "A";
+        const char substring = 'A';
+
+        Assert.AreEqual(value, value.EnsureStartsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureEndsWith_ShouldAppendSubstring_GivenEndsWithReturnFalse()
+    {
+        const string value = "Hello ";
+        const string substring = "World";
+
+        Assert.AreEqual("Hello World", value.EnsureEndsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureEndsWith_ShouldReturnString_GivenEndsWithReturnTrue()
+    {
+        const string substring = "World";
+
+        Assert.AreEqual(substring, substring.EnsureEndsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureStartsWith_ShouldAppendSubstring_GivenEndsWithReturnFalse()
+    {
+        const string value = "World";
+        const string substring = "Hello ";
+
+        Assert.AreEqual("Hello World", value.EnsureStartsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureStartsWith_ShouldReturnString_GivenEndsWithReturnTrue()
+    {
+        const string substring = "World";
+
+        Assert.AreEqual(substring, substring.EnsureStartsWith(substring));
+    }
+
+    [TestMethod]
     public void EnumParse_ShouldReturnCorrectValue_GivenString()
     {
         Assert.AreEqual(DayOfWeek.Monday, "Monday".EnumParse<DayOfWeek>(false));

@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -252,6 +252,118 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, char substring)
+    {
+        return EnsureEndsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, char substring, StringComparison comparisonType)
+    {
+        return EnsureEndsWith(value, substring.ToString(), comparisonType);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, string substring)
+    {
+        return EnsureEndsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, string substring, StringComparison comparisonType)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return substring;
+        }
+
+        if (value.EndsWith(substring, comparisonType))
+        {
+            return value;
+        }
+
+        return value + substring;
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, char substring)
+    {
+        return EnsureStartsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, char substring, StringComparison comparisonType)
+    {
+        return EnsureStartsWith(value, substring.ToString(), comparisonType);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, string substring)
+    {
+        return EnsureStartsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, string substring, StringComparison comparisonType)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return substring;
+        }
+
+        if (value.StartsWith(substring, comparisonType))
+        {
+            return value;
+        }
+
+        return substring + value;
+    }
+
+    /// <summary>
     ///     Parses a <see cref="string" /> into an <see cref="Enum" />.
     /// </summary>
     /// <typeparam name="T">The type of the <see cref="Enum" />.</typeparam>
@@ -444,6 +556,7 @@ public static class StringExtensions
     /// <returns>
     ///     <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
 #if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -919,6 +1032,84 @@ public static class StringExtensions
         {
             yield return value[i..System.Math.Min(i + chunkSize, value.Length)];
         }
+    }
+
+    /// <summary>
+    ///     Determines whether the beginning of this string instance matches any of the specified strings using the current
+    ///     culture for comparison.
+    /// </summary>
+    /// <param name="value">The value to compare.</param>
+    /// <param name="startValues">An array of string to compare.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> starts with any of the <paramref name="startValues" />;
+    ///     otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="startValues" />, or at least one of its elements, is <see langword="null" />.
+    /// </exception>
+    public static bool StartsWithAny(this string? value, params string[] startValues)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(startValues);
+#else
+        if (startValues is null)
+        {
+            throw new ArgumentNullException(nameof(startValues));
+        }
+#endif
+
+        if (startValues.Length == 0 || string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        return value.StartsWithAny(StringComparison.CurrentCulture, startValues);
+    }
+
+    /// <summary>
+    ///     Determines whether the beginning of this string instance matches any of the specified strings when compared using the
+    ///     specified comparison option.
+    /// </summary>
+    /// <param name="value">The value to compare.</param>
+    /// <param name="comparison">One of the enumeration values that determines how this string and value are compared.</param>
+    /// <param name="startValues">An array of string to compare.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> starts with any of the <paramref name="startValues" />;
+    ///     otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="startValues" />, or at least one of its elements, is <see langword="null" />.
+    /// </exception>
+    public static bool StartsWithAny(this string? value, StringComparison comparison, params string[] startValues)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(startValues);
+#else
+        if (startValues is null)
+        {
+            throw new ArgumentNullException(nameof(startValues));
+        }
+#endif
+
+        if (startValues.Length == 0 || string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        for (var index = 0; index < startValues.Length; index++)
+        {
+            if (startValues[index] is null)
+            {
+                throw new ArgumentNullException(nameof(startValues));
+            }
+
+            if (value.StartsWith(startValues[index], comparison))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
