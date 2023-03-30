@@ -45,6 +45,20 @@ public class EnumerableTests
     }
 
     [TestMethod]
+    public void Grep_ShouldThrowArgumentNullException_GivenNullPattern()
+    {
+        IEnumerable<string> source = Enumerable.Empty<string>();
+        Assert.ThrowsException<ArgumentNullException>(() => source.Grep(null!));
+    }
+
+    [TestMethod]
+    public void Grep_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<string> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Grep("foo"));
+    }
+
+    [TestMethod]
     public void Grep_ShouldYieldNoElements_GivenNoMatchingStrings()
     {
         var source = new[] {"Hello", "World", "String"};
