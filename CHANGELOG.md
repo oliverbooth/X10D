@@ -75,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `string.IsWhiteSpace()`.
 - X10D: Added `string.IsNullOrEmpty()`.
 - X10D: Added `string.IsNullOrWhiteSpace()`.
+- X10D: Added `TextReader.EnumerateLines()` and `TextReader.EnumerateLinesAsync()`.
 - X10D: Added `TimeSpan.TryParse(ReadOnlySpan<char>, out TimeSpan)`.
 - X10D: Added `Quaternion.Multiply(Vector3)` - this functions as an equivalent to Unity's `Quaternion * Vector3` operator.
 - X10D: Added `Vector2.Deconstruct()`.
