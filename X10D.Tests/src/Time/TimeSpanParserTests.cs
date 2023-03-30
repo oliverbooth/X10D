@@ -23,6 +23,38 @@ public class TimeSpanParserTests
     }
 
     [TestMethod]
+    public void TryParse_ShouldReturnFalse_GivenEmptySpan()
+    {
+        bool result = TimeSpanParser.TryParse(ReadOnlySpan<char>.Empty, out TimeSpan timeSpan);
+        Assert.IsFalse(result);
+        Assert.AreEqual(default, timeSpan);
+    }
+
+    [TestMethod]
+    public void TryParse_ShouldReturnFalse_GivenWhiteSpaceSpan()
+    {
+        bool result = TimeSpanParser.TryParse("   ".AsSpan(), out TimeSpan timeSpan);
+        Assert.IsFalse(result);
+        Assert.AreEqual(default, timeSpan);
+    }
+
+    [TestMethod]
+    public void TryParse_ShouldReturnFalse_GivenEmptyString()
+    {
+        bool result = TimeSpanParser.TryParse(string.Empty, out TimeSpan timeSpan);
+        Assert.IsFalse(result);
+        Assert.AreEqual(default, timeSpan);
+    }
+
+    [TestMethod]
+    public void TryParse_ShouldReturnFalse_GivenWhiteSpaceString()
+    {
+        bool result = TimeSpanParser.TryParse("   ", out TimeSpan timeSpan);
+        Assert.IsFalse(result);
+        Assert.AreEqual(default, timeSpan);
+    }
+
+    [TestMethod]
     public void TryParse_ShouldReturnFalse_GivenNull()
     {
         bool result = TimeSpanParser.TryParse(null, out TimeSpan timeSpan);
