@@ -5103,6 +5103,27 @@
             <returns>The number of bytes written to the stream.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
         </member>
+        <member name="T:X10D.IO.TextReaderExtensions">
+            <summary>
+                IO-related extension methods for <see cref="T:System.IO.TextReader" />.
+            </summary>
+        </member>
+        <member name="M:X10D.IO.TextReaderExtensions.EnumerateLines(System.IO.TextReader)">
+            <summary>
+                Enumerates the lines provided by the current text reader.
+            </summary>
+            <param name="reader">The reader whose lines to enumerate.</param>
+            <returns>An enumerable collection of lines as read from <paramref name="reader" />.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.TextReaderExtensions.EnumerateLinesAsync(System.IO.TextReader)">
+            <summary>
+                Asynchronously enumerates the lines provided by the current text reader.
+            </summary>
+            <param name="reader">The reader whose lines to enumerate.</param>
+            <returns>An asynchronous enumerable collection of lines as read from <paramref name="reader" />.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> is <see langword="null" />.</exception>
+        </member>
         <member name="T:X10D.IO.UInt16Extensions">
             <summary>
                 IO-related extension methods for <see cref="T:System.UInt16" />.
@@ -8658,6 +8679,9 @@
             <param name="source">The sequence of strings to filter.</param>
             <param name="pattern">The regular expression pattern to use for matching.</param>
             <returns>The filtered sequence.</returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="source" /> or <paramref name="pattern" /> is <see langword="null" />.
+            </exception>
         </member>
         <member name="M:X10D.Text.EnumerableExtensions.Grep(System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean)">
             <summary>
@@ -8669,6 +8693,9 @@
                 <see langword="true" /> to ignore casing when matching; otherwise, <see langword="false" />.
             </param>
             <returns>The filtered sequence.</returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="source" /> or <paramref name="pattern" /> is <see langword="null" />.
+            </exception>
         </member>
         <member name="T:X10D.Text.StringBuilderReader">
             <summary>
