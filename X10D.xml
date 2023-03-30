@@ -8633,7 +8633,7 @@
                 Extension methods for <see cref="T:System.ReadOnlySpan`1" /> and <see cref="T:System.Span`1" /> of <see cref="T:System.Char" />.
             </summary>
         </member>
-        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.Span{System.Char},System.Span{System.Char})">
+        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.Span{System.Char},System.ReadOnlySpan{System.Char})">
             <summary>
                 Counts the occurrences of a substring within the current character span.
             </summary>
@@ -8641,7 +8641,7 @@
             <param name="needle">The character span to count.</param>
             <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
         </member>
-        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.Span{System.Char},System.Span{System.Char},System.StringComparison)">
+        <member name="M:X10D.Text.CharSpanExtensions.CountSubstring(System.Span{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
             <summary>
                 Counts the occurrences of a substring within the current character span, using a specified string comparison method.
             </summary>
