@@ -13,6 +13,9 @@ public static class EnumerableExtensions
     /// <param name="source">The sequence of strings to filter.</param>
     /// <param name="pattern">The regular expression pattern to use for matching.</param>
     /// <returns>The filtered sequence.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="source" /> or <paramref name="pattern" /> is <see langword="null" />.
+    /// </exception>
     public static IEnumerable<string> Grep(this IEnumerable<string> source, string pattern)
     {
 #if NET6_0_OR_GREATER
@@ -42,6 +45,9 @@ public static class EnumerableExtensions
     ///     <see langword="true" /> to ignore casing when matching; otherwise, <see langword="false" />.
     /// </param>
     /// <returns>The filtered sequence.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="source" /> or <paramref name="pattern" /> is <see langword="null" />.
+    /// </exception>
     public static IEnumerable<string> Grep(this IEnumerable<string> source, string pattern, bool ignoreCase)
     {
 #if NET6_0_OR_GREATER
