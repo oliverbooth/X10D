@@ -38,6 +38,33 @@ public class DateTimeOffsetTests
     }
 
     [TestMethod]
+    public void GetIso8601WeekOfYear_ShouldReturn1_Given4January1970()
+    {
+        DateTimeOffset date = new DateTime(1970, 1, 4);
+        int iso8601WeekOfYear = date.GetIso8601WeekOfYear();
+
+        Assert.AreEqual(1, iso8601WeekOfYear);
+    }
+
+    [TestMethod]
+    public void GetIso8601WeekOfYear_ShouldReturn1_Given31December1969()
+    {
+        DateTimeOffset date = new DateTime(1969, 12, 31);
+        int iso8601WeekOfYear = date.GetIso8601WeekOfYear();
+
+        Assert.AreEqual(1, iso8601WeekOfYear);
+    }
+
+    [TestMethod]
+    public void GetIso8601WeekOfYear_ShouldReturn53_Given31December1970()
+    {
+        DateTimeOffset date = new DateTime(1970, 12, 31);
+        int iso8601WeekOfYear = date.GetIso8601WeekOfYear();
+
+        Assert.AreEqual(53, iso8601WeekOfYear);
+    }
+
+    [TestMethod]
     public void IsLeapYear_ShouldBeFalse_Given1999()
     {
         DateTimeOffset date = new DateTime(1999, 1, 1);
