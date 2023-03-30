@@ -65,6 +65,13 @@ public static class EnumerableExtensions
         }
 #endif
 
+#if NET6_0_OR_GREATER
+        if (source.TryGetNonEnumeratedCount(out int count) && count == 0)
+        {
+            yield break;
+        }
+#endif
+
         var regex = new Regex(pattern, RegexOptions.Compiled | (ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None));
 
         foreach (string item in source)
