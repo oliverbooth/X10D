@@ -30,6 +30,8 @@ public class EnumerableTests
             {
                 yield return 1;
             }
+
+            // ReSharper disable once IteratorNeverReturns
         }
 
         Assert.ThrowsException<OverflowException>(() => GetValues().CountWhereNot(x => x % 2 == 0));
