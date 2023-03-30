@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `IEnumerable<T>.MinMax()` and `IEnumerable<T>.MinMaxBy()`. (#72)
 - X10D: Added `IEnumerable<T>.WhereNot(Func<T, bool>)`.
 - X10D: Added `IEnumerable<T>.WhereNotNull()`.
+- X10D: Added `IEnumerable<string>.Grep(string[, bool])`.
 - X10D: Added `IList<T>.RemoveRange(Range)`.
 - X10D: Added `IList<T>.Swap(IList<T>)`. (#62)
 - X10D: Added `IReadOnlyList<T>.IndexOf(T[, int[, int]])`.
