@@ -30,8 +30,9 @@ public static class SpanExtensions
     {
         var count = 0;
 
-        foreach (T item in source)
+        for (var index = 0; index < source.Length; index++)
         {
+            T item = source[index];
             if (item.Equals(element))
             {
                 count++;
