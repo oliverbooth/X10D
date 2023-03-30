@@ -11,7 +11,7 @@ public static class CharSpanExtensions
     /// <param name="haystack">The haystack search space.</param>
     /// <param name="needle">The character span to count.</param>
     /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
-    public static int CountSubstring(this Span<char> haystack, Span<char> needle)
+    public static int CountSubstring(this Span<char> haystack, ReadOnlySpan<char> needle)
     {
         return CountSubstring(haystack, needle, StringComparison.Ordinal);
     }
@@ -23,7 +23,7 @@ public static class CharSpanExtensions
     /// <param name="needle">The character span to count.</param>
     /// <param name="comparison">The string comparison method used for determining substring count.</param>
     /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
-    public static int CountSubstring(this Span<char> haystack, Span<char> needle, StringComparison comparison)
+    public static int CountSubstring(this Span<char> haystack, ReadOnlySpan<char> needle, StringComparison comparison)
     {
         return CountSubstring((ReadOnlySpan<char>)haystack, needle, comparison);
     }
