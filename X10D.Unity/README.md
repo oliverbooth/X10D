@@ -33,4 +33,4 @@ Keep in mind that referencing a specific commit rather than the `upm` branch wil
 Contributions are welcome. See [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## License
-X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md) for more details.
+X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/main/LICENSE.md) for more details.
