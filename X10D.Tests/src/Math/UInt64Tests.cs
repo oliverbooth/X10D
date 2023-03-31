@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
@@ -75,6 +75,54 @@ public class UInt64Tests
 
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const ulong value1 = 2;
+        const ulong value2 = 3;
+        const ulong expected = 6;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const ulong value1 = 0;
+        const ulong value2 = 10;
+        const ulong expected = 0;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const ulong value1 = 1;
+        const ulong value2 = 10;
+        const ulong expected = 10;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const ulong value1 = 5;
+        const ulong value2 = 5;
+        const ulong expected = 5;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
     }
 
     [TestMethod]

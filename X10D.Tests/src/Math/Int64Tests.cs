@@ -73,6 +73,68 @@ public class Int64Tests
     }
 
     [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const long value1 = 2;
+        const long value2 = 3;
+        const long expected = 6;
+
+        long result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const long value1 = 0;
+        const long value2 = 10;
+        const long expected = 0;
+
+        long result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const long value1 = 1;
+        const long value2 = 10;
+        const long expected = 10;
+
+        long result1 = value1.LowestCommonMultiple(value2);
+        long result2 = value2.LowestCommonMultiple(value1);
+
+        Assert.AreEqual(expected, result1);
+        Assert.AreEqual(expected, result2);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const long value1 = 5;
+        const long value2 = 5;
+        const long expected = 5;
+
+        long result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithNegativeValues()
+    {
+        const long value1 = -2;
+        const long value2 = 3;
+        const long expected = -6;
+
+        long result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, 0L.MultiplicativePersistence());

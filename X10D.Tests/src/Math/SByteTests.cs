@@ -74,6 +74,68 @@ public class SByteTests
     }
 
     [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const sbyte value1 = 2;
+        const sbyte value2 = 3;
+        const sbyte expected = 6;
+
+        sbyte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const sbyte value1 = 0;
+        const sbyte value2 = 10;
+        const sbyte expected = 0;
+
+        sbyte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const sbyte value1 = 1;
+        const sbyte value2 = 10;
+        const sbyte expected = 10;
+
+        sbyte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const sbyte value1 = 5;
+        const sbyte value2 = 5;
+        const sbyte expected = 5;
+
+        sbyte result1 = value1.LowestCommonMultiple(value2);
+        sbyte result2 = value2.LowestCommonMultiple(value1);
+
+        Assert.AreEqual(expected, result1);
+        Assert.AreEqual(expected, result2);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithNegativeValues()
+    {
+        const sbyte value1 = -2;
+        const sbyte value2 = 3;
+        const sbyte expected = -6;
+
+        sbyte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, ((sbyte)0).MultiplicativePersistence());
