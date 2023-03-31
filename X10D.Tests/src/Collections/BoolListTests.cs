@@ -7,7 +7,7 @@ namespace X10D.Tests.Collections;
 public class BoolListTests
 {
     [TestMethod]
-    public void Pack8Bit_Should_Pack_Correctly()
+    public void PackByte_Should_Pack_Correctly()
     {
         var array = new[] {true, false, true, false, true, false, true, false};
         Assert.AreEqual(85, array.PackByte()); // 01010101
