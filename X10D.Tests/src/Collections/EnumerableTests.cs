@@ -5,7 +5,7 @@ using X10D.Core;
 namespace X10D.Tests.Collections;
 
 [TestClass]
-public class EnumerableTests
+public partial class EnumerableTests
 {
     [TestMethod]
     public void CountWhereNot_ShouldReturnCorrectCount_GivenSequence()
@@ -35,36 +35,6 @@ public class EnumerableTests
         }
 
         Assert.ThrowsException<OverflowException>(() => GetValues().CountWhereNot(x => x % 2 == 0));
-    }
-
-    [TestMethod]
-    public void DisposeAll_ShouldDispose_GivenCollection()
-    {
-        var collection = new List<Disposable> {new(), new(), new()};
-        collection.DisposeAll();
-        Assert.IsTrue(collection.All(x => x.IsDisposed));
-    }
-
-    [TestMethod]
-    public async Task DisposeAllAsync_ShouldDispose_GivenCollection()
-    {
-        var collection = new List<Disposable> {new(), new(), new()};
-        await collection.DisposeAllAsync();
-        Assert.IsTrue(collection.All(x => x.IsDisposed));
-    }
-
-    [TestMethod]
-    public void DisposeAll_ShouldThrow_GivenNull()
-    {
-        List<Disposable>? collection = null;
-        Assert.ThrowsException<ArgumentNullException>(() => collection!.DisposeAll());
-    }
-
-    [TestMethod]
-    public async Task DisposeAllAsync_ShouldThrow_GivenNull()
-    {
-        List<Disposable>? collection = null;
-        await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () => await collection!.DisposeAllAsync());
     }
 
     [TestMethod]
@@ -313,22 +283,5 @@ public class EnumerableTests
     private class DummyClass
     {
         public int Value { get; set; }
-    }
-
-    private class Disposable : IDisposable, IAsyncDisposable
-    {
-        public bool IsDisposed { get; private set; }
-
-        public void Dispose()
-        {
-            Assert.IsTrue(IsDisposed = true);
-        }
-
-#pragma warning disable CS1998
-        public async ValueTask DisposeAsync()
-#pragma warning restore CS1998
-        {
-            Assert.IsTrue(IsDisposed = true);
-        }
     }
 }
