@@ -73,6 +73,56 @@ public class ByteTests
     }
 
     [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const byte value1 = 2;
+        const byte value2 = 3;
+        const byte expected = 6;
+
+        byte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const byte value1 = 0;
+        const byte value2 = 10;
+        const byte expected = 0;
+
+        byte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const byte value1 = 1;
+        const byte value2 = 10;
+        const byte expected = 10;
+
+        byte result1 = value1.LowestCommonMultiple(value2);
+        byte result2 = value2.LowestCommonMultiple(value1);
+
+        Assert.AreEqual(expected, result1);
+        Assert.AreEqual(expected, result2);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const byte value1 = 5;
+        const byte value2 = 5;
+        const byte expected = 5;
+
+        byte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, ((byte)0).MultiplicativePersistence());

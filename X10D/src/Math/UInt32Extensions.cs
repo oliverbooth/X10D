@@ -132,6 +132,24 @@ public static class UInt32Extensions
     }
 
     /// <summary>
+    ///     Calculates the lowest common multiple between the current 32-bit unsigned integer, and another 32-bit unsigned
+    ///     integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static uint LowestCommonMultiple(this uint value, uint other)
+    {
+        return (uint)((ulong)value).LowestCommonMultiple(other);
+    }
+
+    /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
     /// </summary>
     /// <param name="value">The value whose multiplicative persistence to calculate.</param>

@@ -74,6 +74,56 @@ public class UInt16Tests
     }
 
     [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const ushort value1 = 2;
+        const ushort value2 = 3;
+        const ushort expected = 6;
+
+        ushort result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const ushort value1 = 0;
+        const ushort value2 = 10;
+        const ushort expected = 0;
+
+        ushort result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const ushort value1 = 1;
+        const ushort value2 = 10;
+        const ushort expected = 10;
+
+        ushort result1 = value1.LowestCommonMultiple(value2);
+        ushort result2 = value2.LowestCommonMultiple(value1);
+
+        Assert.AreEqual(expected, result1);
+        Assert.AreEqual(expected, result2);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const ushort value1 = 5;
+        const ushort value2 = 5;
+        const ushort expected = 5;
+
+        ushort result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, ((ushort)0).MultiplicativePersistence());

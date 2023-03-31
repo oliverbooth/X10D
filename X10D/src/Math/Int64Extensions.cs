@@ -165,6 +165,38 @@ public static class Int64Extensions
     }
 
     /// <summary>
+    ///     Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long LowestCommonMultiple(this long value, long other)
+    {
+        if (value == 0 || other == 0)
+        {
+            return 0;
+        }
+
+        if (value == 1)
+        {
+            return other;
+        }
+
+        if (other == 1)
+        {
+            return value;
+        }
+
+        return value * other / value.GreatestCommonFactor(other);
+    }
+
+    /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
     /// <param name="dividend">The dividend.</param>
