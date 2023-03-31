@@ -64,7 +64,7 @@ public static class QuaternionExtensions
         {
             return Vector3.Zero;
         }
-        
+
         float qx = normalized.X;
         float qy = normalized.Y;
         float qz = normalized.Z;
