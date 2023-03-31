@@ -1,11 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestClass]
 [CLSCompliant(false)]
-public class UInt64Tests
+public partial class UInt64Tests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()

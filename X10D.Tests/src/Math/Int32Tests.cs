@@ -4,7 +4,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestClass]
-public class Int32Tests
+public partial class Int32Tests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()

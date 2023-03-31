@@ -5,7 +5,7 @@ namespace X10D.Tests.Math;
 
 [TestClass]
 [CLSCompliant(false)]
-public class SByteTests
+public partial class SByteTests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()
