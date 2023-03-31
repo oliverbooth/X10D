@@ -5,7 +5,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestClass]
-public class DoubleTests
+public partial class DoubleTests
 {
     [TestMethod]
     public void DegreesToRadians_ShouldBeCorrect()

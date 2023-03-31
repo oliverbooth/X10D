@@ -5,7 +5,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestClass]
-public class DecimalTests
+public partial class DecimalTests
 {
 #if NETCOREAPP3_0_OR_GREATER
     [TestMethod]

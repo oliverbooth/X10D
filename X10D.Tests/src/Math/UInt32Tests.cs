@@ -5,7 +5,7 @@ namespace X10D.Tests.Math;
 
 [TestClass]
 [CLSCompliant(false)]
-public class UInt32Tests
+public partial class UInt32Tests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()
