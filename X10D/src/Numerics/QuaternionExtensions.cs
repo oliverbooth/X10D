@@ -59,6 +59,12 @@ public static class QuaternionExtensions
     public static Vector3 ToVector3(this in Quaternion value)
     {
         Quaternion normalized = Quaternion.Normalize(value);
+
+        if (normalized == Quaternion.Identity)
+        {
+            return Vector3.Zero;
+        }
+        
         float qx = normalized.X;
         float qy = normalized.Y;
         float qz = normalized.Z;
