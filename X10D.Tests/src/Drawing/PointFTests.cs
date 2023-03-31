@@ -8,6 +8,28 @@ namespace X10D.Tests.Drawing;
 public class PointFTests
 {
     [TestMethod]
+    public void IsOnLine_ShouldReturnTrue_GivenPointOnLine()
+    {
+        var point = new PointF(1.0f, 0.0f);
+        var line = new LineF(PointF.Empty, new PointF(2.0f, 0.0f));
+
+        Assert.IsTrue(point.IsOnLine(line));
+        Assert.IsTrue(point.IsOnLine(line.Start, line.End));
+        Assert.IsTrue(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+    }
+
+    [TestMethod]
+    public void IsOnLine_ShouldReturnFalse_GivenPointNotOnLine()
+    {
+        var point = new PointF(1.0f, 1.0f);
+        var line = new LineF(PointF.Empty, new PointF(2.0f, 0.0f));
+
+        Assert.IsFalse(point.IsOnLine(line));
+        Assert.IsFalse(point.IsOnLine(line.Start, line.End));
+        Assert.IsFalse(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+    }
+
+    [TestMethod]
     public void Round_ShouldRoundToNearestInteger_GivenNoParameters()
     {
         var point = new PointF(1.5f, 2.6f);

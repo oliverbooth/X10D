@@ -8,6 +8,28 @@ namespace X10D.Tests.Drawing;
 public class PointTests
 {
     [TestMethod]
+    public void IsOnLine_ShouldReturnTrue_GivenPointOnLine()
+    {
+        var point = new Point(1, 0);
+        var line = new Line(Point.Empty, new Point(2, 0));
+
+        Assert.IsTrue(point.IsOnLine(line));
+        Assert.IsTrue(point.IsOnLine(line.Start, line.End));
+        Assert.IsTrue(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+    }
+
+    [TestMethod]
+    public void IsOnLine_ShouldReturnFalse_GivenPointNotOnLine()
+    {
+        var point = new Point(1, 1);
+        var line = new Line(Point.Empty, new Point(2, 0));
+
+        Assert.IsFalse(point.IsOnLine(line));
+        Assert.IsFalse(point.IsOnLine(line.Start, line.End));
+        Assert.IsFalse(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+    }
+
+    [TestMethod]
     public void ToSize_ShouldReturnSize_WithEquivalentMembers()
     {
         var random = new Random();
