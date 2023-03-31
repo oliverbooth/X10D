@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using X10D.Core;
 using X10D.Drawing;
 using X10D.Numerics;
 
