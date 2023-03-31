@@ -31,7 +31,12 @@ public static class EnumerableExtensions
         }
 #endif
 
-        return source.Concat(new[] {value});
+        foreach (TSource item in source)
+        {
+            yield return item;
+        }
+
+        yield return value;
     }
 
     /// <summary>
