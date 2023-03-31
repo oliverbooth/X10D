@@ -81,6 +81,12 @@ public class LineFTests
     }
 
     [TestMethod]
+    public void Equals_ShouldBeFalse_GivenDifferentObjects()
+    {
+        Assert.IsFalse(LineF.One.Equals(null));
+    }
+
+    [TestMethod]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyLine()
     {
         // this test is pretty pointless, it exists only for code coverage purposes

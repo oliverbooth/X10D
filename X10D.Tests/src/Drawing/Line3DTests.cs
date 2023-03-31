@@ -89,6 +89,12 @@ public class Line3DTests
     }
 
     [TestMethod]
+    public void Equals_ShouldBeFalse_GivenDifferentObjects()
+    {
+        Assert.IsFalse(Line3D.One.Equals(null));
+    }
+
+    [TestMethod]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyLine()
     {
         // this test is pretty pointless, it exists only for code coverage purposes

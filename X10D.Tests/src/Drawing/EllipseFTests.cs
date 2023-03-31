@@ -61,6 +61,12 @@ public class EllipseFTests
     }
 
     [TestMethod]
+    public void Equals_ShouldBeFalse_GivenDifferentObjects()
+    {
+        Assert.IsFalse(EllipseF.Unit.Equals(null));
+    }
+
+    [TestMethod]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyEllipse()
     {
         // this test is pretty pointless, it exists only for code coverage purposes

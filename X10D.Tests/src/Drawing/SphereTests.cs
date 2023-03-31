@@ -67,6 +67,12 @@ public class SphereTests
     }
 
     [TestMethod]
+    public void Equals_ShouldBeFalse_GivenDifferentObjects()
+    {
+        Assert.IsFalse(Sphere.Unit.Equals(null));
+    }
+
+    [TestMethod]
     public void Equals_ShouldBeFalse_GivenDifferentCircles()
     {
         Assert.AreNotEqual(Sphere.Unit, Sphere.Empty);
