@@ -24,7 +24,7 @@ Install-Package X10D -Version 3.1.0
 Download the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository and adding a direct assembly reference for your chosen platform.
 
 ### Unity installation
-For the Unityy installation guide, refer to the [README.md in X10D.Unity](X10D.Unity/README.md).
+For the Unity installation guide, refer to the [README.md in X10D.Unity](X10D.Unity/README.md).
 
 ## Features
 I'm planning on writing complete and extensive documentation in the near future. As of this time, feel free to browse the source or the API using your favourite IDE.
