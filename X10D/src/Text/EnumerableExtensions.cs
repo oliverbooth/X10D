@@ -72,7 +72,8 @@ public static class EnumerableExtensions
         }
 #endif
 
-        var regex = new Regex(pattern, RegexOptions.Compiled | (ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None));
+        var options = RegexOptions.Compiled | (ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+        var regex = new Regex(pattern, options, Regex.InfiniteMatchTimeout);
 
         foreach (string item in source)
         {
