@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -90,8 +90,9 @@ public static class SpanExtensions
         // more prone to inlining...
         unsafe
         {
-#pragma warning disable CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
+#pragma warning disable CS8500
             switch (sizeof(T))
+#pragma warning restore CS8500
             {
                 case 1:
                     {
@@ -124,7 +125,6 @@ public static class SpanExtensions
                     throw new ArgumentException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
 #endif
             }
-#pragma warning restore CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
         }
 #else
         foreach (var it in span)
