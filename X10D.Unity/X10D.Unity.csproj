@@ -11,7 +11,7 @@
         <RepositoryType>git</RepositoryType>
         <Description>Extension methods on crack.</Description>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-        <PackageIcon>icon.png</PackageIcon>
+        <PackageIcon>branding_Icon.png</PackageIcon>
         <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
         <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
@@ -53,7 +53,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\icon.png">
+        <None Include="..\branding_Icon.png">
             <Pack>True</Pack>
             <PackagePath/>
         </None>
