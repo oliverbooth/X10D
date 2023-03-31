@@ -30,7 +30,7 @@ The latest current stable is 3.1.0, which is commit [9f3b09661b09e83690318370eea
 Keep in mind that referencing a specific commit rather than the `upm` branch will prevent the auto-updater in Unity from detecting new versions. 
 
 ## Contributing
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions are welcome. See [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## License
 X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md) for more details.
