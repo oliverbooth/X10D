@@ -18,4 +18,22 @@ public class QuaternionTests
         Assert.AreEqual(axis, axisAngle.Axis);
         Assert.AreEqual(angle, axisAngle.Angle);
     }
+
+    [TestMethod]
+    public void ToVector3_ShouldReturnZeroVector_GivenIdentityQuaternion()
+    {
+        Assert.AreEqual(Vector3.Zero, Quaternion.Identity.ToVector3());
+    }
+
+    [TestMethod]
+    public void ToVector3_ShouldReturnVector_0_PI_0_GivenQuaternionCreatedFrom_PI_0_0()
+    {
+        Quaternion quaternion = Quaternion.CreateFromYawPitchRoll(MathF.PI, 0, 0);
+        var expected = new Vector3(0, MathF.PI, 0);
+        var actual = quaternion.ToVector3();
+        
+        Assert.AreEqual(expected.X, actual.X, 1e-5f);
+        Assert.AreEqual(expected.Y, actual.Y, 1e-5f);
+        Assert.AreEqual(expected.Z, actual.Z, 1e-5f);
+    }
 }

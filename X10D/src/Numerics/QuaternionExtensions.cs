@@ -64,9 +64,9 @@ public static class QuaternionExtensions
         float qz = normalized.Z;
         float qw = normalized.W;
 
-        float x = MathF.Atan2(2 * (qx * qw - qy * qz), 1 - 2 * (qx * qx + qz * qz));
-        float y = MathF.Asin(2 * (qx * qz + qy * qw));
-        float z = MathF.Atan2(2 * (qz * qw - qx * qy), 1 - 2 * (qy * qy + qz * qz));
-        return new Vector3(x, y, z);
+        float x = MathF.Asin(-2 * (qx * qy - qz * qw));
+        float y = MathF.Atan2(2 * (qy * qw + qx * qz), 1 - 2 * (qy * qy + qx * qx));
+        float z = MathF.Atan2(2 * (qx * qw + qy * qz), 1 - 2 * (qz * qz + qw * qw));
+        return new Vector3(-x, -y, -z);
     }
 }
