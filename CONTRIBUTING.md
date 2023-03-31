@@ -33,11 +33,11 @@ When in doubt, follow .NET guidelines.
 ### Tests
 
 When introducing a new extension method, you must ensure that you have also defined a unit test that asserts its correct behavior.
-The code style guidelines and code-analysis rules apply to the `X10D.Tests` equally as much as `X10D`, although documentation may
+The code style guidelines and code-analysis rules apply to the `X10D.Tests` as much as `X10D`, although documentation may
 be briefer. Refer to existing tests as a guideline.
 
 ### Disclaimer
 
-In the event of a code style violation, a pull request may left open (or closed entirely) without merging. Keep in mind this does
+In the event of a code style violation, a pull request may be left open (or closed entirely) without merging. Keep in mind this does
 not mean the theory or implementation of the method is inherently bad or rejected entirely (although if this is the case, it will
 be outlined)
