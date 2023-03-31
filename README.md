@@ -24,11 +24,7 @@ Install-Package X10D -Version 3.1.0
 Download the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository and adding a direct assembly reference for your chosen platform.
 
 ### Unity installation
-Starting with Unity 2021.2, support for .NET Standard 2.1 has been added. With this change, I am confident providing support for this version for the time being, with only minimal feature-loss.
-To add X10D into your Unity project, goto the [Package Manager window](https://docs.unity3d.com/Manual/upm-ui.html), and choose to install from a Git URL, and use the URL https://github.com/oliverbooth/X10D.git#upm
-
-Parity with the main branch of X10D, and full .NET 6 feature support, is planned - but a timeline is not yet available. Unity plan to add .NET 6 support in the near future.
-For more information, see [this forum post](https://forum.unity.com/threads/unity-future-net-development-status.1092205/).
+For the Unityy installation guide, refer to the [README.md in X10D.Unity](X10D.Unity/README.md).
 
 ## Features
 I'm planning on writing complete and extensive documentation in the near future. As of this time, feel free to browse the source or the API using your favourite IDE.
