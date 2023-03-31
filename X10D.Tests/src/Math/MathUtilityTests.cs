@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using X10D.Core;
 using X10D.Math;
 
 namespace X10D.Tests.Math;

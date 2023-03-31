@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using X10D.Core;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
