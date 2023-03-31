@@ -419,11 +419,6 @@ public static class SingleExtensions
         do
         {
             previous = current;
-            if (previous == 0.0f)
-            {
-                return 0;
-            }
-
             current = (previous + value / previous) / 2;
         } while (MathF.Abs(previous - current) > float.Epsilon);
 

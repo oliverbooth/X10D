@@ -460,11 +460,6 @@ public static class DoubleExtensions
         do
         {
             previous = current;
-            if (previous == 0.0)
-            {
-                return 0;
-            }
-
             current = (previous + value / previous) / 2;
         } while (System.Math.Abs(previous - current) > double.Epsilon);
 

@@ -198,11 +198,6 @@ public static class DecimalExtensions
         do
         {
             previous = current;
-            if (previous == 0.0m)
-            {
-                return 0;
-            }
-
             current = (previous + value / previous) / 2;
         } while (System.Math.Abs(previous - current) > 0.0m);
 
