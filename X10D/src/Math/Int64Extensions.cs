@@ -148,11 +148,6 @@ public static class Int64Extensions
             return false;
         }
 
-        if ((value + 1) % 6 != 0 && (value - 1) % 6 != 0)
-        {
-            return false;
-        }
-
         for (var iterator = 5L; iterator * iterator <= value; iterator += 6)
         {
             if (value % iterator == 0 || value % (iterator + 2) == 0)
