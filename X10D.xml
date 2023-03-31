@@ -5371,6 +5371,19 @@
                 LINQ-inspired extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" />.
             </summary>
         </member>
+        <member name="M:X10D.Linq.EnumerableExtensions.ConcatOne``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+                Concatenates a single value to the end of a sequence.
+            </summary>
+            <param name="source">The source sequence.</param>
+            <param name="value">The value to concatenate to the end of the source sequence.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
+            <returns>
+                An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains the concatenated elements of the input sequence, and the specified
+                value.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+        </member>
         <member name="M:X10D.Linq.EnumerableExtensions.MinMax``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
                 Returns the minimum and maximum values in a sequence of values.
