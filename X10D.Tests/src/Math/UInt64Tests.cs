@@ -126,6 +126,15 @@ public partial class UInt64Tests
     }
 
     [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, 10UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 201UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 200UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 20007UL.MultiplicativePersistence());
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, 0UL.MultiplicativePersistence());

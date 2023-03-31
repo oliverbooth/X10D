@@ -136,6 +136,15 @@ public partial class SByteTests
     }
 
     [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, ((sbyte)10).MultiplicativePersistence());
+        Assert.AreEqual(1, ((sbyte)20).MultiplicativePersistence());
+        Assert.AreEqual(1, ((sbyte)101).MultiplicativePersistence());
+        Assert.AreEqual(1, ((sbyte)120).MultiplicativePersistence());
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, ((sbyte)0).MultiplicativePersistence());
