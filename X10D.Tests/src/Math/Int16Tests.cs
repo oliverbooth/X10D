@@ -135,6 +135,15 @@ public partial class Int16Tests
     }
 
     [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, ((short)10).MultiplicativePersistence());
+        Assert.AreEqual(1, ((short)201).MultiplicativePersistence());
+        Assert.AreEqual(1, ((short)200).MultiplicativePersistence());
+        Assert.AreEqual(1, ((short)20007).MultiplicativePersistence());
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, ((short)0).MultiplicativePersistence());

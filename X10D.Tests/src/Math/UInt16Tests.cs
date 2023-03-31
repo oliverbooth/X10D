@@ -124,6 +124,15 @@ public partial class UInt16Tests
     }
 
     [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, ((ushort)10).MultiplicativePersistence());
+        Assert.AreEqual(1, ((ushort)201).MultiplicativePersistence());
+        Assert.AreEqual(1, ((ushort)200).MultiplicativePersistence());
+        Assert.AreEqual(1, ((ushort)20007).MultiplicativePersistence());
+    }
+
+    [TestMethod]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
         Assert.AreEqual(0, ((ushort)0).MultiplicativePersistence());
