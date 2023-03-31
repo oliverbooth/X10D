@@ -61,11 +61,11 @@ public static class ByteExtensions
                 );
                 var mask1 = Vector128.Create((byte)0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
 
-                var vec = Vector128.Create(value).AsByte();
-                var shuffle = Ssse3.Shuffle(vec, mask1);
-                var and = Sse2.AndNot(shuffle, mask2);
-                var cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
-                var correctness = Sse2.And(cmp, Vector128.Create((byte)0x01));
+                Vector128<byte> vec = Vector128.Create(value).AsByte();
+                Vector128<byte> shuffle = Ssse3.Shuffle(vec, mask1);
+                Vector128<byte> and = Sse2.AndNot(shuffle, mask2);
+                Vector128<byte> cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
+                Vector128<byte> correctness = Sse2.And(cmp, Vector128.Create((byte)0x01));
 
                 Sse2.StoreScalar((long*)pDestination, correctness.AsInt64());
             }
