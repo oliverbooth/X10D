@@ -20,6 +20,18 @@ public class EnumerableTests
     }
 
     [TestMethod]
+    public void Grep_ShouldYieldNoResults_GivenEmptySource()
+    {
+        string[] source = Array.Empty<string>();
+        string[] expectedResult = Array.Empty<string>();
+
+        const string pattern = /*lang=regex*/@"[0-9]+";
+        string[] actualResult = source.Grep(pattern).ToArray();
+
+        CollectionAssert.AreEqual(expectedResult, actualResult);
+    }
+
+    [TestMethod]
     public void Grep_ShouldMatchUpperCase_GivenIgnoreCaseTrue()
     {
         int year = DateTime.Now.Year;
