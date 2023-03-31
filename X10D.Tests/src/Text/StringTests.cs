@@ -196,6 +196,22 @@ public class StringTests
     }
 
     [TestMethod]
+    public void EnsureEndsWith_ShouldReturnString_GivenEmptySourceString()
+    {
+        const string substring = "World";
+
+        Assert.AreEqual(substring, string.Empty.EnsureEndsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureEndsWith_ShouldReturnString_GivenEmptySubString()
+    {
+        const string substring = "World";
+
+        Assert.AreEqual(substring, substring.EnsureEndsWith(string.Empty));
+    }
+
+    [TestMethod]
     public void EnsureStartsWith_ShouldAppendSubstring_GivenEndsWithReturnFalse()
     {
         const string value = "World";
@@ -210,6 +226,22 @@ public class StringTests
         const string substring = "World";
 
         Assert.AreEqual(substring, substring.EnsureStartsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureStartsWith_ShouldReturnString_GivenEmptySourceString()
+    {
+        const string substring = "World";
+
+        Assert.AreEqual(substring, string.Empty.EnsureStartsWith(substring));
+    }
+
+    [TestMethod]
+    public void EnsureStartsWith_ShouldReturnString_GivenEmptySubString()
+    {
+        const string substring = "World";
+
+        Assert.AreEqual(substring, substring.EnsureStartsWith(string.Empty));
     }
 
     [TestMethod]
@@ -663,6 +695,66 @@ public class StringTests
 
         // forcing enumeration with ToArray is required for the exception to be thrown
         Assert.ThrowsException<ArgumentNullException>(() => value!.Split(0).ToArray());
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldReturnFalse_GivenNullInput()
+    {
+        string? value = null;
+        Assert.IsFalse(value.StartsWithAny());
+        Assert.IsFalse(value.StartsWithAny(StringComparison.Ordinal));
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldReturnFalse_GivenEmptyInput()
+    {
+        Assert.IsFalse(string.Empty.StartsWithAny());
+        Assert.IsFalse(string.Empty.StartsWithAny(StringComparison.Ordinal));
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldReturnFalse_GivenValuesThatDontMatch()
+    {
+        const string value = "Hello World";
+        Assert.IsFalse(value.StartsWithAny("World", "Goodbye"));
+        Assert.IsFalse(value.StartsWithAny(StringComparison.Ordinal, "World", "Goodbye"));
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldReturnTrue_GivenValuesThatMatch()
+    {
+        const string value = "Hello World";
+        Assert.IsTrue(value.StartsWithAny("World", "Hello"));
+        Assert.IsTrue(value.StartsWithAny(StringComparison.Ordinal, "World", "Hello"));
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldReturnTrue_GivenValuesThatMatch_WithIgnoreCaseComparison()
+    {
+        const string value = "Hello World";
+        Assert.IsTrue(value.StartsWithAny(StringComparison.OrdinalIgnoreCase, "WORLD", "HELLO"));
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldReturnFalse_GivenEmptyValues()
+    {
+        const string input = "Hello World";
+        Assert.IsFalse(input.StartsWithAny());
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldThrowArgumentNullException_GivenNullValues()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => string.Empty.StartsWithAny(null!));
+        Assert.ThrowsException<ArgumentNullException>(() => string.Empty.StartsWithAny(StringComparison.Ordinal, null!));
+    }
+
+    [TestMethod]
+    public void StartsWithAny_ShouldThrowArgumentNullException_GivenANullValue()
+    {
+        var values = new[] {"Hello", null!, "World"};
+        Assert.ThrowsException<ArgumentNullException>(() => "Foobar".StartsWithAny(values));
+        Assert.ThrowsException<ArgumentNullException>(() => "Foobar".StartsWithAny(StringComparison.Ordinal, values));
     }
 
     [TestMethod]
