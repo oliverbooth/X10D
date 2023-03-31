@@ -5812,6 +5812,14 @@
                 <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
             </returns>
         </member>
+        <member name="M:X10D.Math.ByteExtensions.LowestCommonMultiple(System.Byte,System.Byte)">
+            <summary>
+                Calculates the lowest common multiple between the current 8-bit signed integer, and another 8-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
         <member name="M:X10D.Math.ByteExtensions.MultiplicativePersistence(System.Byte)">
             <summary>
                 Returns the multiplicative persistence of a specified value.
@@ -6549,6 +6557,14 @@
                 <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
             </returns>
         </member>
+        <member name="M:X10D.Math.Int16Extensions.LowestCommonMultiple(System.Int16,System.Int16)">
+            <summary>
+                Calculates the lowest common multiple between the current 16-bit signed integer, and another 16-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
         <member name="M:X10D.Math.Int16Extensions.Mod(System.Int16,System.Int16)">
             <summary>
                 Performs a modulo operation which supports a negative dividend.
@@ -6682,6 +6698,14 @@
                 <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
             </returns>
         </member>
+        <member name="M:X10D.Math.Int32Extensions.LowestCommonMultiple(System.Int32,System.Int32)">
+            <summary>
+                Calculates the lowest common multiple between the current 32-bit signed integer, and another 32-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
         <member name="M:X10D.Math.Int32Extensions.Mod(System.Int32,System.Int32)">
             <summary>
                 Performs a modulo operation which supports a negative dividend.
@@ -6814,6 +6838,14 @@
             <returns>
                 <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
             </returns>
+        </member>
+        <member name="M:X10D.Math.Int64Extensions.LowestCommonMultiple(System.Int64,System.Int64)">
+            <summary>
+                Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.Int64Extensions.Mod(System.Int64,System.Int64)">
             <summary>
@@ -7076,6 +7108,14 @@
             <returns>
                 <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
             </returns>
+        </member>
+        <member name="M:X10D.Math.SByteExtensions.LowestCommonMultiple(System.SByte,System.SByte)">
+            <summary>
+                Calculates the lowest common multiple between the current 8-bit signed integer, and another 8-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.SByteExtensions.Mod(System.SByte,System.SByte)">
             <summary>
@@ -7494,6 +7534,15 @@
                 otherwise.
             </returns>
         </member>
+        <member name="M:X10D.Math.UInt16Extensions.LowestCommonMultiple(System.UInt16,System.UInt16)">
+            <summary>
+                Calculates the lowest common multiple between the current 16-bit unsigned integer, and another 16-bit unsigned
+                integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
         <member name="M:X10D.Math.UInt16Extensions.MultiplicativePersistence(System.UInt16)">
             <summary>
                 Returns the multiplicative persistence of a specified value.
@@ -7582,6 +7631,15 @@
                 otherwise.
             </returns>
         </member>
+        <member name="M:X10D.Math.UInt32Extensions.LowestCommonMultiple(System.UInt32,System.UInt32)">
+            <summary>
+                Calculates the lowest common multiple between the current 32-bit unsigned integer, and another 32-bit unsigned
+                integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
         <member name="M:X10D.Math.UInt32Extensions.MultiplicativePersistence(System.UInt32)">
             <summary>
                 Returns the multiplicative persistence of a specified value.
@@ -7669,6 +7727,15 @@
                 <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
                 otherwise.
             </returns>
+        </member>
+        <member name="M:X10D.Math.UInt64Extensions.LowestCommonMultiple(System.UInt64,System.UInt64)">
+            <summary>
+                Calculates the lowest common multiple between the current 64-bit unsigned integer, and another 64-bit unsigned
+                integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
         </member>
         <member name="M:X10D.Math.UInt64Extensions.MultiplicativePersistence(System.UInt64)">
             <summary>
