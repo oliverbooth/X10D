@@ -34,4 +34,4 @@ For those familiar with the 2.6.0 API, please read [CHANGELOG.md](CHANGELOG.md) 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
-X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/master/LICENSE.md) for more details.
+X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/main/LICENSE.md) for more details.
