@@ -5,7 +5,7 @@ or submit a pull request.
 
 ### Pull request guidelines
 
-This project uses C# 10.0 language features, and adheres to StyleCop rules with some minor adjustments.
+This project uses C# 10.0 language features where feasible, and adheres to StyleCop rules with some minor adjustments.
 There is an `.editorconfig` included in this repository. For quick and painless pull requests, ensure that the analyzer does not
 throw warnings.
 
