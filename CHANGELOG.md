@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `double.LinearToGamma([gamma])` and `float.LinearToGamma([gamma])`. (#60)
 - X10D: Added `double.GammaToLinear([gamma])` and `float.GammaToLinear([gamma])`. (#60)
 - X10D: Added `GreatestCommonFactor` for built-in integer types.
+- X10D: Added `IEnumerable<T>.ConcatOne(T)`.
 - X10D: Added `IEnumerable<T>.CountWhereNot(Func<T, bool>)`.
 - X10D: Added `IEnumerable<T>.FirstWhereNot(Func<T, bool>)`.
 - X10D: Added `IEnumerable<T>.FirstWhereNotOrDefault(Func<T, bool>)`.
