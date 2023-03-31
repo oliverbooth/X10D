@@ -41,6 +41,12 @@ public class CuboidTests
     }
 
     [TestMethod]
+    public void Equals_ShouldBeFalse_GivenDifferentObjects()
+    {
+        Assert.IsFalse(Cuboid.Cube.Equals(null));
+    }
+
+    [TestMethod]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyCircle()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
