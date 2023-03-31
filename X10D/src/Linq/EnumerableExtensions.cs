@@ -10,6 +10,31 @@ namespace X10D.Linq;
 public static class EnumerableExtensions
 {
     /// <summary>
+    ///     Concatenates a single value to the end of a sequence.
+    /// </summary>
+    /// <param name="source">The source sequence.</param>
+    /// <param name="value">The value to concatenate to the end of the source sequence.</param>
+    /// <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     An <see cref="IEnumerable{T}" /> that contains the concatenated elements of the input sequence, and the specified
+    ///     value.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    public static IEnumerable<TSource> ConcatOne<TSource>(this IEnumerable<TSource> source, TSource value)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        return source.Concat(new[] {value});
+    }
+
+    /// <summary>
     ///     Returns the minimum and maximum values in a sequence of values.
     /// </summary>
     /// <param name="source">A sequence of values to determine the minimum and maximum values of.</param>
