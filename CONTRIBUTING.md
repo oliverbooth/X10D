@@ -5,7 +5,7 @@ or submit a pull request.
 
 ### Pull request guidelines
 
-This project uses C# 10.0 language features where feasible, and adheres to StyleCop rules with some minor adjustments.
+This project uses C# 11.0 language features where feasible, and adheres to StyleCop rules with some minor adjustments.
 There is an `.editorconfig` included in this repository. For quick and painless pull requests, ensure that the analyzer does not
 throw warnings.
 
@@ -13,7 +13,7 @@ throw warnings.
 
 Below are a few pointers to which you may refer, but keep in mind this is not an exhaustive list:
 
-- Use C# 10.0 features where possible
+- Use C# 11.0 features where possible
 - Try to ensure code is CLS-compliant. Where this is not possible, decorate methods with `CLSCompliantAttribute` and pass `false`
 - Follow all .NET guidelines and coding conventions.
   See https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
