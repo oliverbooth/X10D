@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -23,16 +24,19 @@ public static class SpanExtensions
 #if NETCOREAPP3_0_OR_GREATER
     private const ulong IntegerPackingMagic = 0x0102040810204080;
 
+    [ExcludeFromCodeCoverage]
     private static Vector64<ulong> IntegerPackingMagicV64
     {
         get => Vector64.Create(IntegerPackingMagic);
     }
 
+    [ExcludeFromCodeCoverage]
     private static Vector128<ulong> IntegerPackingMagicV128
     {
         get => Vector128.Create(IntegerPackingMagic);
     }
 
+    [ExcludeFromCodeCoverage]
     private static Vector256<ulong> IntegerPackingMagicV256
     {
         get => Vector256.Create(IntegerPackingMagic);
