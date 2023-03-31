@@ -34,7 +34,7 @@ public class EnumerableTests
     public void ConcatOne_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<string>? source = null;
-        Assert.ThrowsException<ArgumentNullException>(() => source!.ConcatOne("Foobar"));
+        Assert.ThrowsException<ArgumentNullException>(() => source!.ConcatOne("Foobar").ToArray());
     }
 
     [TestMethod]
