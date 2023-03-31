@@ -1,5 +1,6 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -82,7 +83,7 @@ public static class RuneExtensions
             // Codepoint 0x10000 and beyond will takes **only** 2 UTF-16 character.
             case 4:
                 {
-                    return string.Create(count * 2, value, (span, rune) =>
+                    return string.Create(count * 2, value, (span, _) =>
                     {
                         unsafe
                         {
@@ -98,12 +99,21 @@ public static class RuneExtensions
                 }
 
             default:
-                var msg = string.Format(CultureInfo.CurrentCulture, ExceptionMessages.UnexpectedRuneUtf8SequenceLength, length);
+                return Default();
+        }
+
+        [ExcludeFromCodeCoverage, DoesNotReturn]
+        string Default()
+        {
+            string exceptionFormat = ExceptionMessages.UnexpectedRuneUtf8SequenceLength;
+            string message = string.Format(CultureInfo.CurrentCulture, exceptionFormat, length);
 #if NET7_0_OR_GREATER
-                throw new UnreachableException(msg);
+            throw new UnreachableException(message);
 #else
-                throw new InvalidOperationException(msg);
+            throw new InvalidOperationException(message);
 #endif
+
+            return default;
         }
     }
 }
