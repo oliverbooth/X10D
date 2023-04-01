@@ -1,4 +1,4 @@
-﻿using System.Buffers.Binary;
+using System.Buffers.Binary;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -345,7 +345,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream from which the value should be read.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>A single-precision floating point value read from the stream.</returns>
-    public static double ReadSingle(this Stream stream, Endianness endianness)
+    public static float ReadSingle(this Stream stream, Endianness endianness)
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);

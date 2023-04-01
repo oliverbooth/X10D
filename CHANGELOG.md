@@ -144,6 +144,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: `T[].Clear` will now correctly clear the specified range of elements by
   using the [GetOffsetAndLength](https://learn.microsoft.com/en-us/dotnet/api/system.range.getoffsetandlength?view=net-7.0)
   method.
+- X10D: `Stream.ReadSingle(Endianness)` now returns a float instead of a double.
 
 ### Changed
 
