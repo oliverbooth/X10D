@@ -4164,6 +4164,11 @@
               Looks up a localized string similar to Count must be positive and count must refer to a location within the string/array/collection..
             </summary>
         </member>
+        <member name="P:X10D.ExceptionMessages.DestinationSpanLengthTooShort">
+            <summary>
+              Looks up a localized string similar to The destination span is too short to contain the data..
+            </summary>
+        </member>
         <member name="P:X10D.ExceptionMessages.EndIndexGreaterThanCount">
             <summary>
               Looks up a localized string similar to The end index must be less than the list count..
@@ -4248,6 +4253,17 @@
             <summary>
               Looks up a localized string similar to Year cannot be zero..
             </summary>
+        </member>
+        <member name="T:X10D.IAvx2SupportProvider">
+            <summary>
+                Represents an object which provides the status of the support of AVX2 instructions.
+            </summary>
+        </member>
+        <member name="P:X10D.IAvx2SupportProvider.IsSupported">
+            <summary>
+                Gets a value indicating whether AVX2 instructions are supported on this platform.
+            </summary>
+            <value><see langword="true" /> if AVX2 instructions are supported; otherwise, <see langword="false" />.</value>
         </member>
         <member name="T:X10D.IO.BooleanExtensions">
             <summary>
@@ -5235,6 +5251,17 @@
             <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
+        <member name="T:X10D.ISsse3SupportProvider">
+            <summary>
+                Represents an object which provides the status of the support of SSSE3 instructions.
+            </summary>
+        </member>
+        <member name="P:X10D.ISsse3SupportProvider.IsSupported">
+            <summary>
+                Gets a value indicating whether SSSE3 instructions are supported on this platform.
+            </summary>
+            <value><see langword="true" /> if SSSE3 instructions are supported; otherwise, <see langword="false" />.</value>
+        </member>
         <member name="T:X10D.Linq.ByteExtensions">
             <summary>
                 LINQ-inspired extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Byte" />.
@@ -6067,6 +6094,13 @@
                 Extension methods for <see cref="T:System.Decimal" />.
             </summary>
         </member>
+        <member name="M:X10D.Math.DecimalExtensions.ComplexSqrt(System.Decimal)">
+            <summary>
+                Returns the complex square root of this decimal number.
+            </summary>
+            <param name="value">The number whose square root is to be found.</param>
+            <returns>The square root of <paramref name="value" />.</returns>
+        </member>
         <member name="M:X10D.Math.DecimalExtensions.IsEven(System.Decimal)">
             <summary>
                 Returns a value indicating whether the current value is evenly divisible by 2.
@@ -6267,6 +6301,13 @@
                 θ &lt; ∞. If <paramref name="value" /> is equal to <see cref="F:System.Double.NaN" />, less than -1, or greater than 1,
                 <see cref="F:System.Double.NaN" /> is returned.
             </returns>
+        </member>
+        <member name="M:X10D.Math.DoubleExtensions.ComplexSqrt(System.Double)">
+            <summary>
+                Returns the complex square root of this double-precision floating-point number.
+            </summary>
+            <param name="value">The number whose square root is to be found.</param>
+            <returns>The square root of <paramref name="value" />.</returns>
         </member>
         <member name="M:X10D.Math.DoubleExtensions.Cos(System.Double)">
             <summary>
@@ -7270,6 +7311,13 @@
                 θ &lt; ∞. If <paramref name="value" /> is equal to <see cref="F:System.Single.NaN" />, less than -1, or greater than 1,
                 <see cref="F:System.Single.NaN" /> is returned.
             </returns>
+        </member>
+        <member name="M:X10D.Math.SingleExtensions.ComplexSqrt(System.Single)">
+            <summary>
+                Returns the complex square root of this single-precision floating-point number.
+            </summary>
+            <param name="value">The number whose square root is to be found.</param>
+            <returns>The square root of <paramref name="value" />.</returns>
         </member>
         <member name="M:X10D.Math.SingleExtensions.Cos(System.Single)">
             <summary>
@@ -8685,6 +8733,12 @@
                 -or-
                 <para><paramref name="type" /> is not a class.</para>
             </exception>
+        </member>
+        <member name="P:X10D.SystemAvx2SupportProvider.IsSupported">
+            <inheritdoc />
+        </member>
+        <member name="P:X10D.SystemSsse3SupportProvider.IsSupported">
+            <inheritdoc />
         </member>
         <member name="T:X10D.Text.CharExtensions">
             <summary>
