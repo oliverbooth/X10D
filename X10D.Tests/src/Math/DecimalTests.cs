@@ -7,7 +7,6 @@ namespace X10D.Tests.Math;
 [TestClass]
 public partial class DecimalTests
 {
-#if NETCOREAPP3_0_OR_GREATER
     [TestMethod]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()
     {
@@ -26,7 +25,6 @@ public partial class DecimalTests
         Assert.AreEqual(new Complex(0, 3.0), (-9.0m).ComplexSqrt());
         Assert.AreEqual(new Complex(0, 4.0), (-16.0m).ComplexSqrt());
     }
-#endif
 
     [TestMethod]
     public void IsEven_ShouldBeFalse_GivenOddNumber()

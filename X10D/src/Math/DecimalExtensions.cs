@@ -9,19 +9,21 @@ namespace X10D.Math;
 /// </summary>
 public static class DecimalExtensions
 {
-#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this decimal number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>The square root of <paramref name="value" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static Complex ComplexSqrt(this decimal value)
     {
         return Complex.Sqrt((double)value);
     }
-#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
