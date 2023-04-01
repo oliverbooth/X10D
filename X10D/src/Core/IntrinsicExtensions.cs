@@ -1,5 +1,5 @@
-﻿#if NETCOREAPP3_0_OR_GREATER
-
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
@@ -35,15 +35,15 @@ public static class IntrinsicExtensions
         // TODO: AdvSimd implementation.
         // TODO: WasmSimd implementation. (?)
 
-        var output = IntrinsicUtility.GetUninitializedVector64<byte>();
+        Vector64<byte> output = IntrinsicUtility.GetUninitializedVector64<byte>();
 
-        for (int i = 0; i < Vector64<byte>.Count; i++)
+        for (var i = 0; i < Vector64<byte>.Count; i++)
         {
-            ref var writeElement = ref Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref output), i);
+            ref byte writeElement = ref Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref output), i);
 #if NET7_0_OR_GREATER
             writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
 #else
-            var element = Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref vector), i);
+            byte element = Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref vector), i);
             writeElement = element == 0 ? (byte)0 : (byte)1;
 #endif
         }
@@ -68,28 +68,10 @@ public static class IntrinsicExtensions
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [ExcludeFromCodeCoverage]
     public static Vector128<byte> CorrectBoolean(this Vector128<byte> vector)
     {
-        if (Sse2.IsSupported)
-        {
-            var cmp = Sse2.CompareEqual(vector, Vector128<byte>.Zero);
-            var result = Sse2.AndNot(cmp, Vector128.Create((byte)1));
-
-            return result;
-        }
-
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation.
-
-        var output = IntrinsicUtility.GetUninitializedVector128<byte>();
-
-        for (int i = 0; i < Vector128<byte>.Count; i++)
-        {
-            Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref output), i) =
-                Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref vector), i) == 0 ? (byte)0 : (byte)1;
-        }
-
-        return output;
+        return CorrectBooleanInternal(vector, new SystemSse2SupportProvider());
     }
 
     /// <summary>
@@ -109,25 +91,10 @@ public static class IntrinsicExtensions
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [ExcludeFromCodeCoverage]
     public static Vector256<byte> CorrectBoolean(this Vector256<byte> vector)
     {
-        if (Avx2.IsSupported)
-        {
-            var cmp = Avx2.CompareEqual(vector, Vector256<byte>.Zero);
-            var result = Avx2.AndNot(cmp, Vector256.Create((byte)1));
-
-            return result;
-        }
-
-        var output = IntrinsicUtility.GetUninitializedVector256<byte>();
-
-        for (int i = 0; i < Vector256<byte>.Count; i++)
-        {
-            Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), i) =
-                Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), i) == 0 ? (byte)0 : (byte)1;
-        }
-
-        return output;
+        return CorrectBooleanInternal(vector, new SystemAvx2SupportProvider());
     }
 
     /// <summary>
@@ -159,6 +126,59 @@ public static class IntrinsicExtensions
 
         Unsafe.As<Vector128<ulong>, ulong>(ref output) = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref vector), 1);
         Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = Unsafe.As<Vector128<ulong>, ulong>(ref vector);
+
+        return output;
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<byte> CorrectBooleanInternal(this Vector128<byte> vector, ISse2SupportProvider? sse2SupportProvider)
+    {
+        sse2SupportProvider ??= new SystemSse2SupportProvider();
+
+        if (sse2SupportProvider.IsSupported)
+        {
+            Vector128<byte> cmp = Sse2.CompareEqual(vector, Vector128<byte>.Zero);
+            Vector128<byte> result = Sse2.AndNot(cmp, Vector128.Create((byte)1));
+
+            return result;
+        }
+
+        // TODO: AdvSimd implementation.
+        // TODO: WasmSimd implementation.
+
+        Vector128<byte> output = IntrinsicUtility.GetUninitializedVector128<byte>();
+
+        for (var index = 0; index < Vector128<byte>.Count; index++)
+        {
+            Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref output), index) =
+                Unsafe.Add(ref Unsafe.As<Vector128<byte>, byte>(ref vector), index) == 0 ? (byte)0 : (byte)1;
+        }
+
+        return output;
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector256<byte> CorrectBooleanInternal(this Vector256<byte> vector, IAvx2SupportProvider? supportProvider)
+    {
+        supportProvider ??= new SystemAvx2SupportProvider();
+
+        if (supportProvider.IsSupported)
+        {
+            Vector256<byte> cmp = Avx2.CompareEqual(vector, Vector256<byte>.Zero);
+            Vector256<byte> result = Avx2.AndNot(cmp, Vector256.Create((byte)1));
+
+            return result;
+        }
+
+        Vector256<byte> output = IntrinsicUtility.GetUninitializedVector256<byte>();
+
+        for (var index = 0; index < Vector256<byte>.Count; index++)
+        {
+            Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), index) =
+                Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), index) == 0 ? (byte)0 : (byte)1;
+        }
 
         return output;
     }
