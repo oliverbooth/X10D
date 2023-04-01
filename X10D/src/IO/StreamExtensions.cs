@@ -1,4 +1,4 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -1147,7 +1147,7 @@ public static class StreamExtensions
         return (int)(stream.Position - preWritePosition);
     }
 
-    private static int WriteInternal(this Stream stream, Span<byte> value)
+    private static int WriteInternal(this Stream stream, ReadOnlySpan<byte> value)
     {
         long preWritePosition = stream.Position;
         stream.Write(value);
