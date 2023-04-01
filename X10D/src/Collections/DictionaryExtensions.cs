@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 using System.Web;
 
@@ -70,11 +70,9 @@ public static class DictionaryExtensions
 
             return updated;
         }
-        else
-        {
-            dictionary.Add(key, addValue);
-            return addValue;
-        }
+
+        dictionary.Add(key, addValue);
+        return addValue;
 #endif
     }
 
@@ -126,11 +124,9 @@ public static class DictionaryExtensions
 
             return updated;
         }
-        else
-        {
-            dictionary.Add(key, addValue);
-            return addValue;
-        }
+
+        dictionary.Add(key, addValue);
+        return addValue;
     }
 
     /// <summary>
@@ -202,13 +198,11 @@ public static class DictionaryExtensions
 
             return updated;
         }
-        else
-        {
-            var add = addValueFactory(key);
-            dictionary.Add(key, add);
 
-            return add;
-        }
+        var add = addValueFactory(key);
+        dictionary.Add(key, add);
+
+        return add;
 #endif
     }
 
@@ -268,13 +262,11 @@ public static class DictionaryExtensions
 
             return updated;
         }
-        else
-        {
-            var add = addValueFactory(key);
-            dictionary.Add(key, add);
 
-            return add;
-        }
+        var add = addValueFactory(key);
+        dictionary.Add(key, add);
+
+        return add;
     }
 
     /// <summary>
@@ -352,13 +344,11 @@ public static class DictionaryExtensions
 
             return updated;
         }
-        else
-        {
-            var add = addValueFactory(key, factoryArgument);
-            dictionary.Add(key, add);
 
-            return add;
-        }
+        var add = addValueFactory(key, factoryArgument);
+        dictionary.Add(key, add);
+
+        return add;
 #endif
     }
 
@@ -424,13 +414,11 @@ public static class DictionaryExtensions
 
             return updated;
         }
-        else
-        {
-            var add = addValueFactory(key, factoryArgument);
-            dictionary.Add(key, add);
 
-            return add;
-        }
+        var add = addValueFactory(key, factoryArgument);
+        dictionary.Add(key, add);
+
+        return add;
     }
 
     /// <summary>
