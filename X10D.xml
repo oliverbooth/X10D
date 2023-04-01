@@ -5251,6 +5251,17 @@
             <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
+        <member name="T:X10D.ISse2SupportProvider">
+            <summary>
+                Represents an object which provides the status of the support of SSE2 instructions.
+            </summary>
+        </member>
+        <member name="P:X10D.ISse2SupportProvider.IsSupported">
+            <summary>
+                Gets a value indicating whether SSE2 instructions are supported on this platform.
+            </summary>
+            <value><see langword="true" /> if SSE2 instructions are supported; otherwise, <see langword="false" />.</value>
+        </member>
         <member name="T:X10D.ISsse3SupportProvider">
             <summary>
                 Represents an object which provides the status of the support of SSSE3 instructions.
@@ -8735,6 +8746,9 @@
             </exception>
         </member>
         <member name="P:X10D.SystemAvx2SupportProvider.IsSupported">
+            <inheritdoc />
+        </member>
+        <member name="P:X10D.SystemSse2SupportProvider.IsSupported">
             <inheritdoc />
         </member>
         <member name="P:X10D.SystemSsse3SupportProvider.IsSupported">
