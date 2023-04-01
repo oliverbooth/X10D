@@ -35,50 +35,75 @@ public static class Int16Extensions
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
     public static void Unpack(this short value, Span<bool> destination)
     {
+#if NETCOREAPP3_0_OR_GREATER
+        UnpackInternal(value, destination, new SystemSsse3SupportProvider());
+#else
+        UnpackInternal(value, destination);
+#endif
+    }
+
+#if NETCOREAPP3_0_OR_GREATER
+    internal static void UnpackInternal(this short value, Span<bool> destination, ISsse3SupportProvider? ssse3SupportProvider)
+#else
+    internal static void UnpackInternal(this short value, Span<bool> destination)
+#endif
+    {
         if (destination.Length < Size)
         {
-            throw new ArgumentException($"Destination must be at least {Size} in length.", nameof(destination));
+            throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
 #if NETCOREAPP3_0_OR_GREATER
-        if (Ssse3.IsSupported)
+        ssse3SupportProvider ??= new SystemSsse3SupportProvider();
+
+        if (ssse3SupportProvider.IsSupported)
         {
-            Ssse3Implementation(value, destination);
+            UnpackInternal_Ssse3(value, destination);
             return;
         }
 #endif
 
-        FallbackImplementation(value, destination);
+        UnpackInternal_Fallback(value, destination);
+    }
 
-#if NETCOREAPP3_0_OR_GREATER
-        unsafe static void Ssse3Implementation(short value, Span<bool> destination)
+    private static void UnpackInternal_Fallback(short value, Span<bool> destination)
+    {
+        for (var index = 0; index < Size; index++)
         {
-            fixed (bool* pDestination = destination)
-            {
-                var mask2 = Vector128.Create(
-                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
-                    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80
-                );
-                var mask1Lo = Vector128.Create((byte)0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
-
-                var one = Vector128.Create((byte)0x01);
-
-                var vec = Vector128.Create(value).AsByte();
-                var shuffle = Ssse3.Shuffle(vec, mask1Lo);
-                var and = Sse2.AndNot(shuffle, mask2);
-                var cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
-                var correctness = Sse2.And(cmp, one);
-
-                Sse2.Store((byte*)pDestination, correctness);
-            }
-        }
-#endif
-        static void FallbackImplementation(short value, Span<bool> destination)
-        {
-            for (var index = 0; index < Size; index++)
-            {
-                destination[index] = (value & (1 << index)) != 0;
-            }
+            destination[index] = (value & (1 << index)) != 0;
         }
     }
+
+#if NETCOREAPP3_0_OR_GREATER
+    private struct SystemSsse3SupportProvider : ISsse3SupportProvider
+    {
+        /// <inheritdoc />
+        public bool IsSupported
+        {
+            get => Sse3.IsSupported;
+        }
+    }
+
+    private unsafe static void UnpackInternal_Ssse3(short value, Span<bool> destination)
+    {
+        fixed (bool* pDestination = destination)
+        {
+            var mask2 = Vector128.Create(
+                0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,
+                0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80
+            );
+
+            var mask1Lo = Vector128.Create((byte)0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
+            var one = Vector128.Create((byte)0x01);
+
+            Vector128<byte> vec = Vector128.Create(value).AsByte();
+            Vector128<byte> shuffle = Ssse3.Shuffle(vec, mask1Lo);
+            Vector128<byte> and = Sse2.AndNot(shuffle, mask2);
+            Vector128<byte> cmp = Sse2.CompareEqual(and, Vector128<byte>.Zero);
+            Vector128<byte> correctness = Sse2.And(cmp, one);
+
+            Sse2.Store((byte*)pDestination, correctness);
+        }
+    }
+#endif
 }
