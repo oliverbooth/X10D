@@ -136,23 +136,19 @@ public static class StringExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(sourceEncoding);
+        ArgumentNullException.ThrowIfNull(destinationEncoding);
 #else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(sourceEncoding);
-#else
+
         if (sourceEncoding is null)
         {
             throw new ArgumentNullException(nameof(sourceEncoding));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(destinationEncoding);
-#else
+
         if (destinationEncoding is null)
         {
             throw new ArgumentNullException(nameof(destinationEncoding));
@@ -478,15 +474,13 @@ public static class StringExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(encoding);
 #else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(encoding);
-#else
+
         if (encoding is null)
         {
             throw new ArgumentNullException(nameof(encoding));

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 using System.Web;
 
@@ -37,15 +37,13 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(dictionary);
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
 #else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
+
         if (updateValueFactory is null)
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
@@ -108,15 +106,13 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(dictionary);
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
 #else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
+
         if (updateValueFactory is null)
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
@@ -167,23 +163,19 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(dictionary);
+        ArgumentNullException.ThrowIfNull(addValueFactory);
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
 #else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-#else
+
         if (addValueFactory is null)
         {
             throw new ArgumentNullException(nameof(addValueFactory));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
+
         if (updateValueFactory is null)
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
@@ -250,23 +242,19 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(dictionary);
+        ArgumentNullException.ThrowIfNull(addValueFactory);
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
 #else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-#else
+
         if (addValueFactory is null)
         {
             throw new ArgumentNullException(nameof(addValueFactory));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
+
         if (updateValueFactory is null)
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
@@ -325,23 +313,19 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(dictionary);
+        ArgumentNullException.ThrowIfNull(addValueFactory);
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
 #else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-#else
+
         if (addValueFactory is null)
         {
             throw new ArgumentNullException(nameof(addValueFactory));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
+
         if (updateValueFactory is null)
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
@@ -414,23 +398,19 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(dictionary);
+        ArgumentNullException.ThrowIfNull(addValueFactory);
+        ArgumentNullException.ThrowIfNull(updateValueFactory);
 #else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-#else
+
         if (addValueFactory is null)
         {
             throw new ArgumentNullException(nameof(addValueFactory));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
+
         if (updateValueFactory is null)
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
@@ -514,15 +494,13 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(selector);
 #else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(selector);
-#else
+
         if (selector is null)
         {
             throw new ArgumentNullException(nameof(selector));
@@ -575,23 +553,19 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(keySelector);
+        ArgumentNullException.ThrowIfNull(valueSelector);
 #else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(keySelector);
-#else
+
         if (keySelector is null)
         {
             throw new ArgumentNullException(nameof(keySelector));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(valueSelector);
-#else
+
         if (valueSelector is null)
         {
             throw new ArgumentNullException(nameof(valueSelector));
@@ -669,15 +643,13 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(selector);
 #else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(selector);
-#else
+
         if (selector is null)
         {
             throw new ArgumentNullException(nameof(selector));
@@ -722,23 +694,19 @@ public static class DictionaryExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(keySelector);
+        ArgumentNullException.ThrowIfNull(valueSelector);
 #else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(keySelector);
-#else
+
         if (keySelector is null)
         {
             throw new ArgumentNullException(nameof(keySelector));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(valueSelector);
-#else
+
         if (valueSelector is null)
         {
             throw new ArgumentNullException(nameof(valueSelector));

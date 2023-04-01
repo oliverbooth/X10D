@@ -60,15 +60,13 @@ public static class MemberInfoExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(member);
+        ArgumentNullException.ThrowIfNull(attribute);
 #else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(attribute);
-#else
+
         if (attribute is null)
         {
             throw new ArgumentNullException(nameof(attribute));
@@ -105,15 +103,13 @@ public static class MemberInfoExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(member);
+        ArgumentNullException.ThrowIfNull(selector);
 #else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(selector);
-#else
+
         if (selector is null)
         {
             throw new ArgumentNullException(nameof(selector));
@@ -145,15 +141,13 @@ public static class MemberInfoExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(member);
+        ArgumentNullException.ThrowIfNull(selector);
 #else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(selector);
-#else
+
         if (selector is null)
         {
             throw new ArgumentNullException(nameof(selector));

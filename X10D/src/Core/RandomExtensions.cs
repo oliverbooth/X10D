@@ -157,15 +157,13 @@ public static class RandomExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+        ArgumentNullException.ThrowIfNull(source);
 #else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
+
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -534,15 +532,13 @@ public static class RandomExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+        ArgumentNullException.ThrowIfNull(source);
 #else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
+
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
