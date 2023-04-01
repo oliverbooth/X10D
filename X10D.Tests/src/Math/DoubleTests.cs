@@ -29,7 +29,6 @@ public partial class DoubleTests
         Assert.AreEqual(12.0, 0.20943951023931953.RadiansToDegrees(), 1e-6);
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     [TestMethod]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()
     {
@@ -61,7 +60,6 @@ public partial class DoubleTests
     {
         Assert.AreEqual(Complex.NaN, double.NaN.ComplexSqrt());
     }
-#endif
 
     [TestMethod]
     public void IsEven_ShouldBeFalse_GivenOddNumber()

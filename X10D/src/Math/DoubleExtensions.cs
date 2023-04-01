@@ -140,23 +140,26 @@ public static class DoubleExtensions
         return System.Math.Atanh(value);
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this double-precision floating-point number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>The square root of <paramref name="value" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static Complex ComplexSqrt(this double value)
     {
         switch (value)
         {
             case double.PositiveInfinity:
             case double.NegativeInfinity:
-                return Complex.Infinity;
+                return new Complex(double.PositiveInfinity, double.PositiveInfinity);
             case double.NaN:
-                return Complex.NaN;
+                return new Complex(double.NaN, double.NaN);
 
             case 0:
                 return Complex.Zero;
@@ -166,7 +169,6 @@ public static class DoubleExtensions
                 return new Complex(0, System.Math.Sqrt(-value));
         }
     }
-#endif
 
     /// <summary>
     ///     Returns the cosine of the specified angle.
