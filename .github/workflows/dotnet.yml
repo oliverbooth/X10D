@@ -18,7 +18,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: |
+          3.1.x
+          6.0.x
+          7.0.x
 
     - name: Add NuGet source
       run: dotnet nuget add source --username oliverbooth --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/oliverbooth/index.json"
@@ -29,5 +32,11 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal --configuration Release
+    - name: Test .NET Core 3.1
+      run: dotnet test --no-build --verbosity normal --configuration Release --framework netcoreapp3.1
+
+    - name: Test .NET 6
+      run: dotnet test --no-build --verbosity normal --configuration Release --framework net6.0
+
+    - name: Test .NET 7
+      run: dotnet test --no-build --verbosity normal --configuration Release --framework net7.0
