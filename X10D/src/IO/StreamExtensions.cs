@@ -996,7 +996,7 @@ public static class StreamExtensions
         if (endianness == Endianness.LittleEndian)
         {
 #if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
+            BinaryPrimitives.WriteSingleLittleEndian(buffer, value);
 #else
             if (BitConverter.IsLittleEndian)
             {
@@ -1012,7 +1012,7 @@ public static class StreamExtensions
         else
         {
 #if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteDoubleBigEndian(buffer, value);
+            BinaryPrimitives.WriteSingleBigEndian(buffer, value);
 #else
             if (BitConverter.IsLittleEndian)
             {
