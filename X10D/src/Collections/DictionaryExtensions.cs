@@ -54,16 +54,7 @@ public static class DictionaryExtensions
 
 #if NET6_0_OR_GREATER
         ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
-        if (exists)
-        {
-            value = updateValueFactory(key, value!);
-        }
-        else
-        {
-            value = addValue;
-        }
-
-        return value;
+        return value = exists ? updateValueFactory(key, value!) : addValue;
 #else
         if (dictionary.TryGetValue(key, out TValue? old))
         {
@@ -182,7 +173,7 @@ public static class DictionaryExtensions
 
 #if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
-        return exists ? updateValueFactory(key, value!) : addValueFactory(key);
+        return value = exists ? updateValueFactory(key, value!) : addValueFactory(key);
 #else
         if (dictionary.TryGetValue(key, out TValue? old))
         {
@@ -319,7 +310,7 @@ public static class DictionaryExtensions
 
 #if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
-        return exists ? updateValueFactory(key, value!, factoryArgument) : addValueFactory(key, factoryArgument);
+        return value = exists ? updateValueFactory(key, value!, factoryArgument) : addValueFactory(key, factoryArgument);
 #else
         if (dictionary.TryGetValue(key, out TValue? old))
         {
