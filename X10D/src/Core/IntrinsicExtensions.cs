@@ -1,4 +1,4 @@
-#if NETCOREAPP3_0_OR_GREATER
+﻿#if NETCOREAPP3_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -115,19 +115,10 @@ public static class IntrinsicExtensions
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [ExcludeFromCodeCoverage]
     public static Vector128<ulong> ReverseElements(this Vector128<ulong> vector)
     {
-        if (Sse2.IsSupported)
-        {
-            return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
-        }
-
-        Vector128<ulong> output = IntrinsicUtility.GetUninitializedVector128<ulong>();
-
-        Unsafe.As<Vector128<ulong>, ulong>(ref output) = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref vector), 1);
-        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = Unsafe.As<Vector128<ulong>, ulong>(ref vector);
-
-        return output;
+        return ReverseElementsInternal(vector, new SystemSse2SupportProvider());
     }
 
     [Pure]
@@ -179,6 +170,26 @@ public static class IntrinsicExtensions
             Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref output), index) =
                 Unsafe.Add(ref Unsafe.As<Vector256<byte>, byte>(ref vector), index) == 0 ? (byte)0 : (byte)1;
         }
+
+        return output;
+    }
+
+    [Pure]
+    [CLSCompliant(false)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<ulong> ReverseElementsInternal(this Vector128<ulong> vector, ISse2SupportProvider? supportProvider)
+    {
+        supportProvider ??= new SystemSse2SupportProvider();
+
+        if (supportProvider.IsSupported)
+        {
+            return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
+        }
+
+        Vector128<ulong> output = IntrinsicUtility.GetUninitializedVector128<ulong>();
+
+        Unsafe.As<Vector128<ulong>, ulong>(ref output) = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref vector), 1);
+        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = Unsafe.As<Vector128<ulong>, ulong>(ref vector);
 
         return output;
     }

@@ -82,5 +82,33 @@ public class IntrinsicTests
 
         Assert.AreEqual(expectedResult, result);
     }
+
+    [TestMethod]
+    public void ReverseElements_ShouldReturnExpectedVector128Result_GivenInputVector()
+    {
+        var mock = new Mock<ISse2SupportProvider>();
+        mock.Setup(provider => provider.IsSupported).Returns(true);
+
+        var inputVector = Vector128.Create(42UL, 69UL);
+        var expectedResult = Vector128.Create(69UL, 42UL);
+
+        Vector128<ulong> result = inputVector.ReverseElementsInternal(mock.Object);
+
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [TestMethod]
+    public void ReverseElements_ShouldReturnExpectedVector128Result_WhenSse2NotSupported()
+    {
+        var mock = new Mock<ISse2SupportProvider>();
+        mock.Setup(provider => provider.IsSupported).Returns(false);
+
+        var inputVector = Vector128.Create(42UL, 69UL);
+        var expectedResult = Vector128.Create(69UL, 42UL);
+
+        Vector128<ulong> result = inputVector.ReverseElementsInternal(mock.Object);
+
+        Assert.AreEqual(expectedResult, result);
+    }
 }
 #endif
