@@ -123,6 +123,9 @@
   <data name="CountMustBeInRange" xml:space="preserve">
     <value>Count must be positive and count must refer to a location within the string/array/collection.</value>
   </data>
+  <data name="DestinationSpanLengthTooShort" xml:space="preserve">
+    <value>The destination span is too short to contain the data.</value>
+  </data>
   <data name="EndIndexLessThanStartIndex" xml:space="preserve">
     <value>The end index must be greater than or equal to the start index.</value>
   </data>

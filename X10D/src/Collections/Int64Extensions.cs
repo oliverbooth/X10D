@@ -32,7 +32,7 @@ public static class Int64Extensions
     {
         if (destination.Length < Size)
         {
-            throw new ArgumentException($"Destination must be at least {Size} in length.", nameof(destination));
+            throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
         for (var index = 0; index < Size; index++)
