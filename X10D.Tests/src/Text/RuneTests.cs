@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP3_0_OR_GREATER
+﻿#if NET5_0_OR_GREATER
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Text;
