@@ -157,17 +157,15 @@ public partial class StreamTests
 
         protected override void HashCore(byte[] array, int ibStart, int cbSize)
         {
-            throw new NotImplementedException();
         }
 
         protected override byte[] HashFinal()
         {
-            throw new NotImplementedException();
+            return Array.Empty<byte>();
         }
 
         public override void Initialize()
         {
-            throw new NotImplementedException();
         }
     }
 
@@ -175,17 +173,15 @@ public partial class StreamTests
     {
         protected override void HashCore(byte[] array, int ibStart, int cbSize)
         {
-            throw new NotImplementedException();
         }
 
         protected override byte[] HashFinal()
         {
-            throw new NotImplementedException();
+            return Array.Empty<byte>();
         }
 
         public override void Initialize()
         {
-            throw new NotImplementedException();
         }
     }
 }
