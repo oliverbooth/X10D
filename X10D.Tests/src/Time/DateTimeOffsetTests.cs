@@ -57,8 +57,9 @@ public class DateTimeOffsetTests
     public void FirstDayOfMonth_ShouldBe1st_GivenToday()
     {
         DateTimeOffset today = DateTime.UtcNow.Date;
+        var first = new DateTimeOffset(today.Year, today.Month, 1, 0, 0, 0, today.Offset);
 
-        Assert.AreEqual(new DateTime(today.Year, today.Month, 1), today.FirstDayOfMonth());
+        Assert.AreEqual(first, today.FirstDayOfMonth());
     }
 
     [TestMethod]
