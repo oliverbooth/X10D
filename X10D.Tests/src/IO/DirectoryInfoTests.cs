@@ -9,34 +9,29 @@ public class DirectoryInfoTests
     [TestMethod]
     public void Clear_ShouldClear_GivenValidDirectory()
     {
-        string tempPath = Path.GetTempPath();
-        DirectoryInfo directory;
-        do
-        {
-            string tempDirectory = Path.Combine(tempPath, Guid.NewGuid().ToString());
-            directory = new DirectoryInfo(tempDirectory);
-        } while (directory.Exists);
+        string tempDirectoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        var tempDirectory = new DirectoryInfo(tempDirectoryPath);
 
-        directory.Create();
-        Assert.IsTrue(directory.Exists);
+        tempDirectory.Create();
+        Assert.IsTrue(tempDirectory.Exists);
 
-        var file = new FileInfo(Path.Combine(directory.FullName, "file"));
+        var file = new FileInfo(Path.Combine(tempDirectory.FullName, "file"));
         file.Create().Close();
 
-        var childDirectory = new DirectoryInfo(Path.Combine(directory.FullName, "child"));
+        var childDirectory = new DirectoryInfo(Path.Combine(tempDirectory.FullName, "child"));
         childDirectory.Create();
 
         var childFile = new FileInfo(Path.Combine(childDirectory.FullName, "childFile"));
         childFile.Create().Close();
 
-        Assert.AreEqual(1, directory.GetFiles().Length);
-        Assert.AreEqual(1, directory.GetDirectories().Length);
-        directory.Clear();
-        Assert.AreEqual(0, directory.GetFiles().Length);
-        Assert.AreEqual(0, directory.GetDirectories().Length);
-        Assert.IsTrue(directory.Exists);
+        Assert.AreEqual(1, tempDirectory.GetFiles().Length);
+        Assert.AreEqual(1, tempDirectory.GetDirectories().Length);
+        tempDirectory.Clear();
+        Assert.AreEqual(0, tempDirectory.GetFiles().Length);
+        Assert.AreEqual(0, tempDirectory.GetDirectories().Length);
+        Assert.IsTrue(tempDirectory.Exists);
 
-        directory.Delete();
+        tempDirectory.Delete();
     }
 
     [TestMethod]
