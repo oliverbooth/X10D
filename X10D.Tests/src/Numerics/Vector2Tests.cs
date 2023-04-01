@@ -1,5 +1,8 @@
 ﻿using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if !NET6_0_OR_GREATER
+using X10D.Core;
+#endif
 using X10D.Drawing;
 using X10D.Numerics;
 
