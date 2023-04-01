@@ -16,10 +16,14 @@ public static class CollectionExtensions
     /// <seealso cref="EnumerableExtensions.DisposeAll{T}" />
     public static void ClearAndDisposeAll<T>(this ICollection<T> source) where T : IDisposable
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
+#endif
 
         if (source.IsReadOnly)
         {
@@ -51,10 +55,14 @@ public static class CollectionExtensions
     /// <seealso cref="EnumerableExtensions.DisposeAllAsync{T}" />
     public static async Task ClearAndDisposeAllAsync<T>(this ICollection<T> source) where T : IAsyncDisposable
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
+#endif
 
         if (source.IsReadOnly)
         {
