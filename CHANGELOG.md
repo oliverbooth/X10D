@@ -145,6 +145,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   using the [GetOffsetAndLength](https://learn.microsoft.com/en-us/dotnet/api/system.range.getoffsetandlength?view=net-7.0)
   method.
 - X10D: `Stream.ReadSingle(Endianness)` now returns a float instead of a double.
+- X10D: Fixed `Stream.ReadDouble(Endianness)`, `Stream.ReadSingle(Endianness)`, `Stream.WriteDouble(double, Endianness)`,
+  `Stream.WriteSingle(float, Endianness)` writing and reading the wrong endianness.
 
 ### Changed
 

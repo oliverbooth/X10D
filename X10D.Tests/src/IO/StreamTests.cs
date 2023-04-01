@@ -234,47 +234,99 @@ public class StreamTests
     }
 
     [TestMethod]
-    public void ReadDouble_WriteDouble_ShouldBeSymmetric()
+    public void WriteDouble_ShouldWriteBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
-        stream.Write(420.0, BitConverter.IsLittleEndian ? Endianness.LittleEndian : Endianness.BigEndian);
-
-        stream.Position = 0;
-        Assert.AreEqual(420.0, stream.ReadDouble(), 1e-6);
-
-        stream.Position = 0;
-        stream.Write(420.0, Endianness.LittleEndian);
-
-        stream.Position = 0;
-        Assert.AreEqual(420.0, stream.ReadDouble(Endianness.LittleEndian), 1e-6);
-
-        stream.Position = 0;
         stream.Write(420.0, Endianness.BigEndian);
-
+        Assert.AreEqual(8, stream.Position);
         stream.Position = 0;
-        Assert.AreEqual(420.0, stream.ReadDouble(Endianness.BigEndian), 1e-6);
+
+        Span<byte> actual = stackalloc byte[8];
+        ReadOnlySpan<byte> expected = stackalloc byte[] {0x40, 0x7A, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00};
+        int read = stream.Read(actual);
+
+        byte[] actualArray = actual.ToArray();
+        byte[] expectedArray = expected.ToArray();
+
+        string actualBytes = string.Join(", ", actualArray.Select(b => $"0x{b:X2}"));
+        string expectedBytes = string.Join(", ", expectedArray.Select(b => $"0x{b:X2}"));
+        Trace.WriteLine($"Actual bytes: {actualBytes}");
+        Trace.WriteLine($"Expected bytes: {expectedBytes}");
+
+        Assert.AreEqual(8, read);
+        CollectionAssert.AreEqual(expectedArray, actualArray);
     }
 
     [TestMethod]
-    public void ReadDecimal_WriteSingle_ShouldBeSymmetric()
+    public void WriteDouble_ShouldWriteLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
-        stream.Write(420.0m, BitConverter.IsLittleEndian ? Endianness.LittleEndian : Endianness.BigEndian);
-
+        stream.Write(420.0, Endianness.LittleEndian);
+        Assert.AreEqual(8, stream.Position);
         stream.Position = 0;
-        Assert.AreEqual(420.0m, stream.ReadDecimal());
 
-        stream.Position = 0;
-        stream.Write(420.0m, Endianness.LittleEndian);
+        Span<byte> actual = stackalloc byte[8];
+        ReadOnlySpan<byte> expected = stackalloc byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x7A, 0x40};
+        int read = stream.Read(actual);
 
-        stream.Position = 0;
-        Assert.AreEqual(420.0m, stream.ReadDecimal(Endianness.LittleEndian));
+        byte[] actualArray = actual.ToArray();
+        byte[] expectedArray = expected.ToArray();
 
-        stream.Position = 0;
-        stream.Write(420.0m, Endianness.BigEndian);
+        string actualBytes = string.Join(", ", actualArray.Select(b => $"0x{b:X2}"));
+        string expectedBytes = string.Join(", ", expectedArray.Select(b => $"0x{b:X2}"));
+        Trace.WriteLine($"Actual bytes: {actualBytes}");
+        Trace.WriteLine($"Expected bytes: {expectedBytes}");
 
+        Assert.AreEqual(8, read);
+        CollectionAssert.AreEqual(expectedArray, actualArray);
+    }
+
+    [TestMethod]
+    public void WriteSingle_ShouldWriteBigEndian_GivenBigEndian()
+    {
+        using var stream = new MemoryStream();
+        stream.Write(420.0f, Endianness.BigEndian);
+        Assert.AreEqual(4, stream.Position);
         stream.Position = 0;
-        Assert.AreEqual(420.0m, stream.ReadDecimal(Endianness.BigEndian));
+
+        Span<byte> actual = stackalloc byte[4];
+        ReadOnlySpan<byte> expected = stackalloc byte[] {0x43, 0xD2, 0x00, 0x00};
+        int read = stream.Read(actual);
+
+        byte[] actualArray = actual.ToArray();
+        byte[] expectedArray = expected.ToArray();
+
+        string actualBytes = string.Join(", ", actualArray.Select(b => $"0x{b:X2}"));
+        string expectedBytes = string.Join(", ", expectedArray.Select(b => $"0x{b:X2}"));
+        Trace.WriteLine($"Actual bytes: {actualBytes}");
+        Trace.WriteLine($"Expected bytes: {expectedBytes}");
+
+        Assert.AreEqual(4, read);
+        CollectionAssert.AreEqual(expectedArray, actualArray);
+    }
+
+    [TestMethod]
+    public void WriteSingle_ShouldWriteLittleEndian_GivenLittleEndian()
+    {
+        using var stream = new MemoryStream();
+        stream.Write(420.0f, Endianness.LittleEndian);
+        Assert.AreEqual(4, stream.Position);
+        stream.Position = 0;
+
+        Span<byte> actual = stackalloc byte[4];
+        ReadOnlySpan<byte> expected = stackalloc byte[] {0x00, 0x00, 0xD2, 0x43};
+        int read = stream.Read(actual);
+
+        byte[] actualArray = actual.ToArray();
+        byte[] expectedArray = expected.ToArray();
+
+        string actualBytes = string.Join(", ", actualArray.Select(b => $"0x{b:X2}"));
+        string expectedBytes = string.Join(", ", expectedArray.Select(b => $"0x{b:X2}"));
+        Trace.WriteLine($"Actual bytes: {actualBytes}");
+        Trace.WriteLine($"Expected bytes: {expectedBytes}");
+
+        Assert.AreEqual(4, read);
+        CollectionAssert.AreEqual(expectedArray, actualArray);
     }
 
     [TestMethod]

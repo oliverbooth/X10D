@@ -996,27 +996,33 @@ public static class StreamExtensions
         if (endianness == Endianness.LittleEndian)
         {
 #if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteSingleLittleEndian(buffer, value);
+            BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                MemoryMarshal.Write(buffer, ref value);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
+            }
 #endif
         }
         else
         {
 #if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteSingleBigEndian(buffer, value);
+            BinaryPrimitives.WriteDoubleBigEndian(buffer, value);
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                MemoryMarshal.Write(buffer, ref value);
+            }
 #endif
         }
 
@@ -1064,10 +1070,13 @@ public static class StreamExtensions
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                MemoryMarshal.Write(buffer, ref value);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
+            }
 #endif
         }
         else
@@ -1077,10 +1086,13 @@ public static class StreamExtensions
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                MemoryMarshal.Write(buffer, ref value);
+            }
 #endif
         }
 
