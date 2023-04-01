@@ -210,15 +210,13 @@ public static class ListOfByteExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(encoding);
 #else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(encoding);
-#else
+
         if (encoding is null)
         {
             throw new ArgumentNullException(nameof(encoding));

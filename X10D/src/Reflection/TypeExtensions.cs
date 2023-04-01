@@ -57,15 +57,13 @@ public static class TypeExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(interfaceType);
 #else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(interfaceType);
-#else
+
         if (interfaceType is null)
         {
             throw new ArgumentNullException(nameof(interfaceType));
@@ -144,15 +142,13 @@ public static class TypeExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(type);
 #else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(type);
-#else
+
         if (type is null)
         {
             throw new ArgumentNullException(nameof(type));
