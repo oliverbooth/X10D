@@ -7,6 +7,26 @@ namespace X10D.Tests.Collections;
 public class SpanTest
 {
     [TestMethod]
+    public void Count_ShouldReturn0_GivenEmptySpan()
+    {
+        Span<int> span = Span<int>.Empty;
+
+        int count = span.Count(2);
+
+        Assert.AreEqual(0, count);
+    }
+
+    [TestMethod]
+    public void Count_ShouldReturn8_GivenSpanWith8MatchingElements()
+    {
+        Span<int> span = stackalloc int[16] {1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2};
+
+        int count = span.Count(2);
+
+        Assert.AreEqual(8, count);
+    }
+
+    [TestMethod]
     public void Split_OnEmptySpan_ShouldYieldNothing()
     {
         ReadOnlySpan<char> span = ReadOnlySpan<char>.Empty;
