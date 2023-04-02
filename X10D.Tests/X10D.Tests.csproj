@@ -10,6 +10,7 @@
         <DebugSymbols>true</DebugSymbols>
         <CoverletOutputFormat>json,cobertura</CoverletOutputFormat>
         <CollectCoverage>true</CollectCoverage>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
     </PropertyGroup>
 
     <ItemGroup>

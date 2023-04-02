@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
     </PropertyGroup>
 
 </Project>
