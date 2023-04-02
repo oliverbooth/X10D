@@ -206,8 +206,14 @@ public static partial class DebugUtility
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
     /// </param>
+    /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public static void DrawPolygon(PolygonF polygon, in Vector3 offset, in Color color, float duration, bool depthTest)
     {
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+
         IReadOnlyList<PointF> points = polygon.Vertices;
         if (points.Count < 2)
         {

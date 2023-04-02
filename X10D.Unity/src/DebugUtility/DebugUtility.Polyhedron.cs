@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Numerics;
 
@@ -103,8 +103,14 @@ public static partial class DebugUtility
     ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
     ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
     /// </param>
+    /// <exception cref="ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
     public static void DrawPolyhedron(Polyhedron polyhedron, in Vector3 offset, in Color color, float duration, bool depthTest)
     {
+        if (polyhedron is null)
+        {
+            throw new ArgumentNullException(nameof(polyhedron));
+        }
+
         IReadOnlyList<System.Numerics.Vector3> points = polyhedron.Vertices;
         if (points.Count < 2)
         {
