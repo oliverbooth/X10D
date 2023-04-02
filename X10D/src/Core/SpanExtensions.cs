@@ -121,12 +121,16 @@ public static class SpanExtensions
                         return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, ulong>(ref value));
                     }
 
+                // dotcover disable
+                //NOSONAR
                 default:
 #if NET7_0_OR_GREATER
                     throw new UnreachableException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
 #else
                     throw new ArgumentException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
 #endif
+                //NOSONAR
+                // dotcover enable
             }
         }
 #else
