@@ -3,7 +3,7 @@ using X10D.Drawing;
 
 namespace X10D.Unity;
 
-public static partial class DebugEx
+public static partial class DebugUtility
 {
     /// <summary>
     ///     Draws an ellipse with the specified color.

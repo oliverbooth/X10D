@@ -89,7 +89,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `Vector4.Deconstruct()`.
 - X10D: Added `Vector4.Round([float])`.
 - X10D: `ComplexSqrt` is now exposed for all frameworks.
-- X10D.Unity: Added `DebugEx`, which mimics `UnityEngine.Debug` while offering more useful primitive drawing methods.
+- X10D.Unity: Added `DebugUtility`, which mimics `UnityEngine.Debug` while offering more useful primitive drawing methods.
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor()`.
 - X10D.Unity: Added `System.Drawing.Color.ToUnityColor32()`.
 - X10D.Unity: Added `Color.Deconstruct()` - with optional alpha parameter.

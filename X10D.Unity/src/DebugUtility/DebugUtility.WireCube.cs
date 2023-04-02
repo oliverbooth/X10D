@@ -4,7 +4,7 @@ using X10D.Unity.Numerics;
 
 namespace X10D.Unity;
 
-public static partial class DebugEx
+public static partial class DebugUtility
 {
     /// <summary>
     ///     Draws an axis-aligned bounding box.

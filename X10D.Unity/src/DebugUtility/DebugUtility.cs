@@ -11,7 +11,7 @@ namespace X10D.Unity;
 ///     An extended version of Unity's <see cref="UnityEngine.Debug" /> utility class which offers support for drawing simple
 ///     primitives.
 /// </summary>
-public static partial class DebugEx
+public static partial class DebugUtility
 {
     /// <summary>
     ///     The default value to use for the <c>duration</c> parameter.
