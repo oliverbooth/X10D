@@ -54,8 +54,10 @@ public partial class ArrayTests
         [TestMethod]
         public void Clear_ShouldThrowArgumentNullException_WhenArrayIsNull()
         {
-            int[]? array = null;
-            Assert.ThrowsException<ArgumentNullException>(array!.Clear);
+            int[] array = null!;
+            Assert.ThrowsException<ArgumentNullException>(() => array.Clear());
+            Assert.ThrowsException<ArgumentNullException>(() => array.Clear(0, 1));
+            Assert.ThrowsException<ArgumentNullException>(() => array.Clear(..1));
         }
     }
 }

@@ -22,6 +22,12 @@ public partial class EnumerableTests
     }
 
     [TestMethod]
+    public void CountWhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Empty<int>().CountWhereNot(null!));
+    }
+
+    [TestMethod]
     public void CountWhereNot_ShouldThrowOverflowException_GivenLargeSource()
     {
         IEnumerable<byte> GetValues()
@@ -54,13 +60,13 @@ public partial class EnumerableTests
     [TestMethod]
     public void FirstWhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => Array.Empty<int>().FirstWhereNotOrDefault(null!));
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Range(0, 1).FirstWhereNot(null!));
     }
 
     [TestMethod]
     public void FirstWhereNot_ShouldThrowInvalidOperationException_GivenEmptySource()
     {
-        Assert.ThrowsException<InvalidOperationException>(() => Array.Empty<int>().FirstWhereNot(x => x % 2 == 0));
+        Assert.ThrowsException<InvalidOperationException>(() => Enumerable.Empty<int>().FirstWhereNot(x => x % 2 == 0));
     }
 
     [TestMethod]
@@ -86,13 +92,13 @@ public partial class EnumerableTests
     [TestMethod]
     public void FirstWhereNotOrDefault_ShouldThrowArgumentNullException_GivenNullPredicate()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => Array.Empty<int>().FirstWhereNotOrDefault(null!));
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Empty<int>().FirstWhereNotOrDefault(null!));
     }
 
     [TestMethod]
     public void FirstWhereNotOrDefault_ShouldReturnDefault_GivenEmptySource()
     {
-        int result = Array.Empty<int>().FirstWhereNotOrDefault(x => x % 2 == 0);
+        int result = Enumerable.Empty<int>().FirstWhereNotOrDefault(x => x % 2 == 0);
         Assert.AreEqual(default, result);
     }
 
@@ -260,6 +266,12 @@ public partial class EnumerableTests
     }
 
     [TestMethod]
+    public void WhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Empty<int>().WhereNot(null!));
+    }
+
+    [TestMethod]
     public void WhereNotNull_ShouldContainNoNullElements()
     {
         object?[] array = Enumerable.Repeat(new object(), 10).ToArray();
@@ -278,6 +290,13 @@ public partial class EnumerableTests
         }
 
         Assert.AreEqual(expectedCount, actualCount);
+    }
+
+    [TestMethod]
+    public void WhereNotNull_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<string> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.WhereNotNull());
     }
 
     private class DummyClass

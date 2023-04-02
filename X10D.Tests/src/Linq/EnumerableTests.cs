@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Linq;
 
 namespace X10D.Tests.Linq;
@@ -94,8 +95,9 @@ public class EnumerableTests
     [TestMethod]
     public void MinMax_ShouldThrowArgumentNullException_GivenNullSelector()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Range(1, 10).MinMax((Func<int, int>?)null!));
-        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Range(1, 10).ToArray().MinMax((Func<int, int>?)null!));
+        IEnumerable<int> source = Enumerable.Empty<int>();
+        Assert.ThrowsException<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!)));
+        Assert.ThrowsException<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!), null));
     }
 
     [TestMethod]
@@ -103,6 +105,9 @@ public class EnumerableTests
     {
         IEnumerable<int>? source = null;
         Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax());
+        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax(v => v));
+        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax(null));
+        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax(v => v, null));
     }
 
     [TestMethod]
@@ -148,17 +153,10 @@ public class EnumerableTests
     [TestMethod]
     public void MinMaxBy_ShouldThrowArgumentNullException_GivenNullSelector()
     {
-        Assert.ThrowsException<ArgumentNullException>(() =>
-        {
-            IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
-            return source.MinMaxBy((Func<Person, int>?)null!);
-        });
+        Person[] source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
 
-        Assert.ThrowsException<ArgumentNullException>(() =>
-        {
-            Person[] source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
-            return source.MinMaxBy((Func<Person, int>?)null!);
-        });
+        Assert.ThrowsException<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>)null!));
+        Assert.ThrowsException<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>)null!, null));
     }
 
     [TestMethod]
@@ -166,6 +164,7 @@ public class EnumerableTests
     {
         IEnumerable<Person>? source = null;
         Assert.ThrowsException<ArgumentNullException>(() => source!.MinMaxBy(p => p.Age));
+        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMaxBy(p => p.Age, null));
     }
 
     [TestMethod]

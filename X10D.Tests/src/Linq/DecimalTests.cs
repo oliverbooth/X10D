@@ -41,4 +41,12 @@ public class DecimalTests
         Assert.AreEqual(185794560m, Enumerable.Range(1, 9).Product(Double));
         Assert.AreEqual(3715891200m, Enumerable.Range(1, 10).Product(Double));
     }
+
+    [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<decimal> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
 }

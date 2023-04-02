@@ -381,6 +381,13 @@ public class StringTests
     }
 
     [TestMethod]
+    public void IsEmoji_ShouldThrowArgumentNullException_GivenNullInput()
+    {
+        string value = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => value.IsEmoji());
+    }
+
+    [TestMethod]
     public void IsEmpty_ShouldReturnTrue_GivenEmptyString()
     {
         Assert.IsTrue("".IsEmpty());

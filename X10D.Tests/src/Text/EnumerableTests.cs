@@ -60,14 +60,16 @@ public class EnumerableTests
     public void Grep_ShouldThrowArgumentNullException_GivenNullPattern()
     {
         IEnumerable<string> source = Enumerable.Empty<string>();
-        Assert.ThrowsException<ArgumentNullException>(() => source.Grep(null!));
+        Assert.ThrowsException<ArgumentNullException>(() => source.Grep(null!).ToArray());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Grep(null!, false).ToArray());
     }
 
     [TestMethod]
     public void Grep_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<string> source = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => source.Grep("foo"));
+        Assert.ThrowsException<ArgumentNullException>(() => source.Grep("foo").ToArray());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Grep("foo", false).ToArray());
     }
 
     [TestMethod]
