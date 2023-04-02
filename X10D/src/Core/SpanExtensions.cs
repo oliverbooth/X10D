@@ -535,19 +535,18 @@ public static class SpanExtensions
 
                 Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
                 Vector128<ulong> shift1 = Sse2.ShiftRightLogical(multiply, 56);
-                shift1 = Sse2.ShiftLeftLogical(shift1, Vector128.Create(0UL, 8UL));
 
                 load = Sse2.LoadVector128((byte*)(pSource + 16));
                 correct = load.CorrectBoolean().AsUInt64();
 
                 multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
                 Vector128<ulong> shift2 = Sse2.ShiftRightLogical(multiply, 56);
-                shift2 = Sse2.ShiftLeftLogical(shift2, Vector128.Create(16UL, 24UL));
 
-                Vector128<ulong> or1 = Sse2.Or(shift1, shift2);
-                Vector128<ulong> or2 = Sse2.Or(or1, or1.ReverseElements());
-
-                return (int)or2.GetElement(0);
+                ulong shift1Element0 = shift1.GetElement(0);
+                ulong shift1Element1 = (shift1.GetElement(1) << 8);
+                ulong shift2Element0 = (shift2.GetElement(0) << 16);
+                ulong shift2Element1 = (shift2.GetElement(1) << 24);
+                return (int)(shift1Element0 | shift1Element1 | shift2Element0 | shift2Element1);
             }
         }
     }
