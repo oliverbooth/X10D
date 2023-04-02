@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 #if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
@@ -21,6 +22,11 @@ public static class ByteExtensions
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 8.</returns>
     [Pure]
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static bool[] Unpack(this byte value)
     {
         var buffer = new bool[Size];
@@ -35,20 +41,12 @@ public static class ByteExtensions
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
     [ExcludeFromCodeCoverage]
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static void Unpack(this byte value, Span<bool> destination)
-    {
-#if NETCOREAPP3_0_OR_GREATER
-        UnpackInternal(value, destination, new SystemSsse3SupportProvider());
-#else
-        UnpackInternal(value, destination);
-#endif
-    }
-
-#if NETCOREAPP3_0_OR_GREATER
-    internal static void UnpackInternal(this byte value, Span<bool> destination, ISsse3SupportProvider? ssse3SupportProvider)
-#else
-    internal static void UnpackInternal(this byte value, Span<bool> destination)
-#endif
     {
         if (destination.Length < Size)
         {
@@ -56,9 +54,7 @@ public static class ByteExtensions
         }
 
 #if NETCOREAPP3_0_OR_GREATER
-        ssse3SupportProvider ??= new SystemSsse3SupportProvider();
-
-        if (ssse3SupportProvider.IsSupported)
+        if (Sse3.IsSupported)
         {
             UnpackInternal_Ssse3(value, destination);
             return;
@@ -68,7 +64,12 @@ public static class ByteExtensions
         UnpackInternal_Fallback(value, destination);
     }
 
-    private static void UnpackInternal_Fallback(byte value, Span<bool> destination)
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static void UnpackInternal_Fallback(this byte value, Span<bool> destination)
     {
         for (var index = 0; index < Size; index++)
         {
@@ -77,8 +78,12 @@ public static class ByteExtensions
     }
 
 #if NETCOREAPP3_0_OR_GREATER
-
-    private unsafe static void UnpackInternal_Ssse3(byte value, Span<bool> destination)
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal unsafe static void UnpackInternal_Ssse3(this byte value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)
         {
