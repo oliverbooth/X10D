@@ -95,11 +95,4 @@
         <ProjectReference Include="..\X10D.SourceGenerator\X10D.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="JetBrains.dotCover.MSBuild" Version="1.0.5-alpha">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-
 </Project>
