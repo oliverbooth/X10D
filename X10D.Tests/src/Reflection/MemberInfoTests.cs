@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Reflection;
 
 namespace X10D.Tests.Reflection;
@@ -69,10 +70,14 @@ public class MemberInfoTests
         Assert.ThrowsException<ArgumentNullException>(() =>
             (type!.SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true)));
 
-        Assert.ThrowsException<ArgumentNullException>(() =>
-        {
-            Func<CLSCompliantAttribute, bool>? selector = null;
-            typeof(int).SelectFromCustomAttribute(selector!);
-        });
+        const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic |
+                                          BindingFlags.Instance | BindingFlags.Static;
+        var memberInfo = typeof(int).GetMembers(bindingFlags)[0];
+        Func<CLSCompliantAttribute, bool>? selector = null;
+
+        Assert.ThrowsException<ArgumentNullException>(() => typeof(int).SelectFromCustomAttribute(selector!));
+        Assert.ThrowsException<ArgumentNullException>(() => typeof(int).SelectFromCustomAttribute(selector!, default));
+        Assert.ThrowsException<ArgumentNullException>(() => memberInfo.SelectFromCustomAttribute(selector!));
+        Assert.ThrowsException<ArgumentNullException>(() => memberInfo.SelectFromCustomAttribute(selector!, default));
     }
 }
