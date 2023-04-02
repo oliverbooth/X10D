@@ -1091,8 +1091,12 @@ public static class StreamExtensions
             }
             else
             {
+                // dotcover disable
+                //NOSONAR
                 int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
                 MemoryMarshal.Write(buffer, ref temp);
+                //NOSONAR
+                // dotcover enable
             }
 #endif
         }
@@ -1108,7 +1112,11 @@ public static class StreamExtensions
             }
             else
             {
+                // dotcover disable
+                //NOSONAR
                 MemoryMarshal.Write(buffer, ref value);
+                //NOSONAR
+                // dotcover enable
             }
 #endif
         }
@@ -1166,8 +1174,12 @@ public static class StreamExtensions
             }
             else
             {
+                // dotcover disable
+                //NOSONAR
                 long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
                 MemoryMarshal.Write(buffer, ref temp);
+                //NOSONAR
+                // dotcover enable
             }
 #endif
         }
@@ -1183,7 +1195,11 @@ public static class StreamExtensions
             }
             else
             {
+                // dotcover disable
+                //NOSONAR
                 MemoryMarshal.Write(buffer, ref value);
+                //NOSONAR
+                // dotcover enable
             }
 #endif
         }
