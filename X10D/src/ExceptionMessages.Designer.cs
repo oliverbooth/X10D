@@ -177,6 +177,15 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The source contains too many elements..
+        /// </summary>
+        internal static string SourceSpanIsTooLarge {
+            get {
+                return ResourceManager.GetString("SourceSpanIsTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The stream does not support reading..
         /// </summary>
         internal static string StreamDoesNotSupportReading {

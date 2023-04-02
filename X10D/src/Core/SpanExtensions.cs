@@ -24,12 +24,6 @@ public static class SpanExtensions
     private const ulong IntegerPackingMagic = 0x0102040810204080;
 
     [ExcludeFromCodeCoverage]
-    private static Vector64<ulong> IntegerPackingMagicV64
-    {
-        get => Vector64.Create(IntegerPackingMagic);
-    }
-
-    [ExcludeFromCodeCoverage]
     private static Vector128<ulong> IntegerPackingMagicV128
     {
         get => Vector128.Create(IntegerPackingMagic);
@@ -53,6 +47,7 @@ public static class SpanExtensions
     ///     <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
+    [Pure]
 #if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #else
@@ -75,10 +70,11 @@ public static class SpanExtensions
     ///     <see langword="false" />.
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
+    [Pure]
+#if NETCOREAPP3_0_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
@@ -153,7 +149,11 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static byte PackByte(this Span<bool> source)
     {
         return PackByte((ReadOnlySpan<bool>)source);
@@ -166,57 +166,42 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    public static unsafe byte PackByte(this ReadOnlySpan<bool> source)
-    {
-        switch (source.Length)
-        {
-            case > 8: throw new ArgumentException("Source cannot contain more than 8 elements.", nameof(source));
-            case 8:
-#if NETSTANDARD2_1
-                // TODO: Think of a way to do fast boolean correctness without using SIMD API.
-                goto default;
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #else
-                // TODO: Acceleration in Big Endian environment.
-                if (!BitConverter.IsLittleEndian)
-                {
-                    goto default;
-                }
-
-                fixed (bool* pSource = source)
-                {
-                    // TODO: .NET 8.0 Wasm support.
-
-                    if (Sse2.IsSupported)
-                    {
-                        Vector128<byte> load = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
-
-                        return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
-                    }
-
-                    // Probably should remove this piece of code because it is untested, but I see no reason why it should fail
-                    // unless vld1_u8 reverse positions of 8 bytes for some reason.
-
-                    if (AdvSimd.IsSupported)
-                    {
-                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        Vector64<byte> load = AdvSimd.LoadVector64((byte*)pSource);
-
-                        return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
-                    }
-
-                    goto default;
-                }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            default:
-                byte result = 0;
-
-                for (var index = 0; index < source.Length; index++)
-                {
-                    result |= (byte)(source[index] ? 1 << index : 0);
-                }
-
-                return result;
+    [ExcludeFromCodeCoverage]
+    public static byte PackByte(this ReadOnlySpan<bool> source)
+    {
+        if (source.Length > 8)
+        {
+            throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
         }
+
+        if (source.Length < 8)
+        {
+            return PackByteInternal_Fallback(source);
+        }
+
+#if NETCOREAPP3_0_OR_GREATER
+        if (!BitConverter.IsLittleEndian)
+        {
+            return PackByteInternal_Fallback(source);
+        }
+
+        if (Sse2.IsSupported)
+        {
+            return PackByteInternal_Sse2(source);
+        }
+
+        if (AdvSimd.IsSupported)
+        {
+            return PackByteInternal_AdvSimd(source);
+        }
+#endif
+
+        return PackByteInternal_Fallback(source);
     }
 
     /// <summary>
@@ -239,52 +224,39 @@ public static class SpanExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
     [Pure]
-    public static unsafe short PackInt16(this ReadOnlySpan<bool> source)
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    [ExcludeFromCodeCoverage]
+    public static short PackInt16(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
-            case > 16: throw new ArgumentException("Source cannot contain more than than 16 elements.", nameof(source));
-            case 8: return PackByte(source); // Potential optimization
-
+            case > 16:
+                throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
+            case 8:
+                return PackByte(source);
             case 16:
-#if NETSTANDARD2_1
-                // TODO: Think of a way to do fast boolean correctness without using SIMD API.
-                goto default;
-#else
-                // TODO: Acceleration in Big Endian environment.
                 if (!BitConverter.IsLittleEndian)
                 {
                     goto default;
                 }
 
-                // TODO: AdvSimd implementation.
-                // TODO: WasmSimd implementation.
-
+#if NETCOREAPP3_0_OR_GREATER
                 if (Sse2.IsSupported)
                 {
-                    fixed (bool* pSource = source)
-                    {
-                        Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
-                        Vector128<ulong> correct = load.CorrectBoolean().AsUInt64();
-                        Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        Vector128<ulong> shift = Sse2.ShiftRightLogical(multiply, 56);
-
-                        return (short)(shift.GetElement(0) | (shift.GetElement(1) << 8));
-                    }
+                    return PackInt16Internal_Sse2(source);
                 }
-
-                goto default;
 #endif
 
+                goto default;
+            case < 16:
+                return PackInt16Internal_Fallback(source);
+
             default:
-                short result = 0;
-
-                for (var index = 0; index < source.Length; index++)
-                {
-                    result |= (short)(source[index] ? 1 << index : 0);
-                }
-
-                return result;
+                return PackInt16Internal_Fallback(source);
         }
     }
 
@@ -295,7 +267,11 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static int PackInt32(this Span<bool> source)
     {
         return PackInt32((ReadOnlySpan<bool>)source);
@@ -308,99 +284,51 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    public static unsafe int PackInt32(this ReadOnlySpan<bool> source)
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    [ExcludeFromCodeCoverage]
+    public static int PackInt32(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
-            case > 32: throw new ArgumentException("Source cannot contain more than than 32 elements.", nameof(source));
-            case 8: return PackByte(source);
-            case 16: return PackInt16(source);
+            case > 32:
+                throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
+
+            case 8:
+                return PackByte(source);
+
+            case 16:
+                return PackInt16(source);
 
             case 32:
-#if NETSTANDARD2_1
-                // TODO: Think of a way to do fast boolean correctness without using SIMD API.
-                goto default;
-#else
-                // TODO: Acceleration in Big Endian environment.
+#if NETCOREAPP3_0_OR_GREATER
                 if (!BitConverter.IsLittleEndian)
                 {
                     goto default;
                 }
 
-                fixed (bool* pSource = source)
+                if (Avx2.IsSupported)
                 {
-                    if (Avx2.IsSupported)
-                    {
-                        Vector256<byte> load = Avx.LoadVector256((byte*)pSource);
-                        Vector256<ulong> correct = load.CorrectBoolean().AsUInt64();
+                    return PackInt32Internal_Avx2(source);
+                }
 
-                        Vector256<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV256, correct);
-                        Vector256<ulong> shift = Avx2.ShiftRightLogical(multiply, 56);
-                        shift = Avx2.ShiftLeftLogicalVariable(shift, Vector256.Create(0UL, 8, 16, 24));
+                if (Sse2.IsSupported)
+                {
+                    return PackInt32Internal_Sse2(source);
+                }
 
-                        Vector256<ulong> p1 = Avx2.Permute4x64(shift, 0b10_11_00_01);
-                        Vector256<ulong> or1 = Avx2.Or(shift, p1);
-                        Vector256<ulong> p2 = Avx2.Permute4x64(or1, 0b00_00_10_10);
-                        Vector256<ulong> or2 = Avx2.Or(or1, p2);
-
-                        return (int)or2.GetElement(0);
-                    }
-
-                    if (Sse2.IsSupported)
-                    {
-                        Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
-                        Vector128<ulong> correct = load.CorrectBoolean().AsUInt64();
-
-                        Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        Vector128<ulong> shift1 = Sse2.ShiftRightLogical(multiply, 56);
-                        shift1 = Sse2.ShiftLeftLogical(shift1, Vector128.Create(0UL, 8UL));
-
-                        load = Sse2.LoadVector128((byte*)(pSource + 16));
-                        correct = load.CorrectBoolean().AsUInt64();
-
-                        multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
-                        Vector128<ulong> shift2 = Sse2.ShiftRightLogical(multiply, 56);
-                        shift2 = Sse2.ShiftLeftLogical(shift2, Vector128.Create(16UL, 24UL));
-
-                        Vector128<ulong> or1 = Sse2.Or(shift1, shift2);
-                        Vector128<ulong> or2 = Sse2.Or(or1, or1.ReverseElements());
-
-                        return (int)or2.GetElement(0);
-                    }
-
-                    if (AdvSimd.IsSupported)
-                    {
-                        // Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
-                        Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
-                        Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
-
-                        Vector128<ulong> calc1 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1);
-                        Vector128<ulong> calc2 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2);
-
-                        calc1 = AdvSimd.ShiftRightLogical(calc1, 56);
-                        calc2 = AdvSimd.ShiftRightLogical(calc2, 56);
-
-                        Vector128<ulong> shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
-                        Vector128<ulong> shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
-
-                        return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
-                    }
-                    else
-                    {
-                        goto default;
-                    }
+                if (AdvSimd.IsSupported)
+                {
+                    return PackInt32Internal_AdvSimd(source);
                 }
 #endif
+                goto default;
 
             default:
-                int result = 0;
-
-                for (var i = 0; i < source.Length; i++)
-                {
-                    result |= source[i] ? 1 << i : 0;
-                }
-
-                return result;
+                return PackInt32Internal_Fallback(source);
         }
     }
 
@@ -411,7 +339,11 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static long PackInt64(this Span<bool> source)
     {
         return PackInt64((ReadOnlySpan<bool>)source);
@@ -424,17 +356,21 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    public static unsafe long PackInt64(this ReadOnlySpan<bool> source)
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    public static long PackInt64(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
         {
-            case > 64: throw new ArgumentException("Source cannot contain more than than 64 elements.", nameof(source));
+            case > 64: throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
             case 8: return PackByte(source);
             case 16: return PackInt16(source);
             case 32: return PackInt32(source);
-            case 64:
-                // TODO: Reimplement when Vector512 is in standard API.
-                return (long)PackInt32(source[..32]) | ((long)PackInt32(source[32..]) << 32);
+            // ReSharper disable once RedundantCast
+            case 64: return (long)PackInt32(source[..32]) | ((long)PackInt32(source[32..]) << 32);
 
             default:
                 long result = 0;
@@ -447,4 +383,194 @@ public static class SpanExtensions
                 return result;
         }
     }
+
+    [Pure]
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static byte PackByteInternal_Fallback(this ReadOnlySpan<bool> source)
+    {
+        byte result = 0;
+
+        for (var index = 0; index < source.Length; index++)
+        {
+            result |= (byte)(source[index] ? 1 << index : 0);
+        }
+
+        return result;
+    }
+
+    [Pure]
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static short PackInt16Internal_Fallback(this ReadOnlySpan<bool> source)
+    {
+        short result = 0;
+
+        for (var index = 0; index < source.Length; index++)
+        {
+            result |= (short)(source[index] ? 1 << index : 0);
+        }
+
+        return result;
+    }
+
+    [Pure]
+#if NETCOREAPP3_0_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static int PackInt32Internal_Fallback(this ReadOnlySpan<bool> source)
+    {
+        var result = 0;
+
+        for (var index = 0; index < source.Length; index++)
+        {
+            result |= source[index] ? 1 << index : 0;
+        }
+
+        return result;
+    }
+
+#if NETCOREAPP3_0_OR_GREATER
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static byte PackByteInternal_Sse2(this ReadOnlySpan<bool> source)
+    {
+        unsafe
+        {
+            fixed (bool* pSource = source)
+            {
+                Vector128<byte> load = Sse2.LoadScalarVector128((ulong*)pSource).AsByte();
+                return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
+            }
+        }
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static short PackInt16Internal_Sse2(this ReadOnlySpan<bool> source)
+    {
+        unsafe
+        {
+            fixed (bool* pSource = source)
+            {
+                Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
+                Vector128<ulong> correct = load.CorrectBoolean().AsUInt64();
+                Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
+                Vector128<ulong> shift = Sse2.ShiftRightLogical(multiply, 56);
+
+                return (short)(shift.GetElement(0) | (shift.GetElement(1) << 8));
+            }
+        }
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static int PackInt32Internal_AdvSimd(this ReadOnlySpan<bool> source)
+    {
+        unsafe
+        {
+            fixed (bool* pSource = source)
+            {
+                // TODO Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
+                Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
+
+                Vector128<ulong> calc1 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1);
+                Vector128<ulong> calc2 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2);
+
+                calc1 = AdvSimd.ShiftRightLogical(calc1, 56);
+                calc2 = AdvSimd.ShiftRightLogical(calc2, 56);
+
+                Vector128<ulong> shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
+                Vector128<ulong> shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
+
+                return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
+            }
+        }
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static int PackInt32Internal_Avx2(this ReadOnlySpan<bool> source)
+    {
+        unsafe
+        {
+            fixed (bool* pSource = source)
+            {
+                Vector256<byte> load = Avx.LoadVector256((byte*)pSource);
+                Vector256<ulong> correct = load.CorrectBoolean().AsUInt64();
+
+                Vector256<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV256, correct);
+                Vector256<ulong> shift = Avx2.ShiftRightLogical(multiply, 56);
+                shift = Avx2.ShiftLeftLogicalVariable(shift, Vector256.Create(0UL, 8, 16, 24));
+
+                Vector256<ulong> p1 = Avx2.Permute4x64(shift, 0b10_11_00_01);
+                Vector256<ulong> or1 = Avx2.Or(shift, p1);
+                Vector256<ulong> p2 = Avx2.Permute4x64(or1, 0b00_00_10_10);
+                Vector256<ulong> or2 = Avx2.Or(or1, p2);
+
+                return (int)or2.GetElement(0);
+            }
+        }
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static int PackInt32Internal_Sse2(this ReadOnlySpan<bool> source)
+    {
+        unsafe
+        {
+            fixed (bool* pSource = source)
+            {
+                Vector128<byte> load = Sse2.LoadVector128((byte*)pSource);
+                Vector128<ulong> correct = load.CorrectBoolean().AsUInt64();
+
+                Vector128<ulong> multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
+                Vector128<ulong> shift1 = Sse2.ShiftRightLogical(multiply, 56);
+                shift1 = Sse2.ShiftLeftLogical(shift1, Vector128.Create(0UL, 8UL));
+
+                load = Sse2.LoadVector128((byte*)(pSource + 16));
+                correct = load.CorrectBoolean().AsUInt64();
+
+                multiply = IntrinsicUtility.Multiply(IntegerPackingMagicV128, correct);
+                Vector128<ulong> shift2 = Sse2.ShiftRightLogical(multiply, 56);
+                shift2 = Sse2.ShiftLeftLogical(shift2, Vector128.Create(16UL, 24UL));
+
+                Vector128<ulong> or1 = Sse2.Or(shift1, shift2);
+                Vector128<ulong> or2 = Sse2.Or(or1, or1.ReverseElements());
+
+                return (int)or2.GetElement(0);
+            }
+        }
+    }
+
+#if NET5_0_OR_GREATER
+    // dotcover disable
+    //NOSONAR
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static byte PackByteInternal_AdvSimd(this ReadOnlySpan<bool> source)
+    {
+        unsafe
+        {
+            fixed (bool* pSource = source)
+            {
+                // TODO Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
+                Vector64<byte> load = AdvSimd.LoadVector64((byte*)pSource);
+                return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
+            }
+        }
+    }
+    //NOSONAR
+    // dotcover enable
+#endif
+#endif
 }
