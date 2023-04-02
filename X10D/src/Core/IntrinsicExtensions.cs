@@ -71,7 +71,7 @@ public static class IntrinsicExtensions
     [ExcludeFromCodeCoverage]
     public static Vector128<byte> CorrectBoolean(this Vector128<byte> vector)
     {
-        return CorrectBooleanInternal(vector, new SystemSse2SupportProvider());
+        return Sse2.IsSupported ? CorrectBooleanInternal_Sse2(vector) : CorrectBooleanInternal_Fallback(vector);
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public static class IntrinsicExtensions
     [ExcludeFromCodeCoverage]
     public static Vector256<byte> CorrectBoolean(this Vector256<byte> vector)
     {
-        return CorrectBooleanInternal(vector, new SystemAvx2SupportProvider());
+        return Avx2.IsSupported ? CorrectBooleanInternal_Avx2(vector) : CorrectBooleanInternal_Fallback(vector);
     }
 
     /// <summary>
@@ -118,26 +118,13 @@ public static class IntrinsicExtensions
     [ExcludeFromCodeCoverage]
     public static Vector128<ulong> ReverseElements(this Vector128<ulong> vector)
     {
-        return ReverseElementsInternal(vector, new SystemSse2SupportProvider());
+        return Sse2.IsSupported ? ReverseElementsInternal_Sse2(vector) : ReverseElementsInternal_Fallback(vector);
     }
 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    internal static Vector128<byte> CorrectBooleanInternal(this Vector128<byte> vector, ISse2SupportProvider? sse2SupportProvider)
+    internal static Vector128<byte> CorrectBooleanInternal_Fallback(this Vector128<byte> vector)
     {
-        sse2SupportProvider ??= new SystemSse2SupportProvider();
-
-        if (sse2SupportProvider.IsSupported)
-        {
-            Vector128<byte> cmp = Sse2.CompareEqual(vector, Vector128<byte>.Zero);
-            Vector128<byte> result = Sse2.AndNot(cmp, Vector128.Create((byte)1));
-
-            return result;
-        }
-
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation.
-
         Vector128<byte> output = IntrinsicUtility.GetUninitializedVector128<byte>();
 
         for (var index = 0; index < Vector128<byte>.Count; index++)
@@ -151,18 +138,18 @@ public static class IntrinsicExtensions
 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    internal static Vector256<byte> CorrectBooleanInternal(this Vector256<byte> vector, IAvx2SupportProvider? supportProvider)
+    internal static Vector128<byte> CorrectBooleanInternal_Sse2(this Vector128<byte> vector)
     {
-        supportProvider ??= new SystemAvx2SupportProvider();
+        Vector128<byte> cmp = Sse2.CompareEqual(vector, Vector128<byte>.Zero);
+        Vector128<byte> result = Sse2.AndNot(cmp, Vector128.Create((byte)1));
 
-        if (supportProvider.IsSupported)
-        {
-            Vector256<byte> cmp = Avx2.CompareEqual(vector, Vector256<byte>.Zero);
-            Vector256<byte> result = Avx2.AndNot(cmp, Vector256.Create((byte)1));
+        return result;
+    }
 
-            return result;
-        }
-
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector256<byte> CorrectBooleanInternal_Fallback(this Vector256<byte> vector)
+    {
         Vector256<byte> output = IntrinsicUtility.GetUninitializedVector256<byte>();
 
         for (var index = 0; index < Vector256<byte>.Count; index++)
@@ -175,23 +162,32 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    internal static Vector128<ulong> ReverseElementsInternal(this Vector128<ulong> vector, ISse2SupportProvider? supportProvider)
+    internal static Vector256<byte> CorrectBooleanInternal_Avx2(this Vector256<byte> vector)
     {
-        supportProvider ??= new SystemSse2SupportProvider();
+        Vector256<byte> cmp = Avx2.CompareEqual(vector, Vector256<byte>.Zero);
+        Vector256<byte> result = Avx2.AndNot(cmp, Vector256.Create((byte)1));
 
-        if (supportProvider.IsSupported)
-        {
-            return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
-        }
+        return result;
+    }
 
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<ulong> ReverseElementsInternal_Fallback(this Vector128<ulong> vector)
+    {
         Vector128<ulong> output = IntrinsicUtility.GetUninitializedVector128<ulong>();
 
         Unsafe.As<Vector128<ulong>, ulong>(ref output) = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref vector), 1);
         Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) = Unsafe.As<Vector128<ulong>, ulong>(ref vector);
 
         return output;
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<ulong> ReverseElementsInternal_Sse2(this Vector128<ulong> vector)
+    {
+        return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
     }
 }
 #endif

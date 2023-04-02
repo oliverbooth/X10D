@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 #if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
@@ -37,38 +38,19 @@ public static class Int32Extensions
     [ExcludeFromCodeCoverage]
     public static void Unpack(this int value, Span<bool> destination)
     {
-#if NETCOREAPP3_0_OR_GREATER
-        UnpackInternal(value, destination, new SystemSsse3SupportProvider(), new SystemAvx2SupportProvider());
-#else
-        UnpackInternal(value, destination);
-#endif
-    }
-
-    internal static void UnpackInternal(this int value,
-        Span<bool> destination
-#if NETCOREAPP3_0_OR_GREATER
-        ,
-        ISsse3SupportProvider? ssse3SupportProvider,
-        IAvx2SupportProvider? avx2SupportProvider
-#endif
-    )
-    {
         if (destination.Length < Size)
         {
             throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
 #if NETCOREAPP3_0_OR_GREATER
-        ssse3SupportProvider ??= new SystemSsse3SupportProvider();
-        avx2SupportProvider ??= new SystemAvx2SupportProvider();
-
-        if (avx2SupportProvider.IsSupported)
+        if (Avx2.IsSupported)
         {
             UnpackInternal_Avx2(value, destination);
             return;
         }
 
-        if (ssse3SupportProvider.IsSupported)
+        if (Sse3.IsSupported)
         {
             UnpackInternal_Ssse3(value, destination);
             return;
@@ -78,7 +60,12 @@ public static class Int32Extensions
         UnpackInternal_Fallback(value, destination);
     }
 
-    private static void UnpackInternal_Fallback(int value, Span<bool> destination)
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static void UnpackInternal_Fallback(this int value, Span<bool> destination)
     {
         for (var index = 0; index < Size; index++)
         {
@@ -87,7 +74,12 @@ public static class Int32Extensions
     }
 
 #if NETCOREAPP3_0_OR_GREATER
-    private static unsafe void UnpackInternal_Ssse3(int value, Span<bool> destination)
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static unsafe void UnpackInternal_Ssse3(this int value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)
         {
@@ -117,7 +109,7 @@ public static class Int32Extensions
         }
     }
 
-    private static unsafe void UnpackInternal_Avx2(int value, Span<bool> destination)
+    internal static unsafe void UnpackInternal_Avx2(this int value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)
         {

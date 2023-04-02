@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 #if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
@@ -20,6 +22,11 @@ public static class Int16Extensions
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 16.</returns>
     [Pure]
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static bool[] Unpack(this short value)
     {
         var ret = new bool[Size];
@@ -33,20 +40,13 @@ public static class Int16Extensions
     /// <param name="value">The value to unpack.</param>
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
+    [ExcludeFromCodeCoverage]
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static void Unpack(this short value, Span<bool> destination)
-    {
-#if NETCOREAPP3_0_OR_GREATER
-        UnpackInternal(value, destination, new SystemSsse3SupportProvider());
-#else
-        UnpackInternal(value, destination);
-#endif
-    }
-
-#if NETCOREAPP3_0_OR_GREATER
-    internal static void UnpackInternal(this short value, Span<bool> destination, ISsse3SupportProvider? ssse3SupportProvider)
-#else
-    internal static void UnpackInternal(this short value, Span<bool> destination)
-#endif
     {
         if (destination.Length < Size)
         {
@@ -54,9 +54,7 @@ public static class Int16Extensions
         }
 
 #if NETCOREAPP3_0_OR_GREATER
-        ssse3SupportProvider ??= new SystemSsse3SupportProvider();
-
-        if (ssse3SupportProvider.IsSupported)
+        if (Sse3.IsSupported)
         {
             UnpackInternal_Ssse3(value, destination);
             return;
@@ -66,7 +64,12 @@ public static class Int16Extensions
         UnpackInternal_Fallback(value, destination);
     }
 
-    private static void UnpackInternal_Fallback(short value, Span<bool> destination)
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal static void UnpackInternal_Fallback(this short value, Span<bool> destination)
     {
         for (var index = 0; index < Size; index++)
         {
@@ -75,16 +78,12 @@ public static class Int16Extensions
     }
 
 #if NETCOREAPP3_0_OR_GREATER
-    private struct SystemSsse3SupportProvider : ISsse3SupportProvider
-    {
-        /// <inheritdoc />
-        public bool IsSupported
-        {
-            get => Sse3.IsSupported;
-        }
-    }
-
-    private unsafe static void UnpackInternal_Ssse3(short value, Span<bool> destination)
+#if NETCOREAPP3_1_OR_GREATER
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    internal unsafe static void UnpackInternal_Ssse3(this short value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)
         {
