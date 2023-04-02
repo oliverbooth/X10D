@@ -98,8 +98,12 @@ public static class RuneExtensions
                     });
                 }
 
+            // dotcover disable
+            //NOSONAR
             default:
                 return Default();
+            //NOSONAR
+            // dotcover enable
         }
 
         [ExcludeFromCodeCoverage, DoesNotReturn]
