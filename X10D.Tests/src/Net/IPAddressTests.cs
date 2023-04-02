@@ -30,6 +30,13 @@ public class IPAddressTests
     }
 
     [TestMethod]
+    public void IsIPv4_ShouldThrowArgumentNullException_GivenNullAddress()
+    {
+        IPAddress address = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => address.IsIPv4());
+    }
+
+    [TestMethod]
     public void IsIPv6_ShouldBeFalse_GivenIPv4()
     {
         Assert.IsFalse(_ipv4Address.IsIPv6());
@@ -39,5 +46,12 @@ public class IPAddressTests
     public void IsIPv6_ShouldBeTrue_GivenIPv6()
     {
         Assert.IsTrue(_ipv6Address.IsIPv6());
+    }
+
+    [TestMethod]
+    public void IsIPv6_ShouldThrowArgumentNullException_GivenNullAddress()
+    {
+        IPAddress address = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => address.IsIPv6());
     }
 }
