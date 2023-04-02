@@ -34,4 +34,12 @@ public class SByteTests
 
         // Π_(i=1)^(n(i*2)) will overflow at i=4 for sbyte
     }
+
+    [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<sbyte> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
 }

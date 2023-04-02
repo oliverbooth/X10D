@@ -418,15 +418,6 @@ public static class EnumerableExtensions
 
     private static bool TryGetSpan<TSource>(this IEnumerable<TSource> source, out ReadOnlySpan<TSource> span)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
-#endif
-
         var result = true;
 
         switch (source)

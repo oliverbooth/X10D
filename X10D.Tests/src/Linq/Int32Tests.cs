@@ -42,6 +42,14 @@ public class Int32Tests
     }
 
     [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<int> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
+
+    [TestMethod]
     public void RangeTo_Int32_ShouldYieldCorrectValues()
     {
         const int start = 1;

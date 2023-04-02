@@ -43,6 +43,14 @@ public class Int64Tests
     }
 
     [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<long> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
+
+    [TestMethod]
     public void RangeTo_Int64_ShouldYieldCorrectValues()
     {
         const long start = 1;

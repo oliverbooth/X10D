@@ -39,6 +39,13 @@ public class Int16Tests
     }
 
     [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<short> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+    }
+
+    [TestMethod]
     public void RangeTo_Int16_ShouldYieldCorrectValues()
     {
         const short start = 1;
