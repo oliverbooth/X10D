@@ -69,12 +69,14 @@ jobs:
 
     - name: Check for changes
       run: |
+        cd upm
         git diff --quiet
       continue-on-error: true
 
     - name: Commit update
       if: ${{ success() }}
       run: |
+        cd upm
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add X10D.dll
