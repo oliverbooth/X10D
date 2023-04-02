@@ -3,8 +3,6 @@ using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 #endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq.AutoMock;
-using X10D.Collections;
 using X10D.Core;
 
 namespace X10D.Tests.Core;
