@@ -26,15 +26,15 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Build NuGet package
       run: |
         mkdir build
-        dotnet pack X10D --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
-        dotnet pack X10D.DSharpPlus --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
-        dotnet pack X10D.Hosting --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
-        dotnet pack X10D.Unity --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
+        dotnet pack X10D --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
+        dotnet pack X10D.DSharpPlus --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
+        dotnet pack X10D.Hosting --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
+        dotnet pack X10D.Unity --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build -p:VersionSuffix='prerelease' -p:BuildNumber=${{ github.run_number }}
 
     - name: Push NuGet Package to GitHub
       run: dotnet nuget push "build/*" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
