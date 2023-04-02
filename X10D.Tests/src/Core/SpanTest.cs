@@ -1,4 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#if NET5_0_OR_GREATER
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.Intrinsics.X86;
+#endif
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq.AutoMock;
 using X10D.Collections;
 using X10D.Core;
 
@@ -144,93 +149,253 @@ public class SpanTest
     }
 
     [TestMethod]
-    public void Pack8Bit_Should_Pack_Correctly()
+    public void PackByteInternal_Fallback_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
     {
-        Span<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
-        Assert.AreEqual(0b00110011, span.PackByte());
+        const byte expected = 0b00110011;
+        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+
+        byte actual = span.PackByteInternal_Fallback();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+#if NET5_0_OR_GREATER
+    [TestMethod]
+    public void PackByteInternal_Sse2_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
+    {
+        if (!Sse2.IsSupported)
+        {
+            return;
+        }
+
+        const byte expected = 0b00110011;
+        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+
+        byte actual = span.PackByteInternal_Sse2();
+
+        Assert.AreEqual(expected, actual);
     }
 
     [TestMethod]
-    public void Pack8Bit_Should_Pack_Correctly_Randomize()
+    public void PackByteInternal_AdvSimd_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
     {
-        var value = new Random().NextByte();
+        if (!AdvSimd.IsSupported)
+        {
+            return;
+        }
 
-        Span<bool> unpacks = stackalloc bool[8];
+        const byte expected = 0b00110011;
+        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
 
-        value.Unpack(unpacks);
+        byte actual = span.PackByteInternal_AdvSimd();
 
-        Assert.AreEqual(value, unpacks.PackByte());
+        Assert.AreEqual(expected, actual);
+    }
+#endif
+
+    [TestMethod]
+    public void PackInt16_ShouldReturnSameAsPackByte_WhenSpanHasLength8()
+    {
+        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+
+        short expected = span.PackByte();
+        short actual = span.PackInt16();
+
+        Assert.AreEqual(expected, actual);
     }
 
     [TestMethod]
-    public void Pack16Bit_Should_Pack_Correctly()
+    public void PackInt16Internal_Fallback_ShouldReturnCorrectInt16_GivenReadOnlySpan()
+    {
+        const short expected = 0b00101101_11010100;
+        ReadOnlySpan<bool> span = stackalloc bool[16]
+        {
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
+        };
+
+        short actual = span.PackInt16Internal_Fallback();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+#if NET5_0_OR_GREATER
+    [TestMethod]
+    public void PackInt16Internal_Sse2_ShouldReturnCorrectInt16_GivenReadOnlySpan_Using()
+    {
+        if (!Sse2.IsSupported)
+        {
+            return;
+        }
+
+        const short expected = 0b00101101_11010100;
+        ReadOnlySpan<bool> span = stackalloc bool[16]
+        {
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
+        };
+
+        short actual = span.PackInt16Internal_Sse2();
+
+        Assert.AreEqual(expected, actual);
+    }
+#endif
+
+    [TestMethod]
+    public void PackInt32Internal_Fallback_ShouldReturnCorrectInt32_GivenReadOnlySpan()
+    {
+        const int expected = 0b01010101_10101010_01010101_10101010;
+        ReadOnlySpan<bool> span = stackalloc bool[32]
+        {
+            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
+        };
+
+        int actual = span.PackInt32Internal_Fallback();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+#if NET5_0_OR_GREATER
+    [TestMethod]
+    public void PackInt32Internal_Sse2_ShouldReturnCorrectInt32_GivenReadOnlySpan()
+    {
+        if (!Sse2.IsSupported)
+        {
+            return;
+        }
+
+        const int expected = 0b01010101_10101010_01010101_10101010;
+        ReadOnlySpan<bool> span = stackalloc bool[32]
+        {
+            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
+        };
+
+        int actual = span.PackInt32Internal_Sse2();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void PackInt32Internal_Avx2_ShouldReturnCorrectInt32_GivenReadOnlySpan()
+    {
+        if (!Avx2.IsSupported)
+        {
+            return;
+        }
+
+        const int expected = 0b01010101_10101010_01010101_10101010;
+        ReadOnlySpan<bool> span = stackalloc bool[32]
+        {
+            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
+        };
+
+        int actual = span.PackInt32Internal_Avx2();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void PackInt32Internal_AdvSimd_ShouldReturnCorrectInt32_GivenReadOnlySpan()
+    {
+        if (!AdvSimd.IsSupported)
+        {
+            return;
+        }
+
+        const int expected = 0b01010101_10101010_01010101_10101010;
+        ReadOnlySpan<bool> span = stackalloc bool[32]
+        {
+            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
+        };
+
+        int actual = span.PackInt32Internal_AdvSimd();
+
+        Assert.AreEqual(expected, actual);
+    }
+#endif
+
+    [TestMethod]
+    public void PackInt32_ShouldReturnSameAsPackByte_WhenSpanHasLength8()
+    {
+        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+
+        int expected = span.PackByte();
+        int actual = span.PackInt32();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void PackInt32_ShouldReturnSameAsPackInt16_WhenSpanHasLength16()
     {
         ReadOnlySpan<bool> span = stackalloc bool[16]
         {
             false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
         };
-        Assert.AreEqual(0b00101101_11010100, span.PackInt16());
+
+        int expected = span.PackInt16();
+        int actual = span.PackInt32();
+
+        Assert.AreEqual(expected, actual);
     }
 
     [TestMethod]
-    public void Pack16Bit_Should_Pack_Correctly_Randomize()
+    public void PackInt64_ShouldReturnCorrectInt64_GivenReadOnlySpan()
     {
-        var value = new Random().NextInt16();
-
-        Span<bool> unpacks = stackalloc bool[16];
-
-        value.Unpack(unpacks);
-
-        Assert.AreEqual(value, unpacks.PackInt16());
-    }
-
-    [TestMethod]
-    public void Pack32Bit_Should_Pack_Correctly()
-    {
-        ReadOnlySpan<bool> span = stackalloc bool[]
-        {
-            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
-        Assert.AreEqual(0b01010101_10101010_01010101_10101010, span.PackInt32());
-    }
-
-    [TestMethod]
-    public void Pack32Bit_Should_Pack_Correctly_Randomize()
-    {
-        var value = new Random().Next(int.MinValue, int.MaxValue);
-
-        Span<bool> unpacks = stackalloc bool[32];
-
-        value.Unpack(unpacks);
-
-        Assert.AreEqual(value, unpacks.PackInt32());
-    }
-
-    [TestMethod]
-    public void Pack64Bit_Should_Pack_Correctly()
-    {
-        ReadOnlySpan<bool> span = stackalloc bool[]
+        const long expected = 0b01010101_11010110_01101001_11010110_00010010_10010111_00101100_10100101;
+        ReadOnlySpan<bool> span = stackalloc bool[64]
         {
             true, false, true, false, false, true, false, true, false, false, true, true, false, true, false, false, true,
             true, true, false, true, false, false, true, false, true, false, false, true, false, false, false, false, true,
             true, false, true, false, true, true, true, false, false, true, false, true, true, false, false, true, true,
             false, true, false, true, true, true, false, true, false, true, false, true, false,
         };
-        Assert.AreEqual(0b01010101_11010110_01101001_11010110_00010010_10010111_00101100_10100101, span.PackInt64());
+
+        long actual = span.PackInt64();
+
+        Assert.AreEqual(expected, actual);
     }
 
     [TestMethod]
-    public void Pack64Bit_Should_Pack_Correctly_Randomize()
+    public void PackInt64_ShouldReturnSameAsPackByte_WhenSpanHasLength8()
     {
-        var rand = new Random();
-        long value = ((long)rand.Next() << 32) | (long)rand.Next();
+        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
 
-        Span<bool> unpacks = stackalloc bool[64];
+        long expected = span.PackByte();
+        long actual = span.PackInt64();
 
-        value.Unpack(unpacks);
+        Assert.AreEqual(expected, actual);
+    }
 
-        Assert.AreEqual(value, unpacks.PackInt64());
+    [TestMethod]
+    public void PackInt64_ShouldReturnSameAsPackInt16_WhenSpanHasLength16()
+    {
+        ReadOnlySpan<bool> span = stackalloc bool[16]
+        {
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
+        };
+
+        long expected = span.PackInt16();
+        long actual = span.PackInt64();
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void PackInt64_ShouldReturnSameAsPackInt32_WhenSpanHasLength16()
+    {
+        ReadOnlySpan<bool> span = stackalloc bool[32]
+        {
+            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
+        };
+
+        long expected = span.PackInt32();
+        long actual = span.PackInt64();
+
+        Assert.AreEqual(expected, actual);
     }
 
     private enum EnumByte : byte

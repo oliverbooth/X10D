@@ -153,6 +153,9 @@
   <data name="LengthGreaterThanOrEqualTo0" xml:space="preserve">
     <value>Length must be greater than or equal to 0.</value>
   </data>
+  <data name="SourceSpanIsTooLarge" xml:space="preserve">
+    <value>The source contains too many elements.</value>
+  </data>
   <data name="StreamDoesNotSupportReading" xml:space="preserve">
     <value>The stream does not support reading.</value>
   </data>
