@@ -5,7 +5,7 @@ using Color = UnityEngine.Color;
 
 namespace X10D.Unity;
 
-public static partial class DebugEx
+public static partial class DebugUtility
 {
     /// <summary>
     ///     Draws a rectangle.

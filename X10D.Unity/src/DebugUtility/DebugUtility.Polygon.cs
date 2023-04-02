@@ -5,7 +5,7 @@ using PointF = System.Drawing.PointF;
 
 namespace X10D.Unity;
 
-public static partial class DebugEx
+public static partial class DebugUtility
 {
     /// <summary>
     ///     Draws a polygon.
