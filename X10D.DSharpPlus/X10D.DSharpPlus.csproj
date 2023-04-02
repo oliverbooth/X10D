@@ -22,6 +22,8 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
