@@ -6,8 +6,6 @@
         <IsPackable>false</IsPackable>
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
-        <DebugType>Full</DebugType>
-        <DebugSymbols>true</DebugSymbols>
         <CoverletOutputFormat>json,cobertura</CoverletOutputFormat>
         <CollectCoverage>true</CollectCoverage>
     </PropertyGroup>
