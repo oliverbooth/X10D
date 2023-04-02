@@ -90,4 +90,3 @@ jobs:
         git add package.json
         git commit -m "Update upm branch ($GITHUB_SHA)"
         git push
-
