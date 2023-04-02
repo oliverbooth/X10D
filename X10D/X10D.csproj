@@ -92,10 +92,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X10D.SourceGenerator\X10D.SourceGenerator.csproj">
-            <OutputItemType>Analyzer</OutputItemType>
-            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-        </ProjectReference>
+        <ProjectReference Include="..\X10D.SourceGenerator\X10D.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
     <ItemGroup>
