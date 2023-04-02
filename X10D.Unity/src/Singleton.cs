@@ -17,7 +17,9 @@ public abstract class Singleton<T> : MonoBehaviour
     ///     Gets the instance of the singleton.
     /// </summary>
     /// <value>The singleton instance.</value>
+#pragma warning disable CA1000
     public static T Instance
+#pragma warning restore CA1000
     {
         get => s_instance ? s_instance! : s_instanceLazy.Value;
     }
