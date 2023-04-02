@@ -1,6 +1,5 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -101,23 +100,15 @@ public static class RuneExtensions
             // dotcover disable
             //NOSONAR
             default:
-                return Default();
-            //NOSONAR
-            // dotcover enable
-        }
-
-        [ExcludeFromCodeCoverage, DoesNotReturn]
-        string Default()
-        {
-            string exceptionFormat = ExceptionMessages.UnexpectedRuneUtf8SequenceLength;
-            string message = string.Format(CultureInfo.CurrentCulture, exceptionFormat, length);
+                string exceptionFormat = ExceptionMessages.UnexpectedRuneUtf8SequenceLength;
+                string message = string.Format(CultureInfo.CurrentCulture, exceptionFormat, length);
 #if NET7_0_OR_GREATER
-            throw new UnreachableException(message);
+                throw new UnreachableException(message);
 #else
             throw new InvalidOperationException(message);
 #endif
-
-            return default;
+            //NOSONAR
+            // dotcover enable
         }
     }
 }
