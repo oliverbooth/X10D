@@ -58,21 +58,23 @@ jobs:
       run: |
         dotnet run --project ./X10D.UpmPackageGenerator/X10D.UpmPackageGenerator.csproj "./X10D/bin/Debug/netstandard2.1/X10D.dll"
         cp package.json upm/package.json
-        
-    - name: Check for changes
+
+    - name: Copy built artifacts to upm
       run: |
         cd upm
+        cp ../X10D/bin/Debug/netstandard2.1/X10D.dll ./X10D.dll
+        cp ../X10D/bin/Debug/netstandard2.1/X10D.xml ./X10D.xml
+        cp ../X10D.Unity/bin/Debug/netstandard2.1/X10D.Unity.dll ./X10D.Unity.dll
+        cp ../X10D.Unity/bin/Debug/netstandard2.1/X10D.Unity.xml ./X10D.Unity.xml
+
+    - name: Check for changes
+      run: |
         git diff --quiet
-      shell: bash
       continue-on-error: true
 
     - name: Commit update
       if: ${{ success() }}
       run: |
-        cp ../X10D/bin/Debug/netstandard2.1/X10D.dll ./X10D.dll
-        cp ../X10D/bin/Debug/netstandard2.1/X10D.xml ./X10D.xml
-        cp ../X10D.Unity/bin/Debug/netstandard2.1/X10D.Unity.dll ./X10D.Unity.dll
-        cp ../X10D.Unity/bin/Debug/netstandard2.1/X10D.Unity.xml ./X10D.Unity.xml
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add X10D.dll
