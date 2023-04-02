@@ -42,7 +42,7 @@ jobs:
     - name: Push NuGet Package to nuget.org
       run: dotnet nuget push "build/*" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
 
-    - name: Upload Build Artifacts
+    - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: build
@@ -65,7 +65,13 @@ jobs:
         dotnet run --project ./X10D.UpmPackageGenerator/X10D.UpmPackageGenerator.csproj "./X10D/bin/Release/netstandard2.1/X10D.dll"
         cp package.json upm/package.json
 
+    - name: Check for changes
+      run: git diff --quiet
+      shell: bash
+      continue-on-error: true
+
     - name: Commit update
+      if: ${{ success() }}
       run: |
         cd upm
         cp ../X10D/bin/Release/netstandard2.1/X10D.dll ./X10D.dll
