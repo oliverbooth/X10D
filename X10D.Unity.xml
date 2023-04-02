@@ -18,13 +18,13 @@
             <typeparam name="T">The type of the components to retrieve.</typeparam>
             <returns>An array <typeparamref name="T" /> representing the child components.</returns>
         </member>
-        <member name="T:X10D.Unity.DebugEx">
+        <member name="T:X10D.Unity.DebugUtility">
             <summary>
                 An extended version of Unity's <see cref="T:UnityEngine.Debug" /> utility class which offers support for drawing simple
                 primitives.
             </summary>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -32,7 +32,7 @@
             <param name="radius">The radius of the circle.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -41,7 +41,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -53,7 +53,7 @@
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -69,7 +69,7 @@
                 <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(UnityEngine.Vector2,System.Single,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a circle.
             </summary>
@@ -86,14 +86,14 @@
                 <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -101,7 +101,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -109,7 +109,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -118,7 +118,7 @@
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -129,7 +129,7 @@
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -141,7 +141,7 @@
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -156,7 +156,7 @@
                 <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.Circle@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a circle.
             </summary>
@@ -172,14 +172,14 @@
                 <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
             <param name="circle">The circle to draw.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -187,7 +187,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -195,7 +195,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@)">
             <summary>
                 Draws a circle with the specified color.
             </summary>
@@ -204,7 +204,7 @@
             <param name="offset">The drawing offset of the circle.</param>
             <param name="color">The color of the circle.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -215,7 +215,7 @@
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -227,7 +227,7 @@
                 The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a circle with the specified color and duration.
             </summary>
@@ -242,7 +242,7 @@
                 <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawCircle(X10D.Drawing.CircleF@,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a circle.
             </summary>
@@ -258,62 +258,62 @@
                 <see langword="true" /> will have the circle be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="F:X10D.Unity.DebugEx.DefaultDrawDuration">
+        <member name="F:X10D.Unity.DebugUtility.DefaultDrawDuration">
             <summary>
                 The default value to use for the <c>duration</c> parameter.
             </summary>
         </member>
-        <member name="F:X10D.Unity.DebugEx.DefaultDepthTest">
+        <member name="F:X10D.Unity.DebugUtility.DefaultDepthTest">
             <summary>
                 The default value to use for the <c>depthTest</c> parameter.
             </summary>
         </member>
-        <member name="P:X10D.Unity.DebugEx.isDebugBuild">
+        <member name="P:X10D.Unity.DebugUtility.isDebugBuild">
             <summary>
                 Gets a value indicating whether this is a debug build.
             </summary>
             <value><see langword="true" /> if this is a debug build; otherwise, <see langword="false" />.</value>
         </member>
-        <member name="P:X10D.Unity.DebugEx.isDeveloperConsoleVisible">
+        <member name="P:X10D.Unity.DebugUtility.isDeveloperConsoleVisible">
             <summary>
                 Gets a value indicating whether the developer console is visible.
             </summary>
             <value><see langword="true" /> if the developer console is visible; otherwise, <see langword="false" />.</value>
         </member>
-        <member name="P:X10D.Unity.DebugEx.unityLogger">
+        <member name="P:X10D.Unity.DebugUtility.unityLogger">
             <summary>
                 Gets the default Unity debug logger.
             </summary>
             <value>The Unity debug logger.</value>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Assert(System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.Assert(System.Boolean)">
             <summary>
                 Asserts a condition.
             </summary>
             <param name="condition">The condition to assert.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Assert(System.Boolean,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.Assert(System.Boolean,UnityEngine.Object)">
             <summary>
                 Asserts a condition.
             </summary>
             <param name="condition">The condition to assert.</param>
             <param name="context">The object to which the assertion applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Assert(System.Boolean,System.String)">
+        <member name="M:X10D.Unity.DebugUtility.Assert(System.Boolean,System.String)">
             <summary>
                 Asserts a condition.
             </summary>
             <param name="condition">The condition to assert.</param>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Assert``1(System.Boolean,``0)">
+        <member name="M:X10D.Unity.DebugUtility.Assert``1(System.Boolean,``0)">
             <summary>
                 Asserts a condition.
             </summary>
             <param name="condition">The condition to assert.</param>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Assert(System.Boolean,System.String,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.Assert(System.Boolean,System.String,UnityEngine.Object)">
             <summary>
                 Logs a message to the Unity Console.
             </summary>
@@ -321,7 +321,7 @@
             <param name="message">The message to log.</param>
             <param name="context">The object to which the assertion applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Assert``1(System.Boolean,``0,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.Assert``1(System.Boolean,``0,UnityEngine.Object)">
             <summary>
                 Logs a message to the Unity Console.
             </summary>
@@ -329,17 +329,17 @@
             <param name="message">The message to log.</param>
             <param name="context">The object to which the assertion applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Break">
+        <member name="M:X10D.Unity.DebugUtility.Break">
             <summary>
                 Pauses the editor.
             </summary>
         </member>
-        <member name="M:X10D.Unity.DebugEx.ClearDeveloperConsole">
+        <member name="M:X10D.Unity.DebugUtility.ClearDeveloperConsole">
             <summary>
                 Clears the developer console.
             </summary>
         </member>
-        <member name="M:X10D.Unity.DebugEx.ExtractStackTraceNoAlloc(System.Byte*,System.Int32,System.String)">
+        <member name="M:X10D.Unity.DebugUtility.ExtractStackTraceNoAlloc(System.Byte*,System.Int32,System.String)">
             <summary>
                 Populate an unmanaged buffer with the current managed call stack as a sequence of UTF-8 bytes, without allocating GC
                 memory.
@@ -349,92 +349,92 @@
             <param name="projectFolder">The project folder path, to clean up path names.</param>
             <returns>The number of bytes written into the buffer.</returns>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Log(System.String)">
+        <member name="M:X10D.Unity.DebugUtility.Log(System.String)">
             <summary>
                 Logs a message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Log``1(``0)">
+        <member name="M:X10D.Unity.DebugUtility.Log``1(``0)">
             <summary>
                 Logs a message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.Log(System.String,UnityEngine.Object)">
-            <summary>
-                Logs a message to the Unity Console.
-            </summary>
-            <param name="message">The message to log.</param>
-            <param name="context">The object to which the message applies.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.Log``1(``0,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.Log(System.String,UnityEngine.Object)">
             <summary>
                 Logs a message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
             <param name="context">The object to which the message applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogAssertion(System.String)">
+        <member name="M:X10D.Unity.DebugUtility.Log``1(``0,UnityEngine.Object)">
+            <summary>
+                Logs a message to the Unity Console.
+            </summary>
+            <param name="message">The message to log.</param>
+            <param name="context">The object to which the message applies.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.LogAssertion(System.String)">
             <summary>
                 Logs an assertion message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogAssertion``1(``0)">
+        <member name="M:X10D.Unity.DebugUtility.LogAssertion``1(``0)">
             <summary>
                 Logs an assertion message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogAssertion(System.String,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.LogAssertion(System.String,UnityEngine.Object)">
             <summary>
                 Logs an assertion message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
             <param name="context">The object to which the message applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogAssertion``1(``0,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.LogAssertion``1(``0,UnityEngine.Object)">
             <summary>
                 Logs an assertion message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
             <param name="context">The object to which the message applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogError(System.String)">
+        <member name="M:X10D.Unity.DebugUtility.LogError(System.String)">
             <summary>
                 Logs an error message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogError``1(``0)">
+        <member name="M:X10D.Unity.DebugUtility.LogError``1(``0)">
             <summary>
                 Logs an error message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogError(System.String,UnityEngine.Object)">
-            <summary>
-                Logs an error message to the Unity Console.
-            </summary>
-            <param name="message">The message to log.</param>
-            <param name="context">The object to which the message applies.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.LogError``1(``0,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.LogError(System.String,UnityEngine.Object)">
             <summary>
                 Logs an error message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
             <param name="context">The object to which the message applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogErrorFormat(System.String,System.Object[])">
+        <member name="M:X10D.Unity.DebugUtility.LogError``1(``0,UnityEngine.Object)">
+            <summary>
+                Logs an error message to the Unity Console.
+            </summary>
+            <param name="message">The message to log.</param>
+            <param name="context">The object to which the message applies.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.LogErrorFormat(System.String,System.Object[])">
             <summary>
                 Logs a formatted error message to the Unity Console.
             </summary>
             <param name="format">The format string of the message to log.</param>
             <param name="args">The format arguments.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogErrorFormat(UnityEngine.Object,System.String,System.Object[])">
+        <member name="M:X10D.Unity.DebugUtility.LogErrorFormat(UnityEngine.Object,System.String,System.Object[])">
             <summary>
                 Logs a formatted error message to the Unity Console.
             </summary>
@@ -442,14 +442,14 @@
             <param name="format">The format string of the message to log.</param>
             <param name="args">The format arguments.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogFormat(System.String,System.Object[])">
+        <member name="M:X10D.Unity.DebugUtility.LogFormat(System.String,System.Object[])">
             <summary>
                 Logs a formatted message to the Unity Console.
             </summary>
             <param name="format">The format string of the message to log.</param>
             <param name="args">The format arguments.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogFormat(UnityEngine.Object,System.String,System.Object[])">
+        <member name="M:X10D.Unity.DebugUtility.LogFormat(UnityEngine.Object,System.String,System.Object[])">
             <summary>
                 Logs a formatted message to the Unity Console.
             </summary>
@@ -457,40 +457,40 @@
             <param name="format">The format string of the message to log.</param>
             <param name="args">The format arguments.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogWarning(System.String)">
+        <member name="M:X10D.Unity.DebugUtility.LogWarning(System.String)">
             <summary>
                 Logs a warning message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogWarning``1(``0)">
+        <member name="M:X10D.Unity.DebugUtility.LogWarning``1(``0)">
             <summary>
                 Logs a warning message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogWarning(System.String,UnityEngine.Object)">
-            <summary>
-                Logs a warning message to the Unity Console.
-            </summary>
-            <param name="message">The message to log.</param>
-            <param name="context">The object to which the message applies.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.LogWarning``1(``0,UnityEngine.Object)">
+        <member name="M:X10D.Unity.DebugUtility.LogWarning(System.String,UnityEngine.Object)">
             <summary>
                 Logs a warning message to the Unity Console.
             </summary>
             <param name="message">The message to log.</param>
             <param name="context">The object to which the message applies.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogWarningFormat(System.String,System.Object[])">
+        <member name="M:X10D.Unity.DebugUtility.LogWarning``1(``0,UnityEngine.Object)">
+            <summary>
+                Logs a warning message to the Unity Console.
+            </summary>
+            <param name="message">The message to log.</param>
+            <param name="context">The object to which the message applies.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.LogWarningFormat(System.String,System.Object[])">
             <summary>
                 Logs a formatted warning message to the Unity Console.
             </summary>
             <param name="format">The format string of the message to log.</param>
             <param name="args">The format arguments.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.LogWarningFormat(UnityEngine.Object,System.String,System.Object[])">
+        <member name="M:X10D.Unity.DebugUtility.LogWarningFormat(UnityEngine.Object,System.String,System.Object[])">
             <summary>
                 Logs a formatted warning message to the Unity Console.
             </summary>
@@ -498,7 +498,7 @@
             <param name="format">The format string of the message to log.</param>
             <param name="args">The format arguments.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -506,7 +506,7 @@
             <param name="radius">The radius of the ellipse.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -515,7 +515,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -527,7 +527,7 @@
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -543,7 +543,7 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse.
             </summary>
@@ -560,7 +560,7 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -569,7 +569,7 @@
             <param name="radiusY">The vertical radius of the ellipse.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -579,7 +579,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -592,7 +592,7 @@
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -609,7 +609,7 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(UnityEngine.Vector2,System.Single,System.Single,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse.
             </summary>
@@ -627,14 +627,14 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -642,7 +642,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -650,7 +650,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -659,7 +659,7 @@
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -670,7 +670,7 @@
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -682,7 +682,7 @@
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -697,7 +697,7 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.Ellipse,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse.
             </summary>
@@ -713,14 +713,14 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
             <param name="ellipse">The ellipse to draw.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -728,7 +728,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -736,7 +736,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
             <summary>
                 Draws an ellipse with the specified color.
             </summary>
@@ -745,7 +745,7 @@
             <param name="offset">The drawing offset of the ellipse.</param>
             <param name="color">The color of the ellipse.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -756,7 +756,7 @@
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -768,7 +768,7 @@
                 The duration of the ellipse's visibility, in seconds. If 0 is passed, the ellipse is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse with the specified color and duration.
             </summary>
@@ -783,7 +783,7 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawEllipse(X10D.Drawing.EllipseF,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an ellipse.
             </summary>
@@ -799,14 +799,14 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3)">
             <summary>
                 Draws a line between start and end points.
             </summary>
             <param name="start">The starting point.</param>
             <param name="end">The ending point.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -814,18 +814,7 @@
             <param name="end">The ending point.</param>
             <param name="color">The color of the line.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a line between start and end points, with the specified color.
-            </summary>
-            <param name="start">The starting point.</param>
-            <param name="end">The ending point.</param>
-            <param name="color">The color of the line.</param>
-            <param name="duration">
-                The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -835,25 +824,36 @@
             <param name="duration">
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a line between start and end points, with the specified color.
+            </summary>
+            <param name="start">The starting point.</param>
+            <param name="end">The ending point.</param>
+            <param name="color">The color of the line.</param>
+            <param name="duration">
+                The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
+            </param>
             <param name="depthTest">
                 <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
                 <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line)">
             <summary>
                 Draws a line between start and end points.
             </summary>
             <param name="line">The line to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line,UnityEngine.Color@)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
             <param name="line">The line to draw.</param>
             <param name="color">The color of the line.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -863,7 +863,7 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -877,20 +877,20 @@
                 <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.LineF)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.LineF)">
             <summary>
                 Draws a line between start and end points.
             </summary>
             <param name="line">The line to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.LineF,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.LineF,UnityEngine.Color@)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
             <param name="line">The line to draw.</param>
             <param name="color">The color of the line.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.LineF,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.LineF,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -900,7 +900,7 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.LineF,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.LineF,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -914,20 +914,20 @@
                 <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line3D)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line3D)">
             <summary>
                 Draws a line between start and end points.
             </summary>
             <param name="line">The line to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line3D,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line3D,UnityEngine.Color@)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
             <param name="line">The line to draw.</param>
             <param name="color">The color of the line.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line3D,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line3D,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -937,7 +937,7 @@
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawLine(X10D.Drawing.Line3D,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawLine(X10D.Drawing.Line3D,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a line between start and end points, with the specified color.
             </summary>
@@ -951,27 +951,27 @@
                 <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon)">
             <summary>
                 Draws a polygon.
             </summary>
             <param name="polygon">The polygon to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@)">
             <summary>
                 Draws a polygon.
             </summary>
             <param name="polygon">The polygon to draw.</param>
             <param name="offset">The drawing offset of the polygon.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Color@)">
             <summary>
                 Draws a polygon.
             </summary>
             <param name="polygon">The polygon to draw.</param>
             <param name="color">The color to use for drawing.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@,UnityEngine.Color@)">
             <summary>
                 Draws a polygon.
             </summary>
@@ -979,7 +979,7 @@
             <param name="offset">The drawing offset of the polygon.</param>
             <param name="color">The color to use for drawing.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a polygon.
             </summary>
@@ -989,85 +989,7 @@
                 The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="offset">The drawing offset of the polygon.</param>
-            <param name="color">The color to use for drawing.</param>
-            <param name="duration">
-                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="color">The color to use for drawing.</param>
-            <param name="duration">
-                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="true" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="offset">The drawing offset of the polygon.</param>
-            <param name="color">The color to use for drawing.</param>
-            <param name="duration">
-                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
-            </param>
-            <param name="depthTest">
-                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="true" /> will have the box be obscured by objects closer to the camera.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="offset">The drawing offset of the polygon.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Color@)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="color">The color to use for drawing.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@,UnityEngine.Color@)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="offset">The drawing offset of the polygon.</param>
-            <param name="color">The color to use for drawing.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a polygon.
-            </summary>
-            <param name="polygon">The polygon to draw.</param>
-            <param name="color">The color to use for drawing.</param>
-            <param name="duration">
-                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a polygon.
             </summary>
@@ -1078,7 +1000,7 @@
                 The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a polygon.
             </summary>
@@ -1092,7 +1014,7 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.Polygon,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a polygon.
             </summary>
@@ -1107,35 +1029,114 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="offset">The drawing offset of the polygon.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Color@)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="color">The color to use for drawing.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@,UnityEngine.Color@)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="offset">The drawing offset of the polygon.</param>
+            <param name="color">The color to use for drawing.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="color">The color to use for drawing.</param>
+            <param name="duration">
+                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="offset">The drawing offset of the polygon.</param>
+            <param name="color">The color to use for drawing.</param>
+            <param name="duration">
+                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="color">The color to use for drawing.</param>
+            <param name="duration">
+                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolygon(X10D.Drawing.PolygonF,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a polygon.
+            </summary>
+            <param name="polygon">The polygon to draw.</param>
+            <param name="offset">The drawing offset of the polygon.</param>
+            <param name="color">The color to use for drawing.</param>
+            <param name="duration">
+                The duration of the polygon's visibility, in seconds. If 0 is passed, the polygon is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
+            </param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron)">
             <summary>
                 Draws a polyhedron.
             </summary>
             <param name="polyhedron">The polyhedron to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@)">
-            <summary>
-                Draws a polyhedron.
-            </summary>
-            <param name="polyhedron">The polyhedron to draw.</param>
-            <param name="offset">The drawing offset of the polyhedron.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Color@)">
-            <summary>
-                Draws a polyhedron.
-            </summary>
-            <param name="polyhedron">The polyhedron to draw.</param>
-            <param name="color">The color to use for drawing.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@)">
             <summary>
                 Draws a polyhedron.
             </summary>
             <param name="polyhedron">The polyhedron to draw.</param>
             <param name="offset">The drawing offset of the polyhedron.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Color@)">
+            <summary>
+                Draws a polyhedron.
+            </summary>
+            <param name="polyhedron">The polyhedron to draw.</param>
             <param name="color">The color to use for drawing.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@)">
+            <summary>
+                Draws a polyhedron.
+            </summary>
+            <param name="polyhedron">The polyhedron to draw.</param>
+            <param name="offset">The drawing offset of the polyhedron.</param>
+            <param name="color">The color to use for drawing.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a polyhedron.
             </summary>
@@ -1145,7 +1146,7 @@
                 The duration of the polyhedron's visibility, in seconds. If 0 is passed, the polyhedron is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a polyhedron.
             </summary>
@@ -1156,7 +1157,7 @@
                 The duration of the polyhedron's visibility, in seconds. If 0 is passed, the polyhedron is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a polyhedron.
             </summary>
@@ -1170,7 +1171,7 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a polyhedron.
             </summary>
@@ -1184,31 +1185,22 @@
                 <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Ray)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Ray)">
             <summary>
                 Draws a ray.
             </summary>
             <param name="ray">The ray to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Ray,UnityEngine.Color@)">
-            <summary>
-                Draws a ray.
-            </summary>
-            <param name="ray">The ray to draw.</param>
-            <param name="color">The color of the line.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Ray,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Ray,UnityEngine.Color@)">
             <summary>
                 Draws a ray.
             </summary>
             <param name="ray">The ray to draw.</param>
             <param name="color">The color of the line.</param>
-            <param name="duration">
-                The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
-            </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Ray,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Ray,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a ray.
             </summary>
@@ -1217,43 +1209,12 @@
             <param name="duration">
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
             </param>
-            <param name="depthTest">
-                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
-                <see langword="true" /> will have the line be obscured by objects closer to the camera.
-            </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Ray,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a ray.
             </summary>
-            <param name="start">The starting point.</param>
-            <param name="direction">The direction.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
-            <summary>
-                Draws a ray.
-            </summary>
-            <param name="start">The starting point.</param>
-            <param name="direction">The direction.</param>
-            <param name="color">The color of the line.</param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a ray.
-            </summary>
-            <param name="start">The starting point.</param>
-            <param name="direction">The direction.</param>
-            <param name="color">The color of the line.</param>
-            <param name="duration">
-                The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
-            <summary>
-                Draws a ray.
-            </summary>
-            <param name="start">The starting point.</param>
-            <param name="direction">The direction.</param>
+            <param name="ray">The ray to draw.</param>
             <param name="color">The color of the line.</param>
             <param name="duration">
                 The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
@@ -1263,14 +1224,55 @@
                 <see langword="true" /> will have the line be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+                Draws a ray.
+            </summary>
+            <param name="start">The starting point.</param>
+            <param name="direction">The direction.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
+            <summary>
+                Draws a ray.
+            </summary>
+            <param name="start">The starting point.</param>
+            <param name="direction">The direction.</param>
+            <param name="color">The color of the line.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
+            <summary>
+                Draws a ray.
+            </summary>
+            <param name="start">The starting point.</param>
+            <param name="direction">The direction.</param>
+            <param name="color">The color of the line.</param>
+            <param name="duration">
+                The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawRay(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a ray.
+            </summary>
+            <param name="start">The starting point.</param>
+            <param name="direction">The direction.</param>
+            <param name="color">The color of the line.</param>
+            <param name="duration">
+                The duration of the line's visibility, in seconds. If 0 is passed, the line is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the line be obscured by objects closer to the camera.
+            </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2)">
             <summary>
                 Draws a rectangle.
             </summary>
             <param name="center">The center point.</param>
             <param name="size">The extents of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@)">
             <summary>
                 Draws a rectangle with the specified color.
             </summary>
@@ -1278,18 +1280,7 @@
             <param name="size">The extents of the box.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
-            <summary>
-                Draws a rectangle with the specified color and duration.
-            </summary>
-            <param name="center">The center point.</param>
-            <param name="size">The extents of the box.</param>
-            <param name="color">The color of the box.</param>
-            <param name="duration">
-                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
-            </param>
-        </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1299,19 +1290,30 @@
             <param name="duration">
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a rectangle with the specified color and duration.
+            </summary>
+            <param name="center">The center point.</param>
+            <param name="size">The extents of the box.</param>
+            <param name="color">The color of the box.</param>
+            <param name="duration">
+                The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
+            </param>
             <param name="depthTest">
                 <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@)">
             <summary>
                 Draws a rectangle with the specified color.
             </summary>
             <param name="rect">The rectangle to draw.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1321,7 +1323,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.Rect,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1335,14 +1337,14 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@)">
             <summary>
                 Draws a rectangle with the specified color.
             </summary>
             <param name="rect">The rectangle to draw.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1352,7 +1354,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(UnityEngine.RectInt,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1366,14 +1368,14 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@)">
             <summary>
                 Draws a rectangle with the specified color.
             </summary>
             <param name="rectangle">The rectangle to draw.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1383,7 +1385,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(System.Drawing.Rectangle,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1397,14 +1399,14 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@)">
             <summary>
                 Draws a rectangle with the specified color.
             </summary>
             <param name="rectangle">The rectangle to draw.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1414,7 +1416,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawRectangle(System.Drawing.RectangleF,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a rectangle with the specified color and duration.
             </summary>
@@ -1428,7 +1430,7 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
@@ -1436,7 +1438,7 @@
             <param name="radius">The radius of the sphere.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
@@ -1445,7 +1447,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a sphere with the specified color and duration.
             </summary>
@@ -1457,7 +1459,7 @@
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a sphere with the specified color and duration.
             </summary>
@@ -1473,7 +1475,7 @@
                 <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(UnityEngine.Vector3,System.Single,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a sphere.
             </summary>
@@ -1490,14 +1492,14 @@
                 <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
             <param name="sphere">The sphere to draw.</param>
             <param name="segments">The number of segments to generate.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
@@ -1505,7 +1507,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="offset">The drawing offset of the sphere.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
@@ -1513,7 +1515,7 @@
             <param name="segments">The number of segments to generate.</param>
             <param name="color">The color of the sphere.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2,UnityEngine.Color@)">
             <summary>
                 Draws a sphere with the specified color.
             </summary>
@@ -1522,7 +1524,7 @@
             <param name="offset">The drawing offset of the sphere.</param>
             <param name="color">The color of the sphere.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a sphere with the specified color and duration.
             </summary>
@@ -1533,7 +1535,7 @@
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector2,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a sphere with the specified color and duration.
             </summary>
@@ -1545,7 +1547,7 @@
                 The duration of the sphere's visibility, in seconds. If 0 is passed, the sphere is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a sphere with the specified color and duration.
             </summary>
@@ -1560,7 +1562,7 @@
                 <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawSphere(X10D.Drawing.Sphere,System.Int32,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a sphere.
             </summary>
@@ -1576,20 +1578,20 @@
                 <see langword="true" /> will have the sphere be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Bounds@)">
             <summary>
                 Draws an axis-aligned bounding box.
             </summary>
             <param name="bounds">The bounding box to draw.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@)">
             <summary>
                 Draws an axis-aligned bounding box.
             </summary>
             <param name="bounds">The bounding box to draw.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws an axis-aligned bounding box.
             </summary>
@@ -1599,7 +1601,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Bounds@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws an axis-aligned bounding box.
             </summary>
@@ -1613,14 +1615,14 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3)">
             <summary>
                 Draws a wireframe cube with a center and a size.
             </summary>
             <param name="center">The center point.</param>
             <param name="size">The extents of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion)">
             <summary>
                 Draws a wireframe cube with the specified orientation.
             </summary>
@@ -1628,7 +1630,7 @@
             <param name="size">The extents of the box.</param>
             <param name="orientation">The orientation of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@)">
             <summary>
                 Draws a wireframe cube with the specified color.
             </summary>
@@ -1636,7 +1638,7 @@
             <param name="size">The extents of the box.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@)">
             <summary>
                 Draws a wireframe cube with the specified orientation and color.
             </summary>
@@ -1645,7 +1647,7 @@
             <param name="orientation">The orientation of the box.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a wireframe cube with the specified color and duration.
             </summary>
@@ -1656,7 +1658,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a wireframe cube with the specified orientation, color, and duration.
             </summary>
@@ -1668,7 +1670,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a wireframe cube with the specified color and duration.
             </summary>
@@ -1683,7 +1685,7 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a wireframe cube with the specified orientation, color, and duration.
             </summary>
@@ -1699,14 +1701,14 @@
                 <see langword="true" /> will have the box be obscured by objects closer to the camera.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@)">
             <summary>
                 Draws a wireframe cube with the specified color.
             </summary>
             <param name="cuboid">The cuboid to draw.</param>
             <param name="color">The color of the box.</param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@,System.Single)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@,System.Single)">
             <summary>
                 Draws a wireframe cube with the specified color and duration.
             </summary>
@@ -1716,7 +1718,7 @@
                 The duration of the box's visibility, in seconds. If 0 is passed, the box is visible for a single frame.
             </param>
         </member>
-        <member name="M:X10D.Unity.DebugEx.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@,System.Single,System.Boolean)">
+        <member name="M:X10D.Unity.DebugUtility.DrawWireCube(X10D.Drawing.Cuboid@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a wireframe cube with the specified color and duration.
             </summary>
