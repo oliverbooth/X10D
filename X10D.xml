@@ -4214,6 +4214,11 @@
               Looks up a localized string similar to maxValue must be greater than or equal to minValue.
             </summary>
         </member>
+        <member name="P:X10D.ExceptionMessages.SourceSpanIsTooLarge">
+            <summary>
+              Looks up a localized string similar to The source contains too many elements..
+            </summary>
+        </member>
         <member name="P:X10D.ExceptionMessages.StreamDoesNotSupportReading">
             <summary>
               Looks up a localized string similar to The stream does not support reading..
