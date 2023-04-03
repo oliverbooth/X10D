@@ -30,10 +30,10 @@ public static class DateTimeOffsetExtensions
     ///     Returns the rounded-down integer number of years since a given date as of another specified date.
     /// </summary>
     /// <param name="value">The date from which to calculate.</param>
-    /// <param name="asOf">The date at which to stop calculating.</param>
+    /// <param name="referenceDate">The date to use as the calculation reference.</param>
     /// <returns>
     ///     The rounded-down integer number of years since <paramref name="value" /> as of the date specified by
-    ///     <paramref name="asOf" />.
+    ///     <paramref name="referenceDate" />.
     /// </returns>
     [Pure]
 #if NETSTANDARD2_1
@@ -41,9 +41,9 @@ public static class DateTimeOffsetExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
-    public static int Age(this DateTimeOffset value, DateTimeOffset asOf)
+    public static int Age(this DateTimeOffset value, DateTimeOffset referenceDate)
     {
-        return (int)(((asOf.Date - TimeSpan.FromDays(1) - value.Date).TotalDays + 1) / 365.2425);
+        return (int)(((referenceDate.Date - TimeSpan.FromDays(1) - value.Date).TotalDays + 1) / 365.2425);
     }
 
     /// <summary>
