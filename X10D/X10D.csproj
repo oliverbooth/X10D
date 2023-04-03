@@ -68,11 +68,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Resource.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resource.resx</DependentUpon>
-        </Compile>
         <Compile Update="src\ExceptionMessages.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
@@ -81,10 +76,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Update="Resource.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
         <EmbeddedResource Update="src\ExceptionMessages.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>

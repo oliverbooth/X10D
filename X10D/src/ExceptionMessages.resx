@@ -132,6 +132,12 @@
   <data name="EndIndexGreaterThanCount" xml:space="preserve">
     <value>The end index must be less than the list count.</value>
   </data>
+  <data name="EnumParseEmptyStringException" xml:space="preserve">
+    <value>Must specify valid information for parsing in the string.</value>
+  </data>
+  <data name="EnumParseNotEnumException" xml:space="preserve">
+    <value>Type provided must be an Enum.</value>
+  </data>
   <data name="TypeIsNotClass" xml:space="preserve">
     <value>{0} is not a class.</value>
   </data>
