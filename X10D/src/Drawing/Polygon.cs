@@ -21,8 +21,22 @@ public class Polygon : IEquatable<Polygon>
     ///     Initializes a new instance of the <see cref="Polygon" /> class by copying the specified polygon.
     /// </summary>
     public Polygon(Polygon polygon)
-        : this(polygon?._vertices ?? throw new ArgumentNullException(nameof(polygon)))
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(polygon);
+#else
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+#endif
+
+        _vertices = new List<Point>();
+        for (var index = 0; index < polygon._vertices.Count; index++)
+        {
+            Point vertex = polygon._vertices[index];
+            _vertices.Add(vertex);
+        }
     }
 
     /// <summary>
@@ -31,6 +45,15 @@ public class Polygon : IEquatable<Polygon>
     /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
     public Polygon(IEnumerable<Point> vertices)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(vertices);
+#else
+        if (vertices is null)
+        {
+            throw new ArgumentNullException(nameof(vertices));
+        }
+#endif
+
         _vertices = new List<Point>(vertices);
     }
 

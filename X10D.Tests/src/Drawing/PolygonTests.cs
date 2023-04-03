@@ -1,4 +1,5 @@
-using System.Drawing;
+﻿using System.Drawing;
+using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Drawing;
 
@@ -20,6 +21,14 @@ public class PolygonTests
     }
 
     [TestMethod]
+    public void AddVertices_ShouldThrowArgumentNullException_GivenNullEnumerable()
+    {
+        var polygon = Polygon.Empty;
+        IEnumerable<Point> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => polygon.AddVertices(vertices));
+    }
+
+    [TestMethod]
     public void ClearVertices_ShouldClearVertices()
     {
         var polygon = Polygon.Empty;
@@ -31,6 +40,21 @@ public class PolygonTests
 
         polygon.ClearVertices();
         Assert.AreEqual(0, polygon.VertexCount);
+    }
+
+    [TestMethod]
+    public void Constructor_ShouldPopulateVertices_GivenPolygon()
+    {
+        var pointPolygon = new Polygon(new[] {new Point(1, 2), new Point(3, 4)});
+
+        Assert.AreEqual(2, pointPolygon.VertexCount);
+    }
+
+    [TestMethod]
+    public void Constructor_ShouldThrowArgumentNullException_GivenNullEnumerableOfPoint()
+    {
+        IEnumerable<Point> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => new Polygon(vertices));
     }
 
     [TestMethod]
@@ -49,6 +73,13 @@ public class PolygonTests
 
         // assert that the empty polygon was not modified
         Assert.AreEqual(0, Polygon.Empty.VertexCount);
+    }
+
+    [TestMethod]
+    public void CopyConstructor_ShouldThrowArgumentNullException_GivenNullPolygon()
+    {
+        Polygon polygon = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => new Polygon(polygon));
     }
 
     [TestMethod]
@@ -97,6 +128,23 @@ public class PolygonTests
         Assert.IsFalse(second == first);
         Assert.IsTrue(first != second);
         Assert.IsTrue(second != first);
+    }
+
+    [TestMethod]
+    public void FromPolygonF_ShouldReturnEquivalentPolygon_GivenPolygon()
+    {
+        PolygonF hexagon = CreateHexagonF();
+
+        Polygon expected = CreateHexagon();
+        Polygon actual = Polygon.FromPolygonF(hexagon);
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void FromPolygonF_ShouldThrowArgumentNullException_GivenNullPolygon()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Polygon.FromPolygonF(null!));
     }
 
     [TestMethod]
@@ -152,6 +200,18 @@ public class PolygonTests
         hexagon.AddVertex(new Point(0, 1));
         hexagon.AddVertex(new Point(-1, 1));
         hexagon.AddVertex(new Point(-1, 0));
+        return hexagon;
+    }
+
+    internal static PolygonF CreateHexagonF()
+    {
+        var hexagon = new PolygonF();
+        hexagon.AddVertex(new PointF(0, 0));
+        hexagon.AddVertex(new PointF(1, 0));
+        hexagon.AddVertex(new PointF(1, 1));
+        hexagon.AddVertex(new PointF(0, 1));
+        hexagon.AddVertex(new PointF(-1, 1));
+        hexagon.AddVertex(new PointF(-1, 0));
         return hexagon;
     }
 

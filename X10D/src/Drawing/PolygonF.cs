@@ -24,8 +24,21 @@ public class PolygonF
     /// </summary>
     /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public PolygonF(PolygonF polygon)
-        : this(polygon?._vertices ?? throw new ArgumentNullException(nameof(polygon)))
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(polygon);
+#else
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+#endif
+        _vertices = new List<PointF>();
+        for (var index = 0; index < polygon._vertices.Count; index++)
+        {
+            PointF vertex = polygon._vertices[index];
+            _vertices.Add(vertex);
+        }
     }
 
     /// <summary>
@@ -34,7 +47,6 @@ public class PolygonF
     /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public PolygonF(IEnumerable<Vector2> vertices)
-        : this(vertices.Select(p => p.ToPointF()))
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(vertices);
@@ -44,6 +56,12 @@ public class PolygonF
             throw new ArgumentNullException(nameof(vertices));
         }
 #endif
+
+        _vertices = new List<PointF>();
+        foreach (Vector2 vertex in vertices)
+        {
+            _vertices.Add(vertex.ToPointF());
+        }
     }
 
     /// <summary>

@@ -20,6 +20,22 @@ public class PolygonFTests
     }
 
     [TestMethod]
+    public void AddVertices_ShouldThrowArgumentNullException_GivenNullEnumerableOfPointF()
+    {
+        var polygon = PolygonF.Empty;
+        IEnumerable<PointF> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => polygon.AddVertices(vertices));
+    }
+
+    [TestMethod]
+    public void AddVertices_ShouldThrowArgumentNullException_GivenNullEnumerableOfVector2()
+    {
+        var polygon = PolygonF.Empty;
+        IEnumerable<Vector2> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => polygon.AddVertices(vertices));
+    }
+
+    [TestMethod]
     public void ClearVertices_ShouldClearVertices()
     {
         var polygon = PolygonF.Empty;
@@ -42,6 +58,20 @@ public class PolygonFTests
         Assert.AreEqual(2, pointPolygon.VertexCount);
         Assert.AreEqual(2, vectorPolygon.VertexCount);
     }
+    
+    [TestMethod]
+    public void Constructor_ShouldThrowArgumentNullException_GivenNullEnumerableOfPointF()
+    {
+        IEnumerable<PointF> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => new PolygonF(vertices));
+    }
+
+    [TestMethod]
+    public void Constructor_ShouldThrowArgumentNullException_GivenNullEnumerableOfVector2()
+    {
+        IEnumerable<Vector2> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => new PolygonF(vertices));
+    }
 
     [TestMethod]
     public void CopyConstructor_ShouldCopyVertices_GivenPolygon()
@@ -59,6 +89,13 @@ public class PolygonFTests
 
         // assert that the empty polygon was not modified
         Assert.AreEqual(0, PolygonF.Empty.VertexCount);
+    }
+
+    [TestMethod]
+    public void CopyConstructor_ShouldThrowArgumentNullException_GivenNullPolygonF()
+    {
+        PolygonF polygon = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => new PolygonF(polygon));
     }
 
     [TestMethod]
@@ -107,6 +144,12 @@ public class PolygonFTests
         Assert.IsFalse(second == first);
         Assert.IsTrue(first != second);
         Assert.IsTrue(second != first);
+    }
+
+    [TestMethod]
+    public void FromPolygon_ShouldThrowArgumentNullException_GivenNullPolygonF()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => PolygonF.FromPolygon(null!));
     }
 
     [TestMethod]

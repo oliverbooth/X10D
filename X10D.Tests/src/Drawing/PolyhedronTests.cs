@@ -19,6 +19,14 @@ public class PolyhedronTests
     }
 
     [TestMethod]
+    public void AddVertices_ShouldThrowArgumentNullException_GivenNullEnumerableOfVector3()
+    {
+        var polygon = Polyhedron.Empty;
+        IEnumerable<Vector3> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => polygon.AddVertices(vertices));
+    }
+
+    [TestMethod]
     public void ClearVertices_ShouldClearVertices()
     {
         var polyhedron = Polyhedron.Empty;
@@ -37,6 +45,13 @@ public class PolyhedronTests
     {
         var polyhedron = new Polyhedron(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
         Assert.AreEqual(2, polyhedron.VertexCount);
+    }
+
+    [TestMethod]
+    public void Constructor_ShouldThrowArgumentNullException_GivenNullEnumerableOfVector3()
+    {
+        IEnumerable<Vector3> vertices = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => new Polyhedron(vertices));
     }
 
     [TestMethod]
@@ -103,6 +118,18 @@ public class PolyhedronTests
         Assert.IsFalse(second == first);
         Assert.IsTrue(first != second);
         Assert.IsTrue(second != first);
+    }
+
+    [TestMethod]
+    public void FromPolygon_ShouldThrowArgumentNullException_GivenNullPolygonF()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Polyhedron.FromPolygon(null!));
+    }
+
+    [TestMethod]
+    public void FromPolygonF_ShouldThrowArgumentNullException_GivenNullPolygonF()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Polyhedron.FromPolygonF(null!));
     }
 
     [TestMethod]
