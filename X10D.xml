@@ -6942,6 +6942,17 @@
                 Provides static helpers methods for mathematical functions not found in the .NET <see cref="T:System.Math" /> class.
             </summary>
         </member>
+        <member name="M:X10D.Math.MathUtility.Bias(System.Single,System.Single)">
+            <summary>
+                Applies a simple bias function to value.
+            </summary>
+            <param name="value">The value to which the bias function will be applied.</param>
+            <param name="bias">The bias value. Valid values range from 0-1.</param>
+            <returns>The biased result.</returns>
+            <remarks>
+                If <paramref name="bias" /> is less than 0.5, <paramref name="value" /> will be shifted downward; otherwise, upward.
+            </remarks>
+        </member>
         <member name="M:X10D.Math.MathUtility.GammaToLinear(System.Single)">
             <summary>
                 Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
