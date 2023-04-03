@@ -79,14 +79,6 @@ public static class SpanExtensions
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
 #if NET6_0_OR_GREATER
-        // Use MemoryMarshal.CreateSpan instead of using creating new Span instance from pointer will trim down a lot of
-        // instructions on Release mode.
-
-        // Also use reference instead of MemoryMarshal.Cast to remove boundary check (or something, it just result in something
-        // like that).
-
-        // TODO: Figure out some kind of way to directly pass the Span directly into Contains call, which make method smaller and
-        // more prone to inlining...
         unsafe
         {
 #pragma warning disable CS8500
@@ -481,7 +473,6 @@ public static class SpanExtensions
         {
             fixed (bool* pSource = source)
             {
-                // TODO Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
                 Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
                 Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
 
@@ -566,7 +557,6 @@ public static class SpanExtensions
         {
             fixed (bool* pSource = source)
             {
-                // TODO Hasn't been tested since March 6th 2023 (Reason: Unavailable hardware).
                 Vector64<byte> load = AdvSimd.LoadVector64((byte*)pSource);
                 return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
             }

@@ -32,9 +32,6 @@ public static class IntrinsicExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     public static Vector64<byte> CorrectBoolean(this Vector64<byte> vector)
     {
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation. (?)
-
         Vector64<byte> output = IntrinsicUtility.GetUninitializedVector64<byte>();
 
         for (var i = 0; i < Vector64<byte>.Count; i++)

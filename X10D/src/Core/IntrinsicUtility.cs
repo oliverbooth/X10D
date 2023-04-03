@@ -150,9 +150,6 @@ public static class IntrinsicUtility
             return HorizontalOr_Sse(left, right);
         }
 
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation. (?)
-
         return HorizontalOrInternal_Fallback(left, right);
     }
 
