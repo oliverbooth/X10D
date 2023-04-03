@@ -56,37 +56,6 @@ public class Polyhedron : IEquatable<Polyhedron>
     }
 
     /// <summary>
-    ///     Returns a value indicating whether this polyhedron is convex.
-    /// </summary>
-    /// <value><see langword="true" /> if this polyhedron is convex; otherwise, <see langword="false" />.</value>
-    public bool IsConvex
-    {
-        get
-        {
-            if (_vertices.Count < 4)
-            {
-                return false;
-            }
-
-            Vector3[] vertices = _vertices.ToArray();
-            int n = vertices.Length;
-
-            for (var i = 0; i < n; i++)
-            {
-                int j = (i + 1) % n;
-                int k = (i + 2) % n;
-
-                if (Vector3.Cross(vertices[j] - vertices[i], vertices[k] - vertices[j]).LengthSquared() < 1e-6f)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
-
-    /// <summary>
     ///     Gets the number of vertices in this polyhedron.
     /// </summary>
     /// <value>An <see cref="int" /> value, representing the number of vertices in this polyhedron.</value>
