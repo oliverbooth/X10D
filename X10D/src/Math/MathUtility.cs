@@ -308,4 +308,32 @@ public static class MathUtility
         double alpha = (value - oldMin) / oldRange;
         return (alpha * newRange) + newMin;
     }
+
+    /// <summary>
+    ///     Performs smooth Hermite interpolation from one value to a target using a specified alpha.
+    /// </summary>
+    /// <param name="value">The interpolation source.</param>
+    /// <param name="target">The interpolation target.</param>
+    /// <param name="alpha">The interpolation alpha.</param>
+    /// <returns>The interpolation result.</returns>
+    public static float SmoothStep(float value, float target, float alpha)
+    {
+        alpha = System.Math.Clamp(alpha, 0.0f, 1.0f);
+        alpha = -2.0f * alpha * alpha * alpha + 3.0f * alpha * alpha;
+        return target * alpha + value * (1.0f - alpha);
+    }
+
+    /// <summary>
+    ///     Performs smooth Hermite interpolation from one value to a target using a specified alpha.
+    /// </summary>
+    /// <param name="value">The interpolation source.</param>
+    /// <param name="target">The interpolation target.</param>
+    /// <param name="alpha">The interpolation alpha.</param>
+    /// <returns>The interpolation result.</returns>
+    public static double SmoothStep(double value, double target, double alpha)
+    {
+        alpha = System.Math.Clamp(alpha, 0.0, 1.0);
+        alpha = -2.0 * alpha * alpha * alpha + 3.0 * alpha * alpha;
+        return target * alpha + value * (1.0 - alpha);
+    }
 }
