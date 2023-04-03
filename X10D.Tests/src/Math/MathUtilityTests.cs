@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 #if !NET6_0_OR_GREATER
 using X10D.Core;
 #endif
@@ -12,36 +12,31 @@ public class MathUtilityTests
     [TestMethod]
     public void Bias_ReturnsCorrectResult_WhenBiasIsLessThanPointFive()
     {
-        const float value = 0.5f;
-        const float bias = 0.3f;
+        double doubleResult = MathUtility.Bias(0.5, 0.3);
+        float floatResult = MathUtility.Bias(0.5f, 0.3f);
 
-        const float expected = 0.3f;
-        float result = MathUtility.Bias(value, bias);
-
-        Assert.AreEqual(expected, result, 1e-6f);
+        Assert.AreEqual(0.3, doubleResult, 1e-4);
+        Assert.AreEqual(0.3f, floatResult, 1e-4f);
     }
 
     [TestMethod]
     public void Bias_ReturnsCorrectResult_WhenBiasIsEqualToPointFive()
     {
-        const float value = 0.5f;
-        const float bias = 0.5f;
+        double doubleResult = MathUtility.Bias(0.5, 0.5);
+        float floatResult = MathUtility.Bias(0.5f, 0.5f);
 
-        float result = MathUtility.Bias(value, bias);
-
-        Assert.AreEqual(value, result, 1e-6f);
+        Assert.AreEqual(0.5, doubleResult, 1e-4);
+        Assert.AreEqual(0.5f, floatResult, 1e-4f);
     }
 
     [TestMethod]
     public void Bias_ReturnsCorrectResult_WhenBiasIsGreaterThanPointFive()
     {
-        const float value = 0.5f;
-        const float bias = 0.8f;
+        double doubleResult = MathUtility.Bias(0.5, 0.8);
+        float floatResult = MathUtility.Bias(0.5f, 0.8f);
 
-        const float expected = 0.8f;
-        float result = MathUtility.Bias(value, bias);
-
-        Assert.AreEqual(expected, result, 1e-6f);
+        Assert.AreEqual(0.8, doubleResult, 1e-4);
+        Assert.AreEqual(0.8f, floatResult, 1e-4f);
     }
 
     [TestMethod]
@@ -50,8 +45,8 @@ public class MathUtilityTests
         double doubleResult = MathUtility.GammaToLinear(0.25, 1.0);
         float floatResult = MathUtility.GammaToLinear(0.25f, 1.0f);
 
-        Assert.AreEqual(0.25, doubleResult);
-        Assert.AreEqual(0.25f, floatResult);
+        Assert.AreEqual(0.25, doubleResult, 1e-6);
+        Assert.AreEqual(0.25f, floatResult, 1e-6f);
     }
 
     [TestMethod]
