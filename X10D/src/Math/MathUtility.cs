@@ -40,6 +40,30 @@ public static class MathUtility
     }
 
     /// <summary>
+    ///     Calculates exponential decay for a value.
+    /// </summary>
+    /// <param name="value">The value to decay.</param>
+    /// <param name="alpha">A factor by which to scale the decay.</param>
+    /// <param name="decay">The decay amount.</param>
+    /// <returns>The exponentially decayed value.</returns>
+    public static float ExponentialDecay(float value, float alpha, float decay)
+    {
+        return value * MathF.Exp(-decay * alpha);
+    }
+
+    /// <summary>
+    ///     Calculates exponential decay for a value.
+    /// </summary>
+    /// <param name="value">The value to decay.</param>
+    /// <param name="alpha">A factor by which to scale the decay.</param>
+    /// <param name="decay">The decay amount.</param>
+    /// <returns>The exponentially decayed value.</returns>
+    public static double ExponentialDecay(double value, double alpha, double decay)
+    {
+        return value * System.Math.Exp(-decay * alpha);
+    }
+
+    /// <summary>
     ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
     /// </summary>
     /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
