@@ -5,7 +5,7 @@ namespace X10D.Tests.Math;
 
 [TestClass]
 [CLSCompliant(false)]
-public class UInt64Tests
+public partial class UInt64Tests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()
@@ -36,11 +36,33 @@ public class UInt64Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const ulong first = 5UL;
+        const ulong second = 7UL;
+
+        ulong multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1UL, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const ulong first = 12UL;
+        const ulong second = 18UL;
+
+        ulong multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6UL, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const ulong one = 1;
         const ulong two = 2;
-        
+
         Assert.IsFalse(one.IsEven());
         Assert.IsTrue(two.IsEven());
     }
@@ -50,9 +72,66 @@ public class UInt64Tests
     {
         const ulong one = 1;
         const ulong two = 2;
-        
+
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const ulong value1 = 2;
+        const ulong value2 = 3;
+        const ulong expected = 6;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const ulong value1 = 0;
+        const ulong value2 = 10;
+        const ulong expected = 0;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const ulong value1 = 1;
+        const ulong value2 = 10;
+        const ulong expected = 10;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const ulong value1 = 5;
+        const ulong value2 = 5;
+        const ulong expected = 5;
+
+        ulong result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, 10UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 201UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 200UL.MultiplicativePersistence());
+        Assert.AreEqual(1, 20007UL.MultiplicativePersistence());
     }
 
     [TestMethod]

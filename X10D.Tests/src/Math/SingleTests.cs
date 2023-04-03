@@ -5,7 +5,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestClass]
-public class SingleTests
+public partial class SingleTests
 {
     [TestMethod]
     public void DegreesToRadians_ShouldBeCorrect()
@@ -29,7 +29,6 @@ public class SingleTests
         Assert.AreEqual(12.0f, 0.20943952f.RadiansToDegrees(), 1e-6f);
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     [TestMethod]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()
     {
@@ -61,7 +60,6 @@ public class SingleTests
     {
         Assert.AreEqual(Complex.NaN, float.NaN.ComplexSqrt());
     }
-#endif
 
     [TestMethod]
     public void IsEven_ShouldBeFalse_GivenOddNumber()
@@ -115,6 +113,24 @@ public class SingleTests
         Assert.AreEqual(5.0f, 3.5f.Round(5), 1e-6f);
         Assert.AreEqual(5.0f, 7.0f.Round(5), 1e-6f);
         Assert.AreEqual(10.0f, 7.5f.Round(5), 1e-6f);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
+    {
+        Assert.AreEqual(1.0f, 1.5f.Saturate(), 1e-6f);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo0_GivenLessThan0()
+    {
+        Assert.AreEqual(0.0f, (-0.5f).Saturate(), 1e-6f);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
+    {
+        Assert.AreEqual(0.5f, 0.5f.Saturate(), 1e-6f);
     }
 
     [TestMethod]

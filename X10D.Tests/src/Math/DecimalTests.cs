@@ -5,9 +5,8 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestClass]
-public class DecimalTests
+public partial class DecimalTests
 {
-#if NETCOREAPP3_0_OR_GREATER
     [TestMethod]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()
     {
@@ -26,7 +25,6 @@ public class DecimalTests
         Assert.AreEqual(new Complex(0, 3.0), (-9.0m).ComplexSqrt());
         Assert.AreEqual(new Complex(0, 4.0), (-16.0m).ComplexSqrt());
     }
-#endif
 
     [TestMethod]
     public void IsEven_ShouldBeFalse_GivenOddNumber()
@@ -80,6 +78,24 @@ public class DecimalTests
         Assert.AreEqual(5.0m, 3.5m.Round(5));
         Assert.AreEqual(5.0m, 7.0m.Round(5));
         Assert.AreEqual(10.0m, 7.5m.Round(5));
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
+    {
+        Assert.AreEqual(1.0m, 1.5m.Saturate(), 1e-6m);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldClampValueTo0_GivenLessThan0()
+    {
+        Assert.AreEqual(0.0m, (-0.5m).Saturate(), 1e-6m);
+    }
+
+    [TestMethod]
+    public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
+    {
+        Assert.AreEqual(0.5m, 0.5m.Saturate(), 1e-6m);
     }
 
     [TestMethod]

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Time;
@@ -19,6 +20,7 @@ public static class DateTimeOffsetExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
+    [ExcludeFromCodeCoverage]
     public static int Age(this DateTimeOffset value)
     {
         return value.Age(DateTime.Today);
@@ -82,6 +84,25 @@ public static class DateTimeOffsetExtensions
     public static DateTimeOffset FirstDayOfMonth(this DateTimeOffset value)
     {
         return value.AddDays(1 - value.Day);
+    }
+
+    /// <summary>
+    ///     Gets the ISO-8601 week number of the year for the current date.
+    /// </summary>
+    /// <param name="value">The date whose week number to return.</param>
+    /// <returns>The ISO-8601 week number of the year.</returns>
+    /// <author>Shawn Steele, Microsoft</author>
+    /// <remarks>
+    ///     This implementation is directly inspired from a
+    ///     <a href="https://docs.microsoft.com/en-gb/archive/blogs/shawnste/iso-8601-week-of-year-format-in-microsoft-net">
+    ///         blog post
+    ///     </a>.
+    ///     about this subject.
+    /// </remarks>
+    [Pure]
+    public static int GetIso8601WeekOfYear(this DateTimeOffset value)
+    {
+        return value.DateTime.GetIso8601WeekOfYear();
     }
 
     /// <summary>

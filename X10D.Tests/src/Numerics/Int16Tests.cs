@@ -7,6 +7,24 @@ namespace X10D.Tests.Numerics;
 public class Int16Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, ((short)0).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, ((short)0b11010101).PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe15_Given0111111111111111()
+    {
+        Assert.AreEqual(15, ((short)0b0111111111111111).PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const short value = 2896;     // 00001011 01010000
@@ -40,5 +58,30 @@ public class Int16Tests
     {
         const short value = 2896; // 00001011 01010000
         Assert.AreEqual(value, value.RotateRight(16));
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
+    {
+        Assert.AreEqual(4, ((short)3).RoundUpToPowerOf2());
+        Assert.AreEqual(8, ((short)5).RoundUpToPowerOf2());
+        Assert.AreEqual(8, ((short)6).RoundUpToPowerOf2());
+        Assert.AreEqual(8, ((short)7).RoundUpToPowerOf2());
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
+    {
+        for (var i = 0; i < 8; i++)
+        {
+            var value = (short)System.Math.Pow(2, i);
+            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+        }
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturn0_Given0()
+    {
+        Assert.AreEqual(0, ((short)0).RoundUpToPowerOf2());
     }
 }

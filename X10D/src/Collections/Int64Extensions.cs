@@ -17,9 +17,9 @@ public static class Int64Extensions
     [Pure]
     public static bool[] Unpack(this long value)
     {
-        Span<bool> buffer = stackalloc bool[Size];
-        value.Unpack(buffer);
-        return buffer.ToArray();
+        var ret = new bool[Size];
+        value.Unpack(ret);
+        return ret;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public static class Int64Extensions
     {
         if (destination.Length < Size)
         {
-            throw new ArgumentException($"Destination must be at least {Size} in length.", nameof(destination));
+            throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
         for (var index = 0; index < Size; index++)

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -63,6 +63,23 @@ public static class Int32Extensions
     }
 
     /// <summary>
+    ///     Calculates the greatest common factor between the current 32-bit signed integer, and another 32-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int GreatestCommonFactor(this int value, int other)
+    {
+        return (int)((long)value).GreatestCommonFactor(other);
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -116,6 +133,23 @@ public static class Int32Extensions
     public static bool IsPrime(this int value)
     {
         return ((long)value).IsPrime();
+    }
+
+    /// <summary>
+    ///     Calculates the lowest common multiple between the current 32-bit signed integer, and another 32-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int LowestCommonMultiple(this int value, int other)
+    {
+        return (int)((long)value).LowestCommonMultiple(other);
     }
 
     /// <summary>
@@ -199,5 +233,40 @@ public static class Int32Extensions
     public static int Sign(this int value)
     {
         return System.Math.Sign(value);
+    }
+
+    /// <summary>
+    ///     Wraps the current 32-bit signed integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int Wrap(this int value, int low, int high)
+    {
+        return (int)((long)value).Wrap(low, high);
+    }
+
+    /// <summary>
+    ///     Wraps the current 32-bit signed integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static int Wrap(this int value, int length)
+    {
+        return (int)((long)value).Wrap(length);
     }
 }

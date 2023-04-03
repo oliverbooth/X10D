@@ -136,23 +136,19 @@ public static class StringExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(sourceEncoding);
+        ArgumentNullException.ThrowIfNull(destinationEncoding);
 #else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(sourceEncoding);
-#else
+
         if (sourceEncoding is null)
         {
             throw new ArgumentNullException(nameof(sourceEncoding));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(destinationEncoding);
-#else
+
         if (destinationEncoding is null)
         {
             throw new ArgumentNullException(nameof(destinationEncoding));
@@ -160,6 +156,207 @@ public static class StringExtensions
 #endif
 
         return value.GetBytes(sourceEncoding).ToString(destinationEncoding);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this Span<char> haystack, char needle)
+    {
+        return CountSubstring((ReadOnlySpan<char>)haystack, needle);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current character span.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this ReadOnlySpan<char> haystack, char needle)
+    {
+        var count = 0;
+
+        for (var index = 0; index < haystack.Length; index++)
+        {
+            if (haystack[index] == needle)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a character within the current string.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The character to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, char needle)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(haystack);
+#else
+        if (haystack is null)
+        {
+            throw new ArgumentNullException(nameof(haystack));
+        }
+#endif
+
+        return haystack.AsSpan().CountSubstring(needle);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current string.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The substring to count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, string? needle)
+    {
+        return CountSubstring(haystack, needle, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Counts the occurrences of a substring within the current string, using a specified string comparison method.
+    /// </summary>
+    /// <param name="haystack">The haystack search space.</param>
+    /// <param name="needle">The substring to count.</param>
+    /// <param name="comparison">The string comparison method used for determining substring count.</param>
+    /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
+    public static int CountSubstring(this string haystack, string? needle, StringComparison comparison)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(haystack);
+#else
+        if (haystack is null)
+        {
+            throw new ArgumentNullException(nameof(haystack));
+        }
+#endif
+
+        if (string.IsNullOrWhiteSpace(needle))
+        {
+            return 0;
+        }
+
+        return haystack.AsSpan().CountSubstring(needle, comparison);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, char substring)
+    {
+        return EnsureEndsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, char substring, StringComparison comparisonType)
+    {
+        return EnsureEndsWith(value, substring.ToString(), comparisonType);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, string substring)
+    {
+        return EnsureEndsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureEndsWith(this string? value, string substring, StringComparison comparisonType)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return substring;
+        }
+
+        if (value.EndsWith(substring, comparisonType))
+        {
+            return value;
+        }
+
+        return value + substring;
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, char substring)
+    {
+        return EnsureStartsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, char substring, StringComparison comparisonType)
+    {
+        return EnsureStartsWith(value, substring.ToString(), comparisonType);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, string substring)
+    {
+        return EnsureStartsWith(value, substring, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    ///     Ensures that the current string starts with a specified substring.
+    /// </summary>
+    /// <param name="value">The string to check.</param>
+    /// <param name="substring">The substring to prepend, if the current string does not already start with it.</param>
+    /// <param name="comparisonType">One of the enumeration values that determines how the substring is compared.</param>
+    /// <returns>The combined string.</returns>
+    public static string EnsureStartsWith(this string? value, string substring, StringComparison comparisonType)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return substring;
+        }
+
+        if (value.StartsWith(substring, comparisonType))
+        {
+            return value;
+        }
+
+        return substring + value;
     }
 
     /// <summary>
@@ -217,7 +414,7 @@ public static class StringExtensions
 
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentException(Resource.EnumParseEmptyStringException, nameof(value));
+            throw new ArgumentException(ExceptionMessages.EnumParseEmptyStringException, nameof(value));
         }
 
         return Enum.Parse<T>(value, ignoreCase);
@@ -277,15 +474,13 @@ public static class StringExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(value);
+        ArgumentNullException.ThrowIfNull(encoding);
 #else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(encoding);
-#else
+
         if (encoding is null)
         {
             throw new ArgumentNullException(nameof(encoding));
@@ -321,12 +516,41 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     Returns a value indicating whether the current string represents an empty string.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is empty; otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsEmpty(this string value)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
+        return value.Length == 0;
+    }
+
+    /// <summary>
     ///     Determines if all alpha characters in this string are considered lowercase.
     /// </summary>
     /// <param name="value">The input string.</param>
     /// <returns>
     ///     <see langword="true" /> if all alpha characters in this string are lowercase; otherwise, <see langword="false" />.
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
 #if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -374,6 +598,46 @@ public static class StringExtensions
         }
 
         return true;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current string is <see langword="null" /> (<see langword="Nothing" /> in Visual
+    ///     Basic), or represents an empty string.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is <see langword="null" /> or empty; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsNullOrEmpty([NotNullWhen(false)] this string? value)
+    {
+        return string.IsNullOrEmpty(value);
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current string is <see langword="null" /> (<see langword="Nothing" /> in Visual
+    ///     Basic), represents an empty string, or consists of only whitespace characters.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is <see langword="null" />, empty, or consists of only
+    ///     whitespace; otherwise, <see langword="false" />.
+    /// </returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? value)
+    {
+        return string.IsNullOrWhiteSpace(value);
     }
 
     /// <summary>
@@ -508,6 +772,49 @@ public static class StringExtensions
                 return false;
             }
 #endif
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///     Returns a value indicating whether the current string represents an empty string, or consists of only whitespace
+    ///     characters.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is empty or consists of only whitespace; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static bool IsWhiteSpace(this string value)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(value);
+#else
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+#endif
+
+        if (value.Length == 0)
+        {
+            return true;
+        }
+
+        for (var index = 0; index < value.Length; index++)
+        {
+            if (!char.IsWhiteSpace(value[index]))
+            {
+                return false;
+            }
         }
 
         return true;
@@ -719,6 +1026,84 @@ public static class StringExtensions
         {
             yield return value[i..System.Math.Min(i + chunkSize, value.Length)];
         }
+    }
+
+    /// <summary>
+    ///     Determines whether the beginning of this string instance matches any of the specified strings using the current
+    ///     culture for comparison.
+    /// </summary>
+    /// <param name="value">The value to compare.</param>
+    /// <param name="startValues">An array of string to compare.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> starts with any of the <paramref name="startValues" />;
+    ///     otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="startValues" />, or at least one of its elements, is <see langword="null" />.
+    /// </exception>
+    public static bool StartsWithAny(this string? value, params string[] startValues)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(startValues);
+#else
+        if (startValues is null)
+        {
+            throw new ArgumentNullException(nameof(startValues));
+        }
+#endif
+
+        if (startValues.Length == 0 || string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        return value.StartsWithAny(StringComparison.CurrentCulture, startValues);
+    }
+
+    /// <summary>
+    ///     Determines whether the beginning of this string instance matches any of the specified strings when compared using the
+    ///     specified comparison option.
+    /// </summary>
+    /// <param name="value">The value to compare.</param>
+    /// <param name="comparison">One of the enumeration values that determines how this string and value are compared.</param>
+    /// <param name="startValues">An array of string to compare.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> starts with any of the <paramref name="startValues" />;
+    ///     otherwise, <see langword="false" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="startValues" />, or at least one of its elements, is <see langword="null" />.
+    /// </exception>
+    public static bool StartsWithAny(this string? value, StringComparison comparison, params string[] startValues)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(startValues);
+#else
+        if (startValues is null)
+        {
+            throw new ArgumentNullException(nameof(startValues));
+        }
+#endif
+
+        if (startValues.Length == 0 || string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        for (var index = 0; index < startValues.Length; index++)
+        {
+            if (startValues[index] is null)
+            {
+                throw new ArgumentNullException(nameof(startValues));
+            }
+
+            if (value.StartsWith(startValues[index], comparison))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

@@ -58,14 +58,8 @@ public static class ArrayExtensions
         }
 #endif
 
-        int index = range.Start.Value;
-        int end = range.End.Value;
-        if (range.End.IsFromEnd)
-        {
-            end = array.Length - end;
-        }
-
-        array.Clear(index, end - index);
+        (int offset, int length) = range.GetOffsetAndLength(array.Length);
+        array.Clear(offset, length);
     }
 
     /// <summary>

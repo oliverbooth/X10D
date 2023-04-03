@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28902.138
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CONTRIBUTING.md = CONTRIBUTING.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md
-		icon.png = icon.png
+		branding_Icon.png = branding_Icon.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.SourceValidator", "X10D.SourceValidator\X10D.SourceValidator.csproj", "{84750149-9068-4780-AFDE-CDA1AC57007D}"
@@ -23,6 +23,25 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Unity", "X10D.Unity\X10D.Unity.csproj", "{7EAB3F09-A9FD-4334-B4DB-0394DD0C6568}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.SourceGenerator", "X10D.SourceGenerator\X10D.SourceGenerator.csproj", "{077A5D33-AD55-4C55-8A67-972CEBC32C7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.DSharpPlus", "X10D.DSharpPlus\X10D.DSharpPlus.csproj", "{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Hosting", "X10D.Hosting\X10D.Hosting.csproj", "{B04AF429-30CF-4B69-81BA-38F560CA9126}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{1FC74E58-F3BA-4F1A-8693-5F80895DA69D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\activate-unity.yml = .github\workflows\activate-unity.yml
+		.github\workflows\docfx.yml = .github\workflows\docfx.yml
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\nightly.yml = .github\workflows\nightly.yml
+		.github\workflows\prerelease.yml = .github\workflows\prerelease.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\sonarcloud.yml = .github\workflows\sonarcloud.yml
+		.github\workflows\source_validator.yml = .github\workflows\source_validator.yml
+		.github\workflows\unity.yml = .github\workflows\unity.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.UpmPackageGenerator", "X10D.UpmPackageGenerator\X10D.UpmPackageGenerator.csproj", "{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,11 +69,25 @@ Global
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F733785-8837-410C-BD91-C4AD1F0A6914}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

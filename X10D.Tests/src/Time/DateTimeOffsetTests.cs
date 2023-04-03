@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
@@ -7,12 +7,36 @@ namespace X10D.Tests.Time;
 public class DateTimeOffsetTests
 {
     [TestMethod]
-    public void Age_ShouldBeDifference_Given1Jan2000()
+    public void Age_ShouldBe17_Given31December1991Birthday_And30December2017Date()
     {
-        DateTimeOffset birthday = new DateTime(2000, 1, 1);
-        DateTimeOffset today = DateTime.Now.Date;
+        var reference = new DateTime(2017, 12, 30);
+        DateTimeOffset birthday = new DateTime(1999, 12, 31);
 
-        Assert.AreEqual(today.Year - birthday.Year, birthday.Age());
+        int age = birthday.Age(reference);
+
+        Assert.AreEqual(17, age);
+    }
+
+    [TestMethod]
+    public void Age_ShouldBe18_Given31December1991Birthday_And1January2018Date()
+    {
+        var reference = new DateTime(2018, 1, 1);
+        DateTimeOffset birthday = new DateTime(1999, 12, 31);
+
+        int age = birthday.Age(reference);
+
+        Assert.AreEqual(18, age);
+    }
+
+    [TestMethod]
+    public void Age_ShouldBe18_Given31December1991Birthday_And31December2017Date()
+    {
+        var reference = new DateTime(2017, 12, 31);
+        DateTimeOffset birthday = new DateTime(1999, 12, 31);
+
+        int age = birthday.Age(reference);
+
+        Assert.AreEqual(18, age);
     }
 
     [TestMethod]
@@ -32,9 +56,37 @@ public class DateTimeOffsetTests
     [TestMethod]
     public void FirstDayOfMonth_ShouldBe1st_GivenToday()
     {
-        DateTimeOffset today = DateTime.Now.Date;
+        DateTimeOffset today = DateTime.UtcNow.Date;
+        var first = new DateTimeOffset(today.Year, today.Month, 1, 0, 0, 0, today.Offset);
 
-        Assert.AreEqual(new DateTime(today.Year, today.Month, 1), today.FirstDayOfMonth());
+        Assert.AreEqual(first, today.FirstDayOfMonth());
+    }
+
+    [TestMethod]
+    public void GetIso8601WeekOfYear_ShouldReturn1_Given4January1970()
+    {
+        DateTimeOffset date = new DateTime(1970, 1, 4);
+        int iso8601WeekOfYear = date.GetIso8601WeekOfYear();
+
+        Assert.AreEqual(1, iso8601WeekOfYear);
+    }
+
+    [TestMethod]
+    public void GetIso8601WeekOfYear_ShouldReturn1_Given31December1969()
+    {
+        DateTimeOffset date = new DateTime(1969, 12, 31);
+        int iso8601WeekOfYear = date.GetIso8601WeekOfYear();
+
+        Assert.AreEqual(1, iso8601WeekOfYear);
+    }
+
+    [TestMethod]
+    public void GetIso8601WeekOfYear_ShouldReturn53_Given31December1970()
+    {
+        DateTimeOffset date = new DateTime(1970, 12, 31);
+        int iso8601WeekOfYear = date.GetIso8601WeekOfYear();
+
+        Assert.AreEqual(53, iso8601WeekOfYear);
     }
 
     [TestMethod]

@@ -29,7 +29,7 @@ public static class BoolListExtensions
 
         if (source.Count > 8)
         {
-            throw new ArgumentException("Source cannot contain more than than 8 elements.", nameof(source));
+            throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
         }
 
         byte result = 0;
@@ -63,7 +63,7 @@ public static class BoolListExtensions
 
         if (source.Count > 16)
         {
-            throw new ArgumentException("Source cannot contain more than than 16 elements.", nameof(source));
+            throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
         }
 
         short result = 0;
@@ -97,7 +97,7 @@ public static class BoolListExtensions
 
         if (source.Count > 32)
         {
-            throw new ArgumentException("Source cannot contain more than than 32 elements.", nameof(source));
+            throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
         }
 
         var result = 0;
@@ -131,7 +131,7 @@ public static class BoolListExtensions
 
         if (source.Count > 64)
         {
-            throw new ArgumentException("Source cannot contain more than than 64 elements.", nameof(source));
+            throw new ArgumentException(ExceptionMessages.SourceSpanIsTooLarge, nameof(source));
         }
 
         var result = 0L;

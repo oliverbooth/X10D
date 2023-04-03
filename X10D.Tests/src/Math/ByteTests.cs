@@ -4,7 +4,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestClass]
-public class ByteTests
+public partial class ByteTests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()
@@ -31,6 +31,28 @@ public class ByteTests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const byte first = 5;
+        const byte second = 7;
+
+        byte multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const byte first = 12;
+        const byte second = 18;
+
+        byte multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const byte one = 1;
@@ -48,6 +70,65 @@ public class ByteTests
 
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const byte value1 = 2;
+        const byte value2 = 3;
+        const byte expected = 6;
+
+        byte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const byte value1 = 0;
+        const byte value2 = 10;
+        const byte expected = 0;
+
+        byte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const byte value1 = 1;
+        const byte value2 = 10;
+        const byte expected = 10;
+
+        byte result1 = value1.LowestCommonMultiple(value2);
+        byte result2 = value2.LowestCommonMultiple(value1);
+
+        Assert.AreEqual(expected, result1);
+        Assert.AreEqual(expected, result2);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const byte value1 = 5;
+        const byte value2 = 5;
+        const byte expected = 5;
+
+        byte result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, ((byte)10).MultiplicativePersistence());
+        Assert.AreEqual(1, ((byte)201).MultiplicativePersistence());
+        Assert.AreEqual(1, ((byte)200).MultiplicativePersistence());
+        Assert.AreEqual(1, ((byte)207).MultiplicativePersistence());
     }
 
     [TestMethod]

@@ -9,19 +9,21 @@ namespace X10D.Math;
 /// </summary>
 public static class DecimalExtensions
 {
-#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this decimal number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>The square root of <paramref name="value" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static Complex ComplexSqrt(this decimal value)
     {
         return Complex.Sqrt((double)value);
     }
-#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
@@ -95,6 +97,23 @@ public static class DecimalExtensions
     }
 
     /// <summary>
+    ///     Saturates this decimal number.
+    /// </summary>
+    /// <param name="value">The value to saturate.</param>
+    /// <returns>The saturated value.</returns>
+    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static decimal Saturate(this decimal value)
+    {
+        return System.Math.Clamp(value, 0.0m, 1.0m);
+    }
+
+    /// <summary>
     ///     Returns an integer that indicates the sign of this decimal number.
     /// </summary>
     /// <param name="value">A signed number.</param>
@@ -133,7 +152,7 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    ///     Returns the square root of this double-precision floating-point number.
+    ///     Returns the square root of this decimal number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>
@@ -173,7 +192,7 @@ public static class DecimalExtensions
             case 0:
                 return 0;
             case < 0:
-                throw new ArgumentException("value cannot be negative", nameof(value));
+                throw new ArgumentException(ExceptionMessages.ValueCannotBeNegative, nameof(value));
         }
 
         decimal previous;
@@ -181,14 +200,45 @@ public static class DecimalExtensions
         do
         {
             previous = current;
-            if (previous == 0.0m)
-            {
-                return 0;
-            }
-
             current = (previous + value / previous) / 2;
         } while (System.Math.Abs(previous - current) > 0.0m);
 
         return current;
+    }
+
+    /// <summary>
+    ///     Wraps the current decimal number between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static decimal Wrap(this decimal value, decimal low, decimal high)
+    {
+        decimal difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current decimal number between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static decimal Wrap(this decimal value, decimal length)
+    {
+        return ((value % length) + length) % length;
     }
 }
