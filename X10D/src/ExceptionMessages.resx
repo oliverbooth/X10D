@@ -123,6 +123,12 @@
   <data name="CountMustBeInRange" xml:space="preserve">
     <value>Count must be positive and count must refer to a location within the string/array/collection.</value>
   </data>
+  <data name="CollectionIsReadOnly_DisposeAll" xml:space="preserve">
+    <value>Collection is read-only. Try using DisposeAll instead.</value>
+  </data>
+  <data name="CollectionIsReadOnly_DisposeAllAsync" xml:space="preserve">
+    <value>Collection is read-only. Try using DisposeAllAsync instead.</value>
+  </data>
   <data name="DestinationSpanLengthTooShort" xml:space="preserve">
     <value>The destination span is too short to contain the data.</value>
   </data>
@@ -137,6 +143,12 @@
   </data>
   <data name="EnumParseNotEnumException" xml:space="preserve">
     <value>Type provided must be an Enum.</value>
+  </data>
+  <data name="EnumSizeIsUnexpected" xml:space="preserve">
+    <value>The enum has a size that is not supported.</value>
+  </data>
+  <data name="ObjectIsNotAValidType" xml:space="preserve">
+    <value>The specified object is not a valid type.</value>
   </data>
   <data name="TypeIsNotClass" xml:space="preserve">
     <value>{0} is not a class.</value>
@@ -158,6 +170,9 @@
   </data>
   <data name="LengthGreaterThanOrEqualTo0" xml:space="preserve">
     <value>Length must be greater than or equal to 0.</value>
+  </data>
+  <data name="SourceContainsNoElements" xml:space="preserve">
+    <value>The source contains no elements.</value>
   </data>
   <data name="SourceSpanIsTooLarge" xml:space="preserve">
     <value>The source contains too many elements.</value>
@@ -188,5 +203,8 @@
   </data>
   <data name="UnexpectedRuneUtf8SequenceLength" xml:space="preserve">
     <value>Rune.Utf8SequenceLength returns value {0} which is outside range 1 to 4 (inclusive), which is unexpected according to the official documentation.</value>
+  </data>
+  <data name="ValueCannotBeNegative" xml:space="preserve">
+    <value>Value cannot be negative.</value>
   </data>
 </root>

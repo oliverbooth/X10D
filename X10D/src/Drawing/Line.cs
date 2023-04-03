@@ -245,7 +245,7 @@ public readonly struct Line : IEquatable<Line>, IComparable<Line>, IComparable
 
         if (obj is not Line other)
         {
-            throw new ArgumentException($"Object must be of type {GetType()}");
+            throw new ArgumentException(ExceptionMessages.ObjectIsNotAValidType);
         }
 
         return CompareTo(other);

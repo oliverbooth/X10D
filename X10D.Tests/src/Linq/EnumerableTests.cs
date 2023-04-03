@@ -233,7 +233,7 @@ public class EnumerableTests
 
             return obj is Person other
                 ? CompareTo(other)
-                : throw new ArgumentException($"Object must be of type {nameof(Person)}");
+                : throw new ArgumentException(ExceptionMessages.ObjectIsNotAValidType);
         }
     }
 }

@@ -250,7 +250,7 @@ public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, ICompar
 
         if (obj is not Line3D other)
         {
-            throw new ArgumentException($"Object must be of type {GetType()}");
+            throw new ArgumentException(ExceptionMessages.ObjectIsNotAValidType);
         }
 
         return CompareTo(other);
