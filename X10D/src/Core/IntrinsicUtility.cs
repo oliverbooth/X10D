@@ -1,5 +1,6 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
 
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
@@ -22,48 +23,25 @@ public static class IntrinsicUtility
     ///     </para>
     ///     Operation:<br/>
     ///     <code>
-    ///     dest[0] = lhs[0] * rhs[0];
-    ///     dest[1] = lhs[1] * rhs[1];
+    ///     dest[0] = left[0] * right[0];
+    ///     dest[1] = left[1] * right[1];
     ///     </code>
     /// </summary>
-    /// <param name="lhs">Left vector.</param>
-    /// <param name="rhs">Right vector.</param>
-    /// <returns>
-    /// A <see cref="Vector128{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.
-    /// </returns>
+    /// <param name="left">Left vector.</param>
+    /// <param name="right">Right vector.</param>
+    /// <returns>The truncated product vector.</returns>
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector128<ulong> Multiply(Vector128<ulong> lhs, Vector128<ulong> rhs)
+    [ExcludeFromCodeCoverage]
+    public static Vector128<ulong> Multiply(Vector128<ulong> left, Vector128<ulong> right)
     {
         if (Sse2.IsSupported)
         {
-            // https://stackoverflow.com/questions/17863411/sse-multiplication-of-2-64-bit-integers
-
-            Vector128<ulong> ac = Sse2.Multiply(lhs.AsUInt32(), rhs.AsUInt32());
-            Vector128<uint> b = Sse2.ShiftRightLogical(lhs, 32).AsUInt32();
-            Vector128<ulong> bc = Sse2.Multiply(b, rhs.AsUInt32());
-            Vector128<uint> d = Sse2.ShiftRightLogical(rhs, 32).AsUInt32();
-            Vector128<ulong> ad = Sse2.Multiply(lhs.AsUInt32(), d);
-            Vector128<ulong> high = Sse2.Add(bc, ad);
-            high = Sse2.ShiftLeftLogical(high, 32);
-
-            return Sse2.Add(high, ac);
+            return MultiplyInternal_Sse2(left, right);
         }
 
-        // TODO: AdvSimd implementation.
-        // TODO: WasmSimd implementation.
-
-        var output = GetUninitializedVector128<ulong>();
-
-        Unsafe.As<Vector128<ulong>, ulong>(ref output) =
-            Unsafe.As<Vector128<ulong>, ulong>(ref lhs) * Unsafe.As<Vector128<ulong>, ulong>(ref rhs);
-
-        Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref output), 1) =
-            Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref lhs), 1) *
-            Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref rhs), 1);
-
-        return output;
+        return MultiplyInternal_Fallback(left, right);
     }
 
     /// <summary>
@@ -72,10 +50,10 @@ public static class IntrinsicUtility
     ///     </para>
     ///     Operation:<br/>
     ///     <code>
-    ///     dest[0] = lhs[0] * rhs[0];
-    ///     dest[1] = lhs[1] * rhs[1];
-    ///     dest[2] = lhs[2] * rhs[2];
-    ///     dest[3] = lhs[3] * rhs[3];
+    ///     dest[0] = left[0] * right[0];
+    ///     dest[1] = left[1] * right[1];
+    ///     dest[2] = left[2] * right[2];
+    ///     dest[3] = left[3] * right[3];
     ///     </code>
     /// </summary>
     /// <param name="lhs">Left vector.</param>
@@ -86,33 +64,15 @@ public static class IntrinsicUtility
     [Pure]
     [CLSCompliant(false)]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [ExcludeFromCodeCoverage]
     public static Vector256<ulong> Multiply(Vector256<ulong> lhs, Vector256<ulong> rhs)
     {
         if (Avx2.IsSupported)
         {
-            // https://stackoverflow.com/questions/17863411/sse-multiplication-of-2-64-bit-integers
-
-            Vector256<ulong> ac = Avx2.Multiply(lhs.AsUInt32(), rhs.AsUInt32());
-            Vector256<uint> b = Avx2.ShiftRightLogical(lhs, 32).AsUInt32();
-            Vector256<ulong> bc = Avx2.Multiply(b, rhs.AsUInt32());
-            Vector256<uint> d = Avx2.ShiftRightLogical(rhs, 32).AsUInt32();
-            Vector256<ulong> ad = Avx2.Multiply(lhs.AsUInt32(), d);
-            Vector256<ulong> high = Avx2.Add(bc, ad);
-            high = Avx2.ShiftLeftLogical(high, 32);
-
-            return Avx2.Add(high, ac);
+            return MultiplyInternal_Avx2(lhs, rhs);
         }
 
-        var output = GetUninitializedVector256<ulong>();
-
-        for (int i = 0; i < Vector256<ulong>.Count; i++)
-        {
-            Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref output), i) =
-                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref lhs), i) *
-                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref rhs), i);
-        }
-
-        return output;
+        return MultiplyInternal_Fallback(lhs, rhs);
     }
 
     /// <summary>
@@ -121,8 +81,8 @@ public static class IntrinsicUtility
     ///     </para>
     ///     Operation:<br/>
     ///     <code>
-    ///     dest[0] = lhs[0] * rhs[0];
-    ///     dest[1] = lhs[1] * rhs[1];
+    ///     dest[0] = left[0] * right[0];
+    ///     dest[1] = left[1] * right[1];
     ///     </code>
     /// </summary>
     /// <param name="lhs">Left vector.</param>
@@ -143,10 +103,10 @@ public static class IntrinsicUtility
     ///     </para>
     ///     Operation:<br/>
     ///     <code>
-    ///     dest[0] = lhs[0] * rhs[0];
-    ///     dest[1] = lhs[1] * rhs[1];
-    ///     dest[2] = lhs[2] * rhs[2];
-    ///     dest[3] = lhs[3] * rhs[3];
+    ///     dest[0] = left[0] * right[0];
+    ///     dest[1] = left[1] * right[1];
+    ///     dest[2] = left[2] * right[2];
+    ///     dest[3] = left[3] * right[3];
     ///     </code>
     /// </summary>
     /// <param name="lhs">Left vector.</param>
@@ -168,77 +128,32 @@ public static class IntrinsicUtility
     ///     </para>
     ///     Operation:<br/>
     ///     <code>
-    ///     dest[0] = lhs[0] | lhs[1];
-    ///     dest[1] = lhs[2] | lhs[3];
-    ///     dest[2] = rhs[0] | rhs[1];
-    ///     dest[3] = rhs[2] | rhs[3];
+    ///     dest[0] = left[0] | left[1];
+    ///     dest[1] = left[2] | left[3];
+    ///     dest[2] = right[0] | right[1];
+    ///     dest[3] = right[2] | right[3];
     ///     </code>
     /// </summary>
-    /// <param name="lhs">Left vector.</param>
-    /// <param name="rhs">Right vector.</param>
+    /// <param name="left">Left vector.</param>
+    /// <param name="right">Right vector.</param>
     /// <returns>
     /// A <see cref="Vector128{T}"/> of <see langword="float"/> with all elements is result of OR operation on adjacent pairs of
     /// elements in lhs and rhs.
     /// </returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector128<float> HorizontalOr(Vector128<float> lhs, Vector128<float> rhs)
+    [ExcludeFromCodeCoverage]
+    public static Vector128<int> HorizontalOr(Vector128<int> left, Vector128<int> right)
     {
         if (Sse.IsSupported)
         {
-            var s1 = Sse.Shuffle(lhs, rhs, 0b10_00_10_00); // s1 = { lhs[0] ; lhs[2] ; rhs[0] ; rhs[2] }
-            var s2 = Sse.Shuffle(lhs, rhs, 0b11_01_11_01); // s2 = { lhs[1] ; lhs[3] ; rhs[1] ; rhs[3] }
-
-            return Sse.Or(s1, s2);
+            return HorizontalOr_Sse(left, right);
         }
 
         // TODO: AdvSimd implementation.
         // TODO: WasmSimd implementation. (?)
 
-        Vector128<float> output = GetUninitializedVector128<float>();
-
-        Unsafe.As<Vector128<float>, uint>(ref output) =
-            Unsafe.As<Vector128<float>, uint>(ref lhs) |
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 1);
-
-        Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 1) =
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 2) |
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref lhs), 3);
-
-        Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 2) =
-            Unsafe.As<Vector128<float>, uint>(ref rhs) |
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 1);
-
-        Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref output), 3) =
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 2) |
-            Unsafe.Add(ref Unsafe.As<Vector128<float>, uint>(ref rhs), 3);
-
-        return output;
-    }
-
-    /// <summary>
-    ///     <para>
-    ///     Horizontally apply OR operation on adjacent pairs of 32-bit integer elements in lhs and rhs.
-    ///     </para>
-    ///     Operation:<br/>
-    ///     <code>
-    ///     dest[0] = lhs[0] | lhs[1];
-    ///     dest[1] = lhs[2] | lhs[3];
-    ///     dest[2] = rhs[0] | rhs[1];
-    ///     dest[3] = rhs[2] | rhs[3];
-    ///     </code>
-    /// </summary>
-    /// <param name="lhs">Left vector.</param>
-    /// <param name="rhs">Right vector.</param>
-    /// <returns>
-    /// A <see cref="Vector128{T}"/> of <see langword="int"/> with all elements is result of OR operation on adjacent pairs of
-    /// elements in lhs and rhs.
-    /// </returns>
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-    public static Vector128<int> HorizontalOr(Vector128<int> lhs, Vector128<int> rhs)
-    {
-        return HorizontalOr(lhs.AsSingle(), rhs.AsSingle()).AsInt32();
+        return HorizontalOrInternal_Fallback(left, right);
     }
 
     /// <summary>
@@ -247,14 +162,14 @@ public static class IntrinsicUtility
     ///     </para>
     ///     Operation:<br/>
     ///     <code>
-    ///     dest[0] = lhs[0] | lhs[1];
-    ///     dest[1] = lhs[2] | lhs[3];
-    ///     dest[2] = rhs[0] | rhs[1];
-    ///     dest[3] = rhs[2] | rhs[3];
+    ///     dest[0] = left[0] | left[1];
+    ///     dest[1] = left[2] | left[3];
+    ///     dest[2] = right[0] | right[1];
+    ///     dest[3] = right[2] | right[3];
     ///     </code>
     /// </summary>
-    /// <param name="lhs">Left vector.</param>
-    /// <param name="rhs">Right vector.</param>
+    /// <param name="left">Left vector.</param>
+    /// <param name="right">Right vector.</param>
     /// <returns>
     /// A <see cref="Vector128{T}"/> of <see langword="uint"/> with all elements is result of OR operation on adjacent pairs of
     /// elements in lhs and rhs.
@@ -262,9 +177,9 @@ public static class IntrinsicUtility
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     [CLSCompliant(false)]
-    public static Vector128<uint> HorizontalOr(Vector128<uint> lhs, Vector128<uint> rhs)
+    public static Vector128<uint> HorizontalOr(Vector128<uint> left, Vector128<uint> right)
     {
-        return HorizontalOr(lhs.AsSingle(), rhs.AsSingle()).AsUInt32();
+        return HorizontalOr(left.AsInt32(), right.AsInt32()).AsUInt32();
     }
 
     // Helper methods
@@ -299,6 +214,109 @@ public static class IntrinsicUtility
 #else
         return default;
 #endif
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<int> HorizontalOr_Sse(Vector128<int> left, Vector128<int> right)
+    {
+        Vector128<float> leftSingle = left.AsSingle();
+        Vector128<float> rightSingle = right.AsSingle();
+
+        // first = { left[0] ; left[2] ; right[0] ; right[2] }
+        // second = { left[1] ; left[3] ; right[1] ; right[3] }
+        Vector128<float> first = Sse.Shuffle(leftSingle, rightSingle, 0b10_00_10_00);
+        Vector128<float> second = Sse.Shuffle(leftSingle, rightSingle, 0b11_01_11_01);
+
+        return Sse.Or(first, second).AsInt32();
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<int> HorizontalOrInternal_Fallback(Vector128<int> left, Vector128<int> right)
+    {
+        Vector128<int> output = GetUninitializedVector128<int>();
+
+        ref int outputInteger = ref Unsafe.As<Vector128<int>, int>(ref output);
+        ref int leftInteger = ref Unsafe.As<Vector128<int>, int>(ref left);
+        ref int rightInteger = ref Unsafe.As<Vector128<int>, int>(ref right);
+
+        outputInteger = leftInteger | Unsafe.Add(ref leftInteger, 1);
+
+        Unsafe.Add(ref outputInteger, 1) = Unsafe.Add(ref leftInteger, 2) | Unsafe.Add(ref leftInteger, 3);
+        Unsafe.Add(ref outputInteger, 2) = rightInteger | Unsafe.Add(ref rightInteger, 1);
+        Unsafe.Add(ref outputInteger, 3) = Unsafe.Add(ref rightInteger, 2) | Unsafe.Add(ref rightInteger, 3);
+
+        return output;
+    }
+
+    [Pure]
+    [CLSCompliant(false)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<ulong> MultiplyInternal_Fallback(Vector128<ulong> left, Vector128<ulong> right)
+    {
+        ulong leftInteger1 = Unsafe.As<Vector128<ulong>, ulong>(ref left);
+        ulong rightInteger1 = Unsafe.As<Vector128<ulong>, ulong>(ref right);
+        ulong result1 = leftInteger1 * rightInteger1;
+
+        ulong leftInteger2 = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref left), 1);
+        ulong rightInteger2 = Unsafe.Add(ref Unsafe.As<Vector128<ulong>, ulong>(ref right), 1);
+        ulong result2 = leftInteger2 * rightInteger2;
+
+        Vector128<ulong> output = Vector128.Create(result1, result2);
+
+        return output;
+    }
+
+    [Pure]
+    [CLSCompliant(false)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector128<ulong> MultiplyInternal_Sse2(Vector128<ulong> left, Vector128<ulong> right)
+    {
+        // https://stackoverflow.com/questions/17863411/sse-multiplication-of-2-64-bit-integers
+
+        Vector128<ulong> ac = Sse2.Multiply(left.AsUInt32(), right.AsUInt32());
+        Vector128<uint> b = Sse2.ShiftRightLogical(left, 32).AsUInt32();
+        Vector128<ulong> bc = Sse2.Multiply(b, right.AsUInt32());
+        Vector128<uint> d = Sse2.ShiftRightLogical(right, 32).AsUInt32();
+        Vector128<ulong> ad = Sse2.Multiply(left.AsUInt32(), d);
+        Vector128<ulong> high = Sse2.Add(bc, ad);
+        high = Sse2.ShiftLeftLogical(high, 32);
+
+        return Sse2.Add(high, ac);
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector256<ulong> MultiplyInternal_Fallback(Vector256<ulong> left, Vector256<ulong> right)
+    {
+        Vector256<ulong> output = GetUninitializedVector256<ulong>();
+
+        for (var index = 0; index < Vector256<ulong>.Count; index++)
+        {
+            Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref output), index) =
+                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref left), index) *
+                Unsafe.Add(ref Unsafe.As<Vector256<ulong>, ulong>(ref right), index);
+        }
+
+        return output;
+    }
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    internal static Vector256<ulong> MultiplyInternal_Avx2(Vector256<ulong> left, Vector256<ulong> right)
+    {
+        // https://stackoverflow.com/questions/17863411/sse-multiplication-of-2-64-bit-integers
+
+        Vector256<ulong> ac = Avx2.Multiply(left.AsUInt32(), right.AsUInt32());
+        Vector256<uint> b = Avx2.ShiftRightLogical(left, 32).AsUInt32();
+        Vector256<ulong> bc = Avx2.Multiply(b, right.AsUInt32());
+        Vector256<uint> d = Avx2.ShiftRightLogical(right, 32).AsUInt32();
+        Vector256<ulong> ad = Avx2.Multiply(left.AsUInt32(), d);
+        Vector256<ulong> high = Avx2.Add(bc, ad);
+        high = Avx2.ShiftLeftLogical(high, 32);
+
+        return Avx2.Add(high, ac);
     }
 }
 
