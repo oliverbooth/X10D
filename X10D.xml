@@ -3740,12 +3740,6 @@
             </summary>
             <value>An empty polyhedron.</value>
         </member>
-        <member name="P:X10D.Drawing.Polyhedron.IsConvex">
-            <summary>
-                Returns a value indicating whether this polyhedron is convex.
-            </summary>
-            <value><see langword="true" /> if this polyhedron is convex; otherwise, <see langword="false" />.</value>
-        </member>
         <member name="P:X10D.Drawing.Polyhedron.VertexCount">
             <summary>
                 Gets the number of vertices in this polyhedron.
