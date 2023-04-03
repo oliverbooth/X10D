@@ -164,6 +164,78 @@ public class MathUtilityTests
     }
 
     [TestMethod]
+    public void Pulse_ShouldReturn1_GivenDoubleValueWithinBounds()
+    {
+        const double value = 0.5;
+        const double lower = 0.0;
+        const double upper = 1.0;
+
+        double result = MathUtility.Pulse(value, lower, upper);
+
+        Assert.AreEqual(1.0, result, 1e-6);
+    }
+
+    [TestMethod]
+    public void Pulse_ShouldReturn0_GivenDoubleValueLessThanLowerBound()
+    {
+        const double value = -1.0;
+        const double lower = 0.0;
+        const double upper = 1.0;
+
+        double result = MathUtility.Pulse(value, lower, upper);
+
+        Assert.AreEqual(0.0, result, 1e-6);
+    }
+
+    [TestMethod]
+    public void Pulse_ShouldReturn0_GivenDoubleValueGreaterThanUpperBound()
+    {
+        const double value = 2.0;
+        const double lower = 0.0;
+        const double upper = 1.0;
+
+        double result = MathUtility.Pulse(value, lower, upper);
+
+        Assert.AreEqual(0.0, result, 1e-6);
+    }
+
+    [TestMethod]
+    public void Pulse_ShouldReturn1_GivenSingleValueWithinBounds()
+    {
+        const float value = 0.5f;
+        const float lower = 0.0f;
+        const float upper = 1.0f;
+
+        float result = MathUtility.Pulse(value, lower, upper);
+
+        Assert.AreEqual(1.0f, result, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Pulse_ShouldReturn0_GivenSingleValueLessThanLowerBound()
+    {
+        const float value = -1.0f;
+        const float lower = 0.0f;
+        const float upper = 1.0f;
+
+        float result = MathUtility.Pulse(value, lower, upper);
+
+        Assert.AreEqual(0.0f, result, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Pulse_ShouldReturn0_GivenSingleValueGreaterThanUpperBound()
+    {
+        const float value = 2.0f;
+        const float lower = 0.0f;
+        const float upper = 1.0f;
+
+        float result = MathUtility.Pulse(value, lower, upper);
+
+        Assert.AreEqual(0.0f, result, 1e-6f);
+    }
+
+    [TestMethod]
     public void Sawtooth_ShouldReturn0Point5_Given0Point5AsDouble()
     {
         const double value = 0.5;

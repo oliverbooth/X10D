@@ -288,6 +288,54 @@ public static class MathUtility
     }
 
     /// <summary>
+    ///     Returns the pulse wave for a given value.
+    /// </summary>
+    /// <param name="value">The value to calculate.</param>
+    /// <param name="lowerBound">The inclusive lower bound of the pulse.</param>
+    /// <param name="upperBound">The inclusive upper bound of the pulse.</param>
+    /// <returns>
+    ///     1 if <paramref name="value" /> lies between <paramref name="lowerBound" /> and <paramref name="upperBound" />;
+    ///     otherwise, 0.
+    /// </returns>
+    public static float Pulse(float value, float lowerBound, float upperBound)
+    {
+        bool result = lowerBound <= value && value <= upperBound;
+#if NET6_0_OR_GREATER
+        return Unsafe.As<bool, int>(ref result);
+#else
+        unsafe
+        {
+            var pResult = (int*)&result;
+            return *pResult;
+        }
+#endif
+    }
+
+    /// <summary>
+    ///     Returns the pulse wave for a given value.
+    /// </summary>
+    /// <param name="value">The value to calculate.</param>
+    /// <param name="lowerBound">The inclusive lower bound of the pulse.</param>
+    /// <param name="upperBound">The inclusive upper bound of the pulse.</param>
+    /// <returns>
+    ///     1 if <paramref name="value" /> lies between <paramref name="lowerBound" /> and <paramref name="upperBound" />;
+    ///     otherwise, 0.
+    /// </returns>
+    public static double Pulse(double value, double lowerBound, double upperBound)
+    {
+        bool result = lowerBound <= value && value <= upperBound;
+#if NET6_0_OR_GREATER
+        return Unsafe.As<bool, int>(ref result);
+#else
+        unsafe
+        {
+            var pResult = (int*)&result;
+            return *pResult;
+        }
+#endif
+    }
+
+    /// <summary>
     ///     Returns the incremental sawtooth wave of a given value.
     /// </summary>
     /// <param name="value">The value to calculate.</param>
