@@ -4,32 +4,6 @@
         <name>X10D</name>
     </assembly>
     <members>
-        <member name="T:X10D.Resource">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:X10D.Resource.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:X10D.Resource.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:X10D.Resource.EnumParseEmptyStringException">
-            <summary>
-              Looks up a localized string similar to Must specify valid information for parsing in the string..
-            </summary>
-        </member>
-        <member name="P:X10D.Resource.EnumParseNotEnumException">
-            <summary>
-              Looks up a localized string similar to Type provided must be an Enum..
-            </summary>
-        </member>
         <member name="T:X10D.Collections.ArrayExtensions">
             <summary>
                 Extension methods for <see cref="T:System.Array" />.
@@ -4148,6 +4122,16 @@
               Looks up a localized string similar to The buffer is too small to contain the data..
             </summary>
         </member>
+        <member name="P:X10D.ExceptionMessages.CollectionIsReadOnly_DisposeAll">
+            <summary>
+              Looks up a localized string similar to Collection is read-only. Try using DisposeAll instead..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.CollectionIsReadOnly_DisposeAllAsync">
+            <summary>
+              Looks up a localized string similar to Collection is read-only. Try using DisposeAllAsync instead..
+            </summary>
+        </member>
         <member name="P:X10D.ExceptionMessages.CountMustBeGreaterThanOrEqualTo0">
             <summary>
               Looks up a localized string similar to count must be greater than or equal to 0..
@@ -4171,6 +4155,21 @@
         <member name="P:X10D.ExceptionMessages.EndIndexLessThanStartIndex">
             <summary>
               Looks up a localized string similar to The end index must be greater than or equal to the start index..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.EnumParseEmptyStringException">
+            <summary>
+              Looks up a localized string similar to Must specify valid information for parsing in the string..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.EnumParseNotEnumException">
+            <summary>
+              Looks up a localized string similar to Type provided must be an Enum..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.EnumSizeIsUnexpected">
+            <summary>
+              Looks up a localized string similar to The enum has a size that is not supported..
             </summary>
         </member>
         <member name="P:X10D.ExceptionMessages.HashAlgorithmCreateReturnedNull">
@@ -4206,6 +4205,16 @@
         <member name="P:X10D.ExceptionMessages.MaxValueGreaterThanEqualToMinValue">
             <summary>
               Looks up a localized string similar to maxValue must be greater than or equal to minValue.
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.ObjectIsNotAValidType">
+            <summary>
+              Looks up a localized string similar to The specified object is not a valid type..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.SourceContainsNoElements">
+            <summary>
+              Looks up a localized string similar to The source contains no elements..
             </summary>
         </member>
         <member name="P:X10D.ExceptionMessages.SourceSpanIsTooLarge">
@@ -4246,6 +4255,11 @@
         <member name="P:X10D.ExceptionMessages.UnexpectedRuneUtf8SequenceLength">
             <summary>
               Looks up a localized string similar to Rune.Utf8SequenceLength returns value {0} which is outside range 1 to 4 (inclusive), which is unexpected according to the official documentation..
+            </summary>
+        </member>
+        <member name="P:X10D.ExceptionMessages.ValueCannotBeNegative">
+            <summary>
+              Looks up a localized string similar to Value cannot be negative..
             </summary>
         </member>
         <member name="P:X10D.ExceptionMessages.YearCannotBeZero">
