@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 
@@ -16,6 +17,7 @@ public static class DateTimeExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
+    [ExcludeFromCodeCoverage]
     public static int Age(this DateTime value)
     {
         return value.Age(DateTime.Today);

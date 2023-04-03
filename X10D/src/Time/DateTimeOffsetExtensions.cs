@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Time;
@@ -19,6 +20,7 @@ public static class DateTimeOffsetExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
+    [ExcludeFromCodeCoverage]
     public static int Age(this DateTimeOffset value)
     {
         return value.Age(DateTime.Today);
