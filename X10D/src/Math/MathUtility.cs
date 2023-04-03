@@ -334,6 +334,34 @@ public static class MathUtility
     }
 
     /// <summary>
+    ///     Calculates the sigmoid function for the given input value.
+    /// </summary>
+    /// <param name="value">The input value for which to calculate the sigmoid function.</param>
+    /// <returns>The result of applying the sigmoid function to the input value.</returns>
+    /// <remarks>
+    ///     The sigmoid function is a commonly used activation function in artificial neural networks and logistic regression. It
+    ///     maps any real-valued number to a value between 0 and 1.
+    /// </remarks>
+    public static float Sigmoid(float value)
+    {
+        return 1.0f / (1.0f + MathF.Exp(-value));
+    }
+
+    /// <summary>
+    ///     Calculates the sigmoid function for the given input value.
+    /// </summary>
+    /// <param name="value">The input value for which to calculate the sigmoid function.</param>
+    /// <returns>The result of applying the sigmoid function to the input value.</returns>
+    /// <remarks>
+    ///     The sigmoid function is a commonly used activation function in artificial neural networks and logistic regression. It
+    ///     maps any real-valued number to a value between 0 and 1.
+    /// </remarks>
+    public static double Sigmoid(double value)
+    {
+        return 1.0f / (1.0f + System.Math.Exp(-value));
+    }
+
+    /// <summary>
     ///     Performs smooth Hermite interpolation from one value to a target using a specified alpha.
     /// </summary>
     /// <param name="value">The interpolation source.</param>

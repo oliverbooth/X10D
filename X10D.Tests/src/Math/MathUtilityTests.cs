@@ -178,6 +178,95 @@ public class MathUtilityTests
     }
 
     [TestMethod]
+    public void Sigmoid_ReturnsExpectedValue_UsingDouble()
+    {
+        const double input = 0.5f;
+        const double expected = 0.622459331f;
+
+        double actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsExpectedValue_UsingSingle()
+    {
+        const float input = 0.5f;
+        const float expected = 0.622459331f;
+
+        float actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsZeroWhenInputIsNegativeInfinity_UsingDouble()
+    {
+        const double input = double.NegativeInfinity;
+        const double expected = 0f;
+
+        double actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsZeroWhenInputIsNegativeInfinity_UsingSingle()
+    {
+        const float input = float.NegativeInfinity;
+        const float expected = 0f;
+
+        float actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsOneWhenInputIsPositiveInfinity_UsingDouble()
+    {
+        const double input = double.PositiveInfinity;
+        const double expected = 1f;
+
+        double actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsOneWhenInputIsPositiveInfinity_UsingSingle()
+    {
+        const float input = float.PositiveInfinity;
+        const float expected = 1f;
+
+        float actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsZeroPointFiveWhenInputIsZero_UsingDouble()
+    {
+        const double input = 0f;
+        const double expected = 0.5f;
+
+        double actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sigmoid_ReturnsZeroPointFiveWhenInputIsZero_UsingSingle()
+    {
+        const float input = 0f;
+        const float expected = 0.5f;
+
+        float actual = MathUtility.Sigmoid(input);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+
+    [TestMethod]
     public void SmoothStep_ShouldReturnHigher_GivenAlpha1()
     {
         Assert.AreEqual(20.0f, MathUtility.SmoothStep(10.0f, 20.0f, 1.0f));
