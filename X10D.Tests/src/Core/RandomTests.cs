@@ -226,7 +226,9 @@ public class RandomTests
         Random? random = null;
         Assert.ThrowsException<ArgumentNullException>(() => random!.NextSingle(10));
         Assert.ThrowsException<ArgumentNullException>(() => random!.NextSingle(0, 10));
+#if !NET6_0_OR_GREATER
         Assert.ThrowsException<ArgumentNullException>(() => random!.NextSingle());
+#endif
     }
 
     [TestMethod]
