@@ -150,4 +150,25 @@ public class MathUtilityTests
         float result = MathUtility.ScaleRange(0.5f, 0.0f, 1.0f, 5.0f, 10.0f);
         Assert.AreEqual(7.5f, result);
     }
+
+    [TestMethod]
+    public void SmoothStep_ShouldReturnHigher_GivenAlpha1()
+    {
+        Assert.AreEqual(20.0f, MathUtility.SmoothStep(10.0f, 20.0f, 1.0f));
+        Assert.AreEqual(20.0, MathUtility.SmoothStep(10.0, 20.0, 1.0));
+    }
+
+    [TestMethod]
+    public void SmoothStep_ShouldReturnLower_GivenAlpha0()
+    {
+        Assert.AreEqual(10.0f, MathUtility.SmoothStep(10.0f, 20.0f, 0.0f));
+        Assert.AreEqual(10.0, MathUtility.SmoothStep(10.0, 20.0, 0.0));
+    }
+
+    [TestMethod]
+    public void SmoothStep_ShouldReturnMidPoint_GivenAlphaPoint5()
+    {
+        Assert.AreEqual(15.0f, MathUtility.SmoothStep(10.0f, 20.0f, 0.5f));
+        Assert.AreEqual(15.0, MathUtility.SmoothStep(10.0, 20.0, 0.5));
+    }
 }
