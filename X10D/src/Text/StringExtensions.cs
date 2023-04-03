@@ -414,7 +414,7 @@ public static class StringExtensions
 
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentException(Resource.EnumParseEmptyStringException, nameof(value));
+            throw new ArgumentException(ExceptionMessages.EnumParseEmptyStringException, nameof(value));
         }
 
         return Enum.Parse<T>(value, ignoreCase);

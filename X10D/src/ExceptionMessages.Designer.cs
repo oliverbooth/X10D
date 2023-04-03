@@ -114,6 +114,24 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must specify valid information for parsing in the string..
+        /// </summary>
+        internal static string EnumParseEmptyStringException {
+            get {
+                return ResourceManager.GetString("EnumParseEmptyStringException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type provided must be an Enum..
+        /// </summary>
+        internal static string EnumParseNotEnumException {
+            get {
+                return ResourceManager.GetString("EnumParseNotEnumException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HashAlgorithm&apos;s Create method returned null reference..
         /// </summary>
         internal static string HashAlgorithmCreateReturnedNull {
