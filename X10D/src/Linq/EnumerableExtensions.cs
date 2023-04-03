@@ -97,7 +97,7 @@ public static class EnumerableExtensions
         {
             if (!enumerator.MoveNext())
             {
-                throw new InvalidOperationException("Source contains no elements");
+                throw new InvalidOperationException(ExceptionMessages.SourceContainsNoElements);
             }
 
             minValue = enumerator.Current;
@@ -200,7 +200,7 @@ public static class EnumerableExtensions
         {
             if (!enumerator.MoveNext())
             {
-                throw new InvalidOperationException("Source contains no elements");
+                throw new InvalidOperationException(ExceptionMessages.SourceContainsNoElements);
             }
 
             minValue = selector(enumerator.Current);
@@ -301,7 +301,7 @@ public static class EnumerableExtensions
         {
             if (!enumerator.MoveNext())
             {
-                throw new InvalidOperationException("Source contains no elements");
+                throw new InvalidOperationException(ExceptionMessages.SourceContainsNoElements);
             }
 
             minValue = enumerator.Current;
@@ -331,7 +331,7 @@ public static class EnumerableExtensions
     {
         if (span.IsEmpty)
         {
-            throw new InvalidOperationException("Source contains no elements");
+            throw new InvalidOperationException(ExceptionMessages.SourceContainsNoElements);
         }
 
         T minValue = span[0];
@@ -361,7 +361,7 @@ public static class EnumerableExtensions
     {
         if (span.IsEmpty)
         {
-            throw new InvalidOperationException("Source contains no elements");
+            throw new InvalidOperationException(ExceptionMessages.SourceContainsNoElements);
         }
 
         TSource minValue = span[0];
@@ -392,7 +392,7 @@ public static class EnumerableExtensions
     {
         if (span.IsEmpty)
         {
-            throw new InvalidOperationException("Source contains no elements");
+            throw new InvalidOperationException(ExceptionMessages.SourceContainsNoElements);
         }
 
         TResult minValue = selector(span[0]);

@@ -192,7 +192,7 @@ public static class DecimalExtensions
             case 0:
                 return 0;
             case < 0:
-                throw new ArgumentException("value cannot be negative", nameof(value));
+                throw new ArgumentException(ExceptionMessages.ValueCannotBeNegative, nameof(value));
         }
 
         decimal previous;

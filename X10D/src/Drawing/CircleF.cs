@@ -241,7 +241,7 @@ public readonly struct CircleF : IEquatable<CircleF>, IComparable<CircleF>, ICom
 
         if (obj is not CircleF other)
         {
-            throw new ArgumentException($"Object must be of type {GetType()}");
+            throw new ArgumentException(ExceptionMessages.ObjectIsNotAValidType);
         }
 
         return CompareTo(other);

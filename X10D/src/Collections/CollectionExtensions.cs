@@ -27,7 +27,7 @@ public static class CollectionExtensions
 
         if (source.IsReadOnly)
         {
-            throw new InvalidOperationException("Collection is read-only. Try using DisposeAll instead.");
+            throw new InvalidOperationException(ExceptionMessages.CollectionIsReadOnly_DisposeAll);
         }
 
         foreach (T item in source)
@@ -66,7 +66,7 @@ public static class CollectionExtensions
 
         if (source.IsReadOnly)
         {
-            throw new InvalidOperationException("Collection is read-only. Try using DisposeAllAsync instead.");
+            throw new InvalidOperationException(ExceptionMessages.CollectionIsReadOnly_DisposeAllAsync);
         }
 
         foreach (T item in source)

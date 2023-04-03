@@ -113,9 +113,9 @@ public static class SpanExtensions
                 //NOSONAR
                 default:
 #if NET7_0_OR_GREATER
-                    throw new UnreachableException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
+                    throw new UnreachableException(ExceptionMessages.EnumSizeIsUnexpected);
 #else
-                    throw new ArgumentException($"Enum with the size of {Unsafe.SizeOf<T>()} bytes is unexpected.");
+                    throw new ArgumentException(ExceptionMessages.EnumSizeIsUnexpected);
 #endif
                 //NOSONAR
                 // dotcover enable

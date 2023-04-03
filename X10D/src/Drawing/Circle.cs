@@ -230,7 +230,7 @@ public readonly struct Circle : IEquatable<Circle>, IComparable<Circle>, ICompar
 
         if (obj is not Circle other)
         {
-            throw new ArgumentException($"Object must be of type {GetType()}");
+            throw new ArgumentException(ExceptionMessages.ObjectIsNotAValidType);
         }
 
         return CompareTo(other);

@@ -69,6 +69,24 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collection is read-only. Try using DisposeAll instead..
+        /// </summary>
+        internal static string CollectionIsReadOnly_DisposeAll {
+            get {
+                return ResourceManager.GetString("CollectionIsReadOnly_DisposeAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collection is read-only. Try using DisposeAllAsync instead..
+        /// </summary>
+        internal static string CollectionIsReadOnly_DisposeAllAsync {
+            get {
+                return ResourceManager.GetString("CollectionIsReadOnly_DisposeAllAsync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to count must be greater than or equal to 0..
         /// </summary>
         internal static string CountMustBeGreaterThanOrEqualTo0 {
@@ -132,6 +150,15 @@ namespace X10D {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The enum has a size that is not supported..
+        /// </summary>
+        internal static string EnumSizeIsUnexpected {
+            get {
+                return ResourceManager.GetString("EnumSizeIsUnexpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HashAlgorithm&apos;s Create method returned null reference..
         /// </summary>
         internal static string HashAlgorithmCreateReturnedNull {
@@ -191,6 +218,24 @@ namespace X10D {
         internal static string MaxValueGreaterThanEqualToMinValue {
             get {
                 return ResourceManager.GetString("MaxValueGreaterThanEqualToMinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified object is not a valid type..
+        /// </summary>
+        internal static string ObjectIsNotAValidType {
+            get {
+                return ResourceManager.GetString("ObjectIsNotAValidType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source contains no elements..
+        /// </summary>
+        internal static string SourceContainsNoElements {
+            get {
+                return ResourceManager.GetString("SourceContainsNoElements", resourceCulture);
             }
         }
         
@@ -263,6 +308,15 @@ namespace X10D {
         internal static string UnexpectedRuneUtf8SequenceLength {
             get {
                 return ResourceManager.GetString("UnexpectedRuneUtf8SequenceLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value cannot be negative..
+        /// </summary>
+        internal static string ValueCannotBeNegative {
+            get {
+                return ResourceManager.GetString("ValueCannotBeNegative", resourceCulture);
             }
         }
         
