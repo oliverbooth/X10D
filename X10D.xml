@@ -7098,6 +7098,30 @@
             <param name="gamma">The gamma value to use for encoding.</param>
             <returns>The gamma-encoded value.</returns>
         </member>
+        <member name="M:X10D.Math.MathUtility.Pulse(System.Single,System.Single,System.Single)">
+            <summary>
+                Returns the pulse wave for a given value.
+            </summary>
+            <param name="value">The value to calculate.</param>
+            <param name="lowerBound">The inclusive lower bound of the pulse.</param>
+            <param name="upperBound">The inclusive upper bound of the pulse.</param>
+            <returns>
+                1 if <paramref name="value" /> lies between <paramref name="lowerBound" /> and <paramref name="upperBound" />;
+                otherwise, 0.
+            </returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.Pulse(System.Double,System.Double,System.Double)">
+            <summary>
+                Returns the pulse wave for a given value.
+            </summary>
+            <param name="value">The value to calculate.</param>
+            <param name="lowerBound">The inclusive lower bound of the pulse.</param>
+            <param name="upperBound">The inclusive upper bound of the pulse.</param>
+            <returns>
+                1 if <paramref name="value" /> lies between <paramref name="lowerBound" /> and <paramref name="upperBound" />;
+                otherwise, 0.
+            </returns>
+        </member>
         <member name="M:X10D.Math.MathUtility.Sawtooth(System.Single)">
             <summary>
                 Returns the incremental sawtooth wave of a given value.
