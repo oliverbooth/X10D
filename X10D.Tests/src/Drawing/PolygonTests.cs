@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Drawing;
 
@@ -27,7 +27,7 @@ public class PolygonTests
         Assert.AreEqual(2, polygon.VertexCount);
 
         // assert that the empty polygon was not modified
-        Assert.AreEqual(0, PolygonF.Empty.VertexCount);
+        Assert.AreEqual(0, Polygon.Empty.VertexCount);
 
         polygon.ClearVertices();
         Assert.AreEqual(0, polygon.VertexCount);
