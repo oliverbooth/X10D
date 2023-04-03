@@ -6953,6 +6953,17 @@
                 If <paramref name="bias" /> is less than 0.5, <paramref name="value" /> will be shifted downward; otherwise, upward.
             </remarks>
         </member>
+        <member name="M:X10D.Math.MathUtility.Bias(System.Double,System.Double)">
+            <summary>
+                Applies a simple bias function to value.
+            </summary>
+            <param name="value">The value to which the bias function will be applied.</param>
+            <param name="bias">The bias value. Valid values range from 0-1.</param>
+            <returns>The biased result.</returns>
+            <remarks>
+                If <paramref name="bias" /> is less than 0.5, <paramref name="value" /> will be shifted downward; otherwise, upward.
+            </remarks>
+        </member>
         <member name="M:X10D.Math.MathUtility.GammaToLinear(System.Single)">
             <summary>
                 Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
@@ -7076,6 +7087,24 @@
             <param name="newMin">The new minimum value.</param>
             <param name="newMax">The new maximum value.</param>
             <returns>The scaled value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.SmoothStep(System.Single,System.Single,System.Single)">
+            <summary>
+                Performs smooth Hermite interpolation from one value to a target using a specified alpha.
+            </summary>
+            <param name="value">The interpolation source.</param>
+            <param name="target">The interpolation target.</param>
+            <param name="alpha">The interpolation alpha.</param>
+            <returns>The interpolation result.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.SmoothStep(System.Double,System.Double,System.Double)">
+            <summary>
+                Performs smooth Hermite interpolation from one value to a target using a specified alpha.
+            </summary>
+            <param name="value">The interpolation source.</param>
+            <param name="target">The interpolation target.</param>
+            <param name="alpha">The interpolation alpha.</param>
+            <returns>The interpolation result.</returns>
         </member>
         <member name="T:X10D.Math.SByteExtensions">
             <summary>
