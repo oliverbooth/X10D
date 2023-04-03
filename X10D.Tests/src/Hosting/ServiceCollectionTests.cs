@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using X10D.Hosting.DependencyInjection;
 
 namespace X10D.Tests.Hosting;
