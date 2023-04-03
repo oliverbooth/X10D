@@ -40,6 +40,32 @@ public class MathUtilityTests
     }
 
     [TestMethod]
+    public void ExponentialDecay_ShouldReturnCorrectValue_GivenDouble()
+    {
+        const double value = 100.0;
+        const double alpha = 0.5;
+        const double decay = 0.1;
+
+        const double expected = 95.122942;
+        double actual = MathUtility.ExponentialDecay(value, alpha, decay);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void ExponentialDecay_ShouldReturnCorrectValue_GivenSingle()
+    {
+        const float value = 100.0f;
+        const float alpha = 0.5f;
+        const float decay = 0.1f;
+
+        const float expected = 95.12295f;
+        float actual = MathUtility.ExponentialDecay(value, alpha, decay);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
     public void GammaToLinear_ShouldReturnQuarter_GivenQuarterAndGamma1()
     {
         double doubleResult = MathUtility.GammaToLinear(0.25, 1.0);

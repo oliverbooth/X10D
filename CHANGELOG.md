@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added .NET 7 target.
 - X10D: Added `IntrinsicExtensions` and `IntrinsicUtility` which offer methods for vectors in `System.Runtime.Instrinsics`. (#70)
 - X10D: Added `MathUtility.Bias(float, float)` and `MathUtility.Bias(double, double)`.
+- X10D: Added `MathUtility.ExponentialDecay(float, float, float)` and `MathUtility.ExponentialDecay(double, double, double)`.
 - X10D: Added `MathUtility.InverseLerp(float, float, float)` and `MathUtility.InverseLerp(double, double, double)`
 - X10D: Added `MathUtility.ScaleRange(float, float, float, float, float)`
   and `MathUtility.ScaleRange(double, double, double, double, double)`
