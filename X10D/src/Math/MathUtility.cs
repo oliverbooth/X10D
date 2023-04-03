@@ -26,6 +26,20 @@ public static class MathUtility
     }
 
     /// <summary>
+    ///     Applies a simple bias function to value.
+    /// </summary>
+    /// <param name="value">The value to which the bias function will be applied.</param>
+    /// <param name="bias">The bias value. Valid values range from 0-1.</param>
+    /// <returns>The biased result.</returns>
+    /// <remarks>
+    ///     If <paramref name="bias" /> is less than 0.5, <paramref name="value" /> will be shifted downward; otherwise, upward.
+    /// </remarks>
+    public static double Bias(double value, double bias)
+    {
+        return value / ((1.0 / bias - 2.0) * (1.0 - value) + 1.0);
+    }
+
+    /// <summary>
     ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
     /// </summary>
     /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
