@@ -5,7 +5,7 @@ namespace X10D.Tests.Math;
 
 [TestClass]
 [CLSCompliant(false)]
-public class UInt32Tests
+public partial class UInt32Tests
 {
     [TestMethod]
     public void DigitalRootShouldBeCorrect()
@@ -32,6 +32,28 @@ public class UInt32Tests
     }
 
     [TestMethod]
+    public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
+    {
+        const uint first = 5U;
+        const uint second = 7U;
+
+        uint multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(1U, multiple);
+    }
+
+    [TestMethod]
+    public void GreatestCommonFactor_ShouldBe6_Given12And18()
+    {
+        const uint first = 12U;
+        const uint second = 18U;
+
+        uint multiple = first.GreatestCommonFactor(second);
+
+        Assert.AreEqual(6U, multiple);
+    }
+
+    [TestMethod]
     public void IsEvenShouldBeCorrect()
     {
         const uint one = 1;
@@ -49,6 +71,65 @@ public class UInt32Tests
 
         Assert.IsTrue(one.IsOdd());
         Assert.IsFalse(two.IsOdd());
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
+    {
+        const uint value1 = 2;
+        const uint value2 = 3;
+        const uint expected = 6;
+
+        uint result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
+    {
+        const uint value1 = 0;
+        const uint value2 = 10;
+        const uint expected = 0;
+
+        uint result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
+    {
+        const uint value1 = 1;
+        const uint value2 = 10;
+        const uint expected = 10;
+
+        uint result1 = value1.LowestCommonMultiple(value2);
+        uint result2 = value2.LowestCommonMultiple(value1);
+
+        Assert.AreEqual(expected, result1);
+        Assert.AreEqual(expected, result2);
+    }
+
+    [TestMethod]
+    public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
+    {
+        const uint value1 = 5;
+        const uint value2 = 5;
+        const uint expected = 5;
+
+        uint result = value1.LowestCommonMultiple(value2);
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
+    {
+        Assert.AreEqual(1, 10U.MultiplicativePersistence());
+        Assert.AreEqual(1, 201U.MultiplicativePersistence());
+        Assert.AreEqual(1, 200U.MultiplicativePersistence());
+        Assert.AreEqual(1, 20007U.MultiplicativePersistence());
     }
 
     [TestMethod]

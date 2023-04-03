@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace X10D.Time;
 
 /// <summary>
-///     Extension methods for <see cref="string" />.
+///     Time-related extension methods for <see cref="string" />.
 /// </summary>
 public static class StringExtensions
 {
@@ -12,7 +12,7 @@ public static class StringExtensions
     ///     Parses a shorthand time span string (e.g. 3w 2d 1h) and converts it to an instance of <see cref="TimeSpan" />.
     /// </summary>
     /// <param name="input">
-    ///     The input string. Floating point is not supported, but range the following units are supported:
+    ///     The input string. Floating point is not supported, but integers with the following units are supported:
     ///
     ///     <list type="table">
     ///         <listheader>
@@ -64,10 +64,14 @@ public static class StringExtensions
 #endif
     public static TimeSpan ToTimeSpan(this string input)
     {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(input);
+#else
         if (input is null)
         {
             throw new ArgumentNullException(nameof(input));
         }
+#endif
 
         return TimeSpanParser.TryParse(input, out TimeSpan result)
             ? result

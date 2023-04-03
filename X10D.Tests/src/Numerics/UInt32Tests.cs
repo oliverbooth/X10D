@@ -8,6 +8,24 @@ namespace X10D.Tests.Numerics;
 public class UInt32Tests
 {
     [TestMethod]
+    public void PopCount_ShouldBe0_Given0()
+    {
+        Assert.AreEqual(0, 0U.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe5_Given11010101()
+    {
+        Assert.AreEqual(5, 0b11010101U.PopCount());
+    }
+
+    [TestMethod]
+    public void PopCount_ShouldBe32_Given11111111111111111111111111111111()
+    {
+        Assert.AreEqual(32, 0b11111111111111111111111111111111U.PopCount());
+    }
+
+    [TestMethod]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const uint value = 284719;        // 00000000 00000100 01011000 00101111
@@ -39,5 +57,30 @@ public class UInt32Tests
     {
         const uint value = 284719; // 00000000 00000100 01011000 00101111
         Assert.AreEqual(value, value.RotateRight(32));
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
+    {
+        Assert.AreEqual(4U, 3U.RoundUpToPowerOf2());
+        Assert.AreEqual(8U, 5U.RoundUpToPowerOf2());
+        Assert.AreEqual(8U, 6U.RoundUpToPowerOf2());
+        Assert.AreEqual(8U, 7U.RoundUpToPowerOf2());
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
+    {
+        for (var i = 0; i < 8; i++)
+        {
+            var value = (uint)System.Math.Pow(2, i);
+            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+        }
+    }
+
+    [TestMethod]
+    public void RoundUpToPowerOf2_ShouldReturn0_Given0()
+    {
+        Assert.AreEqual(0U, 0U.RoundUpToPowerOf2());
     }
 }

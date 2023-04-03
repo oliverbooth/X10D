@@ -11,14 +11,25 @@ public abstract class Singleton<T> : MonoBehaviour
     where T : Singleton<T>
 {
     private static Lazy<T> s_instanceLazy = new(CreateLazyInstanceInternal, false);
+    private static T? s_instance;
 
     /// <summary>
     ///     Gets the instance of the singleton.
     /// </summary>
     /// <value>The singleton instance.</value>
+#pragma warning disable CA1000
     public static T Instance
+#pragma warning restore CA1000
     {
-        get => s_instanceLazy.Value;
+        get => s_instance ? s_instance! : s_instanceLazy.Value;
+    }
+
+    /// <summary>
+    ///     Called when the script instance is being loaded.
+    /// </summary>
+    protected virtual void Awake()
+    {
+        s_instance = (T?)this;
     }
 
     /// <summary>
@@ -26,17 +37,24 @@ public abstract class Singleton<T> : MonoBehaviour
     /// </summary>
     protected virtual void OnDestroy()
     {
+        s_instance = null;
         s_instanceLazy = new Lazy<T>(CreateLazyInstanceInternal, false);
     }
 
     private static T CreateLazyInstanceInternal()
     {
+        if (s_instance)
+        {
+            return s_instance!;
+        }
+
         if (FindObjectOfType<T>() is { } instance)
         {
+            s_instance = instance;
             return instance;
         }
 
         var gameObject = new GameObject {name = typeof(T).Name};
-        return gameObject.AddComponent<T>();
+        return s_instance = gameObject.AddComponent<T>();
     }
 }

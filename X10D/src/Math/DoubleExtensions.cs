@@ -140,23 +140,26 @@ public static class DoubleExtensions
         return System.Math.Atanh(value);
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     /// <summary>
     ///     Returns the complex square root of this double-precision floating-point number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>The square root of <paramref name="value" />.</returns>
     [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
     public static Complex ComplexSqrt(this double value)
     {
         switch (value)
         {
             case double.PositiveInfinity:
             case double.NegativeInfinity:
-                return Complex.Infinity;
+                return new Complex(double.PositiveInfinity, double.PositiveInfinity);
             case double.NaN:
-                return Complex.NaN;
+                return new Complex(double.NaN, double.NaN);
 
             case 0:
                 return Complex.Zero;
@@ -166,7 +169,6 @@ public static class DoubleExtensions
                 return new Complex(0, System.Math.Sqrt(-value));
         }
     }
-#endif
 
     /// <summary>
     ///     Returns the cosine of the specified angle.
@@ -313,6 +315,23 @@ public static class DoubleExtensions
     }
 
     /// <summary>
+    ///     Saturates this double-precision floating-point number.
+    /// </summary>
+    /// <param name="value">The value to saturate.</param>
+    /// <returns>The saturated value.</returns>
+    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static double Saturate(this double value)
+    {
+        return System.Math.Clamp(value, 0.0, 1.0);
+    }
+
+    /// <summary>
     ///     Returns the sine of the specified angle.
     /// </summary>
     /// <param name="value">The angle, in radians.</param>
@@ -443,11 +462,6 @@ public static class DoubleExtensions
         do
         {
             previous = current;
-            if (previous == 0.0)
-            {
-                return 0;
-            }
-
             current = (previous + value / previous) / 2;
         } while (System.Math.Abs(previous - current) > double.Epsilon);
 
@@ -493,5 +507,41 @@ public static class DoubleExtensions
     public static double Tanh(this double value)
     {
         return System.Math.Tanh(value);
+    }
+
+    /// <summary>
+    ///     Wraps the current double-precision floating-point number between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static double Wrap(this double value, double low, double high)
+    {
+        double difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current double-precision floating-point number between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static double Wrap(this double value, double length)
+    {
+        return ((value % length) + length) % length;
     }
 }

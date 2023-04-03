@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using X10D.Drawing;
 
 namespace X10D.Unity.Drawing;
 
@@ -9,6 +10,72 @@ namespace X10D.Unity.Drawing;
 /// </summary>
 public static class ColorExtensions
 {
+    /// <summary>
+    ///     Deconstructs the current color into its ARGB components.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <param name="a">
+    ///     When this method returns, contains the <see cref="Color.a" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="r">
+    ///     When this method returns, contains the <see cref="Color.r" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="g">
+    ///     When this method returns, contains the <see cref="Color.g" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="b">
+    ///     When this method returns, contains the <see cref="Color.b" /> component of <paramref name="color" />.
+    /// </param>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static void Deconstruct(this Color color, out float a, out float r, out float g, out float b)
+    {
+        a = color.a;
+        (r, g, b) = color;
+    }
+
+    /// <summary>
+    ///     Deconstructs the current color into its RGB components.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <param name="r">
+    ///     When this method returns, contains the <see cref="Color.r" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="g">
+    ///     When this method returns, contains the <see cref="Color.g" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="b">
+    ///     When this method returns, contains the <see cref="Color.b" /> component of <paramref name="color" />.
+    /// </param>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static void Deconstruct(this Color color, out float r, out float g, out float b)
+    {
+        r = color.r;
+        g = color.g;
+        b = color.b;
+    }
+
+    /// <summary>
+    ///     Returns a <see cref="ConsoleColor" /> which most closely resembles the current color.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <returns>The closest <see cref="ConsoleColor" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ConsoleColor GetClosestConsoleColor(this Color color)
+    {
+        return color.ToSystemDrawingColor().GetClosestConsoleColor();
+    }
+
     /// <summary>
     ///     Returns a new <see cref="Color" /> with the red, green, and blue components inverted. Alpha is not affected.
     /// </summary>
@@ -19,6 +86,35 @@ public static class ColorExtensions
     public static Color Inverted(this Color color)
     {
         return new Color(1f - color.r, 1f - color.g, 1f - color.b, color.a);
+    }
+
+    /// <summary>
+    ///     Converts the current color to a <see cref="System.Drawing.Color" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Drawing.Color ToSystemDrawingColor(this Color color)
+    {
+        return System.Drawing.Color.FromArgb(
+            (int)(color.a * 255f),
+            (int)(color.r * 255f),
+            (int)(color.g * 255f),
+            (int)(color.b * 255f)
+        );
+    }
+
+    /// <summary>
+    ///     Converts the current color to a <see cref="Color" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color ToUnityColor(this System.Drawing.Color color)
+    {
+        return new Color(color.R / 255f, color.G / 255f, color.B / 255f, color.A / 255f);
     }
 
     /// <summary>

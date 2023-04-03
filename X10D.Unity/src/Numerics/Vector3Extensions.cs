@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using X10D.Math;
 
 namespace X10D.Unity.Numerics;
 
@@ -10,6 +12,48 @@ namespace X10D.Unity.Numerics;
 public static class Vector3Extensions
 {
     /// <summary>
+    ///     Deconstructs the current <see cref="Vector3" /> into its components.
+    /// </summary>
+    /// <param name="vector">The vector to deconstruct.</param>
+    /// <param name="x">The X component value.</param>
+    /// <param name="y">The Y component value.</param>
+    /// <param name="z">The Z component value.</param>
+    public static void Deconstruct(this Vector3 vector, out float x, out float y, out float z)
+    {
+        x = vector.x;
+        y = vector.y;
+        z = vector.z;
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector3" /> to the nearest integer.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector3 Round(this Vector3 vector)
+    {
+        return vector.Round(1.0f);
+    }
+
+    /// <summary>
+    ///     Rounds the components in the current <see cref="Vector3" /> to the nearest multiple of a specified number.
+    /// </summary>
+    /// <param name="vector">The vector whose components to round.</param>
+    /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
+    /// <returns>The rounded vector.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector3 Round(this Vector3 vector, float nearest)
+    {
+        float x = vector.x.Round(nearest);
+        float y = vector.y.Round(nearest);
+        float z = vector.z.Round(nearest);
+        return new Vector3(x, y, z);
+    }
+
+    /// <summary>
     ///     Converts the current vector to a <see cref="System.Numerics.Vector3" />.
     /// </summary>
     /// <param name="vector">The vector to convert.</param>
@@ -18,7 +62,7 @@ public static class Vector3Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static System.Numerics.Vector3 ToSystemVector(this Vector3 vector)
     {
-        return new System.Numerics.Vector3(vector.x, vector.y, vector.z);
+        return UnsafeUtility.As<Vector3, System.Numerics.Vector3>(ref vector);
     }
 
     /// <summary>
@@ -30,7 +74,7 @@ public static class Vector3Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector3 ToUnityVector(this System.Numerics.Vector3 vector)
     {
-        return new Vector3(vector.X, vector.Y, vector.Z);
+        return UnsafeUtility.As<System.Numerics.Vector3, Vector3>(ref vector);
     }
 
     /// <summary>

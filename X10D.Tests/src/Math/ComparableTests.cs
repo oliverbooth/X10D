@@ -86,6 +86,13 @@ public class ComparableTests
     }
 
     [TestMethod]
+    public void Clamp_ShouldThrowArgumentNullException_GivenNullValue()
+    {
+        string comparable = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => comparable.Clamp(string.Empty, string.Empty));
+    }
+
+    [TestMethod]
     public void GreaterThan_5_6_ShouldBeFalse()
     {
         Assert.IsFalse(5.GreaterThan(6));

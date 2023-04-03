@@ -40,4 +40,12 @@ public class UInt16Tests
 
         // Π_(i=1)^n (2i) will overflow at i=7 for ushort
     }
+
+    [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<ushort> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
 }

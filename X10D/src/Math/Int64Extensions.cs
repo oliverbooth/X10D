@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 namespace X10D.Math;
@@ -63,6 +63,28 @@ public static class Int64Extensions
     }
 
     /// <summary>
+    ///     Calculates the greatest common factor between the current 64-bit signed integer, and another 64-bit unsigned integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long GreatestCommonFactor(this long value, long other)
+    {
+        while (other != 0)
+        {
+            (value, other) = (other, value % other);
+        }
+
+        return value;
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -117,17 +139,11 @@ public static class Int64Extensions
     {
         switch (value)
         {
-            case < 2: return false;
-            case 2:
-            case 3: return true;
+            case <= 1: return false;
+            case <= 3: return true;
         }
 
-        if (value % 2 == 0 || value % 3 == 0)
-        {
-            return false;
-        }
-
-        if ((value + 1) % 6 != 0 && (value - 1) % 6 != 0)
+        if ((value & 1) == 0 || value % 3 == 0)
         {
             return false;
         }
@@ -141,6 +157,38 @@ public static class Int64Extensions
         }
 
         return true;
+    }
+
+    /// <summary>
+    ///     Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long LowestCommonMultiple(this long value, long other)
+    {
+        if (value == 0 || other == 0)
+        {
+            return 0;
+        }
+
+        if (value == 1)
+        {
+            return other;
+        }
+
+        if (other == 1)
+        {
+            return value;
+        }
+
+        return value * other / value.GreatestCommonFactor(other);
     }
 
     /// <summary>
@@ -255,5 +303,41 @@ public static class Int64Extensions
     public static int Sign(this long value)
     {
         return System.Math.Sign(value);
+    }
+
+    /// <summary>
+    ///     Wraps the current 64-bit signed integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long Wrap(this long value, long low, long high)
+    {
+        long difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current 64-bit signed integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static long Wrap(this long value, long length)
+    {
+        return ((value % length) + length) % length;
     }
 }

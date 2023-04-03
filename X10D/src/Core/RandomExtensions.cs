@@ -2,6 +2,8 @@
 using System.Text;
 using X10D.Math;
 
+#pragma warning disable CA5394
+
 namespace X10D.Core;
 
 /// <summary>
@@ -9,7 +11,9 @@ namespace X10D.Core;
 /// </summary>
 public static class RandomExtensions
 {
+#if !NET6_0_OR_GREATER
     private static readonly Random Shared = new();
+#endif
 
     /// <summary>
     ///     Returns a random value that defined in a specified enum.
@@ -153,15 +157,13 @@ public static class RandomExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+        ArgumentNullException.ThrowIfNull(source);
 #else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
+
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -179,6 +181,77 @@ public static class RandomExtensions
         }
 
         return list[random.Next(list.Count)];
+    }
+
+    /// <summary>
+    ///     Returns a random element from the specified span of elements using the current <see cref="System.Random" /> instance.
+    /// </summary>
+    /// <typeparam name="T">The element type.</typeparam>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="source">The span of elements from which to draw.</param>
+    /// <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="random" /> is is <see langword="null" />
+    ///     -or-
+    ///     <paramref name="source" /> is <see langword="null" />.
+    /// </exception>
+    /// <example>
+    ///     <code lang="csharp">
+    /// Span&lt;int&gt; span = stackalloc span[5];
+    /// // populate the span ...
+    ///
+    /// var random = new Random();
+    /// var number = random.NextFrom(span);
+    /// </code>
+    /// </example>
+    public static T NextFrom<T>(this Random random, Span<T> source)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
+
+        return source[random.Next(source.Length)];
+    }
+
+    /// <summary>
+    ///     Returns a random element from the specified readonly span of elements using the current <see cref="System.Random" />
+    ///     instance.
+    /// </summary>
+    /// <typeparam name="T">The element type.</typeparam>
+    /// <param name="random">The <see cref="System.Random" /> instance.</param>
+    /// <param name="source">The readonly span of elements from which to draw.</param>
+    /// <returns>A random element of type <typeparamref name="T" /> from <paramref name="source" />.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="random" /> is is <see langword="null" />
+    ///     -or-
+    ///     <paramref name="source" /> is <see langword="null" />.
+    /// </exception>
+    /// <example>
+    ///     <code lang="csharp">
+    /// Span&lt;int&gt; span = stackalloc span[5];
+    /// // populate the span ...
+    ///
+    /// var random = new Random();
+    /// var number = random.NextFrom(span.AsReadOnly());
+    /// </code>
+    /// </example>
+    public static T NextFrom<T>(this Random random, ReadOnlySpan<T> source)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(random);
+#else
+        if (random is null)
+        {
+            throw new ArgumentNullException(nameof(random));
+        }
+#endif
+
+        return source[random.Next(source.Length)];
     }
 
     /// <summary>
@@ -459,15 +532,13 @@ public static class RandomExtensions
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(random);
+        ArgumentNullException.ThrowIfNull(source);
 #else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
+
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));

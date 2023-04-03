@@ -58,6 +58,24 @@ public static class UInt32Extensions
     }
 
     /// <summary>
+    ///     Calculates the greatest common factor between the current 32-bit unsigned integer, and another 32-bit unsigned
+    ///     integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static uint GreatestCommonFactor(this uint value, uint other)
+    {
+        return (uint)((long)value).GreatestCommonFactor(other);
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -114,6 +132,24 @@ public static class UInt32Extensions
     }
 
     /// <summary>
+    ///     Calculates the lowest common multiple between the current 32-bit unsigned integer, and another 32-bit unsigned
+    ///     integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static uint LowestCommonMultiple(this uint value, uint other)
+    {
+        return (uint)((ulong)value).LowestCommonMultiple(other);
+    }
+
+    /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
     /// </summary>
     /// <param name="value">The value whose multiplicative persistence to calculate.</param>
@@ -130,5 +166,40 @@ public static class UInt32Extensions
     public static int MultiplicativePersistence(this uint value)
     {
         return ((ulong)value).MultiplicativePersistence();
+    }
+
+    /// <summary>
+    ///     Wraps the current 32-bit unsigned integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static uint Wrap(this uint value, uint low, uint high)
+    {
+        return (uint)((ulong)value).Wrap(low, high);
+    }
+
+    /// <summary>
+    ///     Wraps the current 32-bit unsigned integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static uint Wrap(this uint value, uint length)
+    {
+        return (uint)((ulong)value).Wrap(length);
     }
 }

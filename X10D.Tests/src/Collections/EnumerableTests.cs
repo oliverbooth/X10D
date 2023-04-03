@@ -1,39 +1,112 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Collections;
+using X10D.Core;
 
 namespace X10D.Tests.Collections;
 
 [TestClass]
-public class EnumerableTests
+public partial class EnumerableTests
 {
     [TestMethod]
-    public void DisposeAll_ShouldDispose_GivenCollection()
+    public void CountWhereNot_ShouldReturnCorrectCount_GivenSequence()
     {
-        var collection = new List<Disposable> {new(), new(), new()};
-        collection.DisposeAll();
-        Assert.IsTrue(collection.All(x => x.IsDisposed));
+        var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
+        int count = enumerable.CountWhereNot(x => x % 2 == 0);
+        Assert.AreEqual(2, count);
     }
 
     [TestMethod]
-    public async Task DisposeAllAsync_ShouldDispose_GivenCollection()
+    public void CountWhereNot_ShouldThrowArgumentNullException_GivenNullSource()
     {
-        var collection = new List<Disposable> {new(), new(), new()};
-        await collection.DisposeAllAsync();
-        Assert.IsTrue(collection.All(x => x.IsDisposed));
+        Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.CountWhereNot(x => x % 2 == 0));
     }
 
     [TestMethod]
-    public void DisposeAll_ShouldThrow_GivenNull()
+    public void CountWhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
     {
-        List<Disposable>? collection = null;
-        Assert.ThrowsException<ArgumentNullException>(() => collection!.DisposeAll());
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Empty<int>().CountWhereNot(null!));
     }
 
     [TestMethod]
-    public async Task DisposeAllAsync_ShouldThrow_GivenNull()
+    public void CountWhereNot_ShouldThrowOverflowException_GivenLargeSource()
     {
-        List<Disposable>? collection = null;
-        await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () => await collection!.DisposeAllAsync());
+        IEnumerable<byte> GetValues()
+        {
+            while (true)
+            {
+                yield return 1;
+            }
+
+            // ReSharper disable once IteratorNeverReturns
+        }
+
+        Assert.ThrowsException<OverflowException>(() => GetValues().CountWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void FirstWhereNot_ShouldReturnCorrectElements_GivenSequence()
+    {
+        var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
+        int result = enumerable.FirstWhereNot(x => x % 2 == 0);
+        Assert.AreEqual(7, result);
+    }
+
+    [TestMethod]
+    public void FirstWhereNot_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.FirstWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void FirstWhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Range(0, 1).FirstWhereNot(null!));
+    }
+
+    [TestMethod]
+    public void FirstWhereNot_ShouldThrowInvalidOperationException_GivenEmptySource()
+    {
+        Assert.ThrowsException<InvalidOperationException>(() => Enumerable.Empty<int>().FirstWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void FirstWhereNot_ShouldThrowInvalidOperationException_GivenSourceWithNoMatchingElements()
+    {
+        Assert.ThrowsException<InvalidOperationException>(() => 2.AsArrayValue().FirstWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void FirstWhereNotOrDefault_ShouldReturnCorrectElements_GivenSequence()
+    {
+        var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
+        int result = enumerable.FirstWhereNotOrDefault(x => x % 2 == 0);
+        Assert.AreEqual(7, result);
+    }
+
+    [TestMethod]
+    public void FirstWhereNotOrDefault_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.FirstWhereNotOrDefault(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void FirstWhereNotOrDefault_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Empty<int>().FirstWhereNotOrDefault(null!));
+    }
+
+    [TestMethod]
+    public void FirstWhereNotOrDefault_ShouldReturnDefault_GivenEmptySource()
+    {
+        int result = Enumerable.Empty<int>().FirstWhereNotOrDefault(x => x % 2 == 0);
+        Assert.AreEqual(default, result);
+    }
+
+    [TestMethod]
+    public void FirstWhereNotOrDefault_ShouldReturnDefault_GivenSourceWithNoMatchingElements()
+    {
+        int result = 2.AsArrayValue().FirstWhereNotOrDefault(x => x % 2 == 0);
+        Assert.AreEqual(default, result);
     }
 
     [TestMethod]
@@ -95,6 +168,72 @@ public class EnumerableTests
     }
 
     [TestMethod]
+    public void LastWhereNot_ShouldReturnCorrectElements_GivenSequence()
+    {
+        var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
+        int result = enumerable.LastWhereNot(x => x % 2 == 0);
+        Assert.AreEqual(9, result);
+    }
+
+    [TestMethod]
+    public void LastWhereNot_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.LastWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void LastWhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Array.Empty<int>().LastWhereNot(null!));
+    }
+
+    [TestMethod]
+    public void LastWhereNot_ShouldThrowInvalidOperationException_GivenEmptySource()
+    {
+        Assert.ThrowsException<InvalidOperationException>(() => Array.Empty<int>().LastWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void LastWhereNot_ShouldThrowInvalidOperationException_GivenSourceWithNoMatchingElements()
+    {
+        Assert.ThrowsException<InvalidOperationException>(() => 2.AsArrayValue().LastWhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void LastWhereNotOrDefault_ShouldReturnCorrectElements_GivenSequence()
+    {
+        var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
+        int result = enumerable.LastWhereNotOrDefault(x => x % 2 == 0);
+        Assert.AreEqual(9, result);
+    }
+
+    [TestMethod]
+    public void LastWhereNotOrDefault_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.LastWhereNotOrDefault(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void LastWhereNotOrDefault_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Array.Empty<int>().LastWhereNotOrDefault(null!));
+    }
+
+    [TestMethod]
+    public void LastWhereNotOrDefault_ShouldReturnDefault_GivenEmptySource()
+    {
+        int result = Array.Empty<int>().LastWhereNotOrDefault(x => x % 2 == 0);
+        Assert.AreEqual(default, result);
+    }
+
+    [TestMethod]
+    public void LastWhereNotOrDefault_ShouldReturnDefault_GivenSourceWithNoMatchingElements()
+    {
+        int result = 2.AsArrayValue().LastWhereNotOrDefault(x => x % 2 == 0);
+        Assert.AreEqual(default, result);
+    }
+
+    [TestMethod]
     public void Shuffled_ShouldThrow_GivenNull()
     {
         Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Shuffled());
@@ -112,25 +251,56 @@ public class EnumerableTests
         CollectionAssert.AreNotEqual(array, shuffled);
     }
 
+    [TestMethod]
+    public void WhereNot_ShouldReturnCorrectElements_GivenSequence()
+    {
+        var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
+        IEnumerable<int> result = enumerable.WhereNot(x => x % 2 == 0);
+        CollectionAssert.AreEqual(new[] {7, 9}, result.ToArray());
+    }
+
+    [TestMethod]
+    public void WhereNot_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => ((IEnumerable<int>?)null)!.WhereNot(x => x % 2 == 0));
+    }
+
+    [TestMethod]
+    public void WhereNot_ShouldThrowArgumentNullException_GivenNullPredicate()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => Enumerable.Empty<int>().WhereNot(null!));
+    }
+
+    [TestMethod]
+    public void WhereNotNull_ShouldContainNoNullElements()
+    {
+        object?[] array = Enumerable.Repeat(new object(), 10).ToArray();
+        array[1] = null;
+        array[2] = null;
+        array[8] = null;
+        array[9] = null;
+
+        const int expectedCount = 6;
+        var actualCount = 0;
+
+        foreach (object o in array.WhereNotNull())
+        {
+            Assert.IsNotNull(o);
+            actualCount++;
+        }
+
+        Assert.AreEqual(expectedCount, actualCount);
+    }
+
+    [TestMethod]
+    public void WhereNotNull_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<string> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.WhereNotNull());
+    }
+
     private class DummyClass
     {
         public int Value { get; set; }
-    }
-
-    private class Disposable : IDisposable, IAsyncDisposable
-    {
-        public bool IsDisposed { get; private set; }
-
-        public void Dispose()
-        {
-            Assert.IsTrue(IsDisposed = true);
-        }
-
-#pragma warning disable CS1998
-        public async ValueTask DisposeAsync()
-#pragma warning restore CS1998
-        {
-            Assert.IsTrue(IsDisposed = true);
-        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Numerics;
 using X10D.Core;
 
+#pragma warning disable CA5394
+
 namespace X10D.Numerics;
 
 /// <summary>

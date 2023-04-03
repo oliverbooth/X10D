@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Runtime.Intrinsics.X86;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
@@ -7,9 +8,10 @@ namespace X10D.Tests.Collections;
 public class ByteTests
 {
     [TestMethod]
-    public void UnpackBits_ShouldUnpackToArrayCorrectly()
+    public void Unpack_ShouldUnpackToArrayCorrectly()
     {
-        bool[] bits = ((byte)0b11010100).Unpack();
+        const byte value = 0b11010100;
+        bool[] bits = value.Unpack();
 
         Assert.AreEqual(8, bits.Length);
 
@@ -24,10 +26,30 @@ public class ByteTests
     }
 
     [TestMethod]
-    public void UnpackBits_ShouldUnpackToSpanCorrectly()
+    public void Unpack_ShouldUnpackToSpanCorrectly()
     {
+        const byte value = 0b11010100;
         Span<bool> bits = stackalloc bool[8];
-        ((byte)0b11010100).Unpack(bits);
+        value.Unpack(bits);
+
+        Assert.IsFalse(bits[0]);
+        Assert.IsFalse(bits[1]);
+        Assert.IsTrue(bits[2]);
+        Assert.IsFalse(bits[3]);
+        Assert.IsTrue(bits[4]);
+        Assert.IsFalse(bits[5]);
+        Assert.IsTrue(bits[6]);
+        Assert.IsTrue(bits[7]);
+    }
+
+#if NET5_0_OR_GREATER
+
+    [TestMethod]
+    public void UnpackInternal_Fallback_ShouldUnpackToSpanCorrectly()
+    {
+        const byte value = 0b11010100;
+        Span<bool> bits = stackalloc bool[8];
+        value.UnpackInternal_Fallback(bits);
 
         Assert.IsFalse(bits[0]);
         Assert.IsFalse(bits[1]);
@@ -40,18 +62,43 @@ public class ByteTests
     }
 
     [TestMethod]
-    public void UnpackBits_ShouldRepackEqually()
+    public void UnpackInternal_Ssse3_ShouldUnpackToSpanCorrectly()
     {
-        Assert.AreEqual(0b11010100, ((byte)0b11010100).Unpack().PackByte());
+        if (!Sse3.IsSupported)
+        {
+            return;
+        }
+
+        const byte value = 0b11010100;
+        Span<bool> bits = stackalloc bool[8];
+        value.UnpackInternal_Ssse3(bits);
+
+        Assert.IsFalse(bits[0]);
+        Assert.IsFalse(bits[1]);
+        Assert.IsTrue(bits[2]);
+        Assert.IsFalse(bits[3]);
+        Assert.IsTrue(bits[4]);
+        Assert.IsFalse(bits[5]);
+        Assert.IsTrue(bits[6]);
+        Assert.IsTrue(bits[7]);
+    }
+#endif
+
+    [TestMethod]
+    public void Unpack_ShouldRepackEqually()
+    {
+        const byte value = 0b11010100;
+        Assert.AreEqual(value, value.Unpack().PackByte());
     }
 
     [TestMethod]
-    public void UnpackBits_ShouldThrow_GivenTooSmallSpan()
+    public void Unpack_ShouldThrow_GivenTooSmallSpan()
     {
         Assert.ThrowsException<ArgumentException>(() =>
         {
+            const byte value = 0b11010100;
             Span<bool> bits = stackalloc bool[0];
-            ((byte)0b11010100).Unpack(bits);
+            value.Unpack(bits);
         });
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Binary;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -107,6 +108,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
         const int decimalSize = sizeof(decimal);
         const int int32Size = sizeof(int);
         const int partitionSize = decimalSize / int32Size;
@@ -166,6 +172,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(double)];
         stream.Read(buffer);
 
@@ -221,6 +232,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(short)];
         stream.Read(buffer);
 
@@ -269,6 +285,11 @@ public static class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 #endif
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
 
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         stream.Read(buffer);
@@ -319,6 +340,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(long)];
         stream.Read(buffer);
 
@@ -345,7 +371,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream from which the value should be read.</param>
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>A single-precision floating point value read from the stream.</returns>
-    public static double ReadSingle(this Stream stream, Endianness endianness)
+    public static float ReadSingle(this Stream stream, Endianness endianness)
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
@@ -367,6 +393,11 @@ public static class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 #endif
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
 
         Span<byte> buffer = stackalloc byte[sizeof(float)];
         stream.Read(buffer);
@@ -425,6 +456,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(ushort)];
         stream.Read(buffer);
 
@@ -476,6 +512,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(uint)];
         stream.Read(buffer);
 
@@ -526,6 +567,11 @@ public static class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 #endif
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
 
         Span<byte> buffer = stackalloc byte[sizeof(ulong)];
         stream.Read(buffer);
@@ -609,6 +655,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The two-byte signed integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, short value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -645,6 +692,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(short)];
 
         if (endianness == Endianness.LittleEndian)
@@ -666,6 +718,7 @@ public static class StreamExtensions
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The four-byte signed integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, int value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -703,6 +756,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(int)];
 
         if (endianness == Endianness.LittleEndian)
@@ -725,6 +783,7 @@ public static class StreamExtensions
     /// <param name="value">The eight-byte signed integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, long value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -762,6 +821,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(long)];
 
         if (endianness == Endianness.LittleEndian)
@@ -785,6 +849,7 @@ public static class StreamExtensions
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, ushort value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -823,6 +888,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(ushort)];
 
         if (endianness == Endianness.LittleEndian)
@@ -846,6 +916,7 @@ public static class StreamExtensions
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, uint value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -884,6 +955,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(uint)];
 
         if (endianness == Endianness.LittleEndian)
@@ -907,6 +983,7 @@ public static class StreamExtensions
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     [CLSCompliant(false)]
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, ulong value)
     {
         return stream.Write(value, DefaultEndianness);
@@ -944,6 +1021,11 @@ public static class StreamExtensions
             throw new ArgumentOutOfRangeException(nameof(endianness));
         }
 #endif
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
 
         Span<byte> buffer = stackalloc byte[sizeof(ulong)];
 
@@ -991,6 +1073,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(float)];
 
         if (endianness == Endianness.LittleEndian)
@@ -1000,10 +1087,17 @@ public static class StreamExtensions
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                MemoryMarshal.Write(buffer, ref value);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                // dotcover disable
+                //NOSONAR
+                int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
+                //NOSONAR
+                // dotcover enable
+            }
 #endif
         }
         else
@@ -1013,10 +1107,17 @@ public static class StreamExtensions
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                // dotcover disable
+                //NOSONAR
+                MemoryMarshal.Write(buffer, ref value);
+                //NOSONAR
+                // dotcover enable
+            }
 #endif
         }
 
@@ -1055,6 +1156,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         Span<byte> buffer = stackalloc byte[sizeof(double)];
 
         if (endianness == Endianness.LittleEndian)
@@ -1064,10 +1170,17 @@ public static class StreamExtensions
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                MemoryMarshal.Write(buffer, ref value);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                // dotcover disable
+                //NOSONAR
+                long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
+                //NOSONAR
+                // dotcover enable
+            }
 #endif
         }
         else
@@ -1077,10 +1190,17 @@ public static class StreamExtensions
 #else
             if (BitConverter.IsLittleEndian)
             {
-                value = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+                MemoryMarshal.Write(buffer, ref temp);
             }
-
-            System.Runtime.InteropServices.MemoryMarshal.Write(buffer, ref value);
+            else
+            {
+                // dotcover disable
+                //NOSONAR
+                MemoryMarshal.Write(buffer, ref value);
+                //NOSONAR
+                // dotcover enable
+            }
 #endif
         }
 
@@ -1096,6 +1216,7 @@ public static class StreamExtensions
     /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, decimal value, Endianness endianness)
     {
 #if NET6_0_OR_GREATER
@@ -1119,6 +1240,11 @@ public static class StreamExtensions
         }
 #endif
 
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
         int[] bits = decimal.GetBits(value);
         long preWritePosition = stream.Position;
 
@@ -1135,7 +1261,7 @@ public static class StreamExtensions
         return (int)(stream.Position - preWritePosition);
     }
 
-    private static int WriteInternal(this Stream stream, Span<byte> value)
+    private static int WriteInternal(this Stream stream, ReadOnlySpan<byte> value)
     {
         long preWritePosition = stream.Position;
         stream.Write(value);

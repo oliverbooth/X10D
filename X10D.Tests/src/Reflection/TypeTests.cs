@@ -32,6 +32,7 @@ public class TypeTests
     {
         Assert.ThrowsException<ArgumentNullException>(() => typeof(object).Inherits(null!));
         Assert.ThrowsException<ArgumentNullException>(() => ((Type?)null)!.Inherits(typeof(object)));
+        Assert.ThrowsException<ArgumentNullException>(() => ((Type?)null)!.Inherits<object>());
     }
 
     [TestMethod]
@@ -47,7 +48,8 @@ public class TypeTests
     public void Implements_ShouldThrow_GivenNull()
     {
         Assert.ThrowsException<ArgumentNullException>(() => typeof(object).Implements(null!));
-        Assert.ThrowsException<ArgumentNullException>(() => ((Type?)null)!.Implements(typeof(object)));
+        Assert.ThrowsException<ArgumentNullException>(() => ((Type?)null)!.Implements(typeof(IComparable)));
+        Assert.ThrowsException<ArgumentNullException>(() => ((Type?)null)!.Implements<IComparable>());
     }
 
     [TestMethod]

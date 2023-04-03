@@ -211,3 +211,4 @@ dotnet_diagnostic.SA1633.severity = silent
 # https://github.com/JosefPihrt/Roslynator/blob/master/docs/analyzers/RCS1090.md
 dotnet_diagnostic.CA2007.severity = silent
 dotnet_diagnostic.RCS1090.severity = silent
+dotnet_diagnostic.CA1805.severity = none

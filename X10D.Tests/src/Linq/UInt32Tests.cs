@@ -42,4 +42,12 @@ public class UInt32Tests
         Assert.AreEqual(185794560U, Enumerable.Range(1, 9).Product(Double));
         Assert.AreEqual(3715891200U, Enumerable.Range(1, 10).Product(Double));
     }
+
+    [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<uint> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
 }

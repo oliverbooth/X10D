@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
-        <LangVersion>10.0</LangVersion>
+        <TargetFrameworks>net7.0;net6.0;netstandard2.1</TargetFrameworks>
+        <LangVersion>11.0</LangVersion>
         <Optimize>true</Optimize>
         <ImplicitUsings>true</ImplicitUsings>
         <Authors>Oliver Booth</Authors>
@@ -11,14 +11,23 @@
         <RepositoryType>git</RepositoryType>
         <Description>Extension methods on crack.</Description>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-        <PackageIcon>icon.png</PackageIcon>
+        <PackageIcon>branding_Icon.png</PackageIcon>
         <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <VersionPrefix>3.1.0</VersionPrefix>
+        <VersionPrefix>3.2.0</VersionPrefix>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(VersionSuffix)' != '' And '$(BuildNumber)' == ''">
@@ -40,11 +49,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\icon.png">
+        <None Include="..\branding_Icon.png">
             <Pack>True</Pack>
             <PackagePath/>
         </None>
         <None Include="..\LICENSE.md">
+            <Pack>True</Pack>
+            <PackagePath/>
+        </None>
+        <None Include="..\README.md">
             <Pack>True</Pack>
             <PackagePath/>
         </None>
@@ -55,11 +68,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Resource.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resource.resx</DependentUpon>
-        </Compile>
         <Compile Update="src\ExceptionMessages.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
@@ -68,10 +76,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Update="Resource.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
         <EmbeddedResource Update="src\ExceptionMessages.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
@@ -79,9 +83,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X10D.SourceGenerator\X10D.SourceGenerator.csproj"
-                          OutputItemType="Analyzer"
-                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\X10D.SourceGenerator\X10D.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(GITHUB_ACTIONS)' != 'true'">
+        <PackageReference Include="JetBrains.dotCover.MSBuild" Version="1.0.5-alpha">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ public class Int16Tests
     public void ProductShouldBeCorrect()
     {
         short Cast(int i) => (short)i;
-        
+
         Assert.AreEqual(0, Enumerable.Range(0, 10).Select(Cast).Product());
         Assert.AreEqual(1, Enumerable.Range(1, 1).Select(Cast).Product());
         Assert.AreEqual(2, Enumerable.Range(1, 2).Select(Cast).Product());
@@ -36,6 +36,13 @@ public class Int16Tests
         Assert.AreEqual(3840, Enumerable.Range(1, 5).Product(Double));
 
         // Π_(i=1)^n (2i) will overflow at i=6 for short
+    }
+
+    [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<short> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
     }
 
     [TestMethod]

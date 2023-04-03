@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using X10D.Drawing;
 
 namespace X10D.Unity.Drawing;
 
@@ -9,6 +10,72 @@ namespace X10D.Unity.Drawing;
 /// </summary>
 public static class Color32Extensions
 {
+    /// <summary>
+    ///     Deconstructs the current color into its RGB components.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <param name="a">
+    ///     When this method returns, contains the <see cref="Color32.a" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="r">
+    ///     When this method returns, contains the <see cref="Color32.r" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="g">
+    ///     When this method returns, contains the <see cref="Color32.g" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="b">
+    ///     When this method returns, contains the <see cref="Color32.b" /> component of <paramref name="color" />.
+    /// </param>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static void Deconstruct(this Color32 color, out byte a, out byte r, out byte g, out byte b)
+    {
+        a = color.a;
+        (r, g, b) = color;
+    }
+
+    /// <summary>
+    ///     Deconstructs the current color into its RGB components.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <param name="r">
+    ///     When this method returns, contains the <see cref="Color32.r" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="g">
+    ///     When this method returns, contains the <see cref="Color32.g" /> component of <paramref name="color" />.
+    /// </param>
+    /// <param name="b">
+    ///     When this method returns, contains the <see cref="Color32.b" /> component of <paramref name="color" />.
+    /// </param>
+    [Pure]
+#if NETSTANDARD2_1
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+#endif
+    public static void Deconstruct(this Color32 color, out byte r, out byte g, out byte b)
+    {
+        r = color.r;
+        g = color.g;
+        b = color.b;
+    }
+
+    /// <summary>
+    ///     Returns a <see cref="ConsoleColor" /> which most closely resembles the current color.
+    /// </summary>
+    /// <param name="color">The source color.</param>
+    /// <returns>The closest <see cref="ConsoleColor" />.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ConsoleColor GetClosestConsoleColor(this Color32 color)
+    {
+        return color.ToSystemDrawingColor().GetClosestConsoleColor();
+    }
+
     /// <summary>
     ///     Returns a new <see cref="Color32" /> with the red, green, and blue components inverted. Alpha is not affected.
     /// </summary>
@@ -19,6 +86,30 @@ public static class Color32Extensions
     public static Color32 Inverted(this Color32 color)
     {
         return new Color32((byte)(255 - color.r), (byte)(255 - color.g), (byte)(255 - color.b), color.a);
+    }
+
+    /// <summary>
+    ///     Converts the current color to a <see cref="System.Drawing.Color" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static System.Drawing.Color ToSystemDrawingColor(this Color32 color)
+    {
+        return System.Drawing.Color.FromArgb(color.a, color.r, color.g, color.b);
+    }
+
+    /// <summary>
+    ///     Converts the current color to a <see cref="Color32" />.
+    /// </summary>
+    /// <param name="color">The color to convert.</param>
+    /// <returns>The converted color.</returns>
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color32 ToUnityColor32(this System.Drawing.Color color)
+    {
+        return new Color32(color.R, color.G, color.B, color.A);
     }
 
     /// <summary>

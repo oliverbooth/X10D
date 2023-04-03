@@ -35,6 +35,14 @@ public class ByteTests
     }
 
     [TestMethod]
+    public void Product_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<byte> source = null!;
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
+        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+    }
+
+    [TestMethod]
     public void RangeTo_Byte_ShouldYieldCorrectValues()
     {
         const byte start = 1;

@@ -17,9 +17,9 @@ public static class DoubleExtensions
     [Pure]
     public static byte[] GetBytes(this double value)
     {
-        Span<byte> buffer = stackalloc byte[8];
+        byte[] buffer = new byte[8];
         value.TryWriteBytes(buffer);
-        return buffer.ToArray();
+        return buffer;
     }
 
     /// <summary>
@@ -31,9 +31,9 @@ public static class DoubleExtensions
     [Pure]
     public static byte[] GetBytes(this double value, Endianness endianness)
     {
-        Span<byte> buffer = stackalloc byte[8];
+        byte[] buffer = new byte[8];
         value.TryWriteBytes(buffer, endianness);
-        return buffer.ToArray();
+        return buffer;
     }
 
     /// <summary>

@@ -5,7 +5,7 @@ or submit a pull request.
 
 ### Pull request guidelines
 
-This project uses C# 10.0 language features, and adheres to StyleCop rules with some minor adjustments.
+This project uses C# 11.0 language features where feasible, and adheres to StyleCop rules with some minor adjustments.
 There is an `.editorconfig` included in this repository. For quick and painless pull requests, ensure that the analyzer does not
 throw warnings.
 
@@ -13,7 +13,7 @@ throw warnings.
 
 Below are a few pointers to which you may refer, but keep in mind this is not an exhaustive list:
 
-- Use C# 10.0 features where possible
+- Use C# 11.0 features where possible
 - Try to ensure code is CLS-compliant. Where this is not possible, decorate methods with `CLSCompliantAttribute` and pass `false`
 - Follow all .NET guidelines and coding conventions.
   See https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
@@ -33,11 +33,11 @@ When in doubt, follow .NET guidelines.
 ### Tests
 
 When introducing a new extension method, you must ensure that you have also defined a unit test that asserts its correct behavior.
-The code style guidelines and code-analysis rules apply to the `X10D.Tests` equally as much as `X10D`, although documentation may
+The code style guidelines and code-analysis rules apply to the `X10D.Tests` as much as `X10D`, although documentation may
 be briefer. Refer to existing tests as a guideline.
 
 ### Disclaimer
 
-In the event of a code style violation, a pull request may left open (or closed entirely) without merging. Keep in mind this does
+In the event of a code style violation, a pull request may be left open (or closed entirely) without merging. Keep in mind this does
 not mean the theory or implementation of the method is inherently bad or rejected entirely (although if this is the case, it will
 be outlined)

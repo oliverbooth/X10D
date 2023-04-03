@@ -1,6 +1,9 @@
 ﻿#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace X10D.Text;
@@ -44,17 +47,69 @@ public static class RuneExtensions
                 return value.ToString();
         }
 
-        int utf8SequenceLength = value.Utf8SequenceLength;
-        Span<byte> utf8 = stackalloc byte[utf8SequenceLength];
-        value.EncodeToUtf8(utf8);
+        int length = value.Utf8SequenceLength;
 
-        Span<byte> buffer = stackalloc byte[utf8.Length * count];
-        for (var index = 0; index < count; index++)
+        // Helpful documentation: https://en.wikipedia.org/wiki/UTF-8
+        // This probably gonna break interning but whatever.
+        switch (length)
         {
-            utf8.CopyTo(buffer.Slice(index * utf8.Length, utf8.Length));
-        }
+            case 1:
+                {
+                    // Codepoint 0 to 0x00FF can be directly turn into char value without any conversion.
+                    return new string((char)value.Value, count);
+                }
 
-        return Encoding.UTF8.GetString(buffer);
+            // Codepoint 0x0080 to 0x07FF takes 2 UTF-8 bytes, and it can be represented by 1 UTF-16 character (.NET runtime use
+            // UTF-16 encoding).
+            // Source: https://stackoverflow.com/questions/63905684
+            case 2:
+            // Codepoint 0x0800 to 0xFFFF takes 3 UTF-8 bytes, and can also be represented by 1 UTF-16 character.
+            case 3:
+                {
+                    // Codepoint 0x0080 to 0x07FF convert into 1 .NET character string, directly use string constructor.
+                    unsafe
+                    {
+                        Span<byte> bytes = stackalloc byte[length];
+                        value.EncodeToUtf8(bytes);
+
+                        char character;
+                        Encoding.UTF8.GetChars(bytes, new Span<char>(&character, 1));
+
+                        return new string(character, count);
+                    }
+                }
+
+            // Codepoint 0x10000 and beyond will takes **only** 2 UTF-16 character.
+            case 4:
+                {
+                    return string.Create(count * 2, value, (span, _) =>
+                    {
+                        unsafe
+                        {
+                            Span<byte> bytes = stackalloc byte[4];
+                            value.EncodeToUtf8(bytes);
+
+                            int characters; // 2 characters, fit inside 1 32-bit integer.
+                            Encoding.UTF8.GetChars(bytes, new Span<char>(&characters, 2));
+
+                            MemoryMarshal.Cast<char, int>(span).Fill(characters);
+                        }
+                    });
+                }
+
+            // dotcover disable
+            //NOSONAR
+            default:
+                string exceptionFormat = ExceptionMessages.UnexpectedRuneUtf8SequenceLength;
+                string message = string.Format(CultureInfo.CurrentCulture, exceptionFormat, length);
+#if NET7_0_OR_GREATER
+                throw new UnreachableException(message);
+#else
+            throw new InvalidOperationException(message);
+#endif
+            //NOSONAR
+            // dotcover enable
+        }
     }
 }
 #endif
