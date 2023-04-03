@@ -30,9 +30,9 @@ public static class DateTimeExtensions
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 #endif
-    public static int Age(this DateTime value, DateTime asOf)
+    public static int Age(this DateTime value, DateTime referenceDate)
     {
-        return ((DateTimeOffset)value).Age(asOf);
+        return ((DateTimeOffset)value).Age(referenceDate);
     }
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.First(DateTimeOffset, DayOfWeek)" />
