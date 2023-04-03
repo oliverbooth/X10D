@@ -12,6 +12,20 @@ public static class MathUtility
     private const float DefaultGammaF = 2.2f;
 
     /// <summary>
+    ///     Applies a simple bias function to value.
+    /// </summary>
+    /// <param name="value">The value to which the bias function will be applied.</param>
+    /// <param name="bias">The bias value. Valid values range from 0-1.</param>
+    /// <returns>The biased result.</returns>
+    /// <remarks>
+    ///     If <paramref name="bias" /> is less than 0.5, <paramref name="value" /> will be shifted downward; otherwise, upward.
+    /// </remarks>
+    public static float Bias(float value, float bias)
+    {
+        return value / ((1.0f / bias - 2.0f) * (1.0f - value) + 1.0f);
+    }
+
+    /// <summary>
     ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
     /// </summary>
     /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>

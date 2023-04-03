@@ -10,6 +10,41 @@ namespace X10D.Tests.Math;
 public class MathUtilityTests
 {
     [TestMethod]
+    public void Bias_ReturnsCorrectResult_WhenBiasIsLessThanPointFive()
+    {
+        const float value = 0.5f;
+        const float bias = 0.3f;
+
+        const float expected = 0.3f;
+        float result = MathUtility.Bias(value, bias);
+
+        Assert.AreEqual(expected, result, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Bias_ReturnsCorrectResult_WhenBiasIsEqualToPointFive()
+    {
+        const float value = 0.5f;
+        const float bias = 0.5f;
+
+        float result = MathUtility.Bias(value, bias);
+
+        Assert.AreEqual(value, result, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Bias_ReturnsCorrectResult_WhenBiasIsGreaterThanPointFive()
+    {
+        const float value = 0.5f;
+        const float bias = 0.8f;
+
+        const float expected = 0.8f;
+        float result = MathUtility.Bias(value, bias);
+
+        Assert.AreEqual(expected, result, 1e-6f);
+    }
+
+    [TestMethod]
     public void GammaToLinear_ShouldReturnQuarter_GivenQuarterAndGamma1()
     {
         double doubleResult = MathUtility.GammaToLinear(0.25, 1.0);
