@@ -471,6 +471,8 @@ public static class SpanExtensions
         }
     }
 
+    // dotcover disable
+    //NOSONAR
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     internal static int PackInt32Internal_AdvSimd(this ReadOnlySpan<bool> source)
@@ -496,6 +498,8 @@ public static class SpanExtensions
             }
         }
     }
+    //NOSONAR
+    // dotcover enable
 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
