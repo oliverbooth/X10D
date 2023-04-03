@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 #if !NET6_0_OR_GREATER
 using X10D.Core;
 #endif
@@ -94,6 +94,27 @@ public class MathUtilityTests
 
         Assert.AreEqual(0.0, doubleResult, 1e-6);
         Assert.AreEqual(0.0f, floatResult, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Lerp_ShouldReturnHigher_GivenAlpha1()
+    {
+        Assert.AreEqual(20.0f, MathUtility.Lerp(10.0f, 20.0f, 1.0f));
+        Assert.AreEqual(20.0, MathUtility.Lerp(10.0, 20.0, 1.0));
+    }
+
+    [TestMethod]
+    public void Lerp_ShouldReturnLower_GivenAlpha0()
+    {
+        Assert.AreEqual(10.0f, MathUtility.Lerp(10.0f, 20.0f, 0.0f));
+        Assert.AreEqual(10.0, MathUtility.Lerp(10.0, 20.0, 0.0));
+    }
+
+    [TestMethod]
+    public void Lerp_ShouldReturnMidPoint_GivenAlphaPoint5()
+    {
+        Assert.AreEqual(15.0f, MathUtility.Lerp(10.0f, 20.0f, 0.5f));
+        Assert.AreEqual(15.0, MathUtility.Lerp(10.0, 20.0, 0.5));
     }
 
     [TestMethod]
