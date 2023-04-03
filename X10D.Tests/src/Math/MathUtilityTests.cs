@@ -164,6 +164,72 @@ public class MathUtilityTests
     }
 
     [TestMethod]
+    public void Sawtooth_ShouldReturn0Point5_Given0Point5AsDouble()
+    {
+        const double value = 0.5;
+
+        const double expected = 0.5;
+        double actual = MathUtility.Sawtooth(value);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sawtooth_ShouldReturn0Point5_Given0Point5AsSingle()
+    {
+        const float value = 0.5f;
+
+        const float expected = 0.5f;
+        float actual = MathUtility.Sawtooth(value);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Sawtooth_ShouldReturn0Point5_Given1Point5AsDouble()
+    {
+        const double value = 1.5;
+
+        const double expected = 0.5;
+        double actual = MathUtility.Sawtooth(value);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sawtooth_ShouldReturn0Point5_Given1Point5AsSingle()
+    {
+        const float value = 1.5f;
+
+        const float expected = 0.5f;
+        float actual = MathUtility.Sawtooth(value);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
+    public void Sawtooth_ShouldReturn0Point5_GivenNegative1Point5AsDouble()
+    {
+        const double value = -1.5;
+
+        const double expected = 0.5;
+        double actual = MathUtility.Sawtooth(value);
+
+        Assert.AreEqual(expected, actual, 1e-6);
+    }
+
+    [TestMethod]
+    public void Sawtooth_ShouldReturn0Point5_GivenNegative1Point5AsSingle()
+    {
+        const float value = -1.5f;
+
+        const float expected = 0.5f;
+        float actual = MathUtility.Sawtooth(value);
+
+        Assert.AreEqual(expected, actual, 1e-6f);
+    }
+
+    [TestMethod]
     public void ScaleRangeDouble_ShouldScaleRange_GivenItsValues()
     {
         double result = MathUtility.ScaleRange(0.5, 0.0, 1.0, 5.0, 10.0);

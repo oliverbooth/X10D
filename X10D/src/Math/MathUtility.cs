@@ -288,6 +288,26 @@ public static class MathUtility
     }
 
     /// <summary>
+    ///     Returns the incremental sawtooth wave of a given value.
+    /// </summary>
+    /// <param name="value">The value to calculate.</param>
+    /// <returns>The sawtooth wave of the given value.</returns>
+    public static float Sawtooth(float value)
+    {
+        return (value - MathF.Floor(value));
+    }
+
+    /// <summary>
+    ///     Returns the incremental sawtooth wave of a given value.
+    /// </summary>
+    /// <param name="value">The value to calculate.</param>
+    /// <returns>The sawtooth wave of the given value.</returns>
+    public static double Sawtooth(double value)
+    {
+        return (value - System.Math.Floor(value));
+    }
+
+    /// <summary>
     ///     Converts a value from being a percentage of one range, to being the same percentage in a new range.
     /// </summary>
     /// <param name="value">The value to convert.</param>
