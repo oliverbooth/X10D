@@ -7098,6 +7098,20 @@
             <param name="gamma">The gamma value to use for encoding.</param>
             <returns>The gamma-encoded value.</returns>
         </member>
+        <member name="M:X10D.Math.MathUtility.Sawtooth(System.Single)">
+            <summary>
+                Returns the incremental sawtooth wave of a given value.
+            </summary>
+            <param name="value">The value to calculate.</param>
+            <returns>The sawtooth wave of the given value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.Sawtooth(System.Double)">
+            <summary>
+                Returns the incremental sawtooth wave of a given value.
+            </summary>
+            <param name="value">The value to calculate.</param>
+            <returns>The sawtooth wave of the given value.</returns>
+        </member>
         <member name="M:X10D.Math.MathUtility.ScaleRange(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
                 Converts a value from being a percentage of one range, to being the same percentage in a new range.
@@ -7119,6 +7133,28 @@
             <param name="newMin">The new minimum value.</param>
             <param name="newMax">The new maximum value.</param>
             <returns>The scaled value.</returns>
+        </member>
+        <member name="M:X10D.Math.MathUtility.Sigmoid(System.Single)">
+            <summary>
+                Calculates the sigmoid function for the given input value.
+            </summary>
+            <param name="value">The input value for which to calculate the sigmoid function.</param>
+            <returns>The result of applying the sigmoid function to the input value.</returns>
+            <remarks>
+                The sigmoid function is a commonly used activation function in artificial neural networks and logistic regression. It
+                maps any real-valued number to a value between 0 and 1.
+            </remarks>
+        </member>
+        <member name="M:X10D.Math.MathUtility.Sigmoid(System.Double)">
+            <summary>
+                Calculates the sigmoid function for the given input value.
+            </summary>
+            <param name="value">The input value for which to calculate the sigmoid function.</param>
+            <returns>The result of applying the sigmoid function to the input value.</returns>
+            <remarks>
+                The sigmoid function is a commonly used activation function in artificial neural networks and logistic regression. It
+                maps any real-valued number to a value between 0 and 1.
+            </remarks>
         </member>
         <member name="M:X10D.Math.MathUtility.SmoothStep(System.Single,System.Single,System.Single)">
             <summary>
