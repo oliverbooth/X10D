@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 #if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
@@ -22,6 +23,7 @@ public static class Int32Extensions
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 32.</returns>
     [Pure]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool[] Unpack(this int value)
     {
         var ret = new bool[Size];
@@ -36,6 +38,7 @@ public static class Int32Extensions
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
     [ExcludeFromCodeCoverage]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static void Unpack(this int value, Span<bool> destination)
     {
         if (destination.Length < Size)
@@ -60,11 +63,7 @@ public static class Int32Extensions
         UnpackInternal_Fallback(value, destination);
     }
 
-#if NETCOREAPP3_1_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static void UnpackInternal_Fallback(this int value, Span<bool> destination)
     {
         for (var index = 0; index < Size; index++)
@@ -74,11 +73,7 @@ public static class Int32Extensions
     }
 
 #if NETCOREAPP3_0_OR_GREATER
-#if NETCOREAPP3_1_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static unsafe void UnpackInternal_Ssse3(this int value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)

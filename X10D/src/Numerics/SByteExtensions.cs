@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Numerics;
 
@@ -19,11 +20,7 @@ public static class SByteExtensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int PopCount(this sbyte value)
     {
         return ((uint)value).PopCount();
@@ -38,11 +35,7 @@ public static class SByteExtensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static sbyte RotateLeft(this sbyte value, int count)
     {
         var signed = unchecked((byte)value);
@@ -58,11 +51,7 @@ public static class SByteExtensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static sbyte RotateRight(this sbyte value, int count)
     {
         var signed = unchecked((byte)value);
@@ -78,11 +67,7 @@ public static class SByteExtensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static sbyte RoundUpToPowerOf2(this sbyte value)
     {
         return (sbyte)((uint)value).RoundUpToPowerOf2();

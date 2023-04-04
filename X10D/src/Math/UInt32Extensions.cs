@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Math;
 
@@ -19,11 +20,7 @@ public static class UInt32Extensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static uint DigitalRoot(this uint value)
     {
         uint root = value % 9;
@@ -36,11 +33,7 @@ public static class UInt32Extensions
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static ulong Factorial(this uint value)
     {
         if (value == 0)
@@ -65,11 +58,7 @@ public static class UInt32Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static uint GreatestCommonFactor(this uint value, uint other)
     {
         return (uint)((long)value).GreatestCommonFactor(other);
@@ -84,11 +73,7 @@ public static class UInt32Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsEven(this uint value)
     {
         return (value & 1) == 0;
@@ -102,11 +87,7 @@ public static class UInt32Extensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsPrime(this uint value)
     {
         return ((ulong)value).IsPrime();
@@ -121,11 +102,7 @@ public static class UInt32Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOdd(this uint value)
     {
         return !value.IsEven();
@@ -139,11 +116,7 @@ public static class UInt32Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static uint LowestCommonMultiple(this uint value, uint other)
     {
         return (uint)((ulong)value).LowestCommonMultiple(other);
@@ -158,11 +131,7 @@ public static class UInt32Extensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int MultiplicativePersistence(this uint value)
     {
         return ((ulong)value).MultiplicativePersistence();
@@ -176,11 +145,7 @@ public static class UInt32Extensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static uint Wrap(this uint value, uint low, uint high)
     {
         return (uint)((ulong)value).Wrap(low, high);
@@ -193,11 +158,7 @@ public static class UInt32Extensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static uint Wrap(this uint value, uint length)
     {
         return (uint)((ulong)value).Wrap(length);

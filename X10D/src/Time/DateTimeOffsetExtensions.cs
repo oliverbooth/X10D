@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Time;
 
@@ -15,11 +16,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="value">The date from which to calculate.</param>
     /// <returns>The rounded-down integer number of years since <paramref name="value" /> as of today.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static int Age(this DateTimeOffset value)
     {
@@ -36,11 +33,7 @@ public static class DateTimeOffsetExtensions
     ///     <paramref name="referenceDate" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int Age(this DateTimeOffset value, DateTimeOffset referenceDate)
     {
         return (int)(((referenceDate.Date - TimeSpan.FromDays(1) - value.Date).TotalDays + 1) / 365.2425);
@@ -53,11 +46,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="dayOfWeek">The day of the week.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the first occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTimeOffset First(this DateTimeOffset value, DayOfWeek dayOfWeek)
     {
         var first = value.FirstDayOfMonth();
@@ -76,11 +65,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="value">The current date.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the first day of the current month.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTimeOffset FirstDayOfMonth(this DateTimeOffset value)
     {
         return value.AddDays(1 - value.Day);
@@ -114,11 +99,7 @@ public static class DateTimeOffsetExtensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsLeapYear(this DateTimeOffset value)
     {
         return DateTime.IsLeapYear(value.Year);
@@ -131,11 +112,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="dayOfWeek">The day of the week.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTimeOffset Last(this DateTimeOffset value, DayOfWeek dayOfWeek)
     {
         var last = value.LastDayOfMonth();
@@ -153,11 +130,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="value">The current date.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTimeOffset LastDayOfMonth(this DateTimeOffset value)
     {
         int daysInMonth = DateTime.DaysInMonth(value.Year, value.Month);
@@ -171,11 +144,7 @@ public static class DateTimeOffsetExtensions
     /// <param name="dayOfWeek">The day of the week.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTimeOffset Next(this DateTimeOffset value, DayOfWeek dayOfWeek)
     {
         int offsetDays = dayOfWeek - value.DayOfWeek;

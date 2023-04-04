@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Drawing;
 
@@ -26,11 +27,7 @@ public static class ColorExtensions
     ///     When this method returns, contains the <see cref="Color.B" /> component of <paramref name="color" />.
     /// </param>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static void Deconstruct(this Color color, out byte a, out byte r, out byte g, out byte b)
     {
         a = color.A;
@@ -51,11 +48,7 @@ public static class ColorExtensions
     ///     When this method returns, contains the <see cref="Color.B" /> component of <paramref name="color" />.
     /// </param>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static void Deconstruct(this Color color, out byte r, out byte g, out byte b)
     {
         r = color.R;
@@ -70,11 +63,7 @@ public static class ColorExtensions
     /// <returns>The closest <see cref="ConsoleColor" />.</returns>
     /// <author>Glenn Slayden, https://stackoverflow.com/a/12340136/1467293</author>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static ConsoleColor GetClosestConsoleColor(this Color color)
     {
         ConsoleColor result = 0;
@@ -121,11 +110,7 @@ public static class ColorExtensions
     /// <param name="color">The color to invert.</param>
     /// <returns>The inverted color.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Color Inverted(this Color color)
     {
         return Color.FromArgb(color.A, 255 - color.R, 255 - color.G, 255 - color.B);
@@ -143,11 +128,7 @@ public static class ColorExtensions
     ///     <see cref="Color.A" /> component is <paramref name="a" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Color WithA(this Color color, int a)
     {
         return Color.FromArgb(a, color.R, color.G, color.B);
@@ -165,11 +146,7 @@ public static class ColorExtensions
     ///     <see cref="Color.B" /> component is <paramref name="b" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Color WithB(this Color color, int b)
     {
         return Color.FromArgb(color.A, color.R, color.G, b);
@@ -187,11 +164,7 @@ public static class ColorExtensions
     ///     <see cref="Color.G" /> component is <paramref name="g" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Color WithG(this Color color, int g)
     {
         return Color.FromArgb(color.A, color.R, g, color.B);
@@ -209,11 +182,7 @@ public static class ColorExtensions
     ///     <see cref="Color.R" /> component is <paramref name="r" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Color WithR(this Color color, int r)
     {
         return Color.FromArgb(color.A, r, color.G, color.B);

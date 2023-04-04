@@ -1,6 +1,7 @@
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Math;
 
@@ -48,11 +49,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper,
         InclusiveOptions inclusiveOptions = InclusiveOptions.None)
         where T1 : IComparable<T2>, IComparable<T3>
@@ -113,11 +110,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static T Clamp<T>(this T value, T lower, T upper)
         where T : IComparable<T>
     {
@@ -163,11 +156,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool GreaterThan<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -206,11 +195,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool GreaterThanOrEqualTo<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -249,11 +234,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool LessThan<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -292,11 +273,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool LessThanOrEqualTo<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
@@ -334,11 +311,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static T Max<T>(this T value, T other)
         where T : IComparable<T>
     {
@@ -376,11 +349,7 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static T Min<T>(this T value, T other)
         where T : IComparable<T>
     {
