@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 4.0.0 - [Unreleased]
 
+### Added
+- X10D: Added extension methods for `DateOnly`, for parity with `DateTime` and `DateTimeOffset`.
+
 ### Changed
 - X10D: `DateTime.Age(DateTime)` and `DateTimeOffset.Age(DateTimeOffset)` parameter renamed from `asOf` to `referenceDate`.
 
