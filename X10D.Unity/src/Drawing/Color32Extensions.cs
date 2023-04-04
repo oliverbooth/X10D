@@ -27,11 +27,7 @@ public static class Color32Extensions
     ///     When this method returns, contains the <see cref="Color32.b" /> component of <paramref name="color" />.
     /// </param>
     [Pure]
-#if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
     public static void Deconstruct(this Color32 color, out byte a, out byte r, out byte g, out byte b)
     {
         a = color.a;
@@ -52,11 +48,7 @@ public static class Color32Extensions
     ///     When this method returns, contains the <see cref="Color32.b" /> component of <paramref name="color" />.
     /// </param>
     [Pure]
-#if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
     public static void Deconstruct(this Color32 color, out byte r, out byte g, out byte b)
     {
         r = color.r;

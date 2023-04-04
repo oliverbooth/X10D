@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Time;
 
@@ -12,11 +13,7 @@ public static class DateTimeExtensions
 {
     /// <inheritdoc cref="DateTimeOffsetExtensions.Age(DateTimeOffset)" />
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static int Age(this DateTime value)
     {
@@ -25,11 +22,7 @@ public static class DateTimeExtensions
 
     /// <inheritdoc cref="DateTimeOffsetExtensions.Age(DateTimeOffset, DateTimeOffset)" />
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int Age(this DateTime value, DateTime referenceDate)
     {
         return ((DateTimeOffset)value).Age(referenceDate);
@@ -38,11 +31,7 @@ public static class DateTimeExtensions
     /// <inheritdoc cref="DateTimeOffsetExtensions.First(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTime" /> representing the first occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime First(this DateTime value, DayOfWeek dayOfWeek)
     {
         return ((DateTimeOffset)value).First(dayOfWeek).DateTime;
@@ -51,11 +40,7 @@ public static class DateTimeExtensions
     /// <inheritdoc cref="DateTimeOffsetExtensions.FirstDayOfMonth(DateTimeOffset)" />
     /// <returns>A <see cref="DateTime" /> representing the first day of the current month.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime FirstDayOfMonth(this DateTime value)
     {
         return ((DateTimeOffset)value).FirstDayOfMonth().DateTime;
@@ -96,11 +81,7 @@ public static class DateTimeExtensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsLeapYear(this DateTime value)
     {
         return DateTime.IsLeapYear(value.Year);
@@ -109,11 +90,7 @@ public static class DateTimeExtensions
     /// <inheritdoc cref="DateTimeOffsetExtensions.Last(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime Last(this DateTime value, DayOfWeek dayOfWeek)
     {
         return ((DateTimeOffset)value).Last(dayOfWeek).DateTime;
@@ -122,11 +99,7 @@ public static class DateTimeExtensions
     /// <inheritdoc cref="DateTimeOffsetExtensions.LastDayOfMonth(DateTimeOffset)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime LastDayOfMonth(this DateTime value)
     {
         return ((DateTimeOffset)value).LastDayOfMonth().DateTime;
@@ -135,11 +108,7 @@ public static class DateTimeExtensions
     /// <inheritdoc cref="DateTimeOffsetExtensions.Next(DateTimeOffset, DayOfWeek)" />
     /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime Next(this DateTime value, DayOfWeek dayOfWeek)
     {
         return ((DateTimeOffset)value).Next(dayOfWeek).DateTime;
@@ -151,11 +120,7 @@ public static class DateTimeExtensions
     /// <param name="value">The current date.</param>
     /// <returns>The number of milliseconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static long ToUnixTimeMilliseconds(this DateTime value)
     {
         return ((DateTimeOffset)value).ToUnixTimeMilliseconds();
@@ -167,11 +132,7 @@ public static class DateTimeExtensions
     /// <param name="value">The current date.</param>
     /// <returns>The number of seconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static long ToUnixTimeSeconds(this DateTime value)
     {
         return ((DateTimeOffset)value).ToUnixTimeSeconds();
