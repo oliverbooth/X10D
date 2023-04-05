@@ -5769,6 +5769,109 @@
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
         </member>
+        <member name="T:X10D.Math.BigIntegerExtensions">
+            <summary>
+                Math-related extension methods for <see cref="T:System.Numerics.BigInteger" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.DigitalRoot(System.Numerics.BigInteger)">
+            <summary>
+                Computes the digital root of this 8-bit integer.
+            </summary>
+            <param name="value">The value whose digital root to compute.</param>
+            <returns>The digital root of <paramref name="value" />.</returns>
+            <remarks>The digital root is defined as the recursive sum of digits until that result is a single digit.</remarks>
+            <remarks>
+                <para>The digital root is defined as the recursive sum of digits until that result is a single digit.</para>
+                <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
+            </remarks>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.Factorial(System.Numerics.BigInteger)">
+            <summary>
+                Returns the factorial of the current 64-bit signed integer.
+            </summary>
+            <param name="value">The value whose factorial to compute.</param>
+            <returns>The factorial of <paramref name="value" />.</returns>
+            <exception cref="T:System.ArithmeticException"><paramref name="value" /> is less than 0.</exception>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.GreatestCommonFactor(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+                Calculates the greatest common factor between this, and another, <see cref="T:System.Numerics.BigInteger" />.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.IsOdd(System.Numerics.BigInteger)">
+            <summary>
+                Returns a value indicating whether the current value is not evenly divisible by 2.
+            </summary>
+            <param name="value">The value whose parity to check.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
+                otherwise.
+            </returns>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.IsPrime(System.Numerics.BigInteger)">
+            <summary>
+                Returns a value indicating whether the current value is a prime number.
+            </summary>
+            <param name="value">The value whose primality to check.</param>
+            <returns>
+                <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.LowestCommonMultiple(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+                Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
+            </summary>
+            <param name="value">The first value.</param>
+            <param name="other">The second value.</param>
+            <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.Mod(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+                Performs a modulo operation which supports a negative dividend.
+            </summary>
+            <param name="dividend">The dividend.</param>
+            <param name="divisor">The divisor.</param>
+            <returns>The result of <c>dividend mod divisor</c>.</returns>
+            <remarks>
+                The <c>%</c> operator (commonly called the modulo operator) in C# is not defined to be modulo, but is instead
+                remainder. This quirk inherently makes it difficult to use modulo in a negative context, as <c>x % y</c> where x is
+                negative will return a negative value, akin to <c>-(x % y)</c>, even if precedence is forced. This method provides a
+                modulo operation which supports negative dividends.
+            </remarks>
+            <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
+            <license>CC-BY-SA 2.5</license>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.MultiplicativePersistence(System.Numerics.BigInteger)">
+            <summary>
+                Returns the multiplicative persistence of a specified value.
+            </summary>
+            <param name="value">The value whose multiplicative persistence to calculate.</param>
+            <returns>The multiplicative persistence.</returns>
+            <remarks>
+                Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
+            </remarks>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.Wrap(System.Numerics.BigInteger,System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+                Wraps the current integer between a low and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="low">The inclusive lower bound.</param>
+            <param name="high">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.Wrap(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+                Wraps the current integer between 0 and a high value.
+            </summary>
+            <param name="value">The value to wrap.</param>
+            <param name="length">The exclusive upper bound.</param>
+            <returns>The wrapped value.</returns>
+        </member>
         <member name="T:X10D.Math.ByteExtensions">
             <summary>
                 Math-related extension methods for <see cref="T:System.Byte" />.
@@ -9670,10 +9773,10 @@
                 Returns the rounded-down integer number of years since a given date as of another specified date.
             </summary>
             <param name="value">The date from which to calculate.</param>
-            <param name="asOf">The date at which to stop calculating.</param>
+            <param name="referenceDate">The date to use as the calculation reference.</param>
             <returns>
                 The rounded-down integer number of years since <paramref name="value" /> as of the date specified by
-                <paramref name="asOf" />.
+                <paramref name="referenceDate" />.
             </returns>
         </member>
         <member name="M:X10D.Time.DateTimeOffsetExtensions.First(System.DateTimeOffset,System.DayOfWeek)">
