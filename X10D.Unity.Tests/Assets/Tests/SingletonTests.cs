@@ -11,23 +11,23 @@ namespace X10D.Unity.Tests
         public void Singleton_ShouldReturnNewInstance_WhenNoInstanceExists()
         {
             TestBehaviour instance = Singleton<TestBehaviour>.Instance;
-            Assert.IsNotNull(instance);
-            Assert.IsTrue(instance.Flag);
+            Assert.That(instance, Is.Not.Null);
+            Assert.That(instance.Flag);
         }
 
         [Test]
         public void Singleton_ShouldReturnSameInstance_WhenAccessedTwice()
         {
             TestBehaviour instance = Singleton<TestBehaviour>.Instance;
-            Assert.IsNotNull(instance);
-            Assert.AreEqual(instance, Singleton<TestBehaviour>.Instance);
+            Assert.That(instance, Is.Not.Null);
+            Assert.That(Singleton<TestBehaviour>.Instance, Is.EqualTo(instance));
         }
 
         [UnityTest]
         public IEnumerator Singleton_ShouldReturnNewInstance_WhenDestroyed()
         {
             TestBehaviour instance = Singleton<TestBehaviour>.Instance;
-            Assert.IsNotNull(instance);
+            Assert.That(instance, Is.Not.Null);
             Object.Destroy(instance);
 
             yield return null;
@@ -36,7 +36,7 @@ namespace X10D.Unity.Tests
 
             // ReSharper disable once HeuristicUnreachableCode
             instance = Singleton<TestBehaviour>.Instance;
-            Assert.IsNotNull(instance);
+            Assert.That(instance, Is.Not.Null);
             Assert.IsTrue(instance.Flag);
         }
     }

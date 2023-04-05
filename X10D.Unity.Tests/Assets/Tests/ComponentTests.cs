@@ -20,8 +20,8 @@ namespace X10D.Unity.Tests
             child.AddComponent<Rigidbody>();
 
             Rigidbody[] components = rigidbody.GetComponentsInChildrenOnly<Rigidbody>();
-            Assert.AreEqual(1, components.Length);
-            Assert.AreEqual(components[0].gameObject, child);
+            Assert.That(components.Length, Is.EqualTo(1));
+            Assert.That(child, Is.EqualTo(components[0].gameObject));
 
             yield break;
         }

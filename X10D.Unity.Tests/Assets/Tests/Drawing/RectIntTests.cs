@@ -14,10 +14,10 @@ namespace X10D.Unity.Tests.Drawing
             var rect = new RectInt(random.Next(), random.Next(), random.Next(), random.Next());
             var rectangle = rect.ToSystemRectangle();
 
-            Assert.AreEqual(rect.x, rectangle.X);
-            Assert.AreEqual(rect.y, rectangle.Y);
-            Assert.AreEqual(rect.width, rectangle.Width);
-            Assert.AreEqual(rect.height, rectangle.Height);
+            Assert.That(rectangle.X, Is.EqualTo(rect.x));
+            Assert.That(rectangle.Y, Is.EqualTo(rect.y));
+            Assert.That(rectangle.Width, Is.EqualTo(rect.width));
+            Assert.That(rectangle.Height, Is.EqualTo(rect.height));
         }
 
         [Test]
@@ -27,10 +27,10 @@ namespace X10D.Unity.Tests.Drawing
             var rect = new RectInt(random.Next(), random.Next(), random.Next(), random.Next());
             var rectangle = rect.ToSystemRectangleF();
 
-            Assert.AreEqual(rect.x, rectangle.X);
-            Assert.AreEqual(rect.y, rectangle.Y);
-            Assert.AreEqual(rect.width, rectangle.Width);
-            Assert.AreEqual(rect.height, rectangle.Height);
+            Assert.That(rectangle.X, Is.EqualTo(rect.x));
+            Assert.That(rectangle.Y, Is.EqualTo(rect.y));
+            Assert.That(rectangle.Width, Is.EqualTo(rect.width));
+            Assert.That(rectangle.Height, Is.EqualTo(rect.height));
         }
     }
 }

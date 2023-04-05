@@ -14,8 +14,8 @@ namespace X10D.Unity.Tests.Drawing
             var point = new Point(random.Next(), random.Next());
             var vector = point.ToUnityVector2();
 
-            Assert.AreEqual(point.X, vector.x);
-            Assert.AreEqual(point.Y, vector.y);
+            Assert.That(vector.x, Is.EqualTo(point.X));
+            Assert.That(vector.y, Is.EqualTo(point.Y));
         }
 
         [Test]
@@ -25,8 +25,8 @@ namespace X10D.Unity.Tests.Drawing
             var point = new Point(random.Next(), random.Next());
             var vector = point.ToUnityVector2Int();
 
-            Assert.AreEqual(point.X, vector.x);
-            Assert.AreEqual(point.Y, vector.y);
+            Assert.That(vector.x, Is.EqualTo(point.X));
+            Assert.That(vector.y, Is.EqualTo(point.Y));
         }
     }
 }

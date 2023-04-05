@@ -20,10 +20,10 @@ namespace X10D.Unity.Tests.Numerics
             var quaternion = new Quaternion(x, y, z, w);
             var systemQuaternion = quaternion.ToSystemQuaternion();
 
-            Assert.AreEqual(quaternion.x, systemQuaternion.X, 1e-6f);
-            Assert.AreEqual(quaternion.y, systemQuaternion.Y, 1e-6f);
-            Assert.AreEqual(quaternion.z, systemQuaternion.Z, 1e-6f);
-            Assert.AreEqual(quaternion.w, systemQuaternion.W, 1e-6f);
+            Assert.That(systemQuaternion.X, Is.EqualTo(quaternion.x).Within(1e-6f));
+            Assert.That(systemQuaternion.Y, Is.EqualTo(quaternion.y).Within(1e-6f));
+            Assert.That(systemQuaternion.Z, Is.EqualTo(quaternion.z).Within(1e-6f));
+            Assert.That(systemQuaternion.W, Is.EqualTo(quaternion.w).Within(1e-6f));
         }
 
         [Test]
@@ -38,10 +38,10 @@ namespace X10D.Unity.Tests.Numerics
             var quaternion = new System.Numerics.Quaternion(x, y, z, w);
             var unityQuaternion = quaternion.ToUnityQuaternion();
 
-            Assert.AreEqual(quaternion.X, unityQuaternion.x, 1e-6f);
-            Assert.AreEqual(quaternion.Y, unityQuaternion.y, 1e-6f);
-            Assert.AreEqual(quaternion.Z, unityQuaternion.z, 1e-6f);
-            Assert.AreEqual(quaternion.W, unityQuaternion.w, 1e-6f);
+            Assert.That(unityQuaternion.x, Is.EqualTo(quaternion.X).Within(1e-6f));
+            Assert.That(unityQuaternion.y, Is.EqualTo(quaternion.Y).Within(1e-6f));
+            Assert.That(unityQuaternion.z, Is.EqualTo(quaternion.Z).Within(1e-6f));
+            Assert.That(unityQuaternion.w, Is.EqualTo(quaternion.W).Within(1e-6f));
         }
     }
 }
