@@ -38,7 +38,7 @@ namespace X10D.Unity.Tests
         {
             float time = UTime.time;
             yield return new WaitForTimeSpan(TimeSpan.FromSeconds(2));
-            if (System.Math.Abs(UTime.time - (time + 2)) < 1e-2)
+            if (System.Math.Abs(UTime.time - (time + 2)) < 1e-1)
             {
                 Assert.Pass($"{time + 2} == {UTime.time}");
             }

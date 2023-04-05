@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using X10D.Core;
 using X10D.Unity.Numerics;
 using Random = System.Random;
@@ -10,8 +8,8 @@ namespace X10D.Unity.Tests.Numerics
 {
     public class Vector3Tests
     {
-        [UnityTest]
-        public IEnumerator Deconstruct_ShouldReturnCorrectValues()
+        [Test]
+        public void Deconstruct_ShouldReturnCorrectValues()
         {
             var vector = new Vector3(1, 2, 3);
             (float x, float y, float z) = vector;
@@ -19,12 +17,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(1, x);
             Assert.AreEqual(2, y);
             Assert.AreEqual(3, z);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator Round_ShouldRoundToNearestInteger_GivenNoParameters()
+        [Test]
+        public void Round_ShouldRoundToNearestInteger_GivenNoParameters()
         {
             var vector = new Vector3(1.5f, 2.6f, -5.2f);
             var rounded = vector.Round();
@@ -32,12 +28,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(2, rounded.x);
             Assert.AreEqual(3, rounded.y);
             Assert.AreEqual(-5, rounded.z);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator Round_ShouldRoundToNearest10_GivenPrecision10()
+        [Test]
+        public void Round_ShouldRoundToNearest10_GivenPrecision10()
         {
             var vector = new Vector3(1.5f, 25.2f, -12.5f);
             var rounded = vector.Round(10);
@@ -45,12 +39,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(0, rounded.x);
             Assert.AreEqual(30, rounded.y);
             Assert.AreEqual(-10, rounded.z);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator ToSystemVector_ShouldReturnVector_WithEqualComponents()
+        [Test]
+        public void ToSystemVector_ShouldReturnVector_WithEqualComponents()
         {
             var random = new Random();
             float x = random.NextSingle();
@@ -64,12 +56,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(vector.x, systemVector.X, 1e-6f);
             Assert.AreEqual(vector.y, systemVector.Y, 1e-6f);
             Assert.AreEqual(vector.z, systemVector.Z, 1e-6f);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator ToUnityVector_ShouldReturnVector_WithEqualComponents()
+        [Test]
+        public void ToUnityVector_ShouldReturnVector_WithEqualComponents()
         {
             var random = new Random();
             float x = random.NextSingle();
@@ -83,12 +73,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(vector.X, unityVector.x, 1e-6f);
             Assert.AreEqual(vector.Y, unityVector.y, 1e-6f);
             Assert.AreEqual(vector.Z, unityVector.z, 1e-6f);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithX_ShouldReturnVectorWithNewX_GivenVector()
+        [Test]
+        public void WithX_ShouldReturnVectorWithNewX_GivenVector()
         {
             Assert.AreEqual(new Vector3(0, 1, 1), Vector3.one.WithX(0));
             Assert.AreEqual(Vector3.zero, Vector3.zero.WithX(0));
@@ -101,12 +89,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(Vector3.right, Vector3.right.WithX(1));
             Assert.AreEqual(new Vector3(1, 1, 0), Vector3.up.WithX(1));
             Assert.AreEqual(new Vector3(1, 0, 1), Vector3.forward.WithX(1));
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithY_ShouldReturnVectorWithNewY_GivenVector()
+        [Test]
+        public void WithY_ShouldReturnVectorWithNewY_GivenVector()
         {
             Assert.AreEqual(new Vector3(1, 0, 1), Vector3.one.WithY(0));
             Assert.AreEqual(Vector3.zero, Vector3.zero.WithY(0));
@@ -119,12 +105,10 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(new Vector3(1, 1, 0), Vector3.right.WithY(1));
             Assert.AreEqual(Vector3.up, Vector3.up.WithY(1));
             Assert.AreEqual(new Vector3(0, 1, 1), Vector3.forward.WithY(1));
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithZ_ShouldReturnVectorWithNewZ_GivenVector()
+        [Test]
+        public void WithZ_ShouldReturnVectorWithNewZ_GivenVector()
         {
             Assert.AreEqual(new Vector3(1, 1, 0), Vector3.one.WithZ(0));
             Assert.AreEqual(Vector3.zero, Vector3.zero.WithZ(0));
@@ -137,8 +121,6 @@ namespace X10D.Unity.Tests.Numerics
             Assert.AreEqual(new Vector3(1, 0, 1), Vector3.right.WithZ(1));
             Assert.AreEqual(new Vector3(0, 1, 1), Vector3.up.WithZ(1));
             Assert.AreEqual(Vector3.forward, Vector3.forward.WithZ(1));
-
-            yield break;
         }
     }
 }
