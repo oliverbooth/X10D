@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Hosting.DependencyInjection;
 
 namespace X10D.Tests.Hosting;
 
-[TestClass]
+[TestFixture]
 public class ServiceCollectionTests
 {
-    [TestMethod]
+    [Test]
     public void AddHostedSingleton_ShouldRegisterServiceAsSingletonAndAsHostedService()
     {
         var services = new ServiceCollection();
@@ -19,14 +19,17 @@ public class ServiceCollectionTests
         var service = serviceProvider.GetService<TestService>();
         var hostedService = serviceProvider.GetService<IHostedService>();
 
-        Assert.IsNotNull(service);
-        Assert.IsNotNull(hostedService);
-        Assert.IsInstanceOfType(service, typeof(TestService));
-        Assert.IsInstanceOfType(hostedService, typeof(TestService));
-        Assert.AreSame(service, hostedService);
+        Assert.Multiple(() =>
+        {
+            Assert.That(service, Is.Not.Null);
+            Assert.That(hostedService, Is.Not.Null);
+            Assert.IsAssignableFrom<TestService>(service);
+            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(hostedService, Is.SameAs(service));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void AddHostedSingleton_ShouldRegisterServiceTypeAsSingletonAndAsHostedService()
     {
         var services = new ServiceCollection();
@@ -37,11 +40,14 @@ public class ServiceCollectionTests
         var service = serviceProvider.GetService<TestService>();
         var hostedService = serviceProvider.GetService<IHostedService>();
 
-        Assert.IsNotNull(service);
-        Assert.IsNotNull(hostedService);
-        Assert.IsInstanceOfType(service, typeof(TestService));
-        Assert.IsInstanceOfType(hostedService, typeof(TestService));
-        Assert.AreSame(service, hostedService);
+        Assert.Multiple(() =>
+        {
+            Assert.That(service, Is.Not.Null);
+            Assert.That(hostedService, Is.Not.Null);
+            Assert.IsAssignableFrom<TestService>(service);
+            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(hostedService, Is.SameAs(service));
+        });
     }
 
     private sealed class TestService : IHostedService

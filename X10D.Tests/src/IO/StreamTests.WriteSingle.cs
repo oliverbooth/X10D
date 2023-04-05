@@ -1,27 +1,27 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 public partial class StreamTests
 {
-    [TestMethod]
+    [Test]
     public void WriteSingle_ShouldThrowArgumentException_GivenNonWriteableStream()
     {
         Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.Write(420.0f, Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.Write(420.0f, Endianness.BigEndian));
+        Assert.Throws<ArgumentException>(() => stream.Write(420.0f, Endianness.LittleEndian));
+        Assert.Throws<ArgumentException>(() => stream.Write(420.0f, Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     public void WriteSingle_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.Write(420.0f, Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.Write(420.0f, Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.Write(420.0f, Endianness.LittleEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.Write(420.0f, Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     public void WriteSingle_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
         // we don't need to enclose this stream in a using declaration, since disposing a
@@ -30,39 +30,39 @@ public partial class StreamTests
         // analyser to trip up and think the stream is disposed by the time the local is captured in
         // assertion lambda - means this line is fine as it is. please do not change.
         Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.Write(420.0f, (Endianness)(-1)));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.Write(420.0f, (Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420.0f, (Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420.0f, (Endianness)(-1)));
     }
 
-    [TestMethod]
+    [Test]
     public void WriteSingle_ShouldWriteBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
         stream.Write(420.0f, Endianness.BigEndian);
-        Assert.AreEqual(4, stream.Position);
+        Assert.That(stream.Position, Is.EqualTo(4));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[4];
         ReadOnlySpan<byte> expected = stackalloc byte[] {0x43, 0xD2, 0x00, 0x00};
         int read = stream.Read(actual);
 
-        Assert.AreEqual(4, read);
+        Assert.That(read, Is.EqualTo(4));
         CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void WriteSingle_ShouldWriteLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
         stream.Write(420.0f, Endianness.LittleEndian);
-        Assert.AreEqual(4, stream.Position);
+        Assert.That(stream.Position, Is.EqualTo(4));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[4];
         ReadOnlySpan<byte> expected = stackalloc byte[] {0x00, 0x00, 0xD2, 0x43};
         int read = stream.Read(actual);
 
-        Assert.AreEqual(4, read);
+        Assert.That(read, Is.EqualTo(4));
         CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
     }
 }

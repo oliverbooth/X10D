@@ -1,156 +1,165 @@
 ﻿using System.Drawing;
 using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
+[TestFixture]
 public class EllipseFTests
 {
-    [TestMethod]
+    [Test]
     public void Area_ShouldBePiRadiusRadius_GivenUnitEllipse()
     {
         var unitEllipse = EllipseF.Unit;
-        Assert.AreEqual(MathF.PI, unitEllipse.Area, 1e-6f);
+        Assert.That(unitEllipse.Area, Is.EqualTo(MathF.PI).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void ApproximateCircumference_ShouldBe2PiRadius_GivenUnitEllipse()
     {
         var unitEllipse = EllipseF.Unit;
-        Assert.AreEqual(2 * MathF.PI, unitEllipse.ApproximateCircumference, 1e-6f);
+        Assert.That(unitEllipse.ApproximateCircumference, Is.EqualTo(2 * MathF.PI).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Constructor_ShouldGiveCorrectEllipse()
     {
         var ellipse = new EllipseF(PointF.Empty, new SizeF(2, 1));
-        Assert.AreEqual(new PointF(0, 0), ellipse.Center);
-        Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);
+        Assert.That(ellipse.Center, Is.EqualTo(new PointF(0, 0)));
+        Assert.That(ellipse.Radius, Is.EqualTo(new SizeF(2, 1)));
 
         ellipse = new EllipseF(0, 0, 2, 1);
-        Assert.AreEqual(new PointF(0, 0), ellipse.Center);
-        Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);
+        Assert.That(ellipse.Center, Is.EqualTo(new PointF(0, 0)));
+        Assert.That(ellipse.Radius, Is.EqualTo(new SizeF(2, 1)));
 
         ellipse = new EllipseF(PointF.Empty, new Vector2(2, 1));
-        Assert.AreEqual(new PointF(0, 0), ellipse.Center);
-        Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);
+        Assert.That(ellipse.Center, Is.EqualTo(new PointF(0, 0)));
+        Assert.That(ellipse.Radius, Is.EqualTo(new SizeF(2, 1)));
 
         ellipse = new EllipseF(Vector2.Zero, new Vector2(2, 1));
-        Assert.AreEqual(new PointF(0, 0), ellipse.Center);
-        Assert.AreEqual(new SizeF(2, 1), ellipse.Radius);
+        Assert.That(ellipse.Center, Is.EqualTo(new PointF(0, 0)));
+        Assert.That(ellipse.Radius, Is.EqualTo(new SizeF(2, 1)));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeTrue_GivenTwoUnitEllipses()
     {
         var unitEllipse1 = EllipseF.Unit;
         var unitEllipse2 = EllipseF.Unit;
-        Assert.AreEqual(unitEllipse1, unitEllipse2);
-        Assert.IsTrue(unitEllipse1 == unitEllipse2);
-        Assert.IsFalse(unitEllipse1 != unitEllipse2);
+        Assert.That(unitEllipse2, Is.EqualTo(unitEllipse1));
+        Assert.That(unitEllipse1, Is.EqualTo(unitEllipse2));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentEllipses()
     {
-        Assert.AreNotEqual(EllipseF.Unit, EllipseF.Empty);
-        Assert.IsFalse(EllipseF.Unit == EllipseF.Empty);
-        Assert.IsTrue(EllipseF.Unit != EllipseF.Empty);
+        Assert.That(EllipseF.Empty, Is.Not.EqualTo(EllipseF.Unit));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
-        Assert.IsFalse(EllipseF.Unit.Equals(null));
+        Assert.That(EllipseF.Unit, Is.Not.EqualTo(null));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyEllipse()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = EllipseF.Empty.GetHashCode();
-        Assert.AreEqual(hashCode, EllipseF.Empty.GetHashCode());
+        Assert.That(EllipseF.Empty.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenUnitEllipse()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = EllipseF.Unit.GetHashCode();
-        Assert.AreEqual(hashCode, EllipseF.Unit.GetHashCode());
+        Assert.That(EllipseF.Unit.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void HorizontalRadius_ShouldBe0_GivenEmptyEllipse()
     {
-        Assert.AreEqual(0, EllipseF.Empty.HorizontalRadius);
+        Assert.That(EllipseF.Empty.HorizontalRadius, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void HorizontalRadius_ShouldBe1_GivenUnitEllipse()
     {
-        Assert.AreEqual(1, EllipseF.Unit.HorizontalRadius);
+        Assert.That(EllipseF.Unit.HorizontalRadius, Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void op_Explicit_ShouldReturnEquivalentEllipse_GivenEllipse()
     {
         EllipseF unitEllipse = EllipseF.Unit;
         Ellipse converted = (Ellipse)unitEllipse;
 
-        Assert.AreEqual(unitEllipse, converted);
-        Assert.AreEqual(unitEllipse.HorizontalRadius, converted.HorizontalRadius);
-        Assert.AreEqual(unitEllipse.VerticalRadius, converted.VerticalRadius);
-        Assert.AreEqual(unitEllipse.Center, converted.Center);
+        Assert.Multiple(() =>
+        {
+            Assert.That(converted, Is.EqualTo((Ellipse)unitEllipse));
+            Assert.That(converted.HorizontalRadius, Is.EqualTo(unitEllipse.HorizontalRadius));
+            Assert.That(converted.VerticalRadius, Is.EqualTo(unitEllipse.VerticalRadius));
+            Assert.That((PointF)converted.Center, Is.EqualTo(unitEllipse.Center));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void op_Implicit_ShouldReturnEquivalentEllipse_GivenCircle()
     {
         Circle unitCircle = Circle.Unit;
         EllipseF converted = unitCircle;
 
-        Assert.AreEqual(unitCircle, converted);
-        Assert.AreEqual(unitCircle.Radius, converted.HorizontalRadius);
-        Assert.AreEqual(unitCircle.Radius, converted.VerticalRadius);
-        Assert.AreEqual(unitCircle.Center, converted.Center);
+        Assert.Multiple(() =>
+        {
+            Assert.That(converted, Is.EqualTo((EllipseF)unitCircle));
+            Assert.That(converted.HorizontalRadius, Is.EqualTo(unitCircle.Radius));
+            Assert.That(converted.VerticalRadius, Is.EqualTo(unitCircle.Radius));
+            Assert.That(converted.Center, Is.EqualTo((PointF)unitCircle.Center));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void op_Implicit_ShouldReturnEquivalentEllipse_GivenCircleF()
     {
         CircleF unitCircle = CircleF.Unit;
         EllipseF converted = unitCircle;
 
-        Assert.AreEqual(unitCircle, converted);
-        Assert.AreEqual(unitCircle.Radius, converted.HorizontalRadius);
-        Assert.AreEqual(unitCircle.Radius, converted.VerticalRadius);
-        Assert.AreEqual(unitCircle.Center, converted.Center);
+        Assert.Multiple(() =>
+        {
+            Assert.That(converted, Is.EqualTo((EllipseF)unitCircle));
+            Assert.That(converted.HorizontalRadius, Is.EqualTo(unitCircle.Radius));
+            Assert.That(converted.VerticalRadius, Is.EqualTo(unitCircle.Radius));
+            Assert.That(converted.Center, Is.EqualTo(unitCircle.Center));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void op_Implicit_ShouldReturnEquivalentEllipse_GivenEllipse()
     {
         Ellipse unitEllipse = Ellipse.Unit;
         EllipseF converted = unitEllipse;
 
-        Assert.AreEqual(unitEllipse, converted);
-        Assert.AreEqual(unitEllipse.HorizontalRadius, converted.HorizontalRadius);
-        Assert.AreEqual(unitEllipse.VerticalRadius, converted.VerticalRadius);
-        Assert.AreEqual(unitEllipse.Center, converted.Center);
+        Assert.Multiple(() =>
+        {
+            Assert.That(converted, Is.EqualTo((EllipseF)unitEllipse));
+            Assert.That(converted.HorizontalRadius, Is.EqualTo(unitEllipse.HorizontalRadius));
+            Assert.That(converted.VerticalRadius, Is.EqualTo(unitEllipse.VerticalRadius));
+            Assert.That(converted.Center, Is.EqualTo((PointF)unitEllipse.Center));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void VerticalRadius_ShouldBe0_GivenEmptyEllipse()
     {
-        Assert.AreEqual(0, EllipseF.Empty.VerticalRadius);
+        Assert.That(EllipseF.Empty.VerticalRadius, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void VerticalRadius_ShouldBe1_GivenUnitEllipse()
     {
-        Assert.AreEqual(1, EllipseF.Unit.VerticalRadius);
+        Assert.That(EllipseF.Unit.VerticalRadius, Is.EqualTo(1));
     }
 }

@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 public partial class EnumerableTests
 {
-    [TestClass]
+    [TestFixture]
     public class DisposeAllAsyncTests
     {
-        [TestMethod]
+        [Test]
         public async Task DisposeAllAsync_ShouldDisposeAllItems_WhenCalledWithValidList()
         {
             var mock1 = new Mock<IAsyncDisposable>();
@@ -24,11 +24,11 @@ public partial class EnumerableTests
             mock3.Verify(i => i.DisposeAsync(), Times.Once);
         }
 
-        [TestMethod]
-        public async Task DisposeAllAsync_ShouldThrowArgumentNullException_WhenCalledWithNullList()
+        [Test]
+        public void DisposeAllAsync_ShouldThrowArgumentNullException_WhenCalledWithNullList()
         {
-            List<IAsyncDisposable>? list = null;
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => list!.DisposeAllAsync()).ConfigureAwait(false);
+            List<IAsyncDisposable> list = null!;
+            Assert.ThrowsAsync<ArgumentNullException>(() => list.DisposeAllAsync());
         }
     }
 }
