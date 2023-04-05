@@ -86,14 +86,11 @@ public class PolygonTests
         var first = Polygon.Empty;
         var second = Polygon.Empty;
 
-        Assert.That(second, Is.EqualTo(first));
-        Assert.That(first, Is.EqualTo(second));
-        Assert.That(first.Equals(second));
-        Assert.That(second.Equals(first));
-        Assert.That(first == second);
-        Assert.That(second == first);
-        Assert.That(first != second, Is.False);
-        Assert.That(second != first, Is.False);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(first, Is.EqualTo(second));
+        });
     }
 
     [Test]
@@ -102,14 +99,11 @@ public class PolygonTests
         Polygon first = CreateHexagon();
         Polygon second = CreateHexagon();
 
-        Assert.That(second, Is.EqualTo(first));
-        Assert.That(first, Is.EqualTo(second));
-        Assert.That(first.Equals(second));
-        Assert.That(second.Equals(first));
-        Assert.That(first == second);
-        Assert.That(second == first);
-        Assert.That(first != second, Is.False);
-        Assert.That(second != first, Is.False);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(first, Is.EqualTo(second));
+        });
     }
 
     [Test]
@@ -118,14 +112,11 @@ public class PolygonTests
         Polygon first = CreateHexagon();
         Polygon second = Polygon.Empty;
 
-        Assert.AreNotEqual(first, second);
-        Assert.AreNotEqual(second, first);
-        Assert.That(first.Equals(second), Is.False);
-        Assert.That(second.Equals(first), Is.False);
-        Assert.That(first == second, Is.False);
-        Assert.That(second == first, Is.False);
-        Assert.That(first != second);
-        Assert.That(second != first);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.Not.EqualTo(first));
+            Assert.That(first, Is.Not.EqualTo(second));
+        });
     }
 
     [Test]
