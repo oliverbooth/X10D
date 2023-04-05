@@ -5,7 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 3.2.0 - [Unreleased]
+## 4.0.0 - [Unreleased]
+
+### Added
+- X10D: Added extension methods for `DateOnly`, for parity with `DateTime` and `DateTimeOffset`.
+- X10D: Added math-related extension methods for `BigInteger`.
+
+### Changed
+- X10D: `DateTime.Age(DateTime)` and `DateTimeOffset.Age(DateTimeOffset)` parameter renamed from `asOf` to `referenceDate`.
+
+## [3.2.0] - 2023-04-03
 
 ### Added
 
@@ -567,7 +576,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 Earlier versions of this package are undocumented and unlisted from package results.
 
-[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.1.0...develop
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.2.0...main
+[3.2.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.0
 [3.1.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.1.0
 [3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0
 [2.6.0]: https://github.com/oliverbooth/X10D/releases/tag/2.6.0

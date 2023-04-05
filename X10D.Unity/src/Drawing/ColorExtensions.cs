@@ -27,11 +27,7 @@ public static class ColorExtensions
     ///     When this method returns, contains the <see cref="Color.b" /> component of <paramref name="color" />.
     /// </param>
     [Pure]
-#if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
     public static void Deconstruct(this Color color, out float a, out float r, out float g, out float b)
     {
         a = color.a;
@@ -52,11 +48,7 @@ public static class ColorExtensions
     ///     When this method returns, contains the <see cref="Color.b" /> component of <paramref name="color" />.
     /// </param>
     [Pure]
-#if NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
     public static void Deconstruct(this Color color, out float r, out float g, out float b)
     {
         r = color.r;

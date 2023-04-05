@@ -1,5 +1,6 @@
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Time;
 
@@ -57,11 +58,7 @@ public static class StringExtensions
     /// <returns>A new instance of <see cref="TimeSpan" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="input" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static TimeSpan ToTimeSpan(this string input)
     {
 #if NET6_0_OR_GREATER

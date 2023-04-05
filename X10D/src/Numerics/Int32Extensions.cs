@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Numerics;
 
@@ -18,11 +19,7 @@ public static class Int32Extensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int PopCount(this int value)
     {
         return ((uint)value).PopCount();
@@ -37,11 +34,7 @@ public static class Int32Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int RotateLeft(this int value, int count)
     {
         var unsigned = unchecked((uint)value);
@@ -57,11 +50,7 @@ public static class Int32Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int RotateRight(this int value, int count)
     {
         var unsigned = unchecked((uint)value);
@@ -77,11 +66,7 @@ public static class Int32Extensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int RoundUpToPowerOf2(this int value)
     {
         return (int)((uint)value).RoundUpToPowerOf2();

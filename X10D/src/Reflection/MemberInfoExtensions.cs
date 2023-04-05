@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Reflection;
 
@@ -21,11 +22,7 @@ public static class MemberInfoExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="member" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool HasCustomAttribute<T>(this MemberInfo member)
         where T : Attribute
     {
@@ -51,11 +48,7 @@ public static class MemberInfoExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="member" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool HasCustomAttribute(this MemberInfo member, Type attribute)
     {
 #if NET6_0_OR_GREATER

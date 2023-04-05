@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 using X10D.Drawing;
 using X10D.Math;
 
@@ -34,11 +35,7 @@ public static class Vector2Extensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOnLine(this Vector2 point, LineF line)
     {
         (float x1, float x2) = (line.Start.X, line.End.X);
@@ -58,11 +55,7 @@ public static class Vector2Extensions
     ///     <paramref name="end" />; otherwise <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOnLine(this Vector2 point, PointF start, PointF end)
     {
         return point.IsOnLine(new LineF(start, end));
@@ -79,11 +72,7 @@ public static class Vector2Extensions
     ///     <paramref name="end" />; otherwise <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOnLine(this Vector2 point, Vector2 start, Vector2 end)
     {
         return point.IsOnLine(new LineF(start, end));
@@ -95,11 +84,7 @@ public static class Vector2Extensions
     /// <param name="vector">The vector whose components to round.</param>
     /// <returns>The rounded vector.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Vector2 Round(this Vector2 vector)
     {
         return vector.Round(1.0f);
@@ -112,11 +97,7 @@ public static class Vector2Extensions
     /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
     /// <returns>The rounded vector.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Vector2 Round(this Vector2 vector, float nearest)
     {
         float x = vector.X.Round(nearest);
@@ -130,11 +111,7 @@ public static class Vector2Extensions
     /// <param name="vector">The vector to convert.</param>
     /// <returns>The resulting <see cref="PointF" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static PointF ToPointF(this Vector2 vector)
     {
         return new PointF(vector.X, vector.Y);
@@ -146,11 +123,7 @@ public static class Vector2Extensions
     /// <param name="vector">The vector to convert.</param>
     /// <returns>The resulting <see cref="SizeF" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static SizeF ToSizeF(this Vector2 vector)
     {
         return new SizeF(vector.X, vector.Y);
@@ -166,11 +139,7 @@ public static class Vector2Extensions
     ///     <paramref name="vector" />, and whose <see cref="Vector2.X" /> component is <paramref name="x" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Vector2 WithX(this Vector2 vector, float x)
     {
         return vector with {X = x};
@@ -186,11 +155,7 @@ public static class Vector2Extensions
     ///     <paramref name="vector" />, and whose <see cref="Vector2.Y" /> component is <paramref name="y" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static Vector2 WithY(this Vector2 vector, float y)
     {
         return vector with {Y = y};

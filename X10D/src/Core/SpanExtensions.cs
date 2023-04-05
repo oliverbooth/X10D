@@ -2,6 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using X10D.CompilerServices;
 
 #if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
@@ -48,11 +49,7 @@ public static class SpanExtensions
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Contains<T>(this Span<T> span, T value) where T : struct, Enum
     {
         return Contains((ReadOnlySpan<T>)span, value);
@@ -71,11 +68,7 @@ public static class SpanExtensions
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
 #if NET6_0_OR_GREATER
@@ -141,11 +134,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static byte PackByte(this Span<bool> source)
     {
         return PackByte((ReadOnlySpan<bool>)source);
@@ -158,11 +147,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static byte PackByte(this ReadOnlySpan<bool> source)
     {
@@ -216,11 +201,7 @@ public static class SpanExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static short PackInt16(this ReadOnlySpan<bool> source)
     {
@@ -259,11 +240,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int PackInt32(this Span<bool> source)
     {
         return PackInt32((ReadOnlySpan<bool>)source);
@@ -276,11 +253,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static int PackInt32(this ReadOnlySpan<bool> source)
     {
@@ -331,11 +304,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static long PackInt64(this Span<bool> source)
     {
         return PackInt64((ReadOnlySpan<bool>)source);
@@ -348,11 +317,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static long PackInt64(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
@@ -377,11 +342,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static byte PackByteInternal_Fallback(this ReadOnlySpan<bool> source)
     {
         byte result = 0;
@@ -395,11 +356,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static short PackInt16Internal_Fallback(this ReadOnlySpan<bool> source)
     {
         short result = 0;
@@ -413,11 +370,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Fallback(this ReadOnlySpan<bool> source)
     {
         var result = 0;
@@ -432,7 +385,7 @@ public static class SpanExtensions
 
 #if NETCOREAPP3_0_OR_GREATER
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static byte PackByteInternal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -446,7 +399,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static short PackInt16Internal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -466,7 +419,7 @@ public static class SpanExtensions
     // dotcover disable
     //NOSONAR
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_AdvSimd(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -493,7 +446,7 @@ public static class SpanExtensions
     // dotcover enable
 
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Avx2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -518,7 +471,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -550,7 +503,7 @@ public static class SpanExtensions
     // dotcover disable
     //NOSONAR
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static byte PackByteInternal_AdvSimd(this ReadOnlySpan<bool> source)
     {
         unsafe

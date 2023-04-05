@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Numerics;
 
@@ -20,11 +21,7 @@ public static class UInt64Extensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int PopCount(this ulong value)
     {
 #if NETCOREAPP3_1_OR_GREATER
@@ -52,11 +49,7 @@ public static class UInt64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static ulong RotateLeft(this ulong value, int count)
     {
         return (value << count) | (value >> (64 - count));
@@ -71,11 +64,7 @@ public static class UInt64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static ulong RotateRight(this ulong value, int count)
     {
         return (value >> count) | (value << (64 - count));
@@ -90,11 +79,7 @@ public static class UInt64Extensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static ulong RoundUpToPowerOf2(this ulong value)
     {
 #if NET6_0_OR_GREATER

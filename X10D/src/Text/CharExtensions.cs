@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Text;
 
@@ -14,11 +15,7 @@ public static class CharExtensions
     /// <param name="value">The character to check.</param>
     /// <returns><see langword="true" /> if this character is an emoji; otherwise, <see langword="false" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsEmoji(this char value)
     {
         return value.ToString().IsEmoji();
@@ -33,11 +30,7 @@ public static class CharExtensions
     ///     A <see cref="string" /> composed of <paramref name="value" /> repeated <paramref name="count" /> times.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Repeat(this char value, int count)
     {
         return count switch

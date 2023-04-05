@@ -1,3 +1,4 @@
+﻿#if NET6_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -6,9 +7,9 @@ using X10D.CompilerServices;
 namespace X10D.Time;
 
 /// <summary>
-///     Extension methods for <see cref="DateTimeOffset" />.
+///     Time-related extension methods for <see cref="DateOnly" />.
 /// </summary>
-public static class DateTimeOffsetExtensions
+public static class DateOnlyExtensions
 {
     /// <summary>
     ///     Returns the rounded-down integer number of years since a given date as of today.
@@ -18,9 +19,9 @@ public static class DateTimeOffsetExtensions
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
-    public static int Age(this DateTimeOffset value)
+    public static int Age(this DateOnly value)
     {
-        return value.Age(DateTime.Today);
+        return value.Age(DateOnly.FromDateTime(DateTime.Today));
     }
 
     /// <summary>
@@ -34,9 +35,23 @@ public static class DateTimeOffsetExtensions
     /// </returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static int Age(this DateTimeOffset value, DateTimeOffset referenceDate)
+    public static int Age(this DateOnly value, DateOnly referenceDate)
     {
-        return (int)(((referenceDate.Date - TimeSpan.FromDays(1) - value.Date).TotalDays + 1) / 365.2425);
+        return value.ToDateTime(default).Age(referenceDate.ToDateTime(default));
+    }
+
+    /// <summary>
+    ///     Deconstructs the current <see cref="DateOnly" /> into its year, month, and day.
+    /// </summary>
+    /// <param name="value">The date to deconstruct.</param>
+    /// <param name="year">When this method returns, contains the year.</param>
+    /// <param name="month">When this method returns, contains the month.</param>
+    /// <param name="day">When this method returns, contains the day.</param>
+    public static void Deconstruct(this DateOnly value, out int year, out int month, out int day)
+    {
+        year = value.Year;
+        month = value.Month;
+        day = value.Day;
     }
 
     /// <summary>
@@ -47,9 +62,9 @@ public static class DateTimeOffsetExtensions
     /// <returns>A <see cref="DateTimeOffset" /> representing the first occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static DateTimeOffset First(this DateTimeOffset value, DayOfWeek dayOfWeek)
+    public static DateOnly First(this DateOnly value, DayOfWeek dayOfWeek)
     {
-        var first = value.FirstDayOfMonth();
+        DateOnly first = value.FirstDayOfMonth();
 
         if (first.DayOfWeek != dayOfWeek)
         {
@@ -66,7 +81,7 @@ public static class DateTimeOffsetExtensions
     /// <returns>A <see cref="DateTimeOffset" /> representing the first day of the current month.</returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static DateTimeOffset FirstDayOfMonth(this DateTimeOffset value)
+    public static DateOnly FirstDayOfMonth(this DateOnly value)
     {
         return value.AddDays(1 - value.Day);
     }
@@ -85,13 +100,13 @@ public static class DateTimeOffsetExtensions
     ///     about this subject.
     /// </remarks>
     [Pure]
-    public static int GetIso8601WeekOfYear(this DateTimeOffset value)
+    public static int GetIso8601WeekOfYear(this DateOnly value)
     {
-        return value.DateTime.GetIso8601WeekOfYear();
+        return value.ToDateTime(default).GetIso8601WeekOfYear();
     }
 
     /// <summary>
-    ///     Returns a value indicating whether the year represented by the current <see cref="DateTimeOffset" /> is a leap year.
+    ///     Returns a value indicating whether the year represented by the current <see cref="DateOnly" /> is a leap year.
     /// </summary>
     /// <param name="value">The date whose year to check.</param>
     /// <returns>
@@ -100,7 +115,7 @@ public static class DateTimeOffsetExtensions
     /// </returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static bool IsLeapYear(this DateTimeOffset value)
+    public static bool IsLeapYear(this DateOnly value)
     {
         return DateTime.IsLeapYear(value.Year);
     }
@@ -113,9 +128,9 @@ public static class DateTimeOffsetExtensions
     /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static DateTimeOffset Last(this DateTimeOffset value, DayOfWeek dayOfWeek)
+    public static DateOnly Last(this DateOnly value, DayOfWeek dayOfWeek)
     {
-        var last = value.LastDayOfMonth();
+        DateOnly last = value.LastDayOfMonth();
         var lastDayOfWeek = last.DayOfWeek;
 
         int diff = dayOfWeek - lastDayOfWeek;
@@ -131,10 +146,10 @@ public static class DateTimeOffsetExtensions
     /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static DateTimeOffset LastDayOfMonth(this DateTimeOffset value)
+    public static DateOnly LastDayOfMonth(this DateOnly value)
     {
         int daysInMonth = DateTime.DaysInMonth(value.Year, value.Month);
-        return new DateTime(value.Year, value.Month, daysInMonth);
+        return new DateOnly(value.Year, value.Month, daysInMonth);
     }
 
     /// <summary>
@@ -145,7 +160,7 @@ public static class DateTimeOffsetExtensions
     /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static DateTimeOffset Next(this DateTimeOffset value, DayOfWeek dayOfWeek)
+    public static DateOnly Next(this DateOnly value, DayOfWeek dayOfWeek)
     {
         int offsetDays = dayOfWeek - value.DayOfWeek;
 
@@ -156,4 +171,31 @@ public static class DateTimeOffsetExtensions
 
         return value.AddDays(offsetDays);
     }
+
+    /// <summary>
+    ///     Returns the number of milliseconds that have elapsed since 1970-01-01T00:00:00.000Z.
+    /// </summary>
+    /// <param name="value">The current date.</param>
+    /// <param name="time">A reference time to use with the current date.</param>
+    /// <returns>The number of milliseconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
+    public static long ToUnixTimeMilliseconds(this DateOnly value, TimeOnly time)
+    {
+        return value.ToDateTime(time).ToUnixTimeMilliseconds();
+    }
+
+    /// <summary>
+    ///     Returns the number of seconds that have elapsed since 1970-01-01T00:00:00.000Z.
+    /// </summary>
+    /// <param name="value">The current date.</param>
+    /// <param name="time">A reference time to use with the current date.</param>
+    /// <returns>The number of seconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
+    public static long ToUnixTimeSeconds(this DateOnly value, TimeOnly time)
+    {
+        return value.ToDateTime(time).ToUnixTimeSeconds();
+    }
 }
+#endif

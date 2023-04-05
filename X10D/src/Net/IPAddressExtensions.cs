@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Net;
 
@@ -19,11 +20,7 @@ public static class IPAddressExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="address" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsIPv4(this IPAddress address)
     {
 #if NET6_0_OR_GREATER
@@ -47,11 +44,7 @@ public static class IPAddressExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="address" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsIPv6(this IPAddress address)
     {
 #if NET6_0_OR_GREATER

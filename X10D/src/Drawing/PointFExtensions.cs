@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 using X10D.Math;
 
 namespace X10D.Drawing;
@@ -21,11 +22,7 @@ public static class PointFExtensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOnLine(this PointF point, LineF line)
     {
         (float x1, float x2) = (line.Start.X, line.End.X);
@@ -45,11 +42,7 @@ public static class PointFExtensions
     ///     <paramref name="end" />; otherwise <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOnLine(this PointF point, PointF start, PointF end)
     {
         return point.IsOnLine(new LineF(start, end));
@@ -66,11 +59,7 @@ public static class PointFExtensions
     ///     <paramref name="end" />; otherwise <see langword="false" />.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsOnLine(this PointF point, Vector2 start, Vector2 end)
     {
         return point.IsOnLine(new LineF(start, end));
@@ -82,11 +71,7 @@ public static class PointFExtensions
     /// <param name="point">The point whose components to round.</param>
     /// <returns>The rounded point.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static PointF Round(this PointF point)
     {
         return point.Round(1.0f);
@@ -99,11 +84,7 @@ public static class PointFExtensions
     /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
     /// <returns>The rounded point.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static PointF Round(this PointF point, float nearest)
     {
         float x = point.X.Round(nearest);
@@ -117,11 +98,7 @@ public static class PointFExtensions
     /// <param name="point">The point to convert.</param>
     /// <returns>The resulting <see cref="SizeF" />.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static SizeF ToSizeF(this PointF point)
     {
         return new SizeF(point.X, point.Y);
