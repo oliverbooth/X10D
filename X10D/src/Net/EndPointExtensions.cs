@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Net;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Net;
 
@@ -22,11 +23,7 @@ public static class EndPointExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string GetHost(this EndPoint endPoint)
     {
 #if NET6_0_OR_GREATER
@@ -59,11 +56,7 @@ public static class EndPointExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int GetPort(this EndPoint endPoint)
     {
 #if NET6_0_OR_GREATER

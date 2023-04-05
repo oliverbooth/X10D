@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using X10D.CompilerServices;
 
 namespace X10D.Text;
 
@@ -19,7 +20,7 @@ public static class RuneExtensions
     /// <param name="value">The rune to check.</param>
     /// <returns><see langword="true" /> if this rune is an emoji; otherwise, <see langword="false" />.</returns>
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsEmoji(this Rune value)
     {
         return value.ToString().IsEmoji();
@@ -34,7 +35,7 @@ public static class RuneExtensions
     ///     A <see cref="string" /> composed of <paramref name="value" /> repeated <paramref name="count" /> times.
     /// </returns>
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Repeat(this Rune value, int count)
     {
         switch (count)

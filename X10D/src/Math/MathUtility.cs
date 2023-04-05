@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Math;
 
@@ -69,11 +70,7 @@ public static class MathUtility
     /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
     /// <returns>The linear value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float GammaToLinear(float value)
     {
         return GammaToLinear(value, DefaultGammaF);
@@ -86,11 +83,7 @@ public static class MathUtility
     /// <param name="gamma">The gamma value to use for decoding.</param>
     /// <returns>The linear value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float GammaToLinear(float value, float gamma)
     {
         return MathF.Pow(value, 1.0f / gamma);
@@ -102,11 +95,7 @@ public static class MathUtility
     /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
     /// <returns>The linear value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double GammaToLinear(double value)
     {
         return GammaToLinear(value, DefaultGamma);
@@ -119,11 +108,7 @@ public static class MathUtility
     /// <param name="gamma">The gamma value to use for decoding.</param>
     /// <returns>The linear value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double GammaToLinear(double value, double gamma)
     {
         return System.Math.Pow(value, 1.0 / gamma);
@@ -138,11 +123,7 @@ public static class MathUtility
     /// <param name="end">The end of the range.</param>
     /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float InverseLerp(float alpha, float start, float end)
     {
         if (MathF.Abs(start - end) < float.Epsilon)
@@ -162,11 +143,7 @@ public static class MathUtility
     /// <param name="end">The end of the range.</param>
     /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double InverseLerp(double alpha, double start, double end)
     {
         if (System.Math.Abs(start - end) < double.Epsilon)
@@ -187,11 +164,7 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float Lerp(float value, float target, float alpha)
     {
         // rookie mistake: a + t * (b - a)
@@ -209,11 +182,7 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double Lerp(double value, double target, double alpha)
     {
         // rookie mistake: a + t * (b - a)
@@ -227,11 +196,7 @@ public static class MathUtility
     /// <param name="value">The linear value to convert. Expected range is [0, 1].</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float LinearToGamma(float value)
     {
         return LinearToGamma(value, DefaultGammaF);
@@ -244,11 +209,7 @@ public static class MathUtility
     /// <param name="gamma">The gamma value to use for encoding.</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float LinearToGamma(float value, float gamma)
     {
         return MathF.Pow(value, 1.0f / gamma);
@@ -260,11 +221,7 @@ public static class MathUtility
     /// <param name="value">The linear value to convert. Expected range is [0, 1].</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double LinearToGamma(double value)
     {
         return LinearToGamma(value, DefaultGamma);
@@ -277,11 +234,7 @@ public static class MathUtility
     /// <param name="gamma">The gamma value to use for encoding.</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double LinearToGamma(double value, double gamma)
     {
         return System.Math.Pow(value, 1.0 / gamma);
@@ -365,11 +318,7 @@ public static class MathUtility
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static float ScaleRange(float value, float oldMin, float oldMax, float newMin, float newMax)
     {
         float oldRange = oldMax - oldMin;
@@ -388,11 +337,7 @@ public static class MathUtility
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static double ScaleRange(double value, double oldMin, double oldMax, double newMin, double newMax)
     {
         double oldRange = oldMax - oldMin;

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using X10D.CompilerServices;
 
 namespace X10D.Time;
 
@@ -16,11 +17,7 @@ public static class TimeSpanExtensions
     ///     A <see cref="DateTime" /> that is a duration of <paramref name="value" /> in the past relative to the current time.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime Ago(this TimeSpan value)
     {
         return DateTime.Now.Subtract(value);
@@ -34,11 +31,7 @@ public static class TimeSpanExtensions
     ///     A <see cref="DateTime" /> that is a duration of <paramref name="value" /> in the future relative to the current time.
     /// </returns>
     [Pure]
-#if NETSTANDARD2_1
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-#endif
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static DateTime FromNow(this TimeSpan value)
     {
         return DateTime.Now.Add(value);

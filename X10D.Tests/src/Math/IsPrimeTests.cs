@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Numerics;
+using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using X10D.Math;
@@ -26,6 +27,7 @@ public class IsPrimeTests
 
             Assert.IsTrue(value.IsPrime());
             Assert.IsTrue(((long)value).IsPrime());
+            Assert.IsTrue(((BigInteger)value).IsPrime());
 
             if (value is >= byte.MinValue and <= byte.MaxValue)
             {
@@ -68,6 +70,7 @@ public class IsPrimeTests
             Assert.IsFalse(value.IsPrime());
             Assert.IsFalse(((int)value).IsPrime());
             Assert.IsFalse(((long)value).IsPrime());
+            Assert.IsFalse(((BigInteger)value).IsPrime());
 
             if (value is >= sbyte.MinValue and <= sbyte.MaxValue)
             {
@@ -85,6 +88,7 @@ public class IsPrimeTests
             Assert.IsFalse(((byte)value).IsPrime());
             Assert.IsFalse(((short)value).IsPrime());
             Assert.IsFalse(((long)value).IsPrime());
+            Assert.IsFalse(((BigInteger)value).IsPrime());
 
             Assert.IsFalse(((sbyte)value).IsPrime());
             Assert.IsFalse(((ushort)value).IsPrime());
@@ -103,6 +107,7 @@ public class IsPrimeTests
             Assert.AreEqual(expected, ((short)value).IsPrime());
             Assert.AreEqual(expected, value.IsPrime());
             Assert.AreEqual(expected, ((long)value).IsPrime());
+            Assert.AreEqual(expected, ((BigInteger)value).IsPrime());
 
             Assert.AreEqual(expected, ((ushort)value).IsPrime());
             Assert.AreEqual(expected, ((uint)value).IsPrime());
@@ -121,6 +126,7 @@ public class IsPrimeTests
             Assert.AreEqual(expected, ((short)value).IsPrime());
             Assert.AreEqual(expected, ((int)value).IsPrime());
             Assert.AreEqual(expected, ((long)value).IsPrime());
+            Assert.AreEqual(expected, ((BigInteger)value).IsPrime());
 
             Assert.AreEqual(expected, ((ushort)value).IsPrime());
             Assert.AreEqual(expected, ((uint)value).IsPrime());

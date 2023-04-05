@@ -2,6 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using X10D.CompilerServices;
 
 namespace X10D.Text;
 
@@ -18,7 +19,7 @@ public static class Extensions
     /// <typeparam name="T">The type of the value to convert.</typeparam>
     /// <returns>A JSON string representing the object.</returns>
     [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string ToJson<T>(this T value, JsonSerializerOptions? options = null)
     {
         return JsonSerializer.Serialize(value, options);
