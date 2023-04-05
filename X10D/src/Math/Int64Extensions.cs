@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class Int64Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of this 64-bit integer.
     /// </summary>
@@ -25,6 +26,7 @@ public static class Int64Extensions
         long root = System.Math.Abs(value).Mod(9L);
         return root < 1L ? 9L - root : root;
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 64-bit signed integer.
@@ -164,6 +166,7 @@ public static class Int64Extensions
         return value * other / value.GreatestCommonFactor(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -185,6 +188,7 @@ public static class Int64Extensions
         long r = dividend % divisor;
         return r < 0 ? r + divisor : r;
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.

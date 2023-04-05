@@ -11,12 +11,18 @@ public partial class UInt64Tests
     public void DigitalRootShouldBeCorrect()
     {
         const ulong value = 238;
-        Assert.AreEqual(4U, value.DigitalRoot());
 
         // -ulong operator not defined because it might exceed long.MinValue,
         // so instead, cast to long and then negate.
         // HAX.
+
+#if NET7_0_OR_GREATER
+        Assert.AreEqual(4, (-(long)value).DigitalRoot());
+        Assert.AreEqual(4, value.DigitalRoot());
+#else
         Assert.AreEqual(4U, (-(long)value).DigitalRoot());
+        Assert.AreEqual(4U, value.DigitalRoot());
+#endif
     }
 
     [TestMethod]

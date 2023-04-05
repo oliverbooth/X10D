@@ -33,7 +33,7 @@ public static class SByteExtensions
             value++;
         }
 
-        return value.Mod(4) == 0 && value.Mod(100) != 0; // mod 400 not required, sbyte.MaxValue is 127 anyway
+        return value.Mod((sbyte)4) == 0 && value.Mod((sbyte)100) != 0; // mod 400 not required, sbyte.MaxValue is 127 anyway
     }
 
     /// <summary>

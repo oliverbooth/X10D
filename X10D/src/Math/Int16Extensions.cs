@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class Int16Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of this 16-bit integer.
     /// </summary>
@@ -25,6 +26,7 @@ public static class Int16Extensions
         short root = System.Math.Abs(value).Mod(9);
         return root < 1 ? (short)(9 - root) : root;
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 16-bit signed integer.
@@ -125,6 +127,7 @@ public static class Int16Extensions
         return (short)((long)value).LowestCommonMultiple(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -146,6 +149,7 @@ public static class Int16Extensions
         int r = dividend % divisor;
         return (short)(r < 0 ? r + divisor : r);
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.

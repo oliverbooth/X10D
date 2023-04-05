@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class Int32Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of this 32-bit integer.
     /// </summary>
@@ -25,6 +26,7 @@ public static class Int32Extensions
         int root = System.Math.Abs(value).Mod(9);
         return root < 1 ? 9 - root : root;
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 32-bit signed integer.
@@ -125,6 +127,7 @@ public static class Int32Extensions
         return (int)((long)value).LowestCommonMultiple(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -146,6 +149,7 @@ public static class Int32Extensions
         int r = dividend % divisor;
         return r < 0 ? r + divisor : r;
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.

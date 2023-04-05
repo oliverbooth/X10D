@@ -10,6 +10,7 @@ namespace X10D.Math;
 [CLSCompliant(false)]
 public static class SByteExtensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of this 32-bit integer.
     /// </summary>
@@ -26,6 +27,7 @@ public static class SByteExtensions
         int root = System.Math.Abs(value).Mod(9);
         return (sbyte)(root < 1 ? 9 - root : root);
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 8-bit signed integer.
@@ -126,6 +128,7 @@ public static class SByteExtensions
         return (sbyte)((long)value).LowestCommonMultiple(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -147,6 +150,7 @@ public static class SByteExtensions
         int r = dividend % divisor;
         return (sbyte)(r < 0 ? r + divisor : r);
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.

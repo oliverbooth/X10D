@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class ByteExtensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of this 8-bit integer.
     /// </summary>
@@ -26,6 +27,7 @@ public static class ByteExtensions
         int root = value % 9;
         return (byte)(root == 0 ? 9 : root);
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 8-bit unsigned integer.

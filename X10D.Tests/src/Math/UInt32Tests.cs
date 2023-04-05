@@ -11,8 +11,14 @@ public partial class UInt32Tests
     public void DigitalRootShouldBeCorrect()
     {
         const uint value = 238;
+
+#if NET7_0_OR_GREATER
+        Assert.AreEqual(4, value.DigitalRoot());
+        Assert.AreEqual(4, (-value).DigitalRoot());
+#else
         Assert.AreEqual(4U, value.DigitalRoot());
         Assert.AreEqual(4U, (-value).DigitalRoot());
+#endif
     }
 
     [TestMethod]

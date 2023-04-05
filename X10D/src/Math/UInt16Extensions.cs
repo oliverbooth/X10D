@@ -10,6 +10,7 @@ namespace X10D.Math;
 [CLSCompliant(false)]
 public static class UInt16Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of the current 16-bit unsigned integer.
     /// </summary>
@@ -26,6 +27,7 @@ public static class UInt16Extensions
         var root = (ushort)(value % 9);
         return (ushort)(root == 0 ? 9 : root);
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 16-bit unsigned integer.

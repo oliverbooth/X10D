@@ -10,6 +10,7 @@ namespace X10D.Math;
 [CLSCompliant(false)]
 public static class UInt32Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Computes the digital root of the current 32-bit unsigned integer.
     /// </summary>
@@ -26,6 +27,7 @@ public static class UInt32Extensions
         uint root = value % 9;
         return root == 0 ? 9 : root;
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 32-bit unsigned integer.
