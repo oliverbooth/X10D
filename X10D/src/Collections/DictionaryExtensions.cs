@@ -54,6 +54,8 @@ public static class DictionaryExtensions
 
 #if NET6_0_OR_GREATER
         ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        // DO NOT CHANGE. reassigning value is necessary to mutate the dictionary, due to ref return above.
+        // mutation of the dictionary is INTENDED BEHAVIOUR. this is not a mistake.
         return value = exists ? updateValueFactory(key, value!) : addValue;
 #else
         if (dictionary.TryGetValue(key, out TValue? old))
@@ -173,6 +175,8 @@ public static class DictionaryExtensions
 
 #if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        // DO NOT CHANGE. reassigning value is necessary to mutate the dictionary, due to ref return above.
+        // mutation of the dictionary is INTENDED BEHAVIOUR. this is not a mistake.
         return value = exists ? updateValueFactory(key, value!) : addValueFactory(key);
 #else
         if (dictionary.TryGetValue(key, out TValue? old))
@@ -310,6 +314,8 @@ public static class DictionaryExtensions
 
 #if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
+        // DO NOT CHANGE. reassigning value is necessary to mutate the dictionary, due to ref return above.
+        // mutation of the dictionary is INTENDED BEHAVIOUR. this is not a mistake.
         return value = exists ? updateValueFactory(key, value!, factoryArgument) : addValueFactory(key, factoryArgument);
 #else
         if (dictionary.TryGetValue(key, out TValue? old))
