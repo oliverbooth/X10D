@@ -56,7 +56,7 @@ jobs:
 
     - name: Build package.json
       run: |
-        dotnet run --project ./X10D.UpmPackageGenerator/X10D.UpmPackageGenerator.csproj "./X10D/bin/Debug/netstandard2.1/X10D.dll"
+        dotnet run --project ./tools/UpmPackageGenerator/UpmPackageGenerator.csproj "./X10D/bin/Debug/netstandard2.1/X10D.dll"
         cp package.json upm/package.json
 
     - name: Copy built artifacts to upm
