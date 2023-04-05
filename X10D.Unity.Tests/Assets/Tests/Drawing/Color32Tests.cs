@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using X10D.Unity.Drawing;
 
 namespace X10D.Unity.Tests.Drawing
@@ -18,8 +16,8 @@ namespace X10D.Unity.Tests.Drawing
         private static readonly Color32 Magenta = new(255, 0, 255, 255);
         private static readonly Color32 Yellow = new(255, 255, 0, 255);
 
-        [UnityTest]
-        public IEnumerator Deconstruct_ShouldDeconstruct_ToCorrectValues()
+        [Test]
+        public void Deconstruct_ShouldDeconstruct_ToCorrectValues()
         {
             byte a, r, g, b;
 
@@ -33,12 +31,10 @@ namespace X10D.Unity.Tests.Drawing
             Assert.AreEqual(255, r);
             Assert.AreEqual(255, g);
             Assert.AreEqual(0, b);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
+        [Test]
+        public void GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
         {
             // I know it's just casting... but aim for 100% coverage babyyyy
 
@@ -53,12 +49,10 @@ namespace X10D.Unity.Tests.Drawing
             Assert.AreEqual(ConsoleColor.Gray, ((Color32)Color.gray).GetClosestConsoleColor());
             Assert.AreEqual(ConsoleColor.Gray, ((Color32)Color.grey).GetClosestConsoleColor());
             Assert.AreEqual(ConsoleColor.Black, ((Color32)Color.clear).GetClosestConsoleColor());
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator Inverted_ShouldReturnInvertedColor()
+        [Test]
+        public void Inverted_ShouldReturnInvertedColor()
         {
             Assert.AreEqual(White, Black.Inverted());
             Assert.AreEqual(Black, White.Inverted());
@@ -68,78 +62,62 @@ namespace X10D.Unity.Tests.Drawing
             Assert.AreEqual(Magenta, Green.Inverted());
             Assert.AreEqual(Yellow, Blue.Inverted());
             Assert.AreEqual(Blue, Yellow.Inverted());
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator Inverted_ShouldIgnoreAlpha()
+        [Test]
+        public void Inverted_ShouldIgnoreAlpha()
         {
             var expected = new Color32(0, 0, 0, 255);
             var actual = new Color32(255, 255, 255, 255).Inverted();
 
             Assert.AreEqual(expected, actual);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator ToSystemDrawingColor_ShouldReturnEquivalentColor()
+        [Test]
+        public void ToSystemDrawingColor_ShouldReturnEquivalentColor()
         {
             System.Drawing.Color expected = System.Drawing.Color.FromArgb(255, 255, 255);
             System.Drawing.Color actual = White.ToSystemDrawingColor();
 
             Assert.AreEqual(expected, actual);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator ToUnityColor32_ShouldReturnEquivalentColor()
+        [Test]
+        public void ToUnityColor32_ShouldReturnEquivalentColor()
         {
             Color32 expected = White;
             Color32 actual = System.Drawing.Color.FromArgb(255, 255, 255).ToUnityColor32();
 
             Assert.AreEqual(expected, actual);
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithA0_ShouldReturnSameColor_GivenWhite()
+        [Test]
+        public void WithA0_ShouldReturnSameColor_GivenWhite()
         {
             var transparent = new Color32(255, 255, 255, 0);
             Assert.AreEqual(transparent, White.WithA(0));
             Assert.AreEqual(transparent, transparent.WithA(0));
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithB0_ShouldReturnYellow_GivenWhite()
+        [Test]
+        public void WithB0_ShouldReturnYellow_GivenWhite()
         {
             Assert.AreEqual(Yellow, White.WithB(0));
             Assert.AreEqual(Yellow, Yellow.WithB(0));
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithG0_ShouldReturnMagenta_GivenWhite()
+        [Test]
+        public void WithG0_ShouldReturnMagenta_GivenWhite()
         {
             Assert.AreEqual(Magenta, White.WithG(0));
             Assert.AreEqual(Magenta, Magenta.WithG(0));
-
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator WithR0_ShouldReturnCyan_GivenWhite()
+        [Test]
+        public void WithR0_ShouldReturnCyan_GivenWhite()
         {
             Assert.AreEqual(Cyan, White.WithR(0));
             Assert.AreEqual(Cyan, Cyan.WithR(0));
-
-            yield break;
         }
     }
 }
