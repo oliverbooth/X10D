@@ -97,6 +97,9 @@ public class CircleFTests
         {
             Assert.That(CircleF.Empty, Is.Not.EqualTo(CircleF.Unit));
             Assert.That(CircleF.Unit, Is.Not.EqualTo(CircleF.Empty));
+
+            Assert.That(CircleF.Empty != CircleF.Unit);
+            Assert.That(CircleF.Unit != CircleF.Empty);
         });
     }
 
@@ -104,6 +107,7 @@ public class CircleFTests
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(CircleF.Empty, Is.Not.EqualTo(null));
+        Assert.That(CircleF.Empty.Equals(null), Is.False);
     }
 
     [Test]
@@ -131,6 +135,7 @@ public class CircleFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((Circle)unitCircle));
+            Assert.That(converted == (Circle)unitCircle);
             Assert.That(converted.Radius, Is.EqualTo(unitCircle.Radius));
             Assert.That((PointF)converted.Center, Is.EqualTo(unitCircle.Center));
         });
@@ -141,6 +146,9 @@ public class CircleFTests
     {
         Assert.That(CircleF.Unit, Is.GreaterThan(CircleF.Empty));
         Assert.That(CircleF.Unit, Is.GreaterThanOrEqualTo(CircleF.Empty));
+
+        Assert.That(CircleF.Unit > CircleF.Empty);
+        Assert.That(CircleF.Unit >= CircleF.Empty);
     }
 
     [Test]
@@ -152,6 +160,7 @@ public class CircleFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((CircleF)unitCircle));
+            Assert.That(converted == unitCircle);
             Assert.That(converted.Radius, Is.EqualTo(unitCircle.Radius));
             Assert.That(converted.Center, Is.EqualTo((PointF)unitCircle.Center));
         });
@@ -164,6 +173,9 @@ public class CircleFTests
         {
             Assert.That(CircleF.Empty, Is.LessThan(CircleF.Unit));
             Assert.That(CircleF.Empty, Is.LessThanOrEqualTo(CircleF.Unit));
+
+            Assert.That(CircleF.Empty < CircleF.Unit);
+            Assert.That(CircleF.Empty <= CircleF.Unit);
         });
     }
 

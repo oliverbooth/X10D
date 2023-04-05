@@ -105,6 +105,8 @@ public class PolyhedronTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -118,6 +120,8 @@ public class PolyhedronTests
         {
             Assert.That(second, Is.Not.EqualTo(first));
             Assert.That(first, Is.Not.EqualTo(second));
+            Assert.That(second != first);
+            Assert.That(first != second);
         });
     }
 

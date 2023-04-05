@@ -108,6 +108,8 @@ public class PolygonFTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -121,6 +123,8 @@ public class PolygonFTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -134,6 +138,8 @@ public class PolygonFTests
         {
             Assert.That(second, Is.Not.EqualTo(first));
             Assert.That(first, Is.Not.EqualTo(second));
+            Assert.That(second != first);
+            Assert.That(first != second);
         });
     }
 
@@ -185,6 +191,7 @@ public class PolygonFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((PolygonF)polygon));
+            Assert.That(converted == polygon);
             Assert.That(converted.IsConvex, Is.EqualTo(polygon.IsConvex));
             Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
             CollectionAssert.AreEqual(converted.Vertices, polygon.Vertices.Select(p => (PointF)p));

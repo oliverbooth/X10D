@@ -55,7 +55,7 @@ public class ByteTests
         Assert.Multiple(() =>
         {
             Span<bool> bits = stackalloc bool[8];
-            value.Unpack(bits);
+            value.UnpackInternal_Fallback(bits);
 
             Assert.That(bits[0], Is.False);
             Assert.That(bits[1], Is.False);

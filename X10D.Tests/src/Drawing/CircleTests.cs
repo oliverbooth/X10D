@@ -94,6 +94,9 @@ public class CircleTests
         {
             Assert.That(Circle.Empty, Is.Not.EqualTo(Circle.Unit));
             Assert.That(Circle.Unit, Is.Not.EqualTo(Circle.Empty));
+
+            Assert.That(Circle.Empty != Circle.Unit);
+            Assert.That(Circle.Unit != Circle.Empty);
         });
     }
 
@@ -101,6 +104,7 @@ public class CircleTests
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(Circle.Empty, Is.Not.EqualTo(null));
+        Assert.That(Circle.Empty.Equals(null), Is.False);
     }
 
     [Test]
@@ -122,15 +126,25 @@ public class CircleTests
     [Test]
     public void op_GreaterThan_True_GivenUnitAndEmptyCircle()
     {
-        Assert.That(Circle.Unit, Is.GreaterThan(Circle.Empty));
-        Assert.That(Circle.Unit, Is.GreaterThanOrEqualTo(Circle.Empty));
+        Assert.Multiple(() =>
+        {
+            Assert.That(Circle.Unit, Is.GreaterThan(Circle.Empty));
+            Assert.That(Circle.Unit, Is.GreaterThanOrEqualTo(Circle.Empty));
+            Assert.That(Circle.Unit > Circle.Empty);
+            Assert.That(Circle.Unit >= Circle.Empty);
+        });
     }
 
     [Test]
     public void op_LessThan_True_GivenEmptyAndUnitCircle()
     {
-        Assert.That(Circle.Empty, Is.LessThan(Circle.Unit));
-        Assert.That(Circle.Empty, Is.LessThanOrEqualTo(Circle.Unit));
+        Assert.Multiple(() =>
+        {
+            Assert.That(Circle.Empty, Is.LessThan(Circle.Unit));
+            Assert.That(Circle.Empty, Is.LessThanOrEqualTo(Circle.Unit));
+            Assert.That(Circle.Empty < Circle.Unit);
+            Assert.That(Circle.Empty <= Circle.Unit);
+        });
     }
 
     [Test]

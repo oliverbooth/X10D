@@ -71,6 +71,8 @@ public class LineFTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -81,6 +83,8 @@ public class LineFTests
         {
             Assert.That(LineF.Empty, Is.Not.EqualTo(LineF.One));
             Assert.That(LineF.One, Is.Not.EqualTo(LineF.Empty));
+            Assert.That(LineF.Empty != LineF.One);
+            Assert.That(LineF.One != LineF.Empty);
         });
     }
 
@@ -88,6 +92,7 @@ public class LineFTests
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(LineF.One, Is.Not.EqualTo(null));
+        Assert.That(LineF.One.Equals(null), Is.False);
     }
 
     [Test]
@@ -115,6 +120,7 @@ public class LineFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((Line)oneLine));
+            Assert.That(converted == oneLine);
             Assert.That(converted.Length, Is.EqualTo(oneLine.Length));
             Assert.That((PointF)converted.Start, Is.EqualTo(oneLine.Start));
             Assert.That((PointF)converted.End, Is.EqualTo(oneLine.End));
@@ -126,6 +132,8 @@ public class LineFTests
     {
         Assert.That(LineF.One, Is.GreaterThan(LineF.Empty));
         Assert.That(LineF.One, Is.GreaterThanOrEqualTo(LineF.Empty));
+        Assert.That(LineF.One > LineF.Empty);
+        Assert.That(LineF.One >= LineF.Empty);
     }
 
     [Test]
@@ -137,6 +145,7 @@ public class LineFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((LineF)oneLine));
+            Assert.That(converted == oneLine);
             Assert.That(converted.Length, Is.EqualTo(oneLine.Length));
             Assert.That(converted.Start, Is.EqualTo((PointF)oneLine.Start));
             Assert.That(converted.End, Is.EqualTo((PointF)oneLine.End));
@@ -148,5 +157,7 @@ public class LineFTests
     {
         Assert.That(LineF.Empty, Is.LessThan(LineF.One));
         Assert.That(LineF.Empty, Is.LessThanOrEqualTo(LineF.One));
+        Assert.That(LineF.Empty < LineF.One);
+        Assert.That(LineF.Empty <= LineF.One);
     }
 }
