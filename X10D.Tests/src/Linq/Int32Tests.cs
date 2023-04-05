@@ -61,7 +61,7 @@ public class Int32Tests
             Assert.That(value, Is.EqualTo(current++));
         }
 
-        Assert.That(end, Is.EqualTo(current));
+        Assert.That(current, Is.EqualTo(end));
     }
 
     [Test]
@@ -76,6 +76,6 @@ public class Int32Tests
             Assert.That(value, Is.EqualTo(current++));
         }
 
-        Assert.That(end, Is.EqualTo(current));
+        Assert.That(current, Is.EqualTo(end));
     }
 }
