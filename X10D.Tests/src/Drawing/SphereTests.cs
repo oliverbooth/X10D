@@ -66,6 +66,8 @@ public class SphereTests
         {
             Assert.That(unitCircle2, Is.EqualTo(unitCircle1));
             Assert.That(unitCircle1, Is.EqualTo(unitCircle2));
+            Assert.That(unitCircle2 == unitCircle1);
+            Assert.That(unitCircle1 == unitCircle2);
         });
     }
 
@@ -73,6 +75,7 @@ public class SphereTests
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(Sphere.Unit, Is.Not.EqualTo(null));
+        Assert.That(Sphere.Unit.Equals(null), Is.False);
     }
 
     [Test]
@@ -80,6 +83,8 @@ public class SphereTests
     {
         Assert.That(Sphere.Empty, Is.Not.EqualTo(Sphere.Unit));
         Assert.That(Sphere.Unit, Is.Not.EqualTo(Sphere.Empty));
+        Assert.That(Sphere.Empty != Sphere.Unit);
+        Assert.That(Sphere.Unit != Sphere.Empty);
     }
 
     [Test]
@@ -103,6 +108,8 @@ public class SphereTests
     {
         Assert.That(Sphere.Unit, Is.GreaterThan(Sphere.Empty));
         Assert.That(Sphere.Unit, Is.GreaterThanOrEqualTo(Sphere.Empty));
+        Assert.That(Sphere.Unit > Sphere.Empty);
+        Assert.That(Sphere.Unit >= Sphere.Empty);
     }
 
     [Test]
@@ -110,6 +117,8 @@ public class SphereTests
     {
         Assert.That(Sphere.Empty, Is.LessThan(Sphere.Unit));
         Assert.That(Sphere.Empty, Is.LessThanOrEqualTo(Sphere.Unit));
+        Assert.That(Sphere.Empty < Sphere.Unit);
+        Assert.That(Sphere.Empty <= Sphere.Unit);
     }
 
     [Test]

@@ -29,12 +29,15 @@ public class CuboidTests
         var cube2 = Cuboid.Cube;
         Assert.That(cube1, Is.EqualTo(cube2));
         Assert.That(cube2, Is.EqualTo(cube1));
+        Assert.That(cube1 == cube2);
+        Assert.That(cube2 == cube1);
     }
 
     [Test]
     public void Equals_ShouldBeFalse_GivenDifferentCubes()
     {
         Assert.That(Cuboid.Empty, Is.Not.EqualTo(Cuboid.Cube));
+        Assert.That(Cuboid.Empty != Cuboid.Cube);
     }
 
     [Test]

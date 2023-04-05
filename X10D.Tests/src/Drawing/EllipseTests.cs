@@ -48,6 +48,8 @@ public class EllipseTests
         {
             Assert.That(unitEllipse2, Is.EqualTo(unitEllipse1));
             Assert.That(unitEllipse1, Is.EqualTo(unitEllipse2));
+            Assert.That(unitEllipse2 == unitEllipse1);
+            Assert.That(unitEllipse1 == unitEllipse2);
         });
     }
 
@@ -58,6 +60,8 @@ public class EllipseTests
         {
             Assert.That(Ellipse.Empty, Is.Not.EqualTo(Ellipse.Unit));
             Assert.That(Ellipse.Unit, Is.Not.EqualTo(Ellipse.Empty));
+            Assert.That(Ellipse.Empty != Ellipse.Unit);
+            Assert.That(Ellipse.Unit != Ellipse.Empty);
         });
     }
 

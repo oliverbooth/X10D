@@ -52,7 +52,7 @@ public class PolygonTests
     public void Constructor_ShouldThrowArgumentNullException_GivenNullEnumerableOfPoint()
     {
         IEnumerable<Point> vertices = null!;
-        Assert.Throws<ArgumentNullException>(() => new Polygon(vertices));
+        Assert.Throws<ArgumentNullException>(() => _ = new Polygon(vertices));
     }
 
     [Test]
@@ -77,7 +77,7 @@ public class PolygonTests
     public void CopyConstructor_ShouldThrowArgumentNullException_GivenNullPolygon()
     {
         Polygon polygon = null!;
-        Assert.Throws<ArgumentNullException>(() => new Polygon(polygon));
+        Assert.Throws<ArgumentNullException>(() => _ = new Polygon(polygon));
     }
 
     [Test]
@@ -90,6 +90,8 @@ public class PolygonTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -103,6 +105,8 @@ public class PolygonTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -116,6 +120,8 @@ public class PolygonTests
         {
             Assert.That(second, Is.Not.EqualTo(first));
             Assert.That(first, Is.Not.EqualTo(second));
+            Assert.That(second != first);
+            Assert.That(first != second);
         });
     }
 

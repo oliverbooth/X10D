@@ -53,6 +53,8 @@ public class LineTests
         {
             Assert.That(second, Is.EqualTo(first));
             Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
         });
     }
 
@@ -63,6 +65,8 @@ public class LineTests
         {
             Assert.That(Line.Empty, Is.Not.EqualTo(Line.One));
             Assert.That(Line.One, Is.Not.EqualTo(Line.Empty));
+            Assert.That(Line.Empty != Line.One);
+            Assert.That(Line.One != Line.Empty);
         });
     }
 
@@ -70,6 +74,7 @@ public class LineTests
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(Line.One, Is.Not.EqualTo(null));
+        Assert.That(Line.One.Equals(null), Is.False);
     }
 
     [Test]
@@ -111,6 +116,8 @@ public class LineTests
     {
         Assert.That(Line.One, Is.GreaterThan(Line.Empty));
         Assert.That(Line.One, Is.GreaterThanOrEqualTo(Line.Empty));
+        Assert.That(Line.One > Line.Empty);
+        Assert.That(Line.One >= Line.Empty);
     }
 
     [Test]
@@ -118,5 +125,7 @@ public class LineTests
     {
         Assert.That(Line.Empty, Is.LessThan(Line.One));
         Assert.That(Line.Empty, Is.LessThanOrEqualTo(Line.One));
+        Assert.That(Line.Empty < Line.One);
+        Assert.That(Line.Empty <= Line.One);
     }
 }

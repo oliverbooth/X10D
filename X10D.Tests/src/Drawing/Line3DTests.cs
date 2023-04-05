@@ -76,18 +76,21 @@ public class Line3DTests
         Line3D second = Line3D.One;
 
         Assert.That(second, Is.EqualTo(first));
+        Assert.That(second == first);
     }
 
     [Test]
     public void Equals_ShouldBeFalse_GivenDifferentLines()
     {
         Assert.That(Line3D.Empty, Is.Not.EqualTo(Line3D.One));
+        Assert.That(Line3D.Empty != Line3D.One);
     }
 
     [Test]
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(Line3D.One, Is.Not.EqualTo(null));
+        Assert.That(Line3D.One.Equals(null), Is.False);
     }
 
     [Test]
@@ -145,6 +148,9 @@ public class Line3DTests
     {
         Assert.That(Line3D.One, Is.GreaterThan(Line3D.Empty));
         Assert.That(Line3D.One, Is.GreaterThanOrEqualTo(Line3D.Empty));
+
+        Assert.That(Line3D.One > Line3D.Empty);
+        Assert.That(Line3D.One >= Line3D.Empty);
     }
 
     [Test]
@@ -177,6 +183,7 @@ public class Line3DTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((Line3D)oneLine));
+            Assert.That(converted == oneLine);
             Assert.That(converted.Length, Is.EqualTo(oneLine.Length));
             Assert.That(converted.Start, Is.EqualTo(expectedStart));
             Assert.That(converted.End, Is.EqualTo(expectedEnd));
@@ -188,5 +195,7 @@ public class Line3DTests
     {
         Assert.That(Line3D.Empty, Is.LessThan(Line3D.One));
         Assert.That(Line3D.Empty, Is.LessThanOrEqualTo(Line3D.One));
+        Assert.That(Line3D.Empty < Line3D.One);
+        Assert.That(Line3D.Empty <= Line3D.One);
     }
 }

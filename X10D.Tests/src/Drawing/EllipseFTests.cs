@@ -49,18 +49,22 @@ public class EllipseFTests
         var unitEllipse2 = EllipseF.Unit;
         Assert.That(unitEllipse2, Is.EqualTo(unitEllipse1));
         Assert.That(unitEllipse1, Is.EqualTo(unitEllipse2));
+        Assert.That(unitEllipse2 == unitEllipse1);
+        Assert.That(unitEllipse1 == unitEllipse2);
     }
 
     [Test]
     public void Equals_ShouldBeFalse_GivenDifferentEllipses()
     {
         Assert.That(EllipseF.Empty, Is.Not.EqualTo(EllipseF.Unit));
+        Assert.That(EllipseF.Empty != EllipseF.Unit);
     }
 
     [Test]
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
         Assert.That(EllipseF.Unit, Is.Not.EqualTo(null));
+        Assert.That(EllipseF.Unit.Equals(null), Is.False);
     }
 
     [Test]
@@ -100,6 +104,7 @@ public class EllipseFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((Ellipse)unitEllipse));
+            Assert.That(converted == unitEllipse);
             Assert.That(converted.HorizontalRadius, Is.EqualTo(unitEllipse.HorizontalRadius));
             Assert.That(converted.VerticalRadius, Is.EqualTo(unitEllipse.VerticalRadius));
             Assert.That((PointF)converted.Center, Is.EqualTo(unitEllipse.Center));
@@ -115,6 +120,7 @@ public class EllipseFTests
         Assert.Multiple(() =>
         {
             Assert.That(converted, Is.EqualTo((EllipseF)unitCircle));
+            Assert.That(converted == unitCircle);
             Assert.That(converted.HorizontalRadius, Is.EqualTo(unitCircle.Radius));
             Assert.That(converted.VerticalRadius, Is.EqualTo(unitCircle.Radius));
             Assert.That(converted.Center, Is.EqualTo((PointF)unitCircle.Center));

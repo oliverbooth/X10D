@@ -59,10 +59,10 @@ public class MemberInfoTests
         Func<CLSCompliantAttribute, bool> predicate = attribute => attribute.IsCompliant;
         Assert.Multiple(() =>
         {
-            Assert.That(typeof(byte).SelectFromCustomAttribute(predicate));
-            Assert.That(typeof(short).SelectFromCustomAttribute(predicate));
-            Assert.That(typeof(int).SelectFromCustomAttribute(predicate));
-            Assert.That(typeof(long).SelectFromCustomAttribute(predicate));
+            Assert.That(typeof(byte).SelectFromCustomAttribute(predicate, true));
+            Assert.That(typeof(short).SelectFromCustomAttribute(predicate, true));
+            Assert.That(typeof(int).SelectFromCustomAttribute(predicate, true));
+            Assert.That(typeof(long).SelectFromCustomAttribute(predicate, true));
         });
     }
 
