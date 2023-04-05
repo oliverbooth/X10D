@@ -14,8 +14,8 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new Vector2(1, 2);
             (float x, float y) = vector;
 
-            Assert.AreEqual(1, x);
-            Assert.AreEqual(2, y);
+            Assert.That(x, Is.EqualTo(1));
+            Assert.That(y, Is.EqualTo(2));
         }
 
         [Test]
@@ -24,8 +24,8 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new Vector2(1.5f, 2.6f);
             var rounded = vector.Round();
 
-            Assert.AreEqual(2, rounded.x);
-            Assert.AreEqual(3, rounded.y);
+            Assert.That(rounded.x, Is.EqualTo(2));
+            Assert.That(rounded.y, Is.EqualTo(3));
         }
 
         [Test]
@@ -34,8 +34,8 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new Vector2(1.5f, 25.2f);
             var rounded = vector.Round(10);
 
-            Assert.AreEqual(0, rounded.x);
-            Assert.AreEqual(30, rounded.y);
+            Assert.That(rounded.x, Is.EqualTo(0));
+            Assert.That(rounded.y, Is.EqualTo(30));
         }
 
         [Test]
@@ -48,8 +48,8 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new Vector2(x, y);
             var point = vector.ToSystemPointF();
 
-            Assert.AreEqual(vector.x, point.X, 1e-6f);
-            Assert.AreEqual(vector.y, point.Y, 1e-6f);
+            Assert.That(point.X, Is.EqualTo(vector.x).Within(1e-6f));
+            Assert.That(point.Y, Is.EqualTo(vector.y).Within(1e-6f));
         }
 
         [Test]
@@ -62,8 +62,8 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new Vector2(x, y);
             var point = vector.ToSystemSizeF();
 
-            Assert.AreEqual(vector.x, point.Width, 1e-6f);
-            Assert.AreEqual(vector.y, point.Height, 1e-6f);
+            Assert.That(point.Width, Is.EqualTo(vector.x).Within(1e-6f));
+            Assert.That(point.Height, Is.EqualTo(vector.y).Within(1e-6f));
         }
 
         [Test]
@@ -76,9 +76,9 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new Vector2(x, y);
             var systemVector = vector.ToSystemVector();
 
-            Assert.AreEqual(vector.magnitude, systemVector.Length(), 1e-6f);
-            Assert.AreEqual(vector.x, systemVector.X, 1e-6f);
-            Assert.AreEqual(vector.y, systemVector.Y, 1e-6f);
+            Assert.That(systemVector.Length(), Is.EqualTo(vector.magnitude).Within(1e-6f));
+            Assert.That(systemVector.X, Is.EqualTo(vector.x).Within(1e-6f));
+            Assert.That(systemVector.Y, Is.EqualTo(vector.y).Within(1e-6f));
         }
 
         [Test]
@@ -91,37 +91,37 @@ namespace X10D.Unity.Tests.Numerics
             var vector = new System.Numerics.Vector2(x, y);
             var unityVector = vector.ToUnityVector();
 
-            Assert.AreEqual(vector.Length(), unityVector.magnitude, 1e-6f);
-            Assert.AreEqual(vector.X, unityVector.x, 1e-6f);
-            Assert.AreEqual(vector.Y, unityVector.y, 1e-6f);
+            Assert.That(unityVector.magnitude, Is.EqualTo(vector.Length()).Within(1e-6f));
+            Assert.That(unityVector.x, Is.EqualTo(vector.X).Within(1e-6f));
+            Assert.That(unityVector.y, Is.EqualTo(vector.Y).Within(1e-6f));
         }
 
         [Test]
         public void WithX_ShouldReturnVectorWithNewX_GivenVector()
         {
-            Assert.AreEqual(Vector2.up, Vector2.one.WithX(0));
-            Assert.AreEqual(Vector2.zero, Vector2.zero.WithX(0));
-            Assert.AreEqual(Vector2.zero, Vector2.right.WithX(0));
-            Assert.AreEqual(Vector2.up, Vector2.up.WithX(0));
+            Assert.That(Vector2.one.WithX(0), Is.EqualTo(Vector2.up));
+            Assert.That(Vector2.zero.WithX(0), Is.EqualTo(Vector2.zero));
+            Assert.That(Vector2.right.WithX(0), Is.EqualTo(Vector2.zero));
+            Assert.That(Vector2.up.WithX(0), Is.EqualTo(Vector2.up));
 
-            Assert.AreEqual(Vector2.one, Vector2.one.WithX(1));
-            Assert.AreEqual(Vector2.right, Vector2.zero.WithX(1));
-            Assert.AreEqual(Vector2.right, Vector2.right.WithX(1));
-            Assert.AreEqual(Vector2.one, Vector2.up.WithX(1));
+            Assert.That(Vector2.one.WithX(1), Is.EqualTo(Vector2.one));
+            Assert.That(Vector2.zero.WithX(1), Is.EqualTo(Vector2.right));
+            Assert.That(Vector2.right.WithX(1), Is.EqualTo(Vector2.right));
+            Assert.That(Vector2.up.WithX(1), Is.EqualTo(Vector2.one));
         }
 
         [Test]
         public void WithY_ShouldReturnVectorWithNewY_GivenVector()
         {
-            Assert.AreEqual(Vector2.right, Vector2.one.WithY(0));
-            Assert.AreEqual(Vector2.zero, Vector2.zero.WithY(0));
-            Assert.AreEqual(Vector2.right, Vector2.right.WithY(0));
-            Assert.AreEqual(Vector2.zero, Vector2.up.WithY(0));
+            Assert.That(Vector2.one.WithY(0), Is.EqualTo(Vector2.right));
+            Assert.That(Vector2.zero.WithY(0), Is.EqualTo(Vector2.zero));
+            Assert.That(Vector2.right.WithY(0), Is.EqualTo(Vector2.right));
+            Assert.That(Vector2.up.WithY(0), Is.EqualTo(Vector2.zero));
 
-            Assert.AreEqual(Vector2.one, Vector2.one.WithY(1));
-            Assert.AreEqual(Vector2.up, Vector2.zero.WithY(1));
-            Assert.AreEqual(Vector2.one, Vector2.right.WithY(1));
-            Assert.AreEqual(Vector2.up, Vector2.up.WithY(1));
+            Assert.That(Vector2.one.WithY(1), Is.EqualTo(Vector2.one));
+            Assert.That(Vector2.zero.WithY(1), Is.EqualTo(Vector2.up));
+            Assert.That(Vector2.right.WithY(1), Is.EqualTo(Vector2.one));
+            Assert.That(Vector2.up.WithY(1), Is.EqualTo(Vector2.up));
         }
     }
 }

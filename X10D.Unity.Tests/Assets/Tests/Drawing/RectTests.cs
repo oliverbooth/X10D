@@ -15,10 +15,10 @@ namespace X10D.Unity.Tests.Drawing
             var rect = new Rect(random.NextSingle(), random.NextSingle(), random.NextSingle(), random.NextSingle());
             var rectangle = rect.ToSystemRectangleF();
 
-            Assert.AreEqual(rect.x, rectangle.X, 1e-6f);
-            Assert.AreEqual(rect.y, rectangle.Y, 1e-6f);
-            Assert.AreEqual(rect.width, rectangle.Width, 1e-6f);
-            Assert.AreEqual(rect.height, rectangle.Height, 1e-6f);
+            Assert.That(rectangle.X, Is.EqualTo(rect.x).Within(1e-6f));
+            Assert.That(rectangle.Y, Is.EqualTo(rect.y).Within(1e-6f));
+            Assert.That(rectangle.Width, Is.EqualTo(rect.width).Within(1e-6f));
+            Assert.That(rectangle.Height, Is.EqualTo(rect.height).Within(1e-6f));
         }
     }
 }

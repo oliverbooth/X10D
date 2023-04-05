@@ -15,8 +15,8 @@ namespace X10D.Unity.Tests.Drawing
             var size = new SizeF(random.NextSingle(), random.NextSingle());
             var vector = size.ToUnityVector2();
 
-            Assert.AreEqual(size.Width, vector.x, 1e-6f);
-            Assert.AreEqual(size.Height, vector.y, 1e-6f);
+            Assert.That(vector.x, Is.EqualTo(size.Width).Within(1e-6f));
+            Assert.That(vector.y, Is.EqualTo(size.Height).Within(1e-6f));
         }
     }
 }

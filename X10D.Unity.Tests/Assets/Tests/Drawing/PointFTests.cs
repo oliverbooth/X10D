@@ -15,8 +15,8 @@ namespace X10D.Unity.Tests.Drawing
             var point = new PointF(random.NextSingle(), random.NextSingle());
             var vector = point.ToUnityVector2();
 
-            Assert.AreEqual(point.X, vector.x, 1e-6f);
-            Assert.AreEqual(point.Y, vector.y, 1e-6f);
+            Assert.That(vector.x, Is.EqualTo(point.X).Within(1e-6f));
+            Assert.That(vector.y, Is.EqualTo(point.Y).Within(1e-6f));
         }
     }
 }

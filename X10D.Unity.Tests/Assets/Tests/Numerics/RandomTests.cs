@@ -13,7 +13,7 @@ namespace X10D.Unity.Tests.Numerics
         {
             var random = new Random();
             var vector = random.NextUnitVector2();
-            Assert.AreEqual(1, vector.magnitude, 1e-6);
+            Assert.That(vector.magnitude, Is.EqualTo(1).Within(1e-6));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace X10D.Unity.Tests.Numerics
         {
             var random = new Random();
             var vector = random.NextUnitVector3();
-            Assert.AreEqual(1, vector.magnitude, 1e-6);
+            Assert.That(vector.magnitude, Is.EqualTo(1).Within(1e-6));
         }
 
         [Test]
