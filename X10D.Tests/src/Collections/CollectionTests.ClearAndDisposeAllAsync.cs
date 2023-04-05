@@ -1,16 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 public partial class CollectionTests
 {
-    [TestClass]
+    [TestFixture]
     public class ClearAndDisposeAllAsyncTests
     {
-        [TestMethod]
+        [Test]
         public async Task ClearAndDisposeAllAsync_ShouldClearAndDisposeAllItems_WhenCalledWithValidList()
         {
             var mock1 = new Mock<IAsyncDisposable>();
@@ -23,23 +23,23 @@ public partial class CollectionTests
             mock1.Verify(i => i.DisposeAsync(), Times.Once);
             mock2.Verify(i => i.DisposeAsync(), Times.Once);
             mock3.Verify(i => i.DisposeAsync(), Times.Once);
-            Assert.AreEqual(0, list.Count);
+            Assert.That(list, Is.Empty);
         }
 
-        [TestMethod]
-        public async Task ClearAndDisposeAllAsync_ShouldThrowArgumentNullException_WhenCalledWithNullList()
+        [Test]
+        public void ClearAndDisposeAllAsync_ShouldThrowArgumentNullException_WhenCalledWithNullList()
         {
             List<IAsyncDisposable>? list = null;
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(list!.ClearAndDisposeAllAsync).ConfigureAwait(false);
+            Assert.ThrowsAsync<ArgumentNullException>(list!.ClearAndDisposeAllAsync);
         }
 
-        [TestMethod]
-        public async Task ClearAndDisposeAllAsync_ShouldThrowInvalidOperationException_WhenCalledWithReadOnlyList()
+        [Test]
+        public void ClearAndDisposeAllAsync_ShouldThrowInvalidOperationException_WhenCalledWithReadOnlyList()
         {
             var mock = new Mock<IAsyncDisposable>();
             var list = new ReadOnlyCollection<IAsyncDisposable>(new List<IAsyncDisposable> {mock.Object});
 
-            await Assert.ThrowsExceptionAsync<InvalidOperationException>(list.ClearAndDisposeAllAsync).ConfigureAwait(false);
+            Assert.ThrowsAsync<InvalidOperationException>(list.ClearAndDisposeAllAsync);
         }
     }
 }

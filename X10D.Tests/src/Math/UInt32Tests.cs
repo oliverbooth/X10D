@@ -1,37 +1,37 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
+[TestFixture]
 [CLSCompliant(false)]
 public partial class UInt32Tests
 {
-    [TestMethod]
+    [Test]
     public void DigitalRootShouldBeCorrect()
     {
         const uint value = 238;
-        Assert.AreEqual(4U, value.DigitalRoot());
-        Assert.AreEqual(4U, (-value).DigitalRoot());
+        Assert.That(value.DigitalRoot(), Is.EqualTo(4U));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(4U));
     }
 
-    [TestMethod]
+    [Test]
     public void FactorialShouldBeCorrect()
     {
-        Assert.AreEqual(1UL, 0U.Factorial());
-        Assert.AreEqual(1UL, 1U.Factorial());
-        Assert.AreEqual(2UL, 2U.Factorial());
-        Assert.AreEqual(6UL, 3U.Factorial());
-        Assert.AreEqual(24UL, 4U.Factorial());
-        Assert.AreEqual(120UL, 5U.Factorial());
-        Assert.AreEqual(720UL, 6U.Factorial());
-        Assert.AreEqual(5040UL, 7U.Factorial());
-        Assert.AreEqual(40320UL, 8U.Factorial());
-        Assert.AreEqual(362880UL, 9U.Factorial());
-        Assert.AreEqual(3628800UL, 10U.Factorial());
+        Assert.That(0U.Factorial(), Is.EqualTo(1UL));
+        Assert.That(1U.Factorial(), Is.EqualTo(1UL));
+        Assert.That(2U.Factorial(), Is.EqualTo(2UL));
+        Assert.That(3U.Factorial(), Is.EqualTo(6UL));
+        Assert.That(4U.Factorial(), Is.EqualTo(24UL));
+        Assert.That(5U.Factorial(), Is.EqualTo(120UL));
+        Assert.That(6U.Factorial(), Is.EqualTo(720UL));
+        Assert.That(7U.Factorial(), Is.EqualTo(5040UL));
+        Assert.That(8U.Factorial(), Is.EqualTo(40320UL));
+        Assert.That(9U.Factorial(), Is.EqualTo(362880UL));
+        Assert.That(10U.Factorial(), Is.EqualTo(3628800UL));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
     {
         const uint first = 5U;
@@ -39,10 +39,10 @@ public partial class UInt32Tests
 
         uint multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(1U, multiple);
+        Assert.That(multiple, Is.EqualTo(1U));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe6_Given12And18()
     {
         const uint first = 12U;
@@ -50,30 +50,30 @@ public partial class UInt32Tests
 
         uint multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(6U, multiple);
+        Assert.That(multiple, Is.EqualTo(6U));
     }
 
-    [TestMethod]
+    [Test]
     public void IsEvenShouldBeCorrect()
     {
         const uint one = 1;
         const uint two = 2;
 
-        Assert.IsFalse(one.IsEven());
-        Assert.IsTrue(two.IsEven());
+        Assert.That(one.IsEven(), Is.False);
+        Assert.That(two.IsEven());
     }
 
-    [TestMethod]
+    [Test]
     public void IsOddShouldBeCorrect()
     {
         const uint one = 1;
         const uint two = 2;
 
-        Assert.IsTrue(one.IsOdd());
-        Assert.IsFalse(two.IsOdd());
+        Assert.That(one.IsOdd());
+        Assert.That(two.IsOdd(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
     {
         const uint value1 = 2;
@@ -82,10 +82,10 @@ public partial class UInt32Tests
 
         uint result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
     {
         const uint value1 = 0;
@@ -94,10 +94,10 @@ public partial class UInt32Tests
 
         uint result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
     {
         const uint value1 = 1;
@@ -107,11 +107,11 @@ public partial class UInt32Tests
         uint result1 = value1.LowestCommonMultiple(value2);
         uint result2 = value2.LowestCommonMultiple(value1);
 
-        Assert.AreEqual(expected, result1);
-        Assert.AreEqual(expected, result2);
+        Assert.That(result1, Is.EqualTo(expected));
+        Assert.That(result2, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
     {
         const uint value1 = 5;
@@ -120,31 +120,31 @@ public partial class UInt32Tests
 
         uint result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
     {
-        Assert.AreEqual(1, 10U.MultiplicativePersistence());
-        Assert.AreEqual(1, 201U.MultiplicativePersistence());
-        Assert.AreEqual(1, 200U.MultiplicativePersistence());
-        Assert.AreEqual(1, 20007U.MultiplicativePersistence());
+        Assert.That(10U.MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(201U.MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(200U.MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(20007U.MultiplicativePersistence(), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
-        Assert.AreEqual(0, 0U.MultiplicativePersistence());
-        Assert.AreEqual(1, 10U.MultiplicativePersistence());
-        Assert.AreEqual(2, 25U.MultiplicativePersistence());
-        Assert.AreEqual(3, 39U.MultiplicativePersistence());
-        Assert.AreEqual(4, 77U.MultiplicativePersistence());
-        Assert.AreEqual(5, 679U.MultiplicativePersistence());
-        Assert.AreEqual(6, 6788U.MultiplicativePersistence());
-        Assert.AreEqual(7, 68889U.MultiplicativePersistence());
-        Assert.AreEqual(8, 2677889U.MultiplicativePersistence());
-        Assert.AreEqual(9, 26888999U.MultiplicativePersistence());
-        Assert.AreEqual(10, 3778888999U.MultiplicativePersistence());
+        Assert.That(0U.MultiplicativePersistence(), Is.Zero);
+        Assert.That(10U.MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(25U.MultiplicativePersistence(), Is.EqualTo(2));
+        Assert.That(39U.MultiplicativePersistence(), Is.EqualTo(3));
+        Assert.That(77U.MultiplicativePersistence(), Is.EqualTo(4));
+        Assert.That(679U.MultiplicativePersistence(), Is.EqualTo(5));
+        Assert.That(6788U.MultiplicativePersistence(), Is.EqualTo(6));
+        Assert.That(68889U.MultiplicativePersistence(), Is.EqualTo(7));
+        Assert.That(2677889U.MultiplicativePersistence(), Is.EqualTo(8));
+        Assert.That(26888999U.MultiplicativePersistence(), Is.EqualTo(9));
+        Assert.That(3778888999U.MultiplicativePersistence(), Is.EqualTo(10));
     }
 }

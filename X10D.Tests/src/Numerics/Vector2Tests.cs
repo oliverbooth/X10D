@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 #if !NET6_0_OR_GREATER
 using X10D.Core;
 #endif
@@ -8,20 +8,23 @@ using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
-[TestClass]
+[TestFixture]
 public class Vector2Tests
 {
-    [TestMethod]
+    [Test]
     public void Deconstruct_ShouldReturnCorrectValues()
     {
         var vector = new Vector2(1, 2);
         (float x, float y) = vector;
 
-        Assert.AreEqual(1, x);
-        Assert.AreEqual(2, y);
+        Assert.Multiple(() =>
+        {
+            Assert.That(x, Is.EqualTo(1));
+            Assert.That(y, Is.EqualTo(2));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOnLine_ShouldReturnTrue_ForPointOnLine()
     {
         Vector2 start = Vector2.Zero;
@@ -29,12 +32,15 @@ public class Vector2Tests
         Vector2 point = new Vector2(0.5f, 0.0f);
         var line = new LineF(start, end);
 
-        Assert.IsTrue(point.IsOnLine(line));
-        Assert.IsTrue(point.IsOnLine(line.Start, line.End));
-        Assert.IsTrue(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.IsOnLine(line));
+            Assert.That(point.IsOnLine(line.Start, line.End));
+            Assert.That(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOnLine_ShouldReturnFalse_ForPointNotOnLine()
     {
         Vector2 start = Vector2.Zero;
@@ -42,78 +48,99 @@ public class Vector2Tests
         Vector2 point = new Vector2(0.5f, 1.0f);
         var line = new LineF(start, end);
 
-        Assert.IsFalse(point.IsOnLine(line));
-        Assert.IsFalse(point.IsOnLine(line.Start, line.End));
-        Assert.IsFalse(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.IsOnLine(line), Is.False);
+            Assert.That(point.IsOnLine(line.Start, line.End), Is.False);
+            Assert.That(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Round_ShouldRoundToNearestInteger_GivenNoParameters()
     {
         var vector = new Vector2(1.5f, 2.6f);
         var rounded = vector.Round();
 
-        Assert.AreEqual(2, rounded.X);
-        Assert.AreEqual(3, rounded.Y);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rounded.X, Is.EqualTo(2));
+            Assert.That(rounded.Y, Is.EqualTo(3));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Round_ShouldRoundToNearest10_GivenPrecision10()
     {
         var vector = new Vector2(1.5f, 25.2f);
         var rounded = vector.Round(10);
 
-        Assert.AreEqual(0, rounded.X);
-        Assert.AreEqual(30, rounded.Y);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rounded.X, Is.Zero);
+            Assert.That(rounded.Y, Is.EqualTo(30));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToPointF_ShouldReturnPoint_WithEquivalentMembers()
     {
         var random = new Random();
         var vector = new Vector2(random.NextSingle(), random.NextSingle());
         var point = vector.ToPointF();
 
-        Assert.AreEqual(vector.X, point.X, 1e-6f);
-        Assert.AreEqual(vector.Y, point.Y, 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.X, Is.EqualTo(vector.X).Within(1e-6f));
+            Assert.That(point.Y, Is.EqualTo(vector.Y).Within(1e-6f));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToSizeF_ShouldReturnSize_WithEquivalentMembers()
     {
         var random = new Random();
         var vector = new Vector2(random.NextSingle(), random.NextSingle());
         var size = vector.ToSizeF();
 
-        Assert.AreEqual(vector.X, size.Width);
-        Assert.AreEqual(vector.Y, size.Height);
+        Assert.Multiple(() =>
+        {
+            Assert.That(size.Width, Is.EqualTo(vector.X));
+            Assert.That(size.Height, Is.EqualTo(vector.Y));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void WithX_ShouldReturnVectorWithNewX_GivenVector()
     {
-        Assert.AreEqual(Vector2.UnitY, Vector2.One.WithX(0));
-        Assert.AreEqual(Vector2.Zero, Vector2.Zero.WithX(0));
-        Assert.AreEqual(Vector2.Zero, Vector2.UnitX.WithX(0));
-        Assert.AreEqual(Vector2.UnitY, Vector2.UnitY.WithX(0));
+        Assert.Multiple(() =>
+        {
+            Assert.That(Vector2.One.WithX(0), Is.EqualTo(Vector2.UnitY));
+            Assert.That(Vector2.Zero.WithX(0), Is.EqualTo(Vector2.Zero));
+            Assert.That(Vector2.UnitX.WithX(0), Is.EqualTo(Vector2.Zero));
+            Assert.That(Vector2.UnitY.WithX(0), Is.EqualTo(Vector2.UnitY));
 
-        Assert.AreEqual(Vector2.One, Vector2.One.WithX(1));
-        Assert.AreEqual(Vector2.UnitX, Vector2.Zero.WithX(1));
-        Assert.AreEqual(Vector2.UnitX, Vector2.UnitX.WithX(1));
-        Assert.AreEqual(Vector2.One, Vector2.UnitY.WithX(1));
+            Assert.That(Vector2.One.WithX(1), Is.EqualTo(Vector2.One));
+            Assert.That(Vector2.Zero.WithX(1), Is.EqualTo(Vector2.UnitX));
+            Assert.That(Vector2.UnitX.WithX(1), Is.EqualTo(Vector2.UnitX));
+            Assert.That(Vector2.UnitY.WithX(1), Is.EqualTo(Vector2.One));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void WithY_ShouldReturnVectorWithNewY_GivenVector()
     {
-        Assert.AreEqual(Vector2.UnitX, Vector2.One.WithY(0));
-        Assert.AreEqual(Vector2.Zero, Vector2.Zero.WithY(0));
-        Assert.AreEqual(Vector2.UnitX, Vector2.UnitX.WithY(0));
-        Assert.AreEqual(Vector2.Zero, Vector2.UnitY.WithY(0));
+        Assert.Multiple(() =>
+        {
+            Assert.That(Vector2.One.WithY(0), Is.EqualTo(Vector2.UnitX));
+            Assert.That(Vector2.Zero.WithY(0), Is.EqualTo(Vector2.Zero));
+            Assert.That(Vector2.UnitX.WithY(0), Is.EqualTo(Vector2.UnitX));
+            Assert.That(Vector2.UnitY.WithY(0), Is.EqualTo(Vector2.Zero));
 
-        Assert.AreEqual(Vector2.One, Vector2.One.WithY(1));
-        Assert.AreEqual(Vector2.UnitY, Vector2.Zero.WithY(1));
-        Assert.AreEqual(Vector2.One, Vector2.UnitX.WithY(1));
-        Assert.AreEqual(Vector2.UnitY, Vector2.UnitY.WithY(1));
+            Assert.That(Vector2.One.WithY(1), Is.EqualTo(Vector2.One));
+            Assert.That(Vector2.Zero.WithY(1), Is.EqualTo(Vector2.UnitY));
+            Assert.That(Vector2.UnitX.WithY(1), Is.EqualTo(Vector2.One));
+            Assert.That(Vector2.UnitY.WithY(1), Is.EqualTo(Vector2.UnitY));
+        });
     }
 }

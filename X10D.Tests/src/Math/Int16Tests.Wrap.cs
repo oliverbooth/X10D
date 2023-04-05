@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 public partial class Int16Tests
 {
-    [TestClass]
+    [TestFixture]
     public class WrapTests
     {
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnLow_WhenValueIsEqualToLow()
         {
             const short value = 10;
@@ -17,10 +17,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnHigh_WhenValueIsEqualToHigh()
         {
             const short value = 20;
@@ -29,10 +29,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanHigh()
         {
             const short value = 30;
@@ -41,10 +41,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsLessThanLow()
         {
             const short value = 5;
@@ -53,10 +53,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(low, high);
 
-            Assert.AreEqual(15, result);
+            Assert.That(result, Is.EqualTo(15));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsInBetweenLowAndHigh()
         {
             const short value = 15;
@@ -65,10 +65,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(low, high);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnZero_WhenValueIsEqualToLength()
         {
             const short value = 10;
@@ -76,10 +76,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(length);
 
-            Assert.AreEqual(0, result);
+            Assert.That(result, Is.Zero);
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnValue_WhenValueIsLessThanLength()
         {
             const short value = 5;
@@ -87,10 +87,10 @@ public partial class Int16Tests
 
             short result = value.Wrap(length);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanLength()
         {
             const short value = 15;
@@ -98,7 +98,7 @@ public partial class Int16Tests
 
             short result = value.Wrap(length);
 
-            Assert.AreEqual(5, result);
+            Assert.That(result, Is.EqualTo(5));
         }
     }
 }

@@ -1,37 +1,37 @@
 ﻿using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
+[TestFixture]
 public class RandomTests
 {
-    [TestMethod]
+    [Test]
     public void NextColorArgb_ShouldReturn331515e5_GivenSeed1234()
     {
         var random = new Random(1234);
-        Assert.AreEqual(Color.FromArgb(51, 21, 21, 229), random.NextColorArgb());
+        Assert.That(random.NextColorArgb(), Is.EqualTo(Color.FromArgb(51, 21, 21, 229)));
     }
 
-    [TestMethod]
+    [Test]
     public void NextColorArgb_ShouldThrow_GivenNull()
     {
-        Random? random = null;
-        Assert.ThrowsException<ArgumentNullException>(() => random!.NextColorArgb());
+        Random random = null!;
+        Assert.Throws<ArgumentNullException>(() => random.NextColorArgb());
     }
 
-    [TestMethod]
+    [Test]
     public void NextColorRgb_ShouldReturn1515e5_GivenSeed1234()
     {
         var random = new Random(1234);
-        Assert.AreEqual(Color.FromArgb(255, 21, 21, 229), random.NextColorRgb());
+        Assert.That(random.NextColorRgb(), Is.EqualTo(Color.FromArgb(255, 21, 21, 229)));
     }
 
-    [TestMethod]
+    [Test]
     public void NextColorRgb_ShouldThrow_GivenNull()
     {
-        Random? random = null;
-        Assert.ThrowsException<ArgumentNullException>(() => random!.NextColorRgb());
+        Random random = null!;
+        Assert.Throws<ArgumentNullException>(() => random.NextColorRgb());
     }
 }

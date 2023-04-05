@@ -1,16 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 public partial class CollectionTests
 {
-    [TestClass]
+    [TestFixture]
     public class ClearAndDisposeAllTests
     {
-        [TestMethod]
+        [Test]
         public void ClearAndDisposeAll_ShouldClearAndDisposeAllItems_WhenCalledWithValidList()
         {
             var mock1 = new Mock<IDisposable>();
@@ -23,23 +23,23 @@ public partial class CollectionTests
             mock1.Verify(i => i.Dispose(), Times.Once);
             mock2.Verify(i => i.Dispose(), Times.Once);
             mock3.Verify(i => i.Dispose(), Times.Once);
-            Assert.AreEqual(0, list.Count);
+            Assert.That(list, Is.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void ClearAndDisposeAll_ShouldThrowArgumentNullException_WhenCalledWithNullList()
         {
             List<IDisposable>? list = null;
-            Assert.ThrowsException<ArgumentNullException>(() => list!.ClearAndDisposeAll());
+            Assert.Throws<ArgumentNullException>(() => list!.ClearAndDisposeAll());
         }
 
-        [TestMethod]
+        [Test]
         public void ClearAndDisposeAll_ShouldThrowInvalidOperationException_WhenCalledWithReadOnlyList()
         {
             var mock = new Mock<IDisposable>();
             var list = new ReadOnlyCollection<IDisposable>(new List<IDisposable> {mock.Object});
 
-            Assert.ThrowsException<InvalidOperationException>(() => list.ClearAndDisposeAll());
+            Assert.Throws<InvalidOperationException>(() => list.ClearAndDisposeAll());
         }
     }
 }

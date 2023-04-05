@@ -1,17 +1,17 @@
 ﻿#if NET5_0_OR_GREATER
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
-[TestClass]
+[TestFixture]
 public class DoubleTests
 {
     private Half _negativeOne;
     private Half _one;
     private Half _zero;
 
-    [TestInitialize]
+    [SetUp]
     public void Initialize()
     {
         _negativeOne = (Half)(-1);
@@ -19,37 +19,37 @@ public class DoubleTests
         _zero = (Half)0;
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
-        Assert.AreEqual(TimeSpan.Zero, _zero.Milliseconds());
-        Assert.AreEqual(TimeSpan.Zero, _zero.Seconds());
-        Assert.AreEqual(TimeSpan.Zero, _zero.Minutes());
-        Assert.AreEqual(TimeSpan.Zero, _zero.Days());
-        Assert.AreEqual(TimeSpan.Zero, _zero.Hours());
-        Assert.AreEqual(TimeSpan.Zero, _zero.Weeks());
+        Assert.That(_zero.Milliseconds(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(_zero.Seconds(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(_zero.Minutes(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(_zero.Days(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(_zero.Hours(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(_zero.Weeks(), Is.EqualTo(TimeSpan.Zero));
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
-        Assert.IsTrue(_one.Milliseconds() > TimeSpan.Zero);
-        Assert.IsTrue(_one.Seconds() > TimeSpan.Zero);
-        Assert.IsTrue(_one.Minutes() > TimeSpan.Zero);
-        Assert.IsTrue(_one.Days() > TimeSpan.Zero);
-        Assert.IsTrue(_one.Hours() > TimeSpan.Zero);
-        Assert.IsTrue(_one.Weeks() > TimeSpan.Zero);
+        Assert.That(_one.Milliseconds() > TimeSpan.Zero);
+        Assert.That(_one.Seconds() > TimeSpan.Zero);
+        Assert.That(_one.Minutes() > TimeSpan.Zero);
+        Assert.That(_one.Days() > TimeSpan.Zero);
+        Assert.That(_one.Hours() > TimeSpan.Zero);
+        Assert.That(_one.Weeks() > TimeSpan.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
-        Assert.IsTrue((_negativeOne).Milliseconds() < TimeSpan.Zero);
-        Assert.IsTrue((_negativeOne).Seconds() < TimeSpan.Zero);
-        Assert.IsTrue((_negativeOne).Minutes() < TimeSpan.Zero);
-        Assert.IsTrue((_negativeOne).Days() < TimeSpan.Zero);
-        Assert.IsTrue((_negativeOne).Hours() < TimeSpan.Zero);
-        Assert.IsTrue((_negativeOne).Weeks() < TimeSpan.Zero);
+        Assert.That((_negativeOne).Milliseconds() < TimeSpan.Zero);
+        Assert.That((_negativeOne).Seconds() < TimeSpan.Zero);
+        Assert.That((_negativeOne).Minutes() < TimeSpan.Zero);
+        Assert.That((_negativeOne).Days() < TimeSpan.Zero);
+        Assert.That((_negativeOne).Hours() < TimeSpan.Zero);
+        Assert.That((_negativeOne).Weeks() < TimeSpan.Zero);
     }
 }
 #endif

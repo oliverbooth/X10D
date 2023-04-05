@@ -2,15 +2,15 @@
 #if NET5_0_OR_GREATER
 using System.Text.Json.Serialization;
 #endif
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
 
-[TestClass]
+[TestFixture]
 public class StringTests
 {
-    [TestMethod]
+    [Test]
     public void AsNullIfEmpty_ShouldBeCorrect()
     {
         const string sampleString = "Hello World";
@@ -23,13 +23,16 @@ public class StringTests
         string emptyResult = emptyString.AsNullIfEmpty();
         string? nullResult = nullString.AsNullIfEmpty();
 
-        Assert.AreEqual(sampleString, sampleResult);
-        Assert.AreEqual(whitespaceString, whitespaceResult);
-        Assert.AreEqual(nullString, emptyResult);
-        Assert.AreEqual(nullString, nullResult);
+        Assert.Multiple(() =>
+        {
+            Assert.That(sampleResult, Is.EqualTo(sampleString));
+            Assert.That(whitespaceResult, Is.EqualTo(whitespaceString));
+            Assert.That(emptyResult, Is.EqualTo(nullString));
+            Assert.That(nullResult, Is.EqualTo(nullString));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void AsNullIfWhiteSpace_ShouldBeCorrect()
     {
         const string sampleString = "Hello World";
@@ -42,275 +45,299 @@ public class StringTests
         string emptyResult = emptyString.AsNullIfWhiteSpace();
         string? nullResult = nullString.AsNullIfWhiteSpace();
 
-        Assert.AreEqual(sampleString, sampleResult);
-        Assert.AreEqual(nullString, whitespaceResult);
-        Assert.AreEqual(nullString, emptyResult);
-        Assert.AreEqual(nullString, nullResult);
+        Assert.Multiple(() =>
+        {
+            Assert.That(sampleResult, Is.EqualTo(sampleString));
+            Assert.That(whitespaceResult, Is.EqualTo(nullString));
+            Assert.That(emptyResult, Is.EqualTo(nullString));
+            Assert.That(nullResult, Is.EqualTo(nullString));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Base64Decode_ShouldReturnHelloWorld_GivenBase64String()
     {
-        Assert.AreEqual("Hello World", "SGVsbG8gV29ybGQ=".Base64Decode());
+        Assert.That("SGVsbG8gV29ybGQ=".Base64Decode(), Is.EqualTo("Hello World"));
     }
 
-
-    [TestMethod]
+    [Test]
     public void Base64Decode_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Base64Decode());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.Base64Decode());
     }
 
-
-    [TestMethod]
+    [Test]
     public void Base64Encode_ShouldReturnBase64String_GivenHelloWorld()
     {
-        Assert.AreEqual("SGVsbG8gV29ybGQ=", "Hello World".Base64Encode());
+        Assert.That("Hello World".Base64Encode(), Is.EqualTo("SGVsbG8gV29ybGQ="));
     }
 
-    [TestMethod]
+    [Test]
     public void Base64Encode_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Base64Encode());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.Base64Encode());
     }
 
-    [TestMethod]
+    [Test]
     public void ChangeEncoding_ShouldReturnAsciiString_GivenUtf8()
     {
-        Assert.AreEqual("Hello World", "Hello World".ChangeEncoding(Encoding.UTF8, Encoding.ASCII));
+        Assert.That("Hello World".ChangeEncoding(Encoding.UTF8, Encoding.ASCII), Is.EqualTo("Hello World"));
     }
 
-    [TestMethod]
+    [Test]
     public void ChangeEncoding_ShouldThrow_GivenNullString()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.ChangeEncoding(Encoding.UTF8, Encoding.ASCII));
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.ChangeEncoding(Encoding.UTF8, Encoding.ASCII));
     }
 
-    [TestMethod]
+    [Test]
     public void ChangeEncoding_ShouldThrow_GivenNullSourceEncoding()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => "Hello World".ChangeEncoding(null!, Encoding.ASCII));
+        Assert.Throws<ArgumentNullException>(() => _ = "Hello World".ChangeEncoding(null!, Encoding.ASCII));
     }
 
-    [TestMethod]
+    [Test]
     public void ChangeEncoding_ShouldThrow_GivenNullDestinationEncoding()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => "Hello World".ChangeEncoding(Encoding.UTF8, null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "Hello World".ChangeEncoding(Encoding.UTF8, null!));
     }
 
-    [TestMethod]
+    [Test]
     public void CountSubstring_ShouldHonor_StringComparison()
     {
-        Assert.AreEqual(0, "Hello World".CountSubstring('E'));
-        Assert.AreEqual(0, "Hello World".CountSubstring("E"));
-        Assert.AreEqual(1, "Hello World".CountSubstring("E", StringComparison.OrdinalIgnoreCase));
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello World".CountSubstring('E'), Is.Zero);
+            Assert.That("Hello World".CountSubstring("E"), Is.Zero);
+            Assert.That("Hello World".CountSubstring("E", StringComparison.OrdinalIgnoreCase), Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void CountSubstring_ShouldReturn0_GivenNoInstanceChar()
     {
-        Assert.AreEqual(0, "Hello World".CountSubstring('z'));
-        Assert.AreEqual(0, "Hello World".CountSubstring("z"));
-        Assert.AreEqual(0, "Hello World".CountSubstring("z", StringComparison.OrdinalIgnoreCase));
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello World".CountSubstring('z'), Is.Zero);
+            Assert.That("Hello World".CountSubstring("z"), Is.Zero);
+            Assert.That("Hello World".CountSubstring("z", StringComparison.OrdinalIgnoreCase), Is.Zero);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void CountSubstring_ShouldReturn1_GivenSingleInstanceChar()
     {
-        Assert.AreEqual(1, "Hello World".CountSubstring('e'));
-        Assert.AreEqual(1, "Hello World".CountSubstring("e"));
-        Assert.AreEqual(1, "Hello World".CountSubstring("e", StringComparison.OrdinalIgnoreCase));
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello World".CountSubstring('e'), Is.EqualTo(1));
+            Assert.That("Hello World".CountSubstring("e"), Is.EqualTo(1));
+            Assert.That("Hello World".CountSubstring("e", StringComparison.OrdinalIgnoreCase), Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void CountSubstring_ShouldReturn0_GivenEmptyHaystack()
     {
-        Assert.AreEqual(0, string.Empty.CountSubstring('\0'));
-        Assert.AreEqual(0, string.Empty.CountSubstring(string.Empty));
-        Assert.AreEqual(0, string.Empty.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
+        Assert.Multiple(() =>
+        {
+            Assert.That(string.Empty.CountSubstring('\0'), Is.Zero);
+            Assert.That(string.Empty.CountSubstring(string.Empty), Is.Zero);
+            Assert.That(string.Empty.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase), Is.Zero);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void CountSubstring_ShouldThrow_GivenNullHaystack()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null!).CountSubstring('\0'));
-        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null!).CountSubstring(string.Empty));
-        Assert.ThrowsException<ArgumentNullException>(() =>
-            ((string?)null!).CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => value.CountSubstring('\0'));
+        Assert.Throws<ArgumentNullException>(() => value.CountSubstring(string.Empty));
+        Assert.Throws<ArgumentNullException>(() => value.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureEndsWith_ShouldPrependChar_GivenEndsWithReturnFalse()
     {
         const string value = "Hello Worl";
         const char substring = 'd';
 
-        Assert.AreEqual("Hello World", value.EnsureEndsWith(substring));
+        Assert.That(value.EnsureEndsWith(substring), Is.EqualTo("Hello World"));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureEndsWith_ShouldReturnChar_GivenEndsWithReturnTrue()
     {
         const string value = "A";
         const char substring = 'A';
 
-        Assert.AreEqual(value, value.EnsureEndsWith(substring));
+        Assert.That(value.EnsureEndsWith(substring), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureStartsWith_ShouldPrependChar_GivenEndsWithReturnFalse()
     {
         const string value = "B";
         const char substring = 'A';
 
-        Assert.AreEqual("AB", value.EnsureStartsWith(substring));
+        Assert.That(value.EnsureStartsWith(substring), Is.EqualTo("AB"));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureStartsWith_ShouldReturnChar_GivenEndsWithReturnTrue()
     {
         const string value = "A";
         const char substring = 'A';
 
-        Assert.AreEqual(value, value.EnsureStartsWith(substring));
+        Assert.That(value.EnsureStartsWith(substring), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureEndsWith_ShouldAppendSubstring_GivenEndsWithReturnFalse()
     {
         const string value = "Hello ";
         const string substring = "World";
 
-        Assert.AreEqual("Hello World", value.EnsureEndsWith(substring));
+        Assert.That(value.EnsureEndsWith(substring), Is.EqualTo("Hello World"));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureEndsWith_ShouldReturnString_GivenEndsWithReturnTrue()
     {
         const string substring = "World";
 
-        Assert.AreEqual(substring, substring.EnsureEndsWith(substring));
+        Assert.That(substring.EnsureEndsWith(substring), Is.EqualTo(substring));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureEndsWith_ShouldReturnString_GivenEmptySourceString()
     {
         const string substring = "World";
 
-        Assert.AreEqual(substring, string.Empty.EnsureEndsWith(substring));
+        Assert.That(string.Empty.EnsureEndsWith(substring), Is.EqualTo(substring));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureEndsWith_ShouldReturnString_GivenEmptySubString()
     {
         const string substring = "World";
 
-        Assert.AreEqual(substring, substring.EnsureEndsWith(string.Empty));
+        Assert.That(substring.EnsureEndsWith(string.Empty), Is.EqualTo(substring));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureStartsWith_ShouldAppendSubstring_GivenEndsWithReturnFalse()
     {
         const string value = "World";
         const string substring = "Hello ";
 
-        Assert.AreEqual("Hello World", value.EnsureStartsWith(substring));
+        Assert.That(value.EnsureStartsWith(substring), Is.EqualTo("Hello World"));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureStartsWith_ShouldReturnString_GivenEndsWithReturnTrue()
     {
         const string substring = "World";
 
-        Assert.AreEqual(substring, substring.EnsureStartsWith(substring));
+        Assert.That(substring.EnsureStartsWith(substring), Is.EqualTo(substring));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureStartsWith_ShouldReturnString_GivenEmptySourceString()
     {
         const string substring = "World";
 
-        Assert.AreEqual(substring, string.Empty.EnsureStartsWith(substring));
+        Assert.That(string.Empty.EnsureStartsWith(substring), Is.EqualTo(substring));
     }
 
-    [TestMethod]
+    [Test]
     public void EnsureStartsWith_ShouldReturnString_GivenEmptySubString()
     {
         const string substring = "World";
 
-        Assert.AreEqual(substring, substring.EnsureStartsWith(string.Empty));
+        Assert.That(substring.EnsureStartsWith(string.Empty), Is.EqualTo(substring));
     }
 
-    [TestMethod]
+    [Test]
     public void EnumParse_ShouldReturnCorrectValue_GivenString()
     {
-        Assert.AreEqual(DayOfWeek.Monday, "Monday".EnumParse<DayOfWeek>(false));
-        Assert.AreEqual(DayOfWeek.Tuesday, "Tuesday".EnumParse<DayOfWeek>(false));
-        Assert.AreEqual(DayOfWeek.Wednesday, "Wednesday".EnumParse<DayOfWeek>(false));
-        Assert.AreEqual(DayOfWeek.Thursday, "Thursday".EnumParse<DayOfWeek>(false));
-        Assert.AreEqual(DayOfWeek.Friday, "Friday".EnumParse<DayOfWeek>(false));
-        Assert.AreEqual(DayOfWeek.Saturday, "Saturday".EnumParse<DayOfWeek>(false));
-        Assert.AreEqual(DayOfWeek.Sunday, "Sunday".EnumParse<DayOfWeek>(false));
+        Assert.Multiple(() =>
+        {
+            Assert.That("Monday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Monday));
+            Assert.That("Tuesday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Tuesday));
+            Assert.That("Wednesday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Wednesday));
+            Assert.That("Thursday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Thursday));
+            Assert.That("Friday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Friday));
+            Assert.That("Saturday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Saturday));
+            Assert.That("Sunday".EnumParse<DayOfWeek>(false), Is.EqualTo(DayOfWeek.Sunday));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void EnumParse_ShouldTrim()
     {
-        Assert.AreEqual(DayOfWeek.Monday, "   Monday   ".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Tuesday, "   Tuesday   ".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Wednesday, "   Wednesday   ".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Thursday, "   Thursday   ".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Friday, "   Friday   ".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Saturday, "   Saturday   ".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Sunday, "   Sunday   ".EnumParse<DayOfWeek>());
+        Assert.Multiple(() =>
+        {
+            Assert.That("   Monday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Monday));
+            Assert.That("   Tuesday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Tuesday));
+            Assert.That("   Wednesday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Wednesday));
+            Assert.That("   Thursday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Thursday));
+            Assert.That("   Friday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Friday));
+            Assert.That("   Saturday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Saturday));
+            Assert.That("   Sunday   ".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Sunday));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void EnumParse_ShouldReturnCorrectValue_GivenString_Generic()
     {
-        Assert.AreEqual(DayOfWeek.Monday, "Monday".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Tuesday, "Tuesday".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Wednesday, "Wednesday".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Thursday, "Thursday".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Friday, "Friday".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Saturday, "Saturday".EnumParse<DayOfWeek>());
-        Assert.AreEqual(DayOfWeek.Sunday, "Sunday".EnumParse<DayOfWeek>());
+        Assert.Multiple(() =>
+        {
+            Assert.That("Monday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Monday));
+            Assert.That("Tuesday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Tuesday));
+            Assert.That("Wednesday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Wednesday));
+            Assert.That("Thursday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Thursday));
+            Assert.That("Friday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Friday));
+            Assert.That("Saturday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Saturday));
+            Assert.That("Sunday".EnumParse<DayOfWeek>(), Is.EqualTo(DayOfWeek.Sunday));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void EnumParse_ShouldThrow_GivenNullString()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.EnumParse<DayOfWeek>());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.EnumParse<DayOfWeek>());
     }
 
-    [TestMethod]
+    [Test]
     public void EnumParse_ShouldThrow_GivenEmptyOrWhiteSpaceString()
     {
-        Assert.ThrowsException<ArgumentException>(() => string.Empty.EnumParse<DayOfWeek>());
-        Assert.ThrowsException<ArgumentException>(() => " ".EnumParse<DayOfWeek>());
+        Assert.Throws<ArgumentException>(() => _ = string.Empty.EnumParse<DayOfWeek>());
+        Assert.Throws<ArgumentException>(() => _ = " ".EnumParse<DayOfWeek>());
     }
 
 #if NET5_0_OR_GREATER
-    [TestMethod]
+    [Test]
     public void FromJson_ShouldDeserializeCorrectly_GivenJsonString()
     {
         const string json = "{\"values\": [1, 2, 3]}";
         var target = json.FromJson<SampleStructure>();
-        Assert.IsInstanceOfType(target, typeof(SampleStructure));
-        Assert.IsNotNull(target);
-        Assert.IsNotNull(target.Values);
-        Assert.AreEqual(3, target.Values.Length);
-        Assert.AreEqual(1, target.Values[0]);
-        Assert.AreEqual(2, target.Values[1]);
-        Assert.AreEqual(3, target.Values[2]);
+        Assert.Multiple(() =>
+        {
+            Assert.IsInstanceOf<SampleStructure>(target);
+            Assert.That(target.Values, Is.Not.Null);
+            Assert.That(target.Values.Length, Is.EqualTo(3));
+            Assert.That(target.Values[0], Is.EqualTo(1));
+            Assert.That(target.Values[1], Is.EqualTo(2));
+            Assert.That(target.Values[2], Is.EqualTo(3));
+        });
     }
 #endif
 
-    [TestMethod]
+    [Test]
     public void GetBytes_ShouldReturnUtf8Bytes_GivenHelloWorld()
     {
         var expected = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
@@ -319,7 +346,7 @@ public class StringTests
         CollectionAssert.AreEqual(expected, actual);
     }
 
-    [TestMethod]
+    [Test]
     public void GetBytes_ShouldReturnAsciiBytes_GivenHelloWorld()
     {
         var expected = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
@@ -328,36 +355,39 @@ public class StringTests
         CollectionAssert.AreEqual(expected, actual);
     }
 
-    [TestMethod]
+    [Test]
     public void GetBytes_ShouldThrow_GivenNullString()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.GetBytes());
-        Assert.ThrowsException<ArgumentNullException>(() => value!.GetBytes(Encoding.ASCII));
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.GetBytes());
+        Assert.Throws<ArgumentNullException>(() => _ = value.GetBytes(Encoding.ASCII));
     }
 
-    [TestMethod]
+    [Test]
     public void GetBytes_ShouldThrow_GivenNullEncoding()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => "Hello World".GetBytes(null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "Hello World".GetBytes(null!));
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
     {
-        Assert.IsTrue("😀".IsEmoji());
-        Assert.IsTrue("🤓".IsEmoji());
-        Assert.IsTrue("🟦".IsEmoji());
-        Assert.IsTrue("🟧".IsEmoji());
-        Assert.IsTrue("🟨".IsEmoji());
-        Assert.IsTrue("🟩".IsEmoji());
-        Assert.IsTrue("🟪".IsEmoji());
-        Assert.IsTrue("🟫".IsEmoji());
-        Assert.IsTrue("📱".IsEmoji());
-        Assert.IsTrue("🎨".IsEmoji());
+        Assert.Multiple(() =>
+        {
+            Assert.That("😀".IsEmoji());
+            Assert.That("🤓".IsEmoji());
+            Assert.That("🟦".IsEmoji());
+            Assert.That("🟧".IsEmoji());
+            Assert.That("🟨".IsEmoji());
+            Assert.That("🟩".IsEmoji());
+            Assert.That("🟪".IsEmoji());
+            Assert.That("🟫".IsEmoji());
+            Assert.That("📱".IsEmoji());
+            Assert.That("🎨".IsEmoji());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmoji_ShouldReturnTrue_GivenMultiByteEmoji()
     {
         string[] regionalIndicatorCodes = Enumerable.Range(0, 26)
@@ -368,129 +398,141 @@ public class StringTests
         for (var j = 0; j < 26; j++)
         {
             string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
-            Assert.IsTrue(flag.IsEmoji());
+            Assert.That(flag.IsEmoji());
         }
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmoji_ShouldReturnFalse_GivenNonEmoji()
     {
-        Assert.IsFalse("Hello World".IsEmoji());
-        Assert.IsFalse("Hello".IsEmoji());
-        Assert.IsFalse("World".IsEmoji());
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello World".IsEmoji(), Is.False);
+            Assert.That("Hello".IsEmoji(), Is.False);
+            Assert.That("World".IsEmoji(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmoji_ShouldThrowArgumentNullException_GivenNullInput()
     {
         string value = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => value.IsEmoji());
+        Assert.Throws<ArgumentNullException>(() => _ = value.IsEmoji());
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmpty_ShouldReturnTrue_GivenEmptyString()
     {
-        Assert.IsTrue("".IsEmpty());
-        Assert.IsTrue(string.Empty.IsEmpty());
+        Assert.Multiple(() =>
+        {
+            Assert.That("".IsEmpty());
+            Assert.That(string.Empty.IsEmpty());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmpty_ShouldReturnFalse_GivenWhiteSpaceString()
     {
-        Assert.IsFalse(" ".IsEmpty());
+        Assert.That(" ".IsEmpty(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmpty_ShouldReturnFalse_GivenNonEmptyString()
     {
-        Assert.IsFalse("Hello World".IsEmpty());
+        Assert.That("Hello World".IsEmpty(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmpty_ShouldThrowArgumentNullException_GivenNullString()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.IsEmpty());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.IsEmpty());
     }
 
-    [TestMethod]
+    [Test]
     public void IsLower_ShouldReturnTrue_GivenLowercaseString()
     {
-        Assert.IsTrue("hello world".IsLower());
+        Assert.That("hello world".IsLower());
     }
 
-    [TestMethod]
+    [Test]
     public void IsLower_ShouldReturnFalse_GivenMixedCaseString()
     {
-        Assert.IsFalse("Hello World".IsLower());
+        Assert.That("Hello World".IsLower(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsLower_ShouldReturnFalse_GivenUppercaseString()
     {
-        Assert.IsFalse("HELLO WORLD".IsLower());
+        Assert.That("HELLO WORLD".IsLower(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsLower_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.IsLower());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.IsLower());
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrEmpty_ShouldReturnTrue_GivenEmptyString()
     {
-        Assert.IsTrue("".IsNullOrEmpty());
-        Assert.IsTrue(string.Empty.IsNullOrEmpty());
+        Assert.Multiple(() =>
+        {
+            Assert.That("".IsNullOrEmpty());
+            Assert.That(string.Empty.IsNullOrEmpty());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrEmpty_ShouldReturnFalse_GivenWhiteSpaceString()
     {
-        Assert.IsFalse("   ".IsNullOrEmpty());
+        Assert.That("   ".IsNullOrEmpty(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrEmpty_ShouldReturnFalse_GivenNonEmptyString()
     {
-        Assert.IsFalse("Hello World".IsNullOrEmpty());
+        Assert.That("Hello World".IsNullOrEmpty(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrEmpty_ShouldReturnTrue_GivenNullString()
     {
-        string? value = null;
-        Assert.IsTrue(value.IsNullOrEmpty());
+        string value = null!;
+        Assert.That(value.IsNullOrEmpty());
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrWhiteSpace_ShouldReturnTrue_GivenEmptyString()
     {
-        Assert.IsTrue("".IsNullOrWhiteSpace());
-        Assert.IsTrue(string.Empty.IsNullOrWhiteSpace());
+        Assert.Multiple(() =>
+        {
+            Assert.That("".IsNullOrWhiteSpace());
+            Assert.That(string.Empty.IsNullOrWhiteSpace());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrWhiteSpace_ShouldReturnTrue_GivenWhiteSpaceString()
     {
-        Assert.IsTrue("   ".IsNullOrWhiteSpace());
+        Assert.That("   ".IsNullOrWhiteSpace());
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrWhiteSpace_ShouldReturnFalse_GivenNonEmptyString()
     {
-        Assert.IsFalse("Hello World".IsNullOrWhiteSpace());
+        Assert.That("Hello World".IsNullOrWhiteSpace(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsNullOrWhiteSpace_ShouldReturnTrue_GivenNullString()
     {
-        string? value = null;
-        Assert.IsTrue(value.IsNullOrWhiteSpace());
+        string value = null!;
+        Assert.That(value.IsNullOrWhiteSpace());
     }
 
-    [TestMethod]
+    [Test]
     public void IsPalindrome_ShouldBeCorrect_GivenString()
     {
         const string inputA = "Race car";
@@ -500,271 +542,295 @@ public class StringTests
         const string inputE = "Y";
         const string inputF = "1";
 
-        Assert.IsTrue(inputA.IsPalindrome(), inputA);
-        Assert.IsTrue(inputB.IsPalindrome(), inputB);
-        Assert.IsTrue(inputC.IsPalindrome(), inputC);
-        Assert.IsFalse(inputD.IsPalindrome(), inputD);
-        Assert.IsTrue(inputE.IsPalindrome(), inputE);
-        Assert.IsTrue(inputF.IsPalindrome(), inputF);
+        Assert.Multiple(() =>
+        {
+            Assert.That(inputA.IsPalindrome());
+            Assert.That(inputB.IsPalindrome());
+            Assert.That(inputC.IsPalindrome());
+            Assert.That(inputD.IsPalindrome(), Is.False);
+            Assert.That(inputE.IsPalindrome());
+            Assert.That(inputF.IsPalindrome());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsPalindrome_ShouldReturnFalse_GivenEmptyString()
     {
-        Assert.IsFalse(string.Empty.IsPalindrome());
+        Assert.That(string.Empty.IsPalindrome(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsPalindrome_ShouldThrow_GivenNull()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((string?)null)!.IsPalindrome());
+        Assert.Throws<ArgumentNullException>(() => _ = ((string?)null)!.IsPalindrome());
     }
 
-    [TestMethod]
+    [Test]
     public void IsUpper_ShouldReturnFalse_GivenLowercaseString()
     {
-        Assert.IsFalse("hello world".IsUpper());
+        Assert.That("hello world".IsUpper(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsUpper_ShouldReturnFalse_GivenMixedCaseString()
     {
-        Assert.IsFalse("Hello World".IsUpper());
+        Assert.That("Hello World".IsUpper(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsUpper_ShouldReturnTrue_GivenUppercaseString()
     {
-        Assert.IsTrue("HELLO WORLD".IsUpper());
+        Assert.That("HELLO WORLD".IsUpper());
     }
 
-    [TestMethod]
+    [Test]
     public void IsUpper_ShouldThrow_GivenNull()
     {
         string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.IsUpper());
+        Assert.Throws<ArgumentNullException>(() => _ = value!.IsUpper());
     }
 
-    [TestMethod]
+    [Test]
     public void IsWhiteSpace_ShouldReturnTrue_GivenEmptyString()
     {
-        Assert.IsTrue("".IsWhiteSpace());
-        Assert.IsTrue(string.Empty.IsWhiteSpace());
+        Assert.Multiple(() =>
+        {
+            Assert.That("".IsWhiteSpace());
+            Assert.That(string.Empty.IsWhiteSpace());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsWhiteSpace_ShouldReturnTrue_GivenWhiteSpaceString()
     {
-        Assert.IsTrue("   ".IsWhiteSpace());
+        Assert.That("   ".IsWhiteSpace());
     }
 
-    [TestMethod]
+    [Test]
     public void IsWhiteSpace_ShouldReturnFalse_GivenNonEmptyString()
     {
-        Assert.IsFalse("Hello World".IsWhiteSpace());
+        Assert.That("Hello World".IsWhiteSpace(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void IsWhiteSpace_ShouldThrowArgumentNullException_GivenNullString()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.IsWhiteSpace());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.IsWhiteSpace());
     }
 
-    [TestMethod]
+    [Test]
     public void Randomize_ShouldReorder_GivenString()
     {
         const string input = "Hello World";
         var random = new Random(1);
-        Assert.AreEqual("le rooldeoH", input.Randomize(input.Length, random));
+        Assert.That(input.Randomize(input.Length, random), Is.EqualTo("le rooldeoH"));
     }
 
-    [TestMethod]
+    [Test]
     public void Randomize_ShouldReturnEmptyString_GivenLength1()
     {
-        Assert.AreEqual(string.Empty, "Hello World".Randomize(0));
+        Assert.That("Hello World".Randomize(0), Is.EqualTo(string.Empty));
     }
 
-    [TestMethod]
+    [Test]
     public void Randomize_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Randomize(1));
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.Randomize(1));
     }
 
-    [TestMethod]
+    [Test]
     public void Randomize_ShouldThrow_GivenNegativeLength()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => string.Empty.Randomize(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.Randomize(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldReturnRepeatedString_GivenString()
     {
         const string expected = "aaaaaaaaaa";
         string actual = "a".Repeat(10);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldReturnEmptyString_GivenCount0()
     {
-        Assert.AreEqual(string.Empty, "a".Repeat(0));
+        Assert.That("a".Repeat(0), Is.EqualTo(string.Empty));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldReturnItself_GivenCount1()
     {
         string repeated = "a".Repeat(1);
-        Assert.AreEqual(1, repeated.Length);
-        Assert.AreEqual("a", repeated);
+        Assert.That(repeated.Length, Is.EqualTo(1));
+        Assert.That(repeated, Is.EqualTo("a"));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldThrow_GivenNegativeCount()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => "a".Repeat(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = "a".Repeat(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Repeat(0));
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.Repeat(0));
     }
 
-    [TestMethod]
+    [Test]
     public void Reverse_ShouldBeCorrect()
     {
         const string input = "Hello World";
         const string expected = "dlroW olleH";
-
         string result = input.Reverse();
 
-        Assert.AreEqual(string.Empty.Reverse(), string.Empty);
-        Assert.AreEqual(" ".Reverse(), " ");
-        Assert.AreEqual(expected, result);
+        Assert.Multiple(() =>
+        {
+            Assert.That(string.Empty.Reverse(), Is.EqualTo(string.Empty));
+            Assert.That(" ".Reverse(), Is.EqualTo(" "));
+            Assert.That(result, Is.EqualTo(expected));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Reverse_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Reverse());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.Reverse());
     }
 
-    [TestMethod]
+    [Test]
     public void Shuffled_ShouldReorder_GivenString()
     {
         const string alphabet = "abcdefghijklmnopqrstuvwxyz";
         string shuffled = alphabet;
-
-        Assert.AreEqual(alphabet, shuffled);
+        Assert.That(shuffled, Is.EqualTo(alphabet));
 
         shuffled = alphabet.Shuffled();
-
-        Assert.AreNotEqual(alphabet, shuffled);
+        Assert.That(shuffled, Is.Not.EqualTo(alphabet));
     }
 
-    [TestMethod]
+    [Test]
     public void Shuffled_ShouldThrow_GivenNull()
     {
-        string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Shuffled());
+        string value = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = value.Shuffled());
     }
 
-    [TestMethod]
+    [Test]
     public void Split_ShouldYieldCorrectStrings_GivenString()
     {
         string[] chunks = "Hello World".Split(2).ToArray();
-        Assert.AreEqual(6, chunks.Length);
-        Assert.AreEqual("He", chunks[0]);
-        Assert.AreEqual("ll", chunks[1]);
-        Assert.AreEqual("o ", chunks[2]);
-        Assert.AreEqual("Wo", chunks[3]);
-        Assert.AreEqual("rl", chunks[4]);
-        Assert.AreEqual("d", chunks[5]);
+        Assert.Multiple(() =>
+        {
+            Assert.That(chunks, Has.Length.EqualTo(6));
+            Assert.That(chunks[0], Is.EqualTo("He"));
+            Assert.That(chunks[1], Is.EqualTo("ll"));
+            Assert.That(chunks[2], Is.EqualTo("o "));
+            Assert.That(chunks[3], Is.EqualTo("Wo"));
+            Assert.That(chunks[4], Is.EqualTo("rl"));
+            Assert.That(chunks[5], Is.EqualTo("d"));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Split_ShouldYieldEmptyString_GivenChunkSize0()
     {
         string[] chunks = "Hello World".Split(0).ToArray();
-        Assert.AreEqual(1, chunks.Length);
-        Assert.AreEqual(string.Empty, chunks[0]);
+        Assert.Multiple(() =>
+        {
+            Assert.That(chunks, Has.Length.EqualTo(1));
+            Assert.That(chunks[0], Is.EqualTo(string.Empty));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Split_ShouldThrow_GivenNullString()
     {
-        string? value = null;
+        string value = null!;
 
         // forcing enumeration with ToArray is required for the exception to be thrown
-        Assert.ThrowsException<ArgumentNullException>(() => value!.Split(0).ToArray());
+        Assert.Throws<ArgumentNullException>(() => _ = value.Split(0).ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldReturnFalse_GivenNullInput()
     {
-        string? value = null;
-        Assert.IsFalse(value.StartsWithAny());
-        Assert.IsFalse(value.StartsWithAny(StringComparison.Ordinal));
+        string value = null!;
+        Assert.Multiple(() =>
+        {
+            Assert.That(value.StartsWithAny(), Is.False);
+            Assert.That(value.StartsWithAny(StringComparison.Ordinal), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldReturnFalse_GivenEmptyInput()
     {
-        Assert.IsFalse(string.Empty.StartsWithAny());
-        Assert.IsFalse(string.Empty.StartsWithAny(StringComparison.Ordinal));
+        Assert.Multiple(() =>
+        {
+            Assert.That(string.Empty.StartsWithAny(), Is.False);
+            Assert.That(string.Empty.StartsWithAny(StringComparison.Ordinal), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldReturnFalse_GivenValuesThatDontMatch()
     {
         const string value = "Hello World";
-        Assert.IsFalse(value.StartsWithAny("World", "Goodbye"));
-        Assert.IsFalse(value.StartsWithAny(StringComparison.Ordinal, "World", "Goodbye"));
+        Assert.Multiple(() =>
+        {
+            Assert.That(value.StartsWithAny("World", "Goodbye"), Is.False);
+            Assert.That(value.StartsWithAny(StringComparison.Ordinal, "World", "Goodbye"), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldReturnTrue_GivenValuesThatMatch()
     {
         const string value = "Hello World";
-        Assert.IsTrue(value.StartsWithAny("World", "Hello"));
-        Assert.IsTrue(value.StartsWithAny(StringComparison.Ordinal, "World", "Hello"));
+        Assert.Multiple(() =>
+        {
+            Assert.That(value.StartsWithAny("World", "Hello"));
+            Assert.That(value.StartsWithAny(StringComparison.Ordinal, "World", "Hello"));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldReturnTrue_GivenValuesThatMatch_WithIgnoreCaseComparison()
     {
         const string value = "Hello World";
-        Assert.IsTrue(value.StartsWithAny(StringComparison.OrdinalIgnoreCase, "WORLD", "HELLO"));
+        Assert.That(value.StartsWithAny(StringComparison.OrdinalIgnoreCase, "WORLD", "HELLO"));
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldReturnFalse_GivenEmptyValues()
     {
         const string input = "Hello World";
-        Assert.IsFalse(input.StartsWithAny());
+        Assert.That(input.StartsWithAny(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldThrowArgumentNullException_GivenNullValues()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => string.Empty.StartsWithAny(null!));
-        Assert.ThrowsException<ArgumentNullException>(() => string.Empty.StartsWithAny(StringComparison.Ordinal, null!));
+        Assert.Throws<ArgumentNullException>(() => string.Empty.StartsWithAny(null!));
+        Assert.Throws<ArgumentNullException>(() => string.Empty.StartsWithAny(StringComparison.Ordinal, null!));
     }
 
-    [TestMethod]
+    [Test]
     public void StartsWithAny_ShouldThrowArgumentNullException_GivenANullValue()
     {
         var values = new[] {"Hello", null!, "World"};
-        Assert.ThrowsException<ArgumentNullException>(() => "Foobar".StartsWithAny(values));
-        Assert.ThrowsException<ArgumentNullException>(() => "Foobar".StartsWithAny(StringComparison.Ordinal, values));
+        Assert.Throws<ArgumentNullException>(() => "Foobar".StartsWithAny(values));
+        Assert.Throws<ArgumentNullException>(() => "Foobar".StartsWithAny(StringComparison.Ordinal, values));
     }
 
-    [TestMethod]
+    [Test]
     public void WithEmptyAlternative_ShouldBeCorrect()
     {
         const string inputA = "Hello World";
@@ -778,23 +844,28 @@ public class StringTests
         string resultC = inputC.WithEmptyAlternative(alternative);
         string resultD = inputD.WithEmptyAlternative(alternative);
 
-        Assert.AreEqual(resultA, inputA);
-        Assert.AreEqual(resultB, inputB);
-        Assert.AreEqual(resultC, alternative);
-        Assert.AreEqual(resultD, alternative);
-        Assert.AreEqual(alternative, ((string?)null).WithEmptyAlternative(alternative));
+        Assert.Multiple(() =>
+        {
+            Assert.That(resultA, Is.EqualTo(inputA));
+            Assert.That(resultB, Is.EqualTo(inputB));
+            Assert.That(resultC, Is.EqualTo(alternative));
+            Assert.That(resultD, Is.EqualTo(alternative));
+            Assert.That(((string?)null).WithEmptyAlternative(alternative), Is.EqualTo(alternative));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void WithWhiteSpaceAlternative_ShouldBeCorrect()
     {
         const string input = " ";
         const string alternative = "ALTERNATIVE";
 
         string result = input.WithWhiteSpaceAlternative(alternative);
-
-        Assert.AreEqual(result, alternative);
-        Assert.AreEqual(alternative, ((string?)null).WithWhiteSpaceAlternative(alternative));
+        Assert.Multiple(() =>
+        {
+            Assert.That(result, Is.EqualTo(alternative));
+            Assert.That(((string?)null).WithWhiteSpaceAlternative(alternative), Is.EqualTo(alternative));
+        });
     }
 
 #if NET5_0_OR_GREATER

@@ -1,29 +1,29 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 public partial class StreamTests
 {
-    [TestMethod]
+    [Test]
     public void ReadDecimal_ShouldThrowArgumentException_GivenNonReadableStream()
     {
         Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadDecimal());
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadDecimal(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadDecimal(Endianness.BigEndian));
+        Assert.Throws<ArgumentException>(() => stream.ReadDecimal());
+        Assert.Throws<ArgumentException>(() => stream.ReadDecimal(Endianness.LittleEndian));
+        Assert.Throws<ArgumentException>(() => stream.ReadDecimal(Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadDecimal_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadDecimal());
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadDecimal(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadDecimal(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimal());
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimal(Endianness.LittleEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimal(Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadDecimal_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
         // we don't need to enclose this stream in a using declaration, since disposing a
@@ -32,10 +32,10 @@ public partial class StreamTests
         // analyser to trip up and think the stream is disposed by the time the local is captured in
         // assertion lambda - means this line is fine as it is. please do not change.
         Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.ReadDecimal((Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.ReadDecimal((Endianness)(-1)));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadDecimal_ShouldReadBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
@@ -49,11 +49,14 @@ public partial class StreamTests
         const decimal expected = 420.0m;
         decimal actual = stream.ReadDecimal(Endianness.BigEndian);
 
-        Assert.AreEqual(16, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.Multiple(() =>
+        {
+            Assert.That(stream.Position, Is.EqualTo(16));
+            Assert.That(actual, Is.EqualTo(expected));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ReadDecimal_ShouldWriteLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
@@ -67,7 +70,10 @@ public partial class StreamTests
         const decimal expected = 420.0m;
         decimal actual = stream.ReadDecimal(Endianness.LittleEndian);
 
-        Assert.AreEqual(16, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.Multiple(() =>
+        {
+            Assert.That(stream.Position, Is.EqualTo(16));
+            Assert.That(actual, Is.EqualTo(expected));
+        });
     }
 }

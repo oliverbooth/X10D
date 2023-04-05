@@ -1,19 +1,19 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-[TestClass]
+[TestFixture]
 public class DirectoryInfoTests
 {
-    [TestMethod]
+    [Test]
     public void Clear_ShouldClear_GivenValidDirectory()
     {
         string tempDirectoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         var tempDirectory = new DirectoryInfo(tempDirectoryPath);
 
         tempDirectory.Create();
-        Assert.IsTrue(tempDirectory.Exists);
+        Assert.That(tempDirectory.Exists);
 
         var file = new FileInfo(Path.Combine(tempDirectory.FullName, "file"));
         file.Create().Close();
@@ -24,34 +24,42 @@ public class DirectoryInfoTests
         var childFile = new FileInfo(Path.Combine(childDirectory.FullName, "childFile"));
         childFile.Create().Close();
 
-        Assert.AreEqual(1, tempDirectory.GetFiles().Length);
-        Assert.AreEqual(1, tempDirectory.GetDirectories().Length);
+        Assert.Multiple(() =>
+        {
+            Assert.That(tempDirectory.GetFiles(), Has.Length.EqualTo(1));
+            Assert.That(tempDirectory.GetDirectories(), Has.Length.EqualTo(1));
+        });
+
         tempDirectory.Clear();
-        Assert.AreEqual(0, tempDirectory.GetFiles().Length);
-        Assert.AreEqual(0, tempDirectory.GetDirectories().Length);
-        Assert.IsTrue(tempDirectory.Exists);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(tempDirectory.GetFiles(), Is.Empty);
+            Assert.That(tempDirectory.GetDirectories(), Is.Empty);
+            Assert.That(tempDirectory.Exists);
+        });
 
         tempDirectory.Delete();
     }
 
-    [TestMethod]
+    [Test]
     public void Clear_ShouldThrowArgumentNullException_GivenNull()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((DirectoryInfo?)null)!.Clear());
+        Assert.Throws<ArgumentNullException>(() => ((DirectoryInfo?)null)!.Clear());
     }
 
-    [TestMethod]
+    [Test]
     public void Clear_ShouldThrowDirectoryNotFoundException_GivenInvalidDirectory()
     {
         var directory = new DirectoryInfo(@"123:/@12#3");
-        Assert.ThrowsException<DirectoryNotFoundException>(() => directory.Clear());
+        Assert.Throws<DirectoryNotFoundException>(() => directory.Clear());
     }
 
-    [TestMethod]
+    [Test]
     public void Clear_ShouldThrowDirectoryNotFoundException_GivenNonExistentDirectory()
     {
         var directory = new DirectoryInfo(@"/@12#3");
-        Assert.IsFalse(directory.Exists);
-        Assert.ThrowsException<DirectoryNotFoundException>(() => directory.Clear());
+        Assert.That(directory.Exists, Is.False);
+        Assert.Throws<DirectoryNotFoundException>(() => directory.Clear());
     }
 }

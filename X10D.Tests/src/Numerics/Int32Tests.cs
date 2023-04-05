@@ -1,85 +1,85 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
-[TestClass]
+[TestFixture]
 public class Int32Tests
 {
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe0_Given0()
     {
-        Assert.AreEqual(0, ((uint)0).PopCount());
+        Assert.That(((uint)0).PopCount(), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe5_Given11010101()
     {
-        Assert.AreEqual(5, ((uint)0b11010101).PopCount());
+        Assert.That(((uint)0b11010101).PopCount(), Is.EqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe31_Given11111111111111111111111111111111()
     {
-        Assert.AreEqual(31, 0b01111111111111111111111111111111.PopCount());
+        Assert.That(0b01111111111111111111111111111111.PopCount(), Is.EqualTo(31));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const int value = 284719;         // 00000000 00000100 01011000 00101111
         const int expected = -1336016888; // 10110000 01011110 00000000 00001000
 
-        Assert.AreEqual(value, value.RotateLeft(0));
-        Assert.AreEqual(expected, value.RotateLeft(17));
+        Assert.That(value.RotateLeft(0), Is.EqualTo(value));
+        Assert.That(value.RotateLeft(17), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateLeft_ShouldModForLargeCount()
     {
         const int value = 284719; // 00000000 00000100 01011000 00101111
-        Assert.AreEqual(value, value.RotateLeft(32));
+        Assert.That(value.RotateLeft(32), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateRight_ShouldRotateCorrectly()
     {
         const int value = 284719;       // 00000000 00000100 01011000 00101111
         const int expected = 739737602; // 00101100 00010111 10000000 00000010
 
-        Assert.AreEqual(value, value.RotateRight(0));
-        Assert.AreEqual(expected, value.RotateRight(17));
+        Assert.That(value.RotateRight(0), Is.EqualTo(value));
+        Assert.That(value.RotateRight(17), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateRight_ShouldModForLargeCount()
     {
         const int value = 284719; // 00000000 00000100 01011000 00101111
-        Assert.AreEqual(value, value.RotateRight(32));
+        Assert.That(value.RotateRight(32), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
     {
-        Assert.AreEqual(4, 3.RoundUpToPowerOf2());
-        Assert.AreEqual(8, 5.RoundUpToPowerOf2());
-        Assert.AreEqual(8, 6.RoundUpToPowerOf2());
-        Assert.AreEqual(8, 7.RoundUpToPowerOf2());
+        Assert.That(3.RoundUpToPowerOf2(), Is.EqualTo(4));
+        Assert.That(5.RoundUpToPowerOf2(), Is.EqualTo(8));
+        Assert.That(6.RoundUpToPowerOf2(), Is.EqualTo(8));
+        Assert.That(7.RoundUpToPowerOf2(), Is.EqualTo(8));
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
     {
         for (var i = 0; i < 8; i++)
         {
             var value = (int)System.Math.Pow(2, i);
-            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+            Assert.That(value.RoundUpToPowerOf2(), Is.EqualTo(value));
         }
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturn0_Given0()
     {
-        Assert.AreEqual(0, 0.RoundUpToPowerOf2());
+        Assert.That(0.RoundUpToPowerOf2(), Is.Zero);
     }
 }

@@ -1,135 +1,133 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
+[TestFixture]
 public class SphereTests
 {
-    [TestMethod]
+    [Test]
     public void Circumference_ShouldBe2PiRadius_GivenUnitCircle()
     {
         var unitSphere = Sphere.Unit;
-        Assert.AreEqual(2.0f * MathF.PI * unitSphere.Radius, unitSphere.Circumference, 1e-6f);
+        Assert.That(unitSphere.Circumference, Is.EqualTo(2.0f * MathF.PI * unitSphere.Radius).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeNegativeOne_GivenUnitCircleAndEmpty()
     {
-        Assert.AreEqual(-1, Sphere.Empty.CompareTo(Sphere.Unit));
+        Assert.That(Sphere.Empty.CompareTo(Sphere.Unit), Is.EqualTo(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeOne_GivenUnitCircleAndEmpty()
     {
-        Assert.AreEqual(1, Sphere.Unit.CompareTo(Sphere.Empty));
+        Assert.That(Sphere.Unit.CompareTo(Sphere.Empty), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeNegativeOne_GivenEmptyCircleAndUnitCircleAsObject()
     {
-        Assert.AreEqual(-1, Sphere.Empty.CompareTo((object)Sphere.Unit));
+        Assert.That(Sphere.Empty.CompareTo((object)Sphere.Unit), Is.EqualTo(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeOne_GivenNull()
     {
-        Assert.AreEqual(1, Sphere.Unit.CompareTo(null));
+        Assert.That(Sphere.Unit.CompareTo(null), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeZero_GivenUnitCircle()
     {
         var unitCircle = Sphere.Unit;
-        Assert.AreEqual(0, unitCircle.CompareTo(unitCircle));
+        Assert.That(unitCircle.CompareTo(unitCircle), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldThrowArgumentException_GivenInvalidType()
     {
-        Assert.ThrowsException<ArgumentException>(() => Sphere.Unit.CompareTo(new object()));
+        Assert.Throws<ArgumentException>(() => _ = Sphere.Unit.CompareTo(new object()));
     }
 
-    [TestMethod]
+    [Test]
     public void Diameter_ShouldBe2_GivenUnitSphere()
     {
-        Assert.AreEqual(2.0f, Sphere.Unit.Diameter, 1e-6f);
+        Assert.That(Sphere.Unit.Diameter, Is.EqualTo(2.0f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeTrue_GivenTwoUnitCircles()
     {
         var unitCircle1 = Sphere.Unit;
         var unitCircle2 = Sphere.Unit;
-        Assert.AreEqual(unitCircle1, unitCircle2);
-        Assert.IsTrue(unitCircle1 == unitCircle2);
-        Assert.IsFalse(unitCircle1 != unitCircle2);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(unitCircle2, Is.EqualTo(unitCircle1));
+            Assert.That(unitCircle1, Is.EqualTo(unitCircle2));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
-        Assert.IsFalse(Sphere.Unit.Equals(null));
+        Assert.That(Sphere.Unit, Is.Not.EqualTo(null));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentCircles()
     {
-        Assert.AreNotEqual(Sphere.Unit, Sphere.Empty);
-        Assert.IsFalse(Sphere.Unit == Sphere.Empty);
-        Assert.IsTrue(Sphere.Unit != Sphere.Empty);
+        Assert.That(Sphere.Empty, Is.Not.EqualTo(Sphere.Unit));
+        Assert.That(Sphere.Unit, Is.Not.EqualTo(Sphere.Empty));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyCircle()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Sphere.Empty.GetHashCode();
-        Assert.AreEqual(hashCode, Sphere.Empty.GetHashCode());
+        Assert.That(Sphere.Empty.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenUnitCircle()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Sphere.Unit.GetHashCode();
-        Assert.AreEqual(hashCode, Sphere.Unit.GetHashCode());
+        Assert.That(Sphere.Unit.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void op_GreaterThan_True_GivenUnitAndEmptyCircle()
     {
-        Assert.IsTrue(Sphere.Unit > Sphere.Empty);
-        Assert.IsTrue(Sphere.Unit >= Sphere.Empty);
-        Assert.IsFalse(Sphere.Unit < Sphere.Empty);
-        Assert.IsFalse(Sphere.Unit <= Sphere.Empty);
+        Assert.That(Sphere.Unit, Is.GreaterThan(Sphere.Empty));
+        Assert.That(Sphere.Unit, Is.GreaterThanOrEqualTo(Sphere.Empty));
     }
 
-    [TestMethod]
+    [Test]
     public void op_LessThan_True_GivenEmptyAndUnitCircle()
     {
-        Assert.IsTrue(Sphere.Empty < Sphere.Unit);
-        Assert.IsTrue(Sphere.Empty <= Sphere.Unit);
-        Assert.IsFalse(Sphere.Empty > Sphere.Unit);
-        Assert.IsFalse(Sphere.Empty >= Sphere.Unit);
+        Assert.That(Sphere.Empty, Is.LessThan(Sphere.Unit));
+        Assert.That(Sphere.Empty, Is.LessThanOrEqualTo(Sphere.Unit));
     }
 
-    [TestMethod]
+    [Test]
     public void Radius_ShouldBe0_GivenEmptySphere()
     {
-        Assert.AreEqual(0, Sphere.Empty.Radius);
+        Assert.That(Sphere.Empty.Radius, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void Radius_ShouldBe1_GivenUnitSphere()
     {
-        Assert.AreEqual(1, Sphere.Unit.Radius);
+        Assert.That(Sphere.Unit.Radius, Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void Volume_ShouldBe4Over3TimesPi_GivenUnitCircle()
     {
         var unitSphere = Sphere.Unit;
-        Assert.AreEqual(4.0f / 3.0f * MathF.PI, unitSphere.Volume);
+        Assert.That(unitSphere.Volume, Is.EqualTo(4.0f / 3.0f * MathF.PI));
     }
 }
