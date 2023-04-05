@@ -1,5 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#if !NET7_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
+#endif
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -17,6 +19,7 @@ public static class Int16Extensions
 {
     private const int Size = sizeof(short) * 8;
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Unpacks this 16-bit signed integer into a boolean list, treating it as a bit field.
     /// </summary>
@@ -56,6 +59,7 @@ public static class Int16Extensions
 
         UnpackInternal_Fallback(value, destination);
     }
+#endif
 
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static void UnpackInternal_Fallback(this short value, Span<bool> destination)
