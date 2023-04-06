@@ -862,6 +862,15 @@
             <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
             <returns>A <see cref="T:System.ReadOnlySpan`1" /> which wraps the elements in <paramref name="source" />.</returns>
         </member>
+        <member name="M:X10D.Collections.SpanExtensions.Replace``1(System.Span{``0},``0,``0)">
+            <summary>
+                Replaces all occurrences of a specified element in a span of elements with another specified element.
+            </summary>
+            <param name="haystack">The source span.</param>
+            <param name="needle">The element to replace.</param>
+            <param name="replacement">The replacement element.</param>
+            <typeparam name="T">The type of elements in <paramref name="haystack" />.</typeparam>
+        </member>
         <member name="M:X10D.Collections.SpanExtensions.Split``1(System.Span{``0}@,``0)">
             <summary>
                 Splits a span of elements into sub-spans based on a delimiting element.
