@@ -1,41 +1,41 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
-[TestClass]
+[TestFixture]
 public class SingleTests
 {
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
-        Assert.AreEqual(TimeSpan.Zero, 0f.Milliseconds());
-        Assert.AreEqual(TimeSpan.Zero, 0f.Seconds());
-        Assert.AreEqual(TimeSpan.Zero, 0f.Minutes());
-        Assert.AreEqual(TimeSpan.Zero, 0f.Days());
-        Assert.AreEqual(TimeSpan.Zero, 0f.Hours());
-        Assert.AreEqual(TimeSpan.Zero, 0f.Weeks());
+        Assert.That(0f.Milliseconds(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(0f.Seconds(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(0f.Minutes(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(0f.Days(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(0f.Hours(), Is.EqualTo(TimeSpan.Zero));
+        Assert.That(0f.Weeks(), Is.EqualTo(TimeSpan.Zero));
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
-        Assert.IsTrue(1f.Milliseconds() > TimeSpan.Zero);
-        Assert.IsTrue(1f.Seconds() > TimeSpan.Zero);
-        Assert.IsTrue(1f.Minutes() > TimeSpan.Zero);
-        Assert.IsTrue(1f.Days() > TimeSpan.Zero);
-        Assert.IsTrue(1f.Hours() > TimeSpan.Zero);
-        Assert.IsTrue(1f.Weeks() > TimeSpan.Zero);
+        Assert.That(1f.Milliseconds() > TimeSpan.Zero);
+        Assert.That(1f.Seconds() > TimeSpan.Zero);
+        Assert.That(1f.Minutes() > TimeSpan.Zero);
+        Assert.That(1f.Days() > TimeSpan.Zero);
+        Assert.That(1f.Hours() > TimeSpan.Zero);
+        Assert.That(1f.Weeks() > TimeSpan.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
-        Assert.IsTrue((-1f).Milliseconds() < TimeSpan.Zero);
-        Assert.IsTrue((-1f).Seconds() < TimeSpan.Zero);
-        Assert.IsTrue((-1f).Minutes() < TimeSpan.Zero);
-        Assert.IsTrue((-1f).Days() < TimeSpan.Zero);
-        Assert.IsTrue((-1f).Hours() < TimeSpan.Zero);
-        Assert.IsTrue((-1f).Weeks() < TimeSpan.Zero);
+        Assert.That((-1f).Milliseconds() < TimeSpan.Zero);
+        Assert.That((-1f).Seconds() < TimeSpan.Zero);
+        Assert.That((-1f).Minutes() < TimeSpan.Zero);
+        Assert.That((-1f).Days() < TimeSpan.Zero);
+        Assert.That((-1f).Hours() < TimeSpan.Zero);
+        Assert.That((-1f).Weeks() < TimeSpan.Zero);
     }
 }

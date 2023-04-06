@@ -1,4 +1,9 @@
-﻿namespace X10D.Collections;
+﻿#if NET5_0_OR_GREATER
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+#endif
+
+namespace X10D.Collections;
 
 /// <summary>
 ///     Extension methods for <see cref="Span{T}" /> and <see cref="ReadOnlySpan{T}" />
@@ -51,6 +56,26 @@ public static class SpanExtensions
     public static ReadOnlySpan<T> AsReadOnly<T>(this in Span<T> source)
     {
         return source;
+    }
+
+    /// <summary>
+    ///     Replaces all occurrences of a specified element in a span of elements with another specified element.
+    /// </summary>
+    /// <param name="haystack">The source span.</param>
+    /// <param name="needle">The element to replace.</param>
+    /// <param name="replacement">The replacement element.</param>
+    /// <typeparam name="T">The type of elements in <paramref name="haystack" />.</typeparam>
+    public static void Replace<T>(this Span<T> haystack, T needle, T replacement) where T : struct
+    {
+        var comparer = EqualityComparer<T>.Default;
+
+        for (var index = 0; index < haystack.Length; index++)
+        {
+            if (comparer.Equals(haystack[index], needle))
+            {
+                haystack[index] = replacement;
+            }
+        }
     }
 
     /// <summary>

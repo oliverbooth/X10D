@@ -1,29 +1,29 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 public partial class StreamTests
 {
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void WriteUInt64_ShouldThrowArgumentException_GivenNonWriteableStream()
     {
         Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.Write(420UL, Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.Write(420UL, Endianness.BigEndian));
+        Assert.Throws<ArgumentException>(() => stream.Write(420UL, Endianness.LittleEndian));
+        Assert.Throws<ArgumentException>(() => stream.Write(420UL, Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void WriteUInt64_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.Write(420UL, Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.Write(420UL, Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.Write(420UL, Endianness.LittleEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.Write(420UL, Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void WriteUInt64_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
@@ -33,41 +33,41 @@ public partial class StreamTests
         // analyser to trip up and think the stream is disposed by the time the local is captured in
         // assertion lambda - means this line is fine as it is. please do not change.
         Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.Write(420UL, (Endianness)(-1)));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.Write(420UL, (Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420UL, (Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420UL, (Endianness)(-1)));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void WriteUInt64_ShouldWriteBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
         stream.Write(420UL, Endianness.BigEndian);
-        Assert.AreEqual(8, stream.Position);
+        Assert.That(stream.Position, Is.EqualTo(8));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[8];
         ReadOnlySpan<byte> expected = stackalloc byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA4};
         int read = stream.Read(actual);
 
-        Assert.AreEqual(8, read);
+        Assert.That(read, Is.EqualTo(8));
         CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void WriteUInt64_ShouldWriteLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
         stream.Write(420UL, Endianness.LittleEndian);
-        Assert.AreEqual(8, stream.Position);
+        Assert.That(stream.Position, Is.EqualTo(8));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[8];
         ReadOnlySpan<byte> expected = stackalloc byte[] {0xA4, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
         int read = stream.Read(actual);
 
-        Assert.AreEqual(8, read);
+        Assert.That(read, Is.EqualTo(8));
         CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
     }
 }

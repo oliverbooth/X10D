@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 public partial class EnumerableTests
 {
-    [TestClass]
+    [TestFixture]
     public class DisposeAllTests
     {
-        [TestMethod]
+        [Test]
         public void DisposeAll_ShouldDisposeAllItems_WhenCalledWithValidList()
         {
             var mock1 = new Mock<IDisposable>();
@@ -24,11 +24,11 @@ public partial class EnumerableTests
             mock3.Verify(i => i.Dispose(), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void DisposeAll_ShouldThrowArgumentNullException_WhenCalledWithNullList()
         {
-            List<IDisposable>? list = null;
-            Assert.ThrowsException<ArgumentNullException>(() => list!.DisposeAll());
+            List<IDisposable> list = null!;
+            Assert.Throws<ArgumentNullException>(() => list.DisposeAll());
         }
     }
 }

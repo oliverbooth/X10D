@@ -1,196 +1,221 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
+[TestFixture]
 public class PolyhedronTests
 {
-    [TestMethod]
+    [Test]
     public void AddVertices_ShouldAddVertices()
     {
         var polyhedron = Polyhedron.Empty;
         polyhedron.AddVertices(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
-        Assert.AreEqual(2, polyhedron.VertexCount);
 
-        // assert that the empty polyhedron was not modified
-        Assert.AreEqual(0, Polyhedron.Empty.VertexCount);
+        Assert.Multiple(() =>
+        {
+            Assert.That(polyhedron.VertexCount, Is.EqualTo(2));
+
+            // assert that the empty polyhedron was not modified
+            Assert.That(Polyhedron.Empty.VertexCount, Is.Zero);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void AddVertices_ShouldThrowArgumentNullException_GivenNullEnumerableOfVector3()
     {
         var polygon = Polyhedron.Empty;
         IEnumerable<Vector3> vertices = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => polygon.AddVertices(vertices));
+        Assert.Throws<ArgumentNullException>(() => polygon.AddVertices(vertices));
     }
 
-    [TestMethod]
+    [Test]
     public void ClearVertices_ShouldClearVertices()
     {
         var polyhedron = Polyhedron.Empty;
         polyhedron.AddVertices(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
-        Assert.AreEqual(2, polyhedron.VertexCount);
+        Assert.Multiple(() =>
+        {
+            Assert.That(polyhedron.VertexCount, Is.EqualTo(2));
 
-        // assert that the empty polyhedron was not modified
-        Assert.AreEqual(0, Polyhedron.Empty.VertexCount);
+            // assert that the empty polyhedron was not modified
+            Assert.That(Polyhedron.Empty.VertexCount, Is.Zero);
+        });
 
         polyhedron.ClearVertices();
-        Assert.AreEqual(0, polyhedron.VertexCount);
+        Assert.That(polyhedron.VertexCount, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void Constructor_ShouldPopulateVertices_GivenPolyhedron()
     {
         var polyhedron = new Polyhedron(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
-        Assert.AreEqual(2, polyhedron.VertexCount);
+        Assert.That(polyhedron.VertexCount, Is.EqualTo(2));
     }
 
-    [TestMethod]
+    [Test]
     public void Constructor_ShouldThrowArgumentNullException_GivenNullEnumerableOfVector3()
     {
         IEnumerable<Vector3> vertices = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => new Polyhedron(vertices));
+        Assert.Throws<ArgumentNullException>(() => _ = new Polyhedron(vertices));
     }
 
-    [TestMethod]
+    [Test]
     public void CopyConstructor_ShouldCopyVertices_GivenPolyhedron()
     {
         var first = Polyhedron.Empty;
         first.AddVertices(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
 
         var second = new Polyhedron(first);
-        Assert.AreEqual(2, first.VertexCount);
-        Assert.AreEqual(2, second.VertexCount);
+        Assert.Multiple(() =>
+        {
+            Assert.That(first.VertexCount, Is.EqualTo(2));
+            Assert.That(second.VertexCount, Is.EqualTo(2));
 
-        // we cannot use CollectionAssert here for reasons I am not entirely sure of.
-        // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
-        Assert.IsTrue(first.Vertices.SequenceEqual(second.Vertices));
+            // we cannot use CollectionAssert here for reasons I am not entirely sure of.
+            // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
+            CollectionAssert.AreEqual(first.Vertices, second.Vertices);
 
-        // assert that the empty polyhedron was not modified
-        Assert.AreEqual(0, Polyhedron.Empty.VertexCount);
+            // assert that the empty polyhedron was not modified
+            Assert.That(Polyhedron.Empty.VertexCount, Is.Zero);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeTrue_GivenTwoEmptyPolyhedrons()
     {
         var first = Polyhedron.Empty;
         var second = Polyhedron.Empty;
 
-        Assert.AreEqual(first, second);
-        Assert.AreEqual(second, first);
-        Assert.IsTrue(first.Equals(second));
-        Assert.IsTrue(second.Equals(first));
-        Assert.IsTrue(first == second);
-        Assert.IsTrue(second == first);
-        Assert.IsFalse(first != second);
-        Assert.IsFalse(second != first);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(first, Is.EqualTo(second));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeTrue_GivenTwoHexagons()
     {
-        Polyhedron first = CreateHexagon();
-        Polyhedron second = CreateHexagon();
+        Polyhedron first = CreateHexagonPolyhedron();
+        Polyhedron second = CreateHexagonPolyhedron();
 
-        Assert.AreEqual(first, second);
-        Assert.AreEqual(second, first);
-        Assert.IsTrue(first.Equals(second));
-        Assert.IsTrue(second.Equals(first));
-        Assert.IsTrue(first == second);
-        Assert.IsTrue(second == first);
-        Assert.IsFalse(first != second);
-        Assert.IsFalse(second != first);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenHexagonAndEmptyPolyhedron()
     {
-        Polyhedron first = CreateHexagon();
+        Polyhedron first = CreateHexagonPolyhedron();
         Polyhedron second = Polyhedron.Empty;
 
-        Assert.AreNotEqual(first, second);
-        Assert.AreNotEqual(second, first);
-        Assert.IsFalse(first.Equals(second));
-        Assert.IsFalse(second.Equals(first));
-        Assert.IsFalse(first == second);
-        Assert.IsFalse(second == first);
-        Assert.IsTrue(first != second);
-        Assert.IsTrue(second != first);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.Not.EqualTo(first));
+            Assert.That(first, Is.Not.EqualTo(second));
+            Assert.That(second != first);
+            Assert.That(first != second);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void FromPolygon_ShouldThrowArgumentNullException_GivenNullPolygonF()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => Polyhedron.FromPolygon(null!));
+        Assert.Throws<ArgumentNullException>(() => Polyhedron.FromPolygon(null!));
     }
 
-    [TestMethod]
+    [Test]
     public void FromPolygonF_ShouldThrowArgumentNullException_GivenNullPolygonF()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => Polyhedron.FromPolygonF(null!));
+        Assert.Throws<ArgumentNullException>(() => Polyhedron.FromPolygonF(null!));
     }
 
-    [TestMethod]
+    [Test]
     public void op_Implicit_ShouldReturnEquivalentPolyhedron_GivenPolyhedron()
     {
         Polygon polygon = PolygonTests.CreateHexagon();
         Polyhedron converted = polygon;
 
-        Assert.AreEqual(polygon, converted);
-        Assert.AreEqual(polygon.VertexCount, converted.VertexCount);
-
-        Assert.IsTrue(converted.Vertices.SequenceEqual(polygon.Vertices.Select(p =>
+        Assert.Multiple(() =>
         {
-            var point = p.ToVector2();
-            return new Vector3(point.X, point.Y, 0);
-        })));
+            Assert.That(converted, Is.EqualTo((Polyhedron)polygon));
+            Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
+
+            CollectionAssert.AreEqual(converted.Vertices, polygon.Vertices.Select(p =>
+            {
+                var point = p.ToVector2();
+                return new Vector3(point.X, point.Y, 0);
+            }));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void op_Implicit_ShouldReturnEquivalentPolyhedron_GivenPolyhedronF()
     {
-        PolygonF polygon = PolygonFTests.CreateHexagon();
+        PolygonF polygon = CreateHexagonPolygon();
         Polyhedron converted = polygon;
 
-        Assert.AreEqual(polygon, converted);
-        Assert.AreEqual(polygon.VertexCount, converted.VertexCount);
-
-        Assert.IsTrue(converted.Vertices.SequenceEqual(polygon.Vertices.Select(v =>
+        Assert.Multiple(() =>
         {
-            var point = v.ToVector2();
-            return new Vector3(point.X, point.Y, 0);
-        })));
+            Assert.That(converted, Is.EqualTo((Polyhedron)polygon));
+            Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
+            CollectionAssert.AreEqual(converted.Vertices, polygon.Vertices.Select(p =>
+            {
+                var point = p.ToVector2();
+                return new Vector3(point.X, point.Y, 0);
+            }));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void PointCount_ShouldBe1_GivenPolyhedronWith1Point()
     {
         var polyhedron = new Polyhedron();
         polyhedron.AddVertex(Vector3.One);
 
-        Assert.AreEqual(1, polyhedron.VertexCount);
+        Assert.Multiple(() =>
+        {
+            Assert.That(polyhedron.VertexCount, Is.EqualTo(1));
 
-        // assert that the empty polyhedron was not modified
-        Assert.AreEqual(0, Polyhedron.Empty.VertexCount);
+            // assert that the empty polyhedron was not modified
+            Assert.That(Polyhedron.Empty.VertexCount, Is.Zero);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void PointCount_ShouldBe0_GivenEmptyPolyhedron()
     {
-        Assert.AreEqual(0, Polyhedron.Empty.VertexCount);
+        Assert.That(Polyhedron.Empty.VertexCount, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyCircle()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Polyhedron.Empty.GetHashCode();
-        Assert.AreEqual(hashCode, Polyhedron.Empty.GetHashCode());
+        Assert.That(Polyhedron.Empty.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    internal static Polyhedron CreateHexagon()
+    private static PolygonF CreateHexagonPolygon()
+    {
+        var hexagon = new PolygonF();
+        hexagon.AddVertex(new Vector2(0, 0));
+        hexagon.AddVertex(new Vector2(1, 0));
+        hexagon.AddVertex(new Vector2(1, 1));
+        hexagon.AddVertex(new Vector2(0, 1));
+        hexagon.AddVertex(new Vector2(-1, 1));
+        hexagon.AddVertex(new Vector2(-1, 0));
+        return hexagon;
+    }
+
+    private static Polyhedron CreateHexagonPolyhedron()
     {
         var hexagon = new Polyhedron();
         hexagon.AddVertex(new Vector3(0, 0, 0));
@@ -202,7 +227,7 @@ public class PolyhedronTests
         return hexagon;
     }
 
-    internal static Polyhedron CreateConcavePolyhedron()
+    private static Polyhedron CreateConcavePolyhedron()
     {
         var hexagon = new Polyhedron();
         hexagon.AddVertex(new Vector3(0, 0, 0));

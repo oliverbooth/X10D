@@ -1,64 +1,79 @@
 ﻿using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
+[TestFixture]
 public class PointTests
 {
-    [TestMethod]
+    [Test]
     public void IsOnLine_ShouldReturnTrue_GivenPointOnLine()
     {
         var point = new Point(1, 0);
         var line = new Line(Point.Empty, new Point(2, 0));
 
-        Assert.IsTrue(point.IsOnLine(line));
-        Assert.IsTrue(point.IsOnLine(line.Start, line.End));
-        Assert.IsTrue(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.IsOnLine(line));
+            Assert.That(point.IsOnLine(line.Start, line.End));
+            Assert.That(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOnLine_ShouldReturnFalse_GivenPointNotOnLine()
     {
         var point = new Point(1, 1);
         var line = new Line(Point.Empty, new Point(2, 0));
 
-        Assert.IsFalse(point.IsOnLine(line));
-        Assert.IsFalse(point.IsOnLine(line.Start, line.End));
-        Assert.IsFalse(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()));
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.IsOnLine(line), Is.False);
+            Assert.That(point.IsOnLine(line.Start, line.End), Is.False);
+            Assert.That(point.IsOnLine(line.Start.ToVector2(), line.End.ToVector2()), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToSize_ShouldReturnSize_WithEquivalentMembers()
     {
         var random = new Random();
         var point = new Point(random.Next(), random.Next());
         var size = point.ToSize();
 
-        Assert.AreEqual(point.X, size.Width);
-        Assert.AreEqual(point.Y, size.Height);
+        Assert.Multiple(() =>
+        {
+            Assert.That(size.Width, Is.EqualTo(point.X));
+            Assert.That(size.Height, Is.EqualTo(point.Y));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToSizeF_ShouldReturnSize_WithEquivalentMembers()
     {
         var random = new Random();
         var point = new Point(random.Next(), random.Next());
         var size = point.ToSizeF();
 
-        Assert.AreEqual(point.X, size.Width, 1e-6f);
-        Assert.AreEqual(point.Y, size.Height, 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(size.Width, Is.EqualTo(point.X).Within(1e-6f));
+            Assert.That(size.Height, Is.EqualTo(point.Y).Within(1e-6f));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToVector2_ShouldReturnVector_WithEquivalentMembers()
     {
         var random = new Random();
         var point = new Point(random.Next(), random.Next());
         var size = point.ToVector2();
 
-        Assert.AreEqual(point.X, size.X, 1e-6f);
-        Assert.AreEqual(point.Y, size.Y, 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(size.X, Is.EqualTo(point.X).Within(1e-6f));
+            Assert.That(size.Y, Is.EqualTo(point.Y).Within(1e-6f));
+        });
     }
 }

@@ -1,42 +1,42 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
-[TestClass]
+[TestFixture]
 public class TimeSpanTests
 {
     private TimeSpan _timeSpan;
 
-    [TestInitialize]
+    [SetUp]
     public void Initialize()
     {
         _timeSpan = new TimeSpan(1, 2, 3, 4, 5);
     }
 
-    [TestMethod]
+    [Test]
     public void Ago_ShouldBeInPast_GivenNow()
     {
-        Assert.IsTrue(_timeSpan.Ago() < DateTime.Now);
+        Assert.That(_timeSpan.Ago() < DateTime.Now);
     }
 
-    [TestMethod]
+    [Test]
     public void FromNow_ShouldBeInFuture_GivenNow()
     {
-        Assert.IsTrue(_timeSpan.FromNow() > DateTime.Now);
+        Assert.That(_timeSpan.FromNow() > DateTime.Now);
     }
 
-    [TestMethod]
+    [Test]
     public void Ago_ShouldBeYesterday_GivenYesterday()
     {
         DateTime yesterday = DateTime.Now.AddDays(-1);
-        Assert.AreEqual(yesterday.Date, 1.Days().Ago().Date);
+        Assert.That(1.Days().Ago().Date, Is.EqualTo(yesterday.Date));
     }
 
-    [TestMethod]
+    [Test]
     public void FromNow_ShouldBeTomorrow_GivenTomorrow()
     {
         DateTime tomorrow = DateTime.Now.AddDays(1);
-        Assert.AreEqual(tomorrow.Date, 1.Days().FromNow().Date);
+        Assert.That(1.Days().FromNow().Date, Is.EqualTo(tomorrow.Date));
     }
 }

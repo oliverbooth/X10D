@@ -1,68 +1,68 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
-[TestClass]
+[TestFixture]
 public class RandomTests
 {
-    [TestMethod]
+    [Test]
     public void NextUnitVector2_ShouldReturnVector_WithMagnitude1()
     {
         var random = new Random();
         var vector = random.NextUnitVector2();
-        Assert.AreEqual(1, vector.Length(), 1e-6);
+        Assert.That(vector.Length(), Is.EqualTo(1).Within(1e-6));
     }
 
-    [TestMethod]
+    [Test]
     public void NextUnitVector2_ShouldThrow_GivenNullRandom()
     {
-        Random? random = null;
-        Assert.ThrowsException<ArgumentNullException>(() => random!.NextUnitVector2());
+        Random random = null!;
+        Assert.Throws<ArgumentNullException>(() => random.NextUnitVector2());
     }
 
-    [TestMethod]
+    [Test]
     public void NextUnitVector3_ShouldReturnVector_WithMagnitude1()
     {
         var random = new Random();
         var vector = random.NextUnitVector3();
-        Assert.AreEqual(1, vector.Length(), 1e-6);
+        Assert.That(vector.Length(), Is.EqualTo(1).Within(1e-6));
     }
 
-    [TestMethod]
+    [Test]
     public void NextUnitVector3_ShouldThrow_GivenNullRandom()
     {
-        Random? random = null;
-        Assert.ThrowsException<ArgumentNullException>(() => random!.NextUnitVector3());
+        Random random = null!;
+        Assert.Throws<ArgumentNullException>(() => random.NextUnitVector3());
     }
 
-    [TestMethod]
+    [Test]
     public void NextRotation_ShouldReturnQuaternion_WithMagnitude1()
     {
         var random = new Random();
         var rotation = random.NextRotation();
-        Assert.AreEqual(1, rotation.Length(), 1e-6);
+        Assert.That(rotation.Length(), Is.EqualTo(1).Within(1e-6));
     }
 
-    [TestMethod]
+    [Test]
     public void NextRotation_ShouldThrow_GivenNullRandom()
     {
-        Random? random = null;
-        Assert.ThrowsException<ArgumentNullException>(() => random!.NextRotation());
+        Random random = null!;
+        Assert.Throws<ArgumentNullException>(() => random.NextRotation());
     }
 
-    [TestMethod]
+    [Test]
     public void NextRotationUniform_ShouldReturnQuaternion_WithMagnitude1()
     {
         var random = new Random();
         var rotation = random.NextRotationUniform();
-        Assert.AreEqual(1, rotation.Length(), 1e-6);
+        Assert.That(rotation.Length(), Is.EqualTo(1).Within(1e-6));
     }
 
-    [TestMethod]
+    [Test]
     public void NextRotationUniform_ShouldThrow_GivenNullRandom()
     {
-        Random? random = null;
-        Assert.ThrowsException<ArgumentNullException>(() => random!.NextRotationUniform());
+        Random random = null!;
+        Assert.Throws<ArgumentNullException>(() => random.NextRotationUniform());
     }
 }

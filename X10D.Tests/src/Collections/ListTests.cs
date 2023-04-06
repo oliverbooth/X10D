@@ -1,16 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-[TestClass]
+[TestFixture]
 public class ListTests
 {
     [CLSCompliant(false)]
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow(1, 2, 3)]
-    [DataRow(1, 2, 3, 4, 5)]
+    [Test]
+    [TestCase(1)]
+    [TestCase(1, 2, 3)]
+    [TestCase(1, 2, 3, 4, 5)]
     public void Fill_ShouldGiveHomogenousList_GivenValue(params int[] args)
     {
         int[] all42 = Enumerable.Repeat(42, args.Length).ToArray();
@@ -27,154 +27,169 @@ public class ListTests
     }
 
     [CLSCompliant(false)]
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow(1, 2, 3)]
-    [DataRow(1, 2, 3, 4, 5)]
+    [Test]
+    [TestCase(1)]
+    [TestCase(1, 2, 3)]
+    [TestCase(1, 2, 3, 4, 5)]
     public void SlicedFill_ShouldLeaveFirstElement_GivenStartIndex1(params int[] args)
     {
         int first = args[0];
         args.Fill(1, 1, args.Length - 1);
 
         int[] comparison = Enumerable.Repeat(1, args.Length - 1).ToArray();
-        Assert.AreEqual(first, args[0]);
+        Assert.That(args[0], Is.EqualTo(first));
         CollectionAssert.AreEqual(comparison, args[1..]);
     }
 
-    [TestMethod]
+    [Test]
     public void Fill_ShouldThrow_GivenExceededCount()
     {
         int[] array = Array.Empty<int>();
         var list = new List<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Fill(0, 0, 1));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Fill(0, 0, 1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, 0, 1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, 0, 1));
     }
 
-    [TestMethod]
+    [Test]
     public void Fill_ShouldThrow_GivenNegativeCount()
     {
         int[] array = Array.Empty<int>();
         var list = new List<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Fill(0, 0, -1));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Fill(0, 0, -1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, 0, -1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, 0, -1));
     }
 
-    [TestMethod]
+    [Test]
     public void Fill_ShouldThrow_GivenNegativeStartIndex()
     {
         int[] array = Array.Empty<int>();
         var list = new List<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Fill(0, -1, 0));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Fill(0, -1, 0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, -1, 0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, -1, 0));
     }
 
-    [TestMethod]
+    [Test]
     public void Fill_ShouldThrow_GivenNull()
     {
         int[]? array = null;
         List<int>? list = null;
-        Assert.ThrowsException<ArgumentNullException>(() => array!.Fill(0));
-        Assert.ThrowsException<ArgumentNullException>(() => list!.Fill(0));
-        Assert.ThrowsException<ArgumentNullException>(() => array!.Fill(0, 0, 0));
-        Assert.ThrowsException<ArgumentNullException>(() => list!.Fill(0, 0, 0));
+        Assert.Throws<ArgumentNullException>(() => array!.Fill(0));
+        Assert.Throws<ArgumentNullException>(() => list!.Fill(0));
+        Assert.Throws<ArgumentNullException>(() => array!.Fill(0, 0, 0));
+        Assert.Throws<ArgumentNullException>(() => list!.Fill(0, 0, 0));
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldReturnCorrectValue_FromStartOfList()
     {
         int[] array = {0, 1, 2, 3, 4};
-        Assert.AreEqual(2, array.IndexOf(2));
-        Assert.AreEqual(2, array.IndexOf(2, 0));
-        Assert.AreEqual(2, array.IndexOf(2, 0, 5));
+        Assert.Multiple(() =>
+        {
+            Assert.That(array.IndexOf(2), Is.EqualTo(2));
+            Assert.That(array.IndexOf(2, 0), Is.EqualTo(2));
+            Assert.That(array.IndexOf(2, 0, 5), Is.EqualTo(2));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldReturnCorrectValue_GivenSubRange()
     {
         int[] array = {0, 1, 2, 3, 4, 0};
-        Assert.AreEqual(0, array.IndexOf(0));
-        Assert.AreEqual(0, array.IndexOf(0, 0));
-        Assert.AreEqual(0, array.IndexOf(0, 0, 5));
+        Assert.Multiple(() =>
+        {
+            Assert.That(array.IndexOf(0), Is.Zero);
+            Assert.That(array.IndexOf(0, 0), Is.Zero);
+            Assert.That(array.IndexOf(0, 0, 5), Is.Zero);
 
-        Assert.AreEqual(5, array.IndexOf(0, 1));
-        Assert.AreEqual(5, array.IndexOf(0, 1, 5));
+            Assert.That(array.IndexOf(0, 1), Is.EqualTo(5));
+            Assert.That(array.IndexOf(0, 1, 5), Is.EqualTo(5));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldReturnNegative1_ForEmptyList()
     {
         int[] array = Array.Empty<int>();
-        Assert.AreEqual(-1, array.IndexOf(0));
-        Assert.AreEqual(-1, array.IndexOf(0, 0));
-        Assert.AreEqual(-1, array.IndexOf(0, 0, 0));
+        Assert.Multiple(() =>
+        {
+            Assert.That(array.IndexOf(0), Is.EqualTo(-1));
+            Assert.That(array.IndexOf(0, 0), Is.EqualTo(-1));
+            Assert.That(array.IndexOf(0, 0, 0), Is.EqualTo(-1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldThrowArgumentNullException_GivenNullList()
     {
         int[]? array = null;
-        Assert.ThrowsException<ArgumentNullException>(() => array!.IndexOf(0));
-        Assert.ThrowsException<ArgumentNullException>(() => array!.IndexOf(0, 0));
-        Assert.ThrowsException<ArgumentNullException>(() => array!.IndexOf(0, 0, 0));
+        Assert.Multiple(() =>
+        {
+            Assert.Throws<ArgumentNullException>(() => array!.IndexOf(0));
+            Assert.Throws<ArgumentNullException>(() => array!.IndexOf(0, 0));
+            Assert.Throws<ArgumentNullException>(() => array!.IndexOf(0, 0, 0));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
         int[] array = Array.Empty<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, 0, -1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, 0, -1));
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
     {
         int[] array = Array.Empty<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1, 0));
+        Assert.Multiple(() =>
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1, 0));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
     {
         int[] array = {0, 1, 2};
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.IndexOf(0, 2, 4));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, 2, 4));
     }
 
-    [TestMethod]
+    [Test]
     public void Random_ShouldReturnContainedObject_GivenNotNull()
     {
         var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
         int random = list.Random();
 
-        Assert.IsTrue(list.Contains(random));
+        Assert.That(list, Does.Contain(random));
     }
 
-    [TestMethod]
+    [Test]
     public void Random_ShouldThrow_GivenNull()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Random());
+        Assert.Throws<ArgumentNullException>(() => _ = ((List<int>?)null)!.Random());
     }
 
-    [TestMethod]
+    [Test]
     public void RemoveRange_ShouldThrowArgumentNullException_GivenNull()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.RemoveRange(new Range()));
+        Assert.Throws<ArgumentNullException>(() => ((List<int>?)null)!.RemoveRange(new Range()));
     }
 
-    [TestMethod]
+    [Test]
     public void RemoveRange_ShouldThrowArgumentException_GivenEndIndexLessThanStart()
     {
-        Assert.ThrowsException<ArgumentException>(() => new List<int>().RemoveRange(2..0));
+        Assert.Throws<ArgumentException>(() => new List<int>().RemoveRange(2..0));
     }
 
-    [TestMethod]
+    [Test]
     public void RemoveRange_ShouldThrowArgumentOutOfRangeException_GivenEndIndexGreaterThanOrEqualToCount()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new List<int>().RemoveRange(..0));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new List<int> {1}.RemoveRange(..2));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new List<int>().RemoveRange(..0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new List<int> {1}.RemoveRange(..2));
     }
 
-    [TestMethod]
+    [Test]
     public void RemoveRange_ShouldRemoveElements_GivenList()
     {
         var list = new List<int>
@@ -191,13 +206,14 @@ public class ListTests
             10
         };
 
-        Assert.AreEqual(10, list.Count);
+        Assert.That(list, Has.Count.EqualTo(10));
         list.RemoveRange(2..5);
-        Assert.AreEqual(6, list.Count);
+
+        Assert.That(list, Has.Count.EqualTo(6));
         CollectionAssert.AreEqual(new[] {1, 2, 7, 8, 9, 10}, list);
     }
 
-    [TestMethod]
+    [Test]
     public void Shuffle_ShouldReorder_GivenNotNull()
     {
         var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
@@ -210,27 +226,27 @@ public class ListTests
         CollectionAssert.AreNotEqual(list, shuffled);
     }
 
-    [TestMethod]
+    [Test]
     public void Shuffle_ShouldThrow_GivenNull()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((List<int>?)null)!.Shuffle());
+        Assert.Throws<ArgumentNullException>(() => ((List<int>?)null)!.Shuffle());
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldReturnCorrectValue_GivenStartIndex()
     {
         int[] array = {0, 1, 2, 3, 4, 5};
         CollectionAssert.AreEqual(new[] {2, 3, 4, 5}, array.Slice(2).ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldReturnCorrectValue_GivenStartIndexAndLength()
     {
         int[] array = {0, 1, 2, 3, 4, 5};
         CollectionAssert.AreEqual(new[] {2, 3, 4}, array.Slice(2, 3).ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldReturnEmptyList_ForEmptyList()
     {
         int[] array = Array.Empty<int>();
@@ -238,49 +254,49 @@ public class ListTests
         CollectionAssert.AreEqual(Array.Empty<int>(), array.Slice(0, 0).ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldThrowArgumentNullException_GivenNullList()
     {
         int[]? array = null;
-        Assert.ThrowsException<ArgumentNullException>(() => array!.Slice(0));
-        Assert.ThrowsException<ArgumentNullException>(() => array!.Slice(0, 0));
+        Assert.Throws<ArgumentNullException>(() => array!.Slice(0));
+        Assert.Throws<ArgumentNullException>(() => array!.Slice(0, 0));
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
         int[] array = Array.Empty<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(0, -1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(0, -1));
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
     {
         int[] array = Array.Empty<int>();
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(-1));
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(-1, 0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(-1, 0));
     }
 
-    [TestMethod]
+    [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
     {
         int[] array = {0, 1, 2};
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => array.Slice(2, 4));
+        Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(2, 4));
     }
 
-    [TestMethod]
+    [Test]
     public void Swap_ShouldThrowArgumentNullException_GivenNullSource()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => ((IList<int>?)null)!.Swap(new List<int>()));
+        Assert.Throws<ArgumentNullException>(() => ((IList<int>?)null)!.Swap(new List<int>()));
     }
 
-    [TestMethod]
+    [Test]
     public void Swap_ShouldThrowArgumentNullException_GivenNullTarget()
     {
-        Assert.ThrowsException<ArgumentNullException>(() => new List<int>().Swap(null!));
+        Assert.Throws<ArgumentNullException>(() => new List<int>().Swap(null!));
     }
 
-    [TestMethod]
+    [Test]
     public void Swap_ShouldSwapElements_GivenMatchingElementCount()
     {
         var first = new List<int> {1, 2, 3};
@@ -297,7 +313,7 @@ public class ListTests
         CollectionAssert.AreEqual(new[] {4, 5, 6}, second, string.Join(' ', second));
     }
 
-    [TestMethod]
+    [Test]
     public void Swap_ShouldSwapElements_GivenDifferentElementCount()
     {
         var first = new List<int>

@@ -249,7 +249,6 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [CLSCompliant(false)]
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static Vector128<ulong> MultiplyInternal_Fallback(Vector128<ulong> left, Vector128<ulong> right)
     {
@@ -267,7 +266,6 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [CLSCompliant(false)]
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static Vector128<ulong> MultiplyInternal_Sse2(Vector128<ulong> left, Vector128<ulong> right)
     {
