@@ -1,33 +1,33 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-[TestClass]
+[TestFixture]
 [CLSCompliant(false)]
 public class SByteTests
 {
-    [TestMethod]
+    [Test]
     public void GetBytes_ReturnsArrayContainingItself()
     {
         const sbyte value = 0x0F;
         CollectionAssert.AreEqual(new[] {(byte)value}, value.GetBytes());
     }
 
-    [TestMethod]
+    [Test]
     public void TryWriteBytes_ReturnsTrue_FillsSpanContainingItself_GivenLargeEnoughSpan()
     {
         const sbyte value = 0x0F;
         Span<byte> buffer = stackalloc byte[1];
-        Assert.IsTrue(value.TryWriteBytes(buffer));
+        Assert.That(value.TryWriteBytes(buffer));
         CollectionAssert.AreEqual(new[] {(byte)value}, buffer.ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
     {
         const sbyte value = 0x0F;
         Span<byte> buffer = stackalloc byte[0];
-        Assert.IsFalse(value.TryWriteBytes(buffer));
+        Assert.That(value.TryWriteBytes(buffer), Is.False);
     }
 }

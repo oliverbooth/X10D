@@ -1,13 +1,13 @@
 ﻿using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-[TestClass]
+[TestFixture]
 public class TextReaderTests
 {
-    [TestMethod]
+    [Test]
     public void EnumerateLines_ShouldYield10Lines_Given10LineString()
     {
         using var stream = new MemoryStream();
@@ -28,10 +28,10 @@ public class TextReaderTests
             lineCount++;
         }
 
-        Assert.AreEqual(10, lineCount);
+        Assert.That(lineCount, Is.EqualTo(10));
     }
 
-    [TestMethod]
+    [Test]
     public async Task EnumerateLinesAsync_ShouldYield10Lines_Given10LineString()
     {
         using var stream = new MemoryStream();
@@ -52,14 +52,14 @@ public class TextReaderTests
             lineCount++;
         }
 
-        Assert.AreEqual(10, lineCount);
+        Assert.That(lineCount, Is.EqualTo(10));
     }
 
-    [TestMethod]
+    [Test]
     public void EnumerateLines_ShouldThrowArgumentNullException_GivenNullSource()
     {
         TextReader reader = null!;
-        Assert.ThrowsException<ArgumentNullException>(() =>
+        Assert.Throws<ArgumentNullException>(() =>
         {
             foreach (string _ in reader.EnumerateLines())
             {
@@ -68,16 +68,16 @@ public class TextReaderTests
         });
     }
 
-    [TestMethod]
-    public async Task EnumerateLinesAsync_ShouldThrowArgumentNullException_GivenNullSource()
+    [Test]
+    public void EnumerateLinesAsync_ShouldThrowArgumentNullException_GivenNullSource()
     {
         TextReader reader = null!;
-        await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () =>
+        Assert.ThrowsAsync<ArgumentNullException>(async () =>
         {
             await foreach (string _ in reader.EnumerateLinesAsync().ConfigureAwait(false))
             {
                 // loop body is intentionally empty
             }
-        }).ConfigureAwait(false);
+        });
     }
 }

@@ -1,29 +1,29 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 public partial class StreamTests
 {
-    [TestMethod]
+    [Test]
     public void ReadSingle_ShouldThrowArgumentException_GivenNonReadableStream()
     {
         Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadSingle());
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadSingle(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadSingle(Endianness.BigEndian));
+        Assert.Throws<ArgumentException>(() => stream.ReadSingle());
+        Assert.Throws<ArgumentException>(() => stream.ReadSingle(Endianness.LittleEndian));
+        Assert.Throws<ArgumentException>(() => stream.ReadSingle(Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadSingle_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadSingle());
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadSingle(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadSingle(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadSingle());
+        Assert.Throws<ArgumentNullException>(() => stream.ReadSingle(Endianness.LittleEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadSingle(Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadSingle_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
         // we don't need to enclose this stream in a using declaration, since disposing a
@@ -32,10 +32,10 @@ public partial class StreamTests
         // analyser to trip up and think the stream is disposed by the time the local is captured in
         // assertion lambda - means this line is fine as it is. please do not change.
         Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.ReadSingle((Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.ReadSingle((Endianness)(-1)));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadSingle_ShouldReadBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
@@ -46,11 +46,11 @@ public partial class StreamTests
         const float expected = 420.0f;
         float actual = stream.ReadSingle(Endianness.BigEndian);
 
-        Assert.AreEqual(4, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(4));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void ReadSingle_ShouldReadLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
@@ -61,7 +61,7 @@ public partial class StreamTests
         const float expected = 420.0f;
         float actual = stream.ReadSingle(Endianness.LittleEndian);
 
-        Assert.AreEqual(4, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(4));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

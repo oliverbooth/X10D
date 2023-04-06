@@ -1,122 +1,131 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
+[TestFixture]
 public class LineTests
 {
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeNegativeOne_GivenEmptyAndOne()
     {
-        Assert.AreEqual(-1, Line.Empty.CompareTo(Line.One));
+        Assert.That(Line.Empty.CompareTo(Line.One), Is.EqualTo(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeNegativeOne_GivenEmptyLineAndOneLineAsObject()
     {
-        Assert.AreEqual(-1, Line.Empty.CompareTo((object)Line.One));
+        Assert.That(Line.Empty.CompareTo((object)Line.One), Is.EqualTo(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeOne_GivenNull()
     {
-        Assert.AreEqual(1, Line.One.CompareTo(null));
+        Assert.That(Line.One.CompareTo(null), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeOne_GivenOneAndEmpty()
     {
-        Assert.AreEqual(1, Line.One.CompareTo(Line.Empty));
+        Assert.That(Line.One.CompareTo(Line.Empty), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldBeZero_GivenUnitLine()
     {
         var unitLine = Line.One;
-        Assert.AreEqual(0, unitLine.CompareTo(unitLine));
+        Assert.That(unitLine.CompareTo(unitLine), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void CompareTo_ShouldThrowArgumentException_GivenInvalidType()
     {
-        Assert.ThrowsException<ArgumentException>(() => Line.Empty.CompareTo(new object()));
+        Assert.Throws<ArgumentException>(() => _ = Line.Empty.CompareTo(new object()));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeTrue_GivenTwoUnitLines()
     {
         Line first = Line.One;
         Line second = Line.One;
 
-        Assert.AreEqual(first, second);
-        Assert.IsTrue(first == second);
-        Assert.IsFalse(first != second);
+        Assert.Multiple(() =>
+        {
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(first, Is.EqualTo(second));
+            Assert.That(second == first);
+            Assert.That(first == second);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentLines()
     {
-        Assert.AreNotEqual(Line.One, Line.Empty);
-        Assert.IsFalse(Line.One == Line.Empty);
-        Assert.IsTrue(Line.One != Line.Empty);
+        Assert.Multiple(() =>
+        {
+            Assert.That(Line.Empty, Is.Not.EqualTo(Line.One));
+            Assert.That(Line.One, Is.Not.EqualTo(Line.Empty));
+            Assert.That(Line.Empty != Line.One);
+            Assert.That(Line.One != Line.Empty);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
-        Assert.IsFalse(Line.One.Equals(null));
+        Assert.That(Line.One, Is.Not.EqualTo(null));
+        Assert.That(Line.One.Equals(null), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyLine()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Line.Empty.GetHashCode();
-        Assert.AreEqual(hashCode, Line.Empty.GetHashCode());
+        Assert.That(Line.Empty.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenUnitLine()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Line.One.GetHashCode();
-        Assert.AreEqual(hashCode, Line.One.GetHashCode());
+        Assert.That(Line.One.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void Length_ShouldBe0_GivenEmptyLine()
     {
-        Assert.AreEqual(0.0f, Line.Empty.Length);
+        Assert.That(Line.Empty.Length, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void Length_ShouldBe1_GivenUnitXLine()
     {
-        Assert.AreEqual(1.0f, Line.UnitX.Length, 1e-6f);
+        Assert.That(Line.UnitX.Length, Is.EqualTo(1.0f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Length_ShouldBe1_GivenUnitYLine()
     {
-        Assert.AreEqual(1.0f, Line.UnitY.Length, 1e-6f);
+        Assert.That(Line.UnitY.Length, Is.EqualTo(1.0f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void op_GreaterThan_True_GivenUnitAndEmptyCircle()
     {
-        Assert.IsTrue(Line.One > Line.Empty);
-        Assert.IsTrue(Line.One >= Line.Empty);
-        Assert.IsFalse(Line.One < Line.Empty);
-        Assert.IsFalse(Line.One <= Line.Empty);
+        Assert.That(Line.One, Is.GreaterThan(Line.Empty));
+        Assert.That(Line.One, Is.GreaterThanOrEqualTo(Line.Empty));
+        Assert.That(Line.One > Line.Empty);
+        Assert.That(Line.One >= Line.Empty);
     }
 
-    [TestMethod]
+    [Test]
     public void op_LessThan_True_GivenEmptyAndUnitCircle()
     {
-        Assert.IsTrue(Line.Empty < Line.One);
-        Assert.IsTrue(Line.Empty <= Line.One);
-        Assert.IsFalse(Line.Empty > Line.One);
-        Assert.IsFalse(Line.Empty >= Line.One);
+        Assert.That(Line.Empty, Is.LessThan(Line.One));
+        Assert.That(Line.Empty, Is.LessThanOrEqualTo(Line.One));
+        Assert.That(Line.Empty < Line.One);
+        Assert.That(Line.Empty <= Line.One);
     }
 }

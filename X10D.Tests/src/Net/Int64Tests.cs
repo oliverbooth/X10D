@@ -1,26 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Net;
 
 namespace X10D.Tests.Net;
 
-[TestClass]
+[TestFixture]
 public class Int64Tests
 {
-    [TestMethod]
+    [Test]
     public void HostToNetworkOrder_ReturnsCorrectValue()
     {
         const long hostOrder = 0x0102030405060708;
         const long networkOrder = 0x0807060504030201;
 
-        Assert.AreEqual(BitConverter.IsLittleEndian ? networkOrder : hostOrder, hostOrder.HostToNetworkOrder());
+        Assert.That(hostOrder.HostToNetworkOrder(), Is.EqualTo(BitConverter.IsLittleEndian ? networkOrder : hostOrder));
     }
 
-    [TestMethod]
+    [Test]
     public void NetworkToHostOrder_ReturnsCorrectValue()
     {
         const long hostOrder = 0x0102030405060708;
         const long networkOrder = 0x0807060504030201;
 
-        Assert.AreEqual(BitConverter.IsLittleEndian ? hostOrder : networkOrder, networkOrder.NetworkToHostOrder());
+        Assert.That(networkOrder.NetworkToHostOrder(), Is.EqualTo(BitConverter.IsLittleEndian ? hostOrder : networkOrder));
     }
 }

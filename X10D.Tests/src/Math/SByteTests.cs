@@ -1,37 +1,37 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
+[TestFixture]
 [CLSCompliant(false)]
 public partial class SByteTests
 {
-    [TestMethod]
+    [Test]
     public void DigitalRootShouldBeCorrect()
     {
         const sbyte value = 127; // sbyte.MaxValue. can't use 238 like the other tests
-        Assert.AreEqual(1, value.DigitalRoot());
-        Assert.AreEqual(1, (-value).DigitalRoot());
+        Assert.That(value.DigitalRoot(), Is.EqualTo(1));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void FactorialShouldBeCorrect()
     {
-        Assert.AreEqual(1L, ((sbyte)0).Factorial());
-        Assert.AreEqual(1L, ((sbyte)1).Factorial());
-        Assert.AreEqual(2L, ((sbyte)2).Factorial());
-        Assert.AreEqual(6L, ((sbyte)3).Factorial());
-        Assert.AreEqual(24L, ((sbyte)4).Factorial());
-        Assert.AreEqual(120L, ((sbyte)5).Factorial());
-        Assert.AreEqual(720L, ((sbyte)6).Factorial());
-        Assert.AreEqual(5040L, ((sbyte)7).Factorial());
-        Assert.AreEqual(40320L, ((sbyte)8).Factorial());
-        Assert.AreEqual(362880L, ((sbyte)9).Factorial());
-        Assert.AreEqual(3628800L, ((sbyte)10).Factorial());
+        Assert.That(((sbyte)0).Factorial(), Is.EqualTo(1L));
+        Assert.That(((sbyte)1).Factorial(), Is.EqualTo(1L));
+        Assert.That(((sbyte)2).Factorial(), Is.EqualTo(2L));
+        Assert.That(((sbyte)3).Factorial(), Is.EqualTo(6L));
+        Assert.That(((sbyte)4).Factorial(), Is.EqualTo(24L));
+        Assert.That(((sbyte)5).Factorial(), Is.EqualTo(120L));
+        Assert.That(((sbyte)6).Factorial(), Is.EqualTo(720L));
+        Assert.That(((sbyte)7).Factorial(), Is.EqualTo(5040L));
+        Assert.That(((sbyte)8).Factorial(), Is.EqualTo(40320L));
+        Assert.That(((sbyte)9).Factorial(), Is.EqualTo(362880L));
+        Assert.That(((sbyte)10).Factorial(), Is.EqualTo(3628800L));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
     {
         const sbyte first = 5;
@@ -39,10 +39,10 @@ public partial class SByteTests
 
         sbyte multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(1, multiple);
+        Assert.That(multiple, Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe6_Given12And18()
     {
         const sbyte first = 12;
@@ -50,30 +50,30 @@ public partial class SByteTests
 
         sbyte multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(6, multiple);
+        Assert.That(multiple, Is.EqualTo(6));
     }
 
-    [TestMethod]
+    [Test]
     public void IsEvenShouldBeCorrect()
     {
         const sbyte one = 1;
         const sbyte two = 2;
 
-        Assert.IsFalse(one.IsEven());
-        Assert.IsTrue(two.IsEven());
+        Assert.That(one.IsEven(), Is.False);
+        Assert.That(two.IsEven());
     }
 
-    [TestMethod]
+    [Test]
     public void IsOddShouldBeCorrect()
     {
         const sbyte one = 1;
         const sbyte two = 2;
 
-        Assert.IsTrue(one.IsOdd());
-        Assert.IsFalse(two.IsOdd());
+        Assert.That(one.IsOdd());
+        Assert.That(two.IsOdd(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
     {
         const sbyte value1 = 2;
@@ -82,10 +82,10 @@ public partial class SByteTests
 
         sbyte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
     {
         const sbyte value1 = 0;
@@ -94,10 +94,10 @@ public partial class SByteTests
 
         sbyte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
     {
         const sbyte value1 = 1;
@@ -106,10 +106,10 @@ public partial class SByteTests
 
         sbyte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
     {
         const sbyte value1 = 5;
@@ -119,11 +119,11 @@ public partial class SByteTests
         sbyte result1 = value1.LowestCommonMultiple(value2);
         sbyte result2 = value2.LowestCommonMultiple(value1);
 
-        Assert.AreEqual(expected, result1);
-        Assert.AreEqual(expected, result2);
+        Assert.That(result1, Is.EqualTo(expected));
+        Assert.That(result2, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithNegativeValues()
     {
         const sbyte value1 = -2;
@@ -132,41 +132,41 @@ public partial class SByteTests
 
         sbyte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
     {
-        Assert.AreEqual(1, ((sbyte)10).MultiplicativePersistence());
-        Assert.AreEqual(1, ((sbyte)20).MultiplicativePersistence());
-        Assert.AreEqual(1, ((sbyte)101).MultiplicativePersistence());
-        Assert.AreEqual(1, ((sbyte)120).MultiplicativePersistence());
+        Assert.That(((sbyte)10).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((sbyte)20).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((sbyte)101).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((sbyte)120).MultiplicativePersistence(), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
-        Assert.AreEqual(0, ((sbyte)0).MultiplicativePersistence());
-        Assert.AreEqual(1, ((sbyte)10).MultiplicativePersistence());
-        Assert.AreEqual(2, ((sbyte)25).MultiplicativePersistence());
-        Assert.AreEqual(3, ((sbyte)39).MultiplicativePersistence());
-        Assert.AreEqual(4, ((sbyte)77).MultiplicativePersistence());
+        Assert.That(((sbyte)0).MultiplicativePersistence(), Is.Zero);
+        Assert.That(((sbyte)10).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((sbyte)25).MultiplicativePersistence(), Is.EqualTo(2));
+        Assert.That(((sbyte)39).MultiplicativePersistence(), Is.EqualTo(3));
+        Assert.That(((sbyte)77).MultiplicativePersistence(), Is.EqualTo(4));
     }
 
-    [TestMethod]
+    [Test]
     public void NegativeFactorialShouldThrow()
     {
-        Assert.ThrowsException<ArithmeticException>(() => ((sbyte)-1).Factorial());
+        Assert.Throws<ArithmeticException>(() => ((sbyte)-1).Factorial());
     }
 
-    [TestMethod]
+    [Test]
     public void SignShouldBeCorrect()
     {
         const sbyte one = 1;
         const sbyte zero = 0;
-        Assert.AreEqual(one, one.Sign());
-        Assert.AreEqual(zero, zero.Sign());
-        Assert.AreEqual(-one, (-one).Sign());
+        Assert.That(one.Sign(), Is.EqualTo(one));
+        Assert.That(zero.Sign(), Is.EqualTo(zero));
+        Assert.That((-one).Sign(), Is.EqualTo(-one));
     }
 }

@@ -1,31 +1,31 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 public partial class StreamTests
 {
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void ReadUInt32_ShouldThrowArgumentException_GivenNonReadableStream()
     {
         Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadUInt32());
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadUInt32(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadUInt32(Endianness.BigEndian));
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt32());
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt32(Endianness.LittleEndian));
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt32(Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void ReadUInt32_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadUInt32());
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadUInt32(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadUInt32(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt32());
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt32(Endianness.LittleEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt32(Endianness.BigEndian));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void ReadUInt32_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
@@ -35,10 +35,10 @@ public partial class StreamTests
         // analyser to trip up and think the stream is disposed by the time the local is captured in
         // assertion lambda - means this line is fine as it is. please do not change.
         Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.ReadUInt32((Endianness)(-1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => stream.ReadUInt32((Endianness)(-1)));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void ReadUInt32_ShouldReadBigEndian_GivenBigEndian()
     {
@@ -50,11 +50,11 @@ public partial class StreamTests
         const uint expected = 420;
         uint actual = stream.ReadUInt32(Endianness.BigEndian);
 
-        Assert.AreEqual(4, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(4));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     [CLSCompliant(false)]
     public void ReadUInt32_ShouldReadLittleEndian_GivenLittleEndian()
     {
@@ -66,7 +66,7 @@ public partial class StreamTests
         const uint expected = 420;
         uint actual = stream.ReadUInt32(Endianness.LittleEndian);
 
-        Assert.AreEqual(4, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(4));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

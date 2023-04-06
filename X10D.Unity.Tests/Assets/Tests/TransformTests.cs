@@ -17,20 +17,20 @@ namespace X10D.Unity.Tests
             Transform firstTransform = first.transform;
             Transform secondTransform = second.transform;
 
-            Assert.AreEqual(Quaternion.identity, firstTransform.rotation);
-            Assert.AreEqual(Quaternion.identity, secondTransform.rotation);
+            Assert.That(firstTransform.rotation, Is.EqualTo(Quaternion.identity));
+            Assert.That(secondTransform.rotation, Is.EqualTo(Quaternion.identity));
 
             firstTransform.LookAt(secondTransform);
             Quaternion expected = firstTransform.rotation;
 
             firstTransform.rotation = Quaternion.identity;
-            Assert.AreEqual(Quaternion.identity, firstTransform.rotation);
+            Assert.That(firstTransform.rotation, Is.EqualTo(Quaternion.identity));
 
             firstTransform.LookAt(second);
-            Assert.AreEqual(expected, firstTransform.rotation);
+            Assert.That(firstTransform.rotation, Is.EqualTo(expected));
 
             firstTransform.rotation = Quaternion.identity;
-            Assert.AreEqual(Quaternion.identity, firstTransform.rotation);
+            Assert.That(firstTransform.rotation, Is.EqualTo(Quaternion.identity));
 
             yield break;
         }
@@ -41,17 +41,17 @@ namespace X10D.Unity.Tests
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
             var second = new GameObject {transform = {position = Vector3.right, rotation = Quaternion.identity}};
 
-            Assert.AreEqual(null, first.transform.parent);
-            Assert.AreEqual(null, second.transform.parent);
+            Assert.That(first.transform.parent, Is.EqualTo(null));
+            Assert.That(second.transform.parent, Is.EqualTo(null));
 
             first.transform.SetParent(second);
-            Assert.AreEqual(second.transform, first.transform.parent);
+            Assert.That(first.transform.parent, Is.EqualTo(second.transform));
 
             first.transform.SetParent(null!);
-            Assert.AreEqual(null, first.transform.parent);
+            Assert.That(first.transform.parent, Is.EqualTo(null));
 
             second.transform.SetParent(first);
-            Assert.AreEqual(first.transform, second.transform.parent);
+            Assert.That(second.transform.parent, Is.EqualTo(first.transform));
 
             yield break;
         }

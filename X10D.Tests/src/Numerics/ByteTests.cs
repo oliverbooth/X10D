@@ -1,85 +1,85 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
-[TestClass]
+[TestFixture]
 public class ByteTests
 {
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe0_Given0()
     {
-        Assert.AreEqual(0, ((byte)0).PopCount());
+        Assert.That(((byte)0).PopCount(), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe5_Given11010101()
     {
-        Assert.AreEqual(5, ((byte)0b11010101).PopCount());
+        Assert.That(((byte)0b11010101).PopCount(), Is.EqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe8_Given11111111()
     {
-        Assert.AreEqual(8, ((byte)0b11111111).PopCount());
+        Assert.That(((byte)0b11111111).PopCount(), Is.EqualTo(8));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const byte value = 181;   // 10110101
         const byte expected = 91; // 01011011
 
-        Assert.AreEqual(value, value.RotateLeft(0));
-        Assert.AreEqual(expected, value.RotateLeft(4));
+        Assert.That(value.RotateLeft(0), Is.EqualTo(value));
+        Assert.That(value.RotateLeft(4), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateLeft_ShouldModForLargeCount()
     {
         const byte value = 181; // 10110101
-        Assert.AreEqual(value, value.RotateLeft(8));
+        Assert.That(value.RotateLeft(8), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateRight_ShouldRotateCorrectly()
     {
         const byte value = 181;   // 10110101
         const byte expected = 91; // 01011011
 
-        Assert.AreEqual(value, value.RotateRight(0));
-        Assert.AreEqual(expected, value.RotateRight(4));
+        Assert.That(value.RotateRight(0), Is.EqualTo(value));
+        Assert.That(value.RotateRight(4), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateRight_ShouldModForLargeCount()
     {
         const byte value = 181; // 10110101
-        Assert.AreEqual(value, value.RotateRight(8));
+        Assert.That(value.RotateRight(8), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
     {
-        Assert.AreEqual(4, ((byte)3).RoundUpToPowerOf2());
-        Assert.AreEqual(8, ((byte)5).RoundUpToPowerOf2());
-        Assert.AreEqual(8, ((byte)6).RoundUpToPowerOf2());
-        Assert.AreEqual(8, ((byte)7).RoundUpToPowerOf2());
+        Assert.That(((byte)3).RoundUpToPowerOf2(), Is.EqualTo(4));
+        Assert.That(((byte)5).RoundUpToPowerOf2(), Is.EqualTo(8));
+        Assert.That(((byte)6).RoundUpToPowerOf2(), Is.EqualTo(8));
+        Assert.That(((byte)7).RoundUpToPowerOf2(), Is.EqualTo(8));
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
     {
         for (var i = 0; i < 8; i++)
         {
             var value = (byte)System.Math.Pow(2, i);
-            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+            Assert.That(value.RoundUpToPowerOf2(), Is.EqualTo(value));
         }
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturn0_Given0()
     {
-        Assert.AreEqual(0, ((byte)0).RoundUpToPowerOf2());
+        Assert.That(((byte)0).RoundUpToPowerOf2(), Is.Zero);
     }
 }

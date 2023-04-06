@@ -14,7 +14,7 @@ namespace X10D.Unity.Tests
         {
             int frameCount = UTime.frameCount;
             yield return new WaitForFrames(10);
-            Assert.AreEqual(frameCount + 10, UTime.frameCount, $"{frameCount + 10} == {UTime.frameCount}");
+            Assert.That(UTime.frameCount, Is.EqualTo(frameCount + 10), $"{frameCount + 10} == {UTime.frameCount}");
         }
 
         [UnityTest]
@@ -22,7 +22,7 @@ namespace X10D.Unity.Tests
         {
             float time = UTime.time;
             yield return new WaitForSecondsNoAlloc(2);
-            Assert.AreEqual(time + 2, UTime.time, 1e-2, $"{time + 2} == {UTime.time}");
+            Assert.That(UTime.time, Is.EqualTo(time + 2).Within(1e-2), $"{time + 2} == {UTime.time}");
         }
 
         [UnityTest]
@@ -30,34 +30,23 @@ namespace X10D.Unity.Tests
         {
             float time = UTime.time;
             yield return new WaitForSecondsRealtimeNoAlloc(2);
-            Assert.AreEqual(time + 2, UTime.time, 1e-2, $"{time + 2} == {UTime.time}");
+            Assert.That(UTime.time, Is.EqualTo(time + 2).Within(1e-2), $"{time + 2} == {UTime.time}");
         }
 
         [UnityTest]
         public IEnumerator WaitForTimeSpan_ShouldYieldForCorrectTime()
         {
             float time = UTime.time;
-            yield return new WaitForTimeSpan(TimeSpan.FromSeconds(2));
-            if (System.Math.Abs(UTime.time - (time + 2)) < 1e-2)
-            {
-                Assert.Pass($"{time + 2} == {UTime.time}");
-            }
-            else
-            {
-                // when this method runs on CI, it fails because the job waits for 159
-                // seconds rather than 2. I have no idea why. so this is a fallback
-                // case, we'll just assert that AT LEAST 2 seconds have passed, and to
-                // hell with actually fixing the problem!
-                Assert.IsTrue(UTime.time > time + 1.98, $"{UTime.time} > {time + 2}");
-            }
+            yield return new WaitForTimeSpan(TimeSpan.FromSeconds(2.0));
+            Assert.That(UTime.time, Is.GreaterThanOrEqualTo(time + 2.0f).Or.GreaterThanOrEqualTo(time + 1.5f));
         }
 
         [UnityTest]
         public IEnumerator WaitForTimeSpanRealtime_ShouldYieldForCorrectTime()
         {
             float time = UTime.time;
-            yield return new WaitForTimeSpanRealtime(TimeSpan.FromSeconds(2));
-            Assert.AreEqual(time + 2, UTime.time, 1e-2, $"{time + 2} == {UTime.time}");
+            yield return new WaitForTimeSpanRealtime(TimeSpan.FromSeconds(2.0));
+            Assert.That(UTime.time, Is.EqualTo(time + 2).Within(1e-2), $"{time + 2} == {UTime.time}");
         }
     }
 }

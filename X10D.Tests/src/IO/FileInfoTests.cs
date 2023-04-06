@@ -1,23 +1,23 @@
 ﻿using System.Security.Cryptography;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-[TestClass]
+[TestFixture]
 public class FileInfoTests
 {
-    [TestMethod]
+    [Test]
     public void GetHashSha1ShouldBeCorrect()
     {
-        string fileName = $"temp.{DateTimeOffset.Now.ToUnixTimeSeconds()}.bin";
+        var fileName = $"temp.{DateTimeOffset.Now.ToUnixTimeSeconds()}.bin";
         if (File.Exists(fileName))
         {
             Assert.Fail("Temporary file already exists");
         }
 
         File.WriteAllText(fileName, "Hello World");
-        Assert.IsTrue(File.Exists(fileName));
+        Assert.That(File.Exists(fileName));
 
         // SHA-1
         byte[] expectedHash =
@@ -37,17 +37,17 @@ public class FileInfoTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void TryWriteHashSha1ShouldBeCorrect()
     {
-        string fileName = $"temp.{DateTimeOffset.Now.ToUnixTimeSeconds()}.bin";
+        var fileName = $"temp.{DateTimeOffset.Now.ToUnixTimeSeconds()}.bin";
         if (File.Exists(fileName))
         {
             Assert.Fail("Temporary file already exists");
         }
 
         File.WriteAllText(fileName, "Hello World");
-        Assert.IsTrue(File.Exists(fileName));
+        Assert.That(File.Exists(fileName));
 
         // SHA-1
         byte[] expectedHash =
@@ -60,7 +60,7 @@ public class FileInfoTests
         {
             Span<byte> hash = stackalloc byte[20];
             new FileInfo(fileName).TryWriteHash<SHA1>(hash, out int bytesWritten);
-            Assert.AreEqual(expectedHash.Length, bytesWritten);
+            Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
             CollectionAssert.AreEqual(expectedHash, hash.ToArray());
         }
         finally
@@ -69,25 +69,25 @@ public class FileInfoTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashNullShouldThrow()
     {
         // any HashAlgorithm will do, but SHA1 is used above. so to remain consistent, we use it here
-        Assert.ThrowsException<ArgumentNullException>(() => ((FileInfo?)null)!.GetHash<SHA1>());
-        Assert.ThrowsException<ArgumentNullException>(() => ((FileInfo?)null)!.TryWriteHash<SHA1>(Span<byte>.Empty, out _));
+        Assert.Throws<ArgumentNullException>(() => _ = ((FileInfo?)null)!.GetHash<SHA1>());
+        Assert.Throws<ArgumentNullException>(() => ((FileInfo?)null)!.TryWriteHash<SHA1>(Span<byte>.Empty, out _));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashInvalidFileShouldThrow()
     {
-        string fileName = $"temp.{DateTimeOffset.Now.ToUnixTimeSeconds()}.bin";
+        var fileName = $"temp.{DateTimeOffset.Now.ToUnixTimeSeconds()}.bin";
         if (File.Exists(fileName))
         {
             Assert.Fail("Temporary file already exists");
         }
 
         // any HashAlgorithm will do, but SHA1 is used above. so to remain consistent, we use it here
-        Assert.ThrowsException<FileNotFoundException>(() => new FileInfo(fileName).GetHash<SHA1>());
-        Assert.ThrowsException<FileNotFoundException>(() => new FileInfo(fileName).TryWriteHash<SHA1>(Span<byte>.Empty, out _));
+        Assert.Throws<FileNotFoundException>(() => _ = new FileInfo(fileName).GetHash<SHA1>());
+        Assert.Throws<FileNotFoundException>(() => new FileInfo(fileName).TryWriteHash<SHA1>(Span<byte>.Empty, out _));
     }
 }

@@ -1,140 +1,173 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
+[TestFixture]
 public partial class DecimalTests
 {
-    [TestMethod]
+    [Test]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()
     {
-        Assert.AreEqual(0.0, 0.0m.ComplexSqrt());
-        Assert.AreEqual(1.4142135623730951, 2.0m.ComplexSqrt());
-        Assert.AreEqual(3.0, 9.0m.ComplexSqrt());
-        Assert.AreEqual(4.0, 16.0m.ComplexSqrt());
-        Assert.AreEqual(100.0, 10000.0m.ComplexSqrt());
+        Assert.Multiple(() =>
+        {
+            Assert.That(0.0m.ComplexSqrt(), Is.EqualTo((Complex)0.0));
+            Assert.That(2.0m.ComplexSqrt(), Is.EqualTo((Complex)1.4142135623730951));
+            Assert.That(9.0m.ComplexSqrt(), Is.EqualTo((Complex)3.0));
+            Assert.That(16.0m.ComplexSqrt(), Is.EqualTo((Complex)4.0));
+            Assert.That(10000.0m.ComplexSqrt(), Is.EqualTo((Complex)100.0));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ComplexSqrt_ShouldBeImaginary_GivenNegativeValue()
     {
-        Assert.AreEqual(new Complex(0, 1), (-1.0m).ComplexSqrt());
-        Assert.AreEqual(new Complex(0, 1.4142135623730951), (-2.0m).ComplexSqrt());
-        Assert.AreEqual(new Complex(0, 3.0), (-9.0m).ComplexSqrt());
-        Assert.AreEqual(new Complex(0, 4.0), (-16.0m).ComplexSqrt());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-1.0m).ComplexSqrt(), Is.EqualTo(new Complex(0, 1)));
+            Assert.That((-2.0m).ComplexSqrt(), Is.EqualTo(new Complex(0, 1.4142135623730951)));
+            Assert.That((-9.0m).ComplexSqrt(), Is.EqualTo(new Complex(0, 3.0)));
+            Assert.That((-16.0m).ComplexSqrt(), Is.EqualTo(new Complex(0, 4.0)));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsEven_ShouldBeFalse_GivenOddNumber()
     {
-        Assert.IsFalse((-3.0m).IsEven());
-        Assert.IsFalse((-1.0m).IsEven());
-        Assert.IsFalse(1.0m.IsEven());
-        Assert.IsFalse(3.0m.IsEven());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-3.0m).IsEven(), Is.False);
+            Assert.That((-1.0m).IsEven(), Is.False);
+            Assert.That(1.0m.IsEven(), Is.False);
+            Assert.That(3.0m.IsEven(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsEven_ShouldBeTrue_GivenOddNumber()
     {
-        Assert.IsTrue((-4.0m).IsEven());
-        Assert.IsTrue((-2.0m).IsEven());
-        Assert.IsTrue(0.0m.IsEven());
-        Assert.IsTrue(2.0m.IsEven());
-        Assert.IsTrue(4.0m.IsEven());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-4.0m).IsEven());
+            Assert.That((-2.0m).IsEven());
+            Assert.That(0.0m.IsEven());
+            Assert.That(2.0m.IsEven());
+            Assert.That(4.0m.IsEven());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOdd_ShouldBeFalse_GivenEvenNumber()
     {
-        Assert.IsFalse((-4.0m).IsOdd());
-        Assert.IsFalse((-2.0m).IsOdd());
-        Assert.IsFalse(0.0m.IsOdd());
-        Assert.IsFalse(2.0m.IsOdd());
-        Assert.IsFalse(4.0m.IsOdd());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-4.0m).IsOdd(), Is.False);
+            Assert.That((-2.0m).IsOdd(), Is.False);
+            Assert.That(0.0m.IsOdd(), Is.False);
+            Assert.That(2.0m.IsOdd(), Is.False);
+            Assert.That(4.0m.IsOdd(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOdd_ShouldBeTrue_GivenOddNumber()
     {
-        Assert.IsTrue((-3.0m).IsOdd());
-        Assert.IsTrue((-1.0m).IsOdd());
-        Assert.IsTrue(1.0m.IsOdd());
-        Assert.IsTrue(3.0m.IsOdd());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-3.0m).IsOdd());
+            Assert.That((-1.0m).IsOdd());
+            Assert.That(1.0m.IsOdd());
+            Assert.That(3.0m.IsOdd());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Round_ShouldRoundToNearestInteger()
     {
-        Assert.AreEqual(4.0m, 3.5m.Round());
-        Assert.AreEqual(7.0m, 6.8m.Round());
-        Assert.AreEqual(7.0m, 7.2m.Round());
+        Assert.Multiple(() =>
+        {
+            Assert.That(3.5m.Round(), Is.EqualTo(4.0m));
+            Assert.That(6.8m.Round(), Is.EqualTo(7.0m));
+            Assert.That(7.2m.Round(), Is.EqualTo(7.0m));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Round_ShouldRoundToNearestMultiple()
     {
-        Assert.AreEqual(5.0m, 3.5m.Round(5));
-        Assert.AreEqual(5.0m, 7.0m.Round(5));
-        Assert.AreEqual(10.0m, 7.5m.Round(5));
+        Assert.Multiple(() =>
+        {
+            Assert.That(3.5m.Round(5), Is.EqualTo(5.0m));
+            Assert.That(7.0m.Round(5), Is.EqualTo(5.0m));
+            Assert.That(7.5m.Round(5), Is.EqualTo(10.0m));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
     {
-        Assert.AreEqual(1.0m, 1.5m.Saturate(), 1e-6m);
+        Assert.That(1.5m.Saturate(), Is.EqualTo(1.0m));
     }
 
-    [TestMethod]
+    [Test]
     public void Saturate_ShouldClampValueTo0_GivenLessThan0()
     {
-        Assert.AreEqual(0.0m, (-0.5m).Saturate(), 1e-6m);
+        Assert.That((-0.5m).Saturate(), Is.EqualTo(0.0m));
     }
 
-    [TestMethod]
+    [Test]
     public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
     {
-        Assert.AreEqual(0.5m, 0.5m.Saturate(), 1e-6m);
+        Assert.That(0.5m.Saturate(), Is.EqualTo(0.5m));
     }
 
-    [TestMethod]
+    [Test]
     public void Sign_ShouldBeMinus1_GivenNegative()
     {
-        Assert.AreEqual(-1, -1.0m.Sign());
-        Assert.AreEqual(-1, -2.0m.Sign());
-        Assert.AreEqual(-1, -3.0m.Sign());
+        Assert.Multiple(() =>
+        {
+            Assert.That(-1.0m.Sign(), Is.EqualTo(-1));
+            Assert.That(-2.0m.Sign(), Is.EqualTo(-1));
+            Assert.That(-3.0m.Sign(), Is.EqualTo(-1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Sign_ShouldBe0_Given0()
     {
-        Assert.AreEqual(0, 0.0m.Sign());
+        Assert.That(0.0m.Sign(), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void Sign_ShouldBe1_GivenPositive()
     {
-        Assert.AreEqual(1, 1.0m.Sign());
-        Assert.AreEqual(1, 2.0m.Sign());
-        Assert.AreEqual(1, 3.0m.Sign());
+        Assert.Multiple(() =>
+        {
+            Assert.That(1.0m.Sign(), Is.EqualTo(1));
+            Assert.That(2.0m.Sign(), Is.EqualTo(1));
+            Assert.That(3.0m.Sign(), Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Sqrt_ShouldBeCorrect_GivenValue()
     {
-        Assert.AreEqual(0.0m, 0.0m.Sqrt());
-        Assert.AreEqual(1.4142135623730950488016887242m, 2.0m.Sqrt());
-        Assert.AreEqual(3.0m, 9.0m.Sqrt());
-        Assert.AreEqual(4.0m, 16.0m.Sqrt());
-        Assert.AreEqual(100.0m, 10000.0m.Sqrt());
+        Assert.Multiple(() =>
+        {
+            Assert.That(0.0m.Sqrt(), Is.EqualTo(0.0m));
+            Assert.That(2.0m.Sqrt(), Is.EqualTo(1.4142135623730950488016887242m));
+            Assert.That(9.0m.Sqrt(), Is.EqualTo(3.0m));
+            Assert.That(16.0m.Sqrt(), Is.EqualTo(4.0m));
+            Assert.That(10000.0m.Sqrt(), Is.EqualTo(100.0m));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Sqrt_ShouldThrow_GivenNegativeValue()
     {
-        Assert.ThrowsException<ArgumentException>(() => (-1.0m).Sqrt());
-        Assert.ThrowsException<ArgumentException>(() => (-2.0m).Sqrt());
-        Assert.ThrowsException<ArgumentException>(() => (-3.0m).Sqrt());
+        Assert.Throws<ArgumentException>(() => _ = (-1.0m).Sqrt());
+        Assert.Throws<ArgumentException>(() => _ = (-2.0m).Sqrt());
+        Assert.Throws<ArgumentException>(() => _ = (-3.0m).Sqrt());
     }
 }
