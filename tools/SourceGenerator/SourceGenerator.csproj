@@ -17,4 +17,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\X10D.MetaServices\X10D.MetaServices.csproj" PrivateAssets="all"/>
+    </ItemGroup>
+
 </Project>
