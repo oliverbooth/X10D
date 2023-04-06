@@ -47,6 +47,30 @@ public class SpanTest
     }
 
     [Test]
+    public void Replace_ShouldReplaceAllElements_GivenSpanOfInt32()
+    {
+        Span<int> span = stackalloc int[16] {1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2};
+        span.Replace(2, 4);
+        Assert.That(span.ToArray(), Is.EqualTo(new[] {1, 4, 3, 4, 5, 4, 7, 4, 9, 4, 11, 4, 13, 4, 15, 4}));
+    }
+
+    [Test]
+    public void Replace_ShouldReplaceAllElements_GivenSpanOfChar()
+    {
+        Span<char> chars = stackalloc char[12] {'H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!'};
+        chars.Replace('l', 'w');
+        CollectionAssert.AreEqual(chars.ToArray(), "Hewwo worwd!".ToCharArray());
+    }
+
+    [Test]
+    public void Replace_ShouldDoNothing_GivenSpanWithNoMatchingElements()
+    {
+        Span<int> span = stackalloc int[16] {1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2};
+        span.Replace(4, 8);
+        Assert.That(span.ToArray(), Is.EqualTo(new[] {1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2}));
+    }
+
+    [Test]
     public void Split_OnEmptySpan_ShouldYieldNothing_UsingCharDelimiter_GivenReadOnlySpan()
     {
         ReadOnlySpan<char> span = ReadOnlySpan<char>.Empty;
