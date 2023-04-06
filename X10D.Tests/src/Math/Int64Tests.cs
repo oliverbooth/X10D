@@ -7,6 +7,61 @@ namespace X10D.Tests.Math;
 public partial class Int64Tests
 {
     [Test]
+    public void CountDigits_ShouldReturn1_Given0()
+    {
+        const long value = 0;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_Given1()
+    {
+        const long value = 1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_GivenNegative1()
+    {
+        const long value = -1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn2_Given10()
+    {
+        const long value = 10;
+        const int expected = 2;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn3_Given199()
+    {
+        const long value = 199;
+        const int expected = 3;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
     public void DigitalRootShouldBeCorrect()
     {
         const long value = 238;

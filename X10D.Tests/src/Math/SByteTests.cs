@@ -8,6 +8,61 @@ namespace X10D.Tests.Math;
 public partial class SByteTests
 {
     [Test]
+    public void CountDigits_ShouldReturn1_Given0()
+    {
+        const sbyte value = 0;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_Given1()
+    {
+        const sbyte value = 1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_GivenNegative1()
+    {
+        const sbyte value = -1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn2_Given10()
+    {
+        const sbyte value = 10;
+        const int expected = 2;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn3_Given127()
+    {
+        const sbyte value = 127;
+        const int expected = 3;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
     public void DigitalRootShouldBeCorrect()
     {
         const sbyte value = 127; // sbyte.MaxValue. can't use 238 like the other tests

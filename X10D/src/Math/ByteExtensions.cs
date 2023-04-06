@@ -10,6 +10,21 @@ namespace X10D.Math;
 public static class ByteExtensions
 {
     /// <summary>
+    ///     Returns the number of digits in the current 8-bit unsigned integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this byte value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return ((ulong)value).CountDigits();
+    }
+
+    /// <summary>
     ///     Computes the digital root of this 8-bit integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>
