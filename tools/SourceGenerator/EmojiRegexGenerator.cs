@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace X10D.SourceGenerator;
+namespace SourceGenerator;
 
 [Generator]
 internal sealed class EmojiRegexGenerator : ISourceGenerator
