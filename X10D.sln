@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpmPackageGenerator", "tool
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4B8969E6-27D2-4357-964E-9979FF7CC805}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "tools\Benchmarks\Benchmarks.csproj", "{259450A0-9964-403A-91E1-E9111B92C293}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +99,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{84750149-9068-4780-AFDE-CDA1AC57007D} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
+		{259450A0-9964-403A-91E1-E9111B92C293} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
 	EndGlobalSection
 EndGlobal

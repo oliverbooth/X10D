@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Configuration>Release</Configuration>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net7.0;net6.0;netcoreapp3.1</TargetFrameworks>
+        <LangVersion>11.0</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.5"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\X10D\X10D.csproj"/>
+    </ItemGroup>
+
+</Project>
