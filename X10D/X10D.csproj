@@ -84,6 +84,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\tools\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\tools\X10D.MetaServices\X10D.MetaServices.csproj" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup Condition="'$(GITHUB_ACTIONS)' != 'true'">
