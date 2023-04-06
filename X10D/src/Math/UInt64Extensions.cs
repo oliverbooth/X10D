@@ -11,6 +11,21 @@ namespace X10D.Math;
 public static class UInt64Extensions
 {
     /// <summary>
+    ///     Returns the number of digits in the current 64-bit unsigned integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this ulong value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return 1 + (int)System.Math.Floor(System.Math.Log10(System.Math.Abs((double)value)));
+    }
+
+    /// <summary>
     ///     Computes the digital root of the current 64-bit unsigned integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>
