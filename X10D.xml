@@ -5151,6 +5151,311 @@
             <returns>An asynchronous enumerable collection of lines as read from <paramref name="reader" />.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> is <see langword="null" />.</exception>
         </member>
+        <member name="T:X10D.IO.TextWriterExtensions">
+            <summary>
+                IO-related extension methods for <see cref="T:System.IO.TextWriter" />.
+            </summary>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.Int32)">
+            <summary>
+                Writes the text representation of a 4-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte signed integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.Int32,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 4-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.Int32,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 4-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.UInt32)">
+            <summary>
+                Writes the text representation of a 4-byte unsigned integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte unsigned integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.UInt32,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 4-byte unsigned integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.UInt32,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 4-byte unsigned integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.Int64)">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte signed integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.Int64,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.Int64,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.UInt64)">
+            <summary>
+                Writes the text representation of a 8-byte unsigned integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte unsigned integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.UInt64,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteNoAlloc(System.IO.TextWriter,System.UInt64,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, without allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.Int32)">
+            <summary>
+                Writes the text representation of a 4-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte signed integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.Int32,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 4-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.Int32,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 4-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.UInt32)">
+            <summary>
+                Writes the text representation of a 4-byte unsigned integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte unsigned integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.UInt32,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 4-byte unsigned integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.UInt32,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 4-byte unsigned integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 4-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.Int64)">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte signed integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.Int64,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.Int64,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte signed integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.UInt64)">
+            <summary>
+                Writes the text representation of a 8-byte unsigned integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte unsigned integer to write.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.UInt64,System.ReadOnlySpan{System.Char})">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
+        <member name="M:X10D.IO.TextWriterExtensions.WriteLineNoAlloc(System.IO.TextWriter,System.UInt64,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+                Writes the text representation of a 8-byte signed integer to the text stream, followed by a line terminator, without
+                allocating a string.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter" /> to write to.</param>
+            <param name="value">The 8-byte unsigned integer to write.</param>
+            <param name="format">A standard or custom numeric format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <remarks>This method may still allocate if the integer is too large to fit in a stack-allocated buffer.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed.</exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
+        </member>
         <member name="T:X10D.IO.UInt16Extensions">
             <summary>
                 IO-related extension methods for <see cref="T:System.UInt16" />.
@@ -5783,6 +6088,13 @@
                 Math-related extension methods for <see cref="T:System.Numerics.BigInteger" />.
             </summary>
         </member>
+        <member name="M:X10D.Math.BigIntegerExtensions.CountDigits(System.Numerics.BigInteger)">
+            <summary>
+                Returns the number of digits in the current integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
+        </member>
         <member name="M:X10D.Math.BigIntegerExtensions.DigitalRoot(System.Numerics.BigInteger)">
             <summary>
                 Computes the digital root of this 8-bit integer.
@@ -5885,6 +6197,13 @@
             <summary>
                 Math-related extension methods for <see cref="T:System.Byte" />.
             </summary>
+        </member>
+        <member name="M:X10D.Math.ByteExtensions.CountDigits(System.Byte)">
+            <summary>
+                Returns the number of digits in the current 8-bit unsigned integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
         </member>
         <member name="M:X10D.Math.ByteExtensions.DigitalRoot(System.Byte)">
             <summary>
@@ -6645,6 +6964,13 @@
                 Extension methods for <see cref="T:System.Int16" />.
             </summary>
         </member>
+        <member name="M:X10D.Math.Int16Extensions.CountDigits(System.Int16)">
+            <summary>
+                Returns the number of digits in the current 16-bit signed integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
+        </member>
         <member name="M:X10D.Math.Int16Extensions.DigitalRoot(System.Int16)">
             <summary>
                 Computes the digital root of this 16-bit integer.
@@ -6786,6 +7112,13 @@
                 Extension methods for <see cref="T:System.Int32" />.
             </summary>
         </member>
+        <member name="M:X10D.Math.Int32Extensions.CountDigits(System.Int32)">
+            <summary>
+                Returns the number of digits in the current 32-bit signed integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
+        </member>
         <member name="M:X10D.Math.Int32Extensions.DigitalRoot(System.Int32)">
             <summary>
                 Computes the digital root of this 32-bit integer.
@@ -6926,6 +7259,13 @@
             <summary>
                 Extension methods for <see cref="T:System.Int64" />.
             </summary>
+        </member>
+        <member name="M:X10D.Math.Int64Extensions.CountDigits(System.Int64)">
+            <summary>
+                Returns the number of digits in the current 64-bit signed integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
         </member>
         <member name="M:X10D.Math.Int64Extensions.DigitalRoot(System.Int64)">
             <summary>
@@ -7314,6 +7654,13 @@
             <summary>
                 Math-related extension methods for <see cref="T:System.SByte" />.
             </summary>
+        </member>
+        <member name="M:X10D.Math.SByteExtensions.CountDigits(System.SByte)">
+            <summary>
+                Returns the number of digits in the current 8-bit signed integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
         </member>
         <member name="M:X10D.Math.SByteExtensions.DigitalRoot(System.SByte)">
             <summary>
@@ -7747,6 +8094,13 @@
                 Extension methods for <see cref="T:System.UInt16" />.
             </summary>
         </member>
+        <member name="M:X10D.Math.UInt16Extensions.CountDigits(System.UInt16)">
+            <summary>
+                Returns the number of digits in the current 16-bit signed integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
+        </member>
         <member name="M:X10D.Math.UInt16Extensions.DigitalRoot(System.UInt16)">
             <summary>
                 Computes the digital root of the current 16-bit unsigned integer.
@@ -7844,6 +8198,13 @@
                 Extension methods for <see cref="T:System.UInt32" />.
             </summary>
         </member>
+        <member name="M:X10D.Math.UInt32Extensions.CountDigits(System.UInt32)">
+            <summary>
+                Returns the number of digits in the current 32-bit unsigned integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
+        </member>
         <member name="M:X10D.Math.UInt32Extensions.DigitalRoot(System.UInt32)">
             <summary>
                 Computes the digital root of the current 32-bit unsigned integer.
@@ -7940,6 +8301,13 @@
             <summary>
                 Extension methods for <see cref="T:System.UInt64" />.
             </summary>
+        </member>
+        <member name="M:X10D.Math.UInt64Extensions.CountDigits(System.UInt64)">
+            <summary>
+                Returns the number of digits in the current 64-bit unsigned integer.
+            </summary>
+            <param name="value">The value whose digit count to compute.</param>
+            <returns>The number of digits in <paramref name="value" />.</returns>
         </member>
         <member name="M:X10D.Math.UInt64Extensions.DigitalRoot(System.UInt64)">
             <summary>
