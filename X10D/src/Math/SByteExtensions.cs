@@ -11,6 +11,21 @@ namespace X10D.Math;
 public static class SByteExtensions
 {
     /// <summary>
+    ///     Returns the number of digits in the current 8-bit signed integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this sbyte value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return ((long)value).CountDigits();
+    }
+
+    /// <summary>
     ///     Computes the digital root of this 32-bit integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>
