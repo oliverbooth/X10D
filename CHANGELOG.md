@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added math-related extension methods for `BigInteger`.
 - X10D: Added `Span<T>.Replace(T, T)`.
 - X10D: Added `CountDigits` for integer types.
+- X10D: Added `TextWriter.WriteNoAlloc(int[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(int[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
 
 ### Changed
 - X10D: `DateTime.Age(DateTime)` and `DateTimeOffset.Age(DateTimeOffset)` parameter renamed from `asOf` to `referenceDate`.
