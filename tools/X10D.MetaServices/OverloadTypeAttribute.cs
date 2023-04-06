@@ -1,7 +1,7 @@
 ﻿namespace X10D.MetaServices;
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.ReturnValue, Inherited = false)]
-public sealed class OverloadTypeAttribute : Attribute
+internal sealed class OverloadTypeAttribute : Attribute
 {
     /// <summary>
     ///     Initializes a new instance of the <see cref="OverloadTypeAttribute"/> class.
