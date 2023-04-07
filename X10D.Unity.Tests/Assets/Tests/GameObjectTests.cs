@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -122,6 +123,7 @@ namespace X10D.Unity.Tests
         }
 
         [UnityTest]
+        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess", Justification = "False positive.")]
         public IEnumerator LookAt_ShouldRotateSameAsTransform()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
@@ -281,6 +283,7 @@ namespace X10D.Unity.Tests
         }
 
         [UnityTest]
+        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess", Justification = "False positive.")]
         public IEnumerator SetParent_ShouldSetParent()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
