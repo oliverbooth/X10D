@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using UnityEngine;
+using X10D.Reflection;
 using Object = UnityEngine.Object;
 
 namespace X10D.Unity;
@@ -52,7 +53,6 @@ public static class ComponentExtensions
 
         var typeInfo = typeof(T).GetTypeInfo();
         CopyFields(typeInfo, component, targetComponent);
-        CopyProperties(typeInfo, component, targetComponent);
     }
 
     /// <summary>
@@ -96,7 +96,6 @@ public static class ComponentExtensions
 
         var typeInfo = componentType.GetTypeInfo();
         CopyFields(typeInfo, component, targetComponent);
-        CopyProperties(typeInfo, component, targetComponent);
     }
 
     /// <summary>
@@ -184,35 +183,18 @@ public static class ComponentExtensions
     {
         foreach (FieldInfo field in typeInfo.DeclaredFields)
         {
-            if (field.IsStatic)
+            if (field.IsStatic || !field.IsPublic && !field.HasCustomAttribute<SerializeField>())
+            {
+                continue;
+            }
+
+            if (field.HasCustomAttribute<NonSerializedAttribute>())
             {
                 continue;
             }
 
             object fieldValue = GetNewReferences(component, targetComponent, field.GetValue(component));
             field.SetValue(targetComponent, fieldValue);
-        }
-    }
-
-    private static void CopyProperties<T>(TypeInfo typeInfo, T component, T targetComponent)
-        where T : Component
-    {
-        foreach (PropertyInfo property in typeInfo.DeclaredProperties)
-        {
-            if (!property.CanRead || !property.CanWrite)
-            {
-                continue;
-            }
-
-            MethodInfo getMethod = property.GetMethod;
-            MethodInfo setMethod = property.SetMethod;
-            if (getMethod.IsStatic || setMethod.IsStatic)
-            {
-                continue;
-            }
-
-            object propertyValue = GetNewReferences(component, targetComponent, property.GetValue(component));
-            property.SetValue(targetComponent, propertyValue);
         }
     }
 
