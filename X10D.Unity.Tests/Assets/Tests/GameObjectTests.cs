@@ -114,7 +114,7 @@ namespace X10D.Unity.Tests
             child.AddComponent<Rigidbody>();
 
             Rigidbody[] components = parent.GetComponentsInChildrenOnly<Rigidbody>();
-            Assert.That(components.Length, Is.EqualTo(1));
+            Assert.That(components, Has.Length.EqualTo(1));
             Assert.That(child, Is.EqualTo(components[0].gameObject));
 
             Object.Destroy(parent);
