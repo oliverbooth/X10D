@@ -1,18 +1,16 @@
 #nullable enable
 
-using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using Object = UnityEngine.Object;
 
 namespace X10D.Unity.Tests
 {
     public class GameObjectTests
     {
-        [UnityTest]
-        public IEnumerator GetComponentsInChildrenOnly_ShouldIgnoreParent()
+        [Test]
+        public void GetComponentsInChildrenOnly_ShouldIgnoreParent()
         {
             var parent = new GameObject();
             parent.AddComponent<Rigidbody>();
@@ -27,12 +25,11 @@ namespace X10D.Unity.Tests
 
             Object.Destroy(parent);
             Object.Destroy(child);
-            yield break;
         }
 
-        [UnityTest]
+        [Test]
         [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess", Justification = "False positive.")]
-        public IEnumerator LookAt_ShouldRotateSameAsTransform()
+        public void LookAt_ShouldRotateSameAsTransform()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
             var second = new GameObject {transform = {position = Vector3.right, rotation = Quaternion.identity}};
@@ -65,11 +62,10 @@ namespace X10D.Unity.Tests
 
             Object.Destroy(first);
             Object.Destroy(second);
-            yield break;
         }
 
-        [UnityTest]
-        public IEnumerator SetLayerRecursively_ShouldSetLayerRecursively()
+        [Test]
+        public void SetLayerRecursively_ShouldSetLayerRecursively()
         {
             var parent = new GameObject();
             var child = new GameObject();
@@ -92,12 +88,11 @@ namespace X10D.Unity.Tests
             Object.Destroy(parent);
             Object.Destroy(child);
             Object.Destroy(grandChild);
-            yield break;
         }
 
-        [UnityTest]
+        [Test]
         [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess", Justification = "False positive.")]
-        public IEnumerator SetParent_ShouldSetParent()
+        public void SetParent_ShouldSetParent()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
             var second = new GameObject {transform = {position = Vector3.right, rotation = Quaternion.identity}};
@@ -116,7 +111,6 @@ namespace X10D.Unity.Tests
 
             Object.Destroy(first);
             Object.Destroy(second);
-            yield break;
         }
     }
 }
