@@ -22,8 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `TextWriter.WriteLineNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D.Unity: Added `Component.CopyTo(GameObject)` and `Component.MoveTo(GameObject)`.
-- X10D.Unity: Added `GameObject.CopyComponent<T>(GameObject)` and `GameObject.MoveComponent<T>(GameObject)`.
 
 ### Changed
 
