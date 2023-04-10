@@ -2226,6 +2226,32 @@
             <param name="size">The size to convert.</param>
             <returns>The resulting <see cref="T:UnityEngine.Vector2" />.</returns>
         </member>
+        <member name="T:X10D.Unity.ExceptionMessages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:X10D.Unity.ExceptionMessages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:X10D.Unity.ExceptionMessages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:X10D.Unity.ExceptionMessages.ComponentAlreadyExists">
+            <summary>
+              Looks up a localized string similar to The game object {0} already has a component of type {1}..
+            </summary>
+        </member>
+        <member name="P:X10D.Unity.ExceptionMessages.ComponentDoesNotExist">
+            <summary>
+              Looks up a localized string similar to The game object {0} does not have a component of type {1}..
+            </summary>
+        </member>
         <member name="T:X10D.Unity.GameObjectExtensions">
             <summary>
                 Extension methods for <see cref="T:UnityEngine.GameObject" />.

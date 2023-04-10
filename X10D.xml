@@ -9198,6 +9198,74 @@
                 <see cref="F:System.Numerics.Vector4.W" /> component is <paramref name="w" />.
             </returns>
         </member>
+        <member name="T:X10D.Reactive.ObservableDisposer`1">
+            <summary>
+                Represents a disposable that removes an observer from a collection of observers.
+            </summary>
+        </member>
+        <member name="M:X10D.Reactive.ObservableDisposer`1.#ctor(System.Collections.Generic.HashSet{System.IObserver{`0}},System.IObserver{`0},System.Action)">
+            <summary>
+                Initializes a new instance of the <see cref="T:X10D.Reactive.ObservableDisposer`1" /> struct.
+            </summary>
+            <param name="observers">A collection of observers from which to remove the specified observer.</param>
+            <param name="observer">The observer to remove from the collection.</param>
+            <param name="additionalAction">The additional action to run on dispose.</param>
+        </member>
+        <member name="M:X10D.Reactive.ObservableDisposer`1.Dispose">
+            <summary>
+                Removes the observer from the collection of observers.
+            </summary>
+        </member>
+        <member name="T:X10D.Reactive.ProgressExtensions">
+            <summary>
+                Provides extension methods for <see cref="T:System.Progress`1" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Reactive.ProgressExtensions.OnProgressChanged``1(System.Progress{``0})">
+            <summary>
+                Wraps the <see cref="E:System.Progress`1.ProgressChanged" /> event of the current <see cref="T:System.Progress`1" /> in an
+                <see cref="T:System.IObservable`1" /> object.
+            </summary>
+            <param name="progress">The progress whose <see cref="E:System.Progress`1.ProgressChanged" /> event to wrap.</param>
+            <typeparam name="T">The type of progress update value.</typeparam>
+            <returns>
+                An <see cref="T:System.IObservable`1" /> object that wraps the <see cref="E:System.Progress`1.ProgressChanged" /> event of the current
+                <see cref="T:System.Progress`1" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="progress" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Reactive.ProgressExtensions.OnProgressChanged``1(System.Progress{``0},``0)">
+            <summary>
+                Wraps the <see cref="E:System.Progress`1.ProgressChanged" /> event of the current <see cref="T:System.Progress`1" /> in an
+                <see cref="T:System.IObservable`1" /> object, and completes the observable when the progress reaches the specified value.
+            </summary>
+            <param name="progress">The progress whose <see cref="E:System.Progress`1.ProgressChanged" /> event to wrap.</param>
+            <param name="completeValue">The value that indicates completion.</param>
+            <typeparam name="T">The type of progress update value.</typeparam>
+            <returns>
+                An <see cref="T:System.IObservable`1" /> object that wraps the <see cref="E:System.Progress`1.ProgressChanged" /> event of the current
+                <see cref="T:System.Progress`1" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="progress" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="T:X10D.Reactive.ProgressObservable`1">
+            <summary>
+                Represents a concrete implementation of <see cref="T:System.IObservable`1" /> that tracks progress of a <see cref="T:System.Progress`1"/>.
+            </summary>
+        </member>
+        <member name="P:X10D.Reactive.ProgressObservable`1.Observers">
+            <summary>
+                Gets the observers.
+            </summary>
+            <value>The observers.</value>
+        </member>
+        <member name="M:X10D.Reactive.ProgressObservable`1.Subscribe(System.IObserver{`0})">
+            <summary>
+                Subscribes the specified observer to the progress tracker.
+            </summary>
+            <param name="observer">The observer.</param>
+            <returns>An object which can be disposed to unsubscribe from progress tracking.</returns>
+        </member>
         <member name="T:X10D.Reflection.MemberInfoExtensions">
             <summary>
                 Extension methods for <see cref="T:System.Reflection.MemberInfo" />.
