@@ -1,9 +1,4 @@
-﻿#if NET5_0_OR_GREATER
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-#endif
-
-namespace X10D.Collections;
+﻿namespace X10D.Collections;
 
 /// <summary>
 ///     Extension methods for <see cref="Span{T}" /> and <see cref="ReadOnlySpan{T}" />
