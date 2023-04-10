@@ -10,16 +10,14 @@ namespace X10D.Unity.Tests
 {
     public class ComponentTests
     {
-        [UnityTest]
-        public IEnumerator GetComponentsInChildrenOnly_ShouldIgnoreParent()
+        [Test]
+        public void GetComponentsInChildrenOnly_ShouldIgnoreParent()
         {
             var parent = new GameObject();
             var rigidbody = parent.AddComponent<Rigidbody>();
 
             var child = new GameObject();
             child.AddComponent<Rigidbody>();
-
-            yield return null;
 
             Rigidbody[] components = rigidbody.GetComponentsInChildrenOnly<Rigidbody>();
             Assert.That(components, Has.Length.EqualTo(1));
