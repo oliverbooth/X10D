@@ -1,16 +1,16 @@
 #nullable enable
 
-using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
+using Object = UnityEngine.Object;
 
 namespace X10D.Unity.Tests
 {
     public class GameObjectTests
     {
-        [UnityTest]
-        public IEnumerator GetComponentsInChildrenOnly_ShouldIgnoreParent()
+        [Test]
+        public void GetComponentsInChildrenOnly_ShouldIgnoreParent()
         {
             var parent = new GameObject();
             parent.AddComponent<Rigidbody>();
@@ -20,14 +20,16 @@ namespace X10D.Unity.Tests
             child.AddComponent<Rigidbody>();
 
             Rigidbody[] components = parent.GetComponentsInChildrenOnly<Rigidbody>();
-            Assert.That(components.Length, Is.EqualTo(1));
+            Assert.That(components, Has.Length.EqualTo(1));
             Assert.That(child, Is.EqualTo(components[0].gameObject));
 
-            yield break;
+            Object.Destroy(parent);
+            Object.Destroy(child);
         }
 
-        [UnityTest]
-        public IEnumerator LookAt_ShouldRotateSameAsTransform()
+        [Test]
+        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess", Justification = "False positive.")]
+        public void LookAt_ShouldRotateSameAsTransform()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
             var second = new GameObject {transform = {position = Vector3.right, rotation = Quaternion.identity}};
@@ -58,11 +60,12 @@ namespace X10D.Unity.Tests
             first.LookAt(Vector3.right);
             Assert.That(firstTransform.rotation, Is.EqualTo(expected));
 
-            yield break;
+            Object.Destroy(first);
+            Object.Destroy(second);
         }
 
-        [UnityTest]
-        public IEnumerator SetLayerRecursively_ShouldSetLayerRecursively()
+        [Test]
+        public void SetLayerRecursively_ShouldSetLayerRecursively()
         {
             var parent = new GameObject();
             var child = new GameObject();
@@ -82,11 +85,14 @@ namespace X10D.Unity.Tests
             Assert.That(child.layer, Is.EqualTo(layer));
             Assert.That(grandChild.layer, Is.EqualTo(layer));
 
-            yield break;
+            Object.Destroy(parent);
+            Object.Destroy(child);
+            Object.Destroy(grandChild);
         }
 
-        [UnityTest]
-        public IEnumerator SetParent_ShouldSetParent()
+        [Test]
+        [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess", Justification = "False positive.")]
+        public void SetParent_ShouldSetParent()
         {
             var first = new GameObject {transform = {position = Vector3.zero, rotation = Quaternion.identity}};
             var second = new GameObject {transform = {position = Vector3.right, rotation = Quaternion.identity}};
@@ -103,7 +109,8 @@ namespace X10D.Unity.Tests
             second.SetParent(first);
             Assert.That(second.transform.parent, Is.EqualTo(first.transform));
 
-            yield break;
+            Object.Destroy(first);
+            Object.Destroy(second);
         }
     }
 }

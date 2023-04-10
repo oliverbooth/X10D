@@ -15,6 +15,7 @@ public static class GameObjectExtensions
     /// <returns>An array <typeparamref name="T" /> representing the child components.</returns>
     public static T[] GetComponentsInChildrenOnly<T>(this GameObject gameObject)
     {
+        Transform rootTransform = gameObject.transform;
         var components = new List<T>(gameObject.GetComponentsInChildren<T>());
 
         for (var index = 0; index < components.Count; index++)
@@ -26,7 +27,7 @@ public static class GameObjectExtensions
                 continue;
             }
 
-            if (childComponent.transform.parent != gameObject.transform)
+            if (childComponent.transform == rootTransform)
             {
                 components.RemoveAt(index);
                 index--;
