@@ -17,6 +17,7 @@ namespace X10D.Unity.Tests
             var rigidbody = parent.AddComponent<Rigidbody>();
 
             var child = new GameObject();
+            child.transform.SetParent(parent.transform);
             child.AddComponent<Rigidbody>();
 
             Rigidbody[] components = rigidbody.GetComponentsInChildrenOnly<Rigidbody>();
