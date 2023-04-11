@@ -13,8 +13,14 @@ public static class GameObjectExtensions
     /// <param name="gameObject">The game object whose child components to retrieve.</param>
     /// <typeparam name="T">The type of the components to retrieve.</typeparam>
     /// <returns>An array <typeparamref name="T" /> representing the child components.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="gameObject" /> is <see langword="null" />.</exception>
     public static T[] GetComponentsInChildrenOnly<T>(this GameObject gameObject)
     {
+        if (gameObject == null)
+        {
+            throw new ArgumentNullException(nameof(gameObject));
+        }
+
         Transform rootTransform = gameObject.transform;
         var components = new List<T>(gameObject.GetComponentsInChildren<T>());
 
