@@ -17,6 +17,7 @@
             <param name="component">The component whose child components to retrieve.</param>
             <typeparam name="T">The type of the components to retrieve.</typeparam>
             <returns>An array <typeparamref name="T" /> representing the child components.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="component" /> is <see langword="null" />.</exception>
         </member>
         <member name="T:X10D.Unity.DebugUtility">
             <summary>
@@ -2022,6 +2023,7 @@
             </summary>
             <param name="polygon">The polygon whose points to update.</param>
             <param name="point">The point to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolygonExtensions.AddVertices(X10D.Drawing.Polygon,System.Collections.Generic.IEnumerable{UnityEngine.Vector2Int})">
             <summary>
@@ -2029,6 +2031,11 @@
             </summary>
             <param name="polygon">The polygon whose vertices to update.</param>
             <param name="vertices">The vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="polygon" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="vertices" /> is <see langword="null" />.</para>
+            </exception>
         </member>
         <member name="T:X10D.Unity.Drawing.PolygonFExtensions">
             <summary>
@@ -2041,6 +2048,7 @@
             </summary>
             <param name="polygon">The polygon whose vertices to update.</param>
             <param name="vertex">The vertex to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolygonFExtensions.AddVertex(X10D.Drawing.PolygonF,UnityEngine.Vector2)">
             <summary>
@@ -2048,6 +2056,7 @@
             </summary>
             <param name="polygon">The polygon whose vertices to update.</param>
             <param name="vertex">The vertex to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolygonFExtensions.AddVertices(X10D.Drawing.PolygonF,System.Collections.Generic.IEnumerable{UnityEngine.Vector2Int})">
             <summary>
@@ -2055,6 +2064,11 @@
             </summary>
             <param name="polygon">The polygon whose vertices to update.</param>
             <param name="vertices">The vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="polygon" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="vertices" /> is <see langword="null" />.</para>
+            </exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolygonFExtensions.AddVertices(X10D.Drawing.PolygonF,System.Collections.Generic.IEnumerable{UnityEngine.Vector2})">
             <summary>
@@ -2062,6 +2076,11 @@
             </summary>
             <param name="polygon">The polygon whose vertices to update.</param>
             <param name="vertices">The vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="polygon" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="vertices" /> is <see langword="null" />.</para>
+            </exception>
         </member>
         <member name="T:X10D.Unity.Drawing.PolyhedronExtensions">
             <summary>
@@ -2074,6 +2093,7 @@
             </summary>
             <param name="polyhedron">The polyhedron whose vertices to update.</param>
             <param name="vertex">The vertex to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolyhedronExtensions.AddVertex(X10D.Drawing.Polyhedron,UnityEngine.Vector3)">
             <summary>
@@ -2081,6 +2101,7 @@
             </summary>
             <param name="polyhedron">The polyhedron whose vertices to update.</param>
             <param name="vertex">The vertex to add.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolyhedronExtensions.AddVertices(X10D.Drawing.Polyhedron,System.Collections.Generic.IEnumerable{UnityEngine.Vector3Int})">
             <summary>
@@ -2088,6 +2109,11 @@
             </summary>
             <param name="polyhedron">The polyhedron whose vertices to update.</param>
             <param name="vertices">The vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="polyhedron" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="vertices" /> is <see langword="null" />.</para>
+            </exception>
         </member>
         <member name="M:X10D.Unity.Drawing.PolyhedronExtensions.AddVertices(X10D.Drawing.Polyhedron,System.Collections.Generic.IEnumerable{UnityEngine.Vector3})">
             <summary>
@@ -2095,6 +2121,11 @@
             </summary>
             <param name="polyhedron">The polyhedron whose vertices to update.</param>
             <param name="vertices">The vertices to add.</param>
+            <exception cref="T:System.ArgumentNullException">
+                <para><paramref name="polyhedron" /> is <see langword="null" />.</para>
+                -or-
+                <para><paramref name="vertices" /> is <see langword="null" />.</para>
+            </exception>
         </member>
         <member name="T:X10D.Unity.Drawing.RandomExtensions">
             <summary>
@@ -2264,6 +2295,7 @@
             <param name="gameObject">The game object whose child components to retrieve.</param>
             <typeparam name="T">The type of the components to retrieve.</typeparam>
             <returns>An array <typeparamref name="T" /> representing the child components.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="gameObject" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Unity.GameObjectExtensions.LookAt(UnityEngine.GameObject,UnityEngine.GameObject)">
             <summary>
@@ -2903,6 +2935,65 @@
                 <see cref="F:UnityEngine.Vector4.z" /> components are the same as that of <paramref name="vector" />, and whose
                 <see cref="F:UnityEngine.Vector4.w" /> component is <paramref name="w" />.
             </returns>
+        </member>
+        <member name="T:X10D.Unity.RaycastHitExtensions">
+            <summary>
+                Extension methods for <see cref="T:UnityEngine.RaycastHit" />.
+            </summary>
+        </member>
+        <member name="M:X10D.Unity.RaycastHitExtensions.GetComponent``1(UnityEngine.RaycastHit)">
+            <summary>
+                Gets the component of the specified type from the object that was hit by the raycast.
+            </summary>
+            <param name="hit">The raycast hit.</param>
+            <typeparam name="T">The type of the component to retrieve.</typeparam>
+            <returns>
+                The component of the specified type from the object that was hit by the raycast, or <see langword="null" /> if no
+                component of the specified type was found.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.RaycastHitExtensions.GetComponent(UnityEngine.RaycastHit,System.Type)">
+            <summary>
+                Gets the component of the specified type from the object that was hit by the raycast.
+            </summary>
+            <param name="hit">The raycast hit.</param>
+            <param name="componentType">The type of the component to retrieve.</param>
+            <returns>
+                The component of the specified type from the object that was hit by the raycast, or <see langword="null" /> if no
+                component of the specified type was found.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="componentType" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.RaycastHitExtensions.TryGetComponent``1(UnityEngine.RaycastHit,``0@)">
+            <summary>
+                Attempts to get the component of the specified type from the object that was hit by the raycast, and returns a value
+                that indicates whether the operation succeeded.
+            </summary>
+            <param name="hit">The raycast hit.</param>
+            <param name="component">
+                When this method returns, contains the component of the specified type from the object that was hit by the raycast, or
+                <see langword="null" /> if no component of the specified type was found.
+            </param>
+            <typeparam name="T">The type of the component to retrieve.</typeparam>
+            <returns>
+                <see langword="true" /> if the component of the specified type was found; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:X10D.Unity.RaycastHitExtensions.TryGetComponent(UnityEngine.RaycastHit,System.Type,UnityEngine.Component@)">
+            <summary>
+                Attempts to get the component of the specified type from the object that was hit by the raycast, and returns a value
+                that indicates whether the operation succeeded.
+            </summary>
+            <param name="hit">The raycast hit.</param>
+            <param name="componentType">The type of the component to retrieve.</param>
+            <param name="component">
+                When this method returns, contains the component of the specified type from the object that was hit by the raycast, or
+                <see langword="null" /> if no component of the specified type was found.
+            </param>
+            <returns>
+                <see langword="true" /> if the component of the specified type was found; otherwise, <see langword="false" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="componentType" /> is <see langword="null" />.</exception>
         </member>
         <member name="T:X10D.Unity.Singleton`1">
             <summary>
