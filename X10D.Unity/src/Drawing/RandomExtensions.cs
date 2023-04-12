@@ -2,6 +2,8 @@
 using X10D.Core;
 using Random = System.Random;
 
+#pragma warning disable CA5394
+
 namespace X10D.Unity.Drawing;
 
 /// <summary>

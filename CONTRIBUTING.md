@@ -9,6 +9,10 @@ This project uses C# 11.0 language features where feasible, and adheres to Style
 There is an `.editorconfig` included in this repository. For quick and painless pull requests, ensure that the analyzer does not
 throw warnings.
 
+Please ensure that you follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+specification, as the GitHub release for this project is automatically generated from the commit history, and formatted using the
+convetional commits specification.
+
 ### Code style
 
 Below are a few pointers to which you may refer, but keep in mind this is not an exhaustive list:
