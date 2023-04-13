@@ -20,14 +20,10 @@ public static class DiscordClientExtensions
     /// <exception cref="ArgumentNullException"><paramref name="client" /> is <see langword="null" />.</exception>
     public static void AutoJoinThreads(this DiscordClient client, bool rejoinIfRemoved = true)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (client is null)
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         client.GuildAvailable += (_, args) => args.Guild.JoinAllThreadsAsync();
         client.ThreadCreated += (_, args) => args.Thread.JoinThreadAsync();
@@ -53,14 +49,10 @@ public static class DiscordClientExtensions
     /// <exception cref="ArgumentNullException"><paramref name="client" /> is <see langword="null" />.</exception>
     public static async Task<DiscordUser?> GetUserOrNullAsync(this DiscordClient client, ulong userId)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (client is null)
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         try
         {

@@ -33,14 +33,10 @@ public static class StreamExtensions
     public static byte[] GetHash<T>(this Stream stream)
         where T : HashAlgorithm
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
         if (!stream.CanRead)
         {
@@ -87,14 +83,10 @@ public static class StreamExtensions
     /// <returns>A decimal value read from the stream.</returns>
     public static decimal ReadDecimal(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -151,14 +143,10 @@ public static class StreamExtensions
     /// <returns>A double-precision floating point value read from the stream.</returns>
     public static double ReadDouble(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -211,14 +199,10 @@ public static class StreamExtensions
     /// <returns>An two-byte unsigned integer read from the stream.</returns>
     public static short ReadInt16(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -265,14 +249,10 @@ public static class StreamExtensions
     /// <returns>An four-byte unsigned integer read from the stream.</returns>
     public static int ReadInt32(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -319,14 +299,10 @@ public static class StreamExtensions
     /// <returns>An eight-byte unsigned integer read from the stream.</returns>
     public static long ReadInt64(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -373,14 +349,10 @@ public static class StreamExtensions
     /// <returns>A single-precision floating point value read from the stream.</returns>
     public static float ReadSingle(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -435,14 +407,10 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static ushort ReadUInt16(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -491,14 +459,10 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static uint ReadUInt32(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -547,14 +511,10 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static ulong ReadUInt64(this Stream stream, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -607,14 +567,10 @@ public static class StreamExtensions
     public static bool TryWriteHash<T>(this Stream stream, Span<byte> destination, out int bytesWritten)
         where T : HashAlgorithm
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
         if (!stream.CanRead)
         {
@@ -671,14 +627,10 @@ public static class StreamExtensions
     /// <returns>The number of bytes written to the stream.</returns>
     public static int Write(this Stream stream, short value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -735,14 +687,10 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, int value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -800,14 +748,10 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, long value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -867,14 +811,10 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ushort value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -934,14 +874,10 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static int Write(this Stream stream, uint value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -1001,14 +937,10 @@ public static class StreamExtensions
     [CLSCompliant(false)]
     public static int Write(this Stream stream, ulong value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -1052,14 +984,10 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, float value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -1135,14 +1063,10 @@ public static class StreamExtensions
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
     public static int Write(this Stream stream, double value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))
@@ -1219,14 +1143,10 @@ public static class StreamExtensions
     [ExcludeFromCodeCoverage]
     public static int Write(this Stream stream, decimal value, Endianness endianness)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(stream);
-#else
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
 #if NET5_0_OR_GREATER
         if (!Enum.IsDefined(endianness))

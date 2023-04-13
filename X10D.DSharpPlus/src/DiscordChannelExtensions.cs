@@ -19,14 +19,10 @@ public static class DiscordChannelExtensions
     /// <exception cref="ArgumentNullException"><paramref name="channel" /> is <see langword="null" />.</exception>
     public static DiscordChannel? GetCategory(this DiscordChannel channel)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(channel);
-#else
         if (channel is null)
         {
             throw new ArgumentNullException(nameof(channel));
         }
-#endif
 
         while (true)
         {
@@ -60,10 +56,6 @@ public static class DiscordChannelExtensions
     /// </exception>
     public static async Task<DiscordChannel> NormalizeClientAsync(this DiscordChannel channel, DiscordClient client)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(channel);
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (channel is null)
         {
             throw new ArgumentNullException(nameof(channel));
@@ -73,7 +65,6 @@ public static class DiscordChannelExtensions
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         return await client.GetChannelAsync(channel.Id).ConfigureAwait(false);
     }

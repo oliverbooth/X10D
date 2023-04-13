@@ -23,14 +23,10 @@ public static class DiscordEmbedBuilderExtensions
         T? value,
         bool inline = false)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-#else
         if (builder is null)
         {
             throw new ArgumentNullException(nameof(builder));
         }
-#endif
 
         return builder.AddField(name, value?.ToString(), inline);
     }
@@ -53,14 +49,10 @@ public static class DiscordEmbedBuilderExtensions
         T? value,
         bool inline = false)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-#else
         if (builder is null)
         {
             throw new ArgumentNullException(nameof(builder));
         }
-#endif
 
         if (condition)
         {
@@ -92,10 +84,6 @@ public static class DiscordEmbedBuilderExtensions
         T? value,
         bool inline = false)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (builder is null)
         {
             throw new ArgumentNullException(nameof(builder));
@@ -105,7 +93,6 @@ public static class DiscordEmbedBuilderExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (predicate.Invoke())
         {
@@ -139,11 +126,6 @@ public static class DiscordEmbedBuilderExtensions
         Func<T?> valueFactory,
         bool inline = false)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-        ArgumentNullException.ThrowIfNull(predicate);
-        ArgumentNullException.ThrowIfNull(valueFactory);
-#else
         if (builder is null)
         {
             throw new ArgumentNullException(nameof(builder));
@@ -158,7 +140,6 @@ public static class DiscordEmbedBuilderExtensions
         {
             throw new ArgumentNullException(nameof(valueFactory));
         }
-#endif
 
         if (predicate.Invoke())
         {
@@ -190,19 +171,15 @@ public static class DiscordEmbedBuilderExtensions
         Func<T?> valueFactory,
         bool inline = false)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-        ArgumentNullException.ThrowIfNull(valueFactory);
-#else
         if (builder is null)
         {
             throw new ArgumentNullException(nameof(builder));
         }
+
         if (valueFactory is null)
         {
             throw new ArgumentNullException(nameof(valueFactory));
         }
-#endif
 
         if (condition)
         {
@@ -220,19 +197,15 @@ public static class DiscordEmbedBuilderExtensions
     /// <returns>The current instance of <see cref="DiscordEmbedBuilder" />.</returns>
     public static DiscordEmbedBuilder WithAuthor(this DiscordEmbedBuilder builder, DiscordUser user)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-        ArgumentNullException.ThrowIfNull(user);
-#else
         if (builder is null)
         {
             throw new ArgumentNullException(nameof(builder));
         }
+
         if (user is null)
         {
             throw new ArgumentNullException(nameof(user));
         }
-#endif
 
         return builder.WithAuthor(user.GetUsernameWithDiscriminator(), iconUrl: user.AvatarUrl);
     }

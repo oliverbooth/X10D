@@ -17,14 +17,10 @@ public static class DiscordMessageExtensions
     /// <exception cref="ArgumentNullException"><paramref name="message" /> is <see langword="null" />.</exception>
     public static async Task DeleteAfterAsync(this DiscordMessage message, TimeSpan delay, string? reason = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(message);
-#else
         if (message is null)
         {
             throw new ArgumentNullException(nameof(message));
         }
-#endif
 
         await Task.Delay(delay).ConfigureAwait(false);
         await message.DeleteAsync(reason).ConfigureAwait(false);
@@ -39,14 +35,10 @@ public static class DiscordMessageExtensions
     /// <exception cref="ArgumentNullException"><paramref name="task" /> is <see langword="null" />.</exception>
     public static async Task DeleteAfterAsync(this Task<DiscordMessage> task, TimeSpan delay, string? reason = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(task);
-#else
         if (task is null)
         {
             throw new ArgumentNullException(nameof(task));
         }
-#endif
 
         DiscordMessage message = await task.ConfigureAwait(false);
         await message.DeleteAfterAsync(delay, reason).ConfigureAwait(false);
@@ -68,10 +60,6 @@ public static class DiscordMessageExtensions
     /// </exception>
     public static async Task<DiscordMessage> NormalizeClientAsync(this DiscordMessage message, DiscordClient client)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(message);
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (message is null)
         {
             throw new ArgumentNullException(nameof(message));
@@ -81,7 +69,6 @@ public static class DiscordMessageExtensions
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         DiscordChannel channel = await message.Channel.NormalizeClientAsync(client).ConfigureAwait(false);
         return await channel.GetMessageAsync(message.Id).ConfigureAwait(false);

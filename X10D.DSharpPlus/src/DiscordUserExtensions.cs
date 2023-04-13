@@ -25,10 +25,6 @@ public static class DiscordUserExtensions
     /// </exception>
     public static async Task<DiscordMember?> GetAsMemberOfAsync(this DiscordUser user, DiscordGuild guild)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(user);
-        ArgumentNullException.ThrowIfNull(guild);
-#else
         if (user is null)
         {
             throw new ArgumentNullException(nameof(user));
@@ -38,7 +34,6 @@ public static class DiscordUserExtensions
         {
             throw new ArgumentNullException(nameof(guild));
         }
-#endif
 
         if (user is DiscordMember member && member.Guild == guild)
         {
@@ -68,14 +63,10 @@ public static class DiscordUserExtensions
     /// <exception cref="ArgumentNullException"><paramref name="user" /> is <see langword="null" />.</exception>
     public static string GetUsernameWithDiscriminator(this DiscordUser user)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(user);
-#else
         if (user is null)
         {
             throw new ArgumentNullException(nameof(user));
         }
-#endif
 
         return $"{user.Username}#{user.Discriminator}";
     }
@@ -91,10 +82,6 @@ public static class DiscordUserExtensions
     /// </returns>
     public static async Task<bool> IsInGuildAsync(this DiscordUser user, DiscordGuild guild)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(user);
-        ArgumentNullException.ThrowIfNull(guild);
-#else
         if (user is null)
         {
             throw new ArgumentNullException(nameof(user));
@@ -104,7 +91,6 @@ public static class DiscordUserExtensions
         {
             throw new ArgumentNullException(nameof(guild));
         }
-#endif
 
         if (guild.Members.TryGetValue(user.Id, out _))
         {
@@ -138,10 +124,6 @@ public static class DiscordUserExtensions
     /// </exception>
     public static async Task<DiscordUser> NormalizeClientAsync(this DiscordUser user, DiscordClient client)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(user);
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (user is null)
         {
             throw new ArgumentNullException(nameof(user));
@@ -151,7 +133,6 @@ public static class DiscordUserExtensions
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         return await client.GetUserAsync(user.Id).ConfigureAwait(false);
     }

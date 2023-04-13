@@ -17,23 +17,8 @@ internal readonly struct ObservableDisposer<T> : IDisposable
     /// <param name="additionalAction">The additional action to run on dispose.</param>
     public ObservableDisposer(HashSet<IObserver<T>> observers, IObserver<T> observer, Action? additionalAction)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(observers);
-        ArgumentNullException.ThrowIfNull(observer);
-#else
-        if (observers is null)
-        {
-            throw new ArgumentNullException(nameof(observers));
-        }
-
-        if (observer is null)
-        {
-            throw new ArgumentNullException(nameof(observer));
-        }
-#endif
-
-        _observers = observers;
-        _observer = observer;
+        _observers = observers ?? throw new ArgumentNullException(nameof(observers));
+        _observer = observer ?? throw new ArgumentNullException(nameof(observer));
         _additionalAction = additionalAction;
     }
 

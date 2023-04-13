@@ -29,14 +29,10 @@ public static class FileInfoExtensions
     public static byte[] GetHash<T>(this FileInfo value)
         where T : HashAlgorithm
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         using FileStream stream = value.OpenRead();
         return stream.GetHash<T>();
@@ -69,14 +65,10 @@ public static class FileInfoExtensions
     public static bool TryWriteHash<T>(this FileInfo value, Span<byte> destination, out int bytesWritten)
         where T : HashAlgorithm
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         using FileStream stream = value.OpenRead();
         return stream.TryWriteHash<T>(destination, out bytesWritten);

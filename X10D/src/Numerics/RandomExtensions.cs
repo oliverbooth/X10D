@@ -21,14 +21,10 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static Quaternion NextRotation(this Random random)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(random);
-#else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
 
         int seed = random.Next();
         var seededRandom = new Random(seed);
@@ -48,14 +44,10 @@ public static class RandomExtensions
     /// <exception cref="ArgumentNullException"><paramref name="random" /> is <see langword="null" />.</exception>
     public static Quaternion NextRotationUniform(this Random random)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(random);
-#else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
 
         int seed = random.Next();
         var seededRandom = new Random(seed);
@@ -84,14 +76,10 @@ public static class RandomExtensions
     /// </returns>
     public static Vector2 NextUnitVector2(this Random random)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(random);
-#else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
 
         // no need to construct a seeded random here, since we only call Next once
 
@@ -112,14 +100,10 @@ public static class RandomExtensions
     /// </returns>
     public static Vector3 NextUnitVector3(this Random random)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(random);
-#else
         if (random is null)
         {
             throw new ArgumentNullException(nameof(random));
         }
-#endif
 
         int seed = random.Next();
         var seededRandom = new Random(seed);

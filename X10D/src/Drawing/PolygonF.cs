@@ -25,14 +25,10 @@ public class PolygonF
     /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public PolygonF(PolygonF polygon)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(polygon);
-#else
         if (polygon is null)
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-#endif
         _vertices = new List<PointF>();
         for (var index = 0; index < polygon._vertices.Count; index++)
         {
@@ -48,14 +44,10 @@ public class PolygonF
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public PolygonF(IEnumerable<Vector2> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         _vertices = new List<PointF>();
         foreach (Vector2 vertex in vertices)
@@ -71,14 +63,10 @@ public class PolygonF
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public PolygonF(IEnumerable<PointF> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         _vertices = new List<PointF>(vertices);
     }
@@ -202,14 +190,10 @@ public class PolygonF
     /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public static PolygonF FromPolygon(Polygon polygon)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(polygon);
-#else
         if (polygon is null)
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-#endif
 
         var vertices = new List<PointF>();
 
@@ -246,14 +230,10 @@ public class PolygonF
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public void AddVertices(IEnumerable<PointF> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         foreach (PointF vertex in vertices)
         {
@@ -268,14 +248,10 @@ public class PolygonF
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public void AddVertices(IEnumerable<Vector2> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         foreach (Vector2 vertex in vertices)
         {
