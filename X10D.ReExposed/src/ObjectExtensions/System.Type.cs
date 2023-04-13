@@ -5,14 +5,14 @@
 public static partial class ObjectExtensions
 {
     /// <inheritdoc cref="Type.GetTypeArray(object[])"/>
-    public static Type[] GetTypeArray(this object[] values)
+    public static Type[] GetTypeArray(this object[] args)
     {
-        return Type.GetTypeArray(values);
+        return Type.GetTypeArray(args);
     }
 
     /// <inheritdoc cref="Type.GetTypeHandle(object)"/>
-    public static RuntimeTypeHandle GetTypeHandle(this object value)
+    public static RuntimeTypeHandle GetTypeHandle(this object o)
     {
-        return Type.GetTypeHandle(value);
+        return Type.GetTypeHandle(o);
     }
 }

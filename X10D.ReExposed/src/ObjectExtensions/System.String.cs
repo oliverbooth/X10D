@@ -5,26 +5,26 @@
 public static partial class ObjectExtensions
 {
     /// <inheritdoc cref="string.Concat(object)"/>
-    public static string Concat(this object value)
+    public static string Concat(this object? arg0)
     {
-        return string.Concat(value);
+        return string.Concat(arg0);
     }
 
     /// <inheritdoc cref="string.Concat(object,object)"/>
-    public static string Concat(this object value, object value2)
+    public static string Concat(this object? arg0, object? arg1)
     {
-        return string.Concat(value, value2);
+        return string.Concat(arg0, arg1);
     }
 
     /// <inheritdoc cref="string.Concat(object,object,object)"/>
-    public static string Concat(this object value, object value2, object value3)
+    public static string Concat(this object? arg0, object? arg1, object? arg2)
     {
-        return string.Concat(value, value2, value3);
+        return string.Concat(arg0, arg1, arg2);
     }
 
     /// <inheritdoc cref="string.Concat(object[])"/>
-    public static string Concat(this object?[] values)
+    public static string Concat(this object?[] args)
     {
-        return string.Concat(values);
+        return string.Concat(args);
     }
 }
