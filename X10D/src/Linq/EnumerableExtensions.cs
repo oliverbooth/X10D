@@ -40,6 +40,31 @@ public static class EnumerableExtensions
     }
 
     /// <summary>
+    ///     Filters a sequence of values by omitting elements that match a specified value.
+    /// </summary>
+    /// <param name="source">An <see cref="IEnumerable{T}" /> to filter.</param>
+    /// <param name="item">The value to omit.</param>
+    /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+    /// <returns>
+    ///     An <see cref="IEnumerable{T}" /> that contains elements from the input sequence that do not match the specified
+    ///     value.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    public static IEnumerable<TSource> Except<TSource>(this IEnumerable<TSource> source, TSource item)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+#endif
+
+        return source.Where(i => !Equals(i, item));
+    }
+
+    /// <summary>
     ///     Returns the minimum and maximum values in a sequence of values.
     /// </summary>
     /// <param name="source">A sequence of values to determine the minimum and maximum values of.</param>
