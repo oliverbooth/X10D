@@ -5,34 +5,32 @@
 public static partial class CharExtensions
 {
     /// <inheritdoc cref="long.Parse(ReadOnlySpan{char},NumberStyles,IFormatProvider)"/>
-    public static long ToInt64(this ReadOnlySpan<char> chars,
-                               NumberStyles style = NumberStyles.Integer,
-                               IFormatProvider? formatProvider = null)
+    public static long ToInt64(this ReadOnlySpan<char> s, NumberStyles style = NumberStyles.Integer, IFormatProvider? provider = null)
     {
-        return long.Parse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return long.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="long.Parse(ReadOnlySpan{char},NumberStyles,IFormatProvider)"/>
-    public static long ToInt64(this Span<char> chars, NumberStyles style = NumberStyles.Integer, IFormatProvider? formatProvider = null)
+    public static long ToInt64(this Span<char> s, NumberStyles style = NumberStyles.Integer, IFormatProvider? provider = null)
     {
-        return long.Parse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return long.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="long.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out long)"/>
-    public static bool TryToInt64(this ReadOnlySpan<char> chars,
-                                  out long result,
-                                  NumberStyles style = NumberStyles.Integer,
-                                  IFormatProvider? formatProvider = null)
+    public static bool TryToInt64(this ReadOnlySpan<char> s,
+                                  NumberStyles style,
+                                  IFormatProvider? provider,
+                                  out long result)
     {
-        return long.TryParse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return long.TryParse(s, style, provider, out result);
     }
 
     /// <inheritdoc cref="long.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out long)"/>
-    public static bool TryToInt64(this Span<char> chars,
-                                  out long result,
-                                  NumberStyles style = NumberStyles.Integer,
-                                  IFormatProvider? formatProvider = null)
+    public static bool TryToInt64(this Span<char> s,
+                                  NumberStyles style,
+                                  IFormatProvider? provider,
+                                  out long result)
     {
-        return long.TryParse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return long.TryParse(s, style, provider, out result);
     }
 }

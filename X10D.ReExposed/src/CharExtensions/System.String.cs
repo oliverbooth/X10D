@@ -5,39 +5,39 @@
 public static partial class CharExtensions
 {
     /// <inheritdoc cref="string.Concat(ReadOnlySpan{char},ReadOnlySpan{char})"/>
-    public static string Concat(this ReadOnlySpan<char> chars, ReadOnlySpan<char> chars2)
+    public static string Concat(this ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
     {
-        return string.Concat(chars, chars2);
+        return string.Concat(str0, str1);
     }
 
     /// <inheritdoc cref="string.Concat(ReadOnlySpan{char},ReadOnlySpan{char})"/>
-    public static string Concat(this Span<char> chars, ReadOnlySpan<char> chars2)
+    public static string Concat(this Span<char> str0, ReadOnlySpan<char> str1)
     {
-        return string.Concat(chars, chars2);
+        return string.Concat(str0, str1);
     }
 
     /// <inheritdoc cref="string.Concat(ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{char})"/>
-    public static string Concat(this ReadOnlySpan<char> chars, ReadOnlySpan<char> chars2, ReadOnlySpan<char> chars3)
+    public static string Concat(this ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
     {
-        return string.Concat(chars, chars2, chars3);
+        return string.Concat(str0, str1, str2);
     }
 
     /// <inheritdoc cref="string.Concat(ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{char})"/>
-    public static string Concat(this Span<char> chars, ReadOnlySpan<char> chars2, ReadOnlySpan<char> chars3)
+    public static string Concat(this Span<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
     {
-        return string.Concat(chars, chars2, chars3);
+        return string.Concat(str0, str1, str2);
     }
 
     /// <inheritdoc cref="string.Concat(ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{char})"/>
-    public static string Concat(this ReadOnlySpan<char> chars, ReadOnlySpan<char> chars2, ReadOnlySpan<char> chars3, ReadOnlySpan<char> chars4)
+    public static string Concat(this ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
     {
-        return string.Concat(chars, chars2, chars3, chars4);
+        return string.Concat(str0, str1, str2, str3);
     }
 
     /// <inheritdoc cref="string.Concat(ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{char},ReadOnlySpan{char})"/>
-    public static string Concat(this Span<char> chars, ReadOnlySpan<char> chars2, ReadOnlySpan<char> chars3, ReadOnlySpan<char> chars4)
+    public static string Concat(this Span<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
     {
-        return string.Concat(chars, chars2, chars3, chars4);
+        return string.Concat(str0, str1, str2, str3);
     }
 
     /// <inheritdoc cref="string.GetHashCode(ReadOnlySpan{char})"/>

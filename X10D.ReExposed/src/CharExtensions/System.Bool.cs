@@ -5,26 +5,26 @@
 public static partial class CharExtensions
 {
     /// <inheritdoc cref="bool.Parse(ReadOnlySpan{char})"/>
-    public static bool ToBool(this ReadOnlySpan<char> chars)
+    public static bool ToBool(this ReadOnlySpan<char> value)
     {
-        return bool.Parse(chars);
+        return bool.Parse(value);
     }
 
     /// <inheritdoc cref="bool.Parse(ReadOnlySpan{char})"/>
-    public static bool ToBool(this Span<char> chars)
+    public static bool ToBool(this Span<char> value)
     {
-        return bool.Parse(chars);
+        return bool.Parse(value);
     }
 
     /// <inheritdoc cref="bool.TryParse(ReadOnlySpan{char},out bool)"/>
-    public static bool TryToBool(this ReadOnlySpan<char> chars, out bool result)
+    public static bool TryToBool(this ReadOnlySpan<char> value, out bool result)
     {
-        return bool.TryParse(chars, out result);
+        return bool.TryParse(value, out result);
     }
 
     /// <inheritdoc cref="bool.TryParse(ReadOnlySpan{char},out bool)"/>
-    public static bool TryToBool(this Span<char> chars, out bool result)
+    public static bool TryToBool(this Span<char> value, out bool result)
     {
-        return bool.TryParse(chars, out result);
+        return bool.TryParse(value, out result);
     }
 }

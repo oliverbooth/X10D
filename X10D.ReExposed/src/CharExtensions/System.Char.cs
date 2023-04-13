@@ -11,81 +11,81 @@ public static partial class CharExtensions
     }
 
     /// <inheritdoc cref="char.GetNumericValue(char)"/>
-    public static double GetNumericValue(this char value)
+    public static double GetNumericValue(this char c)
     {
-        return char.GetNumericValue(value);
+        return char.GetNumericValue(c);
     }
 
     /// <inheritdoc cref="char.GetUnicodeCategory(char)"/>
-    public static UnicodeCategory GetUnicodeCategory(this char value)
+    public static UnicodeCategory GetUnicodeCategory(this char c)
     {
-        return char.GetUnicodeCategory(value);
+        return char.GetUnicodeCategory(c);
     }
 
     /// <inheritdoc cref="char.IsControl(char)"/>
-    public static bool IsControl(this char value)
+    public static bool IsControl(this char c)
     {
-        return char.IsControl(value);
+        return char.IsControl(c);
     }
 
     /// <inheritdoc cref="char.IsDigit(char)"/>
-    public static bool IsDigit(this char value)
+    public static bool IsDigit(this char c)
     {
-        return char.IsDigit(value);
+        return char.IsDigit(c);
     }
 
     /// <inheritdoc cref="char.IsHighSurrogate(char)"/>
-    public static bool IsHighSurrogate(this char value)
+    public static bool IsHighSurrogate(this char c)
     {
-        return char.IsHighSurrogate(value);
+        return char.IsHighSurrogate(c);
     }
 
     /// <inheritdoc cref="char.IsLetter(char)"/>
-    public static bool IsLetter(this char value)
+    public static bool IsLetter(this char c)
     {
-        return char.IsLetter(value);
+        return char.IsLetter(c);
     }
 
     /// <inheritdoc cref="char.IsLetterOrDigit(char)"/>
-    public static bool IsLetterOrDigit(this char value)
+    public static bool IsLetterOrDigit(this char c)
     {
-        return char.IsLetterOrDigit(value);
+        return char.IsLetterOrDigit(c);
     }
 
     /// <inheritdoc cref="char.IsLower(char)"/>
-    public static bool IsLower(this char value)
+    public static bool IsLower(this char c)
     {
-        return char.IsLower(value);
+        return char.IsLower(c);
     }
 
     /// <inheritdoc cref="char.IsLowSurrogate(char)"/>
-    public static bool IsLowSurrogate(this char value)
+    public static bool IsLowSurrogate(this char c)
     {
-        return char.IsLowSurrogate(value);
+        return char.IsLowSurrogate(c);
     }
 
     /// <inheritdoc cref="char.IsNumber(char)"/>
-    public static bool IsNumber(this char value)
+    public static bool IsNumber(this char c)
     {
-        return char.IsNumber(value);
+        return char.IsNumber(c);
     }
 
     /// <inheritdoc cref="char.IsPunctuation(char)"/>
-    public static bool IsPunctuation(this char value)
+    public static bool IsPunctuation(this char c)
     {
-        return char.IsPunctuation(value);
+        return char.IsPunctuation(c);
     }
 
     /// <inheritdoc cref="char.IsSeparator(char)"/>
-    public static bool IsSeparator(this char value)
+    public static bool IsSeparator(this char c)
     {
-        return char.IsSeparator(value);
+        return char.IsSeparator(c);
     }
 
     /// <inheritdoc cref="char.IsSurrogate(char)"/>
-    public static bool IsSurrogate(this char value)
+    public static bool IsSurrogate(this char c)
     {
-        return char.IsSurrogate(value);
+        return char.IsSurrogate(c);
     }
 
     /// <inheritdoc cref="char.IsSurrogatePair(char,char)"/>
@@ -95,44 +95,56 @@ public static partial class CharExtensions
     }
 
     /// <inheritdoc cref="char.IsSymbol(char)"/>
-    public static bool IsSymbol(this char value)
+    public static bool IsSymbol(this char c)
     {
-        return char.IsSymbol(value);
+        return char.IsSymbol(c);
     }
 
     /// <inheritdoc cref="char.IsUpper(char)"/>
-    public static bool IsUpper(this char value)
+    public static bool IsUpper(this char c)
     {
-        return char.IsUpper(value);
+        return char.IsUpper(c);
     }
 
     /// <inheritdoc cref="char.IsWhiteSpace(char)"/>
-    public static bool IsWhiteSpace(this char value)
+    public static bool IsWhiteSpace(this char c)
     {
-        return char.IsWhiteSpace(value);
+        return char.IsWhiteSpace(c);
+    }
+
+    /// <inheritdoc cref="char.ToLower(char)"/>
+    public static char ToLower(this char c)
+    {
+        return char.ToLower(c);
     }
 
     /// <inheritdoc cref="char.ToLower(char,CultureInfo)"/>
-    public static char ToLower(this char value, CultureInfo? culture = null)
+    public static char ToLower(this char c, CultureInfo culture)
     {
-        return char.ToLower(value, culture ?? CultureInfo.CurrentCulture);
+        return char.ToLower(c, culture);
     }
 
     /// <inheritdoc cref="char.ToLowerInvariant(char)"/>
-    public static char ToLowerInvariant(this char value)
+    public static char ToLowerInvariant(this char c)
     {
-        return char.ToLowerInvariant(value);
+        return char.ToLowerInvariant(c);
+    }
+
+    /// <inheritdoc cref="char.ToUpper(char)"/>
+    public static char ToUpper(this char c)
+    {
+        return char.ToUpper(c);
     }
 
     /// <inheritdoc cref="char.ToUpper(char,CultureInfo)"/>
-    public static char ToUpper(this char value, CultureInfo? culture = null)
+    public static char ToUpper(this char c, CultureInfo culture)
     {
-        return char.ToUpper(value, culture ?? CultureInfo.CurrentCulture);
+        return char.ToUpper(c, culture);
     }
 
     /// <inheritdoc cref="char.ToUpperInvariant(char)"/>
-    public static char ToUpperInvariant(this char value)
+    public static char ToUpperInvariant(this char c)
     {
-        return char.ToUpperInvariant(value);
+        return char.ToUpperInvariant(c);
     }
 }

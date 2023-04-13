@@ -5,36 +5,36 @@
 public static partial class CharExtensions
 {
     /// <inheritdoc cref="double.Parse(ReadOnlySpan{char},NumberStyles,IFormatProvider)"/>
-    public static double ToDouble(this ReadOnlySpan<char> chars,
-                                  NumberStyles style = NumberStyles.Float | NumberStyles.AllowThousands,
-                                  IFormatProvider? formatProvider = null)
+    public static double ToDouble(this ReadOnlySpan<char> s,
+                                  NumberStyles style = NumberStyles.Number,
+                                  IFormatProvider? provider = null)
     {
-        return double.Parse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return double.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="double.Parse(ReadOnlySpan{char},NumberStyles,IFormatProvider)"/>
-    public static double ToDouble(this Span<char> chars,
-                                  NumberStyles style = NumberStyles.Float | NumberStyles.AllowThousands,
-                                  IFormatProvider? formatProvider = null)
+    public static double ToDouble(this Span<char> s,
+                                  NumberStyles style = NumberStyles.Number,
+                                  IFormatProvider? provider = null)
     {
-        return double.Parse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return double.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="double.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out double)"/>
-    public static bool TryToSingle(this ReadOnlySpan<char> chars,
-                                   out double result,
-                                   NumberStyles style = NumberStyles.Float | NumberStyles.AllowThousands,
-                                   IFormatProvider? formatProvider = null)
+    public static bool TryToDouble(ReadOnlySpan<char> s,
+                                   NumberStyles style,
+                                   IFormatProvider? provider,
+                                   out double result)
     {
-        return double.TryParse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return double.TryParse(s, style, provider, out result);
     }
 
     /// <inheritdoc cref="double.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out double)"/>
-    public static bool TryToSingle(this Span<char> chars,
-                                   out double result,
-                                   NumberStyles style = NumberStyles.Float | NumberStyles.AllowThousands,
-                                   IFormatProvider? formatProvider = null)
+    public static bool TryToDouble(Span<char> s,
+                                   NumberStyles style,
+                                   IFormatProvider? provider,
+                                   out double result)
     {
-        return double.TryParse(chars, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return double.TryParse(s, style, provider, out result);
     }
 }
