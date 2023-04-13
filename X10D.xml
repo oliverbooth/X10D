@@ -564,7 +564,9 @@
             <returns>
                 An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains elements from the input sequence that do not satisfy the condition.
             </returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+            </exception>
         </member>
         <member name="M:X10D.Collections.EnumerableExtensions.WhereNotNull``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -577,6 +579,7 @@
                 An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains elements from the input sequence that are not <see langword="null" />
                 (<see langword="Nothing" /> in Visual Basic).
             </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
         </member>
         <member name="T:X10D.Collections.Int16Extensions">
             <summary>
@@ -5862,6 +5865,19 @@
             <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
             <returns>
                 An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains the concatenated elements of the input sequence, and the specified
+                value.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Linq.EnumerableExtensions.Except``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+                Filters a sequence of values by omitting elements that match a specified value.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to filter.</param>
+            <param name="item">The value to omit.</param>
+            <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+            <returns>
+                An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains elements from the input sequence that do not match the specified
                 value.
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
