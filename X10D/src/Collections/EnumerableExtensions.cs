@@ -349,7 +349,9 @@ public static class EnumerableExtensions
     /// <returns>
     ///     An <see cref="IEnumerable{T}" /> that contains elements from the input sequence that do not satisfy the condition.
     /// </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+    /// </exception>
     [Pure]
     public static IEnumerable<TSource> WhereNot<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
@@ -381,6 +383,7 @@ public static class EnumerableExtensions
     ///     An <see cref="IEnumerable{T}" /> that contains elements from the input sequence that are not <see langword="null" />
     ///     (<see langword="Nothing" /> in Visual Basic).
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static IEnumerable<TSource> WhereNotNull<TSource>(this IEnumerable<TSource?> source)
     {
 #if NET6_0_OR_GREATER
