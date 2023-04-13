@@ -26,7 +26,7 @@ To install X10D in Unity, follow the steps blow:
 
 The [upm](https://github.com/oliverbooth/X10D/tree/upm) branch contains the latest nightly - that is the bleeding edge version of X10D.
 If you'd like to remain on a stable release, specify a commit hash after the `#` instead of `upm`.
-The latest current stable is 3.1.0, which is commit [9f3b09661b09e83690318370eea808e70dd4a72c](https://github.com/oliverbooth/X10D/commit/9f3b09661b09e83690318370eea808e70dd4a72c).
+The latest current stable is 3.2.0, which is commit [55898d9e70228380b2d039c55e36d89cfe8a0fa2](https://github.com/oliverbooth/X10D/commit/55898d9e70228380b2d039c55e36d89cfe8a0fa2).
 Keep in mind that referencing a specific commit rather than the `upm` branch will prevent the auto-updater in Unity from detecting new versions. 
 
 ## Contributing
