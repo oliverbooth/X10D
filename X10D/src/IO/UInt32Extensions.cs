@@ -18,7 +18,7 @@ public static class UInt32Extensions
     public static byte[] GetBytes(this uint value)
     {
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer.ToArray();
     }
 
@@ -34,17 +34,6 @@ public static class UInt32Extensions
         Span<byte> buffer = stackalloc byte[4];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
-    }
-
-    /// <summary>
-    ///     Converts the current 32-bit unsigned integer into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="uint" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="uint" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this uint value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

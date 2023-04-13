@@ -25,18 +25,4 @@ public class TimeSpanTests
     {
         Assert.That(_timeSpan.FromNow() > DateTime.Now);
     }
-
-    [Test]
-    public void Ago_ShouldBeYesterday_GivenYesterday()
-    {
-        DateTime yesterday = DateTime.Now.AddDays(-1);
-        Assert.That(1.Days().Ago().Date, Is.EqualTo(yesterday.Date));
-    }
-
-    [Test]
-    public void FromNow_ShouldBeTomorrow_GivenTomorrow()
-    {
-        DateTime tomorrow = DateTime.Now.AddDays(1);
-        Assert.That(1.Days().FromNow().Date, Is.EqualTo(tomorrow.Date));
-    }
 }

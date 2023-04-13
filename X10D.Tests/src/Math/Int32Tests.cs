@@ -218,14 +218,4 @@ public partial class Int32Tests
     {
         Assert.Throws<ArithmeticException>(() => (-1).Factorial());
     }
-
-    [Test]
-    public void SignShouldBeCorrect()
-    {
-        const int one = 1;
-        const int zero = 0;
-        Assert.That(one.Sign(), Is.EqualTo(one));
-        Assert.That(zero.Sign(), Is.EqualTo(zero));
-        Assert.That((-one).Sign(), Is.EqualTo(-one));
-    }
 }

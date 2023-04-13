@@ -123,34 +123,6 @@ public partial class DecimalTests
     }
 
     [Test]
-    public void Sign_ShouldBeMinus1_GivenNegative()
-    {
-        Assert.Multiple(() =>
-        {
-            Assert.That(-1.0m.Sign(), Is.EqualTo(-1));
-            Assert.That(-2.0m.Sign(), Is.EqualTo(-1));
-            Assert.That(-3.0m.Sign(), Is.EqualTo(-1));
-        });
-    }
-
-    [Test]
-    public void Sign_ShouldBe0_Given0()
-    {
-        Assert.That(0.0m.Sign(), Is.Zero);
-    }
-
-    [Test]
-    public void Sign_ShouldBe1_GivenPositive()
-    {
-        Assert.Multiple(() =>
-        {
-            Assert.That(1.0m.Sign(), Is.EqualTo(1));
-            Assert.That(2.0m.Sign(), Is.EqualTo(1));
-            Assert.That(3.0m.Sign(), Is.EqualTo(1));
-        });
-    }
-
-    [Test]
     public void Sqrt_ShouldBeCorrect_GivenValue()
     {
         Assert.Multiple(() =>

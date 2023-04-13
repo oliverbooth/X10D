@@ -28,19 +28,6 @@ public class SingleTests
     }
 
     [Test]
-    public void TryWriteBytes_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan()
-    {
-        const float value = 42.5f;
-        byte[] bytes = BitConverter.IsLittleEndian
-            ? new byte[] {0, 0, 0x2A, 0x42}
-            : new byte[] {0x42, 0x2A, 0, 0};
-
-        Span<byte> buffer = stackalloc byte[4];
-        Assert.That(value.TryWriteBytes(buffer));
-        CollectionAssert.AreEqual(bytes, buffer.ToArray());
-    }
-
-    [Test]
     public void TryWriteBytes_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan_WithEndianness()
     {
         const float value = 42.5f;
@@ -54,13 +41,5 @@ public class SingleTests
 
         Assert.That(value.TryWriteBytes(buffer, Endianness.BigEndian));
         CollectionAssert.AreEqual(bigEndian, buffer.ToArray());
-    }
-
-    [Test]
-    public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
-    {
-        const float value = 42.5f;
-        Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteBytes(buffer), Is.False);
     }
 }

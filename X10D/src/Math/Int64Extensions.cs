@@ -248,40 +248,6 @@ public static class Int64Extensions
     }
 
     /// <summary>
-    ///     Returns an integer that indicates the sign of this 64-bit signed integer.
-    /// </summary>
-    /// <param name="value">A signed number.</param>
-    /// <returns>
-    ///     A number that indicates the sign of <paramref name="value" />, as shown in the following table.
-    ///
-    ///     <list type="table">
-    ///         <listheader>
-    ///             <term>Return value</term>
-    ///             <description>Meaning</description>
-    ///         </listheader>
-    ///
-    ///         <item>
-    ///             <term>-1</term>
-    ///             <description><paramref name="value" /> is less than zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>0</term>
-    ///             <description><paramref name="value" /> is equal to zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>1</term>
-    ///             <description><paramref name="value" /> is greater than zero.</description>
-    ///         </item>
-    ///     </list>
-    /// </returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static int Sign(this long value)
-    {
-        return System.Math.Sign(value);
-    }
-
-    /// <summary>
     ///     Wraps the current 64-bit signed integer between a low and a high value.
     /// </summary>
     /// <param name="value">The value to wrap.</param>

@@ -27,17 +27,6 @@ public class UInt32Tests
     }
 
     [Test]
-    public void TryWriteBytes_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan()
-    {
-        const uint value = 0x0F;
-        byte[] bytes = BitConverter.IsLittleEndian ? new byte[] {0x0F, 0, 0, 0} : new byte[] {0, 0, 0, 0x0F};
-
-        Span<byte> buffer = stackalloc byte[4];
-        Assert.That(value.TryWriteBytes(buffer));
-        CollectionAssert.AreEqual(bytes, buffer.ToArray());
-    }
-
-    [Test]
     public void TryWriteBytes_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan_WithEndianness()
     {
         const uint value = 0x0F;
@@ -51,13 +40,5 @@ public class UInt32Tests
 
         Assert.That(value.TryWriteBytes(buffer, Endianness.BigEndian));
         CollectionAssert.AreEqual(bigEndian, buffer.ToArray());
-    }
-
-    [Test]
-    public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
-    {
-        const uint value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteBytes(buffer), Is.False);
     }
 }

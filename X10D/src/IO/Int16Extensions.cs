@@ -17,7 +17,7 @@ public static class Int16Extensions
     public static byte[] GetBytes(this short value)
     {
         byte[] buffer = new byte[2];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer;
     }
 
@@ -33,17 +33,6 @@ public static class Int16Extensions
         byte[] buffer = new byte[2];
         value.TryWriteBytes(buffer, endianness);
         return buffer;
-    }
-
-    /// <summary>
-    ///     Converts the current 16-bit signed integer into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="short" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="short" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this short value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

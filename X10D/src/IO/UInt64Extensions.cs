@@ -18,7 +18,7 @@ public static class UInt64Extensions
     public static byte[] GetBytes(this ulong value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer.ToArray();
     }
 
@@ -34,17 +34,6 @@ public static class UInt64Extensions
         Span<byte> buffer = stackalloc byte[8];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
-    }
-
-    /// <summary>
-    ///     Converts the current 64-bit unsigned integer into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="ulong" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="ulong" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this ulong value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

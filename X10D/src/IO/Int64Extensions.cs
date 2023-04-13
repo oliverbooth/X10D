@@ -17,7 +17,7 @@ public static class Int64Extensions
     public static byte[] GetBytes(this long value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer.ToArray();
     }
 
@@ -33,17 +33,6 @@ public static class Int64Extensions
         Span<byte> buffer = stackalloc byte[8];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
-    }
-
-    /// <summary>
-    ///     Converts the current 64-bit signed integer a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="long" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="long" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this long value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

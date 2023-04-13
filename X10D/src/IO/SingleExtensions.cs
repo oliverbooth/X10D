@@ -18,7 +18,7 @@ public static class SingleExtensions
     public static byte[] GetBytes(this float value)
     {
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer.ToArray();
     }
 
@@ -34,17 +34,6 @@ public static class SingleExtensions
         Span<byte> buffer = stackalloc byte[4];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
-    }
-
-    /// <summary>
-    ///     Converts the current single-precision floating-point into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="float" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="float" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this float value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

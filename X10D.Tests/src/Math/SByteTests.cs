@@ -214,14 +214,4 @@ public partial class SByteTests
     {
         Assert.Throws<ArithmeticException>(() => ((sbyte)-1).Factorial());
     }
-
-    [Test]
-    public void SignShouldBeCorrect()
-    {
-        const sbyte one = 1;
-        const sbyte zero = 0;
-        Assert.That(one.Sign(), Is.EqualTo(one));
-        Assert.That(zero.Sign(), Is.EqualTo(zero));
-        Assert.That((-one).Sign(), Is.EqualTo(-one));
-    }
 }

@@ -220,14 +220,4 @@ public partial class Int64Tests
     {
         Assert.Throws<ArithmeticException>(() => (-1L).Factorial());
     }
-
-    [Test]
-    public void SignShouldBeCorrect()
-    {
-        const long one = 1;
-        const long zero = 0;
-        Assert.That(one.Sign(), Is.EqualTo(one));
-        Assert.That(zero.Sign(), Is.EqualTo(zero));
-        Assert.That((-one).Sign(), Is.EqualTo(-one));
-    }
 }

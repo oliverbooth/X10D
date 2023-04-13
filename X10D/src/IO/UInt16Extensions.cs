@@ -18,7 +18,7 @@ public static class UInt16Extensions
     public static byte[] GetBytes(this ushort value)
     {
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer.ToArray();
     }
 
@@ -34,17 +34,6 @@ public static class UInt16Extensions
         Span<byte> buffer = stackalloc byte[2];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
-    }
-
-    /// <summary>
-    ///     Converts the current 16-bit unsigned integer into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="ushort" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="ushort" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this ushort value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

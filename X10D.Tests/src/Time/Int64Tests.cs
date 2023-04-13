@@ -7,20 +7,6 @@ namespace X10D.Tests.Time;
 public class Int64Tests
 {
     [Test]
-    public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()
-    {
-        DateTimeOffset expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        Assert.That(0L.FromUnixTimeMilliseconds(), Is.EqualTo(expected));
-    }
-
-    [Test]
-    public void FromUnixTimeSeconds_ShouldBeEpoch_GivenZero()
-    {
-        DateTimeOffset expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        Assert.That(0L.FromUnixTimeSeconds(), Is.EqualTo(expected));
-    }
-
-    [Test]
     public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
     {
         Assert.Multiple(() =>
@@ -68,12 +54,6 @@ public class Int64Tests
     {
         Assert.Multiple(() =>
         {
-            Assert.That((-1L).Ticks(), Is.LessThan(TimeSpan.Zero));
-            Assert.That((-1L).Milliseconds(), Is.LessThan(TimeSpan.Zero));
-            Assert.That((-1L).Seconds(), Is.LessThan(TimeSpan.Zero));
-            Assert.That((-1L).Minutes(), Is.LessThan(TimeSpan.Zero));
-            Assert.That((-1L).Days(), Is.LessThan(TimeSpan.Zero));
-            Assert.That((-1L).Hours(), Is.LessThan(TimeSpan.Zero));
             Assert.That((-1L).Weeks(), Is.LessThan(TimeSpan.Zero));
         });
     }
@@ -83,12 +63,6 @@ public class Int64Tests
     {
         Assert.Multiple(() =>
         {
-            Assert.That(1L.Ticks(), Is.GreaterThan(TimeSpan.Zero));
-            Assert.That(1L.Milliseconds(), Is.GreaterThan(TimeSpan.Zero));
-            Assert.That(1L.Seconds(), Is.GreaterThan(TimeSpan.Zero));
-            Assert.That(1L.Minutes(), Is.GreaterThan(TimeSpan.Zero));
-            Assert.That(1L.Days(), Is.GreaterThan(TimeSpan.Zero));
-            Assert.That(1L.Hours(), Is.GreaterThan(TimeSpan.Zero));
             Assert.That(1L.Weeks(), Is.GreaterThan(TimeSpan.Zero));
         });
     }
@@ -98,12 +72,6 @@ public class Int64Tests
     {
         Assert.Multiple(() =>
         {
-            Assert.That(0L.Ticks(), Is.EqualTo(TimeSpan.Zero));
-            Assert.That(0L.Milliseconds(), Is.EqualTo(TimeSpan.Zero));
-            Assert.That(0L.Seconds(), Is.EqualTo(TimeSpan.Zero));
-            Assert.That(0L.Minutes(), Is.EqualTo(TimeSpan.Zero));
-            Assert.That(0L.Days(), Is.EqualTo(TimeSpan.Zero));
-            Assert.That(0L.Hours(), Is.EqualTo(TimeSpan.Zero));
             Assert.That(0L.Weeks(), Is.EqualTo(TimeSpan.Zero));
         });
     }

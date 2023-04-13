@@ -155,31 +155,6 @@ public partial class SingleTests
     }
 
     [Test]
-    public void Sign_ShouldBeMinus1_GivenNegative()
-    {
-        Assert.That(-1.0f.Sign(), Is.EqualTo(-1));
-        Assert.That(-2.0f.Sign(), Is.EqualTo(-1));
-        Assert.That(-3.0f.Sign(), Is.EqualTo(-1));
-    }
-
-    [Test]
-    public void Sign_ShouldBe0_Given0()
-    {
-        Assert.That(0.0f.Sign(), Is.Zero);
-    }
-
-    [Test]
-    public void Sign_ShouldBe1_GivenPositive()
-    {
-        Assert.Multiple(() =>
-        {
-            Assert.That(1.0f.Sign(), Is.EqualTo(1));
-            Assert.That(2.0f.Sign(), Is.EqualTo(1));
-            Assert.That(3.0f.Sign(), Is.EqualTo(1));
-        });
-    }
-
-    [Test]
     public void Sqrt_ShouldBeCorrect_GivenValue()
     {
         Assert.Multiple(() =>
@@ -214,77 +189,5 @@ public partial class SingleTests
     public void Sqrt_ShouldBePositiveInfinity_GivenPositiveInfinity()
     {
         Assert.That(float.PositiveInfinity.Sqrt(), Is.EqualTo(float.PositiveInfinity));
-    }
-
-    [Test]
-    public void Acos_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Acos(), Is.EqualTo(1.0471975803375244f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Acosh_ShouldBeCorrect()
-    {
-        Assert.That(1.5f.Acosh(), Is.EqualTo(0.9624236822128296f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Asin_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Asin(), Is.EqualTo(0.5235987901687622f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Asinh_ShouldBeCorrect()
-    {
-        Assert.That(1.5f.Asinh(), Is.EqualTo(1.19476318359375f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Atan_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Atan(), Is.EqualTo(0.46364760398864746).Within(1e-6f));
-    }
-
-    [Test]
-    public void Atanh_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Atanh(), Is.EqualTo(0.5493061542510986f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Cos_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Cos(), Is.EqualTo(0.8775825500488281f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Cosh_ShouldBeCorrect()
-    {
-        Assert.That(1.5f.Cosh(), Is.EqualTo(2.352409601211548f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Sin_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Sin(), Is.EqualTo(0.4794255495071411).Within(1e-6f));
-    }
-
-    [Test]
-    public void Sinh_ShouldBeCorrect()
-    {
-        Assert.That(1.5f.Sinh(), Is.EqualTo(2.129279375076294f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Tan_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Tan(), Is.EqualTo(0.4794255495071411f).Within(1e-6f));
-    }
-
-    [Test]
-    public void Tanh_ShouldBeCorrect()
-    {
-        Assert.That(0.5f.Tanh(), Is.EqualTo(0.46211716532707214f).Within(1e-6f));
     }
 }

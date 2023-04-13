@@ -17,7 +17,7 @@ public static class Int32Extensions
     public static byte[] GetBytes(this int value)
     {
         byte[] buffer = new byte[4];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer;
     }
 
@@ -33,17 +33,6 @@ public static class Int32Extensions
         byte[] buffer = new byte[4];
         value.TryWriteBytes(buffer, endianness);
         return buffer.ToArray();
-    }
-
-    /// <summary>
-    ///     Converts the current 32-bit signed integer into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="int" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="int" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this int value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

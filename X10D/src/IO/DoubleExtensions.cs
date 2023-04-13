@@ -18,7 +18,7 @@ public static class DoubleExtensions
     public static byte[] GetBytes(this double value)
     {
         byte[] buffer = new byte[8];
-        value.TryWriteBytes(buffer);
+        BitConverter.TryWriteBytes(buffer, value);
         return buffer;
     }
 
@@ -34,17 +34,6 @@ public static class DoubleExtensions
         byte[] buffer = new byte[8];
         value.TryWriteBytes(buffer, endianness);
         return buffer;
-    }
-
-    /// <summary>
-    ///     Converts the current double-precision floating-point into a span of bytes.
-    /// </summary>
-    /// <param name="value">The <see cref="double" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="double" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this double value, Span<byte> destination)
-    {
-        return BitConverter.TryWriteBytes(destination, value);
     }
 
     /// <summary>

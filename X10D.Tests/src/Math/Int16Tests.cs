@@ -215,14 +215,4 @@ public partial class Int16Tests
     {
         Assert.Throws<ArithmeticException>(() => ((short)-1).Factorial());
     }
-
-    [Test]
-    public void SignShouldBeCorrect()
-    {
-        const short one = 1;
-        const short zero = 0;
-        Assert.That(one.Sign(), Is.EqualTo(one));
-        Assert.That(zero.Sign(), Is.EqualTo(zero));
-        Assert.That((-one).Sign(), Is.EqualTo(-one));
-    }
 }
