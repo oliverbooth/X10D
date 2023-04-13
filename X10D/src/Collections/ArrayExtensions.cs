@@ -17,14 +17,10 @@ public static class ArrayExtensions
     [Pure]
     public static IReadOnlyCollection<T> AsReadOnly<T>(this T[] array)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(array);
-#else
         if (array is null)
         {
             throw new ArgumentNullException(nameof(array));
         }
-#endif
 
         return Array.AsReadOnly(array);
     }
@@ -49,14 +45,10 @@ public static class ArrayExtensions
     /// <exception cref="ArgumentNullException"><paramref name="array" /> is <see langword="null" />.</exception>
     public static void Clear<T>(this T?[] array, Range range)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(array);
-#else
         if (array is null)
         {
             throw new ArgumentNullException(nameof(array));
         }
-#endif
 
         (int offset, int length) = range.GetOffsetAndLength(array.Length);
         array.Clear(offset, length);
@@ -79,14 +71,10 @@ public static class ArrayExtensions
     /// </exception>
     public static void Clear<T>(this T?[] array, int index, int length)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(array);
-#else
         if (array is null)
         {
             throw new ArgumentNullException(nameof(array));
         }
-#endif
 
         if (length == 0 || array.Length == 0)
         {

@@ -17,14 +17,10 @@ public static partial class TextWriterExtensions
     [CLSCompliant(false)]
     public static void WriteNoAlloc(this TextWriter writer, ulong value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteNoAlloc(writer, value, "N0".AsSpan(), CultureInfo.CurrentCulture);
     }
@@ -42,14 +38,10 @@ public static partial class TextWriterExtensions
     [CLSCompliant(false)]
     public static void WriteNoAlloc(this TextWriter writer, ulong value, ReadOnlySpan<char> format)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteNoAlloc(writer, value, format, CultureInfo.CurrentCulture);
     }
@@ -71,14 +63,10 @@ public static partial class TextWriterExtensions
         ReadOnlySpan<char> format,
         IFormatProvider? formatProvider)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         int digitCount = value.CountDigits();
         Span<char> buffer = stackalloc char[System.Math.Max(digitCount, 100)];

@@ -17,14 +17,10 @@ public static partial class TextWriterExtensions
     [CLSCompliant(false)]
     public static void WriteLineNoAlloc(this TextWriter writer, uint value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         writer.WriteLineNoAlloc(value, "N0".AsSpan(), CultureInfo.CurrentCulture);
     }
@@ -43,14 +39,10 @@ public static partial class TextWriterExtensions
     [CLSCompliant(false)]
     public static void WriteLineNoAlloc(this TextWriter writer, uint value, ReadOnlySpan<char> format)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteLineNoAlloc(writer, (long)value, format, CultureInfo.CurrentCulture);
     }
@@ -73,14 +65,10 @@ public static partial class TextWriterExtensions
         ReadOnlySpan<char> format,
         IFormatProvider? formatProvider)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         writer.WriteNoAlloc(value, format, formatProvider);
         writer.WriteLine();

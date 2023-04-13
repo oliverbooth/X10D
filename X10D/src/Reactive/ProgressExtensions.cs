@@ -18,14 +18,10 @@ public static class ProgressExtensions
     /// <exception cref="ArgumentNullException"><paramref name="progress" /> is <see langword="null" />.</exception>
     public static IObservable<T> OnProgressChanged<T>(this Progress<T> progress)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(progress);
-#else
         if (progress is null)
         {
             throw new ArgumentNullException(nameof(progress));
         }
-#endif
 
         var progressObservable = new ProgressObservable<T>();
 
@@ -59,14 +55,10 @@ public static class ProgressExtensions
     /// <exception cref="ArgumentNullException"><paramref name="progress" /> is <see langword="null" />.</exception>
     public static IObservable<T> OnProgressChanged<T>(this Progress<T> progress, T completeValue)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(progress);
-#else
         if (progress is null)
         {
             throw new ArgumentNullException(nameof(progress));
         }
-#endif
 
         var progressObservable = new ProgressObservable<T>();
         var comparer = EqualityComparer<T>.Default;

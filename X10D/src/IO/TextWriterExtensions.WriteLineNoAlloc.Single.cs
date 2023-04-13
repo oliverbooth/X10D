@@ -16,14 +16,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteLineNoAlloc(this TextWriter writer, float value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         writer.WriteLineNoAlloc(value, "N0".AsSpan(), CultureInfo.CurrentCulture);
     }
@@ -41,14 +37,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteLineNoAlloc(this TextWriter writer, float value, ReadOnlySpan<char> format)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteLineNoAlloc(writer, value, format, CultureInfo.CurrentCulture);
     }
@@ -68,14 +60,10 @@ public static partial class TextWriterExtensions
     public static void WriteLineNoAlloc(this TextWriter writer, float value, ReadOnlySpan<char> format,
         IFormatProvider? formatProvider)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         writer.WriteNoAlloc(value, format, formatProvider);
         writer.WriteLine();

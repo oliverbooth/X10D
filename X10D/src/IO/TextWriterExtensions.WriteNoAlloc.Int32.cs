@@ -16,14 +16,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteNoAlloc(this TextWriter writer, int value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteNoAlloc(writer, value, "N0".AsSpan(), CultureInfo.CurrentCulture);
     }
@@ -40,14 +36,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteNoAlloc(this TextWriter writer, int value, ReadOnlySpan<char> format)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteNoAlloc(writer, value, format, CultureInfo.CurrentCulture);
     }
@@ -65,14 +57,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteNoAlloc(this TextWriter writer, int value, ReadOnlySpan<char> format, IFormatProvider? formatProvider)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         int digitCount = value.CountDigits();
         Span<char> buffer = stackalloc char[System.Math.Max(value < 0 ? digitCount + 1 : digitCount, 100)];

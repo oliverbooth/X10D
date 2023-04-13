@@ -37,10 +37,6 @@ public static class DictionaryExtensions
         Func<TKey, TValue, TValue> updateValueFactory)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(dictionary);
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
@@ -50,7 +46,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
-#endif
 
 #if NET6_0_OR_GREATER
         ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
@@ -97,10 +92,6 @@ public static class DictionaryExtensions
         Func<TKey, TValue, TValue> updateValueFactory)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(dictionary);
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
@@ -110,7 +101,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
-#endif
 
         if (dictionary.TryGetValue(key, out TValue? old))
         {
@@ -152,11 +142,6 @@ public static class DictionaryExtensions
         Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(dictionary);
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
@@ -171,7 +156,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
-#endif
 
 #if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
@@ -222,11 +206,6 @@ public static class DictionaryExtensions
         Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(dictionary);
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
@@ -241,7 +220,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
-#endif
 
         if (dictionary.TryGetValue(key, out TValue? old))
         {
@@ -291,11 +269,6 @@ public static class DictionaryExtensions
         Func<TKey, TArg, TValue> addValueFactory, Func<TKey, TValue, TArg, TValue> updateValueFactory, TArg factoryArgument)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(dictionary);
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
@@ -310,7 +283,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
-#endif
 
 #if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
@@ -367,11 +339,6 @@ public static class DictionaryExtensions
         Func<TKey, TArg, TValue> addValueFactory, Func<TKey, TValue, TArg, TValue> updateValueFactory, TArg factoryArgument)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(dictionary);
-        ArgumentNullException.ThrowIfNull(addValueFactory);
-        ArgumentNullException.ThrowIfNull(updateValueFactory);
-#else
         if (dictionary is null)
         {
             throw new ArgumentNullException(nameof(dictionary));
@@ -386,7 +353,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
-#endif
 
         if (dictionary.TryGetValue(key, out TValue? old))
         {
@@ -414,14 +380,10 @@ public static class DictionaryExtensions
     [Pure]
     public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         static string SanitizeValue(string? value)
         {
@@ -461,10 +423,6 @@ public static class DictionaryExtensions
     public static string ToConnectionString<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
         Func<TValue, string?> selector)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(selector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -474,7 +432,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(selector));
         }
-#endif
 
         static string SanitizeValue(string? value)
         {
@@ -520,11 +477,6 @@ public static class DictionaryExtensions
         Func<TKey, string> keySelector, Func<TValue, string?> valueSelector)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(keySelector);
-        ArgumentNullException.ThrowIfNull(valueSelector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -539,7 +491,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(valueSelector));
         }
-#endif
 
         static string SanitizeValue(string? value)
         {
@@ -571,14 +522,10 @@ public static class DictionaryExtensions
     public static string ToGetParameters<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         static string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
         {
@@ -610,10 +557,6 @@ public static class DictionaryExtensions
         Func<TValue, string?> selector)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(selector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -623,7 +566,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(selector));
         }
-#endif
 
         // can't static here because of 'selector' parameter
         string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
@@ -661,11 +603,6 @@ public static class DictionaryExtensions
         Func<TKey, string> keySelector, Func<TValue, string?> valueSelector)
         where TKey : notnull
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(keySelector);
-        ArgumentNullException.ThrowIfNull(valueSelector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -680,7 +617,6 @@ public static class DictionaryExtensions
         {
             throw new ArgumentNullException(nameof(valueSelector));
         }
-#endif
 
         // can't static here because of selector parameters
         string GetQueryParameter(KeyValuePair<TKey, TValue> pair)
