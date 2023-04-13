@@ -14,8 +14,8 @@ public static class EnumerableExtensions
     }
 
     /// <inheritdoc cref="string.Concat(IEnumerable{string})"/>
-    public static string Concat(this IEnumerable<string?> strings)
+    public static string Concat(this IEnumerable<string?> values)
     {
-        return string.Concat(strings);
+        return string.Concat(values);
     }
 }
