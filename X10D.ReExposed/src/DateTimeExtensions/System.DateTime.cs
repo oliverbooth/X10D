@@ -8,9 +8,9 @@
 public static class DateTimeExtensions
 {
     /// <inheritdoc cref="DateTime.Compare(DateTime,DateTime)"/>
-    public static int Compare(this DateTime value, DateTime comparison)
+    public static int Compare(this DateTime t1, DateTime t2)
     {
-        return DateTime.Compare(value, comparison);
+        return DateTime.Compare(t1, t2);
     }
 
     /// <inheritdoc cref="DateTime.SpecifyKind(DateTime,DateTimeKind)"/>
