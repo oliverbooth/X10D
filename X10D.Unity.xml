@@ -800,6 +800,33 @@
                 <see langword="true" /> will have the ellipse be obscured by objects closer to the camera.
             </param>
         </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawFunction(System.Func{System.Single,System.Single},System.Single,System.Single)">
+            <summary>
+                Draws a function plot.
+            </summary>
+            <param name="function">The function to plot.</param>
+            <param name="xMin">The minimum X value.</param>
+            <param name="xMax">The maximum X value.</param>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawFunction(System.Func{System.Single,System.Single},System.Single,System.Single,System.Single,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a function plot.
+            </summary>
+            <param name="function">The function to plot.</param>
+            <param name="xMin">The minimum X value.</param>
+            <param name="xMax">The maximum X value.</param>
+            <param name="step">The X increment.</param>
+            <param name="offset">The drawing offset of the circle.</param>
+            <param name="color">The color of the circle.</param>
+            <param name="duration">
+                The duration of the circle's visibility, in seconds. If 0 is passed, the circle is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the circle be obscured by objects closer to the camera.
+            </param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="function" /> is <see langword="null" />.</exception>
+        </member>
         <member name="M:X10D.Unity.DebugUtility.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3)">
             <summary>
                 Draws a line between start and end points.
@@ -1173,6 +1200,22 @@
             </param>
         </member>
         <member name="M:X10D.Unity.DebugUtility.DrawPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
+            <summary>
+                Draws a polyhedron.
+            </summary>
+            <param name="polyhedron">The polyhedron to draw.</param>
+            <param name="offset">The drawing offset of the polyhedron.</param>
+            <param name="color">The color to use for drawing.</param>
+            <param name="duration">
+                The duration of the polyhedron's visibility, in seconds. If 0 is passed, the polyhedron is visible for a single frame.
+            </param>
+            <param name="depthTest">
+                <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+                <see langword="true" /> will have the box be obscured by objects closer to the camera.
+            </param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Unity.DebugUtility.DrawUnjoinedPolyhedron(X10D.Drawing.Polyhedron,UnityEngine.Vector3@,UnityEngine.Color@,System.Single,System.Boolean)">
             <summary>
                 Draws a polyhedron.
             </summary>
