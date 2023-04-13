@@ -8,21 +8,57 @@
 public static class ArrayExtensions
 {
     /// <inheritdoc cref="Array.AsReadOnly{T}(T[])"/>
-    public static ReadOnlyCollection<T> AsReadOnly<T>(this T[] values)
+    public static ReadOnlyCollection<T> AsReadOnly<T>(this T[] array)
     {
-        return Array.AsReadOnly(values);
+        return Array.AsReadOnly(array);
+    }
+
+    /// <inheritdoc cref="Array.BinarySearch(Array,object)"/>
+    public static int BinarySearch(this Array array, object? value)
+    {
+        return Array.BinarySearch(array, value);
+    }
+
+    /// <inheritdoc cref="Array.BinarySearch(Array,int,int,object)"/>
+    public static int BinarySearch(this Array array, int index, int length, object? value)
+    {
+        return Array.BinarySearch(array, index, length, value);
+    }
+
+    /// <inheritdoc cref="Array.BinarySearch(Array,object,IComparer)"/>
+    public static int BinarySearch(this Array array, object? value, IComparer? comparer)
+    {
+        return Array.BinarySearch(array, value, comparer);
     }
 
     /// <inheritdoc cref="Array.BinarySearch(Array,int,int,object,IComparer)"/>
-    public static int BinarySearch(this Array array, object? value, int index = 0, int? length = null, IComparer? comparer = null)
+    public static int BinarySearch(this Array array, int index, int length, object? value, IComparer? comparer)
     {
-        return Array.BinarySearch(array, index, length ?? array.Length - index, value, comparer);
+        return Array.BinarySearch(array, index, length, value, comparer);
+    }
+
+    /// <inheritdoc cref="Array.BinarySearch{T}(T[],T)"/>
+    public static int BinarySearch<T>(this T[] array, T value)
+    {
+        return Array.BinarySearch(array, value);
+    }
+
+    /// <inheritdoc cref="Array.BinarySearch{T}(T[],T,IComparer{T})"/>
+    public static int BinarySearch<T>(this T[] array, T value, IComparer<T>? comparer)
+    {
+        return Array.BinarySearch(array, value, comparer);
+    }
+
+    /// <inheritdoc cref="Array.BinarySearch{T}(T[],int,int,T)"/>
+    public static int BinarySearch<T>(this T[] array, int index, int length, T value)
+    {
+        return Array.BinarySearch(array, index, length, value);
     }
 
     /// <inheritdoc cref="Array.BinarySearch{T}(T[],int,int,T,IComparer{T})"/>
-    public static int BinarySearch<T>(this T[] values, T? value, int index = 0, int? length = null, IComparer<T?>? comparer = null)
+    public static int BinarySearch<T>(this T[] array, int index, int length, T value, IComparer<T>? comparer)
     {
-        return Array.BinarySearch(values, index, length ?? values.Length - index, value, comparer);
+        return Array.BinarySearch(array, index, length, value, comparer);
     }
 
     /// <inheritdoc cref="Array.Clear(Array,int,int)"/>
@@ -32,7 +68,7 @@ public static class ArrayExtensions
     }
 
     /// <inheritdoc cref="Array.Clear(Array)"/>
-    public static void Clear<T>(this T?[] array)
+    public static void Clear(this Array array)
     {
         Array.Clear(array);
     }
@@ -43,10 +79,10 @@ public static class ArrayExtensions
         Array.ConstrainedCopy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
     }
 
-    /// <inheritdoc cref="Array.ConvertAll{TFrom,TTo}(TFrom[],Converter{TFrom,TTo})"/>
-    public static TTo[] ConvertAll<TFrom, TTo>(this TFrom[] values, Converter<TFrom, TTo> converter)
+    /// <inheritdoc cref="Array.ConvertAll{TInput,TOutput}(TInput[],Converter{TInput,TOutput})"/>
+    public static TOutput[] ConvertAll<TInput, TOutput>(this TInput[] array, Converter<TInput, TOutput> converter)
     {
-        return Array.ConvertAll(values, converter);
+        return Array.ConvertAll(array, converter);
     }
 
     /// <inheritdoc cref="Array.Copy(Array,int,Array,int,int)"/>
@@ -62,102 +98,206 @@ public static class ArrayExtensions
     }
 
     /// <inheritdoc cref="Array.Exists{T}(T[],Predicate{T})"/>
-    public static bool Exists<T>(this T[] values, Predicate<T> match)
+    public static bool Exists<T>(this T[] array, Predicate<T> match)
     {
-        return Array.Exists(values, match);
+        return Array.Exists(array, match);
+    }
+
+    /// <inheritdoc cref="Array.Fill{T}(T[],T)"/>
+    public static void Fill<T>(this T[] array, T value)
+    {
+        Array.Fill(array, value);
     }
 
     /// <inheritdoc cref="Array.Fill{T}(T[],T,int,int)"/>
-    public static void Fill<T>(this T[] values, T fillValue, int startIndex = 0, int? count = null)
+    public static void Fill<T>(this T[] array, T value, int startIndex, int count)
     {
-        Array.Fill(values, fillValue, startIndex, count ?? values.Length - startIndex);
+        Array.Fill(array, value, startIndex, count);
     }
 
     /// <inheritdoc cref="Array.Find{T}(T[],Predicate{T})"/>
-    public static T? Find<T>(this T[] values, Predicate<T> predicate)
+    public static T? Find<T>(this T[] array, Predicate<T> predicate)
     {
-        return Array.Find(values, predicate);
+        return Array.Find(array, predicate);
     }
 
     /// <inheritdoc cref="Array.FindAll{T}(T[],Predicate{T})"/>
-    public static T[] FindAll<T>(this T[] values, Predicate<T> match)
+    public static T[] FindAll<T>(this T[] array, Predicate<T> match)
     {
-        return Array.FindAll(values, match);
+        return Array.FindAll(array, match);
+    }
+
+    /// <inheritdoc cref="Array.FindIndex{T}(T[],Predicate{T})"/>
+    public static int FindIndex<T>(this T[] array, Predicate<T> match)
+    {
+        return Array.FindIndex(array, match);
     }
 
     /// <inheritdoc cref="Array.FindIndex{T}(T[],int,int,Predicate{T})"/>
-    public static int FindIndex<T>(this T[] values, Predicate<T> match, int index = 0, int? count = null)
+    public static int FindIndex<T>(this T[] array, int startIndex, int count, Predicate<T> match)
     {
-        return Array.FindIndex(values, index, count ?? values.Length - index, match);
+        return Array.FindIndex(array, startIndex, count, match);
     }
 
     /// <inheritdoc cref="Array.FindLast{T}(T[],Predicate{T})"/>
-    public static T? FindLast<T>(this T[] values, Predicate<T> match)
+    public static T? FindLast<T>(this T[] array, Predicate<T> match)
     {
-        return Array.FindLast(values, match);
+        return Array.FindLast(array, match);
+    }
+
+    /// <inheritdoc cref="Array.FindLastIndex{T}(T[],Predicate{T})"/>
+    public static int FindLastIndex<T>(this T[] array, Predicate<T> match)
+    {
+        return Array.FindLastIndex(array, match);
     }
 
     /// <inheritdoc cref="Array.FindLastIndex{T}(T[],int,int,Predicate{T})"/>
-    public static int FindLastIndex<T>(this T[] values, Predicate<T> match, int index = 0, int? count = null)
+    public static int FindLastIndex<T>(this T[] array, int startIndex, int count, Predicate<T> match)
     {
-        return Array.FindLastIndex(values, index, count ?? values.Length - index, match);
+        return Array.FindLastIndex(array, startIndex, count, match);
+    }
+
+    /// <inheritdoc cref="Array.IndexOf(Array,object)"/>
+    public static int IndexOf(this Array array, object? value)
+    {
+        return Array.IndexOf(array, value);
+    }
+
+    /// <inheritdoc cref="Array.IndexOf(Array,object,int)"/>
+    public static int IndexOf(this Array array, object? value, int startIndex)
+    {
+        return Array.IndexOf(array, value, startIndex);
     }
 
     /// <inheritdoc cref="Array.IndexOf(Array,object,int,int)"/>
-    public static int IndexOf(this Array array, object? value, int index = 0, int? count = null)
+    public static int IndexOf(this Array array, object? value, int startIndex, int count)
     {
-        return Array.IndexOf(array, value, index, count ?? array.Length - index);
+        return Array.IndexOf(array, value, startIndex, count);
+    }
+
+    /// <inheritdoc cref="Array.IndexOf{T}(T[],T)"/>
+    public static int IndexOf<T>(this T[] array, T value)
+    {
+        return Array.IndexOf(array, value);
+    }
+
+    /// <inheritdoc cref="Array.IndexOf{T}(T[],T,int)"/>
+    public static int IndexOf<T>(this T[] array, T value, int startIndex)
+    {
+        return Array.IndexOf(array, value, startIndex);
     }
 
     /// <inheritdoc cref="Array.IndexOf{T}(T[],T,int,int)"/>
-    public static int IndexOf<T>(this T[] values, T value, int index = 0, int? count = null)
+    public static int IndexOf<T>(this T[] array, T value, int startIndex, int count)
     {
-        return Array.IndexOf(values, value, index, count ?? values.Length - index);
+        return Array.IndexOf(array, value, startIndex, count);
+    }
+
+    /// <inheritdoc cref="Array.Reverse(Array)"/>
+    public static void Reverse(this Array array)
+    {
+        Array.Reverse(array);
     }
 
     /// <inheritdoc cref="Array.Reverse(Array,int,int)"/>
-    public static void Reverse(this Array value, int startIndex = 0, int? length = null)
+    public static void Reverse(this Array array, int index, int length)
     {
-        Array.Reverse(value, startIndex, length ?? value.Length - startIndex);
+        Array.Reverse(array, index, length);
+    }
+
+    /// <inheritdoc cref="Array.Reverse{T}(T[])"/>
+    public static void Reverse<T>(this T[] array)
+    {
+        Array.Reverse(array);
     }
 
     /// <inheritdoc cref="Array.Reverse{T}(T[],int,int)"/>
-    public static void Reverse<T>(this T[] values, int startIndex = 0, int? length = null)
+    public static void Reverse<T>(this T[] array, int index, int length)
     {
-        Array.Reverse(values, startIndex, length ?? values.Length - startIndex);
+        Array.Reverse(array, index, length);
+    }
+
+    /// <inheritdoc cref="Array.Sort(Array,IComparer)"/>
+    public static void Sort(this Array array, IComparer? comparer)
+    {
+        Array.Sort(array, comparer);
+    }
+
+    /// <inheritdoc cref="Array.Sort(Array,Array,IComparer)"/>
+    public static void Sort(this Array keys, Array? items, IComparer? comparer)
+    {
+        Array.Sort(keys, items, comparer);
+    }
+
+    /// <inheritdoc cref="Array.Sort(Array,int,int,IComparer)"/>
+    public static void Sort(this Array array, int index, int length, IComparer? comparer)
+    {
+        Array.Sort(array, index, length, comparer);
     }
 
     /// <inheritdoc cref="Array.Sort(Array,Array,int,int,IComparer)"/>
-    public static void Sort(this Array keys, Array? items = null, int index = 0, int? length = null, IComparer? comparer = null)
+    public static void Sort(this Array keys, Array? items, int index, int length, IComparer? comparer)
     {
-        Array.Sort(keys, items, index, length ?? keys.Length - index, comparer);
+        Array.Sort(keys, items, index, length, comparer);
     }
 
-    /// <inheritdoc cref="Array.Sort{TKey,TValue}(TKey[],TValue[],int,int,IComparer{TKey})"/>
-    public static void Sort<TKey, TValue>(this TKey[] keys,
-                                          TValue[]? items = null,
-                                          int index = 0,
-                                          int? length = null,
-                                          IComparer<TKey>? comparer = null)
+    /// <inheritdoc cref="Array.Sort{T}(T[])"/>
+    public static void Sort<T>(this T[] array)
     {
-        Array.Sort(keys, items, index, length ?? keys.Length - index, comparer);
+        Array.Sort(array);
+    }
+
+    /// <inheritdoc cref="Array.Sort{TKey,TValue}(TKey[],TValue[])"/>
+    public static void Sort<TKey, TValue>(this TKey[] keys, TValue[]? items)
+    {
+        Array.Sort(keys, items);
+    }
+
+    /// <inheritdoc cref="Array.Sort{T}(T[],int,int)"/>
+    public static void Sort<T>(this T[] array, int index, int length)
+    {
+        Array.Sort(array, index, length);
+    }
+
+    /// <inheritdoc cref="Array.Sort{TKey,TValue}(TKey[],TValue[],int,int)"/>
+    public static void Sort<TKey, TValue>(this TKey[] keys, TValue[]? items, int index, int length)
+    {
+        Array.Sort(keys, items, index, length);
+    }
+
+    /// <inheritdoc cref="Array.Sort{T}(T[],IComparer{T})"/>
+    public static void Sort<T>(this T[] array, IComparer<T>? comparer)
+    {
+        Array.Sort(array, comparer);
+    }
+
+    /// <inheritdoc cref="Array.Sort{TKey,TValue}(TKey[],TValue[],IComparer{TKey})"/>
+    public static void Sort<TKey, TValue>(this TKey[] keys, TValue[]? items, IComparer<TKey>? comparer)
+    {
+        Array.Sort(keys, items, comparer);
     }
 
     /// <inheritdoc cref="Array.Sort{T}(T[],int,int,IComparer{T})"/>
-    public static void Sort<T>(this T[] values, int index = 0, int? length = null, IComparer<T>? comparer = null)
+    public static void Sort<T>(this T[] array, int index, int length, IComparer<T>? comparer)
     {
-        Array.Sort(values, index, length ?? values.Length - index, comparer);
+        Array.Sort(array, index, length, comparer);
+    }
+
+    /// <inheritdoc cref="Array.Sort{TKey,TValue}(TKey[],TValue[],int,int,IComparer{TKey})"/>
+    public static void Sort<TKey, TValue>(this TKey[] keys, TValue[]? items, int index, int length, IComparer<TKey>? comparer)
+    {
+        Array.Sort(keys, items, index, length, comparer);
     }
 
     /// <inheritdoc cref="Array.Sort{T}(T[],Comparison{T})"/>
-    public static void Sort<T>(this T[] values, Comparison<T> comparison)
+    public static void Sort<T>(this T[] array, Comparison<T> comparison)
     {
-        Array.Sort(values, comparison);
+        Array.Sort(array, comparison);
     }
 
     /// <inheritdoc cref="Array.TrueForAll{T}(T[],Predicate{T})"/>
-    public static bool TrueForAll<T>(this T[] values, Predicate<T> match)
+    public static bool TrueForAll<T>(this T[] array, Predicate<T> match)
     {
-        return Array.TrueForAll(values, match);
+        return Array.TrueForAll(array, match);
     }
 }
