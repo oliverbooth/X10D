@@ -38,6 +38,31 @@ public class EnumerableTests
     }
 
     [Test]
+    public void Except_ShouldFilterElements_GivenMatchingElements()
+    {
+        int[] source = Enumerable.Range(1, 10).ToArray();
+        int[] result = source.Except(5).ToArray();
+
+        Assert.That(result, Is.EquivalentTo(new[] {1, 2, 3, 4, 6, 7, 8, 9, 10}));
+    }
+
+    [Test]
+    public void Except_ShouldReturnSameElements_GivenNoMatchingElements()
+    {
+        int[] source = Enumerable.Range(1, 10).ToArray();
+        int[] result = source.Except(11).ToArray();
+
+        Assert.That(result, Is.EquivalentTo(source));
+    }
+
+    [Test]
+    public void Except_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        IEnumerable<int> source = null!;
+        Assert.Throws<ArgumentNullException>(() => source.Except(42));
+    }
+
+    [Test]
     public void MinMax_ShouldReturnCorrectValues_UsingDefaultComparer()
     {
         IEnumerable<int> source = Enumerable.Range(1, 10);
