@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Numerics;
 
@@ -120,6 +120,49 @@ public static partial class DebugUtility
         for (var i = 0; i < points.Count; i++)
         {
             int j = (i + 1) % points.Count;
+            Vector3 start = points[i].ToUnityVector() + offset;
+            Vector3 end = points[j].ToUnityVector() + offset;
+
+            DrawLine(start, end, color, duration, depthTest);
+        }
+    }
+
+    /// <summary>
+    ///     Draws a polyhedron.
+    /// </summary>
+    /// <param name="polyhedron">The polyhedron to draw.</param>
+    /// <param name="offset">The drawing offset of the polyhedron.</param>
+    /// <param name="color">The color to use for drawing.</param>
+    /// <param name="duration">
+    ///     The duration of the polyhedron's visibility, in seconds. If 0 is passed, the polyhedron is visible for a single frame.
+    /// </param>
+    /// <param name="depthTest">
+    ///     <see langword="true" /> if depth test should be applied; otherwise, <see langword="false" />. Passing
+    ///     <see langword="true" /> will have the box be obscured by objects closer to the camera.
+    /// </param>
+    /// <exception cref="ArgumentNullException"><paramref name="polyhedron" /> is <see langword="null" />.</exception>
+    public static void DrawUnjoinedPolyhedron(Polyhedron polyhedron, in Vector3 offset, in Color color, float duration,
+        bool depthTest)
+    {
+        if (polyhedron is null)
+        {
+            throw new ArgumentNullException(nameof(polyhedron));
+        }
+
+        IReadOnlyList<System.Numerics.Vector3> points = polyhedron.Vertices;
+        if (points.Count < 2)
+        {
+            return;
+        }
+
+        for (var i = 0; i < points.Count; i++)
+        {
+            if (i >= points.Count - 2)
+            {
+                break;
+            }
+
+            int j = i + 1;
             Vector3 start = points[i].ToUnityVector() + offset;
             Vector3 end = points[j].ToUnityVector() + offset;
 
