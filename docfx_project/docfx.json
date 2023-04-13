@@ -51,7 +51,19 @@
       }
     ],
     "dest": "_site",
-    "globalMetadataFiles": [],
+    "globalMetadata": {
+      "_appTitle": "X10D",
+      "_appName": "X10D",
+      "_appFaviconPath": "images/favicon.png",
+      "_appLogoPath": "images/favicon.png",
+      "_appFooter": "<strong>DocFX + Singulink = ♥</strong>",
+      "_copyrightFooter": "© Singulink. All rights reserved.",
+      "_enableSearch": true,
+      "_disableSideFilter": false,
+      "_enableNewTab": true,
+      "_disableContribution": false,
+      "_disableBreadcrumb": false,
+    },
     "fileMetadataFiles": [],
     "template": [
       "default", "templates/singulinkfx"
