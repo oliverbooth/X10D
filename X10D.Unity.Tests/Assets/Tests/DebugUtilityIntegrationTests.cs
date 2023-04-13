@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Drawing;
 using Color = UnityEngine.Color;
@@ -33,6 +34,9 @@ namespace X10D.Unity.Tests
 
             var sphere = new Sphere(System.Numerics.Vector3.Zero, 0.5f);
             DebugUtility.DrawSphere(sphere, 25, new Vector2(0.0f, -1.5f), Color.white);
+
+            DebugUtility.DrawFunction(x => MathF.Sin(x + UnityEngine.Time.time % (2 * MathF.PI)), -10, 10, 0.1f, Vector3.up * 4,
+                Color.yellow, 0.0f, false);
 
             DebugUtility.Assert(true);
         }
