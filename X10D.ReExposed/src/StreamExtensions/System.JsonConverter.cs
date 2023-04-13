@@ -11,11 +11,11 @@ public static partial class StreamExtensions
     }
 
     /// <inheritdoc cref="System.Text.Json.JsonSerializer.SerializeAsync{T}(Stream,T,JsonSerializerOptions,CancellationToken)"/>
-    public static async Task ToJsonAsync<TValue>(this Stream stream,
+    public static async Task ToJsonAsync<TValue>(this Stream utf8Json,
                                                  TValue value,
                                                  JsonSerializerOptions? serializerOptions = null,
                                                  CancellationToken cancellationToken = default)
     {
-        await JsonSerializer.SerializeAsync(stream, value, serializerOptions, cancellationToken);
+        await JsonSerializer.SerializeAsync(utf8Json, value, serializerOptions, cancellationToken);
     }
 }
