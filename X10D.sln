@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "tools\Benchma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.MetaServices", "tools\X10D.MetaServices\X10D.MetaServices.csproj", "{F57376C4-3591-43AF-BBED-447A1DE2B1FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.ReExposed", "X10D.ReExposed\X10D.ReExposed.csproj", "{1CC49074-A9C6-4881-A99E-E868694D6A6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CC49074-A9C6-4881-A99E-E868694D6A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC49074-A9C6-4881-A99E-E868694D6A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC49074-A9C6-4881-A99E-E868694D6A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC49074-A9C6-4881-A99E-E868694D6A6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
