@@ -13,7 +13,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Copy favicon
-        run: cp branding_Icon.png docfx_project/images/favicon.png
+        run: |
+          mkdir docfx_project/images
+          cp branding_Icon.png docfx_project/images/favicon.png
 
       - name: Build documentation
         uses: nikeee/docfx-action@v1.0.0
