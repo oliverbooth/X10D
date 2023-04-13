@@ -18,10 +18,6 @@ public static class DiscordMemberExtensions
     /// </returns>
     public static bool HasRole(this DiscordMember member, DiscordRole role)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(member);
-        ArgumentNullException.ThrowIfNull(role);
-#else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
@@ -31,7 +27,6 @@ public static class DiscordMemberExtensions
         {
             throw new ArgumentNullException(nameof(role));
         }
-#endif
 
         return member.Roles.Contains(role);
     }
@@ -52,10 +47,6 @@ public static class DiscordMemberExtensions
     /// </exception>
     public static async Task<DiscordMember> NormalizeClientAsync(this DiscordMember member, DiscordClient client)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(member);
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
@@ -65,7 +56,6 @@ public static class DiscordMemberExtensions
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         DiscordGuild guild = await member.Guild.NormalizeClientAsync(client).ConfigureAwait(false);
         return await guild.GetMemberAsync(member.Id).ConfigureAwait(false);

@@ -16,14 +16,10 @@ public static class DiscordGuildExtensions
     /// <exception cref="ArgumentNullException"><paramref name="guild" /> is <see langword="null" />.</exception>
     public static async Task JoinAllThreadsAsync(this DiscordGuild guild)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(guild);
-#else
         if (guild is null)
         {
             throw new ArgumentNullException(nameof(guild));
         }
-#endif
 
         await Task.WhenAll(guild.Threads.Values.Select(t => t.JoinThreadAsync())).ConfigureAwait(false);
     }
@@ -37,14 +33,10 @@ public static class DiscordGuildExtensions
     /// <exception cref="ArgumentNullException"><paramref name="guild" /> is <see langword="null" />.</exception>
     public static async Task<DiscordMember?> GetMemberOrNullAsync(this DiscordGuild guild, ulong userId)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(guild);
-#else
         if (guild is null)
         {
             throw new ArgumentNullException(nameof(guild));
         }
-#endif
 
         try
         {
@@ -77,10 +69,6 @@ public static class DiscordGuildExtensions
     /// </exception>
     public static async Task<DiscordGuild> NormalizeClientAsync(this DiscordGuild guild, DiscordClient client)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(guild);
-        ArgumentNullException.ThrowIfNull(client);
-#else
         if (guild is null)
         {
             throw new ArgumentNullException(nameof(guild));
@@ -90,7 +78,6 @@ public static class DiscordGuildExtensions
         {
             throw new ArgumentNullException(nameof(client));
         }
-#endif
 
         return await client.GetGuildAsync(guild.Id).ConfigureAwait(false);
     }
