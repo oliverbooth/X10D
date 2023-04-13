@@ -10,8 +10,8 @@ public static class GuidExtensions
 {
     /// <inheritdoc cref="Type.GetTypeFromCLSID(Guid,string,bool)"/>
     [SupportedOSPlatform("windows")]
-    public static Type? GetTypeFromCLSID(this Guid value, string? server = null, bool throwOnError = false)
+    public static Type? GetTypeFromCLSID(this Guid clsid, string? server, bool throwOnError)
     {
-        return Type.GetTypeFromCLSID(value, server, throwOnError);
+        return Type.GetTypeFromCLSID(clsid, server, throwOnError);
     }
 }
