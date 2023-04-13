@@ -12,69 +12,69 @@ public static partial class DoubleExtensions
     }
 
     /// <inheritdoc cref="Math.Acos(double)"/>
-    public static double Acos(this double value)
+    public static double Acos(this double d)
     {
-        return Math.Acos(value);
+        return Math.Acos(d);
     }
 
     /// <inheritdoc cref="Math.Acosh(double)"/>
-    public static double Acosh(this double value)
+    public static double Acosh(this double d)
     {
-        return Math.Acosh(value);
+        return Math.Acosh(d);
     }
 
     /// <inheritdoc cref="Math.Asin(double)"/>
-    public static double Asin(this double value)
+    public static double Asin(this double d)
     {
-        return Math.Asin(value);
+        return Math.Asin(d);
     }
 
     /// <inheritdoc cref="Math.Asinh(double)"/>
-    public static double Asinh(this double value)
+    public static double Asinh(this double d)
     {
-        return Math.Asinh(value);
+        return Math.Asinh(d);
     }
 
     /// <inheritdoc cref="Math.Atan(double)"/>
-    public static double Atan(this double value)
+    public static double Atan(this double d)
     {
-        return Math.Atan(value);
+        return Math.Atan(d);
     }
 
     /// <inheritdoc cref="Math.Atan2(double,double)"/>
-    public static double Atan2(this double value, double value2)
+    public static double Atan2(this double d, double d2)
     {
-        return Math.Atan2(value, value2);
+        return Math.Atan2(d, d2);
     }
 
     /// <inheritdoc cref="Math.Atanh(double)"/>
-    public static double Atanh(this double value)
+    public static double Atanh(this double d)
     {
-        return Math.Atanh(value);
+        return Math.Atanh(d);
     }
 
     /// <inheritdoc cref="Math.BitDecrement(double)"/>
-    public static double BitDecrement(this double value)
+    public static double BitDecrement(this double x)
     {
-        return Math.BitDecrement(value);
+        return Math.BitDecrement(x);
     }
 
     /// <inheritdoc cref="Math.BitIncrement(double)"/>
-    public static double BitIncrement(this double value)
+    public static double BitIncrement(this double x)
     {
-        return Math.BitIncrement(value);
+        return Math.BitIncrement(x);
     }
 
     /// <inheritdoc cref="Math.Cbrt(double)"/>
-    public static double Cbrt(this double value)
+    public static double Cbrt(this double d)
     {
-        return Math.Cbrt(value);
+        return Math.Cbrt(d);
     }
 
     /// <inheritdoc cref="Math.Ceiling(double)"/>
-    public static double Ceiling(this double value)
+    public static double Ceiling(this double a)
     {
-        return Math.Ceiling(value);
+        return Math.Ceiling(a);
     }
 
     /// <inheritdoc cref="Math.Clamp(double,double,double)"/>
@@ -84,111 +84,111 @@ public static partial class DoubleExtensions
     }
 
     /// <inheritdoc cref="Math.CopySign(double,double)"/>
-    public static double CopySign(this double value, double value2)
+    public static double CopySign(this double x, double y)
     {
-        return Math.CopySign(value, value2);
+        return Math.CopySign(x, y);
     }
 
     /// <inheritdoc cref="Math.Cos(double)"/>
-    public static double Cos(this double value)
+    public static double Cos(this double d)
     {
-        return Math.Cos(value);
+        return Math.Cos(d);
     }
 
     /// <inheritdoc cref="Math.Cosh(double)"/>
-    public static double Cosh(this double value)
+    public static double Cosh(this double d)
     {
-        return Math.Cosh(value);
+        return Math.Cosh(d);
     }
 
     /// <inheritdoc cref="Math.Exp(double)"/>
-    public static double Exp(this double value)
+    public static double Exp(this double d)
     {
-        return Math.Exp(value);
+        return Math.Exp(d);
     }
 
     /// <inheritdoc cref="Math.Floor(double)"/>
-    public static double Floor(this double value)
+    public static double Floor(this double d)
     {
-        return Math.Floor(value);
+        return Math.Floor(d);
     }
 
     /// <inheritdoc cref="Math.FusedMultiplyAdd(double,double,double)"/>
-    public static double FusedMultiplyAdd(this double value, double value2, double value3)
+    public static double FusedMultiplyAdd(this double x, double y, double z)
     {
-        return Math.FusedMultiplyAdd(value, value2, value3);
+        return Math.FusedMultiplyAdd(x, y, z);
     }
 
     /// <inheritdoc cref="Math.IEEERemainder(double,double)"/>
-    public static double IEEERemainder(this double value, double value2)
+    public static double IEEERemainder(this double x, double y)
     {
-        return Math.IEEERemainder(value, value2);
+        return Math.IEEERemainder(x, y);
     }
 
     /// <inheritdoc cref="Math.ILogB(double)"/>
-    public static int ILogB(this double value)
+    public static int ILogB(this double x)
     {
-        return Math.ILogB(value);
+        return Math.ILogB(x);
     }
 
     /// <inheritdoc cref="Math.Log(double)"/>
-    public static double Log(this double value)
+    public static double Log(this double d)
     {
-        return Math.Log(value);
+        return Math.Log(d);
     }
 
     /// <inheritdoc cref="Math.Log(double,double)"/>
-    public static double Log(this double value, double newBase)
+    public static double Log(this double a, double newBase)
     {
-        return Math.Log(value, newBase);
+        return Math.Log(a, newBase);
     }
 
     /// <inheritdoc cref="Math.Log10(double)"/>
-    public static double Log10(this double value)
+    public static double Log10(this double d)
     {
-        return Math.Log10(value);
+        return Math.Log10(d);
     }
 
     /// <inheritdoc cref="Math.Log2(double)"/>
-    public static double Log2(this double value)
+    public static double Log2(this double x)
     {
-        return Math.Log2(value);
+        return Math.Log2(x);
     }
 
     /// <inheritdoc cref="Math.Max(double,double)"/>
-    public static double Max(this double value, double value2)
+    public static double Max(this double val1, double val2)
     {
-        return Math.Max(value, value2);
+        return Math.Max(val1, val2);
     }
 
     /// <inheritdoc cref="Math.MaxMagnitude(double,double)"/>
-    public static double MaxMagnitude(this double value, double value2)
+    public static double MaxMagnitude(this double x, double y)
     {
-        return Math.MaxMagnitude(value, value2);
+        return Math.MaxMagnitude(x, y);
     }
 
     /// <inheritdoc cref="Math.Min(double,double)"/>
-    public static double Min(this double value, double value2)
+    public static double Min(this double val1, double val2)
     {
-        return Math.Min(value, value2);
+        return Math.Min(val1, val2);
     }
 
     /// <inheritdoc cref="Math.MinMagnitude(double,double)"/>
-    public static double MinMagnitude(this double value, double value2)
+    public static double MinMagnitude(this double x, double y)
     {
-        return Math.MinMagnitude(value, value2);
+        return Math.MinMagnitude(x, y);
     }
 
     /// <inheritdoc cref="Math.Pow(double,double)"/>
-    public static double Pow(this double value, double power)
+    public static double Pow(this double x, double y)
     {
-        return Math.Pow(value, power);
+        return Math.Pow(x, y);
     }
 
     /// <inheritdoc cref="Math.Round(double)"/>
-    public static double Round(this double value)
+    public static double Round(this double a)
     {
-        return Math.Round(value);
+        return Math.Round(a);
     }
 
     /// <inheritdoc cref="Math.Round(double,MidpointRounding)"/>
@@ -210,9 +210,9 @@ public static partial class DoubleExtensions
     }
 
     /// <inheritdoc cref="Math.ScaleB(double,int)"/>
-    public static double ScaleB(this double value, int b)
+    public static double ScaleB(this double x, int n)
     {
-        return Math.ScaleB(value, b);
+        return Math.ScaleB(x, n);
     }
 
     /// <inheritdoc cref="Math.Sign(double)"/>
@@ -222,9 +222,9 @@ public static partial class DoubleExtensions
     }
 
     /// <inheritdoc cref="Math.Sin(double)"/>
-    public static double Sin(this double value)
+    public static double Sin(this double a)
     {
-        return Math.Sin(value);
+        return Math.Sin(a);
     }
 
     /// <inheritdoc cref="Math.Sinh(double)"/>
@@ -234,15 +234,15 @@ public static partial class DoubleExtensions
     }
 
     /// <inheritdoc cref="Math.Sqrt(double)"/>
-    public static double Sqrt(this double value)
+    public static double Sqrt(this double d)
     {
-        return Math.Sqrt(value);
+        return Math.Sqrt(d);
     }
 
     /// <inheritdoc cref="Math.Tan(double)"/>
-    public static double Tan(this double value)
+    public static double Tan(this double a)
     {
-        return Math.Tan(value);
+        return Math.Tan(a);
     }
 
     /// <inheritdoc cref="Math.Tanh(double)"/>
@@ -252,8 +252,8 @@ public static partial class DoubleExtensions
     }
 
     /// <inheritdoc cref="Math.Truncate(double)"/>
-    public static double Truncate(this double value)
+    public static double Truncate(this double d)
     {
-        return Math.Truncate(value);
+        return Math.Truncate(d);
     }
 }

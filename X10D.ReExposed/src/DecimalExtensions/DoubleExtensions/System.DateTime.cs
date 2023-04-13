@@ -6,8 +6,8 @@
 public static partial class DoubleExtensions
 {
     /// <inheritdoc cref="DateTime.FromOADate(double)"/>
-    public static DateTime FromOADate(this double value)
+    public static DateTime FromOADate(this double d)
     {
-        return DateTime.FromOADate(value);
+        return DateTime.FromOADate(d);
     }
 }

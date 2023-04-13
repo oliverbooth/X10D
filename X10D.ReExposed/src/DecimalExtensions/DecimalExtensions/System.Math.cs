@@ -17,15 +17,15 @@ public static partial class DecimalExtensions
     }
 
     /// <inheritdoc cref="Math.Max(decimal,decimal)"/>
-    public static decimal Max(this decimal value, decimal value2)
+    public static decimal Max(this decimal val1, decimal val2)
     {
-        return Math.Max(value, value2);
+        return Math.Max(val1, val2);
     }
 
     /// <inheritdoc cref="Math.Min(decimal,decimal)"/>
-    public static decimal Min(this decimal value, decimal value2)
+    public static decimal Min(this decimal val1, decimal val2)
     {
-        return Math.Min(value, value2);
+        return Math.Min(val1, val2);
     }
 
     /// <inheritdoc cref="Math.Sign(decimal)"/>

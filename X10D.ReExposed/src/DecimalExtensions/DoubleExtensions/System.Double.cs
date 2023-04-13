@@ -5,50 +5,50 @@
 public static partial class DoubleExtensions
 {
     /// <inheritdoc cref="double.IsFinite(double)"/>
-    public static bool IsFinite(this double value)
+    public static bool IsFinite(this double d)
     {
-        return double.IsFinite(value);
+        return double.IsFinite(d);
     }
 
     /// <inheritdoc cref="double.IsInfinity(double)"/>
-    public static bool IsInfinity(this double value)
+    public static bool IsInfinity(this double d)
     {
-        return double.IsInfinity(value);
+        return double.IsInfinity(d);
     }
 
     /// <inheritdoc cref="double.IsNaN(double)"/>
-    public static bool IsNaN(this double value)
+    public static bool IsNaN(this double d)
     {
-        return double.IsNaN(value);
+        return double.IsNaN(d);
     }
 
     /// <inheritdoc cref="double.IsNegative(double)"/>
-    public static bool IsNegative(this double value)
+    public static bool IsNegative(this double d)
     {
-        return double.IsNegative(value);
+        return double.IsNegative(d);
     }
 
     /// <inheritdoc cref="double.IsNegativeInfinity(double)"/>
-    public static bool IsNegativeInfinity(this double value)
+    public static bool IsNegativeInfinity(this double d)
     {
-        return double.IsNegativeInfinity(value);
+        return double.IsNegativeInfinity(d);
     }
 
     /// <inheritdoc cref="double.IsNormal(double)"/>
-    public static bool IsNormal(this double value)
+    public static bool IsNormal(this double d)
     {
-        return double.IsNormal(value);
+        return double.IsNormal(d);
     }
 
     /// <inheritdoc cref="double.IsPositiveInfinity(double)"/>
-    public static bool IsPositiveInfinity(this double value)
+    public static bool IsPositiveInfinity(this double d)
     {
-        return double.IsPositiveInfinity(value);
+        return double.IsPositiveInfinity(d);
     }
 
     /// <inheritdoc cref="double.IsSubnormal(double)"/>
-    public static bool IsSubnormal(this double value)
+    public static bool IsSubnormal(this double d)
     {
-        return double.IsSubnormal(value);
+        return double.IsSubnormal(d);
     }
 }

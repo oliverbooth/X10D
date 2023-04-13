@@ -17,15 +17,15 @@ public static partial class SingleExtensions
     }
 
     /// <inheritdoc cref="Math.Max(float,float)"/>
-    public static float Max(this float value, float value2)
+    public static float Max(this float val1, float val2)
     {
-        return Math.Max(value, value2);
+        return Math.Max(val1, val2);
     }
 
     /// <inheritdoc cref="Math.Min(float,float)"/>
-    public static float Min(this float value, float value2)
+    public static float Min(this float val1, float val2)
     {
-        return Math.Min(value, value2);
+        return Math.Min(val1, val2);
     }
 
     /// <inheritdoc cref="Math.Sign(float)"/>
