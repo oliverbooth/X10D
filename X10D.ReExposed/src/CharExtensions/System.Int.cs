@@ -16,6 +16,13 @@ public static partial class CharExtensions
         return int.Parse(s, style, provider);
     }
 
+    /// <inheritdoc cref="int.TryParse(ReadOnlySpan{char},out int)"/>
+    public static bool TryToInt32(this ReadOnlySpan<char> s,
+                                  out int result)
+    {
+        return int.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="int.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out int)"/>
     public static bool TryToInt32(this ReadOnlySpan<char> s,
                                   NumberStyles style,
@@ -23,6 +30,13 @@ public static partial class CharExtensions
                                   out int result)
     {
         return int.TryParse(s, style, provider, out result);
+    }
+
+    /// <inheritdoc cref="int.TryParse(ReadOnlySpan{char},out int)"/>
+    public static bool TryToInt32(this Span<char> s,
+                                  out int result)
+    {
+        return int.TryParse(s, out result);
     }
 
     /// <inheritdoc cref="int.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out int)"/>

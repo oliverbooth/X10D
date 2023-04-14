@@ -16,6 +16,13 @@ public static partial class CharExtensions
         return sbyte.Parse(s, style, provider);
     }
 
+    /// <inheritdoc cref="sbyte.TryParse(ReadOnlySpan{char},out sbyte)"/>
+    public static bool TryToSByte(this ReadOnlySpan<char> s,
+                                  out sbyte result)
+    {
+        return sbyte.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="sbyte.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out sbyte)"/>
     public static bool TryToSByte(this ReadOnlySpan<char> s,
                                   NumberStyles style,
@@ -23,6 +30,13 @@ public static partial class CharExtensions
                                   out sbyte result)
     {
         return sbyte.TryParse(s, style, provider, out result);
+    }
+
+    /// <inheritdoc cref="sbyte.TryParse(ReadOnlySpan{char},out sbyte)"/>
+    public static bool TryToSByte(this Span<char> s,
+                                  out sbyte result)
+    {
+        return sbyte.TryParse(s, out result);
     }
 
     /// <inheritdoc cref="sbyte.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out sbyte)"/>

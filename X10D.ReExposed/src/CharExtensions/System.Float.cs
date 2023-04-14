@@ -20,8 +20,15 @@ public static partial class CharExtensions
         return float.Parse(s, style, provider);
     }
 
+    /// <inheritdoc cref="float.TryParse(ReadOnlySpan{char},out float)"/>
+    public static bool TryToSingle(this ReadOnlySpan<char> s,
+                                   out float result)
+    {
+        return float.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="float.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out float)"/>
-    public static bool TryToSingle(ReadOnlySpan<char> s,
+    public static bool TryToSingle(this ReadOnlySpan<char> s,
                                    NumberStyles style,
                                    IFormatProvider? provider,
                                    out float result)
@@ -29,8 +36,15 @@ public static partial class CharExtensions
         return float.TryParse(s, style, provider, out result);
     }
 
+    /// <inheritdoc cref="float.TryParse(ReadOnlySpan{char},out float)"/>
+    public static bool TryToSingle(this Span<char> s,
+                                   out float result)
+    {
+        return float.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="float.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out float)"/>
-    public static bool TryToSingle(Span<char> s,
+    public static bool TryToSingle(this Span<char> s,
                                    NumberStyles style,
                                    IFormatProvider? provider,
                                    out float result)

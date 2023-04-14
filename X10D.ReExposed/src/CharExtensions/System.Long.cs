@@ -16,6 +16,13 @@ public static partial class CharExtensions
         return long.Parse(s, style, provider);
     }
 
+    /// <inheritdoc cref="long.TryParse(ReadOnlySpan{char},out long)"/>
+    public static bool TryToInt64(this ReadOnlySpan<char> s,
+                                  out long result)
+    {
+        return long.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="long.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out long)"/>
     public static bool TryToInt64(this ReadOnlySpan<char> s,
                                   NumberStyles style,
@@ -23,6 +30,13 @@ public static partial class CharExtensions
                                   out long result)
     {
         return long.TryParse(s, style, provider, out result);
+    }
+
+    /// <inheritdoc cref="long.TryParse(ReadOnlySpan{char},out long)"/>
+    public static bool TryToInt64(this Span<char> s,
+                                  out long result)
+    {
+        return long.TryParse(s, out result);
     }
 
     /// <inheritdoc cref="long.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out long)"/>

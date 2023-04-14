@@ -18,20 +18,26 @@ public static partial class CharExtensions
         return byte.Parse(s, style, formatProvider);
     }
 
-    /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out byte)"/>
-    public static bool TryToByte(this ReadOnlySpan<char> s,
-                                 out byte result,
-                                 NumberStyles style = NumberStyles.Integer,
-                                 IFormatProvider? provider = null)
+    /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},out byte)"/>
+    public static bool TryParse(this ReadOnlySpan<char> s, out byte result)
     {
-        return byte.TryParse(s, style, provider ?? NumberFormatInfo.CurrentInfo, out result);
+        return byte.TryParse(s, out result);
     }
 
     /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out byte)"/>
-    public static bool TryToByte(this Span<char> s,
-                                 out byte result,
-                                 NumberStyles style = NumberStyles.Integer,
-                                 IFormatProvider? provider = null)
+    public static bool TryToByte(this ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider, out byte result)
+    {
+        return byte.TryParse(s, style, provider, out result);
+    }
+
+    /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},out byte)"/>
+    public static bool TryParse(this Span<char> s, out byte result)
+    {
+        return byte.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out byte)"/>
+    public static bool TryToByte(this Span<char> s, NumberStyles style, IFormatProvider? provider, out byte result)
     {
         return byte.TryParse(s, style, provider, out result);
     }

@@ -20,8 +20,15 @@ public static partial class CharExtensions
         return decimal.Parse(s, style, provider);
     }
 
+    /// <inheritdoc cref="decimal.TryParse(ReadOnlySpan{char},out decimal)"/>
+    public static bool TryToDecimal(this ReadOnlySpan<char> s,
+                                    out decimal result)
+    {
+        return decimal.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="decimal.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out decimal)"/>
-    public static bool TryToDecimal(ReadOnlySpan<char> s,
+    public static bool TryToDecimal(this ReadOnlySpan<char> s,
                                     NumberStyles style,
                                     IFormatProvider? provider,
                                     out decimal result)
@@ -29,8 +36,15 @@ public static partial class CharExtensions
         return decimal.TryParse(s, style, provider, out result);
     }
 
+    /// <inheritdoc cref="decimal.TryParse(ReadOnlySpan{char},out decimal)"/>
+    public static bool TryToDecimal(this Span<char> s,
+                                    out decimal result)
+    {
+        return decimal.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="decimal.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out decimal)"/>
-    public static bool TryToDecimal(Span<char> s,
+    public static bool TryToDecimal(this Span<char> s,
                                     NumberStyles style,
                                     IFormatProvider? provider,
                                     out decimal result)

@@ -16,6 +16,13 @@ public static partial class CharExtensions
         return ulong.Parse(s, style, provider);
     }
 
+    /// <inheritdoc cref="ulong.TryParse(ReadOnlySpan{char},out ulong)"/>
+    public static bool TryToUInt64(this ReadOnlySpan<char> s,
+                                   out ulong result)
+    {
+        return ulong.TryParse(s, out result);
+    }
+
     /// <inheritdoc cref="ulong.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out ulong)"/>
     public static bool TryToUInt64(this ReadOnlySpan<char> s,
                                    NumberStyles style,
@@ -23,6 +30,13 @@ public static partial class CharExtensions
                                    out ulong result)
     {
         return ulong.TryParse(s, style, provider, out result);
+    }
+
+    /// <inheritdoc cref="ulong.TryParse(ReadOnlySpan{char},out ulong)"/>
+    public static bool TryToUInt64(this Span<char> s,
+                                   out ulong result)
+    {
+        return ulong.TryParse(s, out result);
     }
 
     /// <inheritdoc cref="ulong.TryParse(ReadOnlySpan{char},NumberStyles,IFormatProvider,out ulong)"/>
