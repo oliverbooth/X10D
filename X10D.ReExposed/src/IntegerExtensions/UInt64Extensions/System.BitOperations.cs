@@ -1,5 +1,7 @@
 ﻿namespace X10D.ReExposed.IntegerExtensions.UInt64Extensions;
 
+[SuppressMessage("ReSharper", "UnusedMember.Global")]
+[SuppressMessage("ReSharper", "UnusedType.Global")]
 public static partial class UInt64Extensions
 {
     /// <inheritdoc cref="BitOperations.Log2(ulong)"/>

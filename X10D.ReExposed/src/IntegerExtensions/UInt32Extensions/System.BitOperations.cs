@@ -1,5 +1,7 @@
 ﻿namespace X10D.ReExposed.IntegerExtensions.UInt32Extensions;
 
+[SuppressMessage("ReSharper", "UnusedMember.Global")]
+[SuppressMessage("ReSharper", "UnusedType.Global")]
 public static partial class UInt32Extensions
 {
     /// <inheritdoc cref="BitOperations.Log2(uint)"/>

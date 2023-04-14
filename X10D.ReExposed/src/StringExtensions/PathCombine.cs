@@ -1,5 +1,7 @@
 ﻿namespace X10D.ReExposed.StringExtensions;
 
+[SuppressMessage("ReSharper", "UnusedMember.Global")]
+[SuppressMessage("ReSharper", "UnusedType.Global")]
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="Path.Combine(string,string)"/>
