@@ -112,8 +112,10 @@ public class StringTests
         {
             Assert.That("Hello".ConcatIf(true, " World"), Is.EqualTo("Hello World"));
             Assert.That("Hello".ConcatIf(true, () => " World"), Is.EqualTo("Hello World"));
+            Assert.That("Hello".ConcatIf(true, _ => " World"), Is.EqualTo("Hello World"));
             Assert.That("Hello".ConcatIf(() => true, " World"), Is.EqualTo("Hello World"));
             Assert.That("Hello".ConcatIf(() => true, () => " World"), Is.EqualTo("Hello World"));
+            Assert.That("Hello".ConcatIf(() => true, _ => " World"), Is.EqualTo("Hello World"));
         });
     }
 
@@ -124,23 +126,36 @@ public class StringTests
         {
             Assert.That("Hello".ConcatIf(false, " World"), Is.EqualTo("Hello"));
             Assert.That("Hello".ConcatIf(false, () => " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(false, _ => " World"), Is.EqualTo("Hello"));
             Assert.That("Hello".ConcatIf(() => false, " World"), Is.EqualTo("Hello"));
             Assert.That("Hello".ConcatIf(() => false, () => " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(() => false, _ => " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(_ => false, " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(_ => false, () => " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(_ => false, _ => " World"), Is.EqualTo("Hello"));
         });
     }
 
     [Test]
     public void ConcatIf_ShouldThrowArgumentNullException_GivenNullConditionFactory()
     {
-        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(null!, "Hello World"));
-        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(null!, () => "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf((Func<bool>)null!, "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf((Func<bool>)null!, () => "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf((Func<bool>)null!, _ => "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf((Func<string?, bool>)null!, "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf((Func<string?, bool>)null!, () => "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf((Func<string?, bool>)null!, _ => "Hello World"));
     }
 
     [Test]
     public void ConcatIf_ShouldThrowArgumentNullException_GivenNullValueFactory()
     {
-        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(true, (Func<string>?)null!));
-        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(() => true, (Func<string>?)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(true, (Func<string?>)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(() => true, (Func<string?>)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(_ => true, (Func<string?>)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(true, (Func<string?, string?>)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(() => true, (Func<string?, string?>)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(_ => true, (Func<string?, string?>)null!));
     }
 
     [Test]

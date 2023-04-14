@@ -161,9 +161,31 @@ public static class StringExtensions
     ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
     /// </summary>
     /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">
+    ///     The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+    /// </param>
+    /// <param name="appendValue">The string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<string?, bool> conditionFactory, string? appendValue)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        return conditionFactory(value) ? value + appendValue : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
     /// <param name="condition">The condition to evaluate.</param>
     /// <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
     /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
     [Pure]
     public static string? ConcatIf(this string? value, bool condition, Func<string?> valueFactory)
     {
@@ -179,10 +201,34 @@ public static class StringExtensions
     ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
     /// </summary>
     /// <param name="value">The current string.</param>
+    /// <param name="condition">The condition to evaluate.</param>
+    /// <param name="valueFactory">
+    ///     The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+    ///     argument.
+    /// </param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, bool condition, Func<string?, string?> valueFactory)
+    {
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return condition ? value + valueFactory(value) : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
     /// <param name="conditionFactory">The function that returns the condition to evaluate.</param>
     /// <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
     /// <returns>The concatenated string.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
     [Pure]
     public static string? ConcatIf(this string? value, Func<bool> conditionFactory, Func<string?> valueFactory)
     {
@@ -197,6 +243,94 @@ public static class StringExtensions
         }
 
         return conditionFactory() ? value + valueFactory() : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">The function that returns the condition to evaluate.</param>
+    /// <param name="valueFactory">
+    ///     The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+    ///     argument.
+    /// </param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<bool> conditionFactory, Func<string?, string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory() ? value + valueFactory(value) : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">
+    ///     The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+    /// </param>
+    /// <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<string?, bool> conditionFactory, Func<string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory(value) ? value + valueFactory() : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">
+    ///     The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+    /// </param>
+    /// <param name="valueFactory">
+    ///     The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+    ///     argument.
+    /// </param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<string?, bool> conditionFactory, Func<string?, string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory(value) ? value + valueFactory(value) : value;
     }
 
     /// <summary>
