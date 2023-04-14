@@ -5,8 +5,14 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="Encoding.GetBytes(string)"/>
-    public static byte[] GetBytes(this string value, Encoding? encoding = null)
+    public static byte[] GetBytes(this string value)
     {
-        return (encoding ?? Encoding.Default).GetBytes(value);
+        return Encoding.Default.GetBytes(value);
+    }
+
+    /// <inheritdoc cref="Encoding.GetBytes(string)"/>
+    public static byte[] GetBytes(this string value, Encoding encoding)
+    {
+        return encoding.GetBytes(value);
     }
 }

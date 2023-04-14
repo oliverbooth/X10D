@@ -5,7 +5,7 @@
 public static partial class ObjectExtensions
 {
     /// <inheritdoc cref="object.ReferenceEquals(object,object)"/>
-    public new static bool ReferenceEquals(this object objA, object objB)
+    public new static bool ReferenceEquals(this object? objA, object? objB)
     {
         return object.ReferenceEquals(objA, objB);
     }

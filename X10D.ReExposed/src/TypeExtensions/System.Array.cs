@@ -5,38 +5,38 @@
 public static partial class TypeExtensions
 {
     /// <inheritdoc cref="Array.CreateInstance(Type,int)"/>
-    public static Array CreateArray(this Type arrayType, int length1d)
+    public static Array CreateArray(this Type elementType, int length)
     {
-        return Array.CreateInstance(arrayType, length1d);
+        return Array.CreateInstance(elementType, length);
     }
 
     /// <inheritdoc cref="Array.CreateInstance(Type,int,int)"/>
-    public static Array CreateArray(this Type arrayType, int length1d, int length2d)
+    public static Array CreateArray(this Type elementType, int length1, int length2)
     {
-        return Array.CreateInstance(arrayType, length1d, length2d);
+        return Array.CreateInstance(elementType, length1, length2);
     }
 
     /// <inheritdoc cref="Array.CreateInstance(Type,int,int,int)"/>
-    public static Array CreateArray(this Type arrayType, int length1d, int length2d, int length3d)
+    public static Array CreateArray(this Type elementType, int length1, int length2, int length3)
     {
-        return Array.CreateInstance(arrayType, length1d, length2d, length3d);
+        return Array.CreateInstance(elementType, length1, length2, length3);
     }
 
     /// <inheritdoc cref="Array.CreateInstance(Type,int[],int[])"/>
-    public static Array CreateArray(this Type arrayType, int[] lengths, int[] lowerBounds)
+    public static Array CreateArray(this Type elementType, int[] lengths, int[] lowerBounds)
     {
-        return Array.CreateInstance(arrayType, lengths, lowerBounds);
+        return Array.CreateInstance(elementType, lengths, lowerBounds);
     }
 
     /// <inheritdoc cref="Array.CreateInstance(Type,int[])"/>
-    public static Array CreateArray(this Type arrayType, params int[] lengths)
+    public static Array CreateArray(this Type elementType, params int[] lengths)
     {
-        return Array.CreateInstance(arrayType, lengths);
+        return Array.CreateInstance(elementType, lengths);
     }
 
     /// <inheritdoc cref="Array.CreateInstance(Type,long[])"/>
-    public static Array CreateArray(this Type arrayType, params long[] lengths)
+    public static Array CreateArray(this Type elementType, params long[] lengths)
     {
-        return Array.CreateInstance(arrayType, lengths);
+        return Array.CreateInstance(elementType, lengths);
     }
 }

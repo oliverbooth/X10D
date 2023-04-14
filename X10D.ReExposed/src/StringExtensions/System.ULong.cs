@@ -5,9 +5,9 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="ulong.Parse(string,NumberStyles,IFormatProvider)"/>
-    public static ulong ToUInt64(this string value, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
+    public static ulong ToUInt64(this string s, NumberStyles style = NumberStyles.Number, IFormatProvider? provider = null)
     {
-        return ulong.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return ulong.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="ulong.TryParse(string,out ulong)"/>

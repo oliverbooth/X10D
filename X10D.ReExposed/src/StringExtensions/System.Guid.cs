@@ -5,26 +5,28 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="Guid.Parse(string)"/>
-    public static Guid ToGuid(this string value)
+    public static Guid ToGuid(this string input)
     {
-        return Guid.Parse(value);
+        return Guid.Parse(input);
     }
 
     /// <inheritdoc cref="Guid.ParseExact(string,string)"/>
-    public static Guid ToGuidExact(this string value, string format)
+    public static Guid ToGuidExact(this string input, [StringSyntax(StringSyntaxAttribute.GuidFormat)] string format)
     {
-        return Guid.ParseExact(value, format);
+        return Guid.ParseExact(input, format);
     }
 
     /// <inheritdoc cref="Guid.TryParse(string,out Guid)"/>
-    public static bool TryToGuid(this string value, out Guid result)
+    public static bool TryToGuid([NotNullWhen(true)] this string? input, out Guid result)
     {
-        return Guid.TryParse(value, out result);
+        return Guid.TryParse(input, out result);
     }
 
     /// <inheritdoc cref="Guid.TryParseExact(string,string,out Guid)"/>
-    public static bool TryToGuidExact(this string value, string format, out Guid result)
+    public static bool TryToGuidExact([NotNullWhen(true)] this string? input,
+                                      [StringSyntax(StringSyntaxAttribute.GuidFormat)] string format,
+                                      out Guid result)
     {
-        return Guid.TryParseExact(value, format, out result);
+        return Guid.TryParseExact(input, format, out result);
     }
 }

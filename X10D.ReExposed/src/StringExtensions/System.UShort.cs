@@ -5,9 +5,9 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="ushort.Parse(string,NumberStyles,IFormatProvider)"/>
-    public static ushort ToUInt16(this string value, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
+    public static ushort ToUInt16(this string s, NumberStyles style = NumberStyles.Number, IFormatProvider? provider = null)
     {
-        return ushort.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return ushort.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="ushort.TryParse(string,out ushort)"/>

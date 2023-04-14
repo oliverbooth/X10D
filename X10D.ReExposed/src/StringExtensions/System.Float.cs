@@ -5,9 +5,9 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="float.Parse(string,NumberStyles,IFormatProvider)"/>
-    public static float ToSingle(this string value, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
+    public static float ToSingle(this string s, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
     {
-        return float.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return float.Parse(s, style, formatProvider);
     }
 
     /// <inheritdoc cref="float.TryParse(string,out float)"/>

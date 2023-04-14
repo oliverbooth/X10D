@@ -19,7 +19,7 @@ public static partial class CharExtensions
     }
 
     /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},out byte)"/>
-    public static bool TryParse(this ReadOnlySpan<char> s, out byte result)
+    public static bool TryToByte(this ReadOnlySpan<char> s, out byte result)
     {
         return byte.TryParse(s, out result);
     }
@@ -31,7 +31,7 @@ public static partial class CharExtensions
     }
 
     /// <inheritdoc cref="byte.TryParse(ReadOnlySpan{char},out byte)"/>
-    public static bool TryParse(this Span<char> s, out byte result)
+    public static bool TryToByte(this Span<char> s, out byte result)
     {
         return byte.TryParse(s, out result);
     }

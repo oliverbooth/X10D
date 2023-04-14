@@ -5,7 +5,7 @@
 public static partial class TypeExtensions
 {
     /// <inheritdoc cref="Enum.Format(Type,object,string)"/>
-    public static string Format(this Type enumType, object value, string format)
+    public static string Format(this Type enumType, object value, [StringSyntax(StringSyntaxAttribute.EnumFormat)] string format)
     {
         return Enum.Format(enumType, value, format);
     }
@@ -40,8 +40,14 @@ public static partial class TypeExtensions
         return Enum.Parse(enumType, value, ignoreCase);
     }
 
+    /// <inheritdoc cref="Enum.TryParse(Type,string,out object)"/>
+    public static bool TryParse(this Type enumType, string? value, [NotNullWhen(true)] out object? result)
+    {
+        return Enum.TryParse(enumType, value, out result);
+    }
+
     /// <inheritdoc cref="Enum.TryParse(Type,string,bool,out object)"/>
-    public static bool TryParse(this Type enumType, string value, out object? result, bool ignoreCase = false)
+    public static bool TryParse(this Type enumType, string? value, bool ignoreCase, [NotNullWhen(true)] out object? result)
     {
         return Enum.TryParse(enumType, value, ignoreCase, out result);
     }

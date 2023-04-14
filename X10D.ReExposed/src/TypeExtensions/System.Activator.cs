@@ -5,18 +5,24 @@
 public static partial class TypeExtensions
 {
     /// <inheritdoc cref="Activator.CreateInstance(Type,BindingFlags,Binder,object[],CultureInfo,object[])"/>
-    public static object? CreateInstance(this Type type,
-                                         BindingFlags bindingFlags,
-                                         Binder? binder = null,
-                                         object?[]? args = null,
-                                         CultureInfo? culture = null,
-                                         object?[]? activationAttributes = null)
+    public static object? CreateInstance(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicConstructors
+                                  | DynamicallyAccessedMemberTypes.PublicConstructors)]
+        this Type type,
+        BindingFlags bindingAttr,
+        Binder? binder,
+        object?[]? args,
+        CultureInfo? culture,
+        object?[]? activationAttributes)
     {
-        return Activator.CreateInstance(type, bindingFlags, binder, args, culture, activationAttributes);
+        return Activator.CreateInstance(type, bindingAttr, binder, args, culture, activationAttributes);
     }
 
     /// <inheritdoc cref="Activator.CreateInstance(Type,bool)"/>
-    public static object? CreateInstance(this Type type, bool nonPublic)
+    public static object? CreateInstance([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors
+                                                                   | DynamicallyAccessedMemberTypes.NonPublicConstructors)]
+                                         this Type type,
+                                         bool nonPublic)
     {
         return Activator.CreateInstance(type, nonPublic);
     }

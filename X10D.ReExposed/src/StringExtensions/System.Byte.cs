@@ -5,11 +5,11 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="byte.Parse(string,NumberStyles,IFormatProvider)"/>
-    public static byte ToByte(this string value,
+    public static byte ToByte(this string s,
                               NumberStyles style = NumberStyles.Integer,
-                              IFormatProvider? formatProvider = null)
+                              IFormatProvider? provider = null)
     {
-        return byte.Parse(value, style, formatProvider);
+        return byte.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="byte.TryParse(string,out byte)"/>

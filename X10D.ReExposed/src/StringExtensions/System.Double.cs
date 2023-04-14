@@ -5,9 +5,9 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="double.Parse(string,NumberStyles,IFormatProvider)"/>
-    public static double ToDouble(this string value, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
+    public static double ToDouble(this string s, NumberStyles style = NumberStyles.Number, IFormatProvider? provider = null)
     {
-        return double.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return double.Parse(s, style, provider);
     }
 
     /// <inheritdoc cref="double.TryParse(string,out double)"/>

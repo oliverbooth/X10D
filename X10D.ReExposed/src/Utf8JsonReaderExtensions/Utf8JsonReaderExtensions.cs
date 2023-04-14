@@ -8,8 +8,8 @@
 public static class Utf8JsonReaderExtensions
 {
     /// <inheritdoc cref="JsonSerializer.Deserialize{T}(ref Utf8JsonReader,JsonSerializerOptions)"/>
-    public static TValue? JsonTo<TValue>(this ref Utf8JsonReader reader, JsonSerializerOptions? serializerOptions = null)
+    public static TValue? JsonTo<TValue>(this ref Utf8JsonReader reader, JsonSerializerOptions? options = null)
     {
-        return JsonSerializer.Deserialize<TValue>(ref reader, serializerOptions);
+        return JsonSerializer.Deserialize<TValue>(ref reader, options);
     }
 }

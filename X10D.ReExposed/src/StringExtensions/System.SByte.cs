@@ -5,9 +5,9 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="sbyte.Parse(string,NumberStyles,IFormatProvider)"/>
-    public static sbyte ToSByte(this string value, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
+    public static sbyte ToSByte(this string s, NumberStyles style = NumberStyles.Number, IFormatProvider? formatProvider = null)
     {
-        return sbyte.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
+        return sbyte.Parse(s, style, formatProvider);
     }
 
     /// <inheritdoc cref="sbyte.TryParse(string,out sbyte)"/>

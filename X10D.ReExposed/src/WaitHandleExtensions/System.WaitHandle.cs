@@ -8,15 +8,15 @@
 public static class WaitHandleExtensions
 {
     /// <inheritdoc cref="WaitHandle.SignalAndWait(WaitHandle,WaitHandle,TimeSpan,bool)"/>
-    public static bool SignalAndWait(this WaitHandle handle, WaitHandle toWaitOn, TimeSpan timeout, bool exitContext = false)
+    public static bool SignalAndWait(this WaitHandle toSignal, WaitHandle toWaitOn, TimeSpan timeout, bool exitContext = false)
     {
-        return WaitHandle.SignalAndWait(handle, toWaitOn, timeout, exitContext);
+        return WaitHandle.SignalAndWait(toSignal, toWaitOn, timeout, exitContext);
     }
 
     /// <inheritdoc cref="WaitHandle.SignalAndWait(WaitHandle,WaitHandle,int,bool)"/>
-    public static bool SignalAndWait(this WaitHandle handle, WaitHandle toWaitOn, int millisecondsTimeout = -1, bool exitContext = false)
+    public static bool SignalAndWait(this WaitHandle toSignal, WaitHandle toWaitOn, int millisecondsTimeout = -1, bool exitContext = false)
     {
-        return WaitHandle.SignalAndWait(handle, toWaitOn, millisecondsTimeout, exitContext);
+        return WaitHandle.SignalAndWait(toSignal, toWaitOn, millisecondsTimeout, exitContext);
     }
 
     /// <inheritdoc cref="WaitHandle.WaitAll(WaitHandle[],int,bool)"/>

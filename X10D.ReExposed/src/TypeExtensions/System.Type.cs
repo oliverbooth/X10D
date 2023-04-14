@@ -5,14 +5,14 @@
 public static partial class TypeExtensions
 {
     /// <inheritdoc cref="Type.GetTypeCode(Type)"/>
-    public static TypeCode GetTypeCode(this Type type)
+    public static TypeCode GetTypeCode(this Type? type)
     {
         return Type.GetTypeCode(type);
     }
 
     /// <inheritdoc cref="Type.MakeGenericSignatureType(Type,Type[])"/>
-    public static Type MakeGenericSignatureType(this Type type, params Type[] types)
+    public static Type MakeGenericSignatureType(this Type genericTypeDefinition, params Type[] typeArguments)
     {
-        return Type.MakeGenericSignatureType(type, types);
+        return Type.MakeGenericSignatureType(genericTypeDefinition, typeArguments);
     }
 }

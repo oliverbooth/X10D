@@ -5,8 +5,8 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="System.Text.Json.JsonSerializer.Deserialize{T}(string,JsonSerializerOptions)"/>
-    public static T? JsonTo<T>(this string value, JsonSerializerOptions? serializerOptions = null)
+    public static TValue? JsonTo<TValue>([StringSyntax(StringSyntaxAttribute.Json)] this string json, JsonSerializerOptions? options = null)
     {
-        return JsonSerializer.Deserialize<T>(value, serializerOptions);
+        return JsonSerializer.Deserialize<TValue>(json, options);
     }
 }

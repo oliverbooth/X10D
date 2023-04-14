@@ -68,9 +68,9 @@ public static class VectorExtensions
     }
 
     /// <inheritdoc cref="Vector2.Reflect"/>
-    public static Vector2 Reflect(this Vector2 value1, Vector2 value2)
+    public static Vector2 Reflect(this Vector2 vector, Vector2 normal)
     {
-        return Vector2.Reflect(value1, value2);
+        return Vector2.Reflect(vector, normal);
     }
 
     /// <inheritdoc cref="Vector2.SquareRoot"/>
