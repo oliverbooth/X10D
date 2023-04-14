@@ -9810,6 +9810,18 @@
             <returns>The concatenated string.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
         </member>
+        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.String,System.Boolean},System.String)">
+            <summary>
+                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+            </summary>
+            <param name="value">The current string.</param>
+            <param name="conditionFactory">
+                The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+            </param>
+            <param name="appendValue">The string to append if the condition is true.</param>
+            <returns>The concatenated string.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
+        </member>
         <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Boolean,System.Func{System.String})">
             <summary>
                 Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
@@ -9818,6 +9830,20 @@
             <param name="condition">The condition to evaluate.</param>
             <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
             <returns>The concatenated string.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Boolean,System.Func{System.String,System.String})">
+            <summary>
+                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+            </summary>
+            <param name="value">The current string.</param>
+            <param name="condition">The condition to evaluate.</param>
+            <param name="valueFactory">
+                The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+                argument.
+            </param>
+            <returns>The concatenated string.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.Boolean},System.Func{System.String})">
             <summary>
@@ -9827,7 +9853,55 @@
             <param name="conditionFactory">The function that returns the condition to evaluate.</param>
             <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
             <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.Boolean},System.Func{System.String,System.String})">
+            <summary>
+                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+            </summary>
+            <param name="value">The current string.</param>
+            <param name="conditionFactory">The function that returns the condition to evaluate.</param>
+            <param name="valueFactory">
+                The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+                argument.
+            </param>
+            <returns>The concatenated string.</returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.String,System.Boolean},System.Func{System.String})">
+            <summary>
+                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+            </summary>
+            <param name="value">The current string.</param>
+            <param name="conditionFactory">
+                The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+            </param>
+            <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
+            <returns>The concatenated string.</returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.String,System.Boolean},System.Func{System.String,System.String})">
+            <summary>
+                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+            </summary>
+            <param name="value">The current string.</param>
+            <param name="conditionFactory">
+                The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+            </param>
+            <param name="valueFactory">
+                The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+                argument.
+            </param>
+            <returns>The concatenated string.</returns>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+            </exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.CountSubstring(System.Span{System.Char},System.Char)">
             <summary>
