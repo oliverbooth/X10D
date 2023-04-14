@@ -106,6 +106,44 @@ public class StringTests
     }
 
     [Test]
+    public void ConcatIf_ShouldConcatenateString_GivenTrueCondition()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello".ConcatIf(true, " World"), Is.EqualTo("Hello World"));
+            Assert.That("Hello".ConcatIf(true, () => " World"), Is.EqualTo("Hello World"));
+            Assert.That("Hello".ConcatIf(() => true, " World"), Is.EqualTo("Hello World"));
+            Assert.That("Hello".ConcatIf(() => true, () => " World"), Is.EqualTo("Hello World"));
+        });
+    }
+
+    [Test]
+    public void ConcatIf_ShouldNotConcatenateString_GivenFalseCondition()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello".ConcatIf(false, " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(false, () => " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(() => false, " World"), Is.EqualTo("Hello"));
+            Assert.That("Hello".ConcatIf(() => false, () => " World"), Is.EqualTo("Hello"));
+        });
+    }
+
+    [Test]
+    public void ConcatIf_ShouldThrowArgumentNullException_GivenNullConditionFactory()
+    {
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(null!, "Hello World"));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(null!, () => "Hello World"));
+    }
+
+    [Test]
+    public void ConcatIf_ShouldThrowArgumentNullException_GivenNullValueFactory()
+    {
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(true, (Func<string>?)null!));
+        Assert.Throws<ArgumentNullException>(() => _ = "".ConcatIf(() => true, (Func<string>?)null!));
+    }
+
+    [Test]
     public void CountSubstring_ShouldHonor_StringComparison()
     {
         Assert.Multiple(() =>
