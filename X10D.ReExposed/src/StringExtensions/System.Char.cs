@@ -5,14 +5,14 @@
 public static partial class StringExtensions
 {
     /// <inheritdoc cref="char.Parse(string)"/>
-    public static char ToChar(this string value)
+    public static char ToChar(this string s)
     {
-        return char.Parse(value);
+        return char.Parse(s);
     }
 
     /// <inheritdoc cref="char.TryParse(string,out char)"/>
-    public static bool TryToChar(this string value, out char result)
+    public static bool TryToChar([NotNullWhen(true)] this string? s, out char result)
     {
-        return char.TryParse(value, out result);
+        return char.TryParse(s, out result);
     }
 }

@@ -10,12 +10,27 @@ public static partial class StringExtensions
         return float.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
     }
 
-    /// <inheritdoc cref="float.TryParse(string,NumberStyles,IFormatProvider,out float)"/>
-    public static bool TryToSingle(this string value,
-                                   out float result,
-                                   NumberStyles style = NumberStyles.Number,
-                                   IFormatProvider? formatProvider = null)
+    /// <inheritdoc cref="float.TryParse(string,out float)"/>
+    public static bool TryToSingle([NotNullWhen(true)] this string? s,
+                                   out float result)
     {
-        return float.TryParse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return float.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="float.TryParse(string,IFormatProvider,out float)"/>
+    public static bool TryToSingle([NotNullWhen(true)] this string? s,
+                                   IFormatProvider? provider,
+                                   out float result)
+    {
+        return float.TryParse(s, provider, out result);
+    }
+
+    /// <inheritdoc cref="float.TryParse(string,NumberStyles,IFormatProvider,out float)"/>
+    public static bool TryToSingle([NotNullWhen(true)] this string? s,
+                                   NumberStyles style,
+                                   IFormatProvider? provider,
+                                   out float result)
+    {
+        return float.TryParse(s, style, provider, out result);
     }
 }

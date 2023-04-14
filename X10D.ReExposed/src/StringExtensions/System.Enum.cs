@@ -11,8 +11,15 @@ public static partial class StringExtensions
         return Enum.Parse<T>(value, ignoreCase);
     }
 
+    /// <inheritdoc cref="Enum.TryParse{T}(string,out T)"/>
+    public static bool TryToEnum<T>(this string value, out T result)
+        where T : struct, Enum
+    {
+        return Enum.TryParse(value, out result);
+    }
+
     /// <inheritdoc cref="Enum.TryParse{T}(string,bool,out T)"/>
-    public static bool TryToEnum<T>(this string value, out T result, bool ignoreCase = false)
+    public static bool TryToEnum<T>(this string value, bool ignoreCase, out T result)
         where T : struct, Enum
     {
         return Enum.TryParse(value, ignoreCase, out result);

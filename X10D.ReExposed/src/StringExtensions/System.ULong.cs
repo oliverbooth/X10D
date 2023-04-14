@@ -10,12 +10,27 @@ public static partial class StringExtensions
         return ulong.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
     }
 
-    /// <inheritdoc cref="ulong.TryParse(string,NumberStyles,IFormatProvider,out ulong)"/>
-    public static bool TryToUInt64(this string value,
-                                   out ulong result,
-                                   NumberStyles style = NumberStyles.Number,
-                                   IFormatProvider? formatProvider = null)
+    /// <inheritdoc cref="ulong.TryParse(string,out ulong)"/>
+    public static bool TryToUInt64([NotNullWhen(true)] this string? s,
+                                   out ulong result)
     {
-        return ulong.TryParse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return ulong.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="ulong.TryParse(string,IFormatProvider,out ulong)"/>
+    public static bool TryToUInt64([NotNullWhen(true)] this string? s,
+                                   IFormatProvider? provider,
+                                   out ulong result)
+    {
+        return ulong.TryParse(s, provider, out result);
+    }
+
+    /// <inheritdoc cref="ulong.TryParse(string,NumberStyles,IFormatProvider,out ulong)"/>
+    public static bool TryToUInt64([NotNullWhen(true)] this string? s,
+                                   NumberStyles style,
+                                   IFormatProvider? provider,
+                                   out ulong result)
+    {
+        return ulong.TryParse(s, style, provider, out result);
     }
 }

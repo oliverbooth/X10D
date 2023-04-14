@@ -10,12 +10,27 @@ public static partial class StringExtensions
         return double.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
     }
 
-    /// <inheritdoc cref="double.TryParse(string,NumberStyles,IFormatProvider,out double)"/>
-    public static bool TryToDouble(this string value,
-                                   out double result,
-                                   NumberStyles style = NumberStyles.Number,
-                                   IFormatProvider? formatProvider = null)
+    /// <inheritdoc cref="double.TryParse(string,out double)"/>
+    public static bool TryToDouble([NotNullWhen(true)] this string? s,
+                                   out double result)
     {
-        return double.TryParse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return double.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="double.TryParse(string,IFormatProvider,out double)"/>
+    public static bool TryToDouble([NotNullWhen(true)] this string? s,
+                                   IFormatProvider? provider,
+                                   out double result)
+    {
+        return double.TryParse(s, provider, out result);
+    }
+
+    /// <inheritdoc cref="double.TryParse(string,NumberStyles,IFormatProvider,out double)"/>
+    public static bool TryToDouble([NotNullWhen(true)] this string? s,
+                                   NumberStyles style,
+                                   IFormatProvider? provider,
+                                   out double result)
+    {
+        return double.TryParse(s, style, provider, out result);
     }
 }

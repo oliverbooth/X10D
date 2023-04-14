@@ -10,12 +10,27 @@ public static partial class StringExtensions
         return short.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
     }
 
-    /// <inheritdoc cref="short.TryParse(string,NumberStyles,IFormatProvider,out short)"/>
-    public static bool TryToInt16(this string value,
-                                  out short result,
-                                  NumberStyles style = NumberStyles.Number,
-                                  IFormatProvider? formatProvider = null)
+    /// <inheritdoc cref="short.TryParse(string,out short)"/>
+    public static bool TryToInt16([NotNullWhen(true)] this string? s,
+                                  out short result)
     {
-        return short.TryParse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return short.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="short.TryParse(string,IFormatProvider,out short)"/>
+    public static bool TryToInt16([NotNullWhen(true)] this string? s,
+                                  IFormatProvider? provider,
+                                  out short result)
+    {
+        return short.TryParse(s, provider, out result);
+    }
+
+    /// <inheritdoc cref="short.TryParse(string,NumberStyles,IFormatProvider,out short)"/>
+    public static bool TryToInt16([NotNullWhen(true)] this string? s,
+                                  NumberStyles style,
+                                  IFormatProvider? provider,
+                                  out short result)
+    {
+        return short.TryParse(s, style, provider, out result);
     }
 }

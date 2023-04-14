@@ -10,12 +10,27 @@ public static partial class StringExtensions
         return sbyte.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
     }
 
-    /// <inheritdoc cref="sbyte.TryParse(string,NumberStyles,IFormatProvider,out sbyte)"/>
-    public static bool TryToSByte(this string value,
-                                  out sbyte result,
-                                  NumberStyles style = NumberStyles.Number,
-                                  IFormatProvider? formatProvider = null)
+    /// <inheritdoc cref="sbyte.TryParse(string,out sbyte)"/>
+    public static bool TryToSByte([NotNullWhen(true)] this string? s,
+                                  out sbyte result)
     {
-        return sbyte.TryParse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return sbyte.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="sbyte.TryParse(string,IFormatProvider,out sbyte)"/>
+    public static bool TryToSByte([NotNullWhen(true)] this string? s,
+                                  IFormatProvider? provider,
+                                  out sbyte result)
+    {
+        return sbyte.TryParse(s, provider, out result);
+    }
+
+    /// <inheritdoc cref="sbyte.TryParse(string,NumberStyles,IFormatProvider,out sbyte)"/>
+    public static bool TryToSByte([NotNullWhen(true)] this string? s,
+                                  NumberStyles style,
+                                  IFormatProvider? provider,
+                                  out sbyte result)
+    {
+        return sbyte.TryParse(s, style, provider, out result);
     }
 }

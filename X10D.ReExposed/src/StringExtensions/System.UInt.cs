@@ -10,12 +10,27 @@ public static partial class StringExtensions
         return uint.Parse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo);
     }
 
-    /// <inheritdoc cref="uint.TryParse(string,NumberStyles,IFormatProvider,out uint)"/>
-    public static bool TryToUInt32(this string value,
-                                   out uint result,
-                                   NumberStyles style = NumberStyles.Number,
-                                   IFormatProvider? formatProvider = null)
+    /// <inheritdoc cref="uint.TryParse(string,out uint)"/>
+    public static bool TryToUInt32([NotNullWhen(true)] this string? s,
+                                   out uint result)
     {
-        return uint.TryParse(value, style, formatProvider ?? NumberFormatInfo.CurrentInfo, out result);
+        return uint.TryParse(s, out result);
+    }
+
+    /// <inheritdoc cref="uint.TryParse(string,IFormatProvider,out uint)"/>
+    public static bool TryToUInt32([NotNullWhen(true)] this string? s,
+                                   IFormatProvider? provider,
+                                   out uint result)
+    {
+        return uint.TryParse(s, provider, out result);
+    }
+
+    /// <inheritdoc cref="uint.TryParse(string,NumberStyles,IFormatProvider,out uint)"/>
+    public static bool TryToUInt32([NotNullWhen(true)] this string? s,
+                                   NumberStyles style,
+                                   IFormatProvider? provider,
+                                   out uint result)
+    {
+        return uint.TryParse(s, style, provider, out result);
     }
 }
