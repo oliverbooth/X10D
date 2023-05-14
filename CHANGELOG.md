@@ -31,6 +31,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - X10D: `DateTime.Age(DateTime)` and `DateTimeOffset.Age(DateTimeOffset)` parameter renamed from `asOf` to `referenceDate`.
 
+### Removed
+
+- X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`. 
+
 ## [3.2.0] - 2023-04-03
 
 ### Added
