@@ -5,30 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 4.0.0 - [Unreleased]
+## [3.2.1] - 2023-06-05
 
 ### Added
 
-- X10D: Added extension methods for `DateOnly`, for parity with `DateTime` and `DateTimeOffset`.
-- X10D: Added math-related extension methods for `BigInteger`.
-- X10D: Added `Span<T>.Replace(T, T)`.
-- X10D: Added `CountDigits` for integer types.
-- X10D: Added `IEnumerable<T>.Except(T)`.
-- X10D: Added `Progress<T>.OnProgressChanged([T])`.
-- X10D: Added `TextWriter.WriteNoAlloc(int[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteLineNoAlloc(int[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteLineNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
-- X10D.Unity: Added `RaycastHit.GetComponent` and `RaycastHit.TryGetComponent`.
-- X10D.Unity: Added `DebugUtility.DrawFunction`, and `DebugUtility.DrawUnjoinedPolyhedron` on which it relies.
-
-### Changed
-
-- X10D: `DateTime.Age(DateTime)` and `DateTimeOffset.Age(DateTimeOffset)` parameter renamed from `asOf` to `referenceDate`.
+- X10D.DSharpPlus: Added support for new usernames. See https://discord.com/blog/usernames
 
 ## [3.2.0] - 2023-04-03
 
@@ -592,7 +573,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 Earlier versions of this package are undocumented and unlisted from package results.
 
-[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.2.0...main
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.2.1...main
+[3.2.1]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.1
 [3.2.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.0
 [3.1.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.1.0
 [3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0

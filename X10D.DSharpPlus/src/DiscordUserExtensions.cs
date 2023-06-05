@@ -77,6 +77,12 @@ public static class DiscordUserExtensions
         }
 #endif
 
+        if (user.Discriminator == "0")
+        {
+            // user has a new username. see: https://discord.com/blog/usernames
+            return user.Username;
+        }
+
         return $"{user.Username}#{user.Discriminator}";
     }
 
