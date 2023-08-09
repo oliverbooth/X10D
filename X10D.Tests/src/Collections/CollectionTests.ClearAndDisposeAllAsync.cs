@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using X10D.Collections;
 
@@ -13,16 +13,17 @@ public partial class CollectionTests
         [Test]
         public async Task ClearAndDisposeAllAsync_ShouldClearAndDisposeAllItems_WhenCalledWithValidList()
         {
-            var mock1 = new Mock<IAsyncDisposable>();
-            var mock2 = new Mock<IAsyncDisposable>();
-            var mock3 = new Mock<IAsyncDisposable>();
-            var list = new List<IAsyncDisposable> {mock1.Object, mock2.Object, mock3.Object};
+            var substitute1 = Substitute.For<IAsyncDisposable>();
+            var substitute2 = Substitute.For<IAsyncDisposable>();
+            var substitute3 = Substitute.For<IAsyncDisposable>();
+            var list = new List<IAsyncDisposable> {substitute1, substitute2, substitute3};
 
             await list.ClearAndDisposeAllAsync().ConfigureAwait(false);
 
-            mock1.Verify(i => i.DisposeAsync(), Times.Once);
-            mock2.Verify(i => i.DisposeAsync(), Times.Once);
-            mock3.Verify(i => i.DisposeAsync(), Times.Once);
+            await substitute1.Received(1).DisposeAsync();
+            await substitute2.Received(1).DisposeAsync();
+            await substitute3.Received(1).DisposeAsync();
+
             Assert.That(list, Is.Empty);
         }
 
@@ -36,8 +37,8 @@ public partial class CollectionTests
         [Test]
         public void ClearAndDisposeAllAsync_ShouldThrowInvalidOperationException_WhenCalledWithReadOnlyList()
         {
-            var mock = new Mock<IAsyncDisposable>();
-            var list = new ReadOnlyCollection<IAsyncDisposable>(new List<IAsyncDisposable> {mock.Object});
+            var substitute = Substitute.For<IAsyncDisposable>();
+            var list = new ReadOnlyCollection<IAsyncDisposable>(new List<IAsyncDisposable> {substitute});
 
             Assert.ThrowsAsync<InvalidOperationException>(list.ClearAndDisposeAllAsync);
         }
