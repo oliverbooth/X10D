@@ -68,6 +68,12 @@ public static class DiscordUserExtensions
             throw new ArgumentNullException(nameof(user));
         }
 
+        if (user.Discriminator == "0")
+        {
+            // user has a new username. see: https://discord.com/blog/usernames
+            return user.Username;
+        }
+
         return $"{user.Username}#{user.Discriminator}";
     }
 

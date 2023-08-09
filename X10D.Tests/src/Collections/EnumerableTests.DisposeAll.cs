@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using NSubstitute;
 using NUnit.Framework;
 using X10D.Collections;
 
@@ -12,16 +12,16 @@ public partial class EnumerableTests
         [Test]
         public void DisposeAll_ShouldDisposeAllItems_WhenCalledWithValidList()
         {
-            var mock1 = new Mock<IDisposable>();
-            var mock2 = new Mock<IDisposable>();
-            var mock3 = new Mock<IDisposable>();
-            var list = new List<IDisposable> {mock1.Object, mock2.Object, null!, mock3.Object};
+            var substitute1 = Substitute.For<IDisposable>();
+            var substitute2 = Substitute.For<IDisposable>();
+            var substitute3 = Substitute.For<IDisposable>();
+            var list = new List<IDisposable> { substitute1, substitute2, null!, substitute3 };
 
             list.DisposeAll();
 
-            mock1.Verify(i => i.Dispose(), Times.Once);
-            mock2.Verify(i => i.Dispose(), Times.Once);
-            mock3.Verify(i => i.Dispose(), Times.Once);
+            substitute1.Received(1).Dispose();
+            substitute2.Received(1).Dispose();
+            substitute3.Received(1).Dispose();
         }
 
         [Test]

@@ -29,11 +29,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- X10D: `DateTime.Age(DateTime)` and `DateTimeOffset.Age(DateTimeOffset)` parameter renamed from `asOf` to `referenceDate`.
+- X10D: DateTime.Age(DateTime) and DateTimeOffset.Age(DateTimeOffset) parameter renamed from asOf to referenceDate.
 
 ### Removed
 
-- X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`. 
+- X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
+
+## [3.2.2] - 2023-06-05
+
+### Added
+
+- X10D.DSharpPlus: Added support for new usernames. See https://discord.com/blog/usernames
+
+## 3.2.1 - 2023-06-05
+
+ERRONEOUS RELEASE.
 
 ## [3.2.0] - 2023-04-03
 
@@ -597,7 +607,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 Earlier versions of this package are undocumented and unlisted from package results.
 
-[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.2.0...main
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.2.2...main
+[3.2.2]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.2
 [3.2.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.0
 [3.1.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.1.0
 [3.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.0.0
