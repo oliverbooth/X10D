@@ -17,7 +17,7 @@ X10D (pronounced *extend*), is a .NET package that provides extension methods fo
 ## Installation
 ### NuGet installation
 ```ps
-Install-Package X10D -Version 3.2.2
+Install-Package X10D -Version 3.3.1
 ```
 
 ### Manual installation
