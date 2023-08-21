@@ -35,6 +35,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
 
+## [3.3.1] - 2023-08-21
+
+### Fixed
+
+- X10D.Hosting: Fixed `AddHostedSingleton` not accepting an interface as the service type.
+
 ## [3.3.0] - 2023-08-21
 
 ### Added
@@ -613,7 +619,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 Earlier versions of this package are undocumented and unlisted from package results.
 
-[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.3.0...main
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.3.1...main
+[3.3.1]: https://github.com/oliverbooth/X10D/releases/tag/v3.3.1
 [3.3.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.3.0
 [3.2.2]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.2
 [3.2.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.0
