@@ -16,7 +16,7 @@
         <PackageTags>dotnet extension-methods</PackageTags>
         <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../CHANGELOG.md"))</PackageReleaseNotes>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-        <VersionPrefix>3.2.2</VersionPrefix>
+        <VersionPrefix>3.3.0</VersionPrefix>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
