@@ -29,11 +29,12 @@ public static class ServiceCollectionExtensions
     /// <typeparam name="TImplementation">The type of the implementation to use.</typeparam>
     /// <returns>A reference to this instance after the operation has completed.</returns>
     public static IServiceCollection AddHostedSingleton<TService, TImplementation>(this IServiceCollection services)
-        where TService : class, IHostedService
-        where TImplementation : class, TService
+        where TService : class
+        where TImplementation : class, TService, IHostedService
     {
         services.AddSingleton<TService, TImplementation>();
-        return services.AddSingleton<IHostedService, TService>(provider => provider.GetRequiredService<TService>());
+        return services.AddSingleton<IHostedService, TImplementation>(provider =>
+            (TImplementation)provider.GetRequiredService<TService>());
     }
 
     /// <summary>

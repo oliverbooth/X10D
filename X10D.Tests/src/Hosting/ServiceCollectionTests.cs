@@ -30,6 +30,27 @@ public class ServiceCollectionTests
     }
 
     [Test]
+    public void AddHostedSingleton_ShouldRegisterServiceAsSingletonAndAsHostedService_GivenServiceAndImplTypes()
+    {
+        var services = new ServiceCollection();
+
+        services.AddHostedSingleton<ITestService, TestService>();
+
+        var serviceProvider = services.BuildServiceProvider();
+        var service = serviceProvider.GetService<ITestService>();
+        var hostedService = serviceProvider.GetService<IHostedService>();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(service, Is.Not.Null);
+            Assert.That(hostedService, Is.Not.Null);
+            Assert.IsAssignableFrom<TestService>(service);
+            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(hostedService, Is.SameAs(service));
+        });
+    }
+
+    [Test]
     public void AddHostedSingleton_ShouldRegisterServiceTypeAsSingletonAndAsHostedService()
     {
         var services = new ServiceCollection();
@@ -50,8 +71,38 @@ public class ServiceCollectionTests
         });
     }
 
-    private sealed class TestService : IHostedService
+    [Test]
+    public void AddHostedSingleton_ShouldRegisterServiceTypeAsSingletonAndAsHostedService_GivenServiceAndImplTypes()
     {
+        var services = new ServiceCollection();
+
+        services.AddHostedSingleton(typeof(ITestService), typeof(TestService));
+
+        var serviceProvider = services.BuildServiceProvider();
+        var service = serviceProvider.GetService<ITestService>();
+        var hostedService = serviceProvider.GetService<IHostedService>();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(service, Is.Not.Null);
+            Assert.That(hostedService, Is.Not.Null);
+            Assert.IsAssignableFrom<TestService>(service);
+            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(hostedService, Is.SameAs(service));
+        });
+    }
+
+    private interface ITestService
+    {
+        void Foo();
+    }
+
+    private sealed class TestService : ITestService, IHostedService
+    {
+        public void Foo()
+        {
+        }
+
         public Task StartAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
