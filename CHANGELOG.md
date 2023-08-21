@@ -24,7 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `string.ConcatIf`.
-- X10D.Hosting: Added support for service/implementation registration with `AddHostedSingleton`.
 - X10D.Unity: Added `RaycastHit.GetComponent` and `RaycastHit.TryGetComponent`.
 - X10D.Unity: Added `DebugUtility.DrawFunction`, and `DebugUtility.DrawUnjoinedPolyhedron` on which it relies.
 
@@ -35,6 +34,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
+
+## [3.3.0] - 2023-08-21
+
+### Added
+
+- X10D.Hosting: Added support for service/implementation registration with `AddHostedSingleton`.
 
 ## [3.2.2] - 2023-06-05
 
@@ -608,7 +613,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 Earlier versions of this package are undocumented and unlisted from package results.
 
-[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.2.2...main
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.3.0...main
+[3.3.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.3.0
 [3.2.2]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.2
 [3.2.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.0
 [3.1.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.1.0
