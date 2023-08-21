@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `string.ConcatIf`.
+- X10D.Hosting: Added support for service/implementation registration with `AddHostedSingleton`.
 - X10D.Unity: Added `RaycastHit.GetComponent` and `RaycastHit.TryGetComponent`.
 - X10D.Unity: Added `DebugUtility.DrawFunction`, and `DebugUtility.DrawUnjoinedPolyhedron` on which it relies.
 
