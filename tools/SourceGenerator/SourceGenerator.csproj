@@ -7,6 +7,12 @@
         <Nullable>enable</Nullable>
         <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <PackageLicenseFile/>
+        <PackageIcon/>
+        <PackageIconUrl/>
+        <PackageTags/>
+        <PackageReadmeFile/>
+        <PackageReleaseNotes/>
     </PropertyGroup>
 
     <ItemGroup>

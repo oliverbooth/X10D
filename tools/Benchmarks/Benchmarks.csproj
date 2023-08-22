@@ -10,6 +10,12 @@
         <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <Optimize>true</Optimize>
+        <PackageLicenseFile/>
+        <PackageIcon/>
+        <PackageIconUrl/>
+        <PackageTags/>
+        <PackageReadmeFile/>
+        <PackageReleaseNotes/>
     </PropertyGroup>
 
     <ItemGroup>
