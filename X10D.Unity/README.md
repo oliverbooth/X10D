@@ -1,4 +1,4 @@
-﻿<h1 align="center"><img src="https://raw.githubusercontent.com/oliverbooth/X10D/develop/X10D.Unity/branding_Unity.png"></h1>
+﻿<h1 align="center"><img src="https://raw.githubusercontent.com/oliverbooth/X10D/main/X10D.Unity/branding_Unity.png"></h1>
 <p align="center">
 <a href="https://github.com/oliverbooth/X10D/actions/workflows/unity.yml"><img src="https://img.shields.io/github/actions/workflow/status/oliverbooth/X10D/unity.yml?style=flat-square" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
 <a href="https://github.com/oliverbooth/X10D/tree/upm"><img src="https://img.shields.io/github/package-json/v/oliverbooth/X10D/upm?label=upm&style=flat-square" title="UPM Version"></a>
