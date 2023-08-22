@@ -27,6 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D.Unity: Added `RaycastHit.GetComponent` and `RaycastHit.TryGetComponent`.
 - X10D.Unity: Added `DebugUtility.DrawFunction`, and `DebugUtility.DrawUnjoinedPolyhedron` on which it relies.
 
+### Fixed
+
+- X10D: Fixed XMLDoc for `Line3D` to read "single-precision floating-point" instead of "32-bit signed integer".
+
 ### Changed
 
 - X10D: DateTime.Age(DateTime) and DateTimeOffset.Age(DateTimeOffset) parameter renamed from asOf to referenceDate.
