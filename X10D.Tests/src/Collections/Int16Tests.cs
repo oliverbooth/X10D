@@ -1,4 +1,6 @@
-﻿using System.Runtime.Intrinsics.X86;
+﻿#if NET5_0_OR_GREATER
+using System.Runtime.Intrinsics.X86;
+#endif
 using NUnit.Framework;
 using X10D.Collections;
 
