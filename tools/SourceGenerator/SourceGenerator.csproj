@@ -2,13 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
-        <PackageLicenseFile/>
-        <PackageIcon/>
-        <PackageIconUrl/>
-        <PackageTags/>
-        <PackageReadmeFile/>
-        <PackageReleaseNotes/>
     </PropertyGroup>
 
     <ItemGroup>

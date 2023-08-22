@@ -45,6 +45,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpmPackageGenerator", "tools\UpmPackageGenerator\UpmPackageGenerator.csproj", "{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4B8969E6-27D2-4357-964E-9979FF7CC805}"
+	ProjectSection(SolutionItems) = preProject
+		tools\Directory.Build.props = tools\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "tools\Benchmarks\Benchmarks.csproj", "{259450A0-9964-403A-91E1-E9111B92C293}"
 EndProject

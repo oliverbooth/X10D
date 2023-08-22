@@ -1,0 +1,13 @@
+﻿<Project>
+    <PropertyGroup>
+        <LangVersion>11.0</LangVersion>
+        <ImplicitUsings>true</ImplicitUsings>
+        <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
+        <PackageLicenseFile/>
+        <PackageIcon/>
+        <PackageIconUrl/>
+        <PackageTags/>
+        <PackageReadmeFile/>
+        <PackageReleaseNotes/>
+    </PropertyGroup>
+</Project>

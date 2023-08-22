@@ -2,12 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageLicenseFile/>
-        <PackageIcon/>
-        <PackageIconUrl/>
-        <PackageTags/>
-        <PackageReadmeFile/>
-        <PackageReleaseNotes/>
     </PropertyGroup>
 
 </Project>

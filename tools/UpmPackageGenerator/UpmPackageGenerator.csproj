@@ -3,13 +3,6 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net7.0</TargetFramework>
-        <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
-        <PackageLicenseFile/>
-        <PackageIcon/>
-        <PackageIconUrl/>
-        <PackageTags/>
-        <PackageReadmeFile/>
-        <PackageReleaseNotes/>
     </PropertyGroup>
 
 </Project>
