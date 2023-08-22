@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
+- X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0.
 
 ## [3.3.1] - 2023-08-21
 
