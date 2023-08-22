@@ -4,8 +4,7 @@ using X10D.Linq;
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class UInt16Tests
+internal class UInt16Tests
 {
     [Test]
     public void ProductShouldBeCorrect()

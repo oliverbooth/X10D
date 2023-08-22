@@ -5,7 +5,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class ColorTests
+internal class ColorTests
 {
     private static readonly Color Black = Color.FromArgb(0, 0, 0);
     private static readonly Color White = Color.FromArgb(255, 255, 255);

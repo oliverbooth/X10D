@@ -4,7 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class Int64Tests
+internal class Int64Tests
 {
     [Test]
     public void GetBytes_ReturnsCorrectValue()

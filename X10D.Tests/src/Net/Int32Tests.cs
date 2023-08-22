@@ -4,7 +4,7 @@ using X10D.Net;
 namespace X10D.Tests.Net;
 
 [TestFixture]
-public class Int32Tests
+internal class Int32Tests
 {
     [Test]
     public void HostToNetworkOrder_ReturnsCorrectValue()

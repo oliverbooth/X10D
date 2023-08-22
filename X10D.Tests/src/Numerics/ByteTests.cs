@@ -4,7 +4,7 @@ using X10D.Numerics;
 namespace X10D.Tests.Numerics;
 
 [TestFixture]
-public class ByteTests
+internal class ByteTests
 {
     [Test]
     public void PopCount_ShouldBe0_Given0()

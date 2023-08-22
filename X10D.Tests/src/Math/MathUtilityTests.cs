@@ -7,7 +7,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public class MathUtilityTests
+internal class MathUtilityTests
 {
     [Test]
     public void Bias_ReturnsCorrectResult_WhenBiasIsLessThanPointFive()

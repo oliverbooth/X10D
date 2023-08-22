@@ -3,11 +3,10 @@ using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
-    [CLSCompliant(false)]
-    public void WriteUInt64_ShouldThrowArgumentException_GivenNonWriteableStream()
+        public void WriteUInt64_ShouldThrowArgumentException_GivenNonWriteableStream()
     {
         Stream stream = new DummyStream();
         Assert.Throws<ArgumentException>(() => stream.Write(420UL, Endianness.LittleEndian));
@@ -15,8 +14,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void WriteUInt64_ShouldThrowArgumentNullException_GivenNullStream()
+        public void WriteUInt64_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
         Assert.Throws<ArgumentNullException>(() => stream.Write(420UL, Endianness.LittleEndian));
@@ -24,8 +22,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void WriteUInt64_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+        public void WriteUInt64_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
         // we don't need to enclose this stream in a using declaration, since disposing a
         // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
@@ -38,8 +35,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void WriteUInt64_ShouldWriteBigEndian_GivenBigEndian()
+        public void WriteUInt64_ShouldWriteBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
         stream.Write(420UL, Endianness.BigEndian);
@@ -55,8 +51,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void WriteUInt64_ShouldWriteLittleEndian_GivenLittleEndian()
+        public void WriteUInt64_ShouldWriteLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
         stream.Write(420UL, Endianness.LittleEndian);

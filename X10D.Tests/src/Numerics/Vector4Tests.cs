@@ -5,7 +5,7 @@ using X10D.Numerics;
 namespace X10D.Tests.Numerics;
 
 [TestFixture]
-public class Vector4Tests
+internal class Vector4Tests
 {
     [Test]
     public void Deconstruct_ShouldReturnCorrectValues()

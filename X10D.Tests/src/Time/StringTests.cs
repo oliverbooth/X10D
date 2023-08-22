@@ -4,7 +4,7 @@ using X10D.Time;
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class StringTests
+internal class StringTests
 {
     [Test]
     public void ToTimeSpan_ShouldReturnCorrectTimeSpan_GivenString()

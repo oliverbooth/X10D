@@ -3,7 +3,7 @@ using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
     public void WriteInt32_ShouldThrowArgumentException_GivenNonWriteableStream()

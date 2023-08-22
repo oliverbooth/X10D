@@ -4,7 +4,7 @@ using X10D.Time;
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class TimeSpanParserTests
+internal class TimeSpanParserTests
 {
     [Test]
     public void TryParse_ShouldReturnTrue_GivenWellFormedTimeSpan()

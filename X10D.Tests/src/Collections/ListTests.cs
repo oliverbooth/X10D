@@ -4,10 +4,9 @@ using X10D.Collections;
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class ListTests
+internal class ListTests
 {
-    [CLSCompliant(false)]
-    [Test]
+        [Test]
     [TestCase(1)]
     [TestCase(1, 2, 3)]
     [TestCase(1, 2, 3, 4, 5)]
@@ -26,8 +25,7 @@ public class ListTests
         CollectionAssert.AreEqual(all42, list);
     }
 
-    [CLSCompliant(false)]
-    [Test]
+        [Test]
     [TestCase(1)]
     [TestCase(1, 2, 3)]
     [TestCase(1, 2, 3, 4, 5)]

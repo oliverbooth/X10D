@@ -5,7 +5,7 @@ using X10D.Collections;
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class ByteTests
+internal class ByteTests
 {
     [Test]
     public void Unpack_ShouldUnpackToArrayCorrectly()

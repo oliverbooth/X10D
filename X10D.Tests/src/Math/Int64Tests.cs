@@ -4,7 +4,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public partial class Int64Tests
+internal partial class Int64Tests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()

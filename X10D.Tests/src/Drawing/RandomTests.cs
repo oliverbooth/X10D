@@ -5,7 +5,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class RandomTests
+internal class RandomTests
 {
     [Test]
     public void NextColorArgb_ShouldReturn331515e5_GivenSeed1234()

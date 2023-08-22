@@ -3,11 +3,10 @@ using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldThrowArgumentException_GivenNonReadableStream()
+        public void ReadUInt16_ShouldThrowArgumentException_GivenNonReadableStream()
     {
         Stream stream = new DummyStream();
         Assert.Throws<ArgumentException>(() => stream.ReadUInt16());
@@ -16,8 +15,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldThrowArgumentNullException_GivenNullStream()
+        public void ReadUInt16_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
         Assert.Throws<ArgumentNullException>(() => stream.ReadUInt16());
@@ -26,8 +24,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+        public void ReadUInt16_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
     {
         // we don't need to enclose this stream in a using declaration, since disposing a
         // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
@@ -39,8 +36,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldReadBigEndian_GivenBigEndian()
+        public void ReadUInt16_ShouldReadBigEndian_GivenBigEndian()
     {
         using var stream = new MemoryStream();
         ReadOnlySpan<byte> bytes = stackalloc byte[] {0x01, 0xA4};
@@ -55,8 +51,7 @@ public partial class StreamTests
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldReadLittleEndian_GivenLittleEndian()
+        public void ReadUInt16_ShouldReadLittleEndian_GivenLittleEndian()
     {
         using var stream = new MemoryStream();
         ReadOnlySpan<byte> bytes = stackalloc byte[] {0xA4, 0x01};

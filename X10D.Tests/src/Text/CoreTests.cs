@@ -4,7 +4,7 @@ using X10D.Text;
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class CoreTests
+internal class CoreTests
 {
 #if NET5_0_OR_GREATER
     [Test]

@@ -4,7 +4,7 @@ using X10D.Collections;
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class DictionaryTests
+internal class DictionaryTests
 {
     [Test]
     public void AddOrUpdate_ShouldAddNewKey_IfNotExists_GivenConcreteDictionary()

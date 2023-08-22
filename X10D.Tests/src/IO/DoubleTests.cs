@@ -4,7 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class DoubleTests
+internal class DoubleTests
 {
     [Test]
     public void GetBytes_ReturnsCorrectValue()

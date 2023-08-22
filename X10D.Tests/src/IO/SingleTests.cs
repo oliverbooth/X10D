@@ -4,7 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class SingleTests
+internal class SingleTests
 {
     [Test]
     public void GetBytes_ReturnsCorrectValue()

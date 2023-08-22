@@ -6,7 +6,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class Line3DTests
+internal class Line3DTests
 {
     [Test]
     public void CompareTo_ShouldBeNegativeOne_GivenEmptyAndOne()

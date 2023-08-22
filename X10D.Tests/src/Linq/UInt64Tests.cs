@@ -4,8 +4,7 @@ using X10D.Linq;
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class UInt64Tests
+internal class UInt64Tests
 {
     [Test]
     public void ProductShouldBeCorrect()

@@ -4,8 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class UInt16Tests
+internal class UInt16Tests
 {
     [Test]
     public void GetBytes_ReturnsCorrectValue()

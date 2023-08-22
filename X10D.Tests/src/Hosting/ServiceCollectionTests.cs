@@ -6,7 +6,7 @@ using X10D.Hosting.DependencyInjection;
 namespace X10D.Tests.Hosting;
 
 [TestFixture]
-public class ServiceCollectionTests
+internal class ServiceCollectionTests
 {
     [Test]
     public void AddHostedSingleton_ShouldRegisterServiceAsSingletonAndAsHostedService()

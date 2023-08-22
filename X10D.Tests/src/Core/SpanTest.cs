@@ -8,7 +8,7 @@ using X10D.Core;
 namespace X10D.Tests.Core;
 
 [TestFixture]
-public class SpanTest
+internal class SpanTest
 {
     [Test]
     public void Contains_ShouldReturnFalse_GivenReadOnlySpanWithNoMatchingElements_UsingByteEnum()

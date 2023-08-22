@@ -4,7 +4,7 @@ using X10D.Time;
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class SingleTests
+internal class SingleTests
 {
     [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()

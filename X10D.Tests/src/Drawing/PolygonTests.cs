@@ -5,7 +5,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class PolygonTests
+internal class PolygonTests
 {
     [Test]
     public void AddVertices_ShouldAddVertices()

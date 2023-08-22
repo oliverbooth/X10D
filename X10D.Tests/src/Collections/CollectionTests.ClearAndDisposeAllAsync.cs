@@ -5,7 +5,7 @@ using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-public partial class CollectionTests
+internal partial class CollectionTests
 {
     [TestFixture]
     public class ClearAndDisposeAllAsyncTests

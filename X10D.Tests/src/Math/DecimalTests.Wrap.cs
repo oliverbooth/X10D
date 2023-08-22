@@ -3,7 +3,7 @@ using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class DecimalTests
+internal partial class DecimalTests
 {
     [TestFixture]
     public class WrapTests

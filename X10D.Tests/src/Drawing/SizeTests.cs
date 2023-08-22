@@ -5,7 +5,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class SizeTests
+internal class SizeTests
 {
     [Test]
     public void ToPoint_ShouldReturnPoint_WithEquivalentMembers()

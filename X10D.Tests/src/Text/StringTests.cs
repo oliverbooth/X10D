@@ -8,7 +8,7 @@ using X10D.Text;
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class StringTests
+internal class StringTests
 {
     [Test]
     public void AsNullIfEmpty_ShouldBeCorrect()

@@ -4,7 +4,7 @@ using X10D.Text;
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class CharSpanTests
+internal class CharSpanTests
 {
     [Test]
     public void CountSubstring_ShouldHonor_StringComparison()

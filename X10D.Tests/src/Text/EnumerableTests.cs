@@ -4,7 +4,7 @@ using X10D.Text;
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class EnumerableTests
+internal class EnumerableTests
 {
     [Test]
     public void Grep_ShouldFilterCorrectly_GivenPattern()

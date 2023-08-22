@@ -6,7 +6,6 @@
         <CoverletOutputFormat>json,cobertura</CoverletOutputFormat>
         <CollectCoverage>true</CollectCoverage>
         <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
-        <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">

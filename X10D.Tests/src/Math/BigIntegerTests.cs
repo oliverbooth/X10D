@@ -5,7 +5,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public partial class BigIntegerTests
+internal partial class BigIntegerTests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()

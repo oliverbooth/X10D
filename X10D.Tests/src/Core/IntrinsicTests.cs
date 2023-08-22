@@ -7,7 +7,7 @@ using X10D.Core;
 namespace X10D.Tests.Core;
 
 [TestFixture]
-public class IntrinsicTests
+internal class IntrinsicTests
 {
     [Test]
     public void CorrectBoolean_ShouldReturnExpectedVector64Result_GivenInputVector()

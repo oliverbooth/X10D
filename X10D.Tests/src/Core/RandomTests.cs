@@ -5,7 +5,7 @@ using X10D.Core;
 namespace X10D.Tests.Core;
 
 [TestFixture]
-public class RandomTests
+internal class RandomTests
 {
     [Test]
     public void NextBoolean_ShouldBeFalse_GivenSeed1234()

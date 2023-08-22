@@ -4,7 +4,7 @@ using X10D.Collections;
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class BoolListTests
+internal class BoolListTests
 {
     [Test]
     public void PackByte_Should_Pack_Correctly()

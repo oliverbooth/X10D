@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using NUnit.Framework;
 
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public partial class TextWriterTests
+[SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable")]
+internal partial class TextWriterTests
 {
     private MemoryStream _stream = null!;
     private StreamWriter _writer = null!;

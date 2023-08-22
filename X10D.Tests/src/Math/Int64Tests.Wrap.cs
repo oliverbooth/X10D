@@ -3,7 +3,7 @@ using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class Int64Tests
+internal partial class Int64Tests
 {
     [TestFixture]
     public class WrapTests

@@ -7,7 +7,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
     public void GetHashSha1ShouldBeCorrect()

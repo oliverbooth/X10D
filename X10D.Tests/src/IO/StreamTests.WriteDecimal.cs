@@ -4,7 +4,7 @@ using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
     public void WriteDecimal_ShouldThrowArgumentException_GivenNonWriteableStream()

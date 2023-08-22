@@ -5,7 +5,7 @@ using X10D.Time;
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class DoubleTests
+internal class DoubleTests
 {
     private Half _negativeOne;
     private Half _one;

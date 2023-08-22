@@ -4,7 +4,7 @@ using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class BigIntegerTests
+internal partial class BigIntegerTests
 {
     [TestFixture]
     public class WrapTests

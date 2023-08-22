@@ -4,7 +4,7 @@ using X10D.Linq;
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-public class EnumerableTests
+internal class EnumerableTests
 {
     [Test]
     public void Except_ShouldFilterElements_GivenMatchingElements()

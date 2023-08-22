@@ -4,7 +4,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class SphereTests
+internal class SphereTests
 {
     [Test]
     public void Circumference_ShouldBe2PiRadius_GivenUnitCircle()

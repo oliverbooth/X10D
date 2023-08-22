@@ -5,7 +5,7 @@ using X10D.Net;
 namespace X10D.Tests.Net;
 
 [TestFixture]
-public class EndPointTests
+internal class EndPointTests
 {
     [Test]
     public void GetHost_ShouldBeLocalhost_GivenLocalhostDnsEndPoint()

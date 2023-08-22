@@ -6,7 +6,7 @@ using X10D.Text;
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class RuneTests
+internal class RuneTests
 {
     [Test]
     public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()

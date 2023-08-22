@@ -4,7 +4,7 @@ using X10D.Linq;
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-public class Int16Tests
+internal class Int16Tests
 {
     [Test]
     public void ProductShouldBeCorrect()

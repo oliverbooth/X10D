@@ -4,7 +4,7 @@ using X10D.Time;
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class Int16Tests
+internal class Int16Tests
 {
     [Test]
     public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()

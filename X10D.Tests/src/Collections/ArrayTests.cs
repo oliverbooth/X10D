@@ -3,6 +3,6 @@
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public partial class ArrayTests
+internal static partial class ArrayTests
 {
 }

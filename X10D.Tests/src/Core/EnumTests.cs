@@ -4,7 +4,7 @@ using X10D.Core;
 namespace X10D.Tests.Core;
 
 [TestFixture]
-public class EnumTests
+internal class EnumTests
 {
     // Microsoft wrongfully decided to have Sunday be 0, Monday be 1, etc.
     // I personally hate this, Sunday is not the first day of the week.

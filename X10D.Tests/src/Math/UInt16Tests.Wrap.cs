@@ -3,7 +3,7 @@ using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class UInt16Tests
+internal partial class UInt16Tests
 {
     [TestFixture]
     public class WrapTests

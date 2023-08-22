@@ -5,7 +5,7 @@ using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class TextWriterTests
+internal partial class TextWriterTests
 {
     [Test]
     public void WriteNoAlloc_ShouldThrowArgumentNullException_GivenDouble_AndNullWriter()

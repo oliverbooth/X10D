@@ -3,10 +3,10 @@ using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-public partial class ArrayTests
+internal static partial class ArrayTests
 {
     [TestFixture]
-    public class AsReadOnlyTests
+    internal class AsReadOnlyTests
     {
         [Test]
         public void AsReadOnly_ShouldReturnReadOnlyCollection_WhenArrayIsNotNull()

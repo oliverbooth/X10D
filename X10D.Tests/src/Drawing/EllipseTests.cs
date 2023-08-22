@@ -5,7 +5,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class EllipseTests
+internal class EllipseTests
 {
     [Test]
     public void Area_ShouldBePiRadiusRadius_GivenUnitEllipse()
