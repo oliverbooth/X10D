@@ -50,11 +50,11 @@ public static class SingleExtensions
 #else
         if (BitConverter.IsLittleEndian)
         {
-            return MemoryMarshal.TryWrite(destination, ref value);
+            int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
+            return MemoryMarshal.TryWrite(destination, ref tmp);
         }
 
-        int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
-        return MemoryMarshal.TryWrite(destination, ref tmp);
+        return MemoryMarshal.TryWrite(destination, ref value);
 #endif
     }
 
@@ -69,7 +69,7 @@ public static class SingleExtensions
 #if NET5_0_OR_GREATER
         return BinaryPrimitives.TryWriteSingleLittleEndian(destination, value);
 #else
-        if (!BitConverter.IsLittleEndian)
+        if (BitConverter.IsLittleEndian)
         {
             return MemoryMarshal.TryWrite(destination, ref value);
         }

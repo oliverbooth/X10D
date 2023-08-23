@@ -48,11 +48,11 @@ public static class DoubleExtensions
 #else
         if (BitConverter.IsLittleEndian)
         {
-            return MemoryMarshal.TryWrite(destination, ref value);
+            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
+            return MemoryMarshal.TryWrite(destination, ref tmp);
         }
 
-        long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-        return MemoryMarshal.TryWrite(destination, ref tmp);
+        return MemoryMarshal.TryWrite(destination, ref value);
 #endif
     }
 
@@ -67,7 +67,7 @@ public static class DoubleExtensions
 #if NET5_0_OR_GREATER
         return BinaryPrimitives.TryWriteDoubleLittleEndian(destination, value);
 #else
-        if (!BitConverter.IsLittleEndian)
+        if (BitConverter.IsLittleEndian)
         {
             return MemoryMarshal.TryWrite(destination, ref value);
         }
