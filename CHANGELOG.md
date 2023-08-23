@@ -34,10 +34,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - X10D: DateTime.Age(DateTime) and DateTimeOffset.Age(DateTimeOffset) parameter renamed from asOf to referenceDate.
+- X10D: Methods which accepted the `Endianness` enum as an argument have been replaced with explicit
+BigEndian/LittleEndian methods.
 
 ### Removed
 
 - X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
+- X10D: Removed `Endianness` enum.
 - X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0.
 
 ## [3.3.1] - 2023-08-21

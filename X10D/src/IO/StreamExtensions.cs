@@ -1,5 +1,4 @@
-﻿using System.Buffers.Binary;
-using System.Diagnostics.CodeAnalysis;
+using System.Buffers.Binary;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -11,9 +10,6 @@ namespace X10D.IO;
 /// </summary>
 public static class StreamExtensions
 {
-    private static readonly Endianness DefaultEndianness =
-        BitConverter.IsLittleEndian ? Endianness.LittleEndian : Endianness.BigEndian;
-
     /// <summary>
     ///     Returns the hash of the current stream as an array of bytes using the specified hash algorithm.
     /// </summary>
@@ -64,41 +60,19 @@ public static class StreamExtensions
     }
 
     /// <summary>
-    ///     Reads a decimal value from the current stream using the system's default endian encoding, and advances the stream
-    ///     position by sixteen bytes.
-    /// </summary>
-    /// <param name="stream">The stream to read.</param>
-    /// <returns>A sixteen-byte decimal value read from the stream.</returns>
-    public static decimal ReadDecimal(this Stream stream)
-    {
-        return stream.ReadDecimal(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a decimal value from the current stream using a specified endian encoding, and advances the stream position
-    ///     by sixteen bytes.
+    ///     Reads an <see cref="decimal" /> from the current stream as big endian, and advances the stream position by sixteen
+    ///     bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>A decimal value read from the stream.</returns>
-    public static decimal ReadDecimal(this Stream stream, Endianness endianness)
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static decimal ReadDecimalBigEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
 
         if (!stream.CanRead)
         {
@@ -109,436 +83,496 @@ public static class StreamExtensions
         const int int32Size = sizeof(int);
         const int partitionSize = decimalSize / int32Size;
 
-        var bits = new int[partitionSize];
+        Span<int> buffer = stackalloc int[partitionSize];
         for (var index = 0; index < partitionSize; index++)
         {
-            bits[index] = stream.ReadInt32(endianness);
+            buffer[index] = stream.ReadInt32BigEndian();
         }
 
-        if (endianness != DefaultEndianness)
+        if (BitConverter.IsLittleEndian)
         {
-            Array.Reverse(bits);
+            buffer.Reverse();
         }
 
-        return new decimal(bits);
+#if NET5_0_OR_GREATER
+        return new decimal(buffer);
+#else
+        return new decimal(buffer.ToArray());
+#endif
     }
 
     /// <summary>
-    ///     Reads a double-precision floating point value from the current stream using the system's default endian encoding,
-    ///     and advances the stream position by eight bytes.
+    ///     Reads an <see cref="decimal" /> from the current stream as big endian, and advances the stream position by sixteen
+    ///     bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>A double-precision floating point value read from the stream.</returns>
-    public static double ReadDouble(this Stream stream)
-    {
-        return stream.ReadDouble(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a double-precision floating point value from the current stream using a specified endian encoding, and
-    ///     advances the stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>A double-precision floating point value read from the stream.</returns>
-    public static double ReadDouble(this Stream stream, Endianness endianness)
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static decimal ReadDecimalLittleEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(double)];
-        stream.Read(buffer);
+        const int decimalSize = sizeof(decimal);
+        const int int32Size = sizeof(int);
+        const int partitionSize = decimalSize / int32Size;
 
-        var value = MemoryMarshal.Read<double>(buffer);
-
-        if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
+        Span<int> buffer = stackalloc int[partitionSize];
+        for (var index = 0; index < partitionSize; index++)
         {
-            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-            value = BitConverter.Int64BitsToDouble(tmp);
+            buffer[index] = stream.ReadInt32LittleEndian();
         }
 
-        return value;
+        if (!BitConverter.IsLittleEndian)
+        {
+            buffer.Reverse();
+        }
+
+#if NET5_0_OR_GREATER
+        return new decimal(buffer);
+#else
+        return new decimal(buffer.ToArray());
+#endif
     }
 
     /// <summary>
-    ///     Reads a two-byte signed integer from the current stream using the system's default endian encoding, and advances
-    ///     the stream position by two bytes.
+    ///     Reads an <see cref="double" /> from the current stream as big endian, and advances the stream position by eight bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>An two-byte signed integer read from the stream.</returns>
-    public static short ReadInt16(this Stream stream)
-    {
-        return stream.ReadInt16(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a two-byte signed integer from the current stream using the specified endian encoding, and advances the
-    ///     stream position by two bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>An two-byte unsigned integer read from the stream.</returns>
-    public static short ReadInt16(this Stream stream, Endianness endianness)
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static double ReadDoubleBigEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(short)];
-        stream.Read(buffer);
+        Span<byte> buffer = stackalloc byte[8];
+        _ = stream.Read(buffer);
+#if NET5_0_OR_GREATER
+        return BinaryPrimitives.ReadDoubleBigEndian(buffer);
+#else
+        if (BitConverter.IsLittleEndian)
+        {
+            buffer.Reverse();
+        }
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadInt16LittleEndian(buffer)
-            : BinaryPrimitives.ReadInt16BigEndian(buffer);
+        return MemoryMarshal.Read<double>(buffer);
+#endif
     }
 
     /// <summary>
-    ///     Reads a four-byte signed integer from the current stream using the system's default endian encoding, and advances
-    ///     the stream position by four bytes.
+    ///     Reads an <see cref="double" /> from the current stream as little endian, and advances the stream position by eight
+    ///     bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>An four-byte signed integer read from the stream.</returns>
-    public static int ReadInt32(this Stream stream)
-    {
-        return stream.ReadInt32(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a four-byte signed integer from the current stream using the specified endian encoding, and advances the
-    ///     stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>An four-byte unsigned integer read from the stream.</returns>
-    public static int ReadInt32(this Stream stream, Endianness endianness)
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static double ReadDoubleLittleEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
-        stream.Read(buffer);
+        Span<byte> buffer = stackalloc byte[8];
+        _ = stream.Read(buffer);
+#if NET5_0_OR_GREATER
+        return BinaryPrimitives.ReadDoubleLittleEndian(buffer);
+#else
+        if (!BitConverter.IsLittleEndian)
+        {
+            buffer.Reverse();
+        }
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadInt32LittleEndian(buffer)
-            : BinaryPrimitives.ReadInt32BigEndian(buffer);
+        return MemoryMarshal.Read<double>(buffer);
+#endif
     }
 
     /// <summary>
-    ///     Reads an eight-byte signed integer from the current stream using the system's default endian encoding, and
-    ///     advances the stream position by eight bytes.
+    ///     Reads an <see cref="short" /> from the current stream as big endian, and advances the stream position by two bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>An eight-byte signed integer read from the stream.</returns>
-    public static long ReadInt64(this Stream stream)
-    {
-        return stream.ReadInt64(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads an eight-byte signed integer from the current stream using the specified endian encoding, and advances the
-    ///     stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>An eight-byte unsigned integer read from the stream.</returns>
-    public static long ReadInt64(this Stream stream, Endianness endianness)
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static short ReadInt16BigEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(long)];
-        stream.Read(buffer);
-
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadInt64LittleEndian(buffer)
-            : BinaryPrimitives.ReadInt64BigEndian(buffer);
+        Span<byte> buffer = stackalloc byte[2];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadInt16BigEndian(buffer);
     }
 
     /// <summary>
-    ///     Reads a single-precision floating point value from the current stream using the system's default endian encoding,
-    ///     and advances the stream position by four bytes.
+    ///     Reads an <see cref="short" /> from the current stream as little endian, and advances the stream position by two bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>A single-precision floating point value read from the stream.</returns>
-    public static double ReadSingle(this Stream stream)
-    {
-        return stream.ReadSingle(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a double-precision floating point value from the current stream using a specified endian encoding, and
-    ///     advances the stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>A single-precision floating point value read from the stream.</returns>
-    public static float ReadSingle(this Stream stream, Endianness endianness)
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static short ReadInt16LittleEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
+        if (!stream.CanRead)
         {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
+
+        Span<byte> buffer = stackalloc byte[2];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadInt16LittleEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="int" /> from the current stream as big endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static int ReadInt32BigEndian(this Stream stream)
+    {
+        if (stream is null)
         {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
+            throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(float)];
-        stream.Read(buffer);
-
-        var value = MemoryMarshal.Read<float>(buffer);
-
-        if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
-        {
-            int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
-            value = BitConverter.Int32BitsToSingle(tmp);
-        }
-
-        return value;
+        Span<byte> buffer = stackalloc byte[4];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadInt32BigEndian(buffer);
     }
 
     /// <summary>
-    ///     Reads a two-byte unsigned integer from the current stream using the system's default endian encoding, and advances
-    ///     the stream position by two bytes.
+    ///     Reads an <see cref="int" /> from the current stream as little endian, and advances the stream position by four bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>An two-byte unsigned integer read from the stream.</returns>
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static int ReadInt32LittleEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadInt32LittleEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="long" /> from the current stream as big endian, and advances the stream position by eight bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static long ReadInt64BigEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadInt64BigEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="long" /> from the current stream as little endian, and advances the stream position by eight
+    ///     bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    public static long ReadInt64LittleEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadInt64LittleEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="float" /> from the current stream as big endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
     [CLSCompliant(false)]
-    public static ushort ReadUInt16(this Stream stream)
-    {
-        return stream.ReadUInt16(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a two-byte unsigned integer from the current stream using the specified endian encoding, and advances the
-    ///     stream position by two bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>An two-byte unsigned integer read from the stream.</returns>
-    [CLSCompliant(false)]
-    public static ushort ReadUInt16(this Stream stream, Endianness endianness)
+    public static float ReadSingleBigEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(ushort)];
-        stream.Read(buffer);
+        Span<byte> buffer = stackalloc byte[4];
+        _ = stream.Read(buffer);
+#if NET5_0_OR_GREATER
+        return BinaryPrimitives.ReadSingleBigEndian(buffer);
+#else
+        if (BitConverter.IsLittleEndian)
+        {
+            buffer.Reverse();
+        }
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadUInt16LittleEndian(buffer)
-            : BinaryPrimitives.ReadUInt16BigEndian(buffer);
+        return MemoryMarshal.Read<float>(buffer);
+#endif
     }
 
     /// <summary>
-    ///     Reads a four-byte unsigned integer from the current stream using the system's default endian encoding, and
-    ///     advances the stream position by four bytes.
+    ///     Reads an <see cref="float" /> from the current stream as little endian, and advances the stream position by four
+    ///     bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>An four-byte unsigned integer read from the stream.</returns>
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
     [CLSCompliant(false)]
-    public static uint ReadUInt32(this Stream stream)
-    {
-        return stream.ReadUInt32(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads a four-byte unsigned integer from the current stream using the specified endian encoding, and advances the
-    ///     stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>An four-byte unsigned integer read from the stream.</returns>
-    [CLSCompliant(false)]
-    public static uint ReadUInt32(this Stream stream, Endianness endianness)
+    public static float ReadSingleLittleEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(uint)];
-        stream.Read(buffer);
+        Span<byte> buffer = stackalloc byte[4];
+        _ = stream.Read(buffer);
+#if NET5_0_OR_GREATER
+        return BinaryPrimitives.ReadSingleLittleEndian(buffer);
+#else
+        if (!BitConverter.IsLittleEndian)
+        {
+            buffer.Reverse();
+        }
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadUInt32LittleEndian(buffer)
-            : BinaryPrimitives.ReadUInt32BigEndian(buffer);
+        return MemoryMarshal.Read<float>(buffer);
+#endif
     }
 
     /// <summary>
-    ///     Reads an eight-byte unsigned integer from the current stream using the system's default endian encoding, and
-    ///     advances the stream position by eight bytes.
+    ///     Reads an <see cref="ushort" /> from the current stream as big endian, and advances the stream position by two bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
-    /// <returns>An eight-byte unsigned integer read from the stream.</returns>
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
     [CLSCompliant(false)]
-    public static ulong ReadUInt64(this Stream stream)
-    {
-        return stream.ReadUInt64(DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Reads an eight-byte unsigned integer from the current stream using the specified endian encoding, and advances the
-    ///     stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream from which the value should be read.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>An eight-byte unsigned integer read from the stream.</returns>
-    [CLSCompliant(false)]
-    public static ulong ReadUInt64(this Stream stream, Endianness endianness)
+    public static ushort ReadUInt16BigEndian(this Stream stream)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
+        if (!stream.CanRead)
         {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
+
+        Span<byte> buffer = stackalloc byte[2];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadUInt16BigEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="ushort" /> from the current stream as little endian, and advances the stream position by two bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    [CLSCompliant(false)]
+    public static ushort ReadUInt16LittleEndian(this Stream stream)
+    {
+        if (stream is null)
         {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
+            throw new ArgumentNullException(nameof(stream));
         }
-#endif
 
         if (!stream.CanRead)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(ulong)];
-        stream.Read(buffer);
+        Span<byte> buffer = stackalloc byte[2];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadUInt16LittleEndian(buffer);
+    }
 
-        return endianness == Endianness.LittleEndian
-            ? BinaryPrimitives.ReadUInt64LittleEndian(buffer)
-            : BinaryPrimitives.ReadUInt64BigEndian(buffer);
+    /// <summary>
+    ///     Reads an <see cref="uint" /> from the current stream as big endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    [CLSCompliant(false)]
+    public static uint ReadUInt32BigEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadUInt32BigEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="uint" /> from the current stream as little endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    [CLSCompliant(false)]
+    public static uint ReadUInt32LittleEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadUInt32LittleEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="ulong" /> from the current stream as big endian, and advances the stream position by eight bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The big endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    [CLSCompliant(false)]
+    public static ulong ReadUInt64BigEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadUInt64BigEndian(buffer);
+    }
+
+    /// <summary>
+    ///     Reads an <see cref="ulong" /> from the current stream as little endian, and advances the stream position by eight
+    ///     bytes.
+    /// </summary>
+    /// <param name="stream">The stream from which the value should be read.</param>
+    /// <returns>The little endian value.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support reading.</exception>
+    [CLSCompliant(false)]
+    public static ulong ReadUInt64LittleEndian(this Stream stream)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanRead)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportReading);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        _ = stream.Read(buffer);
+        return BinaryPrimitives.ReadUInt64LittleEndian(buffer);
     }
 
     /// <summary>
@@ -605,580 +639,463 @@ public static class StreamExtensions
     }
 
     /// <summary>
-    ///     Writes a two-byte signed integer to the current stream using the system's default endian encoding, and advances
-    ///     the stream position by two bytes.
+    ///     Writes a <see cref="short" /> to the current stream as big endian, and advances the stream position by two bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="short" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteBigEndian(this Stream stream, short value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[2];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="int" /> to the current stream as big endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="int" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteBigEndian(this Stream stream, int value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="long" /> to the current stream as big endian, and advances the stream position by eight bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="long" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteBigEndian(this Stream stream, long value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="ushort" /> to the current stream as big endian, and advances the stream position by two bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="ushort" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    [CLSCompliant(false)]
+    public static int WriteBigEndian(this Stream stream, ushort value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[2];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="uint" /> to the current stream as big endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="uint" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    [CLSCompliant(false)]
+    public static int WriteBigEndian(this Stream stream, uint value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="ulong" /> to the current stream as big endian, and advances the stream position by eight bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="ulong" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    [CLSCompliant(false)]
+    public static int WriteBigEndian(this Stream stream, ulong value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="float" /> to the current stream as little endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="float" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteBigEndian(this Stream stream, float value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="double" /> to the current stream as little endian, and advances the stream position by eight
+    ///     bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="double" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteBigEndian(this Stream stream, double value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="decimal" /> to the current stream as little endian, and advances the stream position by sixteen
+    ///     bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="decimal" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteBigEndian(this Stream stream, decimal value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[16];
+        value.TryWriteBigEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="short" /> to the current stream as little endian, and advances the stream position by two bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="short" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteLittleEndian(this Stream stream, short value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[2];
+        value.TryWriteLittleEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes an <see cref="int" /> to the current stream as little endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="int" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteLittleEndian(this Stream stream, int value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteLittleEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="long" /> to the current stream as little endian, and advances the stream position by eight bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="long" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteLittleEndian(this Stream stream, long value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteLittleEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="float" /> to the current stream as little endian, and advances the stream position by four bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="float" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteLittleEndian(this Stream stream, float value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteLittleEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="double" /> to the current stream as little endian, and advances the stream position by eight
+    ///     bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="double" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteLittleEndian(this Stream stream, double value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteLittleEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="decimal" /> to the current stream as little endian, and advances the stream position by sixteen
+    ///     bytes.
+    /// </summary>
+    /// <param name="stream">The stream to which the value should be written.</param>
+    /// <param name="value">The <see cref="decimal" /> to write.</param>
+    /// <returns>The number of bytes written to the stream.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    public static int WriteLittleEndian(this Stream stream, decimal value)
+    {
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[16];
+        value.TryWriteLittleEndian(buffer);
+        return stream.WriteInternal(buffer);
+    }
+
+    /// <summary>
+    ///     Writes a <see cref="ushort" /> to the current stream as little endian, and advances the stream position by two bytes.
     /// </summary>
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The two-byte signed integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, short value)
+    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+    [CLSCompliant(false)]
+    public static int WriteLittleEndian(this Stream stream, ushort value)
     {
-        return stream.Write(value, DefaultEndianness);
+        if (stream is null)
+        {
+            throw new ArgumentNullException(nameof(stream));
+        }
+
+        if (!stream.CanWrite)
+        {
+            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
+        }
+
+        Span<byte> buffer = stackalloc byte[2];
+        BinaryPrimitives.WriteUInt16LittleEndian(buffer, value);
+        return stream.WriteInternal(buffer);
     }
 
     /// <summary>
-    ///     Writes a two-byte signed integer to the current stream using the specified endian encoding, and advances the
-    ///     stream position by two bytes.
+    ///     Writes a <see cref="uint" /> to the current stream as little endian, and advances the stream position by four bytes.
     /// </summary>
     /// <param name="stream">The stream to which the value should be written.</param>
     /// <param name="value">The two-byte signed integer to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    public static int Write(this Stream stream, short value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        Span<byte> buffer = stackalloc byte[sizeof(short)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-            BinaryPrimitives.WriteInt16LittleEndian(buffer, value);
-        }
-        else
-        {
-            BinaryPrimitives.WriteInt16BigEndian(buffer, value);
-        }
-
-        return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes a four-byte signed integer to the current stream using the system's default endian encoding, and advances
-    ///     the stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The four-byte signed integer to write.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, int value)
-    {
-        return stream.Write(value, DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Writes a four-byte signed integer to the current stream using the specified endian encoding, and advances the
-    ///     stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The four-byte signed integer to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    public static int Write(this Stream stream, int value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-            BinaryPrimitives.WriteInt32LittleEndian(buffer, value);
-        }
-        else
-        {
-            BinaryPrimitives.WriteInt32BigEndian(buffer, value);
-        }
-
-        return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes an eight-byte signed integer to the current stream using the system's default endian encoding, and advances
-    ///     the stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The eight-byte signed integer to write.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, long value)
-    {
-        return stream.Write(value, DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Writes an eight-byte signed integer to the current stream using the specified endian encoding, and advances the
-    ///     stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The eight-byte signed integer to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    public static int Write(this Stream stream, long value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        Span<byte> buffer = stackalloc byte[sizeof(long)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-            BinaryPrimitives.WriteInt64LittleEndian(buffer, value);
-        }
-        else
-        {
-            BinaryPrimitives.WriteInt64BigEndian(buffer, value);
-        }
-
-        return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes a two-byte unsigned integer to the current stream using the system's default endian encoding, and advances
-    ///     the stream position by two bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The two-byte unsigned integer to write.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
     [CLSCompliant(false)]
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, ushort value)
-    {
-        return stream.Write(value, DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Writes a two-byte unsigned integer to the current stream using the specified endian encoding, and advances the
-    ///     stream position by two bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The two-byte unsigned integer to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    [CLSCompliant(false)]
-    public static int Write(this Stream stream, ushort value, Endianness endianness)
+    public static int WriteLittleEndian(this Stream stream, uint value)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanWrite)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(ushort)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-            BinaryPrimitives.WriteUInt16LittleEndian(buffer, value);
-        }
-        else
-        {
-            BinaryPrimitives.WriteUInt16BigEndian(buffer, value);
-        }
-
+        Span<byte> buffer = stackalloc byte[4];
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer, value);
         return stream.WriteInternal(buffer);
     }
 
     /// <summary>
-    ///     Writes a four-byte unsigned integer to the current stream using the system's default endian encoding, and advances
-    ///     the stream position by four bytes.
+    ///     Writes a <see cref="ulong" /> to the current stream as little endian, and advances the stream position by eight bytes.
     /// </summary>
     /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The four-byte unsigned integer to write.</param>
+    /// <param name="value">The two-byte signed integer to write.</param>
     /// <returns>The number of bytes written to the stream.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream" /> does not support writing.</exception>
     [CLSCompliant(false)]
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, uint value)
-    {
-        return stream.Write(value, DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Writes a four-byte unsigned integer to the current stream using the specified endian encoding, and advances the
-    ///     stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The four-byte unsigned integer to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    [CLSCompliant(false)]
-    public static int Write(this Stream stream, uint value, Endianness endianness)
+    public static int WriteLittleEndian(this Stream stream, ulong value)
     {
         if (stream is null)
         {
             throw new ArgumentNullException(nameof(stream));
         }
 
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
         if (!stream.CanWrite)
         {
             throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
         }
 
-        Span<byte> buffer = stackalloc byte[sizeof(uint)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-            BinaryPrimitives.WriteUInt32LittleEndian(buffer, value);
-        }
-        else
-        {
-            BinaryPrimitives.WriteUInt32BigEndian(buffer, value);
-        }
-
+        Span<byte> buffer = stackalloc byte[8];
+        BinaryPrimitives.WriteUInt64LittleEndian(buffer, value);
         return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes an eight-byte unsigned integer to the current stream using the system's default endian encoding, and
-    ///     advances the stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The eight-byte unsigned integer to write.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    [CLSCompliant(false)]
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, ulong value)
-    {
-        return stream.Write(value, DefaultEndianness);
-    }
-
-    /// <summary>
-    ///     Writes an eight-byte signed integer to the current stream using the specified endian encoding, and advances the
-    ///     stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The eight-byte signed integer to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    [CLSCompliant(false)]
-    public static int Write(this Stream stream, ulong value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        Span<byte> buffer = stackalloc byte[sizeof(ulong)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-            BinaryPrimitives.WriteUInt64LittleEndian(buffer, value);
-        }
-        else
-        {
-            BinaryPrimitives.WriteUInt64BigEndian(buffer, value);
-        }
-
-        return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes a single-precision floating point value to the current stream using the specified endian encoding, and
-    ///     advances the stream position by four bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The single-precision floating point value to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    public static int Write(this Stream stream, float value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        Span<byte> buffer = stackalloc byte[sizeof(float)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-#if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteSingleLittleEndian(buffer, value);
-#else
-            if (BitConverter.IsLittleEndian)
-            {
-                MemoryMarshal.Write(buffer, ref value);
-            }
-            else
-            {
-                // dotcover disable
-                //NOSONAR
-                int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
-                MemoryMarshal.Write(buffer, ref temp);
-                //NOSONAR
-                // dotcover enable
-            }
-#endif
-        }
-        else
-        {
-#if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteSingleBigEndian(buffer, value);
-#else
-            if (BitConverter.IsLittleEndian)
-            {
-                int temp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
-                MemoryMarshal.Write(buffer, ref temp);
-            }
-            else
-            {
-                // dotcover disable
-                //NOSONAR
-                MemoryMarshal.Write(buffer, ref value);
-                //NOSONAR
-                // dotcover enable
-            }
-#endif
-        }
-
-        return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes a double-precision floating point value to the current stream using the specified endian encoding, and
-    ///     advances the stream position by eight bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The double-precision floating point value to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    public static int Write(this Stream stream, double value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        Span<byte> buffer = stackalloc byte[sizeof(double)];
-
-        if (endianness == Endianness.LittleEndian)
-        {
-#if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
-#else
-            if (BitConverter.IsLittleEndian)
-            {
-                MemoryMarshal.Write(buffer, ref value);
-            }
-            else
-            {
-                // dotcover disable
-                //NOSONAR
-                long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-                MemoryMarshal.Write(buffer, ref temp);
-                //NOSONAR
-                // dotcover enable
-            }
-#endif
-        }
-        else
-        {
-#if NET5_0_OR_GREATER
-            BinaryPrimitives.WriteDoubleBigEndian(buffer, value);
-#else
-            if (BitConverter.IsLittleEndian)
-            {
-                long temp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-                MemoryMarshal.Write(buffer, ref temp);
-            }
-            else
-            {
-                // dotcover disable
-                //NOSONAR
-                MemoryMarshal.Write(buffer, ref value);
-                //NOSONAR
-                // dotcover enable
-            }
-#endif
-        }
-
-        return stream.WriteInternal(buffer);
-    }
-
-    /// <summary>
-    ///     Writes a decimal value to the current stream using the specified endian encoding, and advances the stream position
-    ///     by sixteen bytes.
-    /// </summary>
-    /// <param name="stream">The stream to which the value should be written.</param>
-    /// <param name="value">The decimal value to write.</param>
-    /// <param name="endianness">The endian encoding to use.</param>
-    /// <returns>The number of bytes written to the stream.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-    [ExcludeFromCodeCoverage]
-    public static int Write(this Stream stream, decimal value, Endianness endianness)
-    {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
-
-#if NET5_0_OR_GREATER
-        if (!Enum.IsDefined(endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#else
-        if (!Enum.IsDefined(typeof(Endianness), endianness))
-        {
-            throw new ArgumentOutOfRangeException(nameof(endianness));
-        }
-#endif
-
-        if (!stream.CanWrite)
-        {
-            throw new ArgumentException(ExceptionMessages.StreamDoesNotSupportWriting);
-        }
-
-        int[] bits = decimal.GetBits(value);
-        long preWritePosition = stream.Position;
-
-        if (endianness != DefaultEndianness)
-        {
-            Array.Reverse(bits);
-        }
-
-        foreach (int section in bits)
-        {
-            stream.Write(section, endianness);
-        }
-
-        return (int)(stream.Position - preWritePosition);
     }
 
     private static int WriteInternal(this Stream stream, ReadOnlySpan<byte> value)

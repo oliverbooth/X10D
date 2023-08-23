@@ -10,54 +10,50 @@ namespace X10D.IO;
 public static class UInt16Extensions
 {
     /// <summary>
-    ///     Returns the current 16-bit unsigned integer value as an array of bytes.
+    ///     Converts the current 16-bit unsigned integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <returns>An array of bytes with length 2.</returns>
+    /// <param name="value">The <see cref="ushort" /> value.</param>
+    /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this ushort value)
+    public static byte[] GetBigEndianBytes(this ushort value)
     {
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteBytes(buffer);
+        value.TryWriteBigEndian(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Returns the current 16-bit unsigned integer value as an array of bytes.
+    ///     Converts the current 16-bit unsigned integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
-    /// <returns>An array of bytes with length 2.</returns>
+    /// <param name="value">The <see cref="ushort" /> value.</param>
+    /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this ushort value, Endianness endianness)
+    public static byte[] GetLittleEndianBytes(this ushort value)
     {
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteBytes(buffer, endianness);
+        value.TryWriteLittleEndian(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Converts the current 16-bit unsigned integer into a span of bytes.
+    ///     Writes the current 16-bit unsigned integer into a span of bytes, as big endian.
     /// </summary>
     /// <param name="value">The <see cref="ushort" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="ushort" />.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this ushort value, Span<byte> destination)
+    public static bool TryWriteBigEndian(this ushort value, Span<byte> destination)
     {
-        return BitConverter.TryWriteBytes(destination, value);
+        return BinaryPrimitives.TryWriteUInt16BigEndian(destination, value);
     }
 
     /// <summary>
-    ///     Converts the current 16-bit unsigned integer into a span of bytes.
+    ///     Writes the current 16-bit unsigned integer into a span of bytes, as little endian.
     /// </summary>
     /// <param name="value">The <see cref="ushort" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="ushort" />.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this ushort value, Span<byte> destination, Endianness endianness)
+    public static bool TryWriteLittleEndian(this ushort value, Span<byte> destination)
     {
-        return endianness == Endianness.BigEndian
-            ? BinaryPrimitives.TryWriteUInt16BigEndian(destination, value)
-            : BinaryPrimitives.TryWriteUInt16LittleEndian(destination, value);
+        return BinaryPrimitives.TryWriteUInt16LittleEndian(destination, value);
     }
 }

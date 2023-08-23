@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
@@ -6,44 +7,45 @@ namespace X10D.Tests.IO;
 internal partial class StreamTests
 {
     [Test]
-    public void WriteInt32_ShouldThrowArgumentException_GivenNonWriteableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.Throws<ArgumentException>(() => stream.Write(420, Endianness.LittleEndian));
-        Assert.Throws<ArgumentException>(() => stream.Write(420, Endianness.BigEndian));
-    }
-
-    [Test]
-    public void WriteInt32_ShouldThrowArgumentNullException_GivenNullStream()
+    public void WriteBigEndian_ShouldThrowArgumentNullException_GivenNullStream_AndInt32Argument()
     {
         Stream stream = null!;
-        Assert.Throws<ArgumentNullException>(() => stream.Write(420, Endianness.LittleEndian));
-        Assert.Throws<ArgumentNullException>(() => stream.Write(420, Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.WriteBigEndian(420));
     }
 
     [Test]
-    public void WriteInt32_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void WriteBigEndian_ShouldThrowArgumentException_GivenNonWritableStream_AndInt32Argument()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420, (Endianness)(-1)));
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420, (Endianness)(-1)));
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.WriteBigEndian(420));
     }
 
     [Test]
-    public void WriteInt32_ShouldWriteBigEndian_GivenBigEndian()
+    public void WriteLittleEndian_ShouldThrowArgumentNullException_GivenNullStream_AndInt32Argument()
+    {
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.WriteLittleEndian(420));
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void WriteLittleEndian_ShouldThrowArgumentException_GivenNonWritableStream_AndInt32Argument()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.WriteLittleEndian(420));
+    }
+
+    [Test]
+    public void WriteBigEndian_ShouldWriteBigEndian_GivenInt32Argument()
     {
         using var stream = new MemoryStream();
-        stream.Write(420, Endianness.BigEndian);
+        stream.WriteBigEndian(420);
         Assert.That(stream.Position, Is.EqualTo(4));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[4];
-        ReadOnlySpan<byte> expected = stackalloc byte[] {0x00, 0x00, 0x01, 0xA4};
+        ReadOnlySpan<byte> expected = stackalloc byte[] { 0x00, 0x00, 0x01, 0xA4 };
         int read = stream.Read(actual);
 
         Assert.That(read, Is.EqualTo(4));
@@ -51,15 +53,15 @@ internal partial class StreamTests
     }
 
     [Test]
-    public void WriteInt32_ShouldWriteLittleEndian_GivenLittleEndian()
+    public void WriteLittleEndian_ShouldWriteLittleEndian_GivenInt32Argument()
     {
         using var stream = new MemoryStream();
-        stream.Write(420, Endianness.LittleEndian);
+        stream.WriteLittleEndian(420);
         Assert.That(stream.Position, Is.EqualTo(4));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[4];
-        ReadOnlySpan<byte> expected = stackalloc byte[] {0xA4, 0x01, 0x00, 0x00};
+        ReadOnlySpan<byte> expected = stackalloc byte[] { 0xA4, 0x01, 0x00, 0x00 };
         int read = stream.Read(actual);
 
         Assert.That(read, Is.EqualTo(4));

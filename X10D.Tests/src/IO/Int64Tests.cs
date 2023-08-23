@@ -7,60 +7,60 @@ namespace X10D.Tests.IO;
 internal class Int64Tests
 {
     [Test]
-    public void GetBytes_ReturnsCorrectValue()
+    public void GetLittleEndianBytes_ReturnsCorrectValue()
     {
         const long value = 0x0F;
-        byte[] bytes = BitConverter.IsLittleEndian
-            ? new byte[] {0x0F, 0, 0, 0, 0, 0, 0, 0}
-            : new byte[] {0, 0, 0, 0, 0, 0, 0, 0x0F};
-        CollectionAssert.AreEqual(bytes, value.GetBytes());
+
+        byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
+        byte[] actual = value.GetLittleEndianBytes();
+        CollectionAssert.AreEqual(expected, actual);
     }
 
     [Test]
-    public void GetBytes_ReturnsCorrectValue_WithEndianness()
+    public void GetBigEndianBytes_ReturnsCorrectValue()
     {
         const long value = 0x0F;
-        byte[] littleEndian = {0x0F, 0, 0, 0, 0, 0, 0, 0};
-        byte[] bigEndian = {0, 0, 0, 0, 0, 0, 0, 0x0F};
 
-        CollectionAssert.AreEqual(littleEndian, value.GetBytes(Endianness.LittleEndian));
-        CollectionAssert.AreEqual(bigEndian, value.GetBytes(Endianness.BigEndian));
+        byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
+        byte[] actual = value.GetBigEndianBytes();
+        CollectionAssert.AreEqual(expected, actual);
     }
 
     [Test]
-    public void TryWriteBytes_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan()
+    public void TryWriteLittleEndian_ReturnsTrue_FillsSpanCorrectly()
     {
         const long value = 0x0F;
-        byte[] bytes = BitConverter.IsLittleEndian
-            ? new byte[] {0x0F, 0, 0, 0, 0, 0, 0, 0}
-            : new byte[] {0, 0, 0, 0, 0, 0, 0, 0x0F};
 
-        Span<byte> buffer = stackalloc byte[8];
-        Assert.That(value.TryWriteBytes(buffer));
-        CollectionAssert.AreEqual(bytes, buffer.ToArray());
+        byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
+        Span<byte> actual = stackalloc byte[8];
+        Assert.That(value.TryWriteLittleEndian(actual));
+        CollectionAssert.AreEqual(expected, actual.ToArray());
     }
 
     [Test]
-    public void TryWriteBytes_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan_WithEndianness()
+    public void TryWriteBigEndian_ReturnsTrue_FillsSpanCorrectly()
     {
         const long value = 0x0F;
-        byte[] littleEndian = {0x0F, 0, 0, 0, 0, 0, 0, 0};
-        byte[] bigEndian = {0, 0, 0, 0, 0, 0, 0, 0x0F};
 
-        Span<byte> buffer = stackalloc byte[8];
-
-        Assert.That(value.TryWriteBytes(buffer, Endianness.LittleEndian));
-        CollectionAssert.AreEqual(littleEndian, buffer.ToArray());
-
-        Assert.That(value.TryWriteBytes(buffer, Endianness.BigEndian));
-        CollectionAssert.AreEqual(bigEndian, buffer.ToArray());
+        byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
+        Span<byte> actual = stackalloc byte[8];
+        Assert.That(value.TryWriteBigEndian(actual));
+        CollectionAssert.AreEqual(expected, actual.ToArray());
     }
 
     [Test]
-    public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
+    public void TryWriteLittleEndian_RReturnsFalse_GivenSmallSpan()
     {
         const long value = 0x0F;
         Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteBytes(buffer), Is.False);
+        Assert.That(value.TryWriteLittleEndian(buffer), Is.False);
+    }
+
+    [Test]
+    public void TryWriteBigEndian_ReturnsFalse_GivenSmallSpan()
+    {
+        const long value = 0x0F;
+        Span<byte> buffer = stackalloc byte[0];
+        Assert.That(value.TryWriteBigEndian(buffer), Is.False);
     }
 }
