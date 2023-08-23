@@ -36,6 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: DateTime.Age(DateTime) and DateTimeOffset.Age(DateTimeOffset) parameter renamed from asOf to referenceDate.
 - X10D: Methods which accepted the `Endianness` enum as an argument have been replaced with explicit
 BigEndian/LittleEndian methods.
+- X10D: `Stream.GetHash<>` and `Stream.TryWriteHash<>` now throw ArgumentException in lieu of
+TypeInitializationException.
 
 ### Removed
 

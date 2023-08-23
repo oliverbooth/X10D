@@ -86,16 +86,15 @@ internal partial class StreamTests
     [Test]
     public void NullCreateMethodShouldThrow()
     {
-        Assert.Throws<TypeInitializationException>(() => Stream.Null.GetHash<HashAlgorithmTestClass>());
-        Assert.Throws<TypeInitializationException>(() =>
-            Stream.Null.TryWriteHash<HashAlgorithmTestClass>(Span<byte>.Empty, out _));
+        Assert.Throws<ArgumentException>(() => Stream.Null.GetHash<HashAlgorithmTestClass>());
+        Assert.Throws<ArgumentException>(() => Stream.Null.TryWriteHash<HashAlgorithmTestClass>(Span<byte>.Empty, out _));
     }
 
     [Test]
     public void NoCreateMethodShouldThrow()
     {
-        Assert.Throws<TypeInitializationException>(() => Stream.Null.GetHash<HashAlgorithmTestClassNoCreateMethod>());
-        Assert.Throws<TypeInitializationException>(() =>
+        Assert.Throws<ArgumentException>(() => Stream.Null.GetHash<HashAlgorithmTestClassNoCreateMethod>());
+        Assert.Throws<ArgumentException>(() =>
             Stream.Null.TryWriteHash<HashAlgorithmTestClassNoCreateMethod>(Span<byte>.Empty, out _));
     }
 

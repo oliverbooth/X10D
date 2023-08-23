@@ -1,4 +1,4 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -45,15 +45,13 @@ public static class StreamExtensions
             .FirstOrDefault(c => c.Name == "Create" && c.GetParameters().Length == 0);
         if (createMethod is null)
         {
-            throw new TypeInitializationException(type.FullName,
-                new ArgumentException(ExceptionMessages.HashAlgorithmNoCreateMethod));
+            throw new ArgumentException(ExceptionMessages.HashAlgorithmNoCreateMethod);
         }
 
         using var crypt = createMethod.Invoke(null, null) as T;
         if (crypt is null)
         {
-            throw new TypeInitializationException(type.FullName,
-                new ArgumentException(ExceptionMessages.HashAlgorithmCreateReturnedNull));
+            throw new ArgumentException(ExceptionMessages.HashAlgorithmCreateReturnedNull);
         }
 
         return crypt.ComputeHash(stream);
@@ -617,15 +615,13 @@ public static class StreamExtensions
             .FirstOrDefault(c => c.Name == "Create" && c.GetParameters().Length == 0);
         if (createMethod is null)
         {
-            throw new TypeInitializationException(type.FullName,
-                new ArgumentException(ExceptionMessages.HashAlgorithmNoCreateMethod));
+            throw new ArgumentException(ExceptionMessages.HashAlgorithmNoCreateMethod);
         }
 
         using var crypt = createMethod.Invoke(null, null) as T;
         if (crypt is null)
         {
-            throw new TypeInitializationException(type.FullName,
-                new ArgumentException(ExceptionMessages.HashAlgorithmCreateReturnedNull));
+            throw new ArgumentException(ExceptionMessages.HashAlgorithmCreateReturnedNull);
         }
 
         if (stream.Length > int.MaxValue)
