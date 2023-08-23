@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 
 namespace X10D.IO;
@@ -97,15 +97,22 @@ public static class DecimalExtensions
 #else
         Span<byte> buffer = stackalloc byte[16];
         MemoryMarshal.Write(buffer, ref value);
+        WriteBits(destination, buffer);
+#endif
+    }
 
+    private static void WriteBits(Span<int> destination, Span<byte> buffer)
+    {
         var flags = MemoryMarshal.Read<int>(buffer[..4]);
         var hi = MemoryMarshal.Read<int>(buffer[4..8]);
         var lo = MemoryMarshal.Read<long>(buffer[8..]);
 
-        destination[0] = flags;
-        destination[1] = hi;
-        destination[2] = (int)(lo & 0xFFFFFFFF);
-        destination[3] = (int)(lo >> 32);
-#endif
+        var low = (uint)lo;
+        var mid = (uint)(lo >> 32);
+
+        destination[0] = (int)low;
+        destination[1] = (int)mid;
+        destination[2] = hi;
+        destination[3] = flags;
     }
 }
