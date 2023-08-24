@@ -3,6 +3,7 @@ name: DocFX
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   docfx:
