@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Security.Cryptography;
 
 namespace X10D.IO;
@@ -9,8 +8,6 @@ namespace X10D.IO;
 /// </summary>
 public static partial class StreamExtensions
 {
-    private static readonly ConcurrentDictionary<Type, HashAlgorithm> HashAlgorithmCache = new();
-
     /// <summary>
     ///     Returns the hash of the current stream as an array of bytes using the specified hash algorithm.
     /// </summary>
@@ -40,11 +37,6 @@ public static partial class StreamExtensions
             throw new IOException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        if (HashAlgorithmCache.TryGetValue(typeof(T), out HashAlgorithm? cachedHashAlgorithm))
-        {
-            return cachedHashAlgorithm.ComputeHash(stream);
-        }
-
         Type type = typeof(T);
 
         MethodInfo? createMethod = type.GetMethods(BindingFlags.Public | BindingFlags.Static)
@@ -60,7 +52,6 @@ public static partial class StreamExtensions
             throw new ArgumentException(ExceptionMessages.HashAlgorithmCreateReturnedNull);
         }
 
-        HashAlgorithmCache.TryAdd(type, crypt);
         return crypt.ComputeHash(stream);
     }
 
@@ -100,13 +91,6 @@ public static partial class StreamExtensions
             throw new IOException(ExceptionMessages.StreamDoesNotSupportReading);
         }
 
-        Span<byte> buffer = stackalloc byte[(int)stream.Length];
-        if (HashAlgorithmCache.TryGetValue(typeof(T), out HashAlgorithm? cachedHashAlgorithm))
-        {
-            _ = stream.Read(buffer); // we don't care about the number of bytes read. we can ignore MustUseReturnValue
-            return cachedHashAlgorithm.TryComputeHash(buffer, destination, out bytesWritten);
-        }
-
         Type type = typeof(T);
 
         MethodInfo? createMethod = type.GetMethods(BindingFlags.Public | BindingFlags.Static)
@@ -127,7 +111,7 @@ public static partial class StreamExtensions
             throw new ArgumentException(ExceptionMessages.StreamTooLarge);
         }
 
-        HashAlgorithmCache.TryAdd(type, crypt);
+        Span<byte> buffer = stackalloc byte[(int)stream.Length];
         _ = stream.Read(buffer); // we don't care about the number of bytes read. we can ignore MustUseReturnValue
         return crypt.TryComputeHash(buffer, destination, out bytesWritten);
     }
