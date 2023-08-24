@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+    
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class EnumerableExtensions
+     | X10D </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class EnumerableExtensions
+     | X10D ">
+      <meta name="generator" content="docfx 2.56.7.0">
+      
+      <link rel="shortcut icon" href="../images/favicon.png">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+      
+      <meta property="docfx:rel" content="../">
+      <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+            
+            <a class="brand" href="../index.html">
+              <img src="../images/favicon.png" alt="X10D" class="logomark">
+              <span class="brand-title">X10D</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+                    
+                    <div>
+                      <div class="mobile-hide">
+                        
+                        <a class="brand" href="../index.html">
+                          <img src="../images/favicon.png" alt="X10D" class="logomark">
+                          <span class="brand-title">X10D</span>
+                        </a>  </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+                    
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+                        
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+                  <strong>DocFX + Singulink = ♥</strong>
+                  
+                </div>            </nav>
+
+            <main class="main-panel">
+                
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+                        
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="X10D.Collections.EnumerableExtensions">
+  
+  
+  <h1 id="X10D_Collections_EnumerableExtensions" data-uid="X10D.Collections.EnumerableExtensions" class="text-break">Class EnumerableExtensions
+  </h1>
+  <div class="markdown level0 summary"><p>Extension methods for <see cref="!:IEnumerable&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">EnumerableExtensions</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="X10D.Collections.html">X10D.Collections</a></h6>
+  <h6><strong>Assembly</strong>: X10D.dll</h6>
+  <h5 id="X10D_Collections_EnumerableExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class EnumerableExtensions : object</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_CountWhereNot__1_IEnumerable___0__Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.CountWhereNot%60%601(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L24">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_CountWhereNot_" data-uid="X10D.Collections.EnumerableExtensions.CountWhereNot*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_CountWhereNot__1_IEnumerable___0__Func___0_System_Boolean__" data-uid="X10D.Collections.EnumerableExtensions.CountWhereNot``1(IEnumerable{``0},Func{``0,System.Boolean})">CountWhereNot&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a number that represents how many elements in the specified sequence do not satisfy a condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int CountWhereNot&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>A sequence that contains elements to be tested and counted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TSource, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A number that represents how many elements in the sequence do not satisfy the condition in the
+<code data-dev-comment-type="paramref" class="paramref">predicate</code> function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements of <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_DisposeAll__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.DisposeAll%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L197">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_DisposeAll_" data-uid="X10D.Collections.EnumerableExtensions.DisposeAll*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_DisposeAll__1_IEnumerable___0__" data-uid="X10D.Collections.EnumerableExtensions.DisposeAll``1(IEnumerable{``0})">DisposeAll&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Calls <see cref="!:IDisposable.Dispose"></see> on all elements of the <see cref="!:IEnumerable&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DisposeAll&lt;T&gt;(this IEnumerable&lt;T&gt; source)
+    where T : IDisposable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The enumerable collection whose elements to dispose.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="X10D_Collections_EnumerableExtensions_DisposeAll__1_IEnumerable___0___seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="X10D.Collections.CollectionExtensions.html#X10D_Collections_CollectionExtensions_ClearAndDisposeAll__1_ICollection___0__">ClearAndDisposeAll&lt;T&gt;(ICollection&lt;T&gt;)</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_DisposeAllAsync__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.DisposeAllAsync%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L228">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_DisposeAllAsync_" data-uid="X10D.Collections.EnumerableExtensions.DisposeAllAsync*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_DisposeAllAsync__1_IEnumerable___0__" data-uid="X10D.Collections.EnumerableExtensions.DisposeAllAsync``1(IEnumerable{``0})">DisposeAllAsync&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously calls <see cref="!:IAsyncDisposable.DisposeAsync"></see> on all elements of the
+<see cref="!:IEnumerable&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task DisposeAllAsync&lt;T&gt;(this IEnumerable&lt;T&gt; source)
+    where T : IAsyncDisposable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The enumerable collection whose elements to dispose.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="X10D_Collections_EnumerableExtensions_DisposeAllAsync__1_IEnumerable___0___seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="X10D.Collections.CollectionExtensions.html#X10D_Collections_CollectionExtensions_ClearAndDisposeAllAsync__1_ICollection___0__">ClearAndDisposeAllAsync&lt;T&gt;(ICollection&lt;T&gt;)</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_FirstWhereNot__1_IEnumerable___0__Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.FirstWhereNot%60%601(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L58">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_FirstWhereNot_" data-uid="X10D.Collections.EnumerableExtensions.FirstWhereNot*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_FirstWhereNot__1_IEnumerable___0__Func___0_System_Boolean__" data-uid="X10D.Collections.EnumerableExtensions.FirstWhereNot``1(IEnumerable{``0},Func{``0,System.Boolean})">FirstWhereNot&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns the first element in a sequence that does not satisfy a specified condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TSource FirstWhereNot&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> to return an element from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TSource, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TSource</span></td>
+        <td><p>The first element in the sequence that fails the test in the specified predicate function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_FirstWhereNotOrDefault__1_IEnumerable___0__Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.FirstWhereNotOrDefault%60%601(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L91">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_FirstWhereNotOrDefault_" data-uid="X10D.Collections.EnumerableExtensions.FirstWhereNotOrDefault*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_FirstWhereNotOrDefault__1_IEnumerable___0__Func___0_System_Boolean__" data-uid="X10D.Collections.EnumerableExtensions.FirstWhereNotOrDefault``1(IEnumerable{``0},Func{``0,System.Boolean})">FirstWhereNotOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns the first element in a sequence that does not satisfy a specified condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TSource FirstWhereNotOrDefault&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> to return an element from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TSource, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TSource</span></td>
+        <td><p><span class="xref">langword_csharp_default(TSource)</span> if <code data-dev-comment-type="paramref" class="paramref">source</code> is empty or if no element passes the test specified
+by <code data-dev-comment-type="paramref" class="paramref">predicate</code>; otherwise, the first element in <code data-dev-comment-type="paramref" class="paramref">source</code> that fails the test
+specified by <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_For__1_IEnumerable___0__Action_System_Int32___0__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.For%60%601(IEnumerable%7B%60%600%7D%2CAction%7BSystem.Int32%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L128">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_For_" data-uid="X10D.Collections.EnumerableExtensions.For*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_For__1_IEnumerable___0__Action_System_Int32___0__" data-uid="X10D.Collections.EnumerableExtensions.For``1(IEnumerable{``0},Action{System.Int32,``0})">For&lt;T&gt;(IEnumerable&lt;T&gt;, Action&lt;Int32, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Performs the specified action on each element of the <see cref="!:IEnumerable&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void For&lt;T&gt;(this IEnumerable&lt;T&gt; source, Action&lt;int, T&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The <see cref="!:IEnumerable&lt;T>"></see> whose elements on which to perform <code data-dev-comment-type="paramref" class="paramref">action</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">System.Int32</span>, T&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The <see cref="!:Action&lt;T, T>"></see> delegate to perform on each element of the <see cref="!:IEnumerable&lt;T>"></see>. The
+<see cref="!:System.Int32"></see> argument passed to this delegate represents the index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_ForEach__1_IEnumerable___0__Action___0__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.ForEach%60%601(IEnumerable%7B%60%600%7D%2CAction%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L167">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_ForEach_" data-uid="X10D.Collections.EnumerableExtensions.ForEach*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_ForEach__1_IEnumerable___0__Action___0__" data-uid="X10D.Collections.EnumerableExtensions.ForEach``1(IEnumerable{``0},Action{``0})">ForEach&lt;T&gt;(IEnumerable&lt;T&gt;, Action&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Performs the specified action on each element of the <see cref="!:IEnumerable&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ForEach&lt;T&gt;(this IEnumerable&lt;T&gt; source, Action&lt;T&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The <see cref="!:IEnumerable&lt;T>"></see> whose elements on which to perform <code data-dev-comment-type="paramref" class="paramref">action</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The <see cref="!:Action&lt;T>"></see> delegate to perform on each element of the <see cref="!:IEnumerable&lt;T>"></see>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_LastWhereNot__1_IEnumerable___0__Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.LastWhereNot%60%601(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L264">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_LastWhereNot_" data-uid="X10D.Collections.EnumerableExtensions.LastWhereNot*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_LastWhereNot__1_IEnumerable___0__Func___0_System_Boolean__" data-uid="X10D.Collections.EnumerableExtensions.LastWhereNot``1(IEnumerable{``0},Func{``0,System.Boolean})">LastWhereNot&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns the last element in a sequence that does not satisfy a specified condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TSource LastWhereNot&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> to return an element from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TSource, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TSource</span></td>
+        <td><p>The last element in the sequence that fails the test in the specified predicate function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_LastWhereNotOrDefault__1_IEnumerable___0__Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.LastWhereNotOrDefault%60%601(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L297">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_LastWhereNotOrDefault_" data-uid="X10D.Collections.EnumerableExtensions.LastWhereNotOrDefault*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_LastWhereNotOrDefault__1_IEnumerable___0__Func___0_System_Boolean__" data-uid="X10D.Collections.EnumerableExtensions.LastWhereNotOrDefault``1(IEnumerable{``0},Func{``0,System.Boolean})">LastWhereNotOrDefault&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns the last element in a sequence that does not satisfy a specified condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TSource LastWhereNotOrDefault&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> to return an element from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TSource, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TSource</span></td>
+        <td><p><span class="xref">langword_csharp_default(TSource)</span> if <code data-dev-comment-type="paramref" class="paramref">source</code> is empty or if no element passes the test specified
+by <code data-dev-comment-type="paramref" class="paramref">predicate</code>; otherwise, the last element in <code data-dev-comment-type="paramref" class="paramref">source</code> that fails the test
+specified by <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements in <code data-dev-comment-type="paramref" class="paramref">source</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_Shuffled__1_IEnumerable___0__System_Nullable_Random__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.Shuffled%60%601(IEnumerable%7B%60%600%7D%2CSystem.Nullable%7BRandom%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L326">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_Shuffled_" data-uid="X10D.Collections.EnumerableExtensions.Shuffled*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_Shuffled__1_IEnumerable___0__System_Nullable_Random__" data-uid="X10D.Collections.EnumerableExtensions.Shuffled``1(IEnumerable{``0},System.Nullable{Random})">Shuffled&lt;T&gt;(IEnumerable&lt;T&gt;, Nullable&lt;Random&gt;)</h4>
+  <div class="markdown level1 summary"><p>Reorganizes the elements in an enumerable by implementing a Fisher-Yates shuffle, and returns th shuffled result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyCollection&lt;T&gt; Shuffled&lt;T&gt;(this IEnumerable&lt;T&gt; source, Random? random = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The <see cref="!:IEnumerable&lt;T>"></see> to shuffle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Random</span>&gt;</td>
+        <td><span class="parametername">random</span></td>
+        <td><p>Optional. The <see cref="!:System.Random"></see> instance to use for the shuffling.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyCollection</span>&lt;T&gt;</td>
+        <td><p>The shuffled collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The element type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_WhereNot__1_IEnumerable___0__Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.WhereNot%60%601(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L355">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_WhereNot_" data-uid="X10D.Collections.EnumerableExtensions.WhereNot*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_WhereNot__1_IEnumerable___0__Func___0_System_Boolean__" data-uid="X10D.Collections.EnumerableExtensions.WhereNot``1(IEnumerable{``0},Func{``0,System.Boolean})">WhereNot&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filters a sequence of values based on a predicate, such that all elements in the result do not match the predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TSource&gt; WhereNot&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> to filter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TSource, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>A function to test each element for a condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> that contains elements from the input sequence that do not satisfy the condition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements of <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Collections_EnumerableExtensions_WhereNotNull__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20X10D.Collections.EnumerableExtensions.WhereNotNull%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Collections/EnumerableExtensions.cs/#L387">View Source</a>
+  </span>
+  <a id="X10D_Collections_EnumerableExtensions_WhereNotNull_" data-uid="X10D.Collections.EnumerableExtensions.WhereNotNull*"></a>
+  <h4 id="X10D_Collections_EnumerableExtensions_WhereNotNull__1_IEnumerable___0__" data-uid="X10D.Collections.EnumerableExtensions.WhereNotNull``1(IEnumerable{``0})">WhereNotNull&lt;TSource&gt;(IEnumerable&lt;TSource&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filters a sequence of values by omitting elements that are <span class="xref">null</span> (<span class="xref">langword_csharp_Nothing</span> in
+Visual Basic).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TSource&gt; WhereNotNull&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> to filter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TSource&gt;</td>
+        <td><p>An <see cref="!:IEnumerable&lt;T>"></see> that contains elements from the input sequence that are not <span class="xref">null</span>
+(<span class="xref">langword_csharp_Nothing</span> in Visual Basic).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TSource</span></td>
+        <td><p>The type of the elements of <code data-dev-comment-type="paramref" class="paramref">source</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; Singulink. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>

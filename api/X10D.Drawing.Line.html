@@ -1,0 +1,1246 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+    
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Struct Line
+     | X10D </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Struct Line
+     | X10D ">
+      <meta name="generator" content="docfx 2.56.7.0">
+      
+      <link rel="shortcut icon" href="../images/favicon.png">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+      
+      <meta property="docfx:rel" content="../">
+      <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+            
+            <a class="brand" href="../index.html">
+              <img src="../images/favicon.png" alt="X10D" class="logomark">
+              <span class="brand-title">X10D</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+                    
+                    <div>
+                      <div class="mobile-hide">
+                        
+                        <a class="brand" href="../index.html">
+                          <img src="../images/favicon.png" alt="X10D" class="logomark">
+                          <span class="brand-title">X10D</span>
+                        </a>  </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+                    
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+                        
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+                  <strong>DocFX + Singulink = ♥</strong>
+                  
+                </div>            </nav>
+
+            <main class="main-panel">
+                
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+                        
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="X10D.Drawing.Line">
+  
+  
+  <h1 id="X10D_Drawing_Line" data-uid="X10D.Drawing.Line" class="text-break">Struct Line
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a line in 2D space that is composed of 32-bit signed integer X and Y coordinates.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="X10D.Drawing.Line.html">Line</a>&gt;</div>
+    <div><span class="xref">IComparable</span>&lt;<a class="xref" href="X10D.Drawing.Line.html">Line</a>&gt;</div>
+    <div><span class="xref">IComparable</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="X10D.Drawing.html">X10D.Drawing</a></h6>
+  <h6><strong>Assembly</strong>: X10D.dll</h6>
+  <h5 id="X10D_Drawing_Line_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct Line : IEquatable&lt;Line&gt;, IComparable&lt;Line&gt;, IComparable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line__ctor_Point_Point_.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.%23ctor(Point%2CPoint)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L36">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line__ctor_" data-uid="X10D.Drawing.Line.#ctor*"></a>
+  <h4 id="X10D_Drawing_Line__ctor_Point_Point_" data-uid="X10D.Drawing.Line.#ctor(Point,Point)">Line(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="X10D.Drawing.Line.html">Line</a> struct by taking the start and end points.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Line(Point start, Point end)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>The start point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">end</span></td>
+        <td><p>The end point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_Empty.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.Empty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L14">View Source</a>
+  </span>
+  <h4 id="X10D_Drawing_Line_Empty" data-uid="X10D.Drawing.Line.Empty">Empty</h4>
+  <div class="markdown level1 summary"><p>The empty line. That is, a line whose start and end points are at (0, 0).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Line Empty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_One.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.One%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L19">View Source</a>
+  </span>
+  <h4 id="X10D_Drawing_Line_One" data-uid="X10D.Drawing.Line.One">One</h4>
+  <div class="markdown level1 summary"><p>The line whose start point is at (0, 0) and end point is at (1, 1).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Line One</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_UnitX.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.UnitX%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L24">View Source</a>
+  </span>
+  <h4 id="X10D_Drawing_Line_UnitX" data-uid="X10D.Drawing.Line.UnitX">UnitX</h4>
+  <div class="markdown level1 summary"><p>The line whose start point is at (0, 0) and end point is at (1, 0).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Line UnitX</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_UnitY.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.UnitY%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L29">View Source</a>
+  </span>
+  <h4 id="X10D_Drawing_Line_UnitY" data-uid="X10D.Drawing.Line.UnitY">UnitY</h4>
+  <div class="markdown level1 summary"><p>The line whose start point is at (0, 0) and end point is at (0, 1).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Line UnitY</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_End.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.End%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L46">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_End_" data-uid="X10D.Drawing.Line.End*"></a>
+  <h4 id="X10D_Drawing_Line_End" data-uid="X10D.Drawing.Line.End">End</h4>
+  <div class="markdown level1 summary"><p>Gets the end point of the line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point End { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The end point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_Length.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L52">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_Length_" data-uid="X10D.Drawing.Line.Length*"></a>
+  <h4 id="X10D_Drawing_Line_Length" data-uid="X10D.Drawing.Line.Length">Length</h4>
+  <div class="markdown level1 summary"><p>Gets the length of this line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>The length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_LengthSquared.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.LengthSquared%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L61">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_LengthSquared_" data-uid="X10D.Drawing.Line.LengthSquared*"></a>
+  <h4 id="X10D_Drawing_Line_LengthSquared" data-uid="X10D.Drawing.Line.LengthSquared">LengthSquared</h4>
+  <div class="markdown level1 summary"><p>Gets the length of this line, squared.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LengthSquared { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>The squared length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_Start.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.Start%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L70">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_Start_" data-uid="X10D.Drawing.Line.Start*"></a>
+  <h4 id="X10D_Drawing_Line_Start" data-uid="X10D.Drawing.Line.Start">Start</h4>
+  <div class="markdown level1 summary"><p>Gets the start point of the line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Start { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The start point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_CompareTo_System_Nullable_System_Object__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.CompareTo(System.Nullable%7BSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L239">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_CompareTo_" data-uid="X10D.Drawing.Line.CompareTo*"></a>
+  <h4 id="X10D_Drawing_Line_CompareTo_System_Nullable_System_Object__" data-uid="X10D.Drawing.Line.CompareTo(System.Nullable{System.Object})">CompareTo(Nullable&lt;Object&gt;)</h4>
+  <div class="markdown level1 summary"><p>Compares this instance to another object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(object? obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object with with which to compare</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A signed number indicating the relative values of this instance and <code data-dev-comment-type="paramref" class="paramref">obj</code>.</p>
+<table><thead><tr><th>Return value</th><th>Meaning</th></tr></thead><tbody><tr><td>Less than zero</td><td>
+            The <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of this instance is less than that of <code data-dev-comment-type="paramref" class="paramref">obj</code>.
+</td></tr><tr><td>Zero</td><td>
+    This instance is equal to <code data-dev-comment-type="paramref" class="paramref">obj</code>, or the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of both this instance
+    and <code data-dev-comment-type="paramref" class="paramref">obj</code> are not a number (<see cref="!:float.NaN"></see>),
+<see cref="!:float.PositiveInfinity"></see>, or <see cref="!:float.NegativeInfinity"></see>.
+</td></tr><tr><td>Greater than zero</td><td>
+    The <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of this instance is greater than that of <code data-dev-comment-type="paramref" class="paramref">obj</code>.
+</td></tr></tbody></table>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="X10D_Drawing_Line_CompareTo_System_Nullable_System_Object___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Comparison internally measures the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_LengthSquared">LengthSquared</a> property to avoid calls to <see cref="!:MathF.Sqrt"></see>.
+<exception cref="!:ArgumentException"><code data-dev-comment-type="paramref" class="paramref">obj</code> is not an instance of <a class="xref" href="X10D.Drawing.Line.html">Line</a>.</exception></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_CompareTo_X10D_Drawing_Line_.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.CompareTo(X10D.Drawing.Line)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L292">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_CompareTo_" data-uid="X10D.Drawing.Line.CompareTo*"></a>
+  <h4 id="X10D_Drawing_Line_CompareTo_X10D_Drawing_Line_" data-uid="X10D.Drawing.Line.CompareTo(X10D.Drawing.Line)">CompareTo(Line)</h4>
+  <div class="markdown level1 summary"><p>Compares this instance to another <a class="xref" href="X10D.Drawing.Line.html">Line</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(Line other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A signed number indicating the relative values of this instance and <code data-dev-comment-type="paramref" class="paramref">other</code>.</p>
+<table><thead><tr><th>Return value</th><th>Meaning</th></tr></thead><tbody><tr><td>Less than zero</td><td>
+            The <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of this instance is less than that of <code data-dev-comment-type="paramref" class="paramref">other</code>.
+</td></tr><tr><td>Zero</td><td>
+    This instance is equal to <code data-dev-comment-type="paramref" class="paramref">other</code>, or the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of both this instance
+    and <code data-dev-comment-type="paramref" class="paramref">other</code> are not a number (<see cref="!:float.NaN"></see>),
+<see cref="!:float.PositiveInfinity"></see>, or <see cref="!:float.NegativeInfinity"></see>.
+</td></tr><tr><td>Greater than zero</td><td>
+    The <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of this instance is greater than that of <code data-dev-comment-type="paramref" class="paramref">other</code>.
+</td></tr></tbody></table>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="X10D_Drawing_Line_CompareTo_X10D_Drawing_Line__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Comparison internally measures the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_LengthSquared">LengthSquared</a> property to avoid calls to <see cref="!:MathF.Sqrt"></see>.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_Equals_System_Nullable_System_Object__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.Equals(System.Nullable%7BSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L298">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_Equals_" data-uid="X10D.Drawing.Line.Equals*"></a>
+  <h4 id="X10D_Drawing_Line_Equals_System_Nullable_System_Object__" data-uid="X10D.Drawing.Line.Equals(System.Nullable{System.Object})">Equals(Nullable&lt;Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_Equals_X10D_Drawing_Line_.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.Equals(X10D.Drawing.Line)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L311">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_Equals_" data-uid="X10D.Drawing.Line.Equals*"></a>
+  <h4 id="X10D_Drawing_Line_Equals_X10D_Drawing_Line_" data-uid="X10D.Drawing.Line.Equals(X10D.Drawing.Line)">Equals(Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether this instance and another instance are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(Line other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The instance with which to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if this instance and <code data-dev-comment-type="paramref" class="paramref">other</code> are considered equal; otherwise,
+<span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_FromLine3D_X10D_Drawing_Line3D__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.FromLine3D(X10D.Drawing.Line3D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L181">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_FromLine3D_" data-uid="X10D.Drawing.Line.FromLine3D*"></a>
+  <h4 id="X10D_Drawing_Line_FromLine3D_X10D_Drawing_Line3D__" data-uid="X10D.Drawing.Line.FromLine3D(X10D.Drawing.Line3D@)">FromLine3D(Line3D)</h4>
+  <div class="markdown level1 summary"><p>Converts a <a class="xref" href="X10D.Drawing.Line3D.html">Line3D</a> to a <a class="xref" href="X10D.Drawing.Line.html">Line</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Line FromLine3D(in Line3D line)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line3D.html">Line3D</a></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><p>The converted line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_FromLineF_X10D_Drawing_LineF__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.FromLineF(X10D.Drawing.LineF%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L193">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_FromLineF_" data-uid="X10D.Drawing.Line.FromLineF*"></a>
+  <h4 id="X10D_Drawing_Line_FromLineF_X10D_Drawing_LineF__" data-uid="X10D.Drawing.Line.FromLineF(X10D.Drawing.LineF@)">FromLineF(LineF)</h4>
+  <div class="markdown level1 summary"><p>Converts a <a class="xref" href="X10D.Drawing.Line.html">Line</a> to a <a class="xref" href="X10D.Drawing.LineF.html">LineF</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Line FromLineF(in LineF line)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.LineF.html">LineF</a></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><p>The converted line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_GetHashCode.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L317">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_GetHashCode_" data-uid="X10D.Drawing.Line.GetHashCode*"></a>
+  <h4 id="X10D_Drawing_Line_GetHashCode" data-uid="X10D.Drawing.Line.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_Equality_X10D_Drawing_Line__X10D_Drawing_Line__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_Equality(X10D.Drawing.Line%40%2CX10D.Drawing.Line%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L81">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_Equality_" data-uid="X10D.Drawing.Line.op_Equality*"></a>
+  <h4 id="X10D_Drawing_Line_op_Equality_X10D_Drawing_Line__X10D_Drawing_Line__" data-uid="X10D.Drawing.Line.op_Equality(X10D.Drawing.Line@,X10D.Drawing.Line@)">Equality(Line, Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether two instances of <a class="xref" href="X10D.Drawing.Line.html">Line</a> are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(in Line left, in Line right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if <code data-dev-comment-type="paramref" class="paramref">left</code> and <code data-dev-comment-type="paramref" class="paramref">right</code> are considered equal; otherwise,
+<span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_Explicit_X10D_Drawing_Line3D___X10D_Drawing_Line.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_Explicit(X10D.Drawing.Line3D%40)~X10D.Drawing.Line%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L171">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_Explicit_" data-uid="X10D.Drawing.Line.op_Explicit*"></a>
+  <h4 id="X10D_Drawing_Line_op_Explicit_X10D_Drawing_Line3D___X10D_Drawing_Line" data-uid="X10D.Drawing.Line.op_Explicit(X10D.Drawing.Line3D@)~X10D.Drawing.Line">Explicit(Line3D to Line)</h4>
+  <div class="markdown level1 summary"><p>Explicitly converts a <a class="xref" href="X10D.Drawing.Line3D.html">Line3D</a> to a <a class="xref" href="X10D.Drawing.Line.html">Line</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator Line(in Line3D line)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line3D.html">Line3D</a></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><p>The converted line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_Explicit_X10D_Drawing_LineF___X10D_Drawing_Line.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_Explicit(X10D.Drawing.LineF%40)~X10D.Drawing.Line%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L161">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_Explicit_" data-uid="X10D.Drawing.Line.op_Explicit*"></a>
+  <h4 id="X10D_Drawing_Line_op_Explicit_X10D_Drawing_LineF___X10D_Drawing_Line" data-uid="X10D.Drawing.Line.op_Explicit(X10D.Drawing.LineF@)~X10D.Drawing.Line">Explicit(LineF to Line)</h4>
+  <div class="markdown level1 summary"><p>Explicitly converts a <a class="xref" href="X10D.Drawing.Line.html">Line</a> to a <a class="xref" href="X10D.Drawing.LineF.html">LineF</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator Line(in LineF line)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.LineF.html">LineF</a></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><p>The converted line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_GreaterThan_X10D_Drawing_Line__X10D_Drawing_Line__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_GreaterThan(X10D.Drawing.Line%40%2CX10D.Drawing.Line%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L123">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_GreaterThan_" data-uid="X10D.Drawing.Line.op_GreaterThan*"></a>
+  <h4 id="X10D_Drawing_Line_op_GreaterThan_X10D_Drawing_Line__X10D_Drawing_Line__" data-uid="X10D.Drawing.Line.op_GreaterThan(X10D.Drawing.Line@,X10D.Drawing.Line@)">GreaterThan(Line, Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether the length of one line is greater than that of another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(in Line left, in Line right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of <code data-dev-comment-type="paramref" class="paramref">left</code> is greater than that of
+<code data-dev-comment-type="paramref" class="paramref">right</code>; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_GreaterThanOrEqual_X10D_Drawing_Line__X10D_Drawing_Line__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_GreaterThanOrEqual(X10D.Drawing.Line%40%2CX10D.Drawing.Line%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L151">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_GreaterThanOrEqual_" data-uid="X10D.Drawing.Line.op_GreaterThanOrEqual*"></a>
+  <h4 id="X10D_Drawing_Line_op_GreaterThanOrEqual_X10D_Drawing_Line__X10D_Drawing_Line__" data-uid="X10D.Drawing.Line.op_GreaterThanOrEqual(X10D.Drawing.Line@,X10D.Drawing.Line@)">GreaterThanOrEqual(Line, Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether the length of one line is greater than or equal to that of another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(in Line left, in Line right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of <code data-dev-comment-type="paramref" class="paramref">left</code> is greater than or equal to that of
+<code data-dev-comment-type="paramref" class="paramref">right</code>; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_Inequality_X10D_Drawing_Line__X10D_Drawing_Line__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_Inequality(X10D.Drawing.Line%40%2CX10D.Drawing.Line%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L95">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_Inequality_" data-uid="X10D.Drawing.Line.op_Inequality*"></a>
+  <h4 id="X10D_Drawing_Line_op_Inequality_X10D_Drawing_Line__X10D_Drawing_Line__" data-uid="X10D.Drawing.Line.op_Inequality(X10D.Drawing.Line@,X10D.Drawing.Line@)">Inequality(Line, Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether two instances of <a class="xref" href="X10D.Drawing.Line.html">Line</a> are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(in Line left, in Line right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if <code data-dev-comment-type="paramref" class="paramref">left</code> and <code data-dev-comment-type="paramref" class="paramref">right</code> are considered not equal; otherwise,
+<span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_LessThan_X10D_Drawing_Line__X10D_Drawing_Line__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_LessThan(X10D.Drawing.Line%40%2CX10D.Drawing.Line%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L109">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_LessThan_" data-uid="X10D.Drawing.Line.op_LessThan*"></a>
+  <h4 id="X10D_Drawing_Line_op_LessThan_X10D_Drawing_Line__X10D_Drawing_Line__" data-uid="X10D.Drawing.Line.op_LessThan(X10D.Drawing.Line@,X10D.Drawing.Line@)">LessThan(Line, Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether the length of one line is less than that of another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(in Line left, in Line right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of <code data-dev-comment-type="paramref" class="paramref">left</code> is less than that of
+<code data-dev-comment-type="paramref" class="paramref">right</code>; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/oliverbooth/X10D/new/main/apiSpec/new?filename=X10D_Drawing_Line_op_LessThanOrEqual_X10D_Drawing_Line__X10D_Drawing_Line__.md&amp;value=---%0Auid%3A%20X10D.Drawing.Line.op_LessThanOrEqual(X10D.Drawing.Line%40%2CX10D.Drawing.Line%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/oliverbooth/X10D/blob/main/X10D/src/Drawing/Line.cs/#L137">View Source</a>
+  </span>
+  <a id="X10D_Drawing_Line_op_LessThanOrEqual_" data-uid="X10D.Drawing.Line.op_LessThanOrEqual*"></a>
+  <h4 id="X10D_Drawing_Line_op_LessThanOrEqual_X10D_Drawing_Line__X10D_Drawing_Line__" data-uid="X10D.Drawing.Line.op_LessThanOrEqual(X10D.Drawing.Line@,X10D.Drawing.Line@)">LessThanOrEqual(Line, Line)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether the length of one line is less than or equal to that of another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(in Line left, in Line right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="X10D.Drawing.Line.html">Line</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the <a class="xref" href="X10D.Drawing.Line.html#X10D_Drawing_Line_Length">Length</a> of <code data-dev-comment-type="paramref" class="paramref">left</code> is less than or equal to that of
+<code data-dev-comment-type="paramref" class="paramref">right</code>; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">IComparable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">IComparable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="X10D.Core.Extensions.html#X10D_Core_Extensions_AsArrayValue__1___0_">Extensions.AsArrayValue&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="X10D.Core.Extensions.html#X10D_Core_Extensions_AsEnumerableValue__1___0_">Extensions.AsEnumerableValue&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="X10D.Core.Extensions.html#X10D_Core_Extensions_RepeatValue__1___0_System_Int32_">Extensions.RepeatValue&lt;T&gt;(T, Int32)</a>
+  </div>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; Singulink. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>

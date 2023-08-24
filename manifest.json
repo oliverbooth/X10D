@@ -1,0 +1,2219 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.ArrayExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.ArrayExtensions.html",
+          "hash": "SGDUt73ZZmgVMapiGRs7GA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.BoolListExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.BoolListExtensions.html",
+          "hash": "H2kVJB3TqRFmTfyrFLmo4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.ByteExtensions.html",
+          "hash": "tS6pV5Gqg20kmFsGs4dDsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.CollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.CollectionExtensions.html",
+          "hash": "YjDP3gTByDsiK1B0omYB6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.DictionaryExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.DictionaryExtensions.html",
+          "hash": "iCe07vpyfU+ZoHJ3quqADw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.EnumerableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.EnumerableExtensions.html",
+          "hash": "8oS5T6+ain97L1FOG0H8eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.Int16Extensions.html",
+          "hash": "rFTOlg5wxUxS//597VmlGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.Int32Extensions.html",
+          "hash": "+bXA25tog4pyX4gxDscsvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.Int64Extensions.html",
+          "hash": "NEsiV77x0AA1T5WAXMt0Vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.ListExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.ListExtensions.html",
+          "hash": "JTm8IztsrYqRtnNx2LyXcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.SpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.SpanExtensions.html",
+          "hash": "9CHjB+sGrfHXudwiRXYcRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.SpanSplitEnumerator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.SpanSplitEnumerator-1.html",
+          "hash": "yjFPH7Z4dJ9uNZ8kFHOS6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Collections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Collections.html",
+          "hash": "YKOESAc9QntIbS+y3HU2cg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Core.EnumExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Core.EnumExtensions.html",
+          "hash": "ihRwr+/HMxP6Zn83Jfh/eQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Core.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Core.Extensions.html",
+          "hash": "Qt3ATqIZ14/xtEnLrb6qqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Core.NullableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Core.NullableExtensions.html",
+          "hash": "CBYjGYf4oDqqL6DK0lAQRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Core.RandomExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Core.RandomExtensions.html",
+          "hash": "jSN9P9kM6Cr6FDqHWiH2eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Core.SpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Core.SpanExtensions.html",
+          "hash": "KH/ea4PSlaorVee9D7QWPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Core.html",
+          "hash": "QVLTuV1xqyR+gUuq4aSmrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Circle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Circle.html",
+          "hash": "MymrO+p5c24l+W5zrb2I0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.CircleF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.CircleF.html",
+          "hash": "BBecK8SkeaJSdiKvCexBAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.ColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.ColorExtensions.html",
+          "hash": "xKofEy0YMTwnWK8maM8cqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Cuboid.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Cuboid.html",
+          "hash": "ayag5yet7Kb4odkHj6UW0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Ellipse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Ellipse.html",
+          "hash": "+gIDVdrWunLmdlAXILrB5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.EllipseF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.EllipseF.html",
+          "hash": "LCTXko5gg7YhphjtQPAG4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Line.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Line.html",
+          "hash": "gIbFOm0P5e/kKC87qzRcMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Line3D.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Line3D.html",
+          "hash": "oFNEbz3yifmQosCSDT5UtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.LineF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.LineF.html",
+          "hash": "eCPcdO6ckIEYqxVv/qpnng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.PointExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.PointExtensions.html",
+          "hash": "G3s05wanDFP+EYxfjDsmBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.PointFExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.PointFExtensions.html",
+          "hash": "+SuQ4PD6KUd8JdOSfhuSsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Polygon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Polygon.html",
+          "hash": "BrpwoowRmoJRVfnidXvWPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.PolygonF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.PolygonF.html",
+          "hash": "DxN1SJiApjAyYkmuyjyGfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Polyhedron.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Polyhedron.html",
+          "hash": "M67mG4tNeQUnebg4KKRRAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.RandomExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.RandomExtensions.html",
+          "hash": "ltVaUILMnIIaF7d2sodOCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.SizeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.SizeExtensions.html",
+          "hash": "iRs9X/ppDVMdueRCpRGaRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.Sphere.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.Sphere.html",
+          "hash": "RQDc9kQDwfrgEiWEN8RlBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Drawing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Drawing.html",
+          "hash": "WnZ5DzrROBuehA0LJ5YgSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Endianness.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Endianness.html",
+          "hash": "6D2kPn2wbQG0MNwhqOOQ3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Hosting.DependencyInjection.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Hosting.DependencyInjection.ServiceCollectionExtensions.html",
+          "hash": "xNFJpBz3vRSUF+w+nNZ83Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Hosting.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Hosting.DependencyInjection.html",
+          "hash": "dyxBMd38mCqfmzBiZXWL5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.BooleanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.BooleanExtensions.html",
+          "hash": "D5zfDrBRRav6fmUOfS16Uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.ByteExtensions.html",
+          "hash": "5zfkkMnK0gjKSVYGVa3+jg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.DirectoryInfoExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.DirectoryInfoExtensions.html",
+          "hash": "HuQdzZyFJQrvb5elqEvuZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.DoubleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.DoubleExtensions.html",
+          "hash": "fIFcwNjA9dzDFYO0FsfAFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.FileInfoExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.FileInfoExtensions.html",
+          "hash": "McfPV4jCumB1Cr3uYzGcdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.Int16Extensions.html",
+          "hash": "9MMVZp76QF+O0jlaYilqKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.Int32Extensions.html",
+          "hash": "z6paGzL5t0K1A6uUjzTzoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.Int64Extensions.html",
+          "hash": "v4ec9hG34HLx8+e1mOye2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.ListOfByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.ListOfByteExtensions.html",
+          "hash": "VBVhfkj1Se4BsoR9cmAvtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.SByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.SByteExtensions.html",
+          "hash": "RnKLAGQzLgaj1U0M8Zk7eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.SingleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.SingleExtensions.html",
+          "hash": "1AY5mGJY17kZ2wHVha7Nkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.StreamExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.StreamExtensions.html",
+          "hash": "a7TmLIs2a7V7zcDlqw48Pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.TextReaderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.TextReaderExtensions.html",
+          "hash": "6OOw0ehrp2DtkxEd4gRnoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.TextWriterExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.TextWriterExtensions.html",
+          "hash": "eFlQnLaJU8PAXPy5FM4Ceg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.UInt16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.UInt16Extensions.html",
+          "hash": "rAOeJkzKUOw9UYrwatPLCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.UInt32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.UInt32Extensions.html",
+          "hash": "YPeOxsv6+/65aUg2SFYx3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.UInt64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.UInt64Extensions.html",
+          "hash": "W/+fY7g2ETonP4yIi5SWNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.IO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.IO.html",
+          "hash": "YWVr0Fwrt1a2NSqBwk4qyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.ByteExtensions.html",
+          "hash": "ykhnZgjJzX5S2m9RfMUSKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.DecimalExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.DecimalExtensions.html",
+          "hash": "MxXI44j4NPOy2Ujh0vOaKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.DoubleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.DoubleExtensions.html",
+          "hash": "Kps0a7WHDj300ReKEIJjHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.EnumerableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.EnumerableExtensions.html",
+          "hash": "WzXs9lKs5r+vrDzT+ryXIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.Int16Extensions.html",
+          "hash": "+vSfssXtpsUekGNKhLTPVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.Int32Extensions.html",
+          "hash": "2DBYfuNCd8K0mcJNwzo8iw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.Int64Extensions.html",
+          "hash": "rzx2xjYl9MYH4CAwNVMMYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.ReadOnlySpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.ReadOnlySpanExtensions.html",
+          "hash": "ZwUeTijQZw+YHld824NbjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.SingleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.SingleExtensions.html",
+          "hash": "rO21zBJEg2QsjTGlpT93nA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.SpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.SpanExtensions.html",
+          "hash": "n37eXjZYHT8C8Go0rS27pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Linq.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Linq.html",
+          "hash": "R6MgA0dKh20y5+A+o5pFbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.BigIntegerExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.BigIntegerExtensions.html",
+          "hash": "BoaqRjUkG+AedvVHXVYsqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.ByteExtensions.html",
+          "hash": "qESS/3KocbYdl5jBM+nE7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.ComparableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.ComparableExtensions.html",
+          "hash": "eifMbMtXRqvuyVIkAqo7bQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.DecimalExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.DecimalExtensions.html",
+          "hash": "ekraui9bX0Bc3HzOt9S0og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.DoubleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.DoubleExtensions.html",
+          "hash": "WV/cHnKMuJDMpxZit07SVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.InclusiveOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.InclusiveOptions.html",
+          "hash": "iAbQiNVEaYuiCZzB1LJLTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.Int16Extensions.html",
+          "hash": "wgFNCktSLHLoFUnaabb5DA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.Int32Extensions.html",
+          "hash": "LFuJcoRXfE4OQLF8m0CtAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.Int64Extensions.html",
+          "hash": "aiMbYIB2V1KGM7Ps7F6KRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.MathUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.MathUtility.html",
+          "hash": "pSsq/Xw+tx1pddD3pU5RLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.SByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.SByteExtensions.html",
+          "hash": "hpQyhI7uHYJAXldVJw4UMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.SingleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.SingleExtensions.html",
+          "hash": "LhXkQcZZwkiRG0mgjQVEgg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.UInt16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.UInt16Extensions.html",
+          "hash": "ceU459+X7PB52IPusql0tA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.UInt32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.UInt32Extensions.html",
+          "hash": "UuF/FUXgjb/PPtUJUq9kOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.UInt64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.UInt64Extensions.html",
+          "hash": "Fqrfi68rONNHl/Th75HI2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Math.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Math.html",
+          "hash": "1NKJpfvj0KJenLPTUcmprw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Net.EndPointExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Net.EndPointExtensions.html",
+          "hash": "LVK3JhCkHbYkfeIs2SUBLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Net.IPAddressExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Net.IPAddressExtensions.html",
+          "hash": "BMXLYyTmoKUI0PNYg7Ufmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Net.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Net.Int16Extensions.html",
+          "hash": "2RJLRSV+7wAEi6Mexwol1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Net.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Net.Int32Extensions.html",
+          "hash": "oIpxLgIxd3XPxZV1TE3rqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Net.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Net.Int64Extensions.html",
+          "hash": "zBi2Hqy13d6rV9ZURr6JZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Net.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Net.html",
+          "hash": "9N7TIBRsHe7AjOfqi2xFlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.ByteExtensions.html",
+          "hash": "Ne6kLkdiX7tG9pB5xjtYAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.Int16Extensions.html",
+          "hash": "vxEswCeyMJ1nAxX0TvKHiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.Int32Extensions.html",
+          "hash": "iKnTCxAZVlnObMA3aEyU9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.Int64Extensions.html",
+          "hash": "EPR4iAsf+f5gqUBswovpiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.QuaternionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.QuaternionExtensions.html",
+          "hash": "PwLWNSF8B/SHdPLUvMGYFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.RandomExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.RandomExtensions.html",
+          "hash": "oHeNvC/xEfuUfOqyoU8L7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.SByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.SByteExtensions.html",
+          "hash": "EYAobG51RkjADHQR9qG0GQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.UInt16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.UInt16Extensions.html",
+          "hash": "T8PkXHaWwCA5/D7e8wWQpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.UInt32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.UInt32Extensions.html",
+          "hash": "es7RK6YNqmQw2w6izyLyYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.UInt64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.UInt64Extensions.html",
+          "hash": "eXANIvyqYax9hlJ84gV2yA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.Vector2Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.Vector2Extensions.html",
+          "hash": "ASV4/RLzaBsg/FKwpikVSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.Vector3Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.Vector3Extensions.html",
+          "hash": "GYWhuk6tTm47EPFKyrMRfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.Vector4Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.Vector4Extensions.html",
+          "hash": "QXxqnAuSgtrKgGdhKOg70Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Numerics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Numerics.html",
+          "hash": "E+9ahuCNyKhxWcO9++IENA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Reactive.ProgressExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Reactive.ProgressExtensions.html",
+          "hash": "VKbaEEk/imPUhnnfrzgrCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Reactive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Reactive.html",
+          "hash": "5HAi7zliPHVZLzifnZbYpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Reflection.MemberInfoExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Reflection.MemberInfoExtensions.html",
+          "hash": "0UtGMEBjkykBJZ4QBqpmKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Reflection.TypeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Reflection.TypeExtensions.html",
+          "hash": "7DNHLgfZddgo0S2s2dCEqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Reflection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Reflection.html",
+          "hash": "qY9FdUowu3Zz/yFD/Y2TOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Text.CharExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Text.CharExtensions.html",
+          "hash": "0Fd886DU7ryjw38G/s66UA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Text.CharSpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Text.CharSpanExtensions.html",
+          "hash": "nESte0ihFQWj8W/EgGHNTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Text.EnumerableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Text.EnumerableExtensions.html",
+          "hash": "stkpxpjoiddX1wjrZOcmCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Text.StringBuilderReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Text.StringBuilderReader.html",
+          "hash": "ExKvW8mCvPY+aYWxaL1m+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Text.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Text.StringExtensions.html",
+          "hash": "GxFs6FsfKwnH3ePSxK7Bbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Text.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Text.html",
+          "hash": "Y5OQC0Op2Xd43+u6QkL6NA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.ByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.ByteExtensions.html",
+          "hash": "gdo1AQrRr/7KjDnsY0oVCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.CharSpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.CharSpanExtensions.html",
+          "hash": "Tj5sye5RAaBbFbzBr5POvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.DateTimeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.DateTimeExtensions.html",
+          "hash": "zqzfVJKcZ1oqwk51uN2+8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.DateTimeOffsetExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.DateTimeOffsetExtensions.html",
+          "hash": "7nMysMIsZFy3PvmnKrF6CQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.DecimalExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.DecimalExtensions.html",
+          "hash": "4OH5NkoMTpQwIqFnABjC8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.DoubleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.DoubleExtensions.html",
+          "hash": "BOjXIay/0dBytQhOqgUX4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.Int16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.Int16Extensions.html",
+          "hash": "yqBKKNY2XT+BLXoYUpyG9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.Int32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.Int32Extensions.html",
+          "hash": "WwhE+mf+CA9nUtn9EmX1Ow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.Int64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.Int64Extensions.html",
+          "hash": "/2QOVQs5fqIKnwe16+ocVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.SByteExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.SByteExtensions.html",
+          "hash": "uv2SKf/5XlzwWgXboJ1fcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.SingleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.SingleExtensions.html",
+          "hash": "x811N3xleGb/mBKRgW3U5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.StringExtensions.html",
+          "hash": "BLRDdWQdlmCRGN64ZqAGIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.TimeSpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.TimeSpanExtensions.html",
+          "hash": "LslX5iHUB+e0cgzmq1pbHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.TimeSpanParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.TimeSpanParser.html",
+          "hash": "3qiecnSM5DtT03XWwCOuiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.UInt16Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.UInt16Extensions.html",
+          "hash": "m/gJAR5ZF52rnvL8dw13rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.UInt32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.UInt32Extensions.html",
+          "hash": "3HJlwCPCwPUTbAUJx5XWdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.UInt64Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.UInt64Extensions.html",
+          "hash": "zJVLMYjDOnNsG3rCBmfwdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Time.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Time.html",
+          "hash": "O9PVE+UPjtM53F4sbtJHzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.ComponentExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.ComponentExtensions.html",
+          "hash": "GPhBkmg1oLrimi1YBfqkfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.DebugUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.DebugUtility.html",
+          "hash": "OO9lBtFEDxzx0LB8mHjrOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.Color32Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.Color32Extensions.html",
+          "hash": "dNFCW2GLp0SljVLU/SnszQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.ColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.ColorExtensions.html",
+          "hash": "MoMWs0a6taf9j9vNc/oe9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.PointExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.PointExtensions.html",
+          "hash": "lh7mh7u1AZh8/Cm2Rd3hkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.PointFExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.PointFExtensions.html",
+          "hash": "TZSRBtpsBE3MwY6nqG2liA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.PolygonExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.PolygonExtensions.html",
+          "hash": "oBTZ6q3tDoPmwhJLKK8WcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.PolygonFExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.PolygonFExtensions.html",
+          "hash": "X2cGQ9JUgjm5Di+JNziUyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.PolyhedronExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.PolyhedronExtensions.html",
+          "hash": "s2SJsEeqiBj5sKKBpZWlCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.RandomExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.RandomExtensions.html",
+          "hash": "5TeIDQMp3oVgggvpgELQeg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.RectExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.RectExtensions.html",
+          "hash": "EF3zsQ9Qjw/6yTCxioxasg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.RectIntExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.RectIntExtensions.html",
+          "hash": "Du+nkaAZoAjnJVtmrlSpdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.RectangleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.RectangleExtensions.html",
+          "hash": "YgqZ00N1W1/xr1uTWDuKsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.RectangleFExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.RectangleFExtensions.html",
+          "hash": "9wvgFsFeZgbz2PJYcyv9Cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.SizeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.SizeExtensions.html",
+          "hash": "7lW+Pi0znFVZhMG54eW0xQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.SizeFExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.SizeFExtensions.html",
+          "hash": "F/mlEOz4TIgHNYIH/iCF2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Drawing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Drawing.html",
+          "hash": "JPb0ltMzIYCKWkdO7DRRqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.GameObjectExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.GameObjectExtensions.html",
+          "hash": "fy5NzWf33P7RzUW4D5MeXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.QuaternionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.QuaternionExtensions.html",
+          "hash": "IHwpZfAkHCDwYMQ98Xgmfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.RandomExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.RandomExtensions.html",
+          "hash": "1tofGTzFnPL7pqIF2W+WsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.Vector2Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.Vector2Extensions.html",
+          "hash": "3dFTCcvEIPY8Q/0OgAB0qA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.Vector2IntExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.Vector2IntExtensions.html",
+          "hash": "OkHkI+s/t+MKJ7TnctU+og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.Vector3Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.Vector3Extensions.html",
+          "hash": "1PwBx1VGWWv2woTn04uuEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.Vector3IntExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.Vector3IntExtensions.html",
+          "hash": "F0sJ1UW8cb2wjzrSkj7pXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.Vector4Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.Vector4Extensions.html",
+          "hash": "VtMx2O9kIesIR3FVCNn7mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Numerics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Numerics.html",
+          "hash": "temSzC+VEY66AlL/pk7+Fw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.RaycastHitExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.RaycastHitExtensions.html",
+          "hash": "b/qdrbjxg/fvcorR5KbKAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.Singleton-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.Singleton-1.html",
+          "hash": "35/mj61Je2qxGMNfPzc7Jg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.TransformExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.TransformExtensions.html",
+          "hash": "tHNSHnJus1g2HaeKeSRo0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForFrames.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForFrames.html",
+          "hash": "YU4cJfhpGsQR5hubExbtxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForKeyDown.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForKeyDown.html",
+          "hash": "OeN/VCqolmD2ycz64X1Ztg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForKeyUp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForKeyUp.html",
+          "hash": "v1R+43RAJGU0VLa3FYmWdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForSecondsNoAlloc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForSecondsNoAlloc.html",
+          "hash": "PFs662YpP+XK1Nq48FoSCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForSecondsRealtimeNoAlloc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForSecondsRealtimeNoAlloc.html",
+          "hash": "IdMtht1vidip496UwG7DzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForTimeSpan.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForTimeSpan.html",
+          "hash": "rouNaqok+PZuEVSlQRLNeg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.WaitForTimeSpanRealtime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.WaitForTimeSpanRealtime.html",
+          "hash": "y96cu9cb79hgEybBVPxdrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.Unity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.Unity.html",
+          "hash": "/l5s68ko2OKLN8g2qsZ9wA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/X10D.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/X10D.html",
+          "hash": "Z0yXcNmeVpoPc+zu5YNTFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "EqRTREzCvdCR6jsU58rdhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "3+3SNkTecaOiFjmIMbK5Lw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "j6i4jnUiyL+sTz4JuR0/xw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "wZUv486Jt3Cff11B0C6K0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "TW7Yv1kkpRpZt7tgMHZCUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "XEvj7Hid4lqHz17VA9navQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 172,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
