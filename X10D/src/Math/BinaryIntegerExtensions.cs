@@ -16,6 +16,8 @@ public static class BinaryIntegerExtensions
     /// </summary>
     /// <param name="value">The value whose digit count to compute.</param>
     /// <returns>The number of digits in <paramref name="value" />.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int CountDigits<TNumber>(this TNumber value)
         where TNumber : IBinaryInteger<TNumber>
     {
