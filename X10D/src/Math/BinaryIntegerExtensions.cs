@@ -1,4 +1,4 @@
-﻿#if NET7_0_OR_GREATER
+#if NET7_0_OR_GREATER
 using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -18,10 +18,10 @@ public static class BinaryIntegerExtensions
     /// <returns>The number of digits in <paramref name="value" />.</returns>
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static int CountDigits<TNumber>(this TNumber value)
-        where TNumber : IBinaryInteger<TNumber>
+    public static int CountDigits<TInteger>(this TInteger value)
+        where TInteger : IBinaryInteger<TInteger>
     {
-        if (TNumber.IsZero(value))
+        if (TInteger.IsZero(value))
         {
             return 1;
         }
