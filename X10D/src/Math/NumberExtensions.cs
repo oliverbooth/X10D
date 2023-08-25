@@ -12,22 +12,6 @@ namespace X10D.Math;
 public static class NumberExtensions
 {
     /// <summary>
-    ///     Returns the number of digits in the current binary integer.
-    /// </summary>
-    /// <param name="value">The value whose digit count to compute.</param>
-    /// <returns>The number of digits in <paramref name="value" />.</returns>
-    public static int CountDigits<TNumber>(this TNumber value)
-        where TNumber : IBinaryInteger<TNumber>
-    {
-        if (TNumber.IsZero(value))
-        {
-            return 1;
-        }
-
-        return 1 + (int)System.Math.Floor(System.Math.Log10(System.Math.Abs(double.CreateChecked(value))));
-    }
-
-    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>

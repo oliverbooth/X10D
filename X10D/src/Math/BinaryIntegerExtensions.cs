@@ -12,6 +12,22 @@ namespace X10D.Math;
 public static class BinaryIntegerExtensions
 {
     /// <summary>
+    ///     Returns the number of digits in the current binary integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits<TNumber>(this TNumber value)
+        where TNumber : IBinaryInteger<TNumber>
+    {
+        if (TNumber.IsZero(value))
+        {
+            return 1;
+        }
+
+        return 1 + (int)System.Math.Floor(System.Math.Log10(System.Math.Abs(double.CreateChecked(value))));
+    }
+
+    /// <summary>
     ///     Computes the digital root of this integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>
