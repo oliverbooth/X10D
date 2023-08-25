@@ -1,71 +1,71 @@
 ﻿using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
 
-[TestClass]
-public class StringBuilderReaderTests
+[TestFixture]
+internal class StringBuilderReaderTests
 {
-    [TestMethod]
+    [Test]
     public void Peek_ShouldReturnNextChar_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Assert.AreEqual('H', reader.Peek());
+        Assert.That(reader.Peek(), Is.EqualTo('H'));
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldReturnNextChar_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Assert.AreEqual('H', reader.Read());
-        Assert.AreEqual('e', reader.Read());
-        Assert.AreEqual('l', reader.Read());
-        Assert.AreEqual('l', reader.Read());
-        Assert.AreEqual('o', reader.Read());
-        Assert.AreEqual('\n', reader.Read());
-        Assert.AreEqual('W', reader.Read());
-        Assert.AreEqual('o', reader.Read());
-        Assert.AreEqual('r', reader.Read());
-        Assert.AreEqual('l', reader.Read());
-        Assert.AreEqual('d', reader.Read());
-        Assert.AreEqual(-1, reader.Read());
+        Assert.That(reader.Read(), Is.EqualTo('H'));
+        Assert.That(reader.Read(), Is.EqualTo('e'));
+        Assert.That(reader.Read(), Is.EqualTo('l'));
+        Assert.That(reader.Read(), Is.EqualTo('l'));
+        Assert.That(reader.Read(), Is.EqualTo('o'));
+        Assert.That(reader.Read(), Is.EqualTo('\n'));
+        Assert.That(reader.Read(), Is.EqualTo('W'));
+        Assert.That(reader.Read(), Is.EqualTo('o'));
+        Assert.That(reader.Read(), Is.EqualTo('r'));
+        Assert.That(reader.Read(), Is.EqualTo('l'));
+        Assert.That(reader.Read(), Is.EqualTo('d'));
+        Assert.That(reader.Read(), Is.EqualTo(-1));
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldPopulateArray_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         var array = new char[5];
         int read = reader.Read(array, 0, 5);
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), array);
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldReturnNegative1_GivenEndOfReader()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
         var array = new char[11];
         reader.Read(array);
-        Assert.AreEqual(-1, reader.Read(array, 0, 1));
+        Assert.That(reader.Read(array, 0, 1), Is.EqualTo(-1));
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldThrow_GivenNullArray()
     {
-        Assert.ThrowsException<ArgumentNullException>(() =>
+        Assert.Throws<ArgumentNullException>(() =>
         {
             using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
             reader.Read(null!, 0, 5);
@@ -73,10 +73,10 @@ public class StringBuilderReaderTests
         });
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldThrow_GivenNegativeIndex()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
             using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
             var array = new char[5];
@@ -85,10 +85,10 @@ public class StringBuilderReaderTests
         });
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldThrow_GivenNegativeCount()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
             using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
             var array = new char[5];
@@ -97,10 +97,10 @@ public class StringBuilderReaderTests
         });
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldThrow_GivenSmallBuffer()
     {
-        Assert.ThrowsException<ArgumentException>(() =>
+        Assert.Throws<ArgumentException>(() =>
         {
             using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
             var array = new char[1];
@@ -109,77 +109,77 @@ public class StringBuilderReaderTests
         });
     }
 
-    [TestMethod]
+    [Test]
     public void Read_ShouldPopulateSpan_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         Span<char> span = stackalloc char[5];
         int read = reader.Read(span);
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), span.ToArray());
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadAsync_ShouldPopulateArray_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         var array = new char[5];
         int read = reader.ReadAsync(array, 0, 5).GetAwaiter().GetResult();
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), array);
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadAsync_ShouldPopulateMemory_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         Memory<char> memory = new char[5];
         int read = reader.ReadAsync(memory).GetAwaiter().GetResult();
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), memory.ToArray());
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadBlock_ShouldPopulateArray_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         var array = new char[5];
         int read = reader.ReadBlock(array, 0, 5);
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), array);
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadBlock_ShouldPopulateSpan_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         Span<char> span = stackalloc char[5];
         int read = reader.ReadBlock(span);
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), span.ToArray());
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadBlock_ShouldReturnNegative1_GivenEndOfReader()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
@@ -188,83 +188,83 @@ public class StringBuilderReaderTests
         reader.Read(array);
 
         int read = reader.ReadBlock(array, 0, 5);
-        Assert.AreEqual(-1, read);
+        Assert.That(read, Is.EqualTo(-1));
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadBlockAsync_ShouldPopulateArray_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         var array = new char[5];
         int read = reader.ReadBlockAsync(array, 0, 5).GetAwaiter().GetResult();
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), array);
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadBlockAsync_ShouldPopulateMemory_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
         Memory<char> memory = new char[5];
         int read = reader.ReadBlockAsync(memory).GetAwaiter().GetResult();
-        Assert.AreEqual(5, read);
+        Assert.That(read, Is.EqualTo(5));
 
         CollectionAssert.AreEqual("Hello".ToCharArray(), memory.ToArray());
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadToEnd_ShouldReturnSourceString_GivenBuilder()
     {
         const string value = "Hello World";
         using var reader = new StringBuilderReader(new StringBuilder(value));
-        Assert.AreEqual(value, reader.ReadToEnd());
+        Assert.That(reader.ReadToEnd(), Is.EqualTo(value));
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadToEndAsync_ShouldReturnSourceString_GivenBuilder()
     {
         const string value = "Hello World";
         using var reader = new StringBuilderReader(new StringBuilder(value));
-        Assert.AreEqual(value, reader.ReadToEndAsync().GetAwaiter().GetResult());
+        Assert.That(reader.ReadToEndAsync().GetAwaiter().GetResult(), Is.EqualTo(value));
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadLine_ShouldReturnSourceString_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Assert.AreEqual("Hello", reader.ReadLine());
-        Assert.AreEqual("World", reader.ReadLine());
-        Assert.AreEqual(null, reader.ReadLine());
+        Assert.That(reader.ReadLine(), Is.EqualTo("Hello"));
+        Assert.That(reader.ReadLine(), Is.EqualTo("World"));
+        Assert.That(reader.ReadLine(), Is.EqualTo(null));
 
-        Assert.AreEqual(-1, reader.Peek());
+        Assert.That(reader.Peek(), Is.EqualTo(-1));
 
         reader.Close();
     }
 
-    [TestMethod]
+    [Test]
     public void ReadLineAsync_ShouldReturnSourceString_GivenBuilder()
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Assert.AreEqual("Hello", reader.ReadLineAsync().GetAwaiter().GetResult());
-        Assert.AreEqual("World", reader.ReadLineAsync().GetAwaiter().GetResult());
-        Assert.AreEqual(null, reader.ReadLineAsync().GetAwaiter().GetResult());
+        Assert.That(reader.ReadLineAsync().GetAwaiter().GetResult(), Is.EqualTo("Hello"));
+        Assert.That(reader.ReadLineAsync().GetAwaiter().GetResult(), Is.EqualTo("World"));
+        Assert.That(reader.ReadLineAsync().GetAwaiter().GetResult(), Is.EqualTo(null));
 
-        Assert.AreEqual(-1, reader.Peek());
+        Assert.That(reader.Peek(), Is.EqualTo(-1));
 
         reader.Close();
     }

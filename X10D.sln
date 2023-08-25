@@ -16,15 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 		branding_Icon.png = branding_Icon.png
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceValidator", "tools\SourceValidator\SourceValidator.csproj", "{84750149-9068-4780-AFDE-CDA1AC57007D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Unity", "X10D.Unity\X10D.Unity.csproj", "{7EAB3F09-A9FD-4334-B4DB-0394DD0C6568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.SourceGenerator", "X10D.SourceGenerator\X10D.SourceGenerator.csproj", "{077A5D33-AD55-4C55-8A67-972CEBC32C7A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.DSharpPlus", "X10D.DSharpPlus\X10D.DSharpPlus.csproj", "{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGenerator", "tools\SourceGenerator\SourceGenerator.csproj", "{077A5D33-AD55-4C55-8A67-972CEBC32C7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.Hosting", "X10D.Hosting\X10D.Hosting.csproj", "{B04AF429-30CF-4B69-81BA-38F560CA9126}"
 EndProject
@@ -44,6 +43,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpmPackageGenerator", "tools\UpmPackageGenerator\UpmPackageGenerator.csproj", "{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4B8969E6-27D2-4357-964E-9979FF7CC805}"
+	ProjectSection(SolutionItems) = preProject
+		tools\Directory.Build.props = tools\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "tools\Benchmarks\Benchmarks.csproj", "{259450A0-9964-403A-91E1-E9111B92C293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X10D.MetaServices", "tools\X10D.MetaServices\X10D.MetaServices.csproj", "{F57376C4-3591-43AF-BBED-447A1DE2B1FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +77,6 @@ Global
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077A5D33-AD55-4C55-8A67-972CEBC32C7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{675D3B25-7EA0-4FC3-B513-8DF27874F2CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B04AF429-30CF-4B69-81BA-38F560CA9126}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,6 +85,14 @@ Global
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259450A0-9964-403A-91E1-E9111B92C293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F57376C4-3591-43AF-BBED-447A1DE2B1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +103,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{84750149-9068-4780-AFDE-CDA1AC57007D} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
 		{CCBF047D-1B01-45EC-8D89-B00B4AC482CA} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
+		{259450A0-9964-403A-91E1-E9111B92C293} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
+		{077A5D33-AD55-4C55-8A67-972CEBC32C7A} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
+		{F57376C4-3591-43AF-BBED-447A1DE2B1FE} = {4B8969E6-27D2-4357-964E-9979FF7CC805}
 	EndGlobalSection
 EndGlobal

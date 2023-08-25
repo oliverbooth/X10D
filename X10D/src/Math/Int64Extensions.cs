@@ -11,6 +11,21 @@ public static class Int64Extensions
 {
 #if !NET7_0_OR_GREATER
     /// <summary>
+    ///     Returns the number of digits in the current 64-bit signed integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this long value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return 1 + (int)System.Math.Floor(System.Math.Log10(System.Math.Abs(value)));
+    }
+
+    /// <summary>
     ///     Computes the digital root of this 64-bit integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>

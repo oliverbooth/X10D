@@ -1,4 +1,4 @@
-﻿<h1 align="center"><img src="https://raw.githubusercontent.com/oliverbooth/X10D/develop/X10D.Unity/branding_Unity.png"></h1>
+﻿<h1 align="center"><img src="https://raw.githubusercontent.com/oliverbooth/X10D/main/X10D.Unity/branding_Unity.png"></h1>
 <p align="center">
 <a href="https://github.com/oliverbooth/X10D/actions/workflows/unity.yml"><img src="https://img.shields.io/github/actions/workflow/status/oliverbooth/X10D/unity.yml?style=flat-square" alt="GitHub Workflow Status" title="GitHub Workflow Status"></a>
 <a href="https://github.com/oliverbooth/X10D/tree/upm"><img src="https://img.shields.io/github/package-json/v/oliverbooth/X10D/upm?label=upm&style=flat-square" title="UPM Version"></a>
@@ -26,7 +26,7 @@ To install X10D in Unity, follow the steps blow:
 
 The [upm](https://github.com/oliverbooth/X10D/tree/upm) branch contains the latest nightly - that is the bleeding edge version of X10D.
 If you'd like to remain on a stable release, specify a commit hash after the `#` instead of `upm`.
-The latest current stable is 3.1.0, which is commit [9f3b09661b09e83690318370eea808e70dd4a72c](https://github.com/oliverbooth/X10D/commit/9f3b09661b09e83690318370eea808e70dd4a72c).
+The latest current stable is 3.3.1, which is commit [0bb35bb565fff170a3848acdffbb5d53087de64b](https://github.com/oliverbooth/X10D/commit/0bb35bb565fff170a3848acdffbb5d53087de64b).
 Keep in mind that referencing a specific commit rather than the `upm` branch will prevent the auto-updater in Unity from detecting new versions. 
 
 ## Contributing

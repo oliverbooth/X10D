@@ -1,140 +1,140 @@
 ﻿using System.Numerics;
 using System.Reflection;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
-public class IsPrimeTests
+[TestFixture]
+internal class IsPrimeTests
 {
     private IReadOnlyList<int> _primeNumbers = ArraySegment<int>.Empty;
 
-    [TestInitialize]
+    [SetUp]
     public void Initialize()
     {
         _primeNumbers = LoadPrimes();
-        Assert.AreEqual(1000, _primeNumbers.Count);
+        Assert.That(_primeNumbers.Count, Is.EqualTo(1000));
     }
 
-    [TestMethod]
+    [Test]
     public void First1000Primes()
     {
         for (var index = 0; index < _primeNumbers.Count; index++)
         {
             int value = _primeNumbers[index];
 
-            Assert.IsTrue(value.IsPrime());
-            Assert.IsTrue(((long)value).IsPrime());
-            Assert.IsTrue(((BigInteger)value).IsPrime());
+            Assert.That(value.IsPrime());
+            Assert.That(((long)value).IsPrime());
+            Assert.That(((BigInteger)value).IsPrime());
 
             if (value is >= byte.MinValue and <= byte.MaxValue)
             {
-                Assert.IsTrue(((byte)value).IsPrime());
+                Assert.That(((byte)value).IsPrime());
             }
 
             if (value is >= short.MinValue and <= short.MaxValue)
             {
-                Assert.IsTrue(((short)value).IsPrime());
+                Assert.That(((short)value).IsPrime());
             }
 
             if (value is >= byte.MinValue and <= byte.MaxValue)
             {
-                Assert.IsTrue(((byte)value).IsPrime());
+                Assert.That(((byte)value).IsPrime());
             }
 
             if (value is >= ushort.MinValue and <= ushort.MaxValue)
             {
-                Assert.IsTrue(((ushort)value).IsPrime());
+                Assert.That(((ushort)value).IsPrime());
             }
 
             if (value is >= sbyte.MinValue and <= sbyte.MaxValue)
             {
-                Assert.IsTrue(((sbyte)value).IsPrime());
+                Assert.That(((sbyte)value).IsPrime());
             }
 
             if (value >= 0)
             {
-                Assert.IsTrue(((uint)value).IsPrime());
-                Assert.IsTrue(((ulong)value).IsPrime());
+                Assert.That(((uint)value).IsPrime());
+                Assert.That(((ulong)value).IsPrime());
             }
         }
     }
 
-    [TestMethod]
+    [Test]
     public void Negatives()
     {
         for (var value = short.MinValue; value < 0; value++)
         {
-            Assert.IsFalse(value.IsPrime());
-            Assert.IsFalse(((int)value).IsPrime());
-            Assert.IsFalse(((long)value).IsPrime());
-            Assert.IsFalse(((BigInteger)value).IsPrime());
+            Assert.That(value.IsPrime(), Is.False);
+            Assert.That(((int)value).IsPrime(), Is.False);
+            Assert.That(((long)value).IsPrime(), Is.False);
+            Assert.That(((BigInteger)value).IsPrime(), Is.False);
 
             if (value is >= sbyte.MinValue and <= sbyte.MaxValue)
             {
-                Assert.IsFalse(((sbyte)value).IsPrime());
+                Assert.That(((sbyte)value).IsPrime(), Is.False);
             }
         }
     }
 
-    [TestMethod]
+    [Test]
     public void LessThan2()
     {
         for (var value = 0; value < 2; value++)
         {
-            Assert.IsFalse(value.IsPrime());
-            Assert.IsFalse(((byte)value).IsPrime());
-            Assert.IsFalse(((short)value).IsPrime());
-            Assert.IsFalse(((long)value).IsPrime());
-            Assert.IsFalse(((BigInteger)value).IsPrime());
+            Assert.That(value.IsPrime(), Is.False);
+            Assert.That(((byte)value).IsPrime(), Is.False);
+            Assert.That(((short)value).IsPrime(), Is.False);
+            Assert.That(((long)value).IsPrime(), Is.False);
+            Assert.That(((BigInteger)value).IsPrime(), Is.False);
 
-            Assert.IsFalse(((sbyte)value).IsPrime());
-            Assert.IsFalse(((ushort)value).IsPrime());
-            Assert.IsFalse(((uint)value).IsPrime());
-            Assert.IsFalse(((ulong)value).IsPrime());
+            Assert.That(((sbyte)value).IsPrime(), Is.False);
+            Assert.That(((ushort)value).IsPrime(), Is.False);
+            Assert.That(((uint)value).IsPrime(), Is.False);
+            Assert.That(((ulong)value).IsPrime(), Is.False);
         }
     }
 
-    [TestMethod]
+    [Test]
     public void ZeroTo7919()
     {
         for (var value = 0; value < 7920; value++)
         {
             bool expected = _primeNumbers.Contains(value);
 
-            Assert.AreEqual(expected, ((short)value).IsPrime());
-            Assert.AreEqual(expected, value.IsPrime());
-            Assert.AreEqual(expected, ((long)value).IsPrime());
-            Assert.AreEqual(expected, ((BigInteger)value).IsPrime());
+            Assert.That(((short)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(value.IsPrime(), Is.EqualTo(expected));
+            Assert.That(((long)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((BigInteger)value).IsPrime(), Is.EqualTo(expected));
 
-            Assert.AreEqual(expected, ((ushort)value).IsPrime());
-            Assert.AreEqual(expected, ((uint)value).IsPrime());
-            Assert.AreEqual(expected, ((ulong)value).IsPrime());
+            Assert.That(((ushort)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((uint)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((ulong)value).IsPrime(), Is.EqualTo(expected));
         }
     }
 
-    [TestMethod]
+    [Test]
     public void ZeroToByteMaxValue()
     {
         for (byte value = 0; value < byte.MaxValue; value++)
         {
             bool expected = _primeNumbers.Contains(value);
 
-            Assert.AreEqual(expected, value.IsPrime());
-            Assert.AreEqual(expected, ((short)value).IsPrime());
-            Assert.AreEqual(expected, ((int)value).IsPrime());
-            Assert.AreEqual(expected, ((long)value).IsPrime());
-            Assert.AreEqual(expected, ((BigInteger)value).IsPrime());
+            Assert.That(value.IsPrime(), Is.EqualTo(expected));
+            Assert.That(((short)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((int)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((long)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((BigInteger)value).IsPrime(), Is.EqualTo(expected));
 
-            Assert.AreEqual(expected, ((ushort)value).IsPrime());
-            Assert.AreEqual(expected, ((uint)value).IsPrime());
-            Assert.AreEqual(expected, ((ulong)value).IsPrime());
+            Assert.That(((ushort)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((uint)value).IsPrime(), Is.EqualTo(expected));
+            Assert.That(((ulong)value).IsPrime(), Is.EqualTo(expected));
 
             if (value < sbyte.MaxValue)
             {
-                Assert.AreEqual(expected, ((sbyte)value).IsPrime());
+                Assert.That(((sbyte)value).IsPrime(), Is.EqualTo(expected));
             }
         }
     }

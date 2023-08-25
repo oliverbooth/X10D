@@ -1,36 +1,91 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
-public partial class Int16Tests
+[TestFixture]
+internal partial class Int16Tests
 {
-    [TestMethod]
+    [Test]
+    public void CountDigits_ShouldReturn1_Given0()
+    {
+        const short value = 0;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_Given1()
+    {
+        const short value = 1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_GivenNegative1()
+    {
+        const short value = -1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn2_Given10()
+    {
+        const short value = 10;
+        const int expected = 2;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn3_Given199()
+    {
+        const short value = 199;
+        const int expected = 3;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
     public void DigitalRootShouldBeCorrect()
     {
         const short value = 238;
-        Assert.AreEqual(4, value.DigitalRoot());
-        Assert.AreEqual(4, (-value).DigitalRoot());
+        Assert.That(value.DigitalRoot(), Is.EqualTo(4));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(4));
     }
 
-    [TestMethod]
+    [Test]
     public void FactorialShouldBeCorrect()
     {
-        Assert.AreEqual(1L, ((short)0).Factorial());
-        Assert.AreEqual(1L, ((short)1).Factorial());
-        Assert.AreEqual(2L, ((short)2).Factorial());
-        Assert.AreEqual(6L, ((short)3).Factorial());
-        Assert.AreEqual(24L, ((short)4).Factorial());
-        Assert.AreEqual(120L, ((short)5).Factorial());
-        Assert.AreEqual(720L, ((short)6).Factorial());
-        Assert.AreEqual(5040L, ((short)7).Factorial());
-        Assert.AreEqual(40320L, ((short)8).Factorial());
-        Assert.AreEqual(362880L, ((short)9).Factorial());
-        Assert.AreEqual(3628800L, ((short)10).Factorial());
+        Assert.That(((short)0).Factorial(), Is.EqualTo(1L));
+        Assert.That(((short)1).Factorial(), Is.EqualTo(1L));
+        Assert.That(((short)2).Factorial(), Is.EqualTo(2L));
+        Assert.That(((short)3).Factorial(), Is.EqualTo(6L));
+        Assert.That(((short)4).Factorial(), Is.EqualTo(24L));
+        Assert.That(((short)5).Factorial(), Is.EqualTo(120L));
+        Assert.That(((short)6).Factorial(), Is.EqualTo(720L));
+        Assert.That(((short)7).Factorial(), Is.EqualTo(5040L));
+        Assert.That(((short)8).Factorial(), Is.EqualTo(40320L));
+        Assert.That(((short)9).Factorial(), Is.EqualTo(362880L));
+        Assert.That(((short)10).Factorial(), Is.EqualTo(3628800L));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
     {
         const short first = 5;
@@ -38,10 +93,10 @@ public partial class Int16Tests
 
         short multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(1, multiple);
+        Assert.That(multiple, Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe6_Given12And18()
     {
         const short first = 12;
@@ -49,30 +104,30 @@ public partial class Int16Tests
 
         short multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(6, multiple);
+        Assert.That(multiple, Is.EqualTo(6));
     }
 
-    [TestMethod]
+    [Test]
     public void IsEvenShouldBeCorrect()
     {
         const short one = 1;
         const short two = 2;
 
-        Assert.IsFalse(one.IsEven());
-        Assert.IsTrue(two.IsEven());
+        Assert.That(one.IsEven(), Is.False);
+        Assert.That(two.IsEven());
     }
 
-    [TestMethod]
+    [Test]
     public void IsOddShouldBeCorrect()
     {
         const short one = 1;
         const short two = 2;
 
-        Assert.IsTrue(one.IsOdd());
-        Assert.IsFalse(two.IsOdd());
+        Assert.That(one.IsOdd());
+        Assert.That(two.IsOdd(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
     {
         const short value1 = 2;
@@ -81,10 +136,10 @@ public partial class Int16Tests
 
         short result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
     {
         const short value1 = 0;
@@ -93,10 +148,10 @@ public partial class Int16Tests
 
         short result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
     {
         const short value1 = 1;
@@ -106,11 +161,11 @@ public partial class Int16Tests
         short result1 = value1.LowestCommonMultiple(value2);
         short result2 = value2.LowestCommonMultiple(value1);
 
-        Assert.AreEqual(expected, result1);
-        Assert.AreEqual(expected, result2);
+        Assert.That(result1, Is.EqualTo(expected));
+        Assert.That(result2, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
     {
         const short value1 = 5;
@@ -119,10 +174,10 @@ public partial class Int16Tests
 
         short result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithNegativeValues()
     {
         const short value1 = -2;
@@ -131,43 +186,43 @@ public partial class Int16Tests
 
         short result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
     {
-        Assert.AreEqual(1, ((short)10).MultiplicativePersistence());
-        Assert.AreEqual(1, ((short)201).MultiplicativePersistence());
-        Assert.AreEqual(1, ((short)200).MultiplicativePersistence());
-        Assert.AreEqual(1, ((short)20007).MultiplicativePersistence());
+        Assert.That(((short)10).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((short)201).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((short)200).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((short)20007).MultiplicativePersistence(), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
-        Assert.AreEqual(0, ((short)0).MultiplicativePersistence());
-        Assert.AreEqual(1, ((short)10).MultiplicativePersistence());
-        Assert.AreEqual(2, ((short)25).MultiplicativePersistence());
-        Assert.AreEqual(3, ((short)39).MultiplicativePersistence());
-        Assert.AreEqual(4, ((short)77).MultiplicativePersistence());
-        Assert.AreEqual(5, ((short)679).MultiplicativePersistence());
-        Assert.AreEqual(6, ((short)6788).MultiplicativePersistence());
+        Assert.That(((short)0).MultiplicativePersistence(), Is.Zero);
+        Assert.That(((short)10).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((short)25).MultiplicativePersistence(), Is.EqualTo(2));
+        Assert.That(((short)39).MultiplicativePersistence(), Is.EqualTo(3));
+        Assert.That(((short)77).MultiplicativePersistence(), Is.EqualTo(4));
+        Assert.That(((short)679).MultiplicativePersistence(), Is.EqualTo(5));
+        Assert.That(((short)6788).MultiplicativePersistence(), Is.EqualTo(6));
     }
 
-    [TestMethod]
+    [Test]
     public void NegativeFactorialShouldThrow()
     {
-        Assert.ThrowsException<ArithmeticException>(() => ((short)-1).Factorial());
+        Assert.Throws<ArithmeticException>(() => ((short)-1).Factorial());
     }
 
-    [TestMethod]
+    [Test]
     public void SignShouldBeCorrect()
     {
         const short one = 1;
         const short zero = 0;
-        Assert.AreEqual(one, one.Sign());
-        Assert.AreEqual(zero, zero.Sign());
-        Assert.AreEqual(-one, (-one).Sign());
+        Assert.That(one.Sign(), Is.EqualTo(one));
+        Assert.That(zero.Sign(), Is.EqualTo(zero));
+        Assert.That((-one).Sign(), Is.EqualTo(-one));
     }
 }

@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace X10D.Tests.Collections;
 
-[TestClass]
-public partial class ArrayTests
+[TestFixture]
+internal static partial class ArrayTests
 {
 }

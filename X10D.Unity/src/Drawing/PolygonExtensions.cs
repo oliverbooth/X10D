@@ -14,8 +14,14 @@ public static class PolygonExtensions
     /// </summary>
     /// <param name="polygon">The polygon whose points to update.</param>
     /// <param name="point">The point to add.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public static void AddVertex(this Polygon polygon, Vector2Int point)
     {
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+
         polygon.AddVertex(point.ToSystemPoint());
     }
 
@@ -24,8 +30,23 @@ public static class PolygonExtensions
     /// </summary>
     /// <param name="polygon">The polygon whose vertices to update.</param>
     /// <param name="vertices">The vertices to add.</param>
+    /// <exception cref="ArgumentNullException">
+    ///     <para><paramref name="polygon" /> is <see langword="null" />.</para>
+    ///     -or-
+    ///     <para><paramref name="vertices" /> is <see langword="null" />.</para>
+    /// </exception>
     public static void AddVertices(this Polygon polygon, IEnumerable<Vector2Int> vertices)
     {
+        if (polygon is null)
+        {
+            throw new ArgumentNullException(nameof(polygon));
+        }
+
+        if (vertices is null)
+        {
+            throw new ArgumentNullException(nameof(vertices));
+        }
+
         foreach (Vector2Int vertex in vertices)
         {
             polygon.AddVertex(vertex);

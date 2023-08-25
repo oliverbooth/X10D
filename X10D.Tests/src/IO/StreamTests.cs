@@ -1,15 +1,15 @@
 ﻿using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-[TestClass]
-public partial class StreamTests
+[TestFixture]
+internal partial class StreamTests
 {
-    [TestMethod]
+    [Test]
     public void GetHashSha1ShouldBeCorrect()
     {
         // SHA-1
@@ -29,15 +29,15 @@ public partial class StreamTests
         CollectionAssert.AreEqual(expectedHash, hash);
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashNullShouldThrow()
     {
         // any HashAlgorithm will do, but SHA1 is used above. so to remain consistent, we use it here
-        Assert.ThrowsException<ArgumentNullException>(() => ((Stream?)null)!.GetHash<SHA1>());
-        Assert.ThrowsException<ArgumentNullException>(() => ((Stream?)null)!.TryWriteHash<SHA1>(Span<byte>.Empty, out _));
+        Assert.Throws<ArgumentNullException>(() => ((Stream?)null)!.GetHash<SHA1>());
+        Assert.Throws<ArgumentNullException>(() => ((Stream?)null)!.TryWriteHash<SHA1>(Span<byte>.Empty, out _));
     }
 
-    [TestMethod]
+    [Test]
     public void TryWriteHashSha1_ShouldBeCorrect()
     {
         // SHA-1
@@ -53,49 +53,48 @@ public partial class StreamTests
 
         Span<byte> hash = stackalloc byte[20];
         stream.TryWriteHash<SHA1>(hash, out int bytesWritten);
-        Assert.AreEqual(expectedHash.Length, bytesWritten);
+        Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
         CollectionAssert.AreEqual(expectedHash, hash.ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void GetHash_TryWriteHash_ShouldThrow_GivenNonReadableStream()
     {
-        Assert.ThrowsException<IOException>(() =>
+        Assert.Throws<IOException>(() =>
         {
             using var stream = new DummyStream();
             stream.GetHash<SHA1>();
         });
 
-        Assert.ThrowsException<IOException>(() =>
+        Assert.Throws<IOException>(() =>
         {
             using var stream = new DummyStream();
             stream.TryWriteHash<SHA1>(Span<byte>.Empty, out _);
         });
     }
 
-    [TestMethod]
+    [Test]
     public void LargeStreamShouldThrow()
     {
-        Assert.ThrowsException<ArgumentException>(() =>
+        Assert.Throws<ArgumentException>(() =>
         {
             using var stream = new DummyStream(true);
             stream.TryWriteHash<SHA1>(Span<byte>.Empty, out _);
         });
     }
 
-    [TestMethod]
+    [Test]
     public void NullCreateMethodShouldThrow()
     {
-        Assert.ThrowsException<TypeInitializationException>(() => Stream.Null.GetHash<HashAlgorithmTestClass>());
-        Assert.ThrowsException<TypeInitializationException>(() =>
-            Stream.Null.TryWriteHash<HashAlgorithmTestClass>(Span<byte>.Empty, out _));
+        Assert.Throws<ArgumentException>(() => Stream.Null.GetHash<HashAlgorithmTestClass>());
+        Assert.Throws<ArgumentException>(() => Stream.Null.TryWriteHash<HashAlgorithmTestClass>(Span<byte>.Empty, out _));
     }
 
-    [TestMethod]
+    [Test]
     public void NoCreateMethodShouldThrow()
     {
-        Assert.ThrowsException<TypeInitializationException>(() => Stream.Null.GetHash<HashAlgorithmTestClassNoCreateMethod>());
-        Assert.ThrowsException<TypeInitializationException>(() =>
+        Assert.Throws<ArgumentException>(() => Stream.Null.GetHash<HashAlgorithmTestClassNoCreateMethod>());
+        Assert.Throws<ArgumentException>(() =>
             Stream.Null.TryWriteHash<HashAlgorithmTestClassNoCreateMethod>(Span<byte>.Empty, out _));
     }
 

@@ -1,67 +1,68 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
-    [TestMethod]
-    public void ReadDouble_ShouldThrowArgumentException_GivenNonReadableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadDouble());
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadDouble(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadDouble(Endianness.BigEndian));
-    }
-
-    [TestMethod]
-    public void ReadDouble_ShouldThrowArgumentNullException_GivenNullStream()
+    [Test]
+    public void ReadDoubleBigEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadDouble());
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadDouble(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadDouble(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDoubleBigEndian());
     }
 
-    [TestMethod]
-    public void ReadDouble_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    [Test]
+    public void ReadDoubleLittleEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.ReadDouble((Endianness)(-1)));
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDoubleLittleEndian());
     }
 
-    [TestMethod]
-    public void ReadDouble_ShouldReadBigEndian_GivenBigEndian()
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadDoubleBigEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadDoubleBigEndian());
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadDoubleLittleEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadDoubleLittleEndian());
+    }
+
+    [Test]
+    public void ReadDoubleBigEndian_ShouldReadBigEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0x40, 0x7A, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x40, 0x7A, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const double expected = 420.0;
-        double actual = stream.ReadDouble(Endianness.BigEndian);
+        double actual = stream.ReadDoubleBigEndian();
 
-        Assert.AreEqual(8, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(8));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
-    public void ReadDouble_ShouldWriteLittleEndian_GivenLittleEndian()
+    [Test]
+    public void ReadDoubleLittleEndian_ShouldWriteLittleEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x7A, 0x40};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x7A, 0x40 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const double expected = 420.0;
-        double actual = stream.ReadDouble(Endianness.LittleEndian);
+        double actual = stream.ReadDoubleLittleEndian();
 
-        Assert.AreEqual(8, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(8));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

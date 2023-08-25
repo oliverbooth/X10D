@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
 
-[TestClass]
-public class EnumerableTests
+[TestFixture]
+internal class EnumerableTests
 {
-    [TestMethod]
+    [Test]
     public void Grep_ShouldFilterCorrectly_GivenPattern()
     {
         int year = DateTime.Now.Year;
@@ -19,7 +19,7 @@ public class EnumerableTests
         CollectionAssert.AreEqual(expectedResult, actualResult);
     }
 
-    [TestMethod]
+    [Test]
     public void Grep_ShouldYieldNoResults_GivenEmptySource()
     {
         string[] source = Array.Empty<string>();
@@ -31,7 +31,7 @@ public class EnumerableTests
         CollectionAssert.AreEqual(expectedResult, actualResult);
     }
 
-    [TestMethod]
+    [Test]
     public void Grep_ShouldMatchUpperCase_GivenIgnoreCaseTrue()
     {
         int year = DateTime.Now.Year;
@@ -44,7 +44,7 @@ public class EnumerableTests
         CollectionAssert.AreEqual(expectedResult, actualResult);
     }
 
-    [TestMethod]
+    [Test]
     public void Grep_ShouldNotMatchUpperCase_GivenIgnoreCaseFalse()
     {
         int year = DateTime.Now.Year;
@@ -53,26 +53,26 @@ public class EnumerableTests
         const string pattern = /*lang=regex*/@"world";
         string[] actualResult = source.Grep(pattern, false).ToArray();
 
-        Assert.AreEqual(0, actualResult.Length);
+        Assert.That(actualResult.Length, Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void Grep_ShouldThrowArgumentNullException_GivenNullPattern()
     {
         IEnumerable<string> source = Enumerable.Empty<string>();
-        Assert.ThrowsException<ArgumentNullException>(() => source.Grep(null!).ToArray());
-        Assert.ThrowsException<ArgumentNullException>(() => source.Grep(null!, false).ToArray());
+        Assert.Throws<ArgumentNullException>(() => source.Grep(null!).ToArray());
+        Assert.Throws<ArgumentNullException>(() => source.Grep(null!, false).ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void Grep_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<string> source = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => source.Grep("foo").ToArray());
-        Assert.ThrowsException<ArgumentNullException>(() => source.Grep("foo", false).ToArray());
+        Assert.Throws<ArgumentNullException>(() => source.Grep("foo").ToArray());
+        Assert.Throws<ArgumentNullException>(() => source.Grep("foo", false).ToArray());
     }
 
-    [TestMethod]
+    [Test]
     public void Grep_ShouldYieldNoElements_GivenNoMatchingStrings()
     {
         var source = new[] {"Hello", "World", "String"};
@@ -80,6 +80,6 @@ public class EnumerableTests
         const string pattern = /*lang=regex*/@"[0-9]+";
         string[] actualResult = source.Grep(pattern).ToArray();
 
-        Assert.AreEqual(0, actualResult.Length);
+        Assert.That(actualResult.Length, Is.Zero);
     }
 }

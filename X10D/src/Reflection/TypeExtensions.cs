@@ -21,14 +21,10 @@ public static class TypeExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Implements<T>(this Type value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.Implements(typeof(T));
     }
@@ -48,10 +44,6 @@ public static class TypeExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Implements(this Type value, Type interfaceType)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-        ArgumentNullException.ThrowIfNull(interfaceType);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
@@ -61,7 +53,6 @@ public static class TypeExtensions
         {
             throw new ArgumentNullException(nameof(interfaceType));
         }
-#endif
 
         if (!interfaceType.IsInterface)
         {
@@ -90,14 +81,10 @@ public static class TypeExtensions
     public static bool Inherits<T>(this Type value)
         where T : class
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.Inherits(typeof(T));
     }
@@ -125,10 +112,6 @@ public static class TypeExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Inherits(this Type value, Type type)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-        ArgumentNullException.ThrowIfNull(type);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
@@ -138,7 +121,6 @@ public static class TypeExtensions
         {
             throw new ArgumentNullException(nameof(type));
         }
-#endif
 
         if (!value.IsClass)
         {

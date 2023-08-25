@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class UInt32Tests
+internal partial class UInt32Tests
 {
-    [TestClass]
+    [TestFixture]
     public class WrapTests
     {
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnLow_WhenValueIsEqualToLow()
         {
             const uint value = 10;
@@ -17,10 +17,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnHigh_WhenValueIsEqualToHigh()
         {
             const uint value = 20;
@@ -29,10 +29,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanHigh()
         {
             const uint value = 30;
@@ -41,10 +41,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsLessThanLow()
         {
             const uint value = 5;
@@ -53,10 +53,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(low, high);
 
-            Assert.AreEqual(11U, result);
+            Assert.That(result, Is.EqualTo(11U));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsInBetweenLowAndHigh()
         {
             const uint value = 15;
@@ -65,10 +65,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(low, high);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnZero_WhenValueIsEqualToLength()
         {
             const uint value = 10;
@@ -76,10 +76,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(length);
 
-            Assert.AreEqual(0U, result);
+            Assert.That(result, Is.EqualTo(0U));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnValue_WhenValueIsLessThanLength()
         {
             const uint value = 5;
@@ -87,10 +87,10 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(length);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanLength()
         {
             const uint value = 15;
@@ -98,7 +98,7 @@ public partial class UInt32Tests
 
             uint result = value.Wrap(length);
 
-            Assert.AreEqual(5U, result);
+            Assert.That(result, Is.EqualTo(5U));
         }
     }
 }

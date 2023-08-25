@@ -1,42 +1,42 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-public partial class ArrayTests
+internal static partial class ArrayTests
 {
-    [TestClass]
-    public class AsReadOnlyTests
+    [TestFixture]
+    internal class AsReadOnlyTests
     {
-        [TestMethod]
+        [Test]
         public void AsReadOnly_ShouldReturnReadOnlyCollection_WhenArrayIsNotNull()
         {
             int[] array = {1, 2, 3};
             IReadOnlyCollection<int> result = array.AsReadOnly();
-            Assert.IsInstanceOfType(result, typeof(IReadOnlyCollection<int>));
+            Assert.That(result, Is.InstanceOf<IReadOnlyCollection<int>>());
         }
 
-        [TestMethod]
+        [Test]
         public void AsReadOnly_ShouldThrowArgumentNullException_WhenArrayIsNull()
         {
-            int[]? array = null;
-            Assert.ThrowsException<ArgumentNullException>(() => array!.AsReadOnly());
+            int[] array = null!;
+            Assert.Throws<ArgumentNullException>(() => _ = array.AsReadOnly());
         }
 
-        [TestMethod]
+        [Test]
         public void AsReadOnly_ShouldReturnCorrectCount_WhenArrayIsNotEmpty()
         {
             int[] array = {1, 2, 3};
             IReadOnlyCollection<int> result = array.AsReadOnly();
-            Assert.AreEqual(array.Length, result.Count);
+            Assert.That(result, Has.Count.EqualTo(array.Length));
         }
 
-        [TestMethod]
+        [Test]
         public void AsReadOnly_ShouldReturnEmptyCollection_WhenArrayIsEmpty()
         {
             int[] array = Array.Empty<int>();
             IReadOnlyCollection<int> result = array.AsReadOnly();
-            Assert.AreEqual(0, result.Count);
+            Assert.That(result, Is.Empty);
         }
     }
 }

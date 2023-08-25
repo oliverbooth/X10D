@@ -33,14 +33,10 @@ public static class DirectoryInfoExtensions
     /// <exception cref="UnauthorizedAccessException">This directory or one of its children contain a read-only file.</exception>
     public static void Clear(this DirectoryInfo directory)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(directory);
-#else
         if (directory is null)
         {
             throw new ArgumentNullException(nameof(directory));
         }
-#endif
 
         if (!directory.Exists)
         {

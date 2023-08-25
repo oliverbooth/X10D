@@ -1,93 +1,93 @@
 ﻿#if NET5_0_OR_GREATER
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
 
-[TestClass]
-public class RuneTests
+[TestFixture]
+internal class RuneTests
 {
-    [TestMethod]
+    [Test]
     public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
     {
-        Assert.IsTrue(new Rune('✂').IsEmoji());
-        Assert.IsTrue(new Rune('✅').IsEmoji());
-        Assert.IsTrue(new Rune('❎').IsEmoji());
-        Assert.IsTrue(new Rune('➕').IsEmoji());
-        Assert.IsTrue(new Rune('➖').IsEmoji());
+        Assert.That(new Rune('✂').IsEmoji());
+        Assert.That(new Rune('✅').IsEmoji());
+        Assert.That(new Rune('❎').IsEmoji());
+        Assert.That(new Rune('➕').IsEmoji());
+        Assert.That(new Rune('➖').IsEmoji());
     }
 
-    [TestMethod]
+    [Test]
     public void IsEmoji_ShouldReturnFalse_GivenNonEmoji()
     {
         for (var letter = 'A'; letter <= 'Z'; letter++)
         {
-            Assert.IsFalse(new Rune(letter).IsEmoji());
+            Assert.That(new Rune(letter).IsEmoji(), Is.False);
         }
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldRepeatRune_GivenValidCount()
     {
         const string expected = "aaaaaaaaaa";
         var rune = new Rune('a');
         string actual = rune.Repeat(10);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldReturnStringOfLength1_GivenCountOf1()
     {
         string repeated = new Rune('a').Repeat(1);
-        Assert.AreEqual(1, repeated.Length);
-        Assert.AreEqual("a", repeated);
+        Assert.That(repeated.Length, Is.EqualTo(1));
+        Assert.That(repeated, Is.EqualTo("a"));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
         var rune = new Rune('a');
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => rune.Repeat(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => rune.Repeat(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void Repeat_ShouldReturnEmptyString_GivenCountOf0()
     {
-        Assert.AreEqual(string.Empty, new Rune('a').Repeat(0));
+        Assert.That(new Rune('a').Repeat(0), Is.EqualTo(string.Empty));
     }
 
-    [TestMethod]
+    [Test]
     public void RepeatCodepoint_0000_007F_ShouldReturnString()
     {
         string repeated = new Rune(69).Repeat(16);
-        Assert.AreEqual(16, repeated.Length);
-        Assert.AreEqual("EEEEEEEEEEEEEEEE", repeated);
+        Assert.That(repeated.Length, Is.EqualTo(16));
+        Assert.That(repeated, Is.EqualTo("EEEEEEEEEEEEEEEE"));
     }
 
-    [TestMethod]
+    [Test]
     public void RepeatCodepoint_0080_07FF_ShouldReturnString()
     {
         string repeated = new Rune(192).Repeat(8);
-        Assert.AreEqual(8, repeated.Length);
-        Assert.AreEqual("ÀÀÀÀÀÀÀÀ", repeated);
+        Assert.That(repeated.Length, Is.EqualTo(8));
+        Assert.That(repeated, Is.EqualTo("ÀÀÀÀÀÀÀÀ"));
     }
 
-    [TestMethod]
+    [Test]
     public void RepeatCodepoint_0800_FFFF_ShouldReturnString()
     {
         string repeated = new Rune(0x0800).Repeat(5);
-        Assert.AreEqual(5, repeated.Length);
-        Assert.AreEqual("ࠀࠀࠀࠀࠀ", repeated);
+        Assert.That(repeated.Length, Is.EqualTo(5));
+        Assert.That(repeated, Is.EqualTo("ࠀࠀࠀࠀࠀ"));
     }
 
-    [TestMethod]
+    [Test]
     public void RepeatCodepointBeyondU10000ShouldReturnString()
     {
         string repeated = new Rune('\uD800', '\uDC00').Repeat(6);
-        Assert.AreEqual(12, repeated.Length);
-        Assert.AreEqual("𐀀𐀀𐀀𐀀𐀀𐀀", repeated);
+        Assert.That(repeated.Length, Is.EqualTo(12));
+        Assert.That(repeated, Is.EqualTo("𐀀𐀀𐀀𐀀𐀀𐀀"));
     }
 }
 #endif

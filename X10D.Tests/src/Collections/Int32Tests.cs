@@ -1,81 +1,92 @@
-﻿using System.Runtime.Intrinsics.X86;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#if NET5_0_OR_GREATER
+using System.Runtime.Intrinsics.X86;
+#endif
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-[TestClass]
-public class Int32Tests
+[TestFixture]
+internal class Int32Tests
 {
-    [TestMethod]
+    [Test]
     public void Unpack_ShouldUnpackToArrayCorrectly()
     {
         const int value = 0b11010100;
-        bool[] bits = value.Unpack();
 
-        Assert.AreEqual(32, bits.Length);
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 32; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index]);
-        }
+            bool[] bits = value.Unpack();
+            Assert.That(bits, Has.Length.EqualTo(32));
+
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 32; index++)
+            {
+                Assert.That(bits[index], Is.False);
+            }
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Unpack_ShouldUnpackToSpanCorrectly()
     {
         const int value = 0b11010100;
-        Span<bool> bits = stackalloc bool[32];
-        value.Unpack(bits);
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 32; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index]);
-        }
+            Span<bool> bits = stackalloc bool[32];
+            value.Unpack(bits);
+
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 32; index++)
+            {
+                Assert.That(bits[index], Is.False);
+            }
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void UnpackInternal_Fallback_ShouldUnpackToSpanCorrectly()
     {
         const int value = 0b11010100;
-        Span<bool> bits = stackalloc bool[32];
-        value.UnpackInternal_Fallback(bits);
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 32; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index]);
-        }
+            Span<bool> bits = stackalloc bool[32];
+            value.UnpackInternal_Fallback(bits);
+
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 32; index++)
+            {
+                Assert.That(bits[index], Is.False);
+            }
+        });
     }
 
 #if NET5_0_OR_GREATER
-    [TestMethod]
+    [Test]
     public void UnpackInternal_Ssse3_ShouldUnpackToSpanCorrectly()
     {
         if (!Ssse3.IsSupported)
@@ -84,25 +95,28 @@ public class Int32Tests
         }
 
         const int value = 0b11010100;
-        Span<bool> bits = stackalloc bool[32];
-        value.UnpackInternal_Ssse3(bits);
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 32; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index]);
-        }
+            Span<bool> bits = stackalloc bool[32];
+            value.UnpackInternal_Ssse3(bits);
+
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 32; index++)
+            {
+                Assert.That(bits[index], Is.False);
+            }
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void UnpackInternal_Avx2_ShouldUnpackToSpanCorrectly()
     {
         if (!Avx2.IsSupported)
@@ -111,36 +125,39 @@ public class Int32Tests
         }
 
         const int value = 0b11010100;
-        Span<bool> bits = stackalloc bool[32];
-        value.UnpackInternal_Avx2(bits);
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 32; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index]);
-        }
+            Span<bool> bits = stackalloc bool[32];
+            value.UnpackInternal_Avx2(bits);
+
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 32; index++)
+            {
+                Assert.That(bits[index], Is.False);
+            }
+        });
     }
 #endif
 
-    [TestMethod]
+    [Test]
     public void Unpack_ShouldRepackEqually()
     {
         const int value = 0b11010100;
-        Assert.AreEqual(value, value.Unpack().PackInt32());
+        Assert.That(value.Unpack().PackInt32(), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void Unpack_ShouldThrow_GivenTooSmallSpan()
     {
-        Assert.ThrowsException<ArgumentException>(() =>
+        Assert.Throws<ArgumentException>(() =>
         {
             const int value = 0b11010100;
             Span<bool> bits = stackalloc bool[0];

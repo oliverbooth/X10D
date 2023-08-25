@@ -1,82 +1,82 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
-public class CuboidTests
+[TestFixture]
+internal class CuboidTests
 {
-    [TestMethod]
+    [Test]
     public void Corners_ShouldBeCorrect_GivenCubeOfSize1()
     {
         Cuboid cube = Cuboid.Cube;
 
-        Assert.AreEqual(new Vector3(0.5f, 0.5f, -0.5f), cube.FrontTopRight);
-        Assert.AreEqual(new Vector3(-0.5f, 0.5f, -0.5f), cube.FrontTopLeft);
-        Assert.AreEqual(new Vector3(0.5f, -0.5f, -0.5f), cube.FrontBottomRight);
-        Assert.AreEqual(new Vector3(-0.5f, -0.5f, -0.5f), cube.FrontBottomLeft);
-        Assert.AreEqual(new Vector3(0.5f, 0.5f, 0.5f), cube.BackTopRight);
-        Assert.AreEqual(new Vector3(-0.5f, 0.5f, 0.5f), cube.BackTopLeft);
-        Assert.AreEqual(new Vector3(0.5f, -0.5f, 0.5f), cube.BackBottomRight);
-        Assert.AreEqual(new Vector3(-0.5f, -0.5f, 0.5f), cube.BackBottomLeft);
+        Assert.That(cube.FrontTopRight, Is.EqualTo(new Vector3(0.5f, 0.5f, -0.5f)));
+        Assert.That(cube.FrontTopLeft, Is.EqualTo(new Vector3(-0.5f, 0.5f, -0.5f)));
+        Assert.That(cube.FrontBottomRight, Is.EqualTo(new Vector3(0.5f, -0.5f, -0.5f)));
+        Assert.That(cube.FrontBottomLeft, Is.EqualTo(new Vector3(-0.5f, -0.5f, -0.5f)));
+        Assert.That(cube.BackTopRight, Is.EqualTo(new Vector3(0.5f, 0.5f, 0.5f)));
+        Assert.That(cube.BackTopLeft, Is.EqualTo(new Vector3(-0.5f, 0.5f, 0.5f)));
+        Assert.That(cube.BackBottomRight, Is.EqualTo(new Vector3(0.5f, -0.5f, 0.5f)));
+        Assert.That(cube.BackBottomLeft, Is.EqualTo(new Vector3(-0.5f, -0.5f, 0.5f)));
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeTrue_GivenTwoCubesOfSize1()
     {
         var cube1 = Cuboid.Cube;
         var cube2 = Cuboid.Cube;
-        Assert.AreEqual(cube1, cube2);
-        Assert.IsTrue(cube1 == cube2);
-        Assert.IsFalse(cube1 != cube2);
+        Assert.That(cube1, Is.EqualTo(cube2));
+        Assert.That(cube2, Is.EqualTo(cube1));
+        Assert.That(cube1 == cube2);
+        Assert.That(cube2 == cube1);
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentCubes()
     {
-        Assert.AreNotEqual(Cuboid.Cube, Cuboid.Empty);
-        Assert.IsFalse(Cuboid.Cube == Cuboid.Empty);
-        Assert.IsTrue(Cuboid.Cube != Cuboid.Empty);
+        Assert.That(Cuboid.Empty, Is.Not.EqualTo(Cuboid.Cube));
+        Assert.That(Cuboid.Empty != Cuboid.Cube);
     }
 
-    [TestMethod]
+    [Test]
     public void Equals_ShouldBeFalse_GivenDifferentObjects()
     {
-        Assert.IsFalse(Cuboid.Cube.Equals(null));
+        Assert.That(Cuboid.Cube.Equals(null), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenEmptyCircle()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Cuboid.Empty.GetHashCode();
-        Assert.AreEqual(hashCode, Cuboid.Empty.GetHashCode());
+        Assert.That(Cuboid.Empty.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void GetHashCode_ShouldBeCorrect_GivenCubeOfSize1()
     {
         // this test is pretty pointless, it exists only for code coverage purposes
         int hashCode = Cuboid.Cube.GetHashCode();
-        Assert.AreEqual(hashCode, Cuboid.Cube.GetHashCode());
+        Assert.That(Cuboid.Cube.GetHashCode(), Is.EqualTo(hashCode));
     }
 
-    [TestMethod]
+    [Test]
     public void Size_ShouldBeOne_GivenCubeOfSize1()
     {
-        Assert.AreEqual(Vector3.One, Cuboid.Cube.Size);
+        Assert.That(Cuboid.Cube.Size, Is.EqualTo(Vector3.One));
     }
 
-    [TestMethod]
+    [Test]
     public void Size_ShouldBeOne_GivenRotatedCube()
     {
-        Assert.AreEqual(Vector3.One, new Cuboid(0, 0, 0, 1, 1, 1, 90, 0, 0).Size);
+        Assert.That(new Cuboid(0, 0, 0, 1, 1, 1, 90, 0, 0).Size, Is.EqualTo(Vector3.One));
     }
 
-    [TestMethod]
+    [Test]
     public void Volume_ShouldBe1_GivenCubeOfSize1()
     {
-        Assert.AreEqual(1.0f, Cuboid.Cube.Volume, 1e-6f);
+        Assert.That(Cuboid.Cube.Volume, Is.EqualTo(1.0f).Within(1e-6f));
     }
 }

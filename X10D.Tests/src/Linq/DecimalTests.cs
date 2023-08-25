@@ -1,52 +1,58 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Linq;
 
 namespace X10D.Tests.Linq;
 
-[TestClass]
-public class DecimalTests
+[TestFixture]
+internal class DecimalTests
 {
-    [TestMethod]
+    [Test]
     public void ProductShouldBeCorrect()
     {
         decimal Cast(int i) => i;
 
-        Assert.AreEqual(0m, Enumerable.Range(0, 10).Select(Cast).Product());
-        Assert.AreEqual(1m, Enumerable.Range(1, 1).Select(Cast).Product());
-        Assert.AreEqual(2m, Enumerable.Range(1, 2).Select(Cast).Product());
-        Assert.AreEqual(6m, Enumerable.Range(1, 3).Select(Cast).Product());
-        Assert.AreEqual(24m, Enumerable.Range(1, 4).Select(Cast).Product());
-        Assert.AreEqual(120m, Enumerable.Range(1, 5).Select(Cast).Product());
-        Assert.AreEqual(720m, Enumerable.Range(1, 6).Select(Cast).Product());
-        Assert.AreEqual(5040m, Enumerable.Range(1, 7).Select(Cast).Product());
-        Assert.AreEqual(40320m, Enumerable.Range(1, 8).Select(Cast).Product());
-        Assert.AreEqual(362880m, Enumerable.Range(1, 9).Select(Cast).Product());
-        Assert.AreEqual(3628800m, Enumerable.Range(1, 10).Select(Cast).Product());
+        Assert.Multiple(() =>
+        {
+            Assert.That(Enumerable.Range(0, 10).Select(Cast).Product(), Is.EqualTo(0m));
+            Assert.That(Enumerable.Range(1, 1).Select(Cast).Product(), Is.EqualTo(1m));
+            Assert.That(Enumerable.Range(1, 2).Select(Cast).Product(), Is.EqualTo(2m));
+            Assert.That(Enumerable.Range(1, 3).Select(Cast).Product(), Is.EqualTo(6m));
+            Assert.That(Enumerable.Range(1, 4).Select(Cast).Product(), Is.EqualTo(24m));
+            Assert.That(Enumerable.Range(1, 5).Select(Cast).Product(), Is.EqualTo(120m));
+            Assert.That(Enumerable.Range(1, 6).Select(Cast).Product(), Is.EqualTo(720m));
+            Assert.That(Enumerable.Range(1, 7).Select(Cast).Product(), Is.EqualTo(5040m));
+            Assert.That(Enumerable.Range(1, 8).Select(Cast).Product(), Is.EqualTo(40320m));
+            Assert.That(Enumerable.Range(1, 9).Select(Cast).Product(), Is.EqualTo(362880m));
+            Assert.That(Enumerable.Range(1, 10).Select(Cast).Product(), Is.EqualTo(3628800m));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ProductOfDoublesShouldBeCorrect()
     {
         decimal Double(int i) => i * 2m;
 
-        Assert.AreEqual(0m, Enumerable.Range(0, 10).Product(Double));
-        Assert.AreEqual(2m, Enumerable.Range(1, 1).Product(Double));
-        Assert.AreEqual(8m, Enumerable.Range(1, 2).Product(Double));
-        Assert.AreEqual(48m, Enumerable.Range(1, 3).Product(Double));
-        Assert.AreEqual(384m, Enumerable.Range(1, 4).Product(Double));
-        Assert.AreEqual(3840m, Enumerable.Range(1, 5).Product(Double));
-        Assert.AreEqual(46080m, Enumerable.Range(1, 6).Product(Double));
-        Assert.AreEqual(645120m, Enumerable.Range(1, 7).Product(Double));
-        Assert.AreEqual(10321920m, Enumerable.Range(1, 8).Product(Double));
-        Assert.AreEqual(185794560m, Enumerable.Range(1, 9).Product(Double));
-        Assert.AreEqual(3715891200m, Enumerable.Range(1, 10).Product(Double));
+        Assert.Multiple(() =>
+        {
+            Assert.That(Enumerable.Range(0, 10).Product(Double), Is.EqualTo(0m));
+            Assert.That(Enumerable.Range(1, 1).Product(Double), Is.EqualTo(2m));
+            Assert.That(Enumerable.Range(1, 2).Product(Double), Is.EqualTo(8m));
+            Assert.That(Enumerable.Range(1, 3).Product(Double), Is.EqualTo(48m));
+            Assert.That(Enumerable.Range(1, 4).Product(Double), Is.EqualTo(384m));
+            Assert.That(Enumerable.Range(1, 5).Product(Double), Is.EqualTo(3840m));
+            Assert.That(Enumerable.Range(1, 6).Product(Double), Is.EqualTo(46080m));
+            Assert.That(Enumerable.Range(1, 7).Product(Double), Is.EqualTo(645120m));
+            Assert.That(Enumerable.Range(1, 8).Product(Double), Is.EqualTo(10321920m));
+            Assert.That(Enumerable.Range(1, 9).Product(Double), Is.EqualTo(185794560m));
+            Assert.That(Enumerable.Range(1, 10).Product(Double), Is.EqualTo(3715891200m));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Product_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<decimal> source = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => source.Product());
-        Assert.ThrowsException<ArgumentNullException>(() => source.Product(v => v));
+        Assert.Throws<ArgumentNullException>(() => source.Product());
+        Assert.Throws<ArgumentNullException>(() => source.Product(v => v));
     }
 }

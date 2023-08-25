@@ -1,36 +1,80 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
-public partial class ByteTests
+[TestFixture]
+internal partial class ByteTests
 {
-    [TestMethod]
+    [Test]
+    public void CountDigits_ShouldReturn1_Given0()
+    {
+        const byte value = 0;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn1_Given1()
+    {
+        const byte value = 1;
+        const int expected = 1;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn2_Given10()
+    {
+        const byte value = 10;
+        const int expected = 2;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CountDigits_ShouldReturn3_Given199()
+    {
+        const byte value = 199;
+        const int expected = 3;
+
+        int result = value.CountDigits();
+
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
     public void DigitalRootShouldBeCorrect()
     {
         const byte value = 238;
-        Assert.AreEqual(4, value.DigitalRoot());
-        Assert.AreEqual(4, (-value).DigitalRoot());
+        Assert.That(value.DigitalRoot(), Is.EqualTo(4));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(4));
     }
 
-    [TestMethod]
+    [Test]
     public void FactorialShouldBeCorrect()
     {
-        Assert.AreEqual(1L, ((byte)0).Factorial());
-        Assert.AreEqual(1L, ((byte)1).Factorial());
-        Assert.AreEqual(2L, ((byte)2).Factorial());
-        Assert.AreEqual(6L, ((byte)3).Factorial());
-        Assert.AreEqual(24L, ((byte)4).Factorial());
-        Assert.AreEqual(120L, ((byte)5).Factorial());
-        Assert.AreEqual(720L, ((byte)6).Factorial());
-        Assert.AreEqual(5040L, ((byte)7).Factorial());
-        Assert.AreEqual(40320L, ((byte)8).Factorial());
-        Assert.AreEqual(362880L, ((byte)9).Factorial());
-        Assert.AreEqual(3628800L, ((byte)10).Factorial());
+        Assert.That(((byte)0).Factorial(), Is.EqualTo(1L));
+        Assert.That(((byte)1).Factorial(), Is.EqualTo(1L));
+        Assert.That(((byte)2).Factorial(), Is.EqualTo(2L));
+        Assert.That(((byte)3).Factorial(), Is.EqualTo(6L));
+        Assert.That(((byte)4).Factorial(), Is.EqualTo(24L));
+        Assert.That(((byte)5).Factorial(), Is.EqualTo(120L));
+        Assert.That(((byte)6).Factorial(), Is.EqualTo(720L));
+        Assert.That(((byte)7).Factorial(), Is.EqualTo(5040L));
+        Assert.That(((byte)8).Factorial(), Is.EqualTo(40320L));
+        Assert.That(((byte)9).Factorial(), Is.EqualTo(362880L));
+        Assert.That(((byte)10).Factorial(), Is.EqualTo(3628800L));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe1_ForPrimeNumbers()
     {
         const byte first = 5;
@@ -38,10 +82,10 @@ public partial class ByteTests
 
         byte multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(1, multiple);
+        Assert.That(multiple, Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void GreatestCommonFactor_ShouldBe6_Given12And18()
     {
         const byte first = 12;
@@ -49,30 +93,30 @@ public partial class ByteTests
 
         byte multiple = first.GreatestCommonFactor(second);
 
-        Assert.AreEqual(6, multiple);
+        Assert.That(multiple, Is.EqualTo(6));
     }
 
-    [TestMethod]
+    [Test]
     public void IsEvenShouldBeCorrect()
     {
         const byte one = 1;
         const byte two = 2;
 
-        Assert.IsFalse(one.IsEven());
-        Assert.IsTrue(two.IsEven());
+        Assert.That(one.IsEven(), Is.False);
+        Assert.That(two.IsEven());
     }
 
-    [TestMethod]
+    [Test]
     public void IsOddShouldBeCorrect()
     {
         const byte one = 1;
         const byte two = 2;
 
-        Assert.IsTrue(one.IsOdd());
-        Assert.IsFalse(two.IsOdd());
+        Assert.That(one.IsOdd());
+        Assert.That(two.IsOdd(), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnCorrectValue_WhenCalledWithValidInput()
     {
         const byte value1 = 2;
@@ -81,10 +125,10 @@ public partial class ByteTests
 
         byte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnZero_WhenCalledWithZero()
     {
         const byte value1 = 0;
@@ -93,10 +137,10 @@ public partial class ByteTests
 
         byte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnGreaterValue_WhenCalledWithOne()
     {
         const byte value1 = 1;
@@ -106,11 +150,11 @@ public partial class ByteTests
         byte result1 = value1.LowestCommonMultiple(value2);
         byte result2 = value2.LowestCommonMultiple(value1);
 
-        Assert.AreEqual(expected, result1);
-        Assert.AreEqual(expected, result2);
+        Assert.That(result1, Is.EqualTo(expected));
+        Assert.That(result2, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void LowestCommonMultiple_ShouldReturnOtherValue_WhenCalledWithSameValue()
     {
         const byte value1 = 5;
@@ -119,25 +163,25 @@ public partial class ByteTests
 
         byte result = value1.LowestCommonMultiple(value2);
 
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldReturn1_ForAnyDigitBeing0()
     {
-        Assert.AreEqual(1, ((byte)10).MultiplicativePersistence());
-        Assert.AreEqual(1, ((byte)201).MultiplicativePersistence());
-        Assert.AreEqual(1, ((byte)200).MultiplicativePersistence());
-        Assert.AreEqual(1, ((byte)207).MultiplicativePersistence());
+        Assert.That(((byte)10).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((byte)201).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((byte)200).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((byte)207).MultiplicativePersistence(), Is.EqualTo(1));
     }
 
-    [TestMethod]
+    [Test]
     public void MultiplicativePersistence_ShouldBeCorrect_ForRecordHolders()
     {
-        Assert.AreEqual(0, ((byte)0).MultiplicativePersistence());
-        Assert.AreEqual(1, ((byte)10).MultiplicativePersistence());
-        Assert.AreEqual(2, ((byte)25).MultiplicativePersistence());
-        Assert.AreEqual(3, ((byte)39).MultiplicativePersistence());
-        Assert.AreEqual(4, ((byte)77).MultiplicativePersistence());
+        Assert.That(((byte)0).MultiplicativePersistence(), Is.Zero);
+        Assert.That(((byte)10).MultiplicativePersistence(), Is.EqualTo(1));
+        Assert.That(((byte)25).MultiplicativePersistence(), Is.EqualTo(2));
+        Assert.That(((byte)39).MultiplicativePersistence(), Is.EqualTo(3));
+        Assert.That(((byte)77).MultiplicativePersistence(), Is.EqualTo(4));
     }
 }

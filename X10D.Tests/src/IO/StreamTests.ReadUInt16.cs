@@ -1,72 +1,68 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
-    [TestMethod]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldThrowArgumentException_GivenNonReadableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadUInt16());
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadUInt16(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentException>(() => stream.ReadUInt16(Endianness.BigEndian));
-    }
-
-    [TestMethod]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldThrowArgumentNullException_GivenNullStream()
+    [Test]
+    public void ReadUInt16BigEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadUInt16());
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadUInt16(Endianness.LittleEndian));
-        Assert.ThrowsException<ArgumentNullException>(() => stream.ReadUInt16(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt16BigEndian());
     }
 
-    [TestMethod]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    [Test]
+    public void ReadUInt16LittleEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => stream.ReadUInt16((Endianness)(-1)));
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt16LittleEndian());
     }
 
-    [TestMethod]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldReadBigEndian_GivenBigEndian()
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadUInt16BigEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt16BigEndian());
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadUInt16LittleEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt16LittleEndian());
+    }
+
+    [Test]
+    public void ReadUInt16BigEndian_ShouldReadBigEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0x01, 0xA4};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x01, 0xA4 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const ushort expected = 420;
-        ushort actual = stream.ReadUInt16(Endianness.BigEndian);
+        ushort actual = stream.ReadUInt16BigEndian();
 
-        Assert.AreEqual(2, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(2));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
-    [CLSCompliant(false)]
-    public void ReadUInt16_ShouldReadLittleEndian_GivenLittleEndian()
+    [Test]
+    public void ReadUInt16LittleEndian_ShouldReadLittleEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0xA4, 0x01};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0xA4, 0x01 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const ushort expected = 420;
-        ushort actual = stream.ReadUInt16(Endianness.LittleEndian);
+        ushort actual = stream.ReadUInt16LittleEndian();
 
-        Assert.AreEqual(2, stream.Position);
-        Assert.AreEqual(expected, actual);
+        Assert.That(stream.Position, Is.EqualTo(2));
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

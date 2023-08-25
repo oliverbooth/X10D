@@ -11,6 +11,21 @@ public static class Int16Extensions
 {
 #if !NET7_0_OR_GREATER
     /// <summary>
+    ///     Returns the number of digits in the current 16-bit signed integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this short value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return ((long)value).CountDigits();
+    }
+
+    /// <summary>
     ///     Computes the digital root of this 16-bit integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>

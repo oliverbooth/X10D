@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
-[TestClass]
-public class StringTests
+[TestFixture]
+internal class StringTests
 {
-    [TestMethod]
+    [Test]
     public void ToTimeSpan_ShouldReturnCorrectTimeSpan_GivenString()
     {
         const string value = "1y 1mo 1w 1d 1h 1m 1s 1ms";
@@ -20,19 +20,19 @@ public class StringTests
         expected += TimeSpan.FromDays(30);
         expected += TimeSpan.FromDays(365);
 
-        Assert.AreEqual(expected, value.ToTimeSpan());
+        Assert.That(value.ToTimeSpan(), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void ToTimeSpan_ShouldReturnZero_GivenInvalidString()
     {
-        Assert.AreEqual(TimeSpan.Zero, "Hello World".ToTimeSpan());
+        Assert.That("Hello World".ToTimeSpan(), Is.EqualTo(TimeSpan.Zero));
     }
 
-    [TestMethod]
+    [Test]
     public void ToTimeSpan_ShouldThrow_GivenNullString()
     {
         string? value = null;
-        Assert.ThrowsException<ArgumentNullException>(() => value!.ToTimeSpan());
+        Assert.Throws<ArgumentNullException>(() => value!.ToTimeSpan());
     }
 }

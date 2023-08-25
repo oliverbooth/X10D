@@ -1,90 +1,110 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
-[TestClass]
-public class Int64Tests
+[TestFixture]
+internal class Int64Tests
 {
-    [TestMethod]
+    [Test]
     public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()
     {
-        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), 0L.FromUnixTimeMilliseconds());
+        DateTimeOffset expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        Assert.That(0L.FromUnixTimeMilliseconds(), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void FromUnixTimeSeconds_ShouldBeEpoch_GivenZero()
     {
-        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), 0L.FromUnixTimeSeconds());
+        DateTimeOffset expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        Assert.That(0L.FromUnixTimeSeconds(), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
     {
-        Assert.IsFalse(100L.IsLeapYear());
-        Assert.IsFalse((-100L).IsLeapYear());
-        Assert.IsFalse(1900L.IsLeapYear());
-        Assert.IsFalse(2100L.IsLeapYear());
+        Assert.Multiple(() =>
+        {
+            Assert.That(100L.IsLeapYear(), Is.False);
+            Assert.That((-100L).IsLeapYear(), Is.False);
+            Assert.That(1900L.IsLeapYear(), Is.False);
+            Assert.That(2100L.IsLeapYear(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldBeFalse_GivenOddNumber()
     {
-        Assert.IsFalse(1L.IsLeapYear());
-        Assert.IsFalse(101L.IsLeapYear());
-        Assert.IsFalse((-101L).IsLeapYear());
+        Assert.Multiple(() =>
+        {
+            Assert.That(1L.IsLeapYear(), Is.False);
+            Assert.That(101L.IsLeapYear(), Is.False);
+            Assert.That((-101L).IsLeapYear(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldBeTrue_GivenMultipleOf4Or400()
     {
-        Assert.IsTrue((-401L).IsLeapYear());
-        Assert.IsTrue((-105L).IsLeapYear());
-        Assert.IsTrue(4L.IsLeapYear());
-        Assert.IsTrue(104L.IsLeapYear());
-        Assert.IsTrue(400L.IsLeapYear());
-        Assert.IsTrue(2000L.IsLeapYear());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-401L).IsLeapYear());
+            Assert.That((-105L).IsLeapYear());
+            Assert.That(4L.IsLeapYear());
+            Assert.That(104L.IsLeapYear());
+            Assert.That(400L.IsLeapYear());
+            Assert.That(2000L.IsLeapYear());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldThrow_GivenZero()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => 0L.IsLeapYear());
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = 0L.IsLeapYear());
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeNegative_GivenMinusOne()
     {
-        Assert.IsTrue((-1L).Ticks() < TimeSpan.Zero);
-        Assert.IsTrue((-1L).Milliseconds() < TimeSpan.Zero);
-        Assert.IsTrue((-1L).Seconds() < TimeSpan.Zero);
-        Assert.IsTrue((-1L).Minutes() < TimeSpan.Zero);
-        Assert.IsTrue((-1L).Days() < TimeSpan.Zero);
-        Assert.IsTrue((-1L).Hours() < TimeSpan.Zero);
-        Assert.IsTrue((-1L).Weeks() < TimeSpan.Zero);
+        Assert.Multiple(() =>
+        {
+            Assert.That((-1L).Ticks(), Is.LessThan(TimeSpan.Zero));
+            Assert.That((-1L).Milliseconds(), Is.LessThan(TimeSpan.Zero));
+            Assert.That((-1L).Seconds(), Is.LessThan(TimeSpan.Zero));
+            Assert.That((-1L).Minutes(), Is.LessThan(TimeSpan.Zero));
+            Assert.That((-1L).Days(), Is.LessThan(TimeSpan.Zero));
+            Assert.That((-1L).Hours(), Is.LessThan(TimeSpan.Zero));
+            Assert.That((-1L).Weeks(), Is.LessThan(TimeSpan.Zero));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
-        Assert.IsTrue(1L.Ticks() > TimeSpan.Zero);
-        Assert.IsTrue(1L.Milliseconds() > TimeSpan.Zero);
-        Assert.IsTrue(1L.Seconds() > TimeSpan.Zero);
-        Assert.IsTrue(1L.Minutes() > TimeSpan.Zero);
-        Assert.IsTrue(1L.Days() > TimeSpan.Zero);
-        Assert.IsTrue(1L.Hours() > TimeSpan.Zero);
-        Assert.IsTrue(1L.Weeks() > TimeSpan.Zero);
+        Assert.Multiple(() =>
+        {
+            Assert.That(1L.Ticks(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(1L.Milliseconds(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(1L.Seconds(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(1L.Minutes(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(1L.Days(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(1L.Hours(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(1L.Weeks(), Is.GreaterThan(TimeSpan.Zero));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
-        Assert.AreEqual(TimeSpan.Zero, 0L.Ticks());
-        Assert.AreEqual(TimeSpan.Zero, 0L.Milliseconds());
-        Assert.AreEqual(TimeSpan.Zero, 0L.Seconds());
-        Assert.AreEqual(TimeSpan.Zero, 0L.Minutes());
-        Assert.AreEqual(TimeSpan.Zero, 0L.Days());
-        Assert.AreEqual(TimeSpan.Zero, 0L.Hours());
-        Assert.AreEqual(TimeSpan.Zero, 0L.Weeks());
+        Assert.Multiple(() =>
+        {
+            Assert.That(0L.Ticks(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(0L.Milliseconds(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(0L.Seconds(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(0L.Minutes(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(0L.Days(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(0L.Hours(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(0L.Weeks(), Is.EqualTo(TimeSpan.Zero));
+        });
     }
 }

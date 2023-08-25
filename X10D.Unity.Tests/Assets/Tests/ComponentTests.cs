@@ -4,13 +4,14 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using Object = UnityEngine.Object;
 
 namespace X10D.Unity.Tests
 {
     public class ComponentTests
     {
-        [UnityTest]
-        public IEnumerator GetComponentsInChildrenOnly_ShouldIgnoreParent()
+        [Test]
+        public void GetComponentsInChildrenOnly_ShouldIgnoreParent()
         {
             var parent = new GameObject();
             var rigidbody = parent.AddComponent<Rigidbody>();
@@ -20,10 +21,11 @@ namespace X10D.Unity.Tests
             child.AddComponent<Rigidbody>();
 
             Rigidbody[] components = rigidbody.GetComponentsInChildrenOnly<Rigidbody>();
-            Assert.AreEqual(1, components.Length);
-            Assert.AreEqual(components[0].gameObject, child);
+            Assert.That(components, Has.Length.EqualTo(1));
+            Assert.That(child, Is.EqualTo(components[0].gameObject));
 
-            yield break;
+            Object.Destroy(parent);
+            Object.Destroy(child);
         }
     }
 }

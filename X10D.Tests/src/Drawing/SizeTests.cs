@@ -1,42 +1,51 @@
 ﻿using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
-public class SizeTests
+[TestFixture]
+internal class SizeTests
 {
-    [TestMethod]
+    [Test]
     public void ToPoint_ShouldReturnPoint_WithEquivalentMembers()
     {
         var random = new Random();
         var size = new Size(random.Next(), random.Next());
         var point = size.ToPoint();
 
-        Assert.AreEqual(size.Width, point.X);
-        Assert.AreEqual(size.Height, point.Y);
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.X, Is.EqualTo(size.Width));
+            Assert.That(point.Y, Is.EqualTo(size.Height));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToPointF_ShouldReturnPoint_WithEquivalentMembers()
     {
         var random = new Random();
         var size = new Size(random.Next(), random.Next());
         var point = size.ToPointF();
 
-        Assert.AreEqual(size.Width, point.X, 1e-6f);
-        Assert.AreEqual(size.Height, point.Y, 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(point.X, Is.EqualTo(size.Width).Within(1e-6f));
+            Assert.That(point.Y, Is.EqualTo(size.Height).Within(1e-6f));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToVector2_ShouldReturnVector_WithEquivalentMembers()
     {
         var random = new Random();
         var point = new Size(random.Next(), random.Next());
         var size = point.ToVector2();
 
-        Assert.AreEqual(point.Width, size.X, 1e-6f);
-        Assert.AreEqual(point.Height, size.Y, 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(size.X, Is.EqualTo(point.Width).Within(1e-6f));
+            Assert.That(size.Y, Is.EqualTo(point.Height).Within(1e-6f));
+        });
     }
 }

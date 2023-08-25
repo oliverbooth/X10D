@@ -10,54 +10,50 @@ namespace X10D.IO;
 public static class UInt64Extensions
 {
     /// <summary>
-    ///     Returns the current 64-bit unsigned integer value as an array of bytes.
+    ///     Converts the current 64-bit unsigned integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
+    /// <param name="value">The <see cref="ulong" /> value.</param>
     /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this ulong value)
+    public static byte[] GetBigEndianBytes(this ulong value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBytes(buffer);
+        value.TryWriteBigEndian(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Returns the current 64-bit unsigned integer value as an array of bytes.
+    ///     Converts the current 64-bit unsigned integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="value">The <see cref="ulong" /> value.</param>
     /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this ulong value, Endianness endianness)
+    public static byte[] GetLittleEndianBytes(this ulong value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBytes(buffer, endianness);
+        value.TryWriteLittleEndian(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Converts the current 64-bit unsigned integer into a span of bytes.
+    ///     Writes the current 64-bit unsigned integer into a span of bytes, as big endian.
     /// </summary>
     /// <param name="value">The <see cref="ulong" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="ulong" />.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this ulong value, Span<byte> destination)
+    public static bool TryWriteBigEndian(this ulong value, Span<byte> destination)
     {
-        return BitConverter.TryWriteBytes(destination, value);
+        return BinaryPrimitives.TryWriteUInt64BigEndian(destination, value);
     }
 
     /// <summary>
-    ///     Converts the current 64-bit unsigned integer into a span of bytes.
+    ///     Writes the current 64-bit unsigned integer into a span of bytes, as little endian.
     /// </summary>
     /// <param name="value">The <see cref="ulong" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="ulong" />.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this ulong value, Span<byte> destination, Endianness endianness)
+    public static bool TryWriteLittleEndian(this ulong value, Span<byte> destination)
     {
-        return endianness == Endianness.BigEndian
-            ? BinaryPrimitives.TryWriteUInt64BigEndian(destination, value)
-            : BinaryPrimitives.TryWriteUInt64LittleEndian(destination, value);
+        return BinaryPrimitives.TryWriteUInt64LittleEndian(destination, value);
     }
 }

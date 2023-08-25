@@ -1,76 +1,78 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Core;
 
 namespace X10D.Tests.Core;
 
-[TestClass]
-public class CoreTests
+[TestFixture]
+internal class CoreTests
 {
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
+    [Test]
+    [TestCase(1)]
+    [TestCase("f")]
+    [TestCase(true)]
     public void AsArrayValue_ShouldBeLength1_GivenValue(object o)
     {
-        object[] array = o.AsArrayValue()!;
-        Assert.IsNotNull(array);
-        Assert.IsTrue(array.Length == 1);
+        object[] array = o.AsArrayValue();
+        Assert.That(array, Is.Not.Null);
+        Assert.That(array, Has.Length.EqualTo(1));
     }
 
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
+    [Test]
+    [TestCase(1)]
+    [TestCase("f")]
+    [TestCase(true)]
     public void AsArrayValue_ShouldContainValue_Given_Value(object o)
     {
-        object[] array = o.AsArrayValue()!;
-        Assert.IsNotNull(array);
-        Assert.AreEqual(o, array[0]);
+        object[] array = o.AsArrayValue();
+        Assert.That(array, Is.Not.Null);
+        Assert.That(array[0], Is.EqualTo(o));
     }
 
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
+    [Test]
+    [TestCase(1)]
+    [TestCase("f")]
+    [TestCase(true)]
     public void AsEnumerableValue_ShouldBeLength1_GivenValue(object o)
     {
-        IEnumerable<object> enumerable = o.AsEnumerableValue()!;
-        Assert.IsNotNull(enumerable);
-        Assert.IsTrue(enumerable.Count() == 1);
+        object[] enumerable = o.AsEnumerableValue().ToArray();
+        Assert.That(enumerable, Is.Not.Null);
+        Assert.That(enumerable, Has.Length.EqualTo(1));
     }
 
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
+    [Test]
+    [TestCase(1)]
+    [TestCase("f")]
+    [TestCase(true)]
     public void AsEnumerableValue_ShouldContainValue_Given_Value(object o)
     {
-        IEnumerable<object> enumerable = o.AsEnumerableValue()!;
-        Assert.IsNotNull(enumerable);
-        Assert.AreEqual(o, enumerable.ElementAt(0));
+        object[] enumerable = o.AsEnumerableValue().ToArray();
+        Assert.That(enumerable, Is.Not.Null);
+        Assert.That(enumerable.ElementAt(0), Is.EqualTo(o));
     }
 
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
+    [Test]
+    [TestCase(1)]
+    [TestCase("f")]
+    [TestCase(true)]
     public void RepeatValue_ShouldContainRepeatedValue_GivenValue(object o)
     {
         IEnumerable<object> enumerable = o.RepeatValue(10);
-        Assert.IsNotNull(enumerable);
+        // ReSharper disable once PossibleMultipleEnumeration
+        Assert.That(enumerable, Is.Not.Null);
 
+        // ReSharper disable once PossibleMultipleEnumeration
         object[] array = enumerable.ToArray();
-        Assert.AreEqual(10, array.Length);
+        Assert.That(array, Has.Length.EqualTo(10));
         CollectionAssert.AreEqual(new[] {o, o, o, o, o, o, o, o, o, o}, array);
     }
 
-    [TestMethod]
-    [DataRow(1)]
-    [DataRow("f")]
-    [DataRow(true)]
+    [Test]
+    [TestCase(1)]
+    [TestCase("f")]
+    [TestCase(true)]
     public void RepeatValue_ShouldThrow_GivenNegativeCount(object o)
     {
         // we must force enumeration via ToArray() to ensure the exception is thrown
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => o.RepeatValue(-1).ToArray());
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = o.RepeatValue(-1).ToArray());
     }
 }

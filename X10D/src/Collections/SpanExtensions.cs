@@ -54,6 +54,26 @@ public static class SpanExtensions
     }
 
     /// <summary>
+    ///     Replaces all occurrences of a specified element in a span of elements with another specified element.
+    /// </summary>
+    /// <param name="haystack">The source span.</param>
+    /// <param name="needle">The element to replace.</param>
+    /// <param name="replacement">The replacement element.</param>
+    /// <typeparam name="T">The type of elements in <paramref name="haystack" />.</typeparam>
+    public static void Replace<T>(this Span<T> haystack, T needle, T replacement) where T : struct
+    {
+        var comparer = EqualityComparer<T>.Default;
+
+        for (var index = 0; index < haystack.Length; index++)
+        {
+            if (comparer.Equals(haystack[index], needle))
+            {
+                haystack[index] = replacement;
+            }
+        }
+    }
+
+    /// <summary>
     ///     Splits a span of elements into sub-spans based on a delimiting element.
     /// </summary>
     /// <param name="source">The span to split.</param>

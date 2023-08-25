@@ -1,21 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
 
-[TestClass]
-public class CoreTests
+[TestFixture]
+internal class CoreTests
 {
 #if NET5_0_OR_GREATER
-    [TestMethod]
+    [Test]
     public void ToJsonShouldNotBeEmpty()
     {
         object? obj = null;
         string json = obj.ToJson();
-        Assert.IsFalse(string.IsNullOrEmpty(json));
+        Assert.That(string.IsNullOrEmpty(json), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void ToJsonShouldDeserializeEquivalent()
     {
         int[] source = Enumerable.Range(1, 100).ToArray();

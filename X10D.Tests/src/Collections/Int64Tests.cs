@@ -1,68 +1,74 @@
 ﻿using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Globalization;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-[TestClass]
-public class Int64Tests
+[TestFixture]
+internal class Int64Tests
 {
-    [TestMethod]
+    [Test]
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
     {
         bool[] bits = 0b11010100L.Unpack();
 
-        Assert.AreEqual(64, bits.Length);
+        Assert.That(bits, Has.Length.EqualTo(64));
 
         Trace.WriteLine(Convert.ToString(0b11010100L, 2));
         Trace.WriteLine(string.Join("", bits.Select(b => b ? "1" : "0")));
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 64; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index], index.ToString());
-        }
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 64; index++)
+            {
+                Assert.That(bits[index], Is.False, index.ToString(CultureInfo.InvariantCulture));
+            }
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void UnpackBits_ShouldUnpackToSpanCorrectly()
     {
-        Span<bool> bits = stackalloc bool[64];
-        0b11010100L.Unpack(bits);
-
-        Assert.IsFalse(bits[0]);
-        Assert.IsFalse(bits[1]);
-        Assert.IsTrue(bits[2]);
-        Assert.IsFalse(bits[3]);
-        Assert.IsTrue(bits[4]);
-        Assert.IsFalse(bits[5]);
-        Assert.IsTrue(bits[6]);
-        Assert.IsTrue(bits[7]);
-
-        for (var index = 8; index < 64; index++)
+        Assert.Multiple(() =>
         {
-            Assert.IsFalse(bits[index], index.ToString());
-        }
+            Span<bool> bits = stackalloc bool[64];
+            0b11010100L.Unpack(bits);
+
+            Assert.That(bits[0], Is.False);
+            Assert.That(bits[1], Is.False);
+            Assert.That(bits[2], Is.True);
+            Assert.That(bits[3], Is.False);
+            Assert.That(bits[4], Is.True);
+            Assert.That(bits[5], Is.False);
+            Assert.That(bits[6], Is.True);
+            Assert.That(bits[7], Is.True);
+
+            for (var index = 8; index < 64; index++)
+            {
+                Assert.That(bits[index], Is.False, index.ToString(CultureInfo.InvariantCulture));
+            }
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void UnpackBits_ShouldRepackEqually()
     {
-        Assert.AreEqual(0b11010100L, 0b11010100L.Unpack().PackInt64());
+        Assert.That(0b11010100L.Unpack().PackInt64(), Is.EqualTo(0b11010100L));
     }
 
-    [TestMethod]
+    [Test]
     public void UnpackBits_ShouldThrow_GivenTooSmallSpan()
     {
-        Assert.ThrowsException<ArgumentException>(() =>
+        Assert.Throws<ArgumentException>(() =>
         {
             Span<bool> bits = stackalloc bool[0];
             0b11010100L.Unpack(bits);

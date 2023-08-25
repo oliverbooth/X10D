@@ -1,27 +1,27 @@
 ﻿using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-[TestClass]
-public class ListOfByteTests
+[TestFixture]
+internal class ListOfByteTests
 {
-    [TestMethod]
+    [Test]
     public void AsString_ShouldReturnBytes_GivenBytes()
     {
         var bytes = new byte[] {0x01, 0x02, 0x03, 0x04, 0x05};
-        Assert.AreEqual("01-02-03-04-05", bytes.AsString());
+        Assert.That(bytes.AsString(), Is.EqualTo("01-02-03-04-05"));
     }
 
-    [TestMethod]
+    [Test]
     public void AsString_ShouldThrow_GivenNullArray()
     {
         byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.AsString());
+        Assert.Throws<ArgumentNullException>(() => bytes!.AsString());
     }
 
-    [TestMethod]
+    [Test]
     public void ToDouble_ShouldReturnDouble_GivenBytes()
     {
         var bytes = new byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x7A, 0x40};
@@ -31,59 +31,59 @@ public class ListOfByteTests
             Array.Reverse(bytes);
         }
 
-        Assert.AreEqual(420.0, bytes.ToDouble(), 1e-6);
+        Assert.That(bytes.ToDouble(), Is.EqualTo(420.0).Within(1e-6));
     }
 
-    [TestMethod]
+    [Test]
     public void ToDouble_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToDouble());
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToDouble());
     }
 
-    [TestMethod]
+    [Test]
     public void ToInt16_ShouldReturnInt16_GivenBytes()
     {
         var bytes = new byte[] {0xA4, 0x01};
-        Assert.AreEqual(420, bytes.ToInt16());
+        Assert.That(bytes.ToInt16(), Is.EqualTo(420));
     }
 
-    [TestMethod]
+    [Test]
     public void ToInt16_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToInt16());
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToInt16());
     }
 
-    [TestMethod]
+    [Test]
     public void ToInt32_ShouldReturnInt32_GivenBytes()
     {
         var bytes = new byte[] {0xA4, 0x01, 0x00, 0x00};
-        Assert.AreEqual(420, bytes.ToInt32());
+        Assert.That(bytes.ToInt32(), Is.EqualTo(420));
     }
 
-    [TestMethod]
+    [Test]
     public void ToInt32_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToInt32());
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToInt32());
     }
 
-    [TestMethod]
+    [Test]
     public void ToInt64_ShouldReturnInt32_GivenBytes()
     {
         var bytes = new byte[] {0xA4, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        Assert.AreEqual(420L, bytes.ToInt64());
+        Assert.That(bytes.ToInt64(), Is.EqualTo(420L));
     }
 
-    [TestMethod]
+    [Test]
     public void ToInt64_ShouldThrow_GivenNullArray()
     {
         byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToInt64());
+        Assert.Throws<ArgumentNullException>(() => bytes!.ToInt64());
     }
 
-    [TestMethod]
+    [Test]
     public void ToSingle_ShouldReturnDouble_GivenBytes()
     {
         var bytes = new byte[] {0x00, 0x00, 0xD2, 0x43};
@@ -93,76 +93,76 @@ public class ListOfByteTests
             Array.Reverse(bytes);
         }
 
-        Assert.AreEqual(420.0, bytes.ToSingle(), 1e-6);
+        Assert.That(bytes.ToSingle(), Is.EqualTo(420.0).Within(1e-6));
     }
 
-    [TestMethod]
+    [Test]
     public void ToSingle_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToSingle());
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToSingle());
     }
 
-    [TestMethod]
+    [Test]
     public void ToString_ShouldReturnHelloWorld_GivenUTF8()
     {
         var bytes = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
-        Assert.AreEqual("Hello World", bytes.ToString(Encoding.UTF8));
+        Assert.That(bytes.ToString(Encoding.UTF8), Is.EqualTo("Hello World"));
     }
 
-    [TestMethod]
+    [Test]
     public void ToString_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToString(Encoding.UTF8));
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToString(Encoding.UTF8));
     }
 
-    [TestMethod]
+    [Test]
     public void ToString_ShouldThrow_GivenNullEncoding()
     {
         var bytes = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
-        Assert.ThrowsException<ArgumentNullException>(() => bytes.ToString(null!));
+        Assert.Throws<ArgumentNullException>(() => bytes.ToString(null!));
     }
 
-    [TestMethod]
+    [Test]
     public void ToUInt16_ShouldReturnInt16_GivenBytes()
     {
         var bytes = new byte[] {0xA4, 0x01};
-        Assert.AreEqual((ushort)420, bytes.ToUInt16());
+        Assert.That(bytes.ToUInt16(), Is.EqualTo((ushort)420));
     }
 
-    [TestMethod]
+    [Test]
     public void ToUInt16_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToUInt16());
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToUInt16());
     }
 
-    [TestMethod]
+    [Test]
     public void ToUInt32_ShouldReturnInt32_GivenBytes()
     {
         var bytes = new byte[] {0xA4, 0x01, 0x00, 0x00};
-        Assert.AreEqual(420U, bytes.ToUInt32());
+        Assert.That(bytes.ToUInt32(), Is.EqualTo(420U));
     }
 
-    [TestMethod]
+    [Test]
     public void ToUInt32_ShouldThrow_GivenNullArray()
     {
         byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToUInt32());
+        Assert.Throws<ArgumentNullException>(() => bytes!.ToUInt32());
     }
 
-    [TestMethod]
+    [Test]
     public void ToUInt64_ShouldReturnInt32_GivenBytes()
     {
         var bytes = new byte[] {0xA4, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        Assert.AreEqual(420UL, bytes.ToUInt64());
+        Assert.That(bytes.ToUInt64(), Is.EqualTo(420UL));
     }
 
-    [TestMethod]
+    [Test]
     public void ToUInt64_ShouldThrow_GivenNullArray()
     {
-        byte[]? bytes = null;
-        Assert.ThrowsException<ArgumentNullException>(() => bytes!.ToUInt64());
+        byte[] bytes = null!;
+        Assert.Throws<ArgumentNullException>(() => bytes.ToUInt64());
     }
 }

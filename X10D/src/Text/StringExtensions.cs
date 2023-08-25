@@ -60,14 +60,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Base64Decode(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return Convert.FromBase64String(value).ToString(Encoding.ASCII);
     }
@@ -82,14 +78,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Base64Encode(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return Convert.ToBase64String(value.GetBytes(Encoding.ASCII));
     }
@@ -115,11 +107,6 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string ChangeEncoding(this string value, Encoding sourceEncoding, Encoding destinationEncoding)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-        ArgumentNullException.ThrowIfNull(sourceEncoding);
-        ArgumentNullException.ThrowIfNull(destinationEncoding);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
@@ -134,9 +121,216 @@ public static class StringExtensions
         {
             throw new ArgumentNullException(nameof(destinationEncoding));
         }
-#endif
 
         return value.GetBytes(sourceEncoding).ToString(destinationEncoding);
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="condition">The condition to evaluate.</param>
+    /// <param name="appendValue">The string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    [Pure]
+    public static string? ConcatIf(this string? value, bool condition, string? appendValue)
+    {
+        return condition ? value + appendValue : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">The function that returns the condition to evaluate.</param>
+    /// <param name="appendValue">The string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<bool> conditionFactory, string? appendValue)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        return conditionFactory() ? value + appendValue : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">
+    ///     The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+    /// </param>
+    /// <param name="appendValue">The string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<string?, bool> conditionFactory, string? appendValue)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        return conditionFactory(value) ? value + appendValue : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="condition">The condition to evaluate.</param>
+    /// <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, bool condition, Func<string?> valueFactory)
+    {
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return condition ? value + valueFactory() : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="condition">The condition to evaluate.</param>
+    /// <param name="valueFactory">
+    ///     The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+    ///     argument.
+    /// </param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, bool condition, Func<string?, string?> valueFactory)
+    {
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return condition ? value + valueFactory(value) : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">The function that returns the condition to evaluate.</param>
+    /// <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<bool> conditionFactory, Func<string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory() ? value + valueFactory() : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">The function that returns the condition to evaluate.</param>
+    /// <param name="valueFactory">
+    ///     The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+    ///     argument.
+    /// </param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<bool> conditionFactory, Func<string?, string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory() ? value + valueFactory(value) : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">
+    ///     The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+    /// </param>
+    /// <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<string?, bool> conditionFactory, Func<string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory(value) ? value + valueFactory() : value;
+    }
+
+    /// <summary>
+    ///     Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
+    /// </summary>
+    /// <param name="value">The current string.</param>
+    /// <param name="conditionFactory">
+    ///     The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
+    /// </param>
+    /// <param name="valueFactory">
+    ///     The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
+    ///     argument.
+    /// </param>
+    /// <returns>The concatenated string.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
+    /// </exception>
+    [Pure]
+    public static string? ConcatIf(this string? value, Func<string?, bool> conditionFactory, Func<string?, string?> valueFactory)
+    {
+        if (conditionFactory is null)
+        {
+            throw new ArgumentNullException(nameof(conditionFactory));
+        }
+
+        if (valueFactory is null)
+        {
+            throw new ArgumentNullException(nameof(valueFactory));
+        }
+
+        return conditionFactory(value) ? value + valueFactory(value) : value;
     }
 
     /// <summary>
@@ -179,14 +373,10 @@ public static class StringExtensions
     /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
     public static int CountSubstring(this string haystack, char needle)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(haystack);
-#else
         if (haystack is null)
         {
             throw new ArgumentNullException(nameof(haystack));
         }
-#endif
 
         return haystack.AsSpan().CountSubstring(needle);
     }
@@ -211,14 +401,10 @@ public static class StringExtensions
     /// <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
     public static int CountSubstring(this string haystack, string? needle, StringComparison comparison)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(haystack);
-#else
         if (haystack is null)
         {
             throw new ArgumentNullException(nameof(haystack));
         }
-#endif
 
         if (string.IsNullOrWhiteSpace(needle))
         {
@@ -374,14 +560,10 @@ public static class StringExtensions
     public static T EnumParse<T>(this string value, bool ignoreCase)
         where T : struct, Enum
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         value = value.Trim();
 
@@ -437,10 +619,6 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static byte[] GetBytes(this string value, Encoding encoding)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-        ArgumentNullException.ThrowIfNull(encoding);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
@@ -450,7 +628,6 @@ public static class StringExtensions
         {
             throw new ArgumentNullException(nameof(encoding));
         }
-#endif
 
         return encoding.GetBytes(value);
     }
@@ -464,14 +641,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsEmoji(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return EmojiRegex.Value.IsMatch(value);
     }
@@ -488,14 +661,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsEmpty(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.Length == 0;
     }
@@ -512,14 +681,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsLower(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         for (var index = 0; index < value.Length; index++)
         {
@@ -599,14 +764,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsPalindrome(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -673,14 +834,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsUpper(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         for (var index = 0; index < value.Length; index++)
         {
@@ -728,14 +885,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsWhiteSpace(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         if (value.Length == 0)
         {
@@ -765,14 +918,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Repeat(this string value, int count)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         switch (count)
         {
@@ -810,14 +959,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Randomize(this string source, int length, Random? random = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         if (length < 0)
         {
@@ -852,14 +997,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Reverse(this string value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         if (value.Length < 2)
         {
@@ -890,14 +1031,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static string Shuffled(this string value, Random? random = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         random ??= RandomExtensions.GetShared();
 
@@ -920,14 +1057,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static IEnumerable<string> Split(this string value, int chunkSize)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         if (chunkSize == 0)
         {
@@ -956,14 +1089,10 @@ public static class StringExtensions
     /// </exception>
     public static bool StartsWithAny(this string? value, params string[] startValues)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(startValues);
-#else
         if (startValues is null)
         {
             throw new ArgumentNullException(nameof(startValues));
         }
-#endif
 
         if (startValues.Length == 0 || string.IsNullOrWhiteSpace(value))
         {
@@ -989,14 +1118,10 @@ public static class StringExtensions
     /// </exception>
     public static bool StartsWithAny(this string? value, StringComparison comparison, params string[] startValues)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(startValues);
-#else
         if (startValues is null)
         {
             throw new ArgumentNullException(nameof(startValues));
         }
-#endif
 
         if (startValues.Length == 0 || string.IsNullOrWhiteSpace(value))
         {

@@ -3,20 +3,29 @@ name: DocFX
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   docfx:
     runs-on: ubuntu-latest
     name: Publish Documentation
     steps:
-    - uses: actions/checkout@v3
-    - uses: nikeee/docfx-action@v1.0.0
-      name: Build Documentation
-      with:
-        args: docfx_project/docfx.json
-    - uses: maxheld83/ghpages@master
-      name: Publish Documentation on GitHub Pages
-      env:
-        BUILD_DIR: docfx_project/_site
-        GH_PAT: ${{ secrets.GH_PAT }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Copy favicon
+        run: |
+          mkdir docfx_project/images
+          cp branding_Icon.png docfx_project/images/favicon.png
+
+      - name: Build documentation
+        uses: nikeee/docfx-action@v1.0.0
+        with:
+          args: docfx_project/docfx.json
+
+      - name: Publish documentation on GitHub Pages
+        uses: maxheld83/ghpages@master
+        env:
+          BUILD_DIR: docfx_project/_site
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

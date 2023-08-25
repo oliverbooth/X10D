@@ -1,15 +1,15 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class BigIntegerTests
+internal partial class BigIntegerTests
 {
-    [TestClass]
+    [TestFixture]
     public class WrapTests
     {
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnLow_WhenValueIsEqualToLow()
         {
             BigInteger value = 10;
@@ -18,10 +18,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnHigh_WhenValueIsEqualToHigh()
         {
             BigInteger value = 20;
@@ -30,10 +30,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanHigh()
         {
             BigInteger value = 30;
@@ -42,10 +42,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsLessThanLow()
         {
             BigInteger value = 5;
@@ -54,10 +54,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(low, high);
 
-            Assert.AreEqual(15L, result);
+            Assert.That(result, Is.EqualTo((BigInteger)15));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsInBetweenLowAndHigh()
         {
             BigInteger value = 15;
@@ -66,10 +66,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(low, high);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnZero_WhenValueIsEqualToLength()
         {
             BigInteger value = 10;
@@ -77,10 +77,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(length);
 
-            Assert.AreEqual(0L, result);
+            Assert.That(result, Is.EqualTo((BigInteger)0));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnValue_WhenValueIsLessThanLength()
         {
             BigInteger value = 5;
@@ -88,10 +88,10 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(length);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanLength()
         {
             BigInteger value = 15;
@@ -99,7 +99,7 @@ public partial class BigIntegerTests
 
             BigInteger result = value.Wrap(length);
 
-            Assert.AreEqual(5L, result);
+            Assert.That(result, Is.EqualTo((BigInteger)5));
         }
     }
 }

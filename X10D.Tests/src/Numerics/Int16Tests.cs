@@ -1,87 +1,87 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
-[TestClass]
-public class Int16Tests
+[TestFixture]
+internal class Int16Tests
 {
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe0_Given0()
     {
-        Assert.AreEqual(0, ((short)0).PopCount());
+        Assert.That(((short)0).PopCount(), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe5_Given11010101()
     {
-        Assert.AreEqual(5, ((short)0b11010101).PopCount());
+        Assert.That(((short)0b11010101).PopCount(), Is.EqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void PopCount_ShouldBe15_Given0111111111111111()
     {
-        Assert.AreEqual(15, ((short)0b0111111111111111).PopCount());
+        Assert.That(((short)0b0111111111111111).PopCount(), Is.EqualTo(15));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateLeft_ShouldRotateCorrectly()
     {
         const short value = 2896;     // 00001011 01010000
         const short expected = 27137; // 01101010 00000001
 
-        Assert.AreEqual(value, value.RotateLeft(0));
-        Assert.AreEqual(expected, value.RotateLeft(5));
-        Assert.AreEqual(value, value.RotateLeft(16));
+        Assert.That(value.RotateLeft(0), Is.EqualTo(value));
+        Assert.That(value.RotateLeft(5), Is.EqualTo(expected));
+        Assert.That(value.RotateLeft(16), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateLeft_ShouldModForLargeCount()
     {
         const short value = 2896; // 00001011 01010000
-        Assert.AreEqual(value, value.RotateLeft(16));
+        Assert.That(value.RotateLeft(16), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateRight_ShouldRotateCorrectly()
     {
         const short value = 2896;      // 00001011 01010000
         const short expected = -32678; // 01111111 10100110
 
-        Assert.AreEqual(value, value.RotateRight(0));
-        Assert.AreEqual(expected, value.RotateRight(5));
-        Assert.AreEqual(value, value.RotateRight(16));
+        Assert.That(value.RotateRight(0), Is.EqualTo(value));
+        Assert.That(value.RotateRight(5), Is.EqualTo(expected));
+        Assert.That(value.RotateRight(16), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RotateRight_ShouldModForLargeCount()
     {
         const short value = 2896; // 00001011 01010000
-        Assert.AreEqual(value, value.RotateRight(16));
+        Assert.That(value.RotateRight(16), Is.EqualTo(value));
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturnRoundedValue_GivenValue()
     {
-        Assert.AreEqual(4, ((short)3).RoundUpToPowerOf2());
-        Assert.AreEqual(8, ((short)5).RoundUpToPowerOf2());
-        Assert.AreEqual(8, ((short)6).RoundUpToPowerOf2());
-        Assert.AreEqual(8, ((short)7).RoundUpToPowerOf2());
+        Assert.That(((short)3).RoundUpToPowerOf2(), Is.EqualTo(4));
+        Assert.That(((short)5).RoundUpToPowerOf2(), Is.EqualTo(8));
+        Assert.That(((short)6).RoundUpToPowerOf2(), Is.EqualTo(8));
+        Assert.That(((short)7).RoundUpToPowerOf2(), Is.EqualTo(8));
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturnSameValue_GivenPowerOf2()
     {
         for (var i = 0; i < 8; i++)
         {
             var value = (short)System.Math.Pow(2, i);
-            Assert.AreEqual(value, value.RoundUpToPowerOf2());
+            Assert.That(value.RoundUpToPowerOf2(), Is.EqualTo(value));
         }
     }
 
-    [TestMethod]
+    [Test]
     public void RoundUpToPowerOf2_ShouldReturn0_Given0()
     {
-        Assert.AreEqual(0, ((short)0).RoundUpToPowerOf2());
+        Assert.That(((short)0).RoundUpToPowerOf2(), Is.Zero);
     }
 }

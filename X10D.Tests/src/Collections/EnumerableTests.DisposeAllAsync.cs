@@ -1,34 +1,34 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using NSubstitute;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-public partial class EnumerableTests
+internal partial class EnumerableTests
 {
-    [TestClass]
+    [TestFixture]
     public class DisposeAllAsyncTests
     {
-        [TestMethod]
+        [Test]
         public async Task DisposeAllAsync_ShouldDisposeAllItems_WhenCalledWithValidList()
         {
-            var mock1 = new Mock<IAsyncDisposable>();
-            var mock2 = new Mock<IAsyncDisposable>();
-            var mock3 = new Mock<IAsyncDisposable>();
-            var list = new List<IAsyncDisposable> {mock1.Object, mock2.Object, null!, mock3.Object};
+            var substitute1 = Substitute.For<IAsyncDisposable>();
+            var substitute2 = Substitute.For<IAsyncDisposable>();
+            var substitute3 = Substitute.For<IAsyncDisposable>();
+            var list = new List<IAsyncDisposable> { substitute1, substitute2, null!, substitute3 };
 
             await list.DisposeAllAsync().ConfigureAwait(false);
 
-            mock1.Verify(i => i.DisposeAsync(), Times.Once);
-            mock2.Verify(i => i.DisposeAsync(), Times.Once);
-            mock3.Verify(i => i.DisposeAsync(), Times.Once);
+            await substitute1.Received(1).DisposeAsync();
+            await substitute2.Received(1).DisposeAsync();
+            await substitute3.Received(1).DisposeAsync();
         }
 
-        [TestMethod]
-        public async Task DisposeAllAsync_ShouldThrowArgumentNullException_WhenCalledWithNullList()
+        [Test]
+        public void DisposeAllAsync_ShouldThrowArgumentNullException_WhenCalledWithNullList()
         {
-            List<IAsyncDisposable>? list = null;
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => list!.DisposeAllAsync()).ConfigureAwait(false);
+            List<IAsyncDisposable> list = null!;
+            Assert.ThrowsAsync<ArgumentNullException>(() => list.DisposeAllAsync());
         }
     }
 }

@@ -12,6 +12,21 @@ public static class UInt32Extensions
 {
 #if !NET7_0_OR_GREATER
     /// <summary>
+    ///     Returns the number of digits in the current 32-bit unsigned integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this uint value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return ((ulong)value).CountDigits();
+    }
+
+    /// <summary>
     ///     Computes the digital root of the current 32-bit unsigned integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>

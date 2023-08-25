@@ -1,73 +1,90 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
-[TestClass]
-public class ByteTests
+[TestFixture]
+internal class ByteTests
 {
-    [TestMethod]
+    [Test]
     public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()
     {
-        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), ((byte)0).FromUnixTimeMilliseconds());
+        DateTimeOffset expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        Assert.That(((byte)0).FromUnixTimeMilliseconds(), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void FromUnixTimeSeconds_ShouldBeEpoch_GivenZero()
     {
-        Assert.AreEqual(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), ((byte)0).FromUnixTimeSeconds());
+        DateTimeOffset expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        Assert.That(((byte)0).FromUnixTimeSeconds(), Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldBeFalse_GivenMultipleOf100()
     {
-        Assert.IsFalse(((byte)100).IsLeapYear());
-        Assert.IsFalse(((byte)200).IsLeapYear());
+        Assert.Multiple(() =>
+        {
+            Assert.That(((byte)100).IsLeapYear(), Is.False);
+            Assert.That(((byte)200).IsLeapYear(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldBeFalse_GivenOddNumber()
     {
-        Assert.IsFalse(((byte)1).IsLeapYear());
-        Assert.IsFalse(((byte)101).IsLeapYear());
-        Assert.IsFalse(((byte)201).IsLeapYear());
+        Assert.Multiple(() =>
+        {
+            Assert.That(((byte)1).IsLeapYear(), Is.False);
+            Assert.That(((byte)101).IsLeapYear(), Is.False);
+            Assert.That(((byte)201).IsLeapYear(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldBeTrue_GivenMultipleOf4()
     {
-        Assert.IsTrue(((byte)4).IsLeapYear());
-        Assert.IsTrue(((byte)104).IsLeapYear());
-        Assert.IsTrue(((byte)204).IsLeapYear());
+        Assert.Multiple(() =>
+        {
+            Assert.That(((byte)4).IsLeapYear());
+            Assert.That(((byte)104).IsLeapYear());
+            Assert.That(((byte)204).IsLeapYear());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsLeapYear_ShouldThrow_GivenZero()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => ((byte)0).IsLeapYear());
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = ((byte)0).IsLeapYear());
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBePositive_GivenOne()
     {
-        Assert.IsTrue(((byte)1).Ticks() > TimeSpan.Zero);
-        Assert.IsTrue(((byte)1).Milliseconds() > TimeSpan.Zero);
-        Assert.IsTrue(((byte)1).Seconds() > TimeSpan.Zero);
-        Assert.IsTrue(((byte)1).Minutes() > TimeSpan.Zero);
-        Assert.IsTrue(((byte)1).Days() > TimeSpan.Zero);
-        Assert.IsTrue(((byte)1).Hours() > TimeSpan.Zero);
-        Assert.IsTrue(((byte)1).Weeks() > TimeSpan.Zero);
+        Assert.Multiple(() =>
+        {
+            Assert.That(((byte)1).Ticks(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(((byte)1).Milliseconds(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(((byte)1).Seconds(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(((byte)1).Minutes(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(((byte)1).Days(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(((byte)1).Hours(), Is.GreaterThan(TimeSpan.Zero));
+            Assert.That(((byte)1).Weeks(), Is.GreaterThan(TimeSpan.Zero));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()
     {
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Ticks());
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Milliseconds());
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Seconds());
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Minutes());
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Days());
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Hours());
-        Assert.AreEqual(TimeSpan.Zero, ((byte)0).Weeks());
+        Assert.Multiple(() =>
+        {
+            Assert.That(((byte)0).Ticks(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(((byte)0).Milliseconds(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(((byte)0).Seconds(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(((byte)0).Minutes(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(((byte)0).Days(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(((byte)0).Hours(), Is.EqualTo(TimeSpan.Zero));
+            Assert.That(((byte)0).Weeks(), Is.EqualTo(TimeSpan.Zero));
+        });
     }
 }

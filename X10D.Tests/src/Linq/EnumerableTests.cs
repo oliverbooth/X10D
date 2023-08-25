@@ -1,184 +1,214 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Linq;
 
 namespace X10D.Tests.Linq;
 
-[TestClass]
-public class EnumerableTests
+[TestFixture]
+internal class EnumerableTests
 {
-    [TestMethod]
-    public void ConcatOne_ShouldReturnConcatenatedSequence_GivenValidSequenceAndValue()
+    [Test]
+    public void Except_ShouldFilterElements_GivenMatchingElements()
     {
-        IEnumerable<string> source = new[] {"Hello"};
-        string[] expected = {"Hello", "World"};
+        int[] source = Enumerable.Range(1, 10).ToArray();
+        int[] result = source.Except(5).ToArray();
 
-        string[] actual = source.ConcatOne("World").ToArray();
-
-        Assert.AreEqual(2, actual.Length);
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(result, Is.EquivalentTo(new[] {1, 2, 3, 4, 6, 7, 8, 9, 10}));
     }
 
-    [TestMethod]
-    public void ConcatOne_ShouldReturnSingletonSequence_GivenEmptySequenceAndValidValue()
+    [Test]
+    public void Except_ShouldReturnSameElements_GivenNoMatchingElements()
     {
-        IEnumerable<string> source = Enumerable.Empty<string>();
-        string[] expected = {"Foobar"};
+        int[] source = Enumerable.Range(1, 10).ToArray();
+        int[] result = source.Except(11).ToArray();
 
-        string[] actual = source.ConcatOne("Foobar").ToArray();
-
-        Assert.AreEqual(1, actual.Length);
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(result, Is.EquivalentTo(source));
     }
 
-    [TestMethod]
-    public void ConcatOne_ShouldThrowArgumentNullException_GivenNullSource()
+    [Test]
+    public void Except_ShouldThrowArgumentNullException_GivenNullSource()
     {
-        IEnumerable<string>? source = null;
-        Assert.ThrowsException<ArgumentNullException>(() => source!.ConcatOne("Foobar").ToArray());
+        IEnumerable<int> source = null!;
+        Assert.Throws<ArgumentNullException>(() => source.Except(42));
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldReturnCorrectValues_UsingDefaultComparer()
     {
         IEnumerable<int> source = Enumerable.Range(1, 10);
         (int minimum, int maximum) = source.MinMax();
-        Assert.AreEqual(1, minimum);
-        Assert.AreEqual(10, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(1));
+            Assert.That(maximum, Is.EqualTo(10));
+        });
 
         source = Enumerable.Range(1, 10).ToArray();
         (minimum, maximum) = source.MinMax();
-        Assert.AreEqual(1, minimum);
-        Assert.AreEqual(10, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(1));
+            Assert.That(maximum, Is.EqualTo(10));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldReturnCorrectSelectedValues_UsingDefaultComparer()
     {
         IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
         (int minimum, int maximum) = source.MinMax(p => p.Age);
-        Assert.AreEqual(1, minimum);
-        Assert.AreEqual(10, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(1));
+            Assert.That(maximum, Is.EqualTo(10));
+        });
 
         source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
         (minimum, maximum) = source.MinMax(p => p.Age);
-        Assert.AreEqual(1, minimum);
-        Assert.AreEqual(10, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(1));
+            Assert.That(maximum, Is.EqualTo(10));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldReturnOppositeSelectedValues_UsingInverseComparer()
     {
         IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
         (int minimum, int maximum) = source.MinMax(p => p.Age, new InverseComparer<int>());
-        Assert.AreEqual(10, minimum);
-        Assert.AreEqual(1, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(10));
+            Assert.That(maximum, Is.EqualTo(1));
+        });
 
         source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
         (minimum, maximum) = source.MinMax(p => p.Age, new InverseComparer<int>());
-        Assert.AreEqual(10, minimum);
-        Assert.AreEqual(1, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(10));
+            Assert.That(maximum, Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldReturnOppositeValues_UsingInverseComparer()
     {
         (int minimum, int maximum) = Enumerable.Range(1, 10).MinMax(new InverseComparer<int>());
-        Assert.AreEqual(10, minimum);
-        Assert.AreEqual(1, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(10));
+            Assert.That(maximum, Is.EqualTo(1));
+        });
 
         (minimum, maximum) = Enumerable.Range(1, 10).ToArray().MinMax(new InverseComparer<int>());
-        Assert.AreEqual(10, minimum);
-        Assert.AreEqual(1, maximum);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum, Is.EqualTo(10));
+            Assert.That(maximum, Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldThrowArgumentNullException_GivenNullSelector()
     {
         IEnumerable<int> source = Enumerable.Empty<int>();
-        Assert.ThrowsException<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!)));
-        Assert.ThrowsException<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!), null));
+        Assert.Throws<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!)));
+        Assert.Throws<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!), null));
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<int>? source = null;
-        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax());
-        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax(v => v));
-        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax(null));
-        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMax(v => v, null));
+        Assert.Throws<ArgumentNullException>(() => source!.MinMax());
+        Assert.Throws<ArgumentNullException>(() => source!.MinMax(v => v));
+        Assert.Throws<ArgumentNullException>(() => source!.MinMax(null));
+        Assert.Throws<ArgumentNullException>(() => source!.MinMax(v => v, null));
     }
 
-    [TestMethod]
+    [Test]
     public void MinMax_ShouldThrowInvalidOperationException_GivenEmptySource()
     {
-        Assert.ThrowsException<InvalidOperationException>(() => Enumerable.Empty<int>().MinMax());
-        Assert.ThrowsException<InvalidOperationException>(() => Array.Empty<int>().MinMax());
-        Assert.ThrowsException<InvalidOperationException>(() => new List<int>().MinMax());
+        Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().MinMax());
+        Assert.Throws<InvalidOperationException>(() => Array.Empty<int>().MinMax());
+        Assert.Throws<InvalidOperationException>(() => new List<int>().MinMax());
 
-        Assert.ThrowsException<InvalidOperationException>(() => Enumerable.Empty<int>().MinMax(i => i * 2));
-        Assert.ThrowsException<InvalidOperationException>(() => Array.Empty<int>().MinMax(i => i * 2));
-        Assert.ThrowsException<InvalidOperationException>(() => new List<int>().MinMax(i => i * 2));
+        Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<int>().MinMax(i => i * 2));
+        Assert.Throws<InvalidOperationException>(() => Array.Empty<int>().MinMax(i => i * 2));
+        Assert.Throws<InvalidOperationException>(() => new List<int>().MinMax(i => i * 2));
     }
 
-    [TestMethod]
+    [Test]
     public void MinMaxBy_ShouldReturnCorrectSelectedValues_UsingDefaultComparer()
     {
         IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
         (Person minimum, Person maximum) = source.MinMaxBy(p => p.Age);
-        Assert.AreEqual(1, minimum.Age);
-        Assert.AreEqual(10, maximum.Age);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum.Age, Is.EqualTo(1));
+            Assert.That(maximum.Age, Is.EqualTo(10));
+        });
 
         source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
         (minimum, maximum) = source.MinMaxBy(p => p.Age);
-        Assert.AreEqual(1, minimum.Age);
-        Assert.AreEqual(10, maximum.Age);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum.Age, Is.EqualTo(1));
+            Assert.That(maximum.Age, Is.EqualTo(10));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void MinMaxBy_ShouldReturnOppositeSelectedValues_UsingInverseComparer()
     {
         IEnumerable<Person> source = Enumerable.Range(1, 10).Select(i => new Person {Age = i});
         (Person minimum, Person maximum) = source.MinMaxBy(p => p.Age, new InverseComparer<int>());
-        Assert.AreEqual(10, minimum.Age);
-        Assert.AreEqual(1, maximum.Age);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum.Age, Is.EqualTo(10));
+            Assert.That(maximum.Age, Is.EqualTo(1));
+        });
 
         source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
         (minimum, maximum) = source.MinMaxBy(p => p.Age, new InverseComparer<int>());
-        Assert.AreEqual(10, minimum.Age);
-        Assert.AreEqual(1, maximum.Age);
+        Assert.Multiple(() =>
+        {
+            Assert.That(minimum.Age, Is.EqualTo(10));
+            Assert.That(maximum.Age, Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void MinMaxBy_ShouldThrowArgumentNullException_GivenNullSelector()
     {
         Person[] source = Enumerable.Range(1, 10).Select(i => new Person {Age = i}).ToArray();
 
-        Assert.ThrowsException<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>)null!));
-        Assert.ThrowsException<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>)null!, null));
+        Assert.Throws<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>)null!));
+        Assert.Throws<ArgumentNullException>(() => source.MinMaxBy((Func<Person, int>)null!, null));
     }
 
-    [TestMethod]
+    [Test]
     public void MinMaxBy_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<Person>? source = null;
-        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMaxBy(p => p.Age));
-        Assert.ThrowsException<ArgumentNullException>(() => source!.MinMaxBy(p => p.Age, null));
+        Assert.Throws<ArgumentNullException>(() => source!.MinMaxBy(p => p.Age));
+        Assert.Throws<ArgumentNullException>(() => source!.MinMaxBy(p => p.Age, null));
     }
 
-    [TestMethod]
+    [Test]
     public void MinMaxBy_ShouldThrowInvalidOperationException_GivenEmptySource()
     {
-        Assert.ThrowsException<InvalidOperationException>(() =>
+        Assert.Throws<InvalidOperationException>(() =>
         {
             IEnumerable<Person> source = Enumerable.Empty<Person>();
-            return source.MinMaxBy(p => p.Age);
+            _ = source.MinMaxBy(p => p.Age);
         });
 
-        Assert.ThrowsException<InvalidOperationException>(() =>
+        Assert.Throws<InvalidOperationException>(() =>
         {
             Person[] source = Array.Empty<Person>();
-            return source.MinMaxBy(p => p.Age);
+            _ = source.MinMaxBy(p => p.Age);
         });
     }
 

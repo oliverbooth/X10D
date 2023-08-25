@@ -24,10 +24,6 @@ public static class EnumerableExtensions
     [Pure]
     public static int CountWhereNot<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -37,7 +33,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         return source.Count(item => !predicate(item));
     }
@@ -58,10 +53,6 @@ public static class EnumerableExtensions
     [Pure]
     public static TSource FirstWhereNot<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -71,7 +62,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         return source.First(item => !predicate(item));
     }
@@ -91,10 +81,6 @@ public static class EnumerableExtensions
     [Pure]
     public static TSource? FirstWhereNotOrDefault<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -104,7 +90,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         return source.FirstOrDefault(item => !predicate(item));
     }
@@ -127,10 +112,6 @@ public static class EnumerableExtensions
     /// </exception>
     public static void For<T>(this IEnumerable<T> source, Action<int, T> action)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(action);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -140,7 +121,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(action));
         }
-#endif
 
         var index = 0;
         foreach (T item in source)
@@ -166,10 +146,6 @@ public static class EnumerableExtensions
     /// </exception>
     public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(action);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -179,7 +155,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(action));
         }
-#endif
 
         foreach (T item in source)
         {
@@ -196,14 +171,10 @@ public static class EnumerableExtensions
     /// <seealso cref="CollectionExtensions.ClearAndDisposeAll{T}" />
     public static void DisposeAll<T>(this IEnumerable<T> source) where T : IDisposable
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         foreach (T item in source)
         {
@@ -227,14 +198,10 @@ public static class EnumerableExtensions
     /// <seealso cref="CollectionExtensions.ClearAndDisposeAllAsync{T}" />
     public static async Task DisposeAllAsync<T>(this IEnumerable<T> source) where T : IAsyncDisposable
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         foreach (T item in source)
         {
@@ -264,10 +231,6 @@ public static class EnumerableExtensions
     [Pure]
     public static TSource LastWhereNot<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -277,7 +240,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         return source.Last(item => !predicate(item));
     }
@@ -297,10 +259,6 @@ public static class EnumerableExtensions
     [Pure]
     public static TSource? LastWhereNotOrDefault<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -310,7 +268,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         return source.LastOrDefault(item => !predicate(item));
     }
@@ -326,14 +283,10 @@ public static class EnumerableExtensions
     [Pure]
     public static IReadOnlyCollection<T> Shuffled<T>(this IEnumerable<T> source, Random? random = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         var list = new List<T>(source);
         list.Shuffle(random);
@@ -349,14 +302,12 @@ public static class EnumerableExtensions
     /// <returns>
     ///     An <see cref="IEnumerable{T}" /> that contains elements from the input sequence that do not satisfy the condition.
     /// </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
+    /// <exception cref="ArgumentNullException">
+    ///     <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.
+    /// </exception>
     [Pure]
     public static IEnumerable<TSource> WhereNot<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -366,7 +317,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         return source.Where(item => !predicate(item));
     }
@@ -381,16 +331,13 @@ public static class EnumerableExtensions
     ///     An <see cref="IEnumerable{T}" /> that contains elements from the input sequence that are not <see langword="null" />
     ///     (<see langword="Nothing" /> in Visual Basic).
     /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static IEnumerable<TSource> WhereNotNull<TSource>(this IEnumerable<TSource?> source)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Where(item => item is not null).Select(item => item!);
     }

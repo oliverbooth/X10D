@@ -1,13 +1,13 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
-[TestClass]
-public class QuaternionTests
+[TestFixture]
+internal class QuaternionTests
 {
-    [TestMethod]
+    [Test]
     public void ToAxisAngle_ShouldGiveAngle180VectorZero_GivenQuaternion()
     {
         Vector3 axis = Vector3.UnitY;
@@ -15,25 +15,31 @@ public class QuaternionTests
         var quaternion = Quaternion.CreateFromAxisAngle(axis, angle);
 
         (Vector3 Axis, float Angle) axisAngle = quaternion.ToAxisAngle();
-        Assert.AreEqual(axis, axisAngle.Axis);
-        Assert.AreEqual(angle, axisAngle.Angle);
+        Assert.Multiple(() =>
+        {
+            Assert.That(axisAngle.Axis, Is.EqualTo(axis));
+            Assert.That(axisAngle.Angle, Is.EqualTo(angle));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ToVector3_ShouldReturnZeroVector_GivenIdentityQuaternion()
     {
-        Assert.AreEqual(Vector3.Zero, Quaternion.Identity.ToVector3());
+        Assert.That(Quaternion.Identity.ToVector3(), Is.EqualTo(Vector3.Zero));
     }
 
-    [TestMethod]
+    [Test]
     public void ToVector3_ShouldReturnVector_0_PI_0_GivenQuaternionCreatedFrom_PI_0_0()
     {
         Quaternion quaternion = Quaternion.CreateFromYawPitchRoll(MathF.PI, 0, 0);
         var expected = new Vector3(0, MathF.PI, 0);
         var actual = quaternion.ToVector3();
-        
-        Assert.AreEqual(expected.X, actual.X, 1e-5f);
-        Assert.AreEqual(expected.Y, actual.Y, 1e-5f);
-        Assert.AreEqual(expected.Z, actual.Z, 1e-5f);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(actual.X, Is.EqualTo(expected.X).Within(1e-5f));
+            Assert.That(actual.Y, Is.EqualTo(expected.Y).Within(1e-5f));
+            Assert.That(actual.Z, Is.EqualTo(expected.Z).Within(1e-5f));
+        });
     }
 }

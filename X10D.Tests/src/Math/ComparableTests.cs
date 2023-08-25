@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
-public class ComparableTests
+[TestFixture]
+internal class ComparableTests
 {
     private class ComparableTestClass : IComparable<ComparableTestClass>
     {
@@ -18,191 +18,191 @@ public class ComparableTests
     private readonly int _upper = 10;
     private readonly int _value = 5;
 
-    [TestMethod]
+    [Test]
     public void Between_5_1_10_ShouldBeTrue()
     {
-        Assert.IsTrue(_value.Between(_lower, _upper));
+        Assert.That(_value.Between(_lower, _upper));
     }
 
-    [TestMethod]
+    [Test]
     public void Between_1_1_10_ShouldBeFalse()
     {
         // default option is exclusive
-        Assert.IsFalse(_lower.Between(_lower, _upper));
+        Assert.That(_lower.Between(_lower, _upper), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void Between_1_1_10_Inclusive_ShouldBeTrue()
     {
-        Assert.IsTrue(_lower.Between(_lower, _upper, InclusiveOptions.Inclusive));
-        Assert.IsTrue(_lower.Between(_lower, _upper, InclusiveOptions.LowerInclusive));
-        Assert.IsFalse(_lower.Between(_lower, _upper, InclusiveOptions.UpperInclusive));
+        Assert.That(_lower.Between(_lower, _upper, InclusiveOptions.Inclusive));
+        Assert.That(_lower.Between(_lower, _upper, InclusiveOptions.LowerInclusive));
+        Assert.That(_lower.Between(_lower, _upper, InclusiveOptions.UpperInclusive), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void Between_10_1_10_ShouldBeFalse()
     {
         // default option is exclusive
-        Assert.IsFalse(_upper.Between(_lower, _upper));
+        Assert.That(_upper.Between(_lower, _upper), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void Between_10_1_10_Inclusive_ShouldBeTrue()
     {
-        Assert.IsTrue(_upper.Between(_lower, _upper, InclusiveOptions.Inclusive));
-        Assert.IsTrue(_upper.Between(_lower, _upper, InclusiveOptions.UpperInclusive));
-        Assert.IsFalse(_upper.Between(_lower, _upper, InclusiveOptions.LowerInclusive));
+        Assert.That(_upper.Between(_lower, _upper, InclusiveOptions.Inclusive));
+        Assert.That(_upper.Between(_lower, _upper, InclusiveOptions.UpperInclusive));
+        Assert.That(_upper.Between(_lower, _upper, InclusiveOptions.LowerInclusive), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void Between_1_10_5_ShouldThrow()
     {
-        Assert.ThrowsException<ArgumentException>(() => _lower.Between(_upper, _value));
+        Assert.Throws<ArgumentException>(() => _lower.Between(_upper, _value));
     }
 
-    [TestMethod]
+    [Test]
     public void Between_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => ((ComparableTestClass?)null)!.Between(nullPointer!, nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => ((ComparableTestClass?)null)!.Between(nullPointer!, nullPointer!));
     }
 
-    [TestMethod]
+    [Test]
     public void Clamp_3_1_5_ShouldBe3()
     {
-        Assert.AreEqual(3, 3.Clamp(1, 5));
+        Assert.That(3.Clamp(1, 5), Is.EqualTo(3));
     }
 
-    [TestMethod]
+    [Test]
     public void Clamp_10_1_5_ShouldBe5()
     {
-        Assert.AreEqual(5, 10.Clamp(1, 5));
+        Assert.That(10.Clamp(1, 5), Is.EqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void Clamp_n_6_5_ShouldThrow()
     {
-        Assert.ThrowsException<ArgumentException>(() => 0.Clamp(6, 5));
+        Assert.Throws<ArgumentException>(() => 0.Clamp(6, 5));
     }
 
-    [TestMethod]
+    [Test]
     public void Clamp_ShouldThrowArgumentNullException_GivenNullValue()
     {
         string comparable = null!;
-        Assert.ThrowsException<ArgumentNullException>(() => comparable.Clamp(string.Empty, string.Empty));
+        Assert.Throws<ArgumentNullException>(() => comparable.Clamp(string.Empty, string.Empty));
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThan_5_6_ShouldBeFalse()
     {
-        Assert.IsFalse(5.GreaterThan(6));
+        Assert.That(5.GreaterThan(6), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThan_6_5_ShouldBeTrue()
     {
-        Assert.IsTrue(6.GreaterThan(5));
+        Assert.That(6.GreaterThan(5));
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThan_5_5_ShouldBeFalse()
     {
-        Assert.IsFalse(5.LessThan(5));
+        Assert.That(5.LessThan(5), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThan_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => nullPointer!.GreaterThan(nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => nullPointer!.GreaterThan(nullPointer!));
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThanOrEqualTo_5_5_ShouldBeTrue()
     {
-        Assert.IsTrue(5.GreaterThanOrEqualTo(5));
+        Assert.That(5.GreaterThanOrEqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThanOrEqualTo_6_5_ShouldBeTrue()
     {
-        Assert.IsTrue(6.GreaterThanOrEqualTo(5));
+        Assert.That(6.GreaterThanOrEqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThanOrEqualTo_5_6_ShouldBeFalse()
     {
-        Assert.IsFalse(5.GreaterThanOrEqualTo(6));
+        Assert.That(5.GreaterThanOrEqualTo(6), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void GreaterThanOrEqualTo_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => nullPointer!.GreaterThanOrEqualTo(nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => nullPointer!.GreaterThanOrEqualTo(nullPointer!));
     }
 
-    [TestMethod]
+    [Test]
     public void LessThan_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => nullPointer!.LessThan(nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => nullPointer!.LessThan(nullPointer!));
     }
 
-    [TestMethod]
+    [Test]
     public void LessThan_6_5_ShouldBeFalse()
     {
-        Assert.IsFalse(6.LessThan(5));
+        Assert.That(6.LessThan(5), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LessThan_5_6_ShouldBeTrue()
     {
-        Assert.IsTrue(5.LessThan(6));
+        Assert.That(5.LessThan(6));
     }
 
-    [TestMethod]
+    [Test]
     public void LessThan_5_5_ShouldBeFalse()
     {
-        Assert.IsFalse(5.LessThan(5));
+        Assert.That(5.LessThan(5), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LessThanOrEqualTo_5_5_ShouldBeTrue()
     {
-        Assert.IsTrue(5.LessThanOrEqualTo(5));
+        Assert.That(5.LessThanOrEqualTo(5));
     }
 
-    [TestMethod]
+    [Test]
     public void LessThanOrEqualTo_5_6_ShouldBeTrue()
     {
-        Assert.IsTrue(5.LessThanOrEqualTo(6));
+        Assert.That(5.LessThanOrEqualTo(6));
     }
 
-    [TestMethod]
+    [Test]
     public void LessThanOrEqualTo_6_5_ShouldBeFalse()
     {
-        Assert.IsFalse(6.LessThanOrEqualTo(5));
+        Assert.That(6.LessThanOrEqualTo(5), Is.False);
     }
 
-    [TestMethod]
+    [Test]
     public void LessThanOrEqualTo_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => nullPointer!.LessThanOrEqualTo(nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => nullPointer!.LessThanOrEqualTo(nullPointer!));
     }
 
-    [TestMethod]
+    [Test]
     public void Max_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => nullPointer!.Max(nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => nullPointer!.Max(nullPointer!));
     }
 
-    [TestMethod]
+    [Test]
     public void Min_Null_ShouldThrow()
     {
         ComparableTestClass? nullPointer = null;
-        Assert.ThrowsException<ArgumentNullException>(() => nullPointer!.Min(nullPointer!));
+        Assert.Throws<ArgumentNullException>(() => nullPointer!.Min(nullPointer!));
     }
 }

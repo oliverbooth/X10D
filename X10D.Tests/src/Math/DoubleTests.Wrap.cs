@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class DoubleTests
+internal partial class DoubleTests
 {
-    [TestClass]
+    [TestFixture]
     public class WrapTests
     {
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnLow_WhenValueIsEqualToLow()
         {
             const double value = 10;
@@ -17,10 +17,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnHigh_WhenValueIsEqualToHigh()
         {
             const double value = 20;
@@ -29,10 +29,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanHigh()
         {
             const double value = 30;
@@ -41,10 +41,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(low, high);
 
-            Assert.AreEqual(low, result);
+            Assert.That(result, Is.EqualTo(low));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsLessThanLow()
         {
             const double value = 5;
@@ -53,10 +53,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(low, high);
 
-            Assert.AreEqual(15.0, result);
+            Assert.That(result, Is.EqualTo(15.0));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsInBetweenLowAndHigh()
         {
             const double value = 15;
@@ -65,10 +65,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(low, high);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnZero_WhenValueIsEqualToLength()
         {
             const double value = 10;
@@ -76,10 +76,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(length);
 
-            Assert.AreEqual(0.0, result);
+            Assert.That(result, Is.EqualTo(0.0));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnValue_WhenValueIsLessThanLength()
         {
             const double value = 5;
@@ -87,10 +87,10 @@ public partial class DoubleTests
 
             double result = value.Wrap(length);
 
-            Assert.AreEqual(value, result);
+            Assert.That(result, Is.EqualTo(value));
         }
 
-        [TestMethod]
+        [Test]
         public void Wrap_ShouldReturnCorrectResult_WhenValueIsGreaterThanLength()
         {
             const double value = 15;
@@ -98,7 +98,7 @@ public partial class DoubleTests
 
             double result = value.Wrap(length);
 
-            Assert.AreEqual(5.0, result);
+            Assert.That(result, Is.EqualTo(5.0));
         }
     }
 }

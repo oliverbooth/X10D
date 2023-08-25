@@ -1,260 +1,290 @@
 ﻿using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-[TestClass]
-public partial class SingleTests
+[TestFixture]
+internal partial class SingleTests
 {
-    [TestMethod]
+    [Test]
     public void DegreesToRadians_ShouldBeCorrect()
     {
-        Assert.AreEqual(MathF.PI, 180.0f.DegreesToRadians(), 1e-6f);
-        Assert.AreEqual(MathF.PI * 1.5f, 270.0f.DegreesToRadians(), 1e-6f);
-        Assert.AreEqual(0.0f, 0.0f.DegreesToRadians(), 1e-6f);
-        Assert.AreEqual(0.017453292f, 1.0f.DegreesToRadians(), 1e-6f);
-        Assert.AreEqual(0.10471976f, 6.0f.DegreesToRadians(), 1e-6f);
-        Assert.AreEqual(0.20943952f, 12.0f.DegreesToRadians(), 1e-6f);
+        Assert.That(180.0f.DegreesToRadians(), Is.EqualTo(MathF.PI).Within(1e-6f));
+        Assert.That(270.0f.DegreesToRadians(), Is.EqualTo(MathF.PI * 1.5f).Within(1e-6f));
+        Assert.That(0.0f.DegreesToRadians(), Is.EqualTo(0.0f).Within(1e-6f));
+        Assert.That(1.0f.DegreesToRadians(), Is.EqualTo(0.017453292f).Within(1e-6f));
+        Assert.That(6.0f.DegreesToRadians(), Is.EqualTo(0.10471976f).Within(1e-6f));
+        Assert.That(12.0f.DegreesToRadians(), Is.EqualTo(0.20943952f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void RadiansToDegrees_ShouldBeCorrect()
     {
-        Assert.AreEqual(180.0f, MathF.PI.RadiansToDegrees(), 1e-6f);
-        Assert.AreEqual(270.0f, (MathF.PI * 1.5f).RadiansToDegrees(), 1e-6f);
-        Assert.AreEqual(0.0, 0.0f.RadiansToDegrees(), 1e-6f);
-        Assert.AreEqual(0.99999994f, 0.017453292f.RadiansToDegrees(), 1e-6f); // rounding errors are fun
-        Assert.AreEqual(6.0f, 0.10471976f.RadiansToDegrees(), 1e-6f);
-        Assert.AreEqual(12.0f, 0.20943952f.RadiansToDegrees(), 1e-6f);
+        Assert.That(MathF.PI.RadiansToDegrees(), Is.EqualTo(180.0f).Within(1e-6f));
+        Assert.That((MathF.PI * 1.5f).RadiansToDegrees(), Is.EqualTo(270.0f).Within(1e-6f));
+        Assert.That(0.0f.RadiansToDegrees(), Is.EqualTo(0.0).Within(1e-6f));
+        Assert.That(0.017453292f.RadiansToDegrees(), Is.EqualTo(0.99999994f).Within(1e-6f)); // rounding errors are fun
+        Assert.That(0.10471976f.RadiansToDegrees(), Is.EqualTo(6.0f).Within(1e-6f));
+        Assert.That(0.20943952f.RadiansToDegrees(), Is.EqualTo(12.0f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()
     {
-        Assert.AreEqual(0.0f, 0.0f.ComplexSqrt());
-        Assert.AreEqual(1.4142135f, 2.0f.ComplexSqrt());
-        Assert.AreEqual(3.0f, 9.0f.ComplexSqrt());
-        Assert.AreEqual(4.0f, 16.0f.ComplexSqrt());
-        Assert.AreEqual(100.0f, 10000.0f.ComplexSqrt());
+        Assert.That(0.0f.ComplexSqrt(), Is.EqualTo((Complex)0.0f));
+        Assert.That(2.0f.ComplexSqrt(), Is.EqualTo((Complex)1.4142135f));
+        Assert.That(9.0f.ComplexSqrt(), Is.EqualTo((Complex)3.0f));
+        Assert.That(16.0f.ComplexSqrt(), Is.EqualTo((Complex)4.0f));
+        Assert.That(10000.0f.ComplexSqrt(), Is.EqualTo((Complex)100.0f));
     }
 
-    [TestMethod]
+    [Test]
     public void ComplexSqrt_ShouldBeImaginary_GivenNegativeValue()
     {
-        Assert.AreEqual(new Complex(0, 1), (-1.0f).ComplexSqrt());
-        Assert.AreEqual(new Complex(0, 1.4142135f), (-2.0f).ComplexSqrt());
-        Assert.AreEqual(new Complex(0, 3.0f), (-9.0f).ComplexSqrt());
-        Assert.AreEqual(new Complex(0, 4.0f), (-16.0f).ComplexSqrt());
+        Assert.That((-1.0f).ComplexSqrt(), Is.EqualTo(new Complex(0, 1)));
+        Assert.That((-2.0f).ComplexSqrt(), Is.EqualTo(new Complex(0, 1.4142135f)));
+        Assert.That((-9.0f).ComplexSqrt(), Is.EqualTo(new Complex(0, 3.0f)));
+        Assert.That((-16.0f).ComplexSqrt(), Is.EqualTo(new Complex(0, 4.0f)));
     }
 
-    [TestMethod]
+    [Test]
     public void ComplexSqrt_ShouldBeComplexInfinity_GivenInfinity()
     {
-        Assert.AreEqual(Complex.Infinity, float.NegativeInfinity.ComplexSqrt());
-        Assert.AreEqual(Complex.Infinity, float.PositiveInfinity.ComplexSqrt());
+        Assert.Multiple(() =>
+        {
+            Assert.That(float.NegativeInfinity.ComplexSqrt(), Is.EqualTo(Complex.Infinity));
+            Assert.That(float.PositiveInfinity.ComplexSqrt(), Is.EqualTo(Complex.Infinity));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void ComplexSqrt_ShouldBeNaN_GivenNaN()
     {
-        Assert.AreEqual(Complex.NaN, float.NaN.ComplexSqrt());
+        Assert.That(float.NaN.ComplexSqrt(), Is.EqualTo(Complex.NaN));
     }
 
-    [TestMethod]
+    [Test]
     public void IsEven_ShouldBeFalse_GivenOddNumber()
     {
-        Assert.IsFalse((-3.0f).IsEven());
-        Assert.IsFalse((-1.0f).IsEven());
-        Assert.IsFalse(1.0f.IsEven());
-        Assert.IsFalse(3.0f.IsEven());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-3.0f).IsEven(), Is.False);
+            Assert.That((-1.0f).IsEven(), Is.False);
+            Assert.That(1.0f.IsEven(), Is.False);
+            Assert.That(3.0f.IsEven(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsEven_ShouldBeTrue_GivenOddNumber()
     {
-        Assert.IsTrue((-4.0f).IsEven());
-        Assert.IsTrue((-2.0f).IsEven());
-        Assert.IsTrue(0.0f.IsEven());
-        Assert.IsTrue(2.0f.IsEven());
-        Assert.IsTrue(4.0f.IsEven());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-4.0f).IsEven());
+            Assert.That((-2.0f).IsEven());
+            Assert.That(0.0f.IsEven());
+            Assert.That(2.0f.IsEven());
+            Assert.That(4.0f.IsEven());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOdd_ShouldBeFalse_GivenEvenNumber()
     {
-        Assert.IsFalse((-4.0f).IsOdd());
-        Assert.IsFalse((-2.0f).IsOdd());
-        Assert.IsFalse(0.0f.IsOdd());
-        Assert.IsFalse(2.0f.IsOdd());
-        Assert.IsFalse(4.0f.IsOdd());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-4.0f).IsOdd(), Is.False);
+            Assert.That((-2.0f).IsOdd(), Is.False);
+            Assert.That(0.0f.IsOdd(), Is.False);
+            Assert.That(2.0f.IsOdd(), Is.False);
+            Assert.That(4.0f.IsOdd(), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void IsOdd_ShouldBeTrue_GivenOddNumber()
     {
-        Assert.IsTrue((-3.0f).IsOdd());
-        Assert.IsTrue((-1.0f).IsOdd());
-        Assert.IsTrue(1.0f.IsOdd());
-        Assert.IsTrue(3.0f.IsOdd());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-3.0f).IsOdd());
+            Assert.That((-1.0f).IsOdd());
+            Assert.That(1.0f.IsOdd());
+            Assert.That(3.0f.IsOdd());
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Round_ShouldRoundToNearestInteger()
     {
-        Assert.AreEqual(4.0f, 3.5f.Round(), 1e-6f);
-        Assert.AreEqual(7.0f, 6.8f.Round(), 1e-6f);
-        Assert.AreEqual(7.0f, 7.2f.Round(), 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(3.5f.Round(), Is.EqualTo(4.0f).Within(1e-6f));
+            Assert.That(6.8f.Round(), Is.EqualTo(7.0f).Within(1e-6f));
+            Assert.That(7.2f.Round(), Is.EqualTo(7.0f).Within(1e-6f));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Round_ShouldRoundToNearestMultiple()
     {
-        Assert.AreEqual(5.0f, 3.5f.Round(5), 1e-6f);
-        Assert.AreEqual(5.0f, 7.0f.Round(5), 1e-6f);
-        Assert.AreEqual(10.0f, 7.5f.Round(5), 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(3.5f.Round(5), Is.EqualTo(5.0f).Within(1e-6f));
+            Assert.That(7.0f.Round(5), Is.EqualTo(5.0f).Within(1e-6f));
+            Assert.That(7.5f.Round(5), Is.EqualTo(10.0f).Within(1e-6f));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Saturate_ShouldClampValueTo1_GivenGreaterThan1()
     {
-        Assert.AreEqual(1.0f, 1.5f.Saturate(), 1e-6f);
+        Assert.That(1.5f.Saturate(), Is.EqualTo(1.0f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Saturate_ShouldClampValueTo0_GivenLessThan0()
     {
-        Assert.AreEqual(0.0f, (-0.5f).Saturate(), 1e-6f);
+        Assert.That((-0.5f).Saturate(), Is.EqualTo(0.0f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Saturate_ShouldReturnValue_GivenValueBetween0And1()
     {
-        Assert.AreEqual(0.5f, 0.5f.Saturate(), 1e-6f);
+        Assert.That(0.5f.Saturate(), Is.EqualTo(0.5f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Sign_ShouldBeMinus1_GivenNegative()
     {
-        Assert.AreEqual(-1, -1.0f.Sign());
-        Assert.AreEqual(-1, -2.0f.Sign());
-        Assert.AreEqual(-1, -3.0f.Sign());
+        Assert.That(-1.0f.Sign(), Is.EqualTo(-1));
+        Assert.That(-2.0f.Sign(), Is.EqualTo(-1));
+        Assert.That(-3.0f.Sign(), Is.EqualTo(-1));
     }
 
-    [TestMethod]
+    [Test]
     public void Sign_ShouldBe0_Given0()
     {
-        Assert.AreEqual(0, 0.0f.Sign());
+        Assert.That(0.0f.Sign(), Is.Zero);
     }
 
-    [TestMethod]
+    [Test]
     public void Sign_ShouldBe1_GivenPositive()
     {
-        Assert.AreEqual(1, 1.0f.Sign());
-        Assert.AreEqual(1, 2.0f.Sign());
-        Assert.AreEqual(1, 3.0f.Sign());
+        Assert.Multiple(() =>
+        {
+            Assert.That(1.0f.Sign(), Is.EqualTo(1));
+            Assert.That(2.0f.Sign(), Is.EqualTo(1));
+            Assert.That(3.0f.Sign(), Is.EqualTo(1));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Sqrt_ShouldBeCorrect_GivenValue()
     {
-        Assert.AreEqual(0.0f, 0.0f.Sqrt(), 1e-6f);
-        Assert.AreEqual(1.4142135f, 2.0f.Sqrt(), 1e-6f);
-        Assert.AreEqual(3.0f, 9.0f.Sqrt(), 1e-6f);
-        Assert.AreEqual(4.0f, 16.0f.Sqrt(), 1e-6f);
-        Assert.AreEqual(100.0f, 10000.0f.Sqrt(), 1e-6f);
+        Assert.Multiple(() =>
+        {
+            Assert.That(0.0f.Sqrt(), Is.EqualTo(0.0f).Within(1e-6f));
+            Assert.That(2.0f.Sqrt(), Is.EqualTo(1.4142135f).Within(1e-6f));
+            Assert.That(9.0f.Sqrt(), Is.EqualTo(3.0f).Within(1e-6f));
+            Assert.That(16.0f.Sqrt(), Is.EqualTo(4.0f).Within(1e-6f));
+            Assert.That(10000.0f.Sqrt(), Is.EqualTo(100.0f).Within(1e-6f));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Sqrt_ShouldBeNaN_GivenNaN()
     {
-        Assert.AreEqual(float.NaN, float.NaN.Sqrt());
+        Assert.That(float.NaN.Sqrt(), Is.EqualTo(float.NaN));
     }
 
-    [TestMethod]
+    [Test]
     public void Sqrt_ShouldBeNaN_GivenNegativeValue()
     {
-        Assert.AreEqual(float.NaN, (-1.0f).Sqrt());
-        Assert.AreEqual(float.NaN, (-2.0f).Sqrt());
-        Assert.AreEqual(float.NaN, (-3.0f).Sqrt());
-        Assert.AreEqual(float.NaN, float.NegativeInfinity.Sqrt());
+        Assert.Multiple(() =>
+        {
+            Assert.That((-1.0f).Sqrt(), Is.EqualTo(float.NaN));
+            Assert.That((-2.0f).Sqrt(), Is.EqualTo(float.NaN));
+            Assert.That((-3.0f).Sqrt(), Is.EqualTo(float.NaN));
+            Assert.That(float.NegativeInfinity.Sqrt(), Is.EqualTo(float.NaN));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Sqrt_ShouldBePositiveInfinity_GivenPositiveInfinity()
     {
-        Assert.AreEqual(float.PositiveInfinity, float.PositiveInfinity.Sqrt());
+        Assert.That(float.PositiveInfinity.Sqrt(), Is.EqualTo(float.PositiveInfinity));
     }
 
-    [TestMethod]
+    [Test]
     public void Acos_ShouldBeCorrect()
     {
-        Assert.AreEqual(1.0471975803375244f, 0.5f.Acos(), 1e-6f);
+        Assert.That(0.5f.Acos(), Is.EqualTo(1.0471975803375244f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Acosh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.9624236822128296f, 1.5f.Acosh(), 1e-6f);
+        Assert.That(1.5f.Acosh(), Is.EqualTo(0.9624236822128296f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Asin_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5235987901687622f, 0.5f.Asin(), 1e-6f);
+        Assert.That(0.5f.Asin(), Is.EqualTo(0.5235987901687622f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Asinh_ShouldBeCorrect()
     {
-        Assert.AreEqual(1.19476318359375f, 1.5f.Asinh(), 1e-6f);
+        Assert.That(1.5f.Asinh(), Is.EqualTo(1.19476318359375f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Atan_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.46364760398864746, 0.5f.Atan(), 1e-6f);
+        Assert.That(0.5f.Atan(), Is.EqualTo(0.46364760398864746).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Atanh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.5493061542510986f, 0.5f.Atanh(), 1e-6f);
+        Assert.That(0.5f.Atanh(), Is.EqualTo(0.5493061542510986f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Cos_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.8775825500488281f, 0.5f.Cos(), 1e-6f);
+        Assert.That(0.5f.Cos(), Is.EqualTo(0.8775825500488281f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Cosh_ShouldBeCorrect()
     {
-        Assert.AreEqual(2.352409601211548f, 1.5f.Cosh(), 1e-6f);
+        Assert.That(1.5f.Cosh(), Is.EqualTo(2.352409601211548f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Sin_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.4794255495071411, 0.5f.Sin(), 1e-6f);
+        Assert.That(0.5f.Sin(), Is.EqualTo(0.4794255495071411).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Sinh_ShouldBeCorrect()
     {
-        Assert.AreEqual(2.129279375076294f, 1.5f.Sinh(), 1e-6f);
+        Assert.That(1.5f.Sinh(), Is.EqualTo(2.129279375076294f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Tan_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.4794255495071411f, 0.5f.Tan(), 1e-6f);
+        Assert.That(0.5f.Tan(), Is.EqualTo(0.4794255495071411f).Within(1e-6f));
     }
 
-    [TestMethod]
+    [Test]
     public void Tanh_ShouldBeCorrect()
     {
-        Assert.AreEqual(0.46211716532707214f, 0.5f.Tanh(), 1e-6f);
+        Assert.That(0.5f.Tanh(), Is.EqualTo(0.46211716532707214f).Within(1e-6f));
     }
 }

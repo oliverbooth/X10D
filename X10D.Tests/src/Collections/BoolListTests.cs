@@ -1,56 +1,56 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-[TestClass]
-public class BoolListTests
+[TestFixture]
+internal class BoolListTests
 {
-    [TestMethod]
+    [Test]
     public void PackByte_Should_Pack_Correctly()
     {
         var array = new[] {true, false, true, false, true, false, true, false};
-        Assert.AreEqual(85, array.PackByte()); // 01010101
+        Assert.That(array.PackByte(), Is.EqualTo(85)); // 01010101
     }
 
-    [TestMethod]
+    [Test]
     public void Pack16Bit_Should_Pack_Correctly()
     {
         var array = new[] {true, false, true, false, true, false, true, false, true, true, false, true};
-        Assert.AreEqual(2901, array.PackInt16()); // 101101010101
+        Assert.That(array.PackInt16(), Is.EqualTo(2901)); // 101101010101
     }
 
-    [TestMethod]
+    [Test]
     public void Pack32Bit_Should_Pack_Correctly()
     {
         var array = new[] {true, false, true, false, true, false, true, false, true, true, false, true};
-        Assert.AreEqual(2901, array.PackInt32()); // 101101010101
+        Assert.That(array.PackInt32(), Is.EqualTo(2901)); // 101101010101
     }
 
-    [TestMethod]
+    [Test]
     public void Pack64Bit_Should_Pack_Correctly()
     {
         var array = new[] {true, false, true, false, true, false, true, false, true, true, false, true};
-        Assert.AreEqual(2901, array.PackInt64()); // 101101010101
+        Assert.That(array.PackInt64(), Is.EqualTo(2901)); // 101101010101
     }
 
-    [TestMethod]
+    [Test]
     public void Pack_ShouldThrow_GivenLargeArray()
     {
         bool[] array = Enumerable.Repeat(false, 65).ToArray();
-        Assert.ThrowsException<ArgumentException>(() => array.PackByte());
-        Assert.ThrowsException<ArgumentException>(() => array.PackInt16());
-        Assert.ThrowsException<ArgumentException>(() => array.PackInt32());
-        Assert.ThrowsException<ArgumentException>(() => array.PackInt64());
+        Assert.Throws<ArgumentException>(() => _ = array.PackByte());
+        Assert.Throws<ArgumentException>(() => _ = array.PackInt16());
+        Assert.Throws<ArgumentException>(() => _ = array.PackInt32());
+        Assert.Throws<ArgumentException>(() => _ = array.PackInt64());
     }
 
-    [TestMethod]
+    [Test]
     public void Pack_ShouldThrow_GivenNull()
     {
-        bool[]? array = null;
-        Assert.ThrowsException<ArgumentNullException>(() => array!.PackByte());
-        Assert.ThrowsException<ArgumentNullException>(() => array!.PackInt16());
-        Assert.ThrowsException<ArgumentNullException>(() => array!.PackInt32());
-        Assert.ThrowsException<ArgumentNullException>(() => array!.PackInt64());
+        bool[] array = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = array.PackByte());
+        Assert.Throws<ArgumentNullException>(() => _ = array.PackInt16());
+        Assert.Throws<ArgumentNullException>(() => _ = array.PackInt32());
+        Assert.Throws<ArgumentNullException>(() => _ = array.PackInt64());
     }
 }

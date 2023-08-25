@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
-[TestClass]
-public class ColorTests
+[TestFixture]
+internal class ColorTests
 {
     private static readonly Color Black = Color.FromArgb(0, 0, 0);
     private static readonly Color White = Color.FromArgb(255, 255, 255);
@@ -16,251 +16,278 @@ public class ColorTests
     private static readonly Color Magenta = Color.FromArgb(255, 0, 255);
     private static readonly Color Yellow = Color.FromArgb(255, 255, 0);
 
-    [TestMethod]
+    [Test]
     public void Deconstruct_ShouldDeconstructColor_GivenColor()
     {
         (byte r, byte g, byte b) = Black;
-        Assert.AreEqual(0, r);
-        Assert.AreEqual(0, g);
-        Assert.AreEqual(0, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(r, Is.Zero);
+            Assert.That(g, Is.Zero);
+            Assert.That(b, Is.Zero);
+        });
 
         (byte a, r, g, b) = Black;
-        Assert.AreEqual(255, a);
-        Assert.AreEqual(0, r);
-        Assert.AreEqual(0, g);
-        Assert.AreEqual(0, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(a, Is.EqualTo(255));
+            Assert.That(r, Is.Zero);
+            Assert.That(g, Is.Zero);
+            Assert.That(b, Is.Zero);
+        });
 
         (r, g, b) = Red;
-        Assert.AreEqual(255, r);
-        Assert.AreEqual(0, g);
-        Assert.AreEqual(0, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(r, Is.EqualTo(255));
+            Assert.That(g, Is.Zero);
+            Assert.That(b, Is.Zero);
+        });
 
         (a, r, g, b) = Red;
-        Assert.AreEqual(255, a);
-        Assert.AreEqual(255, r);
-        Assert.AreEqual(0, g);
-        Assert.AreEqual(0, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(a, Is.EqualTo(255));
+            Assert.That(r, Is.EqualTo(255));
+            Assert.That(g, Is.Zero);
+            Assert.That(b, Is.Zero);
+        });
 
         (r, g, b) = Green;
-        Assert.AreEqual(0, r);
-        Assert.AreEqual(255, g);
-        Assert.AreEqual(0, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(r, Is.Zero);
+            Assert.That(g, Is.EqualTo(255));
+            Assert.That(b, Is.Zero);
+        });
 
         (a, r, g, b) = Green;
-        Assert.AreEqual(255, a);
-        Assert.AreEqual(0, r);
-        Assert.AreEqual(255, g);
-        Assert.AreEqual(0, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(a, Is.EqualTo(255));
+            Assert.That(r, Is.Zero);
+            Assert.That(g, Is.EqualTo(255));
+            Assert.That(b, Is.Zero);
+        });
 
         (r, g, b) = Blue;
-        Assert.AreEqual(0, r);
-        Assert.AreEqual(0, g);
-        Assert.AreEqual(255, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(r, Is.Zero);
+            Assert.That(g, Is.Zero);
+            Assert.That(b, Is.EqualTo(255));
+        });
 
         (a, r, g, b) = Blue;
-        Assert.AreEqual(255, a);
-        Assert.AreEqual(0, r);
-        Assert.AreEqual(0, g);
-        Assert.AreEqual(255, b);
+        Assert.Multiple(() =>
+        {
+            Assert.That(a, Is.EqualTo(255));
+            Assert.That(r, Is.Zero);
+            Assert.That(g, Is.Zero);
+            Assert.That(b, Is.EqualTo(255));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void GetClosestConsoleColor_ShouldReturnClosestColor_GivenValidColor()
     {
-        Assert.AreEqual(ConsoleColor.White, Color.Transparent.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.AliceBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.AntiqueWhite.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.Aqua.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Aquamarine.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Azure.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Beige.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Bisque.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Black, Color.Black.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.BlanchedAlmond.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Blue, Color.Blue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.BlueViolet.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkRed, Color.Brown.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.BurlyWood.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.CadetBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Yellow, Color.Chartreuse.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.Chocolate.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.Coral.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.CornflowerBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Cornsilk.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Red, Color.Crimson.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.Cyan.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkBlue, Color.DarkBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.DarkCyan.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.DarkGoldenrod.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.DarkGray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGreen, Color.DarkGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.DarkKhaki.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.DarkMagenta.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.DarkOliveGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.DarkOrange.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.DarkOrchid.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkRed, Color.DarkRed.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.DarkSalmon.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.DarkSeaGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.DarkSlateBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGreen, Color.DarkSlateGray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.DarkTurquoise.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.DarkViolet.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Magenta, Color.DeepPink.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.DeepSkyBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.DimGray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.DodgerBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkRed, Color.Firebrick.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.FloralWhite.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Green, Color.ForestGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Magenta, Color.Fuchsia.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Gainsboro.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.GhostWhite.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Yellow, Color.Gold.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.Goldenrod.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.Gray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Green, Color.Green.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Yellow, Color.GreenYellow.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Honeydew.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.HotPink.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.IndianRed.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.Indigo.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Ivory.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Khaki.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Lavender.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.LavenderBlush.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Yellow, Color.LawnGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.LemonChiffon.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightCoral.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.LightCyan.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.LightGoldenrodYellow.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightGray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightPink.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightSalmon.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.LightSeaGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightSkyBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.LightSlateGray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.LightSteelBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.LightYellow.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Green, Color.Lime.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Green, Color.LimeGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Linen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Magenta, Color.Magenta.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkRed, Color.Maroon.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.MediumAquamarine.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Blue, Color.MediumBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.MediumOrchid.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.MediumPurple.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.MediumSeaGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.MediumSlateBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.MediumSpringGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.MediumTurquoise.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.MediumVioletRed.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkBlue, Color.MidnightBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.MintCream.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.MistyRose.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Moccasin.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.NavajoWhite.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkBlue, Color.Navy.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.OldLace.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.Olive.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.OliveDrab.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.Orange.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Red, Color.OrangeRed.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Orchid.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.PaleGoldenrod.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.PaleGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.PaleTurquoise.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.PaleVioletRed.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.PapayaWhip.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.PeachPuff.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.Peru.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Pink.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Plum.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.PowderBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.Purple.GetClosestConsoleColor());
+        Assert.Multiple(() =>
+        {
+            Assert.That(Color.Transparent.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.AliceBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.AntiqueWhite.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Aqua.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.Aquamarine.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Azure.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Beige.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Bisque.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Black.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Black));
+            Assert.That(Color.BlanchedAlmond.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Blue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Blue));
+            Assert.That(Color.BlueViolet.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
+            Assert.That(Color.Brown.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkRed));
+            Assert.That(Color.BurlyWood.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.CadetBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.Chartreuse.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Yellow));
+            Assert.That(Color.Chocolate.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.Coral.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.CornflowerBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Cornsilk.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Crimson.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Red));
+            Assert.That(Color.Cyan.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.DarkBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkBlue));
+            Assert.That(Color.DarkCyan.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.DarkGoldenrod.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.DarkGray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.DarkGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGreen));
+            Assert.That(Color.DarkKhaki.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.DarkMagenta.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
+            Assert.That(Color.DarkOliveGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.DarkOrange.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.DarkOrchid.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
+            Assert.That(Color.DarkRed.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkRed));
+            Assert.That(Color.DarkSalmon.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.DarkSeaGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.DarkSlateBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.DarkSlateGray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGreen));
+            Assert.That(Color.DarkTurquoise.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.DarkViolet.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
+            Assert.That(Color.DeepPink.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Magenta));
+            Assert.That(Color.DeepSkyBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.DimGray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.DodgerBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.Firebrick.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkRed));
+            Assert.That(Color.FloralWhite.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.ForestGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Green));
+            Assert.That(Color.Fuchsia.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Magenta));
+            Assert.That(Color.Gainsboro.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.GhostWhite.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Gold.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Yellow));
+            Assert.That(Color.Goldenrod.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.Gray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.Green.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Green));
+            Assert.That(Color.GreenYellow.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Yellow));
+            Assert.That(Color.Honeydew.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.HotPink.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.IndianRed.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.Indigo.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
+            Assert.That(Color.Ivory.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Khaki.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Lavender.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.LavenderBlush.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.LawnGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Yellow));
+            Assert.That(Color.LemonChiffon.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.LightBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightCoral.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightCyan.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.LightGoldenrodYellow.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.LightGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightGray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightPink.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightSalmon.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightSeaGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.LightSkyBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightSlateGray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.LightSteelBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.LightYellow.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Lime.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Green));
+            Assert.That(Color.LimeGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Green));
+            Assert.That(Color.Linen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Magenta.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Magenta));
+            Assert.That(Color.Maroon.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkRed));
+            Assert.That(Color.MediumAquamarine.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.MediumBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Blue));
+            Assert.That(Color.MediumOrchid.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.MediumPurple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.MediumSeaGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.MediumSlateBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.MediumSpringGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.MediumTurquoise.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.MediumVioletRed.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
+            Assert.That(Color.MidnightBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkBlue));
+            Assert.That(Color.MintCream.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.MistyRose.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Moccasin.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.NavajoWhite.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Navy.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkBlue));
+            Assert.That(Color.OldLace.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Olive.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.OliveDrab.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.Orange.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.OrangeRed.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Red));
+            Assert.That(Color.Orchid.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.PaleGoldenrod.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.PaleGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.PaleTurquoise.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.PaleVioletRed.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.PapayaWhip.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.PeachPuff.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Peru.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.Pink.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Plum.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.PowderBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Purple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
 #if NET6_0_OR_GREATER
-        Assert.AreEqual(ConsoleColor.DarkMagenta, Color.RebeccaPurple.GetClosestConsoleColor());
+            Assert.That(Color.RebeccaPurple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
 #endif
-        Assert.AreEqual(ConsoleColor.Red, Color.Red.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.RosyBrown.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.RoyalBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkRed, Color.SaddleBrown.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Salmon.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.SandyBrown.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.SeaGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.SeaShell.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkRed, Color.Sienna.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Silver.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.SkyBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.SlateBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.SlateGray.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Snow.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.SpringGreen.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.SteelBlue.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Tan.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkCyan, Color.Teal.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Thistle.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkYellow, Color.Tomato.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Cyan, Color.Turquoise.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.DarkGray, Color.Violet.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.Wheat.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.White.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.White, Color.WhiteSmoke.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Yellow, Color.Yellow.GetClosestConsoleColor());
-        Assert.AreEqual(ConsoleColor.Gray, Color.YellowGreen.GetClosestConsoleColor());
+            Assert.That(Color.Red.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Red));
+            Assert.That(Color.RosyBrown.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.RoyalBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.SaddleBrown.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkRed));
+            Assert.That(Color.Salmon.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.SandyBrown.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.SeaGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.SeaShell.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Sienna.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkRed));
+            Assert.That(Color.Silver.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.SkyBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.SlateBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.SlateGray.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.Snow.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.SpringGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.SteelBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+            Assert.That(Color.Tan.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Teal.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));
+            Assert.That(Color.Thistle.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Tomato.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkYellow));
+            Assert.That(Color.Turquoise.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Cyan));
+            Assert.That(Color.Violet.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
+            Assert.That(Color.Wheat.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.White.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.WhiteSmoke.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.White));
+            Assert.That(Color.Yellow.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Yellow));
+            Assert.That(Color.YellowGreen.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Gray));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void Inverted_ShouldReturnInvertedColor()
     {
-        Assert.AreEqual(White, Black.Inverted());
-        Assert.AreEqual(Black, White.Inverted());
-        Assert.AreEqual(Red, Cyan.Inverted());
-        Assert.AreEqual(Cyan, Red.Inverted());
-        Assert.AreEqual(Green, Magenta.Inverted());
-        Assert.AreEqual(Magenta, Green.Inverted());
-        Assert.AreEqual(Yellow, Blue.Inverted());
-        Assert.AreEqual(Blue, Yellow.Inverted());
+        Assert.That(Black.Inverted(), Is.EqualTo(White));
+        Assert.That(White.Inverted(), Is.EqualTo(Black));
+        Assert.That(Cyan.Inverted(), Is.EqualTo(Red));
+        Assert.That(Red.Inverted(), Is.EqualTo(Cyan));
+        Assert.That(Magenta.Inverted(), Is.EqualTo(Green));
+        Assert.That(Green.Inverted(), Is.EqualTo(Magenta));
+        Assert.That(Blue.Inverted(), Is.EqualTo(Yellow));
+        Assert.That(Yellow.Inverted(), Is.EqualTo(Blue));
     }
 
-    [TestMethod]
+    [Test]
     public void Inverted_ShouldIgnoreAlpha()
     {
         Color expected = Color.FromArgb(255, 0, 0, 0);
         Color actual = Color.FromArgb(255, 255, 255, 255).Inverted();
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [TestMethod]
+    [Test]
     public void WithA0_ShouldReturnSameColor_GivenWhite()
     {
         Color transparent = Color.FromArgb(0, 255, 255, 255);
-        Assert.AreEqual(transparent, White.WithA(0));
-        Assert.AreEqual(transparent, transparent.WithA(0));
+        Assert.That(White.WithA(0), Is.EqualTo(transparent));
+        Assert.That(transparent.WithA(0), Is.EqualTo(transparent));
     }
 
-    [TestMethod]
+    [Test]
     public void WithB0_ShouldReturnYellow_GivenWhite()
     {
-        Assert.AreEqual(Yellow, White.WithB(0));
-        Assert.AreEqual(Yellow, Yellow.WithB(0));
+        Assert.That(White.WithB(0), Is.EqualTo(Yellow));
+        Assert.That(Yellow.WithB(0), Is.EqualTo(Yellow));
     }
 
-    [TestMethod]
+    [Test]
     public void WithG0_ShouldReturnMagenta_GivenWhite()
     {
-        Assert.AreEqual(Magenta, White.WithG(0));
-        Assert.AreEqual(Magenta, Magenta.WithG(0));
+        Assert.That(White.WithG(0), Is.EqualTo(Magenta));
+        Assert.That(Magenta.WithG(0), Is.EqualTo(Magenta));
     }
 
-    [TestMethod]
+    [Test]
     public void WithR0_ShouldReturnCyan_GivenWhite()
     {
-        Assert.AreEqual(Cyan, White.WithR(0));
-        Assert.AreEqual(Cyan, Cyan.WithR(0));
+        Assert.That(White.WithR(0), Is.EqualTo(Cyan));
+        Assert.That(Cyan.WithR(0), Is.EqualTo(Cyan));
     }
 }

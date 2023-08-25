@@ -37,6 +37,8 @@ body:
       label: Version
       description: What version of the package are you running?
       options:
+        - Nightly / other
+        - 3.2.0
         - 3.1.0
         - 3.0.0
         - 2.6.0
@@ -47,6 +49,12 @@ body:
         - 2.1.0
     validations:
       required: true
+  - type: input
+    id: other-version
+    attributes:
+      label: Other version
+      description: If you selected "nightly / other", please enter the full version number here.
+      placeholder: "Example: 4.0.0-nightly-230"
   - type: textarea
     id: logs
     attributes:

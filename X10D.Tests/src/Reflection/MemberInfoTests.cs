@@ -1,83 +1,94 @@
 ﻿using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using X10D.Reflection;
 
 namespace X10D.Tests.Reflection;
 
-[TestClass]
-public class MemberInfoTests
+[TestFixture]
+internal class MemberInfoTests
 {
-    [TestMethod]
+    [Test]
     public void HasCustomAttribute_ShouldBeTrue_GivenCLSCompliantAttributeOnUnsignedTypes()
     {
-        Assert.IsTrue(typeof(sbyte).HasCustomAttribute(typeof(CLSCompliantAttribute))); // okay, sbyte is signed. I know.
-        Assert.IsTrue(typeof(ushort).HasCustomAttribute(typeof(CLSCompliantAttribute)));
-        Assert.IsTrue(typeof(uint).HasCustomAttribute(typeof(CLSCompliantAttribute)));
-        Assert.IsTrue(typeof(ulong).HasCustomAttribute(typeof(CLSCompliantAttribute)));
+        Assert.That(typeof(sbyte).HasCustomAttribute(typeof(CLSCompliantAttribute))); // okay, sbyte is signed. I know.
+        Assert.That(typeof(ushort).HasCustomAttribute(typeof(CLSCompliantAttribute)));
+        Assert.That(typeof(uint).HasCustomAttribute(typeof(CLSCompliantAttribute)));
+        Assert.That(typeof(ulong).HasCustomAttribute(typeof(CLSCompliantAttribute)));
     }
 
-    [TestMethod]
+    [Test]
     public void HasCustomAttribute_ShouldBeTrue_GivenCLSCompliantAttributeOnUnsignedTypes_Generic()
     {
-        Assert.IsTrue(typeof(sbyte).HasCustomAttribute<CLSCompliantAttribute>()); // okay, sbyte is signed. I know.
-        Assert.IsTrue(typeof(ushort).HasCustomAttribute<CLSCompliantAttribute>());
-        Assert.IsTrue(typeof(uint).HasCustomAttribute<CLSCompliantAttribute>());
-        Assert.IsTrue(typeof(ulong).HasCustomAttribute<CLSCompliantAttribute>());
+        Assert.That(typeof(sbyte).HasCustomAttribute<CLSCompliantAttribute>()); // seriously don't @ me
+        Assert.That(typeof(ushort).HasCustomAttribute<CLSCompliantAttribute>());
+        Assert.That(typeof(uint).HasCustomAttribute<CLSCompliantAttribute>());
+        Assert.That(typeof(ulong).HasCustomAttribute<CLSCompliantAttribute>());
     }
 
-    [TestMethod]
+    [Test]
     public void HasCustomAttribute_ShouldThrow_GivenNull()
     {
-        Type? type = null;
-        Assert.ThrowsException<ArgumentNullException>(() => type!.HasCustomAttribute<CLSCompliantAttribute>());
-        Assert.ThrowsException<ArgumentNullException>(() => type!.HasCustomAttribute(typeof(CLSCompliantAttribute)));
-
-        Assert.ThrowsException<ArgumentNullException>(() => typeof(object).HasCustomAttribute(null!));
+        Type type = null!;
+        Assert.Throws<ArgumentNullException>(() => _ = type.HasCustomAttribute<CLSCompliantAttribute>());
+        Assert.Throws<ArgumentNullException>(() => _ = type.HasCustomAttribute(typeof(CLSCompliantAttribute)));
+        Assert.Throws<ArgumentNullException>(() => _ = typeof(object).HasCustomAttribute(null!));
     }
 
-    [TestMethod]
+    [Test]
     public void HasCustomAttribute_ShouldThrow_GivenNonAttribute()
     {
-        Assert.ThrowsException<ArgumentException>(() => typeof(object).HasCustomAttribute(typeof(object)));
+        Assert.Throws<ArgumentException>(() => _ = typeof(object).HasCustomAttribute(typeof(object)));
     }
 
-    [TestMethod]
+    [Test]
     public void SelectFromCustomAttribute_ShouldBeFalse_GivenCLSCompliantAttributeOnUnsignedTypes()
     {
-        Assert.IsFalse(typeof(sbyte).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant));
-        Assert.IsFalse(typeof(ushort).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant));
-        Assert.IsFalse(typeof(uint).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant));
-        Assert.IsFalse(typeof(ulong).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant));
+        Func<CLSCompliantAttribute, bool> predicate = attribute => attribute.IsCompliant;
+        Assert.Multiple(() =>
+        {
+            Assert.That(typeof(sbyte).SelectFromCustomAttribute(predicate), Is.False);
+            Assert.That(typeof(ushort).SelectFromCustomAttribute(predicate), Is.False);
+            Assert.That(typeof(uint).SelectFromCustomAttribute(predicate), Is.False);
+            Assert.That(typeof(ulong).SelectFromCustomAttribute(predicate), Is.False);
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void SelectFromCustomAttribute_ShouldBeTrue_GivenCLSCompliantAttributeOnSignedTypes()
     {
-        Assert.IsTrue(typeof(byte).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true));
-        Assert.IsTrue(typeof(short).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true));
-        Assert.IsTrue(typeof(int).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true));
-        Assert.IsTrue(typeof(long).SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true));
+        Func<CLSCompliantAttribute, bool> predicate = attribute => attribute.IsCompliant;
+        Assert.Multiple(() =>
+        {
+            Assert.That(typeof(byte).SelectFromCustomAttribute(predicate, true));
+            Assert.That(typeof(short).SelectFromCustomAttribute(predicate, true));
+            Assert.That(typeof(int).SelectFromCustomAttribute(predicate, true));
+            Assert.That(typeof(long).SelectFromCustomAttribute(predicate, true));
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void SelectFromCustomAttribute_ShouldThrow_GivenNull()
     {
         Type? type = null;
 
-        Assert.ThrowsException<ArgumentNullException>(() =>
-            (type!.SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant)));
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            _ = type!.SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant);
+        });
 
-        Assert.ThrowsException<ArgumentNullException>(() =>
-            (type!.SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true)));
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            _ = type!.SelectFromCustomAttribute((CLSCompliantAttribute attribute) => attribute.IsCompliant, true);
+        });
 
         const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic |
                                           BindingFlags.Instance | BindingFlags.Static;
         var memberInfo = typeof(int).GetMembers(bindingFlags)[0];
         Func<CLSCompliantAttribute, bool>? selector = null;
 
-        Assert.ThrowsException<ArgumentNullException>(() => typeof(int).SelectFromCustomAttribute(selector!));
-        Assert.ThrowsException<ArgumentNullException>(() => typeof(int).SelectFromCustomAttribute(selector!, default));
-        Assert.ThrowsException<ArgumentNullException>(() => memberInfo.SelectFromCustomAttribute(selector!));
-        Assert.ThrowsException<ArgumentNullException>(() => memberInfo.SelectFromCustomAttribute(selector!, default));
+        Assert.Throws<ArgumentNullException>(() => typeof(int).SelectFromCustomAttribute(selector!));
+        Assert.Throws<ArgumentNullException>(() => typeof(int).SelectFromCustomAttribute(selector!, default));
+        Assert.Throws<ArgumentNullException>(() => memberInfo.SelectFromCustomAttribute(selector!));
+        Assert.Throws<ArgumentNullException>(() => memberInfo.SelectFromCustomAttribute(selector!, default));
     }
 }

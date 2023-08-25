@@ -12,6 +12,21 @@ public static class BigIntegerExtensions
 {
 #if !NET7_0_OR_GREATER
     /// <summary>
+    ///     Returns the number of digits in the current integer.
+    /// </summary>
+    /// <param name="value">The value whose digit count to compute.</param>
+    /// <returns>The number of digits in <paramref name="value" />.</returns>
+    public static int CountDigits(this BigInteger value)
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return (int)(1 + BigInteger.Log10(BigInteger.Abs(value)));
+    }
+
+    /// <summary>
     ///     Computes the digital root of this 8-bit integer.
     /// </summary>
     /// <param name="value">The value whose digital root to compute.</param>
