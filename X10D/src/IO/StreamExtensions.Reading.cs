@@ -396,7 +396,8 @@ public static partial class StreamExtensions
     }
 
     /// <summary>
-    ///     Reads an <see cref="ushort" /> from the current stream as little endian, and advances the stream position by two bytes.
+    ///     Reads an <see cref="ushort" /> from the current stream as little endian, and advances the stream position by two
+    ///     bytes.
     /// </summary>
     /// <param name="stream">The stream from which the value should be read.</param>
     /// <returns>The little endian value.</returns>
