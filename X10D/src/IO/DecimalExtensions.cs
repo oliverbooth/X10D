@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 
@@ -101,6 +102,7 @@ public static class DecimalExtensions
 #endif
     }
 
+    [Conditional("NET5_0_OR_GREATER")]
     private static void WriteBits(Span<int> destination, Span<byte> buffer)
     {
         var flags = MemoryMarshal.Read<int>(buffer[..4]);
