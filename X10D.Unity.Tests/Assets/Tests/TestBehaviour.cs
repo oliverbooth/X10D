@@ -1,4 +1,4 @@
-﻿namespace X10D.Unity.Tests
+namespace X10D.Unity.Tests
 {
     internal sealed class TestBehaviour : Singleton<TestBehaviour>
     {

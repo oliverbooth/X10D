@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NUnit.Framework;
 using X10D.Unity.Drawing;
 using Random = System.Random;

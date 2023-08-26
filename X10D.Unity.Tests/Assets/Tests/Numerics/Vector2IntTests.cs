@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using UnityEngine;
 using X10D.Unity.Numerics;
 using Random = System.Random;

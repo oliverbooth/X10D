@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using X10D.Drawing;
 using X10D.Unity.Drawing;
