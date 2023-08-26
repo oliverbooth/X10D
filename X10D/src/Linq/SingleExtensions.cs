@@ -1,4 +1,4 @@
-﻿namespace X10D.Linq;
+namespace X10D.Linq;
 
 /// <summary>
 ///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="float" />.

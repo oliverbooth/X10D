@@ -1,4 +1,4 @@
-﻿namespace X10D.Collections;
+namespace X10D.Collections;
 
 /// <summary>
 ///     Extension methods for <see cref="Span{T}" /> and <see cref="ReadOnlySpan{T}" />

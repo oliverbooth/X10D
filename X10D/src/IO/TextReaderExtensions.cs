@@ -1,4 +1,4 @@
-﻿namespace X10D.IO;
+namespace X10D.IO;
 
 /// <summary>
 ///     IO-related extension methods for <see cref="TextReader" />.

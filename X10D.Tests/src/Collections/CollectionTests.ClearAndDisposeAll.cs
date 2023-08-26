@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using NSubstitute;
 using NUnit.Framework;
 using X10D.Collections;

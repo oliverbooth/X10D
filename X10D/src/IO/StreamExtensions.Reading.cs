@@ -1,4 +1,4 @@
-﻿using System.Buffers.Binary;
+using System.Buffers.Binary;
 using System.Runtime.InteropServices;
 
 namespace X10D.IO;

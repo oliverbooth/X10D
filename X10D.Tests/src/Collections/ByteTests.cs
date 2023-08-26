@@ -1,4 +1,4 @@
-﻿using System.Runtime.Intrinsics.X86;
+using System.Runtime.Intrinsics.X86;
 using NUnit.Framework;
 using X10D.Collections;
 

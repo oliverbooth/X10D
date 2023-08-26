@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
