@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using X10D.Math;
 
 namespace X10D.IO;

@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 
 #pragma warning disable CA5394
 

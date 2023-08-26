@@ -1,4 +1,4 @@
-﻿namespace X10D.Reactive;
+namespace X10D.Reactive;
 
 /// <summary>
 ///     Provides extension methods for <see cref="Progress{T}" />.

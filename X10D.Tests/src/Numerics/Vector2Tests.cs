@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using NUnit.Framework;
 #if !NET6_0_OR_GREATER
 using X10D.Core;

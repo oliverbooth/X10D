@@ -1,4 +1,4 @@
-﻿namespace X10D.Collections;
+namespace X10D.Collections;
 
 /// <summary>
 ///     Collection-related extension methods for <see cref="ICollection{T}" />.

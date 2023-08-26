@@ -1,4 +1,4 @@
-﻿#if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
 using System.Text;
 using NUnit.Framework;
 using X10D.Text;

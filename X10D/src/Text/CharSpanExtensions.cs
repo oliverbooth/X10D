@@ -1,4 +1,4 @@
-﻿namespace X10D.Text;
+namespace X10D.Text;
 
 /// <summary>
 ///     Extension methods for <see cref="ReadOnlySpan{T}" /> and <see cref="Span{T}" /> of <see cref="char" />.

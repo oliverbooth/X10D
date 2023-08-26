@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 #if NET5_0_OR_GREATER
 using System.Text.Json.Serialization;
 #endif

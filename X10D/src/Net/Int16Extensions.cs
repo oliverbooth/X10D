@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Net;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
