@@ -94,7 +94,7 @@ public static class DecimalExtensions
     private static void GetBits(decimal value, Span<int> destination)
     {
 #if NET5_0_OR_GREATER
-        decimal.GetBits(value, destination);
+        _ = decimal.GetBits(value, destination);
 #else
         Span<byte> buffer = stackalloc byte[16];
         MemoryMarshal.Write(buffer, ref value);
