@@ -21,7 +21,7 @@
         <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(SolutionDir)/CHANGELOG.md"))</PackageReleaseNotes>
+        <PackageReleaseNotes>See CHANGELOG.md for a full list of changes.</PackageReleaseNotes>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     </PropertyGroup>
 
