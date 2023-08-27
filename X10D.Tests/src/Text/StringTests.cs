@@ -437,7 +437,7 @@ internal class StringTests
     [Test]
     public void GetBytes_ShouldReturnUtf8Bytes_GivenHelloWorld()
     {
-        var expected = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
+        var expected = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64 };
         byte[] actual = "Hello World".GetBytes();
 
         CollectionAssert.AreEqual(expected, actual);
@@ -446,7 +446,7 @@ internal class StringTests
     [Test]
     public void GetBytes_ShouldReturnAsciiBytes_GivenHelloWorld()
     {
-        var expected = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
+        var expected = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64 };
         byte[] actual = "Hello World".GetBytes(Encoding.ASCII);
 
         CollectionAssert.AreEqual(expected, actual);
@@ -488,7 +488,7 @@ internal class StringTests
     public void IsEmoji_ShouldReturnTrue_GivenMultiByteEmoji()
     {
         string[] regionalIndicatorCodes = Enumerable.Range(0, 26)
-            .Select(i => Encoding.Unicode.GetString(new byte[] {0x3C, 0xD8, (byte)(0xE6 + i), 0xDD}))
+            .Select(i => Encoding.Unicode.GetString(new byte[] { 0x3C, 0xD8, (byte)(0xE6 + i), 0xDD }))
             .ToArray();
 
         for (var i = 0; i < 26; i++)
@@ -922,7 +922,7 @@ internal class StringTests
     [Test]
     public void StartsWithAny_ShouldThrowArgumentNullException_GivenANullValue()
     {
-        var values = new[] {"Hello", null!, "World"};
+        var values = new[] { "Hello", null!, "World" };
         Assert.Throws<ArgumentNullException>(() => "Foobar".StartsWithAny(values));
         Assert.Throws<ArgumentNullException>(() => "Foobar".StartsWithAny(StringComparison.Ordinal, values));
     }
