@@ -51,6 +51,6 @@ internal class CharTests
     [Test]
     public void RepeatNegativeCountShouldThrow()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => 'a'.Repeat(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = 'a'.Repeat(-1));
     }
 }
