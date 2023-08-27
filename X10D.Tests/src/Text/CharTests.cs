@@ -41,7 +41,7 @@ internal class CharTests
     public void RepeatOneCountShouldBeLength1String()
     {
         string repeated = 'a'.Repeat(1);
-        Assert.That(repeated.Length, Is.EqualTo(1));
+        Assert.That(repeated, Has.Length.EqualTo(1));
         Assert.That(repeated, Is.EqualTo("a"));
     }
 
