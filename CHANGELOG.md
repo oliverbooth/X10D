@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 BigEndian/LittleEndian methods.
 - X10D: `Stream.GetHash<>` and `Stream.TryWriteHash<>` now throw ArgumentException in lieu of
 TypeInitializationException.
+- X10D: `char.IsEmoji` no longer allocates for .NET 7.
 
 ### Removed
 

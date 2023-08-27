@@ -18,7 +18,13 @@ public static class CharExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool IsEmoji(this char value)
     {
-        return value.ToString().IsEmoji();
+#if NET7_0_OR_GREATER
+        Span<char> chars = stackalloc char[1];
+        chars[0] = value;
+        return EmojiRegex.Value.IsMatch(chars);
+#else
+        return EmojiRegex.Value.IsMatch(value.ToString());
+#endif
     }
 
     /// <summary>
