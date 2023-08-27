@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `string.ConcatIf`.
 - X10D: Added `string.MDBold`, `string.MDCode`, `string.MDCodeBlock([string])`, `string.MDHeading(int)`,
 `string.MDItalic`, `string.MDLink`, `string.MDStrikeOut`, and `string.MDUnderline` for Markdown formatting.
+- X10D: Added Span overloads which complement `char.Repeat` and `string.Repeat`.
 - X10D.Unity: Added `RaycastHit.GetComponent` and `RaycastHit.TryGetComponent`.
 - X10D.Unity: Added `DebugUtility.DrawFunction`, and `DebugUtility.DrawUnjoinedPolyhedron` on which it relies.
 
@@ -41,6 +42,7 @@ BigEndian/LittleEndian methods.
 - X10D: `Stream.GetHash<>` and `Stream.TryWriteHash<>` now throw ArgumentException in lieu of
 TypeInitializationException.
 - X10D: `char.IsEmoji` no longer allocates for .NET 7.
+- X10D: `string.Repeat` is now more efficient.
 
 ### Removed
 

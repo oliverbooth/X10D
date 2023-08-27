@@ -763,6 +763,16 @@ internal class StringTests
     }
 
     [Test]
+    public void Repeat_ShouldNotManipulateSpan_GivenCount0()
+    {
+        Span<char> destination = new char[11];
+        "Hello world".AsSpan().CopyTo(destination);
+
+        "a".Repeat(0, destination);
+        Assert.That(destination.ToString(), Is.EqualTo("Hello world"));
+    }
+
+    [Test]
     public void Repeat_ShouldReturnItself_GivenCount1()
     {
         string repeated = "a".Repeat(1);
@@ -771,9 +781,16 @@ internal class StringTests
     }
 
     [Test]
+    public void Repeat_ShouldThrowArgumentException_GivenSmallSpan()
+    {
+        Assert.Throws<ArgumentException>(() => "a".Repeat(10, Span<char>.Empty));
+    }
+
+    [Test]
     public void Repeat_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => _ = "a".Repeat(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => "a".Repeat(-1, Span<char>.Empty));
     }
 
     [Test]
@@ -781,6 +798,26 @@ internal class StringTests
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Repeat(0));
+        Assert.Throws<ArgumentNullException>(() => value.Repeat(0, Span<char>.Empty));
+    }
+
+    [Test]
+    public void Repeat_ShouldPopulateSpanWithRepeatedCharacter_GivenValidCount()
+    {
+        const string expected = "aaaaaaaaaa";
+        Span<char> destination = new char[10];
+        "a".Repeat(10, destination);
+
+        Assert.That(destination.ToString(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void Repeat_ShouldOnlyWriteOneCharToSpan_GivenCount1()
+    {
+        Span<char> destination = new char[10];
+        "a".Repeat(1, destination);
+
+        Assert.That(destination.ToString(), Is.EqualTo("a\0\0\0\0\0\0\0\0\0"));
     }
 
     [Test]
