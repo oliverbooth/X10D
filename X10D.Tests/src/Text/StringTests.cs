@@ -767,13 +767,13 @@ internal class StringTests
     }
 
     [Test]
-    public void Repeat_ShouldThrow_GivenNegativeCount()
+    public void Repeat_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => _ = "a".Repeat(-1));
     }
 
     [Test]
-    public void Repeat_ShouldThrow_GivenNull()
+    public void Repeat_ShouldThrowArgumentNullException_GivenNull()
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Repeat(0));
@@ -795,7 +795,7 @@ internal class StringTests
     }
 
     [Test]
-    public void Reverse_ShouldThrow_GivenNull()
+    public void Reverse_ShouldThrowArgumentNullException_GivenNull()
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Reverse());
@@ -813,7 +813,7 @@ internal class StringTests
     }
 
     [Test]
-    public void Shuffled_ShouldThrow_GivenNull()
+    public void Shuffled_ShouldThrowArgumentNullException_GivenNull()
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Shuffled());
@@ -847,7 +847,7 @@ internal class StringTests
     }
 
     [Test]
-    public void Split_ShouldThrow_GivenNullString()
+    public void Split_ShouldThrowArgumentNullException_GivenNullString()
     {
         string value = null!;
 
