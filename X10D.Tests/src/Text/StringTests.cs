@@ -744,7 +744,7 @@ internal class StringTests
     [Test]
     public void Randomize_ShouldThrow_GivenNegativeLength()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.Randomize(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = string.Empty.Randomize(-1));
     }
 
     [Test]
