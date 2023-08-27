@@ -492,10 +492,12 @@ internal class StringTests
             .ToArray();
 
         for (var i = 0; i < 26; i++)
-        for (var j = 0; j < 26; j++)
         {
-            string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
-            Assert.That(flag.IsEmoji());
+            for (var j = 0; j < 26; j++)
+            {
+                string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
+                Assert.That(flag.IsEmoji());
+            }
         }
     }
 
