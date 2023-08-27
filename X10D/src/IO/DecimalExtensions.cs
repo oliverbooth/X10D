@@ -102,7 +102,7 @@ public static class DecimalExtensions
 #endif
     }
 
-    [Conditional("NET5_0_OR_GREATER")]
+#if !NET5_0_OR_GREATER
     private static void WriteBits(Span<int> destination, Span<byte> buffer)
     {
         var flags = MemoryMarshal.Read<int>(buffer[..4]);
@@ -117,4 +117,5 @@ public static class DecimalExtensions
         destination[2] = hi;
         destination[3] = flags;
     }
+#endif
 }
