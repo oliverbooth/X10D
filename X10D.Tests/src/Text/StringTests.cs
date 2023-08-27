@@ -215,7 +215,9 @@ internal class StringTests
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => value.CountSubstring('\0'));
+#pragma warning disable CA1307
         Assert.Throws<ArgumentNullException>(() => value.CountSubstring(string.Empty));
+#pragma warning restore CA1307
         Assert.Throws<ArgumentNullException>(() => value.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
     }
 
