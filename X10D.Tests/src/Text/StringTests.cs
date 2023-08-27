@@ -762,7 +762,7 @@ internal class StringTests
     public void Repeat_ShouldReturnItself_GivenCount1()
     {
         string repeated = "a".Repeat(1);
-        Assert.That(repeated.Length, Is.EqualTo(1));
+        Assert.That(repeated, Has.Length.EqualTo(1));
         Assert.That(repeated, Is.EqualTo("a"));
     }
 
