@@ -70,12 +70,15 @@ internal class MarkdownTests
     [Test]
     public void MDHeading_ShouldReturnHeadingText_GivenText()
     {
-        Assert.That("Hello, world!".MDHeading(1), Is.EqualTo("# Hello, world!"));
-        Assert.That("Hello, world!".MDHeading(2), Is.EqualTo("## Hello, world!"));
-        Assert.That("Hello, world!".MDHeading(3), Is.EqualTo("### Hello, world!"));
-        Assert.That("Hello, world!".MDHeading(4), Is.EqualTo("#### Hello, world!"));
-        Assert.That("Hello, world!".MDHeading(5), Is.EqualTo("##### Hello, world!"));
-        Assert.That("Hello, world!".MDHeading(6), Is.EqualTo("###### Hello, world!"));
+        Assert.Multiple(() =>
+        {
+            Assert.That("Hello, world!".MDHeading(1), Is.EqualTo("# Hello, world!"));
+            Assert.That("Hello, world!".MDHeading(2), Is.EqualTo("## Hello, world!"));
+            Assert.That("Hello, world!".MDHeading(3), Is.EqualTo("### Hello, world!"));
+            Assert.That("Hello, world!".MDHeading(4), Is.EqualTo("#### Hello, world!"));
+            Assert.That("Hello, world!".MDHeading(5), Is.EqualTo("##### Hello, world!"));
+            Assert.That("Hello, world!".MDHeading(6), Is.EqualTo("###### Hello, world!"));
+        });
     }
 
     [Test]

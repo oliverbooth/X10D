@@ -9,11 +9,14 @@ internal class CharTests
     [Test]
     public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
     {
-        Assert.That('✂'.IsEmoji());
-        Assert.That('✅'.IsEmoji());
-        Assert.That('❎'.IsEmoji());
-        Assert.That('➕'.IsEmoji());
-        Assert.That('➖'.IsEmoji());
+        Assert.Multiple(() =>
+        {
+            Assert.That('✂'.IsEmoji());
+            Assert.That('✅'.IsEmoji());
+            Assert.That('❎'.IsEmoji());
+            Assert.That('➕'.IsEmoji());
+            Assert.That('➖'.IsEmoji());
+        });
     }
 
     [Test]
