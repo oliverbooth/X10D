@@ -29,7 +29,7 @@ internal class CharTests
     }
 
     [Test]
-    public void RepeatShouldBeCorrect()
+    public void Repeat_ShouldReturnRepeatedCharacter_GivenValidCount()
     {
         const string expected = "aaaaaaaaaa";
         string actual = 'a'.Repeat(10);
@@ -38,7 +38,7 @@ internal class CharTests
     }
 
     [Test]
-    public void RepeatOneCountShouldBeLength1String()
+    public void Repeat_ShouldReturnSingleCharString_GivenCount1()
     {
         string repeated = 'a'.Repeat(1);
         Assert.That(repeated, Has.Length.EqualTo(1));
@@ -46,13 +46,13 @@ internal class CharTests
     }
 
     [Test]
-    public void RepeatZeroCountShouldBeEmpty()
+    public void Repeat_ShouldReturnEmptyString_GivenCount0()
     {
         Assert.That('a'.Repeat(0), Is.EqualTo(string.Empty));
     }
 
     [Test]
-    public void RepeatNegativeCountShouldThrow()
+    public void Repeat_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => _ = 'a'.Repeat(-1));
     }
