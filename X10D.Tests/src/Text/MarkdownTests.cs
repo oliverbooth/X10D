@@ -39,13 +39,19 @@ internal class MarkdownTests
     [Test]
     public void MDCodeBlock_ShouldReturnCodeBlockText_GivenText()
     {
-        Assert.That("Hello, world!".MDCodeBlock(), Is.EqualTo($"```{Environment.NewLine}Hello, world!{Environment.NewLine}```"));
+        var expected = $"```{Environment.NewLine}Hello, world!{Environment.NewLine}```";
+        string actual = "Hello, world!".MDCodeBlock();
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
     public void MDCodeBlock_ShouldReturnCodeBlockText_GivenTextAndLanguage()
     {
-        Assert.That("Hello, world!".MDCodeBlock("csharp"), Is.EqualTo($"```csharp{Environment.NewLine}Hello, world!{Environment.NewLine}```"));
+        var expected = $"```csharp{Environment.NewLine}Hello, world!{Environment.NewLine}```";
+        string actual = "Hello, world!".MDCodeBlock("csharp");
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
