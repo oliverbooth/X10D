@@ -106,6 +106,46 @@ internal class MarkdownTests
     }
 
     [Test]
+    public void MDLink_ShouldThrowArgumentNullException_GivenNullUrl()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.Throws<ArgumentNullException>(() => "".MDLink((string)null!));
+            Assert.Throws<ArgumentNullException>(() => "".MDLink((Uri)null!));
+            Assert.Throws<ArgumentNullException>(() => ((Uri)null!).MDLink("Hello, world!"));
+        });
+    }
+
+    [Test]
+    public void MDLink_ShouldReturnUrlOnly_GivenNullOrEmptyLabel()
+    {
+        const string url = "https://example.com/";
+        Assert.Multiple(() =>
+        {
+            Assert.That(((string)null!).MDLink(url), Is.EqualTo(url));
+            Assert.That(string.Empty.MDLink(url), Is.EqualTo(url));
+
+            Assert.That(new Uri(url).MDLink(null), Is.EqualTo(url));
+            Assert.That(new Uri(url).MDLink(string.Empty), Is.EqualTo(url));
+        });
+    }
+
+    [Test]
+    public void MDLink_ShouldReturnFormattedLink_GivenValidLabelAndUrl()
+    {
+        const string url = "https://example.com/";
+        const string label = "Hello, world!";
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(label.MDLink(url), Is.EqualTo($"[{label}]({url})"));
+            Assert.That(label.MDLink(new Uri(url)), Is.EqualTo($"[{label}]({url})"));
+
+            Assert.That(new Uri(url).MDLink(label), Is.EqualTo($"[{label}]({url})"));
+        });
+    }
+
+    [Test]
     public void MDStrikeOut_ShouldThrowArgumentNullException_GivenNull()
     {
         Assert.Throws<ArgumentNullException>(() => ((string)null!).MDStrikeOut());
