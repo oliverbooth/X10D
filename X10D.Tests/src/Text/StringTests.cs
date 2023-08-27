@@ -164,7 +164,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That("Hello World".CountSubstring('E'), Is.Zero);
+#pragma warning disable CA1307
             Assert.That("Hello World".CountSubstring("E"), Is.Zero);
+#pragma warning restore CA1307
             Assert.That("Hello World".CountSubstring("E", StringComparison.OrdinalIgnoreCase), Is.EqualTo(1));
         });
     }
@@ -175,7 +177,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That("Hello World".CountSubstring('z'), Is.Zero);
+#pragma warning disable CA1307
             Assert.That("Hello World".CountSubstring("z"), Is.Zero);
+#pragma warning restore CA1307
             Assert.That("Hello World".CountSubstring("z", StringComparison.OrdinalIgnoreCase), Is.Zero);
         });
     }
@@ -186,7 +190,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That("Hello World".CountSubstring('e'), Is.EqualTo(1));
+#pragma warning disable CA1307
             Assert.That("Hello World".CountSubstring("e"), Is.EqualTo(1));
+#pragma warning restore CA1307
             Assert.That("Hello World".CountSubstring("e", StringComparison.OrdinalIgnoreCase), Is.EqualTo(1));
         });
     }
@@ -197,7 +203,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That(string.Empty.CountSubstring('\0'), Is.Zero);
+#pragma warning disable CA1307
             Assert.That(string.Empty.CountSubstring(string.Empty), Is.Zero);
+#pragma warning restore CA1307
             Assert.That(string.Empty.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase), Is.Zero);
         });
     }
@@ -217,7 +225,10 @@ internal class StringTests
         const string value = "Hello Worl";
         const char substring = 'd';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureEndsWith(substring), Is.EqualTo("Hello World"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo("Hello World"));
     }
 
     [Test]
@@ -226,7 +237,10 @@ internal class StringTests
         const string value = "A";
         const char substring = 'A';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureEndsWith(substring), Is.EqualTo(value));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo(value));
     }
 
     [Test]
@@ -235,7 +249,10 @@ internal class StringTests
         const string value = "B";
         const char substring = 'A';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureStartsWith(substring), Is.EqualTo("AB"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo("AB"));
     }
 
     [Test]
@@ -244,7 +261,10 @@ internal class StringTests
         const string value = "A";
         const char substring = 'A';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureStartsWith(substring), Is.EqualTo(value));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo(value));
     }
 
     [Test]
@@ -253,7 +273,10 @@ internal class StringTests
         const string value = "Hello ";
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureEndsWith(substring), Is.EqualTo("Hello World"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo("Hello World"));
     }
 
     [Test]
@@ -261,7 +284,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureEndsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -269,7 +295,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(string.Empty.EnsureEndsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(string.Empty.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -277,7 +306,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureEndsWith(string.Empty), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureEndsWith(string.Empty, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -286,7 +318,10 @@ internal class StringTests
         const string value = "World";
         const string substring = "Hello ";
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureStartsWith(substring), Is.EqualTo("Hello World"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo("Hello World"));
     }
 
     [Test]
@@ -294,7 +329,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureStartsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -302,7 +340,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(string.Empty.EnsureStartsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(string.Empty.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -310,7 +351,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureStartsWith(string.Empty), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureStartsWith(string.Empty, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
