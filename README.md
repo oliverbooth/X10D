@@ -15,23 +15,30 @@ X10D (pronounced *extend*), is a .NET package that provides extension methods fo
 *(I'm also [dogfooding](https://www.pcmag.com/encyclopedia/term/dogfooding) this library, so there's that.)*
 
 ## Installation
+
 ### NuGet installation
+
 ```ps
 Install-Package X10D -Version 4.0.0
 ```
 
 ### Manual installation
+
 Download the [latest release](https://github.com/oliverbooth/X10D/releases/latest) from this repository and adding a direct assembly reference for your chosen platform.
 
 ### Unity installation
+
 For the Unity installation guide, refer to the [README.md in X10D.Unity](X10D.Unity/README.md).
 
-## Features
-I'm planning on writing complete and extensive documentation in the near future. As of this time, feel free to browse the source or the API using your favourite IDE.
-For those familiar with the 2.6.0 API, please read [CHANGELOG.md](CHANGELOG.md) for a complete list of changes. **3.0.0 is a major release and introduces many breaking changes.**
+## Documentation
+
+Documentation and the API reference is available at https://oliverbooth.github.io/X10D/index.html. *I'm sorry this took
+so long to get up and running. DocFX will be the death of me.*
 
 ## Contributing
+
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
+
 X10D is released under the MIT License. See [here](https://github.com/oliverbooth/X10D/blob/main/LICENSE.md) for more details.
