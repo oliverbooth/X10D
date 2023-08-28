@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <PropertyGroup>
+        <TargetFrameworks>net7.0;net6.0;netstandard2.1</TargetFrameworks>
+    </PropertyGroup>
+
     <ItemGroup>
         <Compile Update="src\ExceptionMessages.Designer.cs">
             <DesignTime>True</DesignTime>
