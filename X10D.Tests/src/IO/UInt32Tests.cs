@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
@@ -33,7 +33,7 @@ internal class UInt32Tests
         byte[] expected = { 0x0F, 0, 0, 0 };
 
         Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteLittleEndian(actual));
+        Assert.That(value.TryWriteLittleEndianBytes(actual));
 
         CollectionAssert.AreEqual(expected, actual.ToArray());
     }
@@ -45,7 +45,7 @@ internal class UInt32Tests
         byte[] expected = { 0, 0, 0, 0x0F };
 
         Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteBigEndian(actual));
+        Assert.That(value.TryWriteBigEndianBytes(actual));
 
         CollectionAssert.AreEqual(expected, actual.ToArray());
     }
@@ -55,7 +55,7 @@ internal class UInt32Tests
     {
         const uint value = 0x0F;
         Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteLittleEndian(buffer), Is.False);
+        Assert.That(value.TryWriteLittleEndianBytes(buffer), Is.False);
     }
 
     [Test]
@@ -63,6 +63,6 @@ internal class UInt32Tests
     {
         const uint value = 0x0F;
         Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteBigEndian(buffer), Is.False);
+        Assert.That(value.TryWriteBigEndianBytes(buffer), Is.False);
     }
 }

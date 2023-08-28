@@ -1,4 +1,4 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.Diagnostics.Contracts;
 
 namespace X10D.IO;
@@ -18,7 +18,7 @@ public static class UInt64Extensions
     public static byte[] GetBigEndianBytes(this ulong value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -31,7 +31,7 @@ public static class UInt64Extensions
     public static byte[] GetLittleEndianBytes(this ulong value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -41,7 +41,7 @@ public static class UInt64Extensions
     /// <param name="value">The <see cref="ulong" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBigEndian(this ulong value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this ulong value, Span<byte> destination)
     {
         return BinaryPrimitives.TryWriteUInt64BigEndian(destination, value);
     }
@@ -52,7 +52,7 @@ public static class UInt64Extensions
     /// <param name="value">The <see cref="ulong" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteLittleEndian(this ulong value, Span<byte> destination)
+    public static bool TryWriteLittleEndianBytes(this ulong value, Span<byte> destination)
     {
         return BinaryPrimitives.TryWriteUInt64LittleEndian(destination, value);
     }

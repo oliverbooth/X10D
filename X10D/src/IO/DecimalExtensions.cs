@@ -18,7 +18,7 @@ public static class DecimalExtensions
     public static byte[] GetBigEndianBytes(this decimal value)
     {
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -31,7 +31,7 @@ public static class DecimalExtensions
     public static byte[] GetLittleEndianBytes(this decimal value)
     {
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -41,15 +41,15 @@ public static class DecimalExtensions
     /// <param name="value">The <see cref="float" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBigEndian(this decimal value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this decimal value, Span<byte> destination)
     {
         Span<int> buffer = stackalloc int[4];
         GetBits(value, buffer);
 
-        if (buffer[0].TryWriteBigEndian(destination[..4]) &&
-            buffer[1].TryWriteBigEndian(destination[4..8]) &&
-            buffer[2].TryWriteBigEndian(destination[8..12]) &&
-            buffer[3].TryWriteBigEndian(destination[12..]))
+        if (buffer[0].TryWriteBigEndianBytes(destination[..4]) &&
+            buffer[1].TryWriteBigEndianBytes(destination[4..8]) &&
+            buffer[2].TryWriteBigEndianBytes(destination[8..12]) &&
+            buffer[3].TryWriteBigEndianBytes(destination[12..]))
         {
             if (BitConverter.IsLittleEndian)
             {
@@ -69,15 +69,15 @@ public static class DecimalExtensions
     /// <param name="value">The <see cref="float" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteLittleEndian(this decimal value, Span<byte> destination)
+    public static bool TryWriteLittleEndianBytes(this decimal value, Span<byte> destination)
     {
         Span<int> buffer = stackalloc int[4];
         GetBits(value, buffer);
 
-        if (buffer[0].TryWriteLittleEndian(destination[..4]) &&
-            buffer[1].TryWriteLittleEndian(destination[4..8]) &&
-            buffer[2].TryWriteLittleEndian(destination[8..12]) &&
-            buffer[3].TryWriteLittleEndian(destination[12..]))
+        if (buffer[0].TryWriteLittleEndianBytes(destination[..4]) &&
+            buffer[1].TryWriteLittleEndianBytes(destination[4..8]) &&
+            buffer[2].TryWriteLittleEndianBytes(destination[8..12]) &&
+            buffer[3].TryWriteLittleEndianBytes(destination[12..]))
         {
             if (!BitConverter.IsLittleEndian)
             {
