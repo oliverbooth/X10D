@@ -72,17 +72,9 @@ public static class ColorExtensions
         double blue = color.B;
         var delta = double.MaxValue;
 
-#if NET5_0_OR_GREATER
         foreach (ConsoleColor consoleColor in Enum.GetValues<ConsoleColor>())
-#else
-        foreach (ConsoleColor consoleColor in Enum.GetValues(typeof(ConsoleColor)))
-#endif
         {
-#if NET5_0_OR_GREATER
             string name = Enum.GetName(consoleColor)!;
-#else
-            string name = Enum.GetName(typeof(ConsoleColor), consoleColor)!;
-#endif
             Color currentColor = Color.FromName(name == "DarkYellow" ? "Orange" : name); // bug fix
             double r = currentColor.R - red;
             double g = currentColor.G - green;

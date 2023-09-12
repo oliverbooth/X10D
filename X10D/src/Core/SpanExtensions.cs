@@ -2,13 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using X10D.CompilerServices;
-
-#if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 using System.Runtime.Intrinsics.Arm;
-#endif
+using X10D.CompilerServices;
 
 #if NET7_0_OR_GREATER
 using System.Diagnostics;
@@ -21,7 +18,6 @@ namespace X10D.Core;
 /// </summary>
 public static class SpanExtensions
 {
-#if NETCOREAPP3_0_OR_GREATER
     private const ulong IntegerPackingMagic = 0x0102040810204080;
 
     [ExcludeFromCodeCoverage]
@@ -35,7 +31,6 @@ public static class SpanExtensions
     {
         get => Vector256.Create(IntegerPackingMagic);
     }
-#endif
 
     /// <summary>
     ///     Returns a value indicating whether a specific enumeration value is contained with the current span of elements.
@@ -71,7 +66,6 @@ public static class SpanExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
-#if NET6_0_OR_GREATER
         unsafe
         {
 #pragma warning disable CS8500
@@ -114,17 +108,6 @@ public static class SpanExtensions
                 // dotcover enable
             }
         }
-#else
-        foreach (var it in span)
-        {
-            if (EqualityComparer<T>.Default.Equals(it, value))
-            {
-                return true;
-            }
-        }
-
-        return false;
-#endif
     }
 
     /// <summary>
@@ -161,7 +144,6 @@ public static class SpanExtensions
             return PackByteInternal_Fallback(source);
         }
 
-#if NETCOREAPP3_0_OR_GREATER
         if (!BitConverter.IsLittleEndian)
         {
             return PackByteInternal_Fallback(source);
@@ -176,7 +158,6 @@ public static class SpanExtensions
         {
             return PackByteInternal_AdvSimd(source);
         }
-#endif
 
         return PackByteInternal_Fallback(source);
     }
@@ -217,12 +198,10 @@ public static class SpanExtensions
                     goto default;
                 }
 
-#if NETCOREAPP3_0_OR_GREATER
                 if (Sse2.IsSupported)
                 {
                     return PackInt16Internal_Sse2(source);
                 }
-#endif
 
                 goto default;
             case < 16:
@@ -269,7 +248,6 @@ public static class SpanExtensions
                 return PackInt16(source);
 
             case 32:
-#if NETCOREAPP3_0_OR_GREATER
                 if (!BitConverter.IsLittleEndian)
                 {
                     goto default;
@@ -289,7 +267,6 @@ public static class SpanExtensions
                 {
                     return PackInt32Internal_AdvSimd(source);
                 }
-#endif
                 goto default;
 
             default:
@@ -383,7 +360,6 @@ public static class SpanExtensions
         return result;
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static byte PackByteInternal_Sse2(this ReadOnlySpan<bool> source)
@@ -499,7 +475,6 @@ public static class SpanExtensions
         }
     }
 
-#if NET5_0_OR_GREATER
     // dotcover disable
     //NOSONAR
     [Pure]
@@ -517,6 +492,4 @@ public static class SpanExtensions
     }
     //NOSONAR
     // dotcover enable
-#endif
-#endif
 }

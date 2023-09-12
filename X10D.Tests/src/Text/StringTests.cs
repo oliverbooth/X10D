@@ -1,7 +1,5 @@
 using System.Text;
-#if NET5_0_OR_GREATER
 using System.Text.Json.Serialization;
-#endif
 using NUnit.Framework;
 using X10D.Text;
 
@@ -418,7 +416,6 @@ internal class StringTests
         Assert.Throws<ArgumentException>(() => _ = " ".EnumParse<DayOfWeek>());
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void FromJson_ShouldDeserializeCorrectly_GivenJsonString()
     {
@@ -434,7 +431,6 @@ internal class StringTests
             Assert.That(target.Values[2], Is.EqualTo(3));
         });
     }
-#endif
 
     [Test]
     public void GetBytes_ShouldReturnUtf8Bytes_GivenHelloWorld()
@@ -1006,11 +1002,9 @@ internal class StringTests
         });
     }
 
-#if NET5_0_OR_GREATER
     private struct SampleStructure
     {
         [JsonPropertyName("values")]
         public int[] Values { get; set; }
     }
-#endif
 }

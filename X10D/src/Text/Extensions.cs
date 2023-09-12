@@ -1,4 +1,3 @@
-#if NET5_0_OR_GREATER
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -25,4 +24,3 @@ public static class Extensions
         return JsonSerializer.Serialize(value, options);
     }
 }
-#endif

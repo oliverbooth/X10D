@@ -1,5 +1,3 @@
-#if NETCOREAPP3_0_OR_GREATER
-
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -184,34 +182,22 @@ public static class IntrinsicUtility
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static Vector64<T> GetUninitializedVector64<T>() where T : struct
     {
-#if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector64<T> output);
         return output;
-#else
-        return default;
-#endif
     }
 
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static Vector128<T> GetUninitializedVector128<T>() where T : struct
     {
-#if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector128<T> output);
         return output;
-#else
-        return default;
-#endif
     }
 
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static Vector256<T> GetUninitializedVector256<T>() where T : struct
     {
-#if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector256<T> output);
         return output;
-#else
-        return default;
-#endif
     }
 
     [Pure]
@@ -315,5 +301,3 @@ public static class IntrinsicUtility
         return Avx2.Add(high, ac);
     }
 }
-
-#endif

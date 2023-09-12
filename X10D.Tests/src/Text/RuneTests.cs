@@ -1,4 +1,3 @@
-#if NET5_0_OR_GREATER
 using System.Text;
 using NUnit.Framework;
 using X10D.Text;
@@ -90,4 +89,3 @@ internal class RuneTests
         Assert.That(repeated, Is.EqualTo("𐀀𐀀𐀀𐀀𐀀𐀀"));
     }
 }
-#endif

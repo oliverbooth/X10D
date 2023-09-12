@@ -55,12 +55,10 @@ public static class EnumerableExtensions
             throw new ArgumentNullException(nameof(pattern));
         }
 
-#if NET6_0_OR_GREATER
         if (source.TryGetNonEnumeratedCount(out int count) && count == 0)
         {
             yield break;
         }
-#endif
 
         var options = RegexOptions.Compiled | (ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
         var regex = new Regex(pattern, options, Regex.InfiniteMatchTimeout);

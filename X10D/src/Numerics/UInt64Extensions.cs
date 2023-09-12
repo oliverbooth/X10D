@@ -24,20 +24,7 @@ public static class UInt64Extensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int PopCount(this ulong value)
     {
-#if NETCOREAPP3_1_OR_GREATER
         return BitOperations.PopCount(value);
-#else
-        const ulong c1 = 0x_55555555_55555555ul;
-        const ulong c2 = 0x_33333333_33333333ul;
-        const ulong c3 = 0x_0F0F0F0F_0F0F0F0Ful;
-        const ulong c4 = 0x_01010101_01010101ul;
-
-        value -= (value >> 1) & c1;
-        value = (value & c2) + ((value >> 2) & c2);
-        value = (((value + (value >> 4)) & c3) * c4) >> 56;
-
-        return (int)value;
-#endif
     }
 
     /// <summary>
@@ -82,18 +69,6 @@ public static class UInt64Extensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static ulong RoundUpToPowerOf2(this ulong value)
     {
-#if NET6_0_OR_GREATER
         return BitOperations.RoundUpToPowerOf2(value);
-#else
-        // Based on https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
-        --value;
-        value |= value >> 1;
-        value |= value >> 2;
-        value |= value >> 4;
-        value |= value >> 8;
-        value |= value >> 16;
-        value |= value >> 32;
-        return value + 1;
-#endif
     }
 }

@@ -1,5 +1,4 @@
 using System.Buffers.Binary;
-using System.Runtime.InteropServices;
 
 namespace X10D.IO;
 
@@ -40,11 +39,7 @@ public static partial class StreamExtensions
             buffer.Reverse();
         }
 
-#if NET5_0_OR_GREATER
         return new decimal(buffer);
-#else
-        return new decimal(buffer.ToArray());
-#endif
     }
 
     /// <summary>
@@ -82,11 +77,7 @@ public static partial class StreamExtensions
             buffer.Reverse();
         }
 
-#if NET5_0_OR_GREATER
         return new decimal(buffer);
-#else
-        return new decimal(buffer.ToArray());
-#endif
     }
 
     /// <summary>
@@ -110,16 +101,7 @@ public static partial class StreamExtensions
 
         Span<byte> buffer = stackalloc byte[8];
         _ = stream.Read(buffer);
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.ReadDoubleBigEndian(buffer);
-#else
-        if (BitConverter.IsLittleEndian)
-        {
-            buffer.Reverse();
-        }
-
-        return MemoryMarshal.Read<double>(buffer);
-#endif
     }
 
     /// <summary>
@@ -144,16 +126,7 @@ public static partial class StreamExtensions
 
         Span<byte> buffer = stackalloc byte[8];
         _ = stream.Read(buffer);
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.ReadDoubleLittleEndian(buffer);
-#else
-        if (!BitConverter.IsLittleEndian)
-        {
-            buffer.Reverse();
-        }
-
-        return MemoryMarshal.Read<double>(buffer);
-#endif
     }
 
     /// <summary>
@@ -323,16 +296,7 @@ public static partial class StreamExtensions
 
         Span<byte> buffer = stackalloc byte[4];
         _ = stream.Read(buffer);
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.ReadSingleBigEndian(buffer);
-#else
-        if (BitConverter.IsLittleEndian)
-        {
-            buffer.Reverse();
-        }
-
-        return MemoryMarshal.Read<float>(buffer);
-#endif
     }
 
     /// <summary>
@@ -358,16 +322,7 @@ public static partial class StreamExtensions
 
         Span<byte> buffer = stackalloc byte[4];
         _ = stream.Read(buffer);
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.ReadSingleLittleEndian(buffer);
-#else
-        if (!BitConverter.IsLittleEndian)
-        {
-            buffer.Reverse();
-        }
-
-        return MemoryMarshal.Read<float>(buffer);
-#endif
     }
 
     /// <summary>

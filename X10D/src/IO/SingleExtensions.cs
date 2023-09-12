@@ -45,17 +45,7 @@ public static class SingleExtensions
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
     public static bool TryWriteBigEndianBytes(this float value, Span<byte> destination)
     {
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.TryWriteSingleBigEndian(destination, value);
-#else
-        if (BitConverter.IsLittleEndian)
-        {
-            int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
-            return MemoryMarshal.TryWrite(destination, ref tmp);
-        }
-
-        return MemoryMarshal.TryWrite(destination, ref value);
-#endif
     }
 
     /// <summary>
@@ -66,16 +56,6 @@ public static class SingleExtensions
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
     public static bool TryWriteLittleEndianBytes(this float value, Span<byte> destination)
     {
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.TryWriteSingleLittleEndian(destination, value);
-#else
-        if (BitConverter.IsLittleEndian)
-        {
-            return MemoryMarshal.TryWrite(destination, ref value);
-        }
-
-        int tmp = BinaryPrimitives.ReverseEndianness(BitConverter.SingleToInt32Bits(value));
-        return MemoryMarshal.TryWrite(destination, ref tmp);
-#endif
     }
 }

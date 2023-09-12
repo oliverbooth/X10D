@@ -2,9 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text;
-#if NET5_0_OR_GREATER
 using System.Text.Json;
-#endif
 using X10D.Collections;
 using X10D.CompilerServices;
 using X10D.Core;
@@ -575,7 +573,6 @@ public static class StringExtensions
         return Enum.Parse<T>(value, ignoreCase);
     }
 
-#if NET5_0_OR_GREATER
     /// <summary>
     ///     Returns an object from the specified JSON string.
     /// </summary>
@@ -590,7 +587,6 @@ public static class StringExtensions
     {
         return JsonSerializer.Deserialize<T>(value, options);
     }
-#endif
 
     /// <summary>
     ///     Gets a <see cref="byte" />[] representing the value the <see cref="string" /> with
@@ -688,7 +684,6 @@ public static class StringExtensions
 
         for (var index = 0; index < value.Length; index++)
         {
-#if NETCOREAPP3_0_OR_GREATER
             var rune = new Rune(value[index]);
 
             if (!Rune.IsLetter(rune))
@@ -700,19 +695,6 @@ public static class StringExtensions
             {
                 return false;
             }
-#else
-            char current = value[index];
-
-            if (!char.IsLetter(current))
-            {
-                continue;
-            }
-
-            if (!char.IsLower(current))
-            {
-                return false;
-            }
-#endif
         }
 
         return true;
@@ -777,7 +759,6 @@ public static class StringExtensions
 
         for (int index = 0, endIndex = value.Length - 1; index < value.Length; index++, endIndex--)
         {
-#if NETCOREAPP3_0_OR_GREATER
             Rune startRune = new Rune(value[index]);
             Rune endRune = new Rune(value[endIndex]);
 
@@ -797,27 +778,6 @@ public static class StringExtensions
             {
                 return false;
             }
-#else
-            char startChar = value[index];
-            char endChar = value[endIndex];
-
-            if (!char.IsLetter(startChar) && !char.IsNumber(startChar))
-            {
-                endIndex++;
-                continue;
-            }
-
-            if (!char.IsLetter(endChar) && !char.IsNumber(endChar))
-            {
-                index--;
-                continue;
-            }
-
-            if (char.ToUpperInvariant(startChar) != char.ToUpperInvariant(endChar))
-            {
-                return false;
-            }
-#endif
         }
 
         return true;
@@ -841,7 +801,6 @@ public static class StringExtensions
 
         for (var index = 0; index < value.Length; index++)
         {
-#if NETCOREAPP3_0_OR_GREATER
             var rune = new Rune(value[index]);
 
             if (!Rune.IsLetter(rune))
@@ -853,19 +812,6 @@ public static class StringExtensions
             {
                 return false;
             }
-#else
-            char current = value[index];
-
-            if (!char.IsLetter(current))
-            {
-                continue;
-            }
-
-            if (!char.IsUpper(current))
-            {
-                return false;
-            }
-#endif
         }
 
         return true;

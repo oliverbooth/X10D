@@ -1,7 +1,5 @@
-#if NET5_0_OR_GREATER
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
-#endif
 using NUnit.Framework;
 using X10D.Core;
 
@@ -209,7 +207,6 @@ internal class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void PackByteInternal_Sse2_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
     {
@@ -241,7 +238,6 @@ internal class SpanTest
 
         Assert.That(actual, Is.EqualTo(expected));
     }
-#endif
 
     [Test]
     public void PackInt16_ShouldReturnSameAsPackByte_WhenSpanHasLength8()
@@ -268,7 +264,6 @@ internal class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void PackInt16Internal_Sse2_ShouldReturnCorrectInt16_GivenReadOnlySpan_Using()
     {
@@ -287,7 +282,6 @@ internal class SpanTest
 
         Assert.That(actual, Is.EqualTo(expected));
     }
-#endif
 
     [Test]
     public void PackInt32Internal_Fallback_ShouldReturnCorrectInt32_GivenReadOnlySpan()
@@ -304,7 +298,6 @@ internal class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void PackInt32Internal_Sse2_ShouldReturnCorrectInt32_GivenReadOnlySpan()
     {
@@ -364,7 +357,6 @@ internal class SpanTest
 
         Assert.That(actual, Is.EqualTo(expected));
     }
-#endif
 
     [Test]
     public void PackInt32_ShouldReturnSameAsPackByte_WhenSpanHasLength8_UsingReadOnlySpan()

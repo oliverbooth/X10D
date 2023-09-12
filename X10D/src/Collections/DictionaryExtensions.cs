@@ -1,7 +1,5 @@
 using System.Diagnostics.Contracts;
-#if NET6_0_OR_GREATER
 using System.Runtime.InteropServices;
-#endif
 using System.Web;
 
 namespace X10D.Collections;
@@ -47,23 +45,10 @@ public static class DictionaryExtensions
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
 
-#if NET6_0_OR_GREATER
         ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
         // DO NOT CHANGE. reassigning value is necessary to mutate the dictionary, due to ref return above.
         // mutation of the dictionary is INTENDED BEHAVIOUR. this is not a mistake.
         return value = exists ? updateValueFactory(key, value!) : addValue;
-#else
-        if (dictionary.TryGetValue(key, out TValue? old))
-        {
-            TValue updated = updateValueFactory(key, old);
-            dictionary[key] = updated;
-
-            return updated;
-        }
-
-        dictionary.Add(key, addValue);
-        return addValue;
-#endif
     }
 
     /// <summary>
@@ -157,25 +142,10 @@ public static class DictionaryExtensions
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
 
-#if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
         // DO NOT CHANGE. reassigning value is necessary to mutate the dictionary, due to ref return above.
         // mutation of the dictionary is INTENDED BEHAVIOUR. this is not a mistake.
         return value = exists ? updateValueFactory(key, value!) : addValueFactory(key);
-#else
-        if (dictionary.TryGetValue(key, out TValue? old))
-        {
-            TValue updated = updateValueFactory(key, old);
-            dictionary[key] = updated;
-
-            return updated;
-        }
-
-        TValue add = addValueFactory(key);
-        dictionary.Add(key, add);
-
-        return add;
-#endif
     }
 
     /// <summary>
@@ -284,25 +254,10 @@ public static class DictionaryExtensions
             throw new ArgumentNullException(nameof(updateValueFactory));
         }
 
-#if NET6_0_OR_GREATER
         ref TValue? value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out bool exists);
         // DO NOT CHANGE. reassigning value is necessary to mutate the dictionary, due to ref return above.
         // mutation of the dictionary is INTENDED BEHAVIOUR. this is not a mistake.
         return value = exists ? updateValueFactory(key, value!, factoryArgument) : addValueFactory(key, factoryArgument);
-#else
-        if (dictionary.TryGetValue(key, out TValue? old))
-        {
-            TValue updated = updateValueFactory(key, old, factoryArgument);
-            dictionary[key] = updated;
-
-            return updated;
-        }
-
-        TValue add = addValueFactory(key, factoryArgument);
-        dictionary.Add(key, add);
-
-        return add;
-#endif
     }
 
     /// <summary>

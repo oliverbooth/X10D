@@ -1,12 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
-using X10D.CompilerServices;
-
-#if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
-#endif
+using X10D.CompilerServices;
 
 namespace X10D.Collections;
 
@@ -46,13 +43,11 @@ public static class Int16Extensions
             throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
-#if NETCOREAPP3_0_OR_GREATER
         if (Sse3.IsSupported)
         {
             UnpackInternal_Ssse3(value, destination);
             return;
         }
-#endif
 
         UnpackInternal_Fallback(value, destination);
     }
@@ -66,7 +61,6 @@ public static class Int16Extensions
         }
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal unsafe static void UnpackInternal_Ssse3(this short value, Span<bool> destination)
     {
@@ -89,5 +83,4 @@ public static class Int16Extensions
             Sse2.Store((byte*)pDestination, correctness);
         }
     }
-#endif
 }
