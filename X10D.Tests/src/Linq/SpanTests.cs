@@ -76,7 +76,7 @@ internal class SpanTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             var span = new Span<int>();
-            _ = span.Count(null!);
+            _ = span.Count((Predicate<int>)null!);
         });
     }
 }

@@ -76,7 +76,7 @@ internal class ReadOnlySpanTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             var span = new ReadOnlySpan<int>();
-            _ = span.Count(null!);
+            _ = span.Count((Predicate<int>)null!);
         });
     }
 }
