@@ -53,6 +53,7 @@ public static class SpanExtensions
         return source;
     }
 
+#if !NET8_0_OR_GREATER
     /// <summary>
     ///     Replaces all occurrences of a specified element in a span of elements with another specified element.
     /// </summary>
@@ -72,6 +73,7 @@ public static class SpanExtensions
             }
         }
     }
+#endif
 
     /// <summary>
     ///     Splits a span of elements into sub-spans based on a delimiting element.

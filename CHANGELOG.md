@@ -46,6 +46,7 @@ TypeInitializationException.
 
 - X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
 - X10D: Removed `Endianness` enum.
+- X10D: Removed `Span<T>.Replace(T, T)` for .NET 8 target.
 - X10D: Removed .NET Standard 2.1 target.
 - X10D.Hosting: Removed .NET Standard 2.1 target.
 - X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0 (#83).
