@@ -33,7 +33,7 @@ public static class Vector4Extensions
     /// <param name="vector">The vector whose components to round.</param>
     /// <returns>The rounded vector.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector4 Round(this Vector4 vector)
     {
         return vector.Round(1.0f);
@@ -46,7 +46,7 @@ public static class Vector4Extensions
     /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
     /// <returns>The rounded vector.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector4 Round(this Vector4 vector, float nearest)
     {
         float x = vector.X.Round(nearest);
@@ -68,7 +68,7 @@ public static class Vector4Extensions
     ///     <see cref="Vector4.X" /> component is <paramref name="x" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector4 WithX(this Vector4 vector, float x)
     {
         return vector with {X = x};
@@ -86,7 +86,7 @@ public static class Vector4Extensions
     ///     <see cref="Vector4.Y" /> component is <paramref name="y" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector4 WithY(this Vector4 vector, float y)
     {
         return vector with {Y = y};
@@ -104,7 +104,7 @@ public static class Vector4Extensions
     ///     <see cref="Vector4.Z" /> component is <paramref name="z" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector4 WithZ(this Vector4 vector, float z)
     {
         return vector with {Z = z};
@@ -122,7 +122,7 @@ public static class Vector4Extensions
     ///     <see cref="Vector4.W" /> component is <paramref name="w" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector4 WithW(this Vector4 vector, float w)
     {
         return vector with {W = w};

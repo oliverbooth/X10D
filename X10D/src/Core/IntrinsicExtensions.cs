@@ -30,7 +30,7 @@ public static class IntrinsicExtensions
     /// A <see cref="Vector64{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector64<byte> CorrectBoolean(this Vector64<byte> vector)
     {
         Vector64<byte> output = IntrinsicUtility.GetUninitializedVector64<byte>();
@@ -65,7 +65,7 @@ public static class IntrinsicExtensions
     /// A <see cref="Vector128{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static Vector128<byte> CorrectBoolean(this Vector128<byte> vector)
     {
@@ -88,7 +88,7 @@ public static class IntrinsicExtensions
     /// A <see cref="Vector256{T}"/> of <see langword="byte"/> which remapped back to 0 and 1 based on boolean truthiness.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static Vector256<byte> CorrectBoolean(this Vector256<byte> vector)
     {
@@ -112,7 +112,7 @@ public static class IntrinsicExtensions
     /// </returns>
     [Pure]
     [CLSCompliant(false)]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static Vector128<ulong> ReverseElements(this Vector128<ulong> vector)
     {
@@ -120,7 +120,7 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<byte> CorrectBooleanInternal_Fallback(this Vector128<byte> vector)
     {
         Vector128<byte> output = IntrinsicUtility.GetUninitializedVector128<byte>();
@@ -135,7 +135,7 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<byte> CorrectBooleanInternal_Sse2(this Vector128<byte> vector)
     {
         Vector128<byte> cmp = Sse2.CompareEqual(vector, Vector128<byte>.Zero);
@@ -145,7 +145,7 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector256<byte> CorrectBooleanInternal_Fallback(this Vector256<byte> vector)
     {
         Vector256<byte> output = IntrinsicUtility.GetUninitializedVector256<byte>();
@@ -160,7 +160,7 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector256<byte> CorrectBooleanInternal_Avx2(this Vector256<byte> vector)
     {
         Vector256<byte> cmp = Avx2.CompareEqual(vector, Vector256<byte>.Zero);
@@ -170,7 +170,7 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<ulong> ReverseElementsInternal_Fallback(this Vector128<ulong> vector)
     {
         Vector128<ulong> output = IntrinsicUtility.GetUninitializedVector128<ulong>();
@@ -182,7 +182,7 @@ public static class IntrinsicExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<ulong> ReverseElementsInternal_Sse2(this Vector128<ulong> vector)
     {
         return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();

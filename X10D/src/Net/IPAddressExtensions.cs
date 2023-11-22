@@ -20,7 +20,7 @@ public static class IPAddressExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="address" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsIPv4(this IPAddress address)
     {
 #if NET6_0_OR_GREATER
@@ -44,7 +44,7 @@ public static class IPAddressExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="address" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsIPv6(this IPAddress address)
     {
 #if NET6_0_OR_GREATER

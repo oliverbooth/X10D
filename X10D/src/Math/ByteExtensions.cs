@@ -35,7 +35,7 @@ public static class ByteExtensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte DigitalRoot(this byte value)
     {
         int root = value % 9;
@@ -48,7 +48,7 @@ public static class ByteExtensions
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Factorial(this byte value)
     {
         if (value == 0)
@@ -72,7 +72,7 @@ public static class ByteExtensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte GreatestCommonFactor(this byte value, byte other)
     {
         return (byte)((long)value).GreatestCommonFactor(other);
@@ -87,7 +87,7 @@ public static class ByteExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this byte value)
     {
         return (value & 1) == 0;
@@ -102,7 +102,7 @@ public static class ByteExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this byte value)
     {
         return !value.IsEven();
@@ -128,7 +128,7 @@ public static class ByteExtensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte LowestCommonMultiple(this byte value, byte other)
     {
         return (byte)((long)value).LowestCommonMultiple(other);
@@ -143,7 +143,7 @@ public static class ByteExtensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this byte value)
     {
         return ((long)value).MultiplicativePersistence();
@@ -157,7 +157,7 @@ public static class ByteExtensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte Wrap(this byte value, byte low, byte high)
     {
         return (byte)((ulong)value).Wrap(low, high);
@@ -170,7 +170,7 @@ public static class ByteExtensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte Wrap(this byte value, byte length)
     {
         return (byte)((ulong)value).Wrap(length);

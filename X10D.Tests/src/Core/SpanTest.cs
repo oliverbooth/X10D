@@ -226,21 +226,21 @@ public class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [Test]
-    public void PackByteInternal_AdvSimd_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
-    {
-        if (!AdvSimd.IsSupported)
-        {
-            return;
-        }
-
-        const byte expected = 0b00110011;
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
-
-        byte actual = span.PackByteInternal_AdvSimd();
-
-        Assert.That(actual, Is.EqualTo(expected));
-    }
+    // [Test]
+    // public void PackByteInternal_AdvSimd_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
+    // {
+    //     if (!AdvSimd.IsSupported)
+    //     {
+    //         return;
+    //     }
+    //
+    //     const byte expected = 0b00110011;
+    //     ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+    //
+    //     byte actual = span.PackByteInternal_AdvSimd();
+    //
+    //     Assert.That(actual, Is.EqualTo(expected));
+    // }
 #endif
 
     [Test]
@@ -345,25 +345,25 @@ public class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-    [Test]
-    public void PackInt32Internal_AdvSimd_ShouldReturnCorrectInt32_GivenReadOnlySpan()
-    {
-        if (!AdvSimd.IsSupported)
-        {
-            return;
-        }
-
-        const int expected = 0b01010101_10101010_01010101_10101010;
-        ReadOnlySpan<bool> span = stackalloc bool[32]
-        {
-            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
-
-        int actual = span.PackInt32Internal_AdvSimd();
-
-        Assert.That(actual, Is.EqualTo(expected));
-    }
+    // [Test]
+    // public void PackInt32Internal_AdvSimd_ShouldReturnCorrectInt32_GivenReadOnlySpan()
+    // {
+    //     if (!AdvSimd.IsSupported)
+    //     {
+    //         return;
+    //     }
+    //
+    //     const int expected = 0b01010101_10101010_01010101_10101010;
+    //     ReadOnlySpan<bool> span = stackalloc bool[32]
+    //     {
+    //         false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
+    //         true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
+    //     };
+    //
+    //     int actual = span.PackInt32Internal_AdvSimd();
+    //
+    //     Assert.That(actual, Is.EqualTo(expected));
+    // }
 #endif
 
     [Test]

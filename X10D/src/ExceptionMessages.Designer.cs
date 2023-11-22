@@ -150,7 +150,7 @@ namespace X10D {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The enum has a size that is not supported..
+        ///   Looks up a localized string similar to Enum has unexpected size of {0} bytes..
         /// </summary>
         internal static string EnumSizeIsUnexpected {
             get {

@@ -18,7 +18,7 @@ public static class HalfExtensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Milliseconds(this Half value)
     {
         return TimeSpan.FromMilliseconds((float)value);
@@ -32,7 +32,7 @@ public static class HalfExtensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Seconds(this Half value)
     {
         return TimeSpan.FromSeconds((float)value);
@@ -46,7 +46,7 @@ public static class HalfExtensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Minutes(this Half value)
     {
         return TimeSpan.FromMinutes((float)value);
@@ -60,7 +60,7 @@ public static class HalfExtensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Hours(this Half value)
     {
         return TimeSpan.FromHours((float)value);
@@ -72,7 +72,7 @@ public static class HalfExtensions
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Days(this Half value)
     {
         return TimeSpan.FromDays((float)value);
@@ -86,7 +86,7 @@ public static class HalfExtensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Weeks(this Half value)
     {
         return TimeSpan.FromDays((float)value * 7);

@@ -269,20 +269,9 @@ public static class ListExtensions
         }
 #endif
 
-        int start = range.Start.IsFromEnd ? source.Count - range.Start.Value : range.Start.Value;
-        int end = range.End.IsFromEnd ? source.Count - range.End.Value : range.End.Value;
+        (int start, int length) = range.GetOffsetAndLength(source.Count);
 
-        if (end < start)
-        {
-            throw new ArgumentException(ExceptionMessages.EndIndexLessThanStartIndex);
-        }
-
-        if (end >= source.Count)
-        {
-            throw new ArgumentOutOfRangeException(nameof(range), ExceptionMessages.EndIndexGreaterThanCount);
-        }
-
-        for (int index = end; index >= start; index--)
+        for (int index = start + length; index >= start; index--)
         {
             source.RemoveAt(index);
         }

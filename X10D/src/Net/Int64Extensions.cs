@@ -16,7 +16,7 @@ public static class Int64Extensions
     /// <param name="value">The value to convert, expressed in host byte order.</param>
     /// <returns>An integer value, expressed in network byte order.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long HostToNetworkOrder(this long value)
     {
         return IPAddress.HostToNetworkOrder(value);
@@ -28,7 +28,7 @@ public static class Int64Extensions
     /// <param name="value">The value to convert, expressed in network byte order.</param>
     /// <returns>An integer value, expressed in host byte order.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long NetworkToHostOrder(this long value)
     {
         return IPAddress.NetworkToHostOrder(value);

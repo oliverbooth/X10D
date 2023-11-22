@@ -18,7 +18,7 @@ public static class TypeExtensions
     /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Implements<T>(this Type value)
     {
 #if NET6_0_OR_GREATER
@@ -45,7 +45,7 @@ public static class TypeExtensions
     ///     <para><paramref name="interfaceType" /> is <see langword="null" />.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Implements(this Type value, Type interfaceType)
     {
 #if NET6_0_OR_GREATER
@@ -86,7 +86,7 @@ public static class TypeExtensions
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentException"><paramref name="value" /> is not a class.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Inherits<T>(this Type value)
         where T : class
     {
@@ -122,7 +122,7 @@ public static class TypeExtensions
     ///     <para><paramref name="type" /> is not a class.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Inherits(this Type value, Type type)
     {
 #if NET6_0_OR_GREATER
