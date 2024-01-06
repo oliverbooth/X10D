@@ -43,7 +43,7 @@ public static class SpanExtensions
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Contains<T>(this Span<T> span, T value) where T : struct, Enum
     {
         return Contains((ReadOnlySpan<T>)span, value);
@@ -62,7 +62,7 @@ public static class SpanExtensions
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
         switch (Unsafe.SizeOf<T>())
@@ -111,7 +111,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte PackByte(this Span<bool> source)
     {
         return PackByte((ReadOnlySpan<bool>)source);
@@ -124,7 +124,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static byte PackByte(this ReadOnlySpan<bool> source)
     {
@@ -171,7 +171,7 @@ public static class SpanExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static short PackInt16(this ReadOnlySpan<bool> source)
     {
@@ -208,7 +208,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int PackInt32(this Span<bool> source)
     {
         return PackInt32((ReadOnlySpan<bool>)source);
@@ -221,7 +221,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static int PackInt32(this ReadOnlySpan<bool> source)
     {
@@ -266,7 +266,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long PackInt64(this Span<bool> source)
     {
         return PackInt64((ReadOnlySpan<bool>)source);
@@ -279,7 +279,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long PackInt64(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
@@ -304,7 +304,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static byte PackByteInternal_Fallback(this ReadOnlySpan<bool> source)
     {
         byte result = 0;
@@ -318,7 +318,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static short PackInt16Internal_Fallback(this ReadOnlySpan<bool> source)
     {
         short result = 0;
@@ -332,7 +332,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static int PackInt32Internal_Fallback(this ReadOnlySpan<bool> source)
     {
         var result = 0;
@@ -346,7 +346,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static byte PackByteInternal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -360,7 +360,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static short PackInt16Internal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -378,7 +378,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static int PackInt32Internal_Avx2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -403,7 +403,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static int PackInt32Internal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe

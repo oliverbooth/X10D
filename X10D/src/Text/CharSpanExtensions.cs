@@ -82,7 +82,7 @@ public static class CharSpanExtensions
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="count" /> is less than 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Repeat(this ReadOnlySpan<char> value, int count)
     {
         switch (count)
@@ -117,7 +117,7 @@ public static class CharSpanExtensions
     /// <exception cref="ArgumentException">
     ///     <paramref name="destination" /> is too short to contain the repeated string.
     /// </exception>
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static void Repeat(this ReadOnlySpan<char> value, int count, Span<char> destination)
     {
         if (count < 0)

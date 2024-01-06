@@ -894,7 +894,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentException">
     ///     <paramref name="destination" /> is too short to contain the repeated string.
     /// </exception>
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static void Repeat(this string value, int count, Span<char> destination)
     {
         if (value is null)

@@ -54,7 +54,7 @@ public static class CharExtensions
     /// <param name="value">The character to repeat.</param>
     /// <param name="count">The number of times to repeat.</param>
     /// <param name="destination">The span of characters into which the repeated characters will be written.</param>
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static void Repeat(this char value, int count, Span<char> destination)
     {
         if (count < 0)
