@@ -24,7 +24,7 @@ public static class StringExtensions
     ///     <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfEmpty(this string? value)
     {
@@ -41,7 +41,7 @@ public static class StringExtensions
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [return: NotNullIfNotNull("value")]
     public static string? AsNullIfWhiteSpace(this string? value)
     {
@@ -55,7 +55,7 @@ public static class StringExtensions
     /// <returns>The plain text string representation of <paramref name="value" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Base64Decode(this string value)
     {
         if (value is null)
@@ -73,7 +73,7 @@ public static class StringExtensions
     /// <returns>The string representation, in base 64, of <paramref name="value" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Base64Encode(this string value)
     {
         if (value is null)
@@ -102,7 +102,7 @@ public static class StringExtensions
     ///     <paramref name="destinationEncoding" /> is <see langword="null" />.
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string ChangeEncoding(this string value, Encoding sourceEncoding, Encoding destinationEncoding)
     {
         if (value is null)
@@ -535,7 +535,7 @@ public static class StringExtensions
     ///     (http://geekswithblogs.net/sdorman/Default.aspx).
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static T EnumParse<T>(this string value)
         where T : struct, Enum
     {
@@ -554,7 +554,7 @@ public static class StringExtensions
     ///     (http://geekswithblogs.net/sdorman/Default.aspx).
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static T EnumParse<T>(this string value, bool ignoreCase)
         where T : struct, Enum
     {
@@ -595,7 +595,7 @@ public static class StringExtensions
     /// <param name="value">The string to convert.</param>
     /// <returns>Returns a <see cref="byte" />[].</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte[] GetBytes(this string value)
     {
         return value.GetBytes(Encoding.UTF8);
@@ -612,7 +612,7 @@ public static class StringExtensions
     ///     <see langword="null" />.
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static byte[] GetBytes(this string value, Encoding encoding)
     {
         if (value is null)
@@ -634,7 +634,7 @@ public static class StringExtensions
     /// <param name="value">The input string.</param>
     /// <returns><see langword="true" /> if this string is an emoji; otherwise, <see langword="false" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEmoji(this string value)
     {
         if (value is null)
@@ -654,7 +654,7 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEmpty(this string value)
     {
         if (value is null)
@@ -674,7 +674,7 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsLower(this string value)
     {
         if (value is null)
@@ -710,7 +710,7 @@ public static class StringExtensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsNullOrEmpty([NotNullWhen(false)] this string? value)
     {
         return string.IsNullOrEmpty(value);
@@ -726,7 +726,7 @@ public static class StringExtensions
     ///     whitespace; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? value)
     {
         return string.IsNullOrWhiteSpace(value);
@@ -743,7 +743,7 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPalindrome(this string value)
     {
         if (value is null)
@@ -791,7 +791,7 @@ public static class StringExtensions
     ///     <see langword="true" /> if all alpha characters in this string are uppercase; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsUpper(this string value)
     {
         if (value is null)
@@ -828,7 +828,7 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsWhiteSpace(this string value)
     {
         if (value is null)
@@ -860,7 +860,7 @@ public static class StringExtensions
     /// <returns>A string containing <paramref name="value" /> repeated <paramref name="count" /> times.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Repeat(this string value, int count)
     {
         if (value is null)
@@ -937,7 +937,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="length" /> is less than 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Randomize(this string source, int length, Random? random = null)
     {
         if (source is null)
@@ -975,7 +975,7 @@ public static class StringExtensions
     /// <param name="value">The string to reverse.</param>
     /// <returns>A <see cref="string" /> whose characters are that of <paramref name="value" /> in reverse order.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Reverse(this string value)
     {
         if (value is null)
@@ -1009,7 +1009,7 @@ public static class StringExtensions
     /// <returns>A new <see cref="string" /> containing the characters in <paramref name="value" />, rearranged.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string Shuffled(this string value, Random? random = null)
     {
         if (value is null)
@@ -1035,7 +1035,7 @@ public static class StringExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static IEnumerable<string> Split(this string value, int chunkSize)
     {
         if (value is null)
@@ -1135,7 +1135,7 @@ public static class StringExtensions
     ///     <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [return: NotNullIfNotNull("alternative")]
     public static string? WithEmptyAlternative(this string? value, string? alternative)
     {
@@ -1153,7 +1153,7 @@ public static class StringExtensions
     ///     whitespace; otherwise, <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [return: NotNullIfNotNull("alternative")]
     public static string? WithWhiteSpaceAlternative(this string? value, string? alternative)
     {

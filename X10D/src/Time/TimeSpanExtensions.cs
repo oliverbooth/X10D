@@ -17,7 +17,7 @@ public static class TimeSpanExtensions
     ///     A <see cref="DateTime" /> that is a duration of <paramref name="value" /> in the past relative to the current time.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateTime Ago(this TimeSpan value)
     {
         return DateTime.Now.Subtract(value);
@@ -31,7 +31,7 @@ public static class TimeSpanExtensions
     ///     A <see cref="DateTime" /> that is a duration of <paramref name="value" /> in the future relative to the current time.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateTime FromNow(this TimeSpan value)
     {
         return DateTime.Now.Add(value);

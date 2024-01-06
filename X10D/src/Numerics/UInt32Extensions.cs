@@ -21,7 +21,7 @@ public static class UInt32Extensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int PopCount(this uint value)
     {
         return BitOperations.PopCount(value);
@@ -36,7 +36,7 @@ public static class UInt32Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint RotateLeft(this uint value, int count)
     {
         return (value << count) | (value >> (32 - count));
@@ -51,7 +51,7 @@ public static class UInt32Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint RotateRight(this uint value, int count)
     {
         return (value >> count) | (value << (32 - count));
@@ -66,7 +66,7 @@ public static class UInt32Extensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint RoundUpToPowerOf2(this uint value)
     {
         return BitOperations.RoundUpToPowerOf2(value);

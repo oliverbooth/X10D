@@ -21,7 +21,7 @@ public static class PointExtensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOnLine(this Point point, LineF line)
     {
         return ((PointF)point).IsOnLine(line);
@@ -38,7 +38,7 @@ public static class PointExtensions
     ///     <paramref name="end" />; otherwise <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOnLine(this Point point, PointF start, PointF end)
     {
         return point.IsOnLine(new LineF(start, end));
@@ -55,7 +55,7 @@ public static class PointExtensions
     ///     <paramref name="end" />; otherwise <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOnLine(this Point point, Vector2 start, Vector2 end)
     {
         return point.IsOnLine(new LineF(start, end));
@@ -67,7 +67,7 @@ public static class PointExtensions
     /// <param name="point">The point to convert.</param>
     /// <returns>The resulting <see cref="Size" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Size ToSize(this Point point)
     {
         return new Size(point.X, point.Y);

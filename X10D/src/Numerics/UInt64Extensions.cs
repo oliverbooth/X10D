@@ -21,7 +21,7 @@ public static class UInt64Extensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int PopCount(this ulong value)
     {
         return BitOperations.PopCount(value);
@@ -36,7 +36,7 @@ public static class UInt64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong RotateLeft(this ulong value, int count)
     {
         return (value << count) | (value >> (64 - count));
@@ -51,7 +51,7 @@ public static class UInt64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong RotateRight(this ulong value, int count)
     {
         return (value >> count) | (value << (64 - count));
@@ -66,7 +66,7 @@ public static class UInt64Extensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong RoundUpToPowerOf2(this ulong value)
     {
         return BitOperations.RoundUpToPowerOf2(value);

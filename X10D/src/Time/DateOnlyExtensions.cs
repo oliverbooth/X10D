@@ -16,7 +16,7 @@ public static class DateOnlyExtensions
     /// <param name="value">The date from which to calculate.</param>
     /// <returns>The rounded-down integer number of years since <paramref name="value" /> as of today.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static int Age(this DateOnly value)
     {
@@ -33,7 +33,7 @@ public static class DateOnlyExtensions
     ///     <paramref name="referenceDate" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int Age(this DateOnly value, DateOnly referenceDate)
     {
         return value.ToDateTime(default).Age(referenceDate.ToDateTime(default));
@@ -60,7 +60,7 @@ public static class DateOnlyExtensions
     /// <param name="dayOfWeek">The day of the week.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the first occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateOnly First(this DateOnly value, DayOfWeek dayOfWeek)
     {
         DateOnly first = value.FirstDayOfMonth();
@@ -79,7 +79,7 @@ public static class DateOnlyExtensions
     /// <param name="value">The current date.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the first day of the current month.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateOnly FirstDayOfMonth(this DateOnly value)
     {
         return value.AddDays(1 - value.Day);
@@ -113,7 +113,7 @@ public static class DateOnlyExtensions
     ///     <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsLeapYear(this DateOnly value)
     {
         return DateTime.IsLeapYear(value.Year);
@@ -126,7 +126,7 @@ public static class DateOnlyExtensions
     /// <param name="dayOfWeek">The day of the week.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the final occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateOnly Last(this DateOnly value, DayOfWeek dayOfWeek)
     {
         DateOnly last = value.LastDayOfMonth();
@@ -144,7 +144,7 @@ public static class DateOnlyExtensions
     /// <param name="value">The current date.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the last day of the current month.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateOnly LastDayOfMonth(this DateOnly value)
     {
         int daysInMonth = DateTime.DaysInMonth(value.Year, value.Month);
@@ -158,7 +158,7 @@ public static class DateOnlyExtensions
     /// <param name="dayOfWeek">The day of the week.</param>
     /// <returns>A <see cref="DateTimeOffset" /> representing the next occurence of <paramref name="dayOfWeek" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateOnly Next(this DateOnly value, DayOfWeek dayOfWeek)
     {
         int offsetDays = dayOfWeek - value.DayOfWeek;
@@ -178,7 +178,7 @@ public static class DateOnlyExtensions
     /// <param name="time">A reference time to use with the current date.</param>
     /// <returns>The number of milliseconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long ToUnixTimeMilliseconds(this DateOnly value, TimeOnly time)
     {
         return value.ToDateTime(time).ToUnixTimeMilliseconds();
@@ -191,7 +191,7 @@ public static class DateOnlyExtensions
     /// <param name="time">A reference time to use with the current date.</param>
     /// <returns>The number of seconds that have elapsed since 1970-01-01T00:00:00.000Z.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long ToUnixTimeSeconds(this DateOnly value, TimeOnly time)
     {
         return value.ToDateTime(time).ToUnixTimeSeconds();

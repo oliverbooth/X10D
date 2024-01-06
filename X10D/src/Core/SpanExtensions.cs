@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
-using System.Runtime.Intrinsics.Arm;
 using X10D.CompilerServices;
 
 #if NET7_0_OR_GREATER
@@ -66,47 +65,42 @@ public static class SpanExtensions
     [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
-        unsafe
+        switch (Unsafe.SizeOf<T>())
         {
-#pragma warning disable CS8500
-            switch (sizeof(T))
-#pragma warning restore CS8500
-            {
-                case 1:
-                    {
-                        ref byte enums = ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference(span));
-                        return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, byte>(ref value));
-                    }
+            case 1:
+                {
+                    ref byte enums = ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference(span));
+                    return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, byte>(ref value));
+                }
 
-                case 2:
-                    {
-                        ref ushort enums = ref Unsafe.As<T, ushort>(ref MemoryMarshal.GetReference(span));
-                        return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, ushort>(ref value));
-                    }
+            case 2:
+                {
+                    ref ushort enums = ref Unsafe.As<T, ushort>(ref MemoryMarshal.GetReference(span));
+                    return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, ushort>(ref value));
+                }
 
-                case 4:
-                    {
-                        ref uint enums = ref Unsafe.As<T, uint>(ref MemoryMarshal.GetReference(span));
-                        return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, uint>(ref value));
-                    }
+            case 4:
+                {
+                    ref uint enums = ref Unsafe.As<T, uint>(ref MemoryMarshal.GetReference(span));
+                    return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, uint>(ref value));
+                }
 
-                case 8:
-                    {
-                        ref ulong enums = ref Unsafe.As<T, ulong>(ref MemoryMarshal.GetReference(span));
-                        return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, ulong>(ref value));
-                    }
+            case 8:
+                {
+                    ref ulong enums = ref Unsafe.As<T, ulong>(ref MemoryMarshal.GetReference(span));
+                    return MemoryMarshal.CreateSpan(ref enums, span.Length).Contains(Unsafe.As<T, ulong>(ref value));
+                }
 
-                // dotcover disable
-                //NOSONAR
-                default:
+            // dotcover disable
+            //NOSONAR
+            default:
 #if NET7_0_OR_GREATER
-                    throw new UnreachableException(ExceptionMessages.EnumSizeIsUnexpected);
+                throw new UnreachableException(string.Format(ExceptionMessages.EnumSizeIsUnexpected, Unsafe.SizeOf<T>()));
 #else
-                    throw new ArgumentException(ExceptionMessages.EnumSizeIsUnexpected);
+                throw new ArgumentException(string.Format(ExceptionMessages.EnumSizeIsUnexpected, Unsafe.SizeOf<T>()));
 #endif
-                //NOSONAR
-                // dotcover enable
-            }
+            //NOSONAR
+            // dotcover enable
         }
     }
 
@@ -152,11 +146,6 @@ public static class SpanExtensions
         if (Sse2.IsSupported)
         {
             return PackByteInternal_Sse2(source);
-        }
-
-        if (AdvSimd.IsSupported)
-        {
-            return PackByteInternal_AdvSimd(source);
         }
 
         return PackByteInternal_Fallback(source);
@@ -263,10 +252,6 @@ public static class SpanExtensions
                     return PackInt32Internal_Sse2(source);
                 }
 
-                if (AdvSimd.IsSupported)
-                {
-                    return PackInt32Internal_AdvSimd(source);
-                }
                 goto default;
 
             default:
@@ -392,35 +377,6 @@ public static class SpanExtensions
         }
     }
 
-    // dotcover disable
-    //NOSONAR
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    internal static int PackInt32Internal_AdvSimd(this ReadOnlySpan<bool> source)
-    {
-        unsafe
-        {
-            fixed (bool* pSource = source)
-            {
-                Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
-                Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
-
-                Vector128<ulong> calc1 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1);
-                Vector128<ulong> calc2 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2);
-
-                calc1 = AdvSimd.ShiftRightLogical(calc1, 56);
-                calc2 = AdvSimd.ShiftRightLogical(calc2, 56);
-
-                Vector128<ulong> shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
-                Vector128<ulong> shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
-
-                return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
-            }
-        }
-    }
-    //NOSONAR
-    // dotcover enable
-
     [Pure]
     [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Avx2(this ReadOnlySpan<bool> source)
@@ -474,22 +430,4 @@ public static class SpanExtensions
             }
         }
     }
-
-    // dotcover disable
-    //NOSONAR
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    internal static byte PackByteInternal_AdvSimd(this ReadOnlySpan<bool> source)
-    {
-        unsafe
-        {
-            fixed (bool* pSource = source)
-            {
-                Vector64<byte> load = AdvSimd.LoadVector64((byte*)pSource);
-                return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
-            }
-        }
-    }
-    //NOSONAR
-    // dotcover enable
 }
