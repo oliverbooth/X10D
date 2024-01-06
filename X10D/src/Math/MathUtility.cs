@@ -127,7 +127,6 @@ public static class MathUtility
         return (alpha - start) / (end - start);
     }
 
-
 #if !NET7_0_OR_GREATER
     /// <summary>
     ///     Applies a simple bias function to value.
