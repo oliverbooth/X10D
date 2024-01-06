@@ -1,4 +1,3 @@
-﻿#if NET5_0_OR_GREATER
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
@@ -92,4 +91,3 @@ public static class HalfExtensions
         return TimeSpan.FromDays((float)value * 7);
     }
 }
-#endif

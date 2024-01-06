@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -253,15 +253,7 @@ public static class MathUtility
     public static float Pulse(float value, float lowerBound, float upperBound)
     {
         bool result = lowerBound <= value && value <= upperBound;
-#if NET6_0_OR_GREATER
         return Unsafe.As<bool, int>(ref result);
-#else
-        unsafe
-        {
-            var pResult = (int*)&result;
-            return *pResult;
-        }
-#endif
     }
 
     /// <summary>
@@ -277,15 +269,7 @@ public static class MathUtility
     public static double Pulse(double value, double lowerBound, double upperBound)
     {
         bool result = lowerBound <= value && value <= upperBound;
-#if NET6_0_OR_GREATER
         return Unsafe.As<bool, int>(ref result);
-#else
-        unsafe
-        {
-            var pResult = (int*)&result;
-            return *pResult;
-        }
-#endif
     }
 
     /// <summary>

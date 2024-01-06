@@ -61,14 +61,10 @@ public static class StringExtensions
     [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan ToTimeSpan(this string input)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(input);
-#else
         if (input is null)
         {
             throw new ArgumentNullException(nameof(input));
         }
-#endif
 
         return TimeSpanParser.TryParse(input, out TimeSpan result)
             ? result

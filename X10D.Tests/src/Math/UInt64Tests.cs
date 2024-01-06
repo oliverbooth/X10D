@@ -4,8 +4,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestFixture]
-[CLSCompliant(false)]
-public partial class UInt64Tests
+internal partial class UInt64Tests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()

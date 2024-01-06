@@ -1,11 +1,11 @@
-﻿using System.Numerics;
+using System.Numerics;
 using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public partial class SingleTests
+internal partial class SingleTests
 {
     [Test]
     public void DegreesToRadians_ShouldBeCorrect()

@@ -19,14 +19,10 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Fill<T>(this IList<T> source, T value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         for (var i = 0; i < source.Count; i++)
         {
@@ -53,14 +49,10 @@ public static class ListExtensions
     /// </exception>
     public static void Fill<T>(this IList<T> source, T value, int startIndex, int count)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         if (startIndex < 0)
         {
@@ -105,14 +97,10 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static int IndexOf<T>(this IReadOnlyList<T?> source, T? item)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.IndexOf(item, 0, source.Count);
     }
@@ -138,14 +126,10 @@ public static class ListExtensions
     /// </exception>
     public static int IndexOf<T>(this IReadOnlyList<T?> source, T? item, int startIndex)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.IndexOf(item, startIndex, source.Count - startIndex);
     }
@@ -182,14 +166,10 @@ public static class ListExtensions
     /// </exception>
     public static int IndexOf<T>(this IReadOnlyList<T?> source, T? item, int startIndex, int count)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         if (startIndex < 0 || startIndex > source.Count)
         {
@@ -233,14 +213,10 @@ public static class ListExtensions
     [Pure]
     public static T Random<T>(this IReadOnlyList<T> source, Random? random = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         random ??= RandomExtensions.GetShared();
         return random.NextFrom(source);
@@ -260,14 +236,10 @@ public static class ListExtensions
     /// </exception>
     public static void RemoveRange<T>(this IList<T> source, Range range)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         (int start, int length) = range.GetOffsetAndLength(source.Count);
 
@@ -289,14 +261,10 @@ public static class ListExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static void Shuffle<T>(this IList<T> source, Random? random = null)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         random ??= RandomExtensions.GetShared();
 
@@ -323,14 +291,10 @@ public static class ListExtensions
     /// </exception>
     public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> source, int start)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Slice(start, source.Count - start);
     }
@@ -352,14 +316,10 @@ public static class ListExtensions
     /// </exception>
     public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> source, int start, int length)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         if (start < 0 || start > source.Count)
         {
@@ -395,10 +355,6 @@ public static class ListExtensions
     /// </exception>
     public static void Swap<T>(this IList<T> source, IList<T> other)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(other);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -408,7 +364,6 @@ public static class ListExtensions
         {
             throw new ArgumentNullException(nameof(other));
         }
-#endif
 
         int min = System.Math.Min(source.Count, other.Count);
         for (var index = 0; index < min; index++)

@@ -1,10 +1,10 @@
-﻿using NSubstitute;
+using NSubstitute;
 using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-public partial class EnumerableTests
+internal partial class EnumerableTests
 {
     [TestFixture]
     public class DisposeAllAsyncTests

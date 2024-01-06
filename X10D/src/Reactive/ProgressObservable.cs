@@ -25,14 +25,10 @@ internal sealed class ProgressObservable<T> : IObservable<T>
     /// <returns>An object which can be disposed to unsubscribe from progress tracking.</returns>
     public IDisposable Subscribe(IObserver<T> observer)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(observer);
-#else
         if (observer is null)
         {
             throw new ArgumentNullException(nameof(observer));
         }
-#endif
 
         _observers.Add(observer);
         return new ObservableDisposer<T>(_observers, observer, OnDispose);

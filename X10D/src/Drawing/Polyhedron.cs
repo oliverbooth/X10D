@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Numerics;
 
@@ -34,14 +34,10 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public Polyhedron(IEnumerable<Vector3> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         _vertices = new List<Vector3>(vertices);
     }
@@ -137,14 +133,10 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public static Polyhedron FromPolygon(Polygon polygon)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(polygon);
-#else
         if (polygon is null)
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-#endif
 
         var vertices = new List<Vector3>();
 
@@ -164,14 +156,10 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public static Polyhedron FromPolygonF(PolygonF polygon)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(polygon);
-#else
         if (polygon is null)
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-#endif
 
         var vertices = new List<Vector3>();
 
@@ -199,14 +187,10 @@ public class Polyhedron : IEquatable<Polyhedron>
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public void AddVertices(IEnumerable<Vector3> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         foreach (Vector3 vertex in vertices)
         {

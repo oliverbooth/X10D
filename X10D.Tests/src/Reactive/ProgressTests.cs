@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Reactive;
 
 namespace X10D.Tests.Reactive;
 
 [TestFixture]
-public class ProgressTests
+internal class ProgressTests
 {
     [Test]
     public void OnProgressChanged_ShouldCallCompletionDelegate_GivenCompletionValue()

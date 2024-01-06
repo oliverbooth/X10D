@@ -1,4 +1,3 @@
-﻿#if NETCOREAPP3_0_OR_GREATER
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
@@ -106,11 +105,10 @@ public static class RuneExtensions
 #if NET7_0_OR_GREATER
                 throw new UnreachableException(message);
 #else
-            throw new InvalidOperationException(message);
+                throw new InvalidOperationException(message);
 #endif
             //NOSONAR
             // dotcover enable
         }
     }
 }
-#endif

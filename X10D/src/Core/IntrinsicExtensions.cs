@@ -1,4 +1,3 @@
-﻿#if NETCOREAPP3_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -188,4 +187,3 @@ public static class IntrinsicExtensions
         return Sse2.Shuffle(vector.AsDouble(), vector.AsDouble(), 0b01).AsUInt64();
     }
 }
-#endif

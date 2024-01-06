@@ -1,10 +1,10 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Numerics;
 
 namespace X10D.Drawing;
 
 /// <summary>
-///     Represents a line in 3D space that is composed of 32-bit signed integer X, Y and Z coordinates.
+///     Represents a line in 3D space that is composed of single-precision floating-point X, Y and Z coordinates.
 /// </summary>
 public readonly struct Line3D : IEquatable<Line3D>, IComparable<Line3D>, IComparable
 {

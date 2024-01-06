@@ -1,4 +1,4 @@
-﻿namespace X10D.MetaServices;
+namespace X10D.MetaServices;
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.ReturnValue, Inherited = false)]
 internal sealed class OverloadTypeAttribute : Attribute

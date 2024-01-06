@@ -1,52 +1,54 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
-    public void WriteDecimal_ShouldThrowArgumentException_GivenNonWriteableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.Throws<ArgumentException>(() => stream.Write(420.0m, Endianness.LittleEndian));
-        Assert.Throws<ArgumentException>(() => stream.Write(420.0m, Endianness.BigEndian));
-    }
-
-    [Test]
-    public void WriteDecimal_ShouldThrowArgumentNullException_GivenNullStream()
+    public void WriteBigEndian_ShouldThrowArgumentNullException_GivenNullStream_AndDecimalArgument()
     {
         Stream stream = null!;
-        Assert.Throws<ArgumentNullException>(() => stream.Write(420.0m, Endianness.LittleEndian));
-        Assert.Throws<ArgumentNullException>(() => stream.Write(420.0m, Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.WriteBigEndian(420.0m));
     }
 
     [Test]
-    public void WriteDecimal_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void WriteBigEndian_ShouldThrowArgumentException_GivenNonWritableStream_AndDecimalArgument()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420.0m, (Endianness)(-1)));
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.Write(420.0m, (Endianness)(-1)));
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.WriteBigEndian(420.0m));
     }
 
     [Test]
-    public void WriteDecimal_ShouldWriteBigEndian_GivenBigEndian()
+    public void WriteLittleEndian_ShouldThrowArgumentNullException_GivenNullStream_AndDecimalArgument()
+    {
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.WriteLittleEndian(420.0m));
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void WriteLittleEndian_ShouldThrowArgumentException_GivenNonWritableStream_AndDecimalArgument()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.WriteLittleEndian(420.0m));
+    }
+
+    [Test]
+    public void WriteBigEndian_ShouldWriteBigEndian_GivenDecimalArgument()
     {
         using var stream = new MemoryStream();
-        stream.Write(420.0m, Endianness.BigEndian);
+        stream.WriteBigEndian(420.0m);
         Assert.That(stream.Position, Is.EqualTo(16));
         stream.Position = 0;
 
         Span<byte> actual = stackalloc byte[16];
         ReadOnlySpan<byte> expected = stackalloc byte[]
         {
-            0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x68
+            0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x10, 0x00, 0x00
         };
         int read = stream.Read(actual);
 
@@ -55,10 +57,10 @@ public partial class StreamTests
     }
 
     [Test]
-    public void WriteDecimal_ShouldWriteLittleEndian_GivenLittleEndian()
+    public void WriteLittleEndian_ShouldWriteLittleEndian_GivenDecimalArgument()
     {
         using var stream = new MemoryStream();
-        stream.Write(420.0m, Endianness.LittleEndian);
+        stream.WriteLittleEndian(420.0m);
         Assert.That(stream.Position, Is.EqualTo(16));
         stream.Position = 0;
 

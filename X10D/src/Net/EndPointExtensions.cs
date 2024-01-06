@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Net;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
@@ -26,14 +26,10 @@ public static class EndPointExtensions
     [MethodImpl(CompilerResources.MaxOptimization)]
     public static string GetHost(this EndPoint endPoint)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(endPoint);
-#else
         if (endPoint is null)
         {
             throw new ArgumentNullException(nameof(endPoint));
         }
-#endif
 
         return endPoint switch
         {
@@ -59,14 +55,10 @@ public static class EndPointExtensions
     [MethodImpl(CompilerResources.MaxOptimization)]
     public static int GetPort(this EndPoint endPoint)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(endPoint);
-#else
         if (endPoint is null)
         {
             throw new ArgumentNullException(nameof(endPoint));
         }
-#endif
 
         return endPoint switch
         {

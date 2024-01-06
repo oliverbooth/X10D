@@ -1,11 +1,12 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
+using System.Globalization;
 using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class Int64Tests
+internal class Int64Tests
 {
     [Test]
     public void UnpackBits_ShouldUnpackToArrayCorrectly()
@@ -29,7 +30,7 @@ public class Int64Tests
 
             for (var index = 8; index < 64; index++)
             {
-                Assert.That(bits[index], Is.False, index.ToString());
+                Assert.That(bits[index], Is.False, index.ToString(CultureInfo.InvariantCulture));
             }
         });
     }
@@ -53,7 +54,7 @@ public class Int64Tests
 
             for (var index = 8; index < 64; index++)
             {
-                Assert.That(bits[index], Is.False, index.ToString());
+                Assert.That(bits[index], Is.False, index.ToString(CultureInfo.InvariantCulture));
             }
         });
     }

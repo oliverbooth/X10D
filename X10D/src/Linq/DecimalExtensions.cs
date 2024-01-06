@@ -1,4 +1,4 @@
-﻿namespace X10D.Linq;
+namespace X10D.Linq;
 
 /// <summary>
 ///     LINQ-inspired extension methods for <see cref="IEnumerable{T}" /> of <see cref="decimal" />.
@@ -13,14 +13,10 @@ public static class DecimalExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static decimal Product(this IEnumerable<decimal> source)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Aggregate(1m, (current, value) => (current * value));
     }
@@ -36,14 +32,10 @@ public static class DecimalExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static decimal Product<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Select(selector).Product();
     }

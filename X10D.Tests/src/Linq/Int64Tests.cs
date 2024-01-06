@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Linq;
 
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-public class Int64Tests
+internal class Int64Tests
 {
     [Test]
     public void ProductShouldBeCorrect()

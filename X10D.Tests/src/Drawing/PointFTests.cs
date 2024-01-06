@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NUnit.Framework;
 #if !NET6_0_OR_GREATER
 using X10D.Core;
@@ -8,7 +8,7 @@ using X10D.Drawing;
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class PointFTests
+internal class PointFTests
 {
     [Test]
     public void IsOnLine_ShouldReturnTrue_GivenPointOnLine()

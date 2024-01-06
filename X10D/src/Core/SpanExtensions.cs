@@ -1,13 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using X10D.CompilerServices;
-
-#if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
-#endif
+using X10D.CompilerServices;
 
 #if NET7_0_OR_GREATER
 using System.Diagnostics;
@@ -20,7 +17,6 @@ namespace X10D.Core;
 /// </summary>
 public static class SpanExtensions
 {
-#if NETCOREAPP3_0_OR_GREATER
     private const ulong IntegerPackingMagic = 0x0102040810204080;
 
     [ExcludeFromCodeCoverage]
@@ -34,7 +30,6 @@ public static class SpanExtensions
     {
         get => Vector256.Create(IntegerPackingMagic);
     }
-#endif
 
     /// <summary>
     ///     Returns a value indicating whether a specific enumeration value is contained with the current span of elements.
@@ -48,7 +43,7 @@ public static class SpanExtensions
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Contains<T>(this Span<T> span, T value) where T : struct, Enum
     {
         return Contains((ReadOnlySpan<T>)span, value);
@@ -67,10 +62,9 @@ public static class SpanExtensions
     /// </returns>
     /// <exception cref="ArgumentException">The size of <typeparamref name="T" /> is unsupported.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : struct, Enum
     {
-#if NET6_0_OR_GREATER
         switch (Unsafe.SizeOf<T>())
         {
             case 1:
@@ -108,17 +102,6 @@ public static class SpanExtensions
             //NOSONAR
             // dotcover enable
         }
-#else
-        foreach (var it in span)
-        {
-            if (EqualityComparer<T>.Default.Equals(it, value))
-            {
-                return true;
-            }
-        }
-
-        return false;
-#endif
     }
 
     /// <summary>
@@ -128,7 +111,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static byte PackByte(this Span<bool> source)
     {
         return PackByte((ReadOnlySpan<bool>)source);
@@ -141,7 +124,7 @@ public static class SpanExtensions
     /// <returns>An 8-bit unsigned integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 8 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static byte PackByte(this ReadOnlySpan<bool> source)
     {
@@ -155,7 +138,6 @@ public static class SpanExtensions
             return PackByteInternal_Fallback(source);
         }
 
-#if NETCOREAPP3_0_OR_GREATER
         if (!BitConverter.IsLittleEndian)
         {
             return PackByteInternal_Fallback(source);
@@ -165,12 +147,6 @@ public static class SpanExtensions
         {
             return PackByteInternal_Sse2(source);
         }
-
-        // if (AdvSimd.IsSupported)
-        // {
-        //     return PackByteInternal_AdvSimd(source);
-        // }
-#endif
 
         return PackByteInternal_Fallback(source);
     }
@@ -195,7 +171,7 @@ public static class SpanExtensions
     /// <returns>A 16-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 16 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static short PackInt16(this ReadOnlySpan<bool> source)
     {
@@ -211,12 +187,10 @@ public static class SpanExtensions
                     goto default;
                 }
 
-#if NETCOREAPP3_0_OR_GREATER
                 if (Sse2.IsSupported)
                 {
                     return PackInt16Internal_Sse2(source);
                 }
-#endif
 
                 goto default;
             case < 16:
@@ -234,7 +208,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static int PackInt32(this Span<bool> source)
     {
         return PackInt32((ReadOnlySpan<bool>)source);
@@ -247,7 +221,7 @@ public static class SpanExtensions
     /// <returns>A 32-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 32 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     [ExcludeFromCodeCoverage]
     public static int PackInt32(this ReadOnlySpan<bool> source)
     {
@@ -263,7 +237,6 @@ public static class SpanExtensions
                 return PackInt16(source);
 
             case 32:
-#if NETCOREAPP3_0_OR_GREATER
                 if (!BitConverter.IsLittleEndian)
                 {
                     goto default;
@@ -279,11 +252,6 @@ public static class SpanExtensions
                     return PackInt32Internal_Sse2(source);
                 }
 
-                // if (AdvSimd.IsSupported)
-                // {
-                //     return PackInt32Internal_AdvSimd(source);
-                // }
-#endif
                 goto default;
 
             default:
@@ -298,7 +266,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static long PackInt64(this Span<bool> source)
     {
         return PackInt64((ReadOnlySpan<bool>)source);
@@ -311,7 +279,7 @@ public static class SpanExtensions
     /// <returns>A 64-bit signed integer containing the packed booleans.</returns>
     /// <exception cref="ArgumentException"><paramref name="source" /> contains more than 64 elements.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     public static long PackInt64(this ReadOnlySpan<bool> source)
     {
         switch (source.Length)
@@ -336,7 +304,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static byte PackByteInternal_Fallback(this ReadOnlySpan<bool> source)
     {
         byte result = 0;
@@ -350,7 +318,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static short PackInt16Internal_Fallback(this ReadOnlySpan<bool> source)
     {
         short result = 0;
@@ -364,7 +332,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Fallback(this ReadOnlySpan<bool> source)
     {
         var result = 0;
@@ -377,9 +345,8 @@ public static class SpanExtensions
         return result;
     }
 
-#if NETCOREAPP3_0_OR_GREATER
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static byte PackByteInternal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -393,7 +360,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static short PackInt16Internal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -410,37 +377,8 @@ public static class SpanExtensions
         }
     }
 
-    // dotcover disable
-    //NOSONAR
-    // [Pure]
-    // [MethodImpl(CompilerResources.MethodImplOptions)]
-    // internal static int PackInt32Internal_AdvSimd(this ReadOnlySpan<bool> source)
-    // {
-    //     unsafe
-    //     {
-    //         fixed (bool* pSource = source)
-    //         {
-    //             Vector128<ulong> vector1 = AdvSimd.LoadVector128((byte*)pSource).CorrectBoolean().AsUInt64();
-    //             Vector128<ulong> vector2 = AdvSimd.LoadVector128((byte*)(pSource + 16)).CorrectBoolean().AsUInt64();
-    //
-    //             Vector128<ulong> calc1 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector1);
-    //             Vector128<ulong> calc2 = IntrinsicUtility.Multiply(IntegerPackingMagicV128, vector2);
-    //
-    //             calc1 = AdvSimd.ShiftRightLogical(calc1, 56);
-    //             calc2 = AdvSimd.ShiftRightLogical(calc2, 56);
-    //
-    //             Vector128<ulong> shift1 = AdvSimd.ShiftLogical(calc1, Vector128.Create(0, 8));
-    //             Vector128<ulong> shift2 = AdvSimd.ShiftLogical(calc2, Vector128.Create(16, 24));
-    //
-    //             return (int)(shift1.GetElement(0) | shift1.GetElement(1) | shift2.GetElement(0) | shift2.GetElement(1));
-    //         }
-    //     }
-    // }
-    //NOSONAR
-    // dotcover enable
-
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Avx2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -465,7 +403,7 @@ public static class SpanExtensions
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
+    [MethodImpl(CompilerResources.MethodImplOptions)]
     internal static int PackInt32Internal_Sse2(this ReadOnlySpan<bool> source)
     {
         unsafe
@@ -492,25 +430,4 @@ public static class SpanExtensions
             }
         }
     }
-
-// #if NET5_0_OR_GREATER
-//     // dotcover disable
-//     //NOSONAR
-//     [Pure]
-//     [MethodImpl(CompilerResources.MethodImplOptions)]
-//     internal static byte PackByteInternal_AdvSimd(this ReadOnlySpan<bool> source)
-//     {
-//         unsafe
-//         {
-//             fixed (bool* pSource = source)
-//             {
-//                 Vector64<byte> load = AdvSimd.LoadVector64((byte*)pSource);
-//                 return unchecked((byte)(IntegerPackingMagic * load.CorrectBoolean().AsUInt64().GetElement(0) >> 56));
-//             }
-//         }
-//     }
-//     //NOSONAR
-//     // dotcover enable
-// #endif
-#endif
 }

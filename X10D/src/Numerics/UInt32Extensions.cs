@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
@@ -24,20 +24,7 @@ public static class UInt32Extensions
     [MethodImpl(CompilerResources.MaxOptimization)]
     public static int PopCount(this uint value)
     {
-#if NETCOREAPP3_1_OR_GREATER
         return BitOperations.PopCount(value);
-#else
-        const uint c1 = 0x_55555555u;
-        const uint c2 = 0x_33333333u;
-        const uint c3 = 0x_0F0F0F0Fu;
-        const uint c4 = 0x_01010101u;
-
-        value -= (value >> 1) & c1;
-        value = (value & c2) + ((value >> 2) & c2);
-        value = (((value + (value >> 4)) & c3) * c4) >> 24;
-
-        return (int)value;
-#endif
     }
 
     /// <summary>
@@ -82,17 +69,6 @@ public static class UInt32Extensions
     [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint RoundUpToPowerOf2(this uint value)
     {
-#if NET6_0_OR_GREATER
         return BitOperations.RoundUpToPowerOf2(value);
-#else
-        // Based on https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
-        --value;
-        value |= value >> 1;
-        value |= value >> 2;
-        value |= value >> 4;
-        value |= value >> 8;
-        value |= value >> 16;
-        return value + 1;
-#endif
     }
 }

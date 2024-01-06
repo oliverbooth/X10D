@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -26,14 +26,11 @@ public static class MemberInfoExtensions
     public static bool HasCustomAttribute<T>(this MemberInfo member)
         where T : Attribute
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(member);
-#else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
         }
-#endif
+
         return Attribute.IsDefined(member, typeof(T));
     }
 
@@ -51,10 +48,6 @@ public static class MemberInfoExtensions
     [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool HasCustomAttribute(this MemberInfo member, Type attribute)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(member);
-        ArgumentNullException.ThrowIfNull(attribute);
-#else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
@@ -64,7 +57,6 @@ public static class MemberInfoExtensions
         {
             throw new ArgumentNullException(nameof(attribute));
         }
-#endif
 
         if (!attribute.Inherits<Attribute>())
         {
@@ -94,10 +86,6 @@ public static class MemberInfoExtensions
         Func<TAttribute, TReturn> selector)
         where TAttribute : Attribute
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(member);
-        ArgumentNullException.ThrowIfNull(selector);
-#else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
@@ -107,7 +95,6 @@ public static class MemberInfoExtensions
         {
             throw new ArgumentNullException(nameof(selector));
         }
-#endif
 
         return member.SelectFromCustomAttribute(selector, default);
     }
@@ -132,10 +119,6 @@ public static class MemberInfoExtensions
         Func<TAttribute, TReturn> selector, TReturn? defaultValue)
         where TAttribute : Attribute
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(member);
-        ArgumentNullException.ThrowIfNull(selector);
-#else
         if (member is null)
         {
             throw new ArgumentNullException(nameof(member));
@@ -145,7 +128,6 @@ public static class MemberInfoExtensions
         {
             throw new ArgumentNullException(nameof(selector));
         }
-#endif
 
         return member.GetCustomAttribute<TAttribute>() is { } attribute
             ? selector(attribute)

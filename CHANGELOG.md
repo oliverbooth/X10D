@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 4.0.0 - [Unreleased]
+
+### Added
+
+- X10D: Added extension methods for `DateOnly`, for parity with `DateTime` and `DateTimeOffset`.
+- X10D: Added math-related extension methods for `BigInteger`.
+- X10D: Added `Span<T>.Replace(T, T)`.
+- X10D: Added `CountDigits` for integer types.
+- X10D: Added `IEnumerable<T>.Except(T)`.
+- X10D: Added `Progress<T>.OnProgressChanged([T])`.
+- X10D: Added `TextWriter.WriteNoAlloc(int[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(int[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `string.ConcatIf`.
+- X10D: Added `string.MDBold`, `string.MDCode`, `string.MDCodeBlock([string])`, `string.MDHeading(int)`,
+`string.MDItalic`, `string.MDLink`, `string.MDStrikeOut`, and `string.MDUnderline` for Markdown formatting.
+- X10D: Added Span overloads which complement `char.Repeat` and `string.Repeat`.
+
+### Fixed
+
+- X10D: Fixed XMLDoc for `Line3D` to read "single-precision floating-point" instead of "32-bit signed integer".
+
+### Changed
+
+- X10D: DateTime.Age(DateTime) and DateTimeOffset.Age(DateTimeOffset) parameter renamed from asOf to referenceDate.
+- X10D: Methods which accepted the `Endianness` enum as an argument have been replaced with explicit
+BigEndian/LittleEndian methods.
+- X10D: `Stream.GetHash<>` and `Stream.TryWriteHash<>` now throw ArgumentException in lieu of
+TypeInitializationException.
+- X10D: `char.IsEmoji` no longer allocates for .NET 7.
+- X10D: `string.Repeat` is now more efficient.
+
+### Removed
+
+- X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
+- X10D: Removed `Endianness` enum.
+- X10D: Removed `Span<T>.Replace(T, T)` for .NET 8 target.
+- X10D: Removed .NET Standard 2.1 target.
+- X10D.Hosting: Removed .NET Standard 2.1 target.
+- X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0 (#83).
+- X10D.Unity: Complete sunset of library. This library will not be updated effective immediately (#86).
+
 ## [3.3.1] - 2023-08-21
 
 ### Fixed

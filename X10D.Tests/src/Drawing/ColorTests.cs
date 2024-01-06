@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class ColorTests
+internal class ColorTests
 {
     private static readonly Color Black = Color.FromArgb(0, 0, 0);
     private static readonly Color White = Color.FromArgb(255, 255, 255);
@@ -207,9 +207,7 @@ public class ColorTests
             Assert.That(Color.Plum.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
             Assert.That(Color.PowderBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
             Assert.That(Color.Purple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
-#if NET6_0_OR_GREATER
             Assert.That(Color.RebeccaPurple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
-#endif
             Assert.That(Color.Red.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Red));
             Assert.That(Color.RosyBrown.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
             Assert.That(Color.RoyalBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));

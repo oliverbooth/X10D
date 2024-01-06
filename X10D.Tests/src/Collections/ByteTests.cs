@@ -1,11 +1,11 @@
-﻿using System.Runtime.Intrinsics.X86;
+using System.Runtime.Intrinsics.X86;
 using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class ByteTests
+internal class ByteTests
 {
     [Test]
     public void Unpack_ShouldUnpackToArrayCorrectly()
@@ -47,7 +47,6 @@ public class ByteTests
         });
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void UnpackInternal_Fallback_ShouldUnpackToSpanCorrectly()
     {
@@ -92,7 +91,6 @@ public class ByteTests
             Assert.That(bits[7], Is.True);
         });
     }
-#endif
 
     [Test]
     public void Unpack_ShouldRepackEqually()

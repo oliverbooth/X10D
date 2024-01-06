@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Linq;
 
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class SByteTests
+internal class SByteTests
 {
     [Test]
     public void ProductShouldBeCorrect()

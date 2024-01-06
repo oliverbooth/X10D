@@ -1,4 +1,3 @@
-﻿#if NET6_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -198,4 +197,3 @@ public static class DateOnlyExtensions
         return value.ToDateTime(time).ToUnixTimeSeconds();
     }
 }
-#endif

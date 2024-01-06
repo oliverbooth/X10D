@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-[CLSCompliant(false)]
-public partial class SByteTests
+internal partial class SByteTests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()

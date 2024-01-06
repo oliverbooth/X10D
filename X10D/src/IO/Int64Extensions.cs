@@ -9,54 +9,50 @@ namespace X10D.IO;
 public static class Int64Extensions
 {
     /// <summary>
-    ///     Returns the current 64-bit signed integer value as an array of bytes.
+    ///     Converts the current 64-bit signed integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
+    /// <param name="value">The <see cref="long" /> value.</param>
     /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this long value)
+    public static byte[] GetBigEndianBytes(this long value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBytes(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Returns the current 64-bit signed integer value as an array of bytes.
+    ///     Converts the current 64-bit signed integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="value">The <see cref="long" /> value.</param>
     /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this long value, Endianness endianness)
+    public static byte[] GetLittleEndianBytes(this long value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBytes(buffer, endianness);
+        value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Converts the current 64-bit signed integer a span of bytes.
+    ///     Writes the current 64-bit signed integer into a span of bytes, as big endian.
     /// </summary>
     /// <param name="value">The <see cref="long" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="long" />.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this long value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this long value, Span<byte> destination)
     {
-        return BitConverter.TryWriteBytes(destination, value);
+        return BinaryPrimitives.TryWriteInt64BigEndian(destination, value);
     }
 
     /// <summary>
-    ///     Converts the current 64-bit signed integer a span of bytes.
+    ///     Writes the current 64-bit signed integer into a span of bytes, as little endian.
     /// </summary>
     /// <param name="value">The <see cref="long" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="long" />.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this long value, Span<byte> destination, Endianness endianness)
+    public static bool TryWriteLittleEndianBytes(this long value, Span<byte> destination)
     {
-        return endianness == Endianness.BigEndian
-            ? BinaryPrimitives.TryWriteInt64BigEndian(destination, value)
-            : BinaryPrimitives.TryWriteInt64LittleEndian(destination, value);
+        return BinaryPrimitives.TryWriteInt64LittleEndian(destination, value);
     }
 }

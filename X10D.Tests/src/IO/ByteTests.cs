@@ -4,7 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class ByteTests
+internal class ByteTests
 {
     [Test]
     public void GetBytes_ReturnsArrayContainingItself()
