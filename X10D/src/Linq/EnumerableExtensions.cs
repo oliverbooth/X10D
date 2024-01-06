@@ -1,6 +1,4 @@
-#if NET5_0_OR_GREATER
 using System.Runtime.InteropServices;
-#endif
 
 namespace X10D.Linq;
 
@@ -389,11 +387,9 @@ public static class EnumerableExtensions
                 span = array;
                 break;
 
-#if NET5_0_OR_GREATER
             case List<TSource> list:
                 span = CollectionsMarshal.AsSpan(list);
                 break;
-#endif
 
             default:
                 span = default;

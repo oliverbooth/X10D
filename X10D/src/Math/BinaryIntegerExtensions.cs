@@ -17,7 +17,7 @@ public static class BinaryIntegerExtensions
     /// <param name="value">The value whose digit count to compute.</param>
     /// <returns>The number of digits in <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int CountDigits<TInteger>(this TInteger value)
         where TInteger : IBinaryInteger<TInteger>
     {
@@ -40,7 +40,7 @@ public static class BinaryIntegerExtensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int DigitalRoot<TInteger>(this TInteger value)
         where TInteger : IBinaryInteger<TInteger>
     {

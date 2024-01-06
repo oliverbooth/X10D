@@ -36,7 +36,7 @@ public static class UInt16Extensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort DigitalRoot(this ushort value)
     {
         var root = (ushort)(value % 9);
@@ -50,7 +50,7 @@ public static class UInt16Extensions
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong Factorial(this ushort value)
     {
         if (value == 0)
@@ -75,7 +75,7 @@ public static class UInt16Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort GreatestCommonFactor(this ushort value, ushort other)
     {
         return (ushort)((long)value).GreatestCommonFactor(other);
@@ -90,7 +90,7 @@ public static class UInt16Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this ushort value)
     {
         return (value & 1) == 0;
@@ -104,7 +104,7 @@ public static class UInt16Extensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPrime(this ushort value)
     {
         return ((ulong)value).IsPrime();
@@ -119,7 +119,7 @@ public static class UInt16Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this ushort value)
     {
         return !value.IsEven();
@@ -133,7 +133,7 @@ public static class UInt16Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort LowestCommonMultiple(this ushort value, ushort other)
     {
         return (ushort)((ulong)value).LowestCommonMultiple(other);
@@ -148,7 +148,7 @@ public static class UInt16Extensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this ushort value)
     {
         return ((ulong)value).MultiplicativePersistence();
@@ -162,7 +162,7 @@ public static class UInt16Extensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort Wrap(this ushort value, ushort low, ushort high)
     {
         return (ushort)((ulong)value).Wrap(low, high);
@@ -175,7 +175,7 @@ public static class UInt16Extensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort Wrap(this ushort value, ushort length)
     {
         return (ushort)((ulong)value).Wrap(length);

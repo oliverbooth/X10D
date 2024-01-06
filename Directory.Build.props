@@ -1,6 +1,5 @@
 <Project>
     <PropertyGroup>
-        <TargetFrameworks>net7.0;net6.0;netstandard2.1</TargetFrameworks>
         <LangVersion>11.0</LangVersion>
         <Optimize>true</Optimize>
         <ImplicitUsings>true</ImplicitUsings>
@@ -21,7 +20,7 @@
         <PackageIconUrl/>
         <PackageTags>dotnet extension-methods</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(SolutionDir)/CHANGELOG.md"))</PackageReleaseNotes>
+        <PackageReleaseNotes>See CHANGELOG.md for a full list of changes.</PackageReleaseNotes>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     </PropertyGroup>
 

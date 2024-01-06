@@ -25,7 +25,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -50,7 +50,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -75,7 +75,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -101,7 +101,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -127,7 +127,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -153,7 +153,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -178,7 +178,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -204,7 +204,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -230,7 +230,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[16];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -255,7 +255,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -280,7 +280,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -305,7 +305,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -330,7 +330,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -356,7 +356,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 
@@ -382,7 +382,7 @@ public static partial class StreamExtensions
         }
 
         Span<byte> buffer = stackalloc byte[16];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return stream.WriteInternal(buffer);
     }
 

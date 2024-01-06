@@ -23,7 +23,7 @@ public static class EndPointExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string GetHost(this EndPoint endPoint)
     {
         if (endPoint is null)
@@ -52,7 +52,7 @@ public static class EndPointExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="endPoint" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int GetPort(this EndPoint endPoint)
     {
         if (endPoint is null)

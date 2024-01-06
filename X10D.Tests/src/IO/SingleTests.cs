@@ -33,7 +33,7 @@ internal class SingleTests
 
         var expected = new byte[] { 0x42, 0x2A, 0, 0 };
         Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteBigEndian(actual));
+        Assert.That(value.TryWriteBigEndianBytes(actual));
         CollectionAssert.AreEqual(expected, actual.ToArray());
     }
 
@@ -44,7 +44,7 @@ internal class SingleTests
 
         var expected = new byte[] { 0, 0, 0x2A, 0x42 };
         Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteLittleEndian(actual));
+        Assert.That(value.TryWriteLittleEndianBytes(actual));
         CollectionAssert.AreEqual(expected, actual.ToArray());
     }
 
@@ -53,7 +53,7 @@ internal class SingleTests
     {
         const float value = 42.5f;
         Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteBigEndian(buffer), Is.False);
+        Assert.That(value.TryWriteBigEndianBytes(buffer), Is.False);
     }
 
     [Test]
@@ -61,6 +61,6 @@ internal class SingleTests
     {
         const float value = 42.5f;
         Span<byte> buffer = stackalloc byte[0];
-        Assert.That(value.TryWriteLittleEndian(buffer), Is.False);
+        Assert.That(value.TryWriteLittleEndianBytes(buffer), Is.False);
     }
 }

@@ -3,12 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 #endif
 using System.Runtime.CompilerServices;
-using X10D.CompilerServices;
-
-#if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
-#endif
+using X10D.CompilerServices;
 
 namespace X10D.Collections;
 
@@ -26,7 +23,7 @@ public static class ByteExtensions
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 8.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool[] Unpack(this byte value)
     {
         var buffer = new bool[Size];
@@ -41,7 +38,7 @@ public static class ByteExtensions
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
     [ExcludeFromCodeCoverage]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static void Unpack(this byte value, Span<bool> destination)
     {
         if (destination.Length < Size)
@@ -49,19 +46,17 @@ public static class ByteExtensions
             throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
-#if NETCOREAPP3_0_OR_GREATER
         if (Sse3.IsSupported)
         {
             UnpackInternal_Ssse3(value, destination);
             return;
         }
-#endif
 
         UnpackInternal_Fallback(value, destination);
     }
 #endif
 
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static void UnpackInternal_Fallback(this byte value, Span<bool> destination)
     {
         for (var index = 0; index < Size; index++)
@@ -70,8 +65,7 @@ public static class ByteExtensions
         }
     }
 
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal unsafe static void UnpackInternal_Ssse3(this byte value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)
@@ -91,5 +85,4 @@ public static class ByteExtensions
             Sse2.StoreScalar((long*)pDestination, correctness.AsInt64());
         }
     }
-#endif
 }

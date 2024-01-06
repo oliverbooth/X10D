@@ -20,7 +20,7 @@ public static class NumberExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven<TNumber>(this TNumber value)
         where TNumber : INumber<TNumber>
     {
@@ -36,7 +36,7 @@ public static class NumberExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd<TNumber>(this TNumber value)
         where TNumber : INumber<TNumber>
     {
@@ -58,7 +58,7 @@ public static class NumberExtensions
     /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
     /// <license>CC-BY-SA 2.5</license>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TNumber Mod<TNumber>(this TNumber dividend, TNumber divisor)
         where TNumber : INumber<TNumber>
     {
@@ -94,7 +94,7 @@ public static class NumberExtensions
     ///     </list>
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int Sign<TNumber>(this TNumber value)
         where TNumber : INumber<TNumber>
     {

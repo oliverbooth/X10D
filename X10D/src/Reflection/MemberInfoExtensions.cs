@@ -22,7 +22,7 @@ public static class MemberInfoExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="member" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool HasCustomAttribute<T>(this MemberInfo member)
         where T : Attribute
     {
@@ -45,7 +45,7 @@ public static class MemberInfoExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="member" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool HasCustomAttribute(this MemberInfo member, Type attribute)
     {
         if (member is null)

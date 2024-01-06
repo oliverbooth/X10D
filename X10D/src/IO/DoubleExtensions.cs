@@ -18,7 +18,7 @@ public static class DoubleExtensions
     public static byte[] GetBigEndianBytes(this double value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -31,7 +31,7 @@ public static class DoubleExtensions
     public static byte[] GetLittleEndianBytes(this double value)
     {
         Span<byte> buffer = stackalloc byte[8];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -41,19 +41,9 @@ public static class DoubleExtensions
     /// <param name="value">The <see cref="float" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBigEndian(this double value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this double value, Span<byte> destination)
     {
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.TryWriteDoubleBigEndian(destination, value);
-#else
-        if (BitConverter.IsLittleEndian)
-        {
-            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-            return MemoryMarshal.TryWrite(destination, ref tmp);
-        }
-
-        return MemoryMarshal.TryWrite(destination, ref value);
-#endif
     }
 
     /// <summary>
@@ -62,18 +52,8 @@ public static class DoubleExtensions
     /// <param name="value">The <see cref="float" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteLittleEndian(this double value, Span<byte> destination)
+    public static bool TryWriteLittleEndianBytes(this double value, Span<byte> destination)
     {
-#if NET5_0_OR_GREATER
         return BinaryPrimitives.TryWriteDoubleLittleEndian(destination, value);
-#else
-        if (BitConverter.IsLittleEndian)
-        {
-            return MemoryMarshal.TryWrite(destination, ref value);
-        }
-
-        long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-        return MemoryMarshal.TryWrite(destination, ref tmp);
-#endif
     }
 }

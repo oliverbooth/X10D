@@ -1,7 +1,5 @@
 using System.Text;
-#if NET5_0_OR_GREATER
 using System.Text.Json.Serialization;
-#endif
 using NUnit.Framework;
 using X10D.Text;
 
@@ -164,7 +162,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That("Hello World".CountSubstring('E'), Is.Zero);
+#pragma warning disable CA1307
             Assert.That("Hello World".CountSubstring("E"), Is.Zero);
+#pragma warning restore CA1307
             Assert.That("Hello World".CountSubstring("E", StringComparison.OrdinalIgnoreCase), Is.EqualTo(1));
         });
     }
@@ -175,7 +175,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That("Hello World".CountSubstring('z'), Is.Zero);
+#pragma warning disable CA1307
             Assert.That("Hello World".CountSubstring("z"), Is.Zero);
+#pragma warning restore CA1307
             Assert.That("Hello World".CountSubstring("z", StringComparison.OrdinalIgnoreCase), Is.Zero);
         });
     }
@@ -186,7 +188,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That("Hello World".CountSubstring('e'), Is.EqualTo(1));
+#pragma warning disable CA1307
             Assert.That("Hello World".CountSubstring("e"), Is.EqualTo(1));
+#pragma warning restore CA1307
             Assert.That("Hello World".CountSubstring("e", StringComparison.OrdinalIgnoreCase), Is.EqualTo(1));
         });
     }
@@ -197,7 +201,9 @@ internal class StringTests
         Assert.Multiple(() =>
         {
             Assert.That(string.Empty.CountSubstring('\0'), Is.Zero);
+#pragma warning disable CA1307
             Assert.That(string.Empty.CountSubstring(string.Empty), Is.Zero);
+#pragma warning restore CA1307
             Assert.That(string.Empty.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase), Is.Zero);
         });
     }
@@ -207,7 +213,9 @@ internal class StringTests
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => value.CountSubstring('\0'));
+#pragma warning disable CA1307
         Assert.Throws<ArgumentNullException>(() => value.CountSubstring(string.Empty));
+#pragma warning restore CA1307
         Assert.Throws<ArgumentNullException>(() => value.CountSubstring(string.Empty, StringComparison.OrdinalIgnoreCase));
     }
 
@@ -217,7 +225,10 @@ internal class StringTests
         const string value = "Hello Worl";
         const char substring = 'd';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureEndsWith(substring), Is.EqualTo("Hello World"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo("Hello World"));
     }
 
     [Test]
@@ -226,7 +237,10 @@ internal class StringTests
         const string value = "A";
         const char substring = 'A';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureEndsWith(substring), Is.EqualTo(value));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo(value));
     }
 
     [Test]
@@ -235,7 +249,10 @@ internal class StringTests
         const string value = "B";
         const char substring = 'A';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureStartsWith(substring), Is.EqualTo("AB"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo("AB"));
     }
 
     [Test]
@@ -244,7 +261,10 @@ internal class StringTests
         const string value = "A";
         const char substring = 'A';
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureStartsWith(substring), Is.EqualTo(value));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo(value));
     }
 
     [Test]
@@ -253,7 +273,10 @@ internal class StringTests
         const string value = "Hello ";
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureEndsWith(substring), Is.EqualTo("Hello World"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo("Hello World"));
     }
 
     [Test]
@@ -261,7 +284,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureEndsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -269,7 +295,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(string.Empty.EnsureEndsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(string.Empty.EnsureEndsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -277,7 +306,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureEndsWith(string.Empty), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureEndsWith(string.Empty, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -286,7 +318,10 @@ internal class StringTests
         const string value = "World";
         const string substring = "Hello ";
 
+#pragma warning disable CA1307
         Assert.That(value.EnsureStartsWith(substring), Is.EqualTo("Hello World"));
+#pragma warning restore CA1307
+        Assert.That(value.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo("Hello World"));
     }
 
     [Test]
@@ -294,7 +329,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureStartsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -302,7 +340,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(string.Empty.EnsureStartsWith(substring), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(string.Empty.EnsureStartsWith(substring, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -310,7 +351,10 @@ internal class StringTests
     {
         const string substring = "World";
 
+#pragma warning disable CA1307
         Assert.That(substring.EnsureStartsWith(string.Empty), Is.EqualTo(substring));
+#pragma warning restore CA1307
+        Assert.That(substring.EnsureStartsWith(string.Empty, StringComparison.Ordinal), Is.EqualTo(substring));
     }
 
     [Test]
@@ -372,7 +416,6 @@ internal class StringTests
         Assert.Throws<ArgumentException>(() => _ = " ".EnumParse<DayOfWeek>());
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void FromJson_ShouldDeserializeCorrectly_GivenJsonString()
     {
@@ -388,12 +431,11 @@ internal class StringTests
             Assert.That(target.Values[2], Is.EqualTo(3));
         });
     }
-#endif
 
     [Test]
     public void GetBytes_ShouldReturnUtf8Bytes_GivenHelloWorld()
     {
-        var expected = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
+        var expected = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64 };
         byte[] actual = "Hello World".GetBytes();
 
         CollectionAssert.AreEqual(expected, actual);
@@ -402,7 +444,7 @@ internal class StringTests
     [Test]
     public void GetBytes_ShouldReturnAsciiBytes_GivenHelloWorld()
     {
-        var expected = new byte[] {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64};
+        var expected = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64 };
         byte[] actual = "Hello World".GetBytes(Encoding.ASCII);
 
         CollectionAssert.AreEqual(expected, actual);
@@ -444,14 +486,16 @@ internal class StringTests
     public void IsEmoji_ShouldReturnTrue_GivenMultiByteEmoji()
     {
         string[] regionalIndicatorCodes = Enumerable.Range(0, 26)
-            .Select(i => Encoding.Unicode.GetString(new byte[] {0x3C, 0xD8, (byte)(0xE6 + i), 0xDD}))
+            .Select(i => Encoding.Unicode.GetString(new byte[] { 0x3C, 0xD8, (byte)(0xE6 + i), 0xDD }))
             .ToArray();
 
         for (var i = 0; i < 26; i++)
-        for (var j = 0; j < 26; j++)
         {
-            string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
-            Assert.That(flag.IsEmoji());
+            for (var j = 0; j < 26; j++)
+            {
+                string flag = (regionalIndicatorCodes[i] + regionalIndicatorCodes[j]);
+                Assert.That(flag.IsEmoji());
+            }
         }
     }
 
@@ -696,7 +740,7 @@ internal class StringTests
     [Test]
     public void Randomize_ShouldThrow_GivenNegativeLength()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.Randomize(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = string.Empty.Randomize(-1));
     }
 
     [Test]
@@ -715,24 +759,61 @@ internal class StringTests
     }
 
     [Test]
+    public void Repeat_ShouldNotManipulateSpan_GivenCount0()
+    {
+        Span<char> destination = new char[11];
+        "Hello world".AsSpan().CopyTo(destination);
+
+        "a".Repeat(0, destination);
+        Assert.That(destination.ToString(), Is.EqualTo("Hello world"));
+    }
+
+    [Test]
     public void Repeat_ShouldReturnItself_GivenCount1()
     {
         string repeated = "a".Repeat(1);
-        Assert.That(repeated.Length, Is.EqualTo(1));
+        Assert.That(repeated, Has.Length.EqualTo(1));
         Assert.That(repeated, Is.EqualTo("a"));
     }
 
     [Test]
-    public void Repeat_ShouldThrow_GivenNegativeCount()
+    public void Repeat_ShouldThrowArgumentException_GivenSmallSpan()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => _ = "a".Repeat(-1));
+        Assert.Throws<ArgumentException>(() => "a".Repeat(10, Span<char>.Empty));
     }
 
     [Test]
-    public void Repeat_ShouldThrow_GivenNull()
+    public void Repeat_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = "a".Repeat(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => "a".Repeat(-1, Span<char>.Empty));
+    }
+
+    [Test]
+    public void Repeat_ShouldThrowArgumentNullException_GivenNull()
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Repeat(0));
+        Assert.Throws<ArgumentNullException>(() => value.Repeat(0, Span<char>.Empty));
+    }
+
+    [Test]
+    public void Repeat_ShouldPopulateSpanWithRepeatedCharacter_GivenValidCount()
+    {
+        const string expected = "aaaaaaaaaa";
+        Span<char> destination = new char[10];
+        "a".Repeat(10, destination);
+
+        Assert.That(destination.ToString(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void Repeat_ShouldOnlyWriteOneCharToSpan_GivenCount1()
+    {
+        Span<char> destination = new char[10];
+        "a".Repeat(1, destination);
+
+        Assert.That(destination.ToString(), Is.EqualTo("a\0\0\0\0\0\0\0\0\0"));
     }
 
     [Test]
@@ -751,7 +832,7 @@ internal class StringTests
     }
 
     [Test]
-    public void Reverse_ShouldThrow_GivenNull()
+    public void Reverse_ShouldThrowArgumentNullException_GivenNull()
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Reverse());
@@ -769,7 +850,7 @@ internal class StringTests
     }
 
     [Test]
-    public void Shuffled_ShouldThrow_GivenNull()
+    public void Shuffled_ShouldThrowArgumentNullException_GivenNull()
     {
         string value = null!;
         Assert.Throws<ArgumentNullException>(() => _ = value.Shuffled());
@@ -803,7 +884,7 @@ internal class StringTests
     }
 
     [Test]
-    public void Split_ShouldThrow_GivenNullString()
+    public void Split_ShouldThrowArgumentNullException_GivenNullString()
     {
         string value = null!;
 
@@ -878,7 +959,7 @@ internal class StringTests
     [Test]
     public void StartsWithAny_ShouldThrowArgumentNullException_GivenANullValue()
     {
-        var values = new[] {"Hello", null!, "World"};
+        var values = new[] { "Hello", null!, "World" };
         Assert.Throws<ArgumentNullException>(() => "Foobar".StartsWithAny(values));
         Assert.Throws<ArgumentNullException>(() => "Foobar".StartsWithAny(StringComparison.Ordinal, values));
     }
@@ -921,11 +1002,9 @@ internal class StringTests
         });
     }
 
-#if NET5_0_OR_GREATER
     private struct SampleStructure
     {
         [JsonPropertyName("values")]
         public int[] Values { get; set; }
     }
-#endif
 }

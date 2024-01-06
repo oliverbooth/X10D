@@ -36,7 +36,7 @@ public static class UInt64Extensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong DigitalRoot(this ulong value)
     {
         ulong root = value % 9;
@@ -50,7 +50,7 @@ public static class UInt64Extensions
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong Factorial(this ulong value)
     {
         if (value == 0)
@@ -75,7 +75,7 @@ public static class UInt64Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong GreatestCommonFactor(this ulong value, ulong other)
     {
         while (other != 0)
@@ -95,7 +95,7 @@ public static class UInt64Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this ulong value)
     {
         return (value & 1) == 0;
@@ -109,7 +109,7 @@ public static class UInt64Extensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPrime(this ulong value)
     {
         switch (value)
@@ -143,7 +143,7 @@ public static class UInt64Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this ulong value)
     {
         return !value.IsEven();
@@ -157,7 +157,7 @@ public static class UInt64Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong LowestCommonMultiple(this ulong value, ulong other)
     {
         if (value == 0 || other == 0)
@@ -187,7 +187,7 @@ public static class UInt64Extensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this ulong value)
     {
         var persistence = 0;
@@ -232,7 +232,7 @@ public static class UInt64Extensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong Wrap(this ulong value, ulong low, ulong high)
     {
         ulong difference = high - low;
@@ -246,7 +246,7 @@ public static class UInt64Extensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong Wrap(this ulong value, ulong length)
     {
         return ((value % length) + length) % length;

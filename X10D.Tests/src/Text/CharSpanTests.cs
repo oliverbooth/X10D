@@ -60,4 +60,60 @@ internal class CharSpanTests
         Assert.That(string.Empty.AsSpan().CountSubstring('\0'), Is.Zero);
         Assert.That(string.Empty.AsSpan().CountSubstring(string.Empty.AsSpan(), StringComparison.OrdinalIgnoreCase), Is.Zero);
     }
+
+    [Test]
+    public void Repeat_ShouldNotManipulateSpan_GivenCount0()
+    {
+        Span<char> destination = new char[11];
+        "Hello world".AsSpan().CopyTo(destination);
+
+        "a".AsSpan().Repeat(0, destination);
+        Assert.That(destination.ToString(), Is.EqualTo("Hello world"));
+    }
+
+    [Test]
+    public void Repeat_ShouldReturnItself_GivenCount1()
+    {
+        string repeated = "a".AsSpan().Repeat(1);
+        Assert.That(repeated, Has.Length.EqualTo(1));
+        Assert.That(repeated, Is.EqualTo("a"));
+    }
+
+    [Test]
+    public void Repeat_ShouldPopulateSpan_GivenValidSpan()
+    {
+        const string expected = "aaaaaaaaaa";
+        Span<char> destination = new char[10];
+        "a".AsSpan().Repeat(10, destination);
+
+        Assert.That(destination.ToString(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void Repeat_ShouldReturnEmptyString_GivenCount0()
+    {
+        Assert.That("a".AsSpan().Repeat(0), Is.EqualTo(string.Empty));
+    }
+
+    [Test]
+    public void Repeat_ShouldReturnRepeatedString_GivenSpan()
+    {
+        const string expected = "aaaaaaaaaa";
+        string actual = "a".AsSpan().Repeat(10);
+
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void Repeat_ShouldThrowArgumentException_GivenSmallSpan()
+    {
+        Assert.Throws<ArgumentException>(() => "a".AsSpan().Repeat(10, Span<char>.Empty));
+    }
+
+    [Test]
+    public void Repeat_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = "a".AsSpan().Repeat(-1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => "a".AsSpan().Repeat(-1, Span<char>.Empty));
+    }
 }

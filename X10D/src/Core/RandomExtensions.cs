@@ -11,10 +11,6 @@ namespace X10D.Core;
 /// </summary>
 public static class RandomExtensions
 {
-#if !NET6_0_OR_GREATER
-    private static readonly Random Shared = new();
-#endif
-
     /// <summary>
     ///     Returns a random value that defined in a specified enum.
     /// </summary>
@@ -505,10 +501,6 @@ public static class RandomExtensions
 
     internal static Random GetShared()
     {
-#if NET6_0_OR_GREATER
         return Random.Shared;
-#else
-        return Shared;
-#endif
     }
 }

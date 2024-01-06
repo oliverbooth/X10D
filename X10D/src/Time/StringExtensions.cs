@@ -58,7 +58,7 @@ public static class StringExtensions
     /// <returns>A new instance of <see cref="TimeSpan" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="input" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan ToTimeSpan(this string input)
     {
         if (input is null)

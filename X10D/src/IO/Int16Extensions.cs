@@ -17,7 +17,7 @@ public static class Int16Extensions
     public static byte[] GetBigEndianBytes(this short value)
     {
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -30,7 +30,7 @@ public static class Int16Extensions
     public static byte[] GetLittleEndianBytes(this short value)
     {
         Span<byte> buffer = stackalloc byte[2];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -40,7 +40,7 @@ public static class Int16Extensions
     /// <param name="value">The <see cref="short" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBigEndian(this short value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this short value, Span<byte> destination)
     {
         return BinaryPrimitives.TryWriteInt16BigEndian(destination, value);
     }
@@ -51,7 +51,7 @@ public static class Int16Extensions
     /// <param name="value">The <see cref="short" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteLittleEndian(this short value, Span<byte> destination)
+    public static bool TryWriteLittleEndianBytes(this short value, Span<byte> destination)
     {
         return BinaryPrimitives.TryWriteInt16LittleEndian(destination, value);
     }

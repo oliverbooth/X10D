@@ -207,9 +207,7 @@ internal class ColorTests
             Assert.That(Color.Plum.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
             Assert.That(Color.PowderBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
             Assert.That(Color.Purple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
-#if NET6_0_OR_GREATER
             Assert.That(Color.RebeccaPurple.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkMagenta));
-#endif
             Assert.That(Color.Red.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.Red));
             Assert.That(Color.RosyBrown.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkGray));
             Assert.That(Color.RoyalBlue.GetClosestConsoleColor(), Is.EqualTo(ConsoleColor.DarkCyan));

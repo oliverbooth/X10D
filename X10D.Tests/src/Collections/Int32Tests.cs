@@ -1,6 +1,4 @@
-#if NET5_0_OR_GREATER
 using System.Runtime.Intrinsics.X86;
-#endif
 using NUnit.Framework;
 using X10D.Collections;
 
@@ -85,7 +83,6 @@ internal class Int32Tests
         });
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void UnpackInternal_Ssse3_ShouldUnpackToSpanCorrectly()
     {
@@ -145,7 +142,6 @@ internal class Int32Tests
             }
         });
     }
-#endif
 
     [Test]
     public void Unpack_ShouldRepackEqually()

@@ -24,8 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `string.ConcatIf`.
-- X10D.Unity: Added `RaycastHit.GetComponent` and `RaycastHit.TryGetComponent`.
-- X10D.Unity: Added `DebugUtility.DrawFunction`, and `DebugUtility.DrawUnjoinedPolyhedron` on which it relies.
+- X10D: Added `string.MDBold`, `string.MDCode`, `string.MDCodeBlock([string])`, `string.MDHeading(int)`,
+`string.MDItalic`, `string.MDLink`, `string.MDStrikeOut`, and `string.MDUnderline` for Markdown formatting.
+- X10D: Added Span overloads which complement `char.Repeat` and `string.Repeat`.
 
 ### Fixed
 
@@ -38,12 +39,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 BigEndian/LittleEndian methods.
 - X10D: `Stream.GetHash<>` and `Stream.TryWriteHash<>` now throw ArgumentException in lieu of
 TypeInitializationException.
+- X10D: `char.IsEmoji` no longer allocates for .NET 7.
+- X10D: `string.Repeat` is now more efficient.
 
 ### Removed
 
 - X10D: Removed `IEnumerable<T>.ConcatOne` - this functionality already exists with `Append`.
 - X10D: Removed `Endianness` enum.
-- X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0.
+- X10D: Removed `Span<T>.Replace(T, T)` for .NET 8 target.
+- X10D: Removed .NET Standard 2.1 target.
+- X10D.Hosting: Removed .NET Standard 2.1 target.
+- X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0 (#83).
+- X10D.Unity: Complete sunset of library. This library will not be updated effective immediately (#86).
 
 ## [3.3.1] - 2023-08-21
 

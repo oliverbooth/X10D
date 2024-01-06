@@ -1,4 +1,3 @@
-#if NET5_0_OR_GREATER
 using NUnit.Framework;
 using X10D.Time;
 
@@ -52,4 +51,3 @@ internal class DoubleTests
         Assert.That((_negativeOne).Weeks() < TimeSpan.Zero);
     }
 }
-#endif

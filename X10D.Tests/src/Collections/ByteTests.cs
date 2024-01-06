@@ -47,7 +47,6 @@ internal class ByteTests
         });
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void UnpackInternal_Fallback_ShouldUnpackToSpanCorrectly()
     {
@@ -92,7 +91,6 @@ internal class ByteTests
             Assert.That(bits[7], Is.True);
         });
     }
-#endif
 
     [Test]
     public void Unpack_ShouldRepackEqually()

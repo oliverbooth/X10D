@@ -18,7 +18,7 @@ public static class UInt32Extensions
     public static byte[] GetBigEndianBytes(this uint value)
     {
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteBigEndian(buffer);
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -31,7 +31,7 @@ public static class UInt32Extensions
     public static byte[] GetLittleEndianBytes(this uint value)
     {
         Span<byte> buffer = stackalloc byte[4];
-        value.TryWriteLittleEndian(buffer);
+        value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
 
@@ -41,7 +41,7 @@ public static class UInt32Extensions
     /// <param name="value">The <see cref="uint" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBigEndian(this uint value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this uint value, Span<byte> destination)
     {
         return BinaryPrimitives.TryWriteUInt32BigEndian(destination, value);
     }
@@ -52,7 +52,7 @@ public static class UInt32Extensions
     /// <param name="value">The <see cref="uint" /> value.</param>
     /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteLittleEndian(this uint value, Span<byte> destination)
+    public static bool TryWriteLittleEndianBytes(this uint value, Span<byte> destination)
     {
         return BinaryPrimitives.TryWriteUInt32LittleEndian(destination, value);
     }

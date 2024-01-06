@@ -37,7 +37,7 @@ public static class BigIntegerExtensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int DigitalRoot(this BigInteger value)
     {
         BigInteger root = BigInteger.Abs(value).Mod(9);
@@ -52,7 +52,7 @@ public static class BigIntegerExtensions
     /// <returns>The factorial of <paramref name="value" />.</returns>
     /// <exception cref="ArithmeticException"><paramref name="value" /> is less than 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static BigInteger Factorial(this BigInteger value)
     {
         if (value < 0)
@@ -81,7 +81,7 @@ public static class BigIntegerExtensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static BigInteger GreatestCommonFactor(this BigInteger value, BigInteger other)
     {
         while (other != 0)
@@ -101,7 +101,7 @@ public static class BigIntegerExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this BigInteger value)
     {
         return !value.IsEven;
@@ -115,7 +115,7 @@ public static class BigIntegerExtensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPrime(this BigInteger value)
     {
         if (value <= 1)
@@ -151,7 +151,7 @@ public static class BigIntegerExtensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static BigInteger LowestCommonMultiple(this BigInteger value, BigInteger other)
     {
         if (value == 0 || other == 0)
@@ -188,7 +188,7 @@ public static class BigIntegerExtensions
     /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
     /// <license>CC-BY-SA 2.5</license>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static BigInteger Mod(this BigInteger dividend, BigInteger divisor)
     {
         BigInteger r = dividend % divisor;
@@ -205,7 +205,7 @@ public static class BigIntegerExtensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this BigInteger value)
     {
         var persistence = 0;
@@ -250,7 +250,7 @@ public static class BigIntegerExtensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static BigInteger Wrap(this BigInteger value, BigInteger low, BigInteger high)
     {
         BigInteger difference = high - low;
@@ -264,7 +264,7 @@ public static class BigIntegerExtensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static BigInteger Wrap(this BigInteger value, BigInteger length)
     {
         return ((value % length) + length) % length;

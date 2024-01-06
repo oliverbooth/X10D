@@ -1,4 +1,3 @@
-#if NET6_0_OR_GREATER
 using NUnit.Framework;
 using X10D.Time;
 
@@ -230,4 +229,3 @@ internal class DateOnlyTests
         Assert.That(date.ToUnixTimeSeconds(time), Is.EqualTo(946684800));
     }
 }
-#endif

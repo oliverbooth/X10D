@@ -36,7 +36,7 @@ public static class SByteExtensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static sbyte DigitalRoot(this sbyte value)
     {
         int root = System.Math.Abs(value).Mod(9);
@@ -51,7 +51,7 @@ public static class SByteExtensions
     /// <returns>The factorial of <paramref name="value" />.</returns>
     /// <exception cref="ArithmeticException"><paramref name="value" /> is less than 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Factorial(this sbyte value)
     {
         if (value < 0)
@@ -80,7 +80,7 @@ public static class SByteExtensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static sbyte GreatestCommonFactor(this sbyte value, sbyte other)
     {
         return (sbyte)((long)value).GreatestCommonFactor(other);
@@ -95,7 +95,7 @@ public static class SByteExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this sbyte value)
     {
         return (value & 1) == 0;
@@ -110,7 +110,7 @@ public static class SByteExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this sbyte value)
     {
         return !value.IsEven();
@@ -124,7 +124,7 @@ public static class SByteExtensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPrime(this sbyte value)
     {
         return ((long)value).IsPrime();
@@ -137,7 +137,7 @@ public static class SByteExtensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static sbyte LowestCommonMultiple(this sbyte value, sbyte other)
     {
         return (sbyte)((long)value).LowestCommonMultiple(other);
@@ -159,7 +159,7 @@ public static class SByteExtensions
     /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
     /// <license>CC-BY-SA 2.5</license>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static sbyte Mod(this sbyte dividend, sbyte divisor)
     {
         int r = dividend % divisor;
@@ -176,7 +176,7 @@ public static class SByteExtensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this sbyte value)
     {
         return ((long)value).MultiplicativePersistence();
@@ -210,7 +210,7 @@ public static class SByteExtensions
     ///     </list>
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int Sign(this sbyte value)
     {
         return System.Math.Sign(value);
@@ -224,7 +224,7 @@ public static class SByteExtensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static sbyte Wrap(this sbyte value, sbyte low, sbyte high)
     {
         return (sbyte)((long)value).Wrap(low, high);
@@ -237,7 +237,7 @@ public static class SByteExtensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static sbyte Wrap(this sbyte value, sbyte length)
     {
         return (sbyte)((long)value).Wrap(length);

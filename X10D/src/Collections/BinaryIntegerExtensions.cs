@@ -18,7 +18,7 @@ public static class BinaryIntegerExtensions
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with a length equal to the size of <typeparamref name="TInteger" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool[] Unpack<TInteger>(this TInteger value)
         where TInteger : unmanaged, IBinaryInteger<TInteger>
     {
@@ -36,7 +36,7 @@ public static class BinaryIntegerExtensions
     /// <param name="value">The value to unpack.</param>
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static void Unpack<TInteger>(this TInteger value, Span<bool> destination)
         where TInteger : unmanaged, IBinaryInteger<TInteger>
     {
@@ -72,7 +72,7 @@ public static class BinaryIntegerExtensions
         }
     }
 
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static void UnpackInternal_Fallback<TInteger>(this TInteger value, Span<bool> destination)
         where TInteger : unmanaged, IBinaryInteger<TInteger>
     {

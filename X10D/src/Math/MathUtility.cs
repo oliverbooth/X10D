@@ -13,6 +13,121 @@ public static class MathUtility
     private const double DefaultGamma = 2.2;
     private const float DefaultGammaF = 2.2f;
 
+    /// <summary>
+    ///     Calculates exponential decay for a value.
+    /// </summary>
+    /// <param name="value">The value to decay.</param>
+    /// <param name="alpha">A factor by which to scale the decay.</param>
+    /// <param name="decay">The decay amount.</param>
+    /// <returns>The exponentially decayed value.</returns>
+    public static float ExponentialDecay(float value, float alpha, float decay)
+    {
+        return value * MathF.Exp(-decay * alpha);
+    }
+
+    /// <summary>
+    ///     Calculates exponential decay for a value.
+    /// </summary>
+    /// <param name="value">The value to decay.</param>
+    /// <param name="alpha">A factor by which to scale the decay.</param>
+    /// <param name="decay">The decay amount.</param>
+    /// <returns>The exponentially decayed value.</returns>
+    public static double ExponentialDecay(double value, double alpha, double decay)
+    {
+        return value * System.Math.Exp(-decay * alpha);
+    }
+
+    /// <summary>
+    ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
+    /// </summary>
+    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+    /// <returns>The linear value.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static float GammaToLinear(float value)
+    {
+        return GammaToLinear(value, DefaultGammaF);
+    }
+
+    /// <summary>
+    ///     Converts a gamma-encoded value to a linear value using the specified gamma value.
+    /// </summary>
+    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+    /// <param name="gamma">The gamma value to use for decoding.</param>
+    /// <returns>The linear value.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static float GammaToLinear(float value, float gamma)
+    {
+        return MathF.Pow(value, 1.0f / gamma);
+    }
+
+    /// <summary>
+    ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
+    /// </summary>
+    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+    /// <returns>The linear value.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static double GammaToLinear(double value)
+    {
+        return GammaToLinear(value, DefaultGamma);
+    }
+
+    /// <summary>
+    ///     Converts a gamma-encoded value to a linear value using the specified gamma value.
+    /// </summary>
+    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
+    /// <param name="gamma">The gamma value to use for decoding.</param>
+    /// <returns>The linear value.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static double GammaToLinear(double value, double gamma)
+    {
+        return System.Math.Pow(value, 1.0 / gamma);
+    }
+
+    /// <summary>
+    ///     Returns the linear interpolation inverse of a value, such that it determines where a value lies between two other
+    ///     values.
+    /// </summary>
+    /// <param name="alpha">The value whose lerp inverse is to be found.</param>
+    /// <param name="start">The start of the range.</param>
+    /// <param name="end">The end of the range.</param>
+    /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static float InverseLerp(float alpha, float start, float end)
+    {
+        if (MathF.Abs(start - end) < float.Epsilon)
+        {
+            return 0f;
+        }
+
+        return (alpha - start) / (end - start);
+    }
+
+    /// <summary>
+    ///     Returns the linear interpolation inverse of a value, such that it determines where a value lies between two other
+    ///     values.
+    /// </summary>
+    /// <param name="alpha">The value whose lerp inverse is to be found.</param>
+    /// <param name="start">The start of the range.</param>
+    /// <param name="end">The end of the range.</param>
+    /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static double InverseLerp(double alpha, double start, double end)
+    {
+        if (System.Math.Abs(start - end) < double.Epsilon)
+        {
+            return 0.0;
+        }
+
+        return (alpha - start) / (end - start);
+    }
+
+
 #if !NET7_0_OR_GREATER
     /// <summary>
     ///     Applies a simple bias function to value.
@@ -43,46 +158,6 @@ public static class MathUtility
     }
 
     /// <summary>
-    ///     Returns the linear interpolation inverse of a value, such that it determines where a value lies between two other
-    ///     values.
-    /// </summary>
-    /// <param name="alpha">The value whose lerp inverse is to be found.</param>
-    /// <param name="start">The start of the range.</param>
-    /// <param name="end">The end of the range.</param>
-    /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static float InverseLerp(float alpha, float start, float end)
-    {
-        if (MathF.Abs(start - end) < float.Epsilon)
-        {
-            return 0f;
-        }
-
-        return (alpha - start) / (end - start);
-    }
-
-    /// <summary>
-    ///     Returns the linear interpolation inverse of a value, such that it determines where a value lies between two other
-    ///     values.
-    /// </summary>
-    /// <param name="alpha">The value whose lerp inverse is to be found.</param>
-    /// <param name="start">The start of the range.</param>
-    /// <param name="end">The end of the range.</param>
-    /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static double InverseLerp(double alpha, double start, double end)
-    {
-        if (System.Math.Abs(start - end) < double.Epsilon)
-        {
-            return 0.0;
-        }
-
-        return (alpha - start) / (end - start);
-    }
-
-    /// <summary>
     ///     Linearly interpolates from one value to a target using a specified alpha.
     /// </summary>
     /// <param name="value">The interpolation source.</param>
@@ -92,7 +167,7 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Lerp(float value, float target, float alpha)
     {
         // rookie mistake: a + t * (b - a)
@@ -110,7 +185,7 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static double Lerp(double value, double target, double alpha)
     {
         // rookie mistake: a + t * (b - a)
@@ -156,7 +231,7 @@ public static class MathUtility
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float ScaleRange(float value, float oldMin, float oldMax, float newMin, float newMax)
     {
         float oldRange = oldMax - oldMin;
@@ -175,7 +250,7 @@ public static class MathUtility
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static double ScaleRange(double value, double oldMin, double oldMax, double newMin, double newMax)
     {
         double oldRange = oldMax - oldMin;
@@ -206,86 +281,12 @@ public static class MathUtility
 #endif
 
     /// <summary>
-    ///     Calculates exponential decay for a value.
-    /// </summary>
-    /// <param name="value">The value to decay.</param>
-    /// <param name="alpha">A factor by which to scale the decay.</param>
-    /// <param name="decay">The decay amount.</param>
-    /// <returns>The exponentially decayed value.</returns>
-    public static float ExponentialDecay(float value, float alpha, float decay)
-    {
-        return value * MathF.Exp(-decay * alpha);
-    }
-
-    /// <summary>
-    ///     Calculates exponential decay for a value.
-    /// </summary>
-    /// <param name="value">The value to decay.</param>
-    /// <param name="alpha">A factor by which to scale the decay.</param>
-    /// <param name="decay">The decay amount.</param>
-    /// <returns>The exponentially decayed value.</returns>
-    public static double ExponentialDecay(double value, double alpha, double decay)
-    {
-        return value * System.Math.Exp(-decay * alpha);
-    }
-
-    /// <summary>
-    ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
-    /// </summary>
-    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
-    /// <returns>The linear value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static float GammaToLinear(float value)
-    {
-        return GammaToLinear(value, DefaultGammaF);
-    }
-
-    /// <summary>
-    ///     Converts a gamma-encoded value to a linear value using the specified gamma value.
-    /// </summary>
-    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
-    /// <param name="gamma">The gamma value to use for decoding.</param>
-    /// <returns>The linear value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static float GammaToLinear(float value, float gamma)
-    {
-        return MathF.Pow(value, 1.0f / gamma);
-    }
-
-    /// <summary>
-    ///     Converts a gamma-encoded value to a linear value using a gamma value of <c>2.2</c>.
-    /// </summary>
-    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
-    /// <returns>The linear value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static double GammaToLinear(double value)
-    {
-        return GammaToLinear(value, DefaultGamma);
-    }
-
-    /// <summary>
-    ///     Converts a gamma-encoded value to a linear value using the specified gamma value.
-    /// </summary>
-    /// <param name="value">The gamma-encoded value to convert. Expected range is [0, 1].</param>
-    /// <param name="gamma">The gamma value to use for decoding.</param>
-    /// <returns>The linear value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static double GammaToLinear(double value, double gamma)
-    {
-        return System.Math.Pow(value, 1.0 / gamma);
-    }
-
-    /// <summary>
     ///     Converts a linear value to a gamma-encoded value using a gamma value of <c>2.2</c>.
     /// </summary>
     /// <param name="value">The linear value to convert. Expected range is [0, 1].</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float LinearToGamma(float value)
     {
         return LinearToGamma(value, DefaultGammaF);
@@ -298,7 +299,7 @@ public static class MathUtility
     /// <param name="gamma">The gamma value to use for encoding.</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float LinearToGamma(float value, float gamma)
     {
         return MathF.Pow(value, 1.0f / gamma);
@@ -310,7 +311,7 @@ public static class MathUtility
     /// <param name="value">The linear value to convert. Expected range is [0, 1].</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static double LinearToGamma(double value)
     {
         return LinearToGamma(value, DefaultGamma);
@@ -323,7 +324,7 @@ public static class MathUtility
     /// <param name="gamma">The gamma value to use for encoding.</param>
     /// <returns>The gamma-encoded value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static double LinearToGamma(double value, double gamma)
     {
         return System.Math.Pow(value, 1.0 / gamma);
@@ -342,15 +343,7 @@ public static class MathUtility
     public static float Pulse(float value, float lowerBound, float upperBound)
     {
         bool result = lowerBound <= value && value <= upperBound;
-#if NET6_0_OR_GREATER
         return Unsafe.As<bool, int>(ref result);
-#else
-        unsafe
-        {
-            var pResult = (int*)&result;
-            return *pResult;
-        }
-#endif
     }
 
     /// <summary>
@@ -366,15 +359,7 @@ public static class MathUtility
     public static double Pulse(double value, double lowerBound, double upperBound)
     {
         bool result = lowerBound <= value && value <= upperBound;
-#if NET6_0_OR_GREATER
         return Unsafe.As<bool, int>(ref result);
-#else
-        unsafe
-        {
-            var pResult = (int*)&result;
-            return *pResult;
-        }
-#endif
     }
 
     /// <summary>
@@ -423,27 +408,6 @@ public static class MathUtility
     }
 
     /// <summary>
-    ///     Returns the linear interpolation inverse of a value, such that it determines where a value lies between two other
-    ///     values.
-    /// </summary>
-    /// <param name="alpha">The value whose lerp inverse is to be found.</param>
-    /// <param name="start">The start of the range.</param>
-    /// <param name="end">The end of the range.</param>
-    /// <returns>A value determined by <c>(alpha - start) / (end - start)</c>.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static TNumber InverseLerp<TNumber>(TNumber alpha, TNumber start, TNumber end)
-        where TNumber : INumber<TNumber>
-    {
-        if (start == end)
-        {
-            return TNumber.Zero;
-        }
-
-        return (alpha - start) / (end - start);
-    }
-
-    /// <summary>
     ///     Linearly interpolates from one value to a target using a specified alpha.
     /// </summary>
     /// <param name="value">The interpolation source.</param>
@@ -453,7 +417,7 @@ public static class MathUtility
     ///     The interpolation result as determined by <c>(1 - alpha) * value + alpha * target</c>.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TNumber Lerp<TNumber>(TNumber value, TNumber target, TNumber alpha)
         where TNumber : INumber<TNumber>
     {
@@ -483,7 +447,7 @@ public static class MathUtility
     /// <param name="newMax">The new maximum value.</param>
     /// <returns>The scaled value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TNumber ScaleRange<TNumber>(TNumber value, TNumber oldMin, TNumber oldMax, TNumber newMin, TNumber newMax)
         where TNumber : INumber<TNumber>
     {

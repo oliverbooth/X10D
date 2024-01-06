@@ -6,7 +6,6 @@ namespace X10D.Tests.Text;
 [TestFixture]
 internal class CoreTests
 {
-#if NET5_0_OR_GREATER
     [Test]
     public void ToJsonShouldNotBeEmpty()
     {
@@ -24,5 +23,4 @@ internal class CoreTests
         CollectionAssert.AreEqual(source, target);
         CollectionAssert.AreEquivalent(source, target);
     }
-#endif
 }

@@ -19,7 +19,7 @@ public static class Int16Extensions
     /// </returns>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value" /> is 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsLeapYear(this short value)
     {
         if (value == 0)
@@ -50,7 +50,7 @@ public static class Int16Extensions
     ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateTimeOffset FromUnixTimeMilliseconds(this short value)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(value);
@@ -71,7 +71,7 @@ public static class Int16Extensions
     ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateTimeOffset FromUnixTimeSeconds(this short value)
     {
         return DateTimeOffset.FromUnixTimeSeconds(value);
@@ -83,7 +83,7 @@ public static class Int16Extensions
     /// <param name="value">The duration, in ticks.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Ticks(this short value)
     {
         return TimeSpan.FromTicks(value);
@@ -97,7 +97,7 @@ public static class Int16Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Milliseconds(this short value)
     {
         return TimeSpan.FromMilliseconds(value);
@@ -111,7 +111,7 @@ public static class Int16Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Seconds(this short value)
     {
         return TimeSpan.FromSeconds(value);
@@ -125,7 +125,7 @@ public static class Int16Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Minutes(this short value)
     {
         return TimeSpan.FromMinutes(value);
@@ -139,7 +139,7 @@ public static class Int16Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Hours(this short value)
     {
         return TimeSpan.FromHours(value);
@@ -151,7 +151,7 @@ public static class Int16Extensions
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Days(this short value)
     {
         return TimeSpan.FromDays(value);
@@ -165,7 +165,7 @@ public static class Int16Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Weeks(this short value)
     {
         return TimeSpan.FromDays(value * 7);

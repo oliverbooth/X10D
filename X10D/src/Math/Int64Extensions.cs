@@ -35,7 +35,7 @@ public static class Int64Extensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long DigitalRoot(this long value)
     {
         long root = System.Math.Abs(value).Mod(9L);
@@ -50,7 +50,7 @@ public static class Int64Extensions
     /// <returns>The factorial of <paramref name="value" />.</returns>
     /// <exception cref="ArithmeticException"><paramref name="value" /> is less than 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Factorial(this long value)
     {
         if (value < 0)
@@ -79,7 +79,7 @@ public static class Int64Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long GreatestCommonFactor(this long value, long other)
     {
         while (other != 0)
@@ -99,7 +99,7 @@ public static class Int64Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this long value)
     {
         return (value & 1) == 0;
@@ -114,7 +114,7 @@ public static class Int64Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this long value)
     {
         return !value.IsEven();
@@ -128,7 +128,7 @@ public static class Int64Extensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPrime(this long value)
     {
         switch (value)
@@ -160,7 +160,7 @@ public static class Int64Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long LowestCommonMultiple(this long value, long other)
     {
         if (value == 0 || other == 0)
@@ -197,7 +197,7 @@ public static class Int64Extensions
     /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
     /// <license>CC-BY-SA 2.5</license>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Mod(this long dividend, long divisor)
     {
         long r = dividend % divisor;
@@ -214,7 +214,7 @@ public static class Int64Extensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this long value)
     {
         var persistence = 0;
@@ -279,7 +279,7 @@ public static class Int64Extensions
     ///     </list>
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int Sign(this long value)
     {
         return System.Math.Sign(value);
@@ -293,7 +293,7 @@ public static class Int64Extensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Wrap(this long value, long low, long high)
     {
         long difference = high - low;
@@ -307,7 +307,7 @@ public static class Int64Extensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Wrap(this long value, long length)
     {
         return ((value % length) + length) % length;

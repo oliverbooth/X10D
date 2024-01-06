@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
 
     - name: Add GitHub NuGet source
       run: dotnet nuget add source --username oliverbooth --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/oliverbooth/index.json"
@@ -33,7 +33,6 @@ jobs:
         mkdir build
         dotnet pack X10D --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build
         dotnet pack X10D.Hosting --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build
-        dotnet pack X10D.Unity --configuration Release --no-build -p:SymbolPackageFormat=snupkg --include-symbols --include-source -o build
 
     - name: Push NuGet Package to GitHub
       run: dotnet nuget push "build/*" --source "github" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
@@ -52,42 +51,3 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-
-    - name: Checkout upm branch
-      uses: actions/checkout@v3
-      with:
-        ref: upm
-        path: upm
-
-    - name: Build package.json
-      run: |
-        dotnet run --project ./tools/UpmPackageGenerator/UpmPackageGenerator.csproj "./X10D/bin/Release/netstandard2.1/X10D.dll"
-        cp package.json upm/package.json
-
-    - name: Copy built artifacts to upm
-      run: |
-        cd upm
-        cp ../X10D/bin/Release/netstandard2.1/X10D.dll ./X10D.dll
-        cp ../X10D/bin/Release/netstandard2.1/X10D.xml ./X10D.xml
-        cp ../X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.dll ./X10D.Unity.dll
-        cp ../X10D.Unity/bin/Release/netstandard2.1/X10D.Unity.xml ./X10D.Unity.xml
-
-    - name: Check for changes
-      run: |
-        cd upm
-        git diff --quiet
-      continue-on-error: true
-
-    - name: Commit update
-      if: ${{ success() }}
-      run: |
-        cd upm
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add X10D.dll
-        git add X10D.Unity.dll
-        git add X10D.xml
-        git add X10D.Unity.xml
-        git add package.json
-        git commit -m "Update upm branch ($GITHUB_SHA)"
-        git push
