@@ -175,9 +175,9 @@ internal class ListTests
     }
 
     [Test]
-    public void RemoveRange_ShouldThrowArgumentException_GivenEndIndexLessThanStart()
+    public void RemoveRange_ShouldThrowArgumentOutOfRangeException_GivenEndIndexLessThanStart()
     {
-        Assert.Throws<ArgumentException>(() => new List<int>().RemoveRange(2..0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new List<int>().RemoveRange(2..0));
     }
 
     [Test]
