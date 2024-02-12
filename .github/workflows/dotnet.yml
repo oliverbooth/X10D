@@ -34,9 +34,7 @@ jobs:
       run: dotnet restore
 
     - name: Install dotCover
-      shell: powershell
-      run: |
-        dotnet tool install --global JetBrains.dotCover.GlobalTool
+      run: dotnet tool install --global JetBrains.dotCover.GlobalTool
 
     - name: Build
       run: dotnet build --no-restore --configuration Release
