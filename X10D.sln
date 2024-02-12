@@ -36,7 +36,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 		.github\workflows\nightly.yml = .github\workflows\nightly.yml
 		.github\workflows\prerelease.yml = .github\workflows\prerelease.yml
 		.github\workflows\release.yml = .github\workflows\release.yml
-		.github\workflows\sonarcloud.yml = .github\workflows\sonarcloud.yml
 		.github\workflows\source_validator.yml = .github\workflows\source_validator.yml
 		.github\workflows\unity.yml = .github\workflows\unity.yml
 	EndProjectSection
