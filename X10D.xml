@@ -2805,7 +2805,7 @@
         </member>
         <member name="T:X10D.Drawing.Line3D">
             <summary>
-                Represents a line in 3D space that is composed of single-precision floating-point X, Y and Z coordinates.
+                Represents a line in 3D space that is composed of 32-bit signed integer X, Y and Z coordinates.
             </summary>
         </member>
         <member name="F:X10D.Drawing.Line3D.Empty">
@@ -4098,6 +4098,21 @@
         <member name="M:X10D.Drawing.Sphere.GetHashCode">
             <inheritdoc />
         </member>
+        <member name="T:X10D.Endianness">
+            <summary>
+                Represents an enumeration of endianness values.
+            </summary>
+        </member>
+        <member name="F:X10D.Endianness.LittleEndian">
+            <summary>
+                The value should be read as though it uses little endian encoding.
+            </summary>
+        </member>
+        <member name="F:X10D.Endianness.BigEndian">
+            <summary>
+                The value should be read as though it uses big endian encoding.
+            </summary>
+        </member>
         <member name="T:X10D.ExceptionMessages">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -4304,41 +4319,6 @@
             <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Byte" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="T:X10D.IO.DecimalExtensions">
-            <summary>
-                IO-related extension methods for <see cref="T:System.Decimal" />.
-            </summary>
-        </member>
-        <member name="M:X10D.IO.DecimalExtensions.GetBigEndianBytes(System.Decimal)">
-            <summary>
-                Converts the current decimal number into an array of bytes, as little endian.
-            </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <returns>An array of bytes with length 4.</returns>
-        </member>
-        <member name="M:X10D.IO.DecimalExtensions.GetLittleEndianBytes(System.Decimal)">
-            <summary>
-                Converts the current decimal number into an array of bytes, as little endian.
-            </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <returns>An array of bytes with length 4.</returns>
-        </member>
-        <member name="M:X10D.IO.DecimalExtensions.TryWriteBigEndian(System.Decimal,System.Span{System.Byte})">
-            <summary>
-                Converts the current decimal number into a span of bytes, as big endian.
-            </summary>
-            <param name="value">The <see cref="T:System.Single" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
-            <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-        </member>
-        <member name="M:X10D.IO.DecimalExtensions.TryWriteLittleEndian(System.Decimal,System.Span{System.Byte})">
-            <summary>
-                Converts the current decimal number into a span of bytes, as little endian.
-            </summary>
-            <param name="value">The <see cref="T:System.Single" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
-            <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-        </member>
         <member name="T:X10D.IO.DirectoryInfoExtensions">
             <summary>
                 IO-related extension methods for <see cref="T:System.IO.DirectoryInfo" />.
@@ -4375,34 +4355,36 @@
                 IO-related extension methods for <see cref="T:System.Double" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.DoubleExtensions.GetBigEndianBytes(System.Double)">
+        <member name="M:X10D.IO.DoubleExtensions.GetBytes(System.Double)">
             <summary>
-                Converts the current double-precision floating-point number into an array of bytes, as little endian.
+                Returns the current double-precision floating-point value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <returns>An array of bytes with length 4.</returns>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
         </member>
-        <member name="M:X10D.IO.DoubleExtensions.GetLittleEndianBytes(System.Double)">
+        <member name="M:X10D.IO.DoubleExtensions.GetBytes(System.Double,X10D.Endianness)">
             <summary>
-                Converts the current double-precision floating-point number into an array of bytes, as little endian.
+                Returns the current double-precision floating-point value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <returns>An array of bytes with length 4.</returns>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
+            <returns>An array of bytes with length 8.</returns>
         </member>
-        <member name="M:X10D.IO.DoubleExtensions.TryWriteBigEndian(System.Double,System.Span{System.Byte})">
+        <member name="M:X10D.IO.DoubleExtensions.TryWriteBytes(System.Double,System.Span{System.Byte})">
             <summary>
-                Converts the current double-precision floating-point number into a span of bytes, as big endian.
+                Converts the current double-precision floating-point into a span of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Single" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="value">The <see cref="T:System.Double" /> value.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Double" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.DoubleExtensions.TryWriteLittleEndian(System.Double,System.Span{System.Byte})">
+        <member name="M:X10D.IO.DoubleExtensions.TryWriteBytes(System.Double,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Converts the current double-precision floating-point number into a span of bytes, as little endian.
+                Converts the current double-precision floating-point into a span of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Single" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="value">The <see cref="T:System.Double" /> value.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Double" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.FileInfoExtensions">
@@ -4460,34 +4442,36 @@
                 IO-related extension methods for <see cref="T:System.Int16" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.Int16Extensions.GetBigEndianBytes(System.Int16)">
+        <member name="M:X10D.IO.Int16Extensions.GetBytes(System.Int16)">
             <summary>
-                Converts the current 16-bit signed integer into an array of bytes, as big endian.
+                Returns the current 16-bit signed integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int16" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
         </member>
-        <member name="M:X10D.IO.Int16Extensions.GetLittleEndianBytes(System.Int16)">
+        <member name="M:X10D.IO.Int16Extensions.GetBytes(System.Int16,X10D.Endianness)">
             <summary>
-                Converts the current 16-bit signed integer into an array of bytes, as big endian.
+                Returns the current 16-bit signed integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int16" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
+            <returns>An array of bytes with length 2.</returns>
         </member>
-        <member name="M:X10D.IO.Int16Extensions.TryWriteBigEndian(System.Int16,System.Span{System.Byte})">
+        <member name="M:X10D.IO.Int16Extensions.TryWriteBytes(System.Int16,System.Span{System.Byte})">
             <summary>
-                Writes the current 16-bit signed integer into a span of bytes, as big endian.
+                Converts the current 16-bit signed integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Int16" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Int16" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.Int16Extensions.TryWriteLittleEndian(System.Int16,System.Span{System.Byte})">
+        <member name="M:X10D.IO.Int16Extensions.TryWriteBytes(System.Int16,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Writes the current 16-bit signed integer into a span of bytes, as little endian.
+                Converts the current 16-bit signed integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Int16" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Int16" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.Int32Extensions">
@@ -4495,34 +4479,36 @@
                 IO-related extension methods for <see cref="T:System.Int32" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.Int32Extensions.GetBigEndianBytes(System.Int32)">
+        <member name="M:X10D.IO.Int32Extensions.GetBytes(System.Int32)">
             <summary>
-                Converts the current 32-bit signed integer into an array of bytes, as big endian.
+                Returns the current 32-bit signed integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
         </member>
-        <member name="M:X10D.IO.Int32Extensions.GetLittleEndianBytes(System.Int32)">
+        <member name="M:X10D.IO.Int32Extensions.GetBytes(System.Int32,X10D.Endianness)">
             <summary>
-                Converts the current 32-bit signed integer into an array of bytes, as big endian.
+                Returns the current 32-bit signed integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
+            <returns>An array of bytes with length 4.</returns>
         </member>
-        <member name="M:X10D.IO.Int32Extensions.TryWriteBigEndian(System.Int32,System.Span{System.Byte})">
+        <member name="M:X10D.IO.Int32Extensions.TryWriteBytes(System.Int32,System.Span{System.Byte})">
             <summary>
-                Writes the current 32-bit signed integer into a span of bytes, as big endian.
+                Converts the current 32-bit signed integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Int32" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.Int32Extensions.TryWriteLittleEndian(System.Int32,System.Span{System.Byte})">
+        <member name="M:X10D.IO.Int32Extensions.TryWriteBytes(System.Int32,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Writes the current 32-bit signed integer into a span of bytes, as little endian.
+                Converts the current 32-bit signed integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Int32" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Int32" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.Int64Extensions">
@@ -4530,34 +4516,36 @@
                 IO-related extension methods for <see cref="T:System.Int64" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.Int64Extensions.GetBigEndianBytes(System.Int64)">
+        <member name="M:X10D.IO.Int64Extensions.GetBytes(System.Int64)">
             <summary>
-                Converts the current 64-bit signed integer into an array of bytes, as big endian.
+                Returns the current 64-bit signed integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int64" /> value.</param>
+            <param name="value">The number to convert.</param>
             <returns>An array of bytes with length 8.</returns>
         </member>
-        <member name="M:X10D.IO.Int64Extensions.GetLittleEndianBytes(System.Int64)">
+        <member name="M:X10D.IO.Int64Extensions.GetBytes(System.Int64,X10D.Endianness)">
             <summary>
-                Converts the current 64-bit signed integer into an array of bytes, as big endian.
+                Returns the current 64-bit signed integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int64" /> value.</param>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns>An array of bytes with length 8.</returns>
         </member>
-        <member name="M:X10D.IO.Int64Extensions.TryWriteBigEndian(System.Int64,System.Span{System.Byte})">
+        <member name="M:X10D.IO.Int64Extensions.TryWriteBytes(System.Int64,System.Span{System.Byte})">
             <summary>
-                Writes the current 64-bit signed integer into a span of bytes, as big endian.
+                Converts the current 64-bit signed integer a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Int64" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Int64" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.Int64Extensions.TryWriteLittleEndian(System.Int64,System.Span{System.Byte})">
+        <member name="M:X10D.IO.Int64Extensions.TryWriteBytes(System.Int64,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Writes the current 64-bit signed integer into a span of bytes, as little endian.
+                Converts the current 64-bit signed integer a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Int64" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Int64" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.ListOfByteExtensions">
@@ -4756,34 +4744,36 @@
                 IO-related extension methods for <see cref="T:System.Single" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.SingleExtensions.GetBigEndianBytes(System.Single)">
+        <member name="M:X10D.IO.SingleExtensions.GetBytes(System.Single)">
             <summary>
-                Converts the current single-precision floating-point number into an array of bytes, as little endian.
+                Returns the current single-precision floating-point value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
+            <param name="value">The number to convert.</param>
             <returns>An array of bytes with length 4.</returns>
         </member>
-        <member name="M:X10D.IO.SingleExtensions.GetLittleEndianBytes(System.Single)">
+        <member name="M:X10D.IO.SingleExtensions.GetBytes(System.Single,X10D.Endianness)">
             <summary>
-                Converts the current single-precision floating-point number into an array of bytes, as little endian.
+                Returns the current single-precision floating-point value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.Int32" /> value.</param>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns>An array of bytes with length 4.</returns>
         </member>
-        <member name="M:X10D.IO.SingleExtensions.TryWriteBigEndian(System.Single,System.Span{System.Byte})">
+        <member name="M:X10D.IO.SingleExtensions.TryWriteBytes(System.Single,System.Span{System.Byte})">
             <summary>
-                Converts the current single-precision floating-point number into a span of bytes, as big endian.
+                Converts the current single-precision floating-point into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Single" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Single" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.SingleExtensions.TryWriteLittleEndian(System.Single,System.Span{System.Byte})">
+        <member name="M:X10D.IO.SingleExtensions.TryWriteBytes(System.Single,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Converts the current single-precision floating-point number into a span of bytes, as little endian.
+                Converts the current single-precision floating-point into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.Single" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.Single" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.StreamExtensions">
@@ -4808,6 +4798,159 @@
                 <c>Create</c> method returns a type that is not assignable to <typeparamref name="T" />.
             </exception>
             <exception cref="T:System.ObjectDisposedException">The stream has already been disposed.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadDecimal(System.IO.Stream)">
+            <summary>
+                Reads a decimal value from the current stream using the system's default endian encoding, and advances the stream
+                position by sixteen bytes.
+            </summary>
+            <param name="stream">The stream to read.</param>
+            <returns>A sixteen-byte decimal value read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadDecimal(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a decimal value from the current stream using a specified endian encoding, and advances the stream position
+                by sixteen bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>A decimal value read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadDouble(System.IO.Stream)">
+            <summary>
+                Reads a double-precision floating point value from the current stream using the system's default endian encoding,
+                and advances the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>A double-precision floating point value read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadDouble(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a double-precision floating point value from the current stream using a specified endian encoding, and
+                advances the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>A double-precision floating point value read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadInt16(System.IO.Stream)">
+            <summary>
+                Reads a two-byte signed integer from the current stream using the system's default endian encoding, and advances
+                the stream position by two bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>An two-byte signed integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadInt16(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a two-byte signed integer from the current stream using the specified endian encoding, and advances the
+                stream position by two bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>An two-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadInt32(System.IO.Stream)">
+            <summary>
+                Reads a four-byte signed integer from the current stream using the system's default endian encoding, and advances
+                the stream position by four bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>An four-byte signed integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadInt32(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a four-byte signed integer from the current stream using the specified endian encoding, and advances the
+                stream position by four bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>An four-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadInt64(System.IO.Stream)">
+            <summary>
+                Reads an eight-byte signed integer from the current stream using the system's default endian encoding, and
+                advances the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>An eight-byte signed integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadInt64(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads an eight-byte signed integer from the current stream using the specified endian encoding, and advances the
+                stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>An eight-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadSingle(System.IO.Stream)">
+            <summary>
+                Reads a single-precision floating point value from the current stream using the system's default endian encoding,
+                and advances the stream position by four bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>A single-precision floating point value read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadSingle(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a double-precision floating point value from the current stream using a specified endian encoding, and
+                advances the stream position by four bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>A single-precision floating point value read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadUInt16(System.IO.Stream)">
+            <summary>
+                Reads a two-byte unsigned integer from the current stream using the system's default endian encoding, and advances
+                the stream position by two bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>An two-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadUInt16(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a two-byte unsigned integer from the current stream using the specified endian encoding, and advances the
+                stream position by two bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>An two-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadUInt32(System.IO.Stream)">
+            <summary>
+                Reads a four-byte unsigned integer from the current stream using the system's default endian encoding, and
+                advances the stream position by four bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>An four-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadUInt32(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads a four-byte unsigned integer from the current stream using the specified endian encoding, and advances the
+                stream position by four bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>An four-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadUInt64(System.IO.Stream)">
+            <summary>
+                Reads an eight-byte unsigned integer from the current stream using the system's default endian encoding, and
+                advances the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <returns>An eight-byte unsigned integer read from the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.ReadUInt64(System.IO.Stream,X10D.Endianness)">
+            <summary>
+                Reads an eight-byte unsigned integer from the current stream using the specified endian encoding, and advances the
+                stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream from which the value should be read.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>An eight-byte unsigned integer read from the stream.</returns>
         </member>
         <member name="M:X10D.IO.StreamExtensions.TryWriteHash``1(System.IO.Stream,System.Span{System.Byte},System.Int32@)">
             <summary>
@@ -4834,358 +4977,161 @@
             </exception>
             <exception cref="T:System.ObjectDisposedException">The stream has already been disposed.</exception>
         </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadDecimalBigEndian(System.IO.Stream)">
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Int16)">
             <summary>
-                Reads an <see cref="T:System.Decimal" /> from the current stream as big endian, and advances the stream position by sixteen
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadDecimalLittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Decimal" /> from the current stream as big endian, and advances the stream position by sixteen
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadDoubleBigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Double" /> from the current stream as big endian, and advances the stream position by eight bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadDoubleLittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Double" /> from the current stream as little endian, and advances the stream position by eight
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadInt16BigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Int16" /> from the current stream as big endian, and advances the stream position by two bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadInt16LittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Int16" /> from the current stream as little endian, and advances the stream position by two bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadInt32BigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Int32" /> from the current stream as big endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadInt32LittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Int32" /> from the current stream as little endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadInt64BigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Int64" /> from the current stream as big endian, and advances the stream position by eight bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadInt64LittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Int64" /> from the current stream as little endian, and advances the stream position by eight
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadSingleBigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Single" /> from the current stream as big endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadSingleLittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.Single" /> from the current stream as little endian, and advances the stream position by four
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadUInt16BigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.UInt16" /> from the current stream as big endian, and advances the stream position by two bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadUInt16LittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.UInt16" /> from the current stream as little endian, and advances the stream position by two
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadUInt32BigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.UInt32" /> from the current stream as big endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadUInt32LittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.UInt32" /> from the current stream as little endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadUInt64BigEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.UInt64" /> from the current stream as big endian, and advances the stream position by eight bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The big endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.ReadUInt64LittleEndian(System.IO.Stream)">
-            <summary>
-                Reads an <see cref="T:System.UInt64" /> from the current stream as little endian, and advances the stream position by eight
-                bytes.
-            </summary>
-            <param name="stream">The stream from which the value should be read.</param>
-            <returns>The little endian value.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" /></exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support reading.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.Int16)">
-            <summary>
-                Writes a <see cref="T:System.Int16" /> to the current stream as big endian, and advances the stream position by two bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Int16" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.Int32)">
-            <summary>
-                Writes a <see cref="T:System.Int32" /> to the current stream as big endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Int32" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.Int64)">
-            <summary>
-                Writes a <see cref="T:System.Int64" /> to the current stream as big endian, and advances the stream position by eight bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Int64" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.UInt16)">
-            <summary>
-                Writes a <see cref="T:System.UInt16" /> to the current stream as big endian, and advances the stream position by two bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.UInt16" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.UInt32)">
-            <summary>
-                Writes a <see cref="T:System.UInt32" /> to the current stream as big endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.UInt32" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.UInt64)">
-            <summary>
-                Writes a <see cref="T:System.UInt64" /> to the current stream as big endian, and advances the stream position by eight bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.UInt64" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.Single)">
-            <summary>
-                Writes a <see cref="T:System.Single" /> to the current stream as little endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Single" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.Double)">
-            <summary>
-                Writes a <see cref="T:System.Double" /> to the current stream as little endian, and advances the stream position by eight
-                bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Double" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteBigEndian(System.IO.Stream,System.Decimal)">
-            <summary>
-                Writes a <see cref="T:System.Decimal" /> to the current stream as little endian, and advances the stream position by sixteen
-                bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Decimal" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.Int16)">
-            <summary>
-                Writes a <see cref="T:System.Int16" /> to the current stream as little endian, and advances the stream position by two bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Int16" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.Int32)">
-            <summary>
-                Writes an <see cref="T:System.Int32" /> to the current stream as little endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Int32" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.Int64)">
-            <summary>
-                Writes a <see cref="T:System.Int64" /> to the current stream as little endian, and advances the stream position by eight bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Int64" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.Single)">
-            <summary>
-                Writes a <see cref="T:System.Single" /> to the current stream as little endian, and advances the stream position by four bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Single" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.Double)">
-            <summary>
-                Writes a <see cref="T:System.Double" /> to the current stream as little endian, and advances the stream position by eight
-                bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Double" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.Decimal)">
-            <summary>
-                Writes a <see cref="T:System.Decimal" /> to the current stream as little endian, and advances the stream position by sixteen
-                bytes.
-            </summary>
-            <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The <see cref="T:System.Decimal" /> to write.</param>
-            <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
-        </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.UInt16)">
-            <summary>
-                Writes a <see cref="T:System.UInt16" /> to the current stream as little endian, and advances the stream position by two bytes.
+                Writes a two-byte signed integer to the current stream using the system's default endian encoding, and advances
+                the stream position by two bytes.
             </summary>
             <param name="stream">The stream to which the value should be written.</param>
             <param name="value">The two-byte signed integer to write.</param>
             <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
         </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.UInt32)">
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Int16,X10D.Endianness)">
             <summary>
-                Writes a <see cref="T:System.UInt32" /> to the current stream as little endian, and advances the stream position by four bytes.
+                Writes a two-byte signed integer to the current stream using the specified endian encoding, and advances the
+                stream position by two bytes.
             </summary>
             <param name="stream">The stream to which the value should be written.</param>
             <param name="value">The two-byte signed integer to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
             <returns>The number of bytes written to the stream.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
         </member>
-        <member name="M:X10D.IO.StreamExtensions.WriteLittleEndian(System.IO.Stream,System.UInt64)">
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Int32)">
             <summary>
-                Writes a <see cref="T:System.UInt64" /> to the current stream as little endian, and advances the stream position by eight bytes.
+                Writes a four-byte signed integer to the current stream using the system's default endian encoding, and advances
+                the stream position by four bytes.
             </summary>
             <param name="stream">The stream to which the value should be written.</param>
-            <param name="value">The two-byte signed integer to write.</param>
+            <param name="value">The four-byte signed integer to write.</param>
+            <returns>The number of bytes written to the stream.</returns>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Int32,X10D.Endianness)">
+            <summary>
+                Writes a four-byte signed integer to the current stream using the specified endian encoding, and advances the
+                stream position by four bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The four-byte signed integer to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
             <returns>The number of bytes written to the stream.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="stream" /> does not support writing.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Int64)">
+            <summary>
+                Writes an eight-byte signed integer to the current stream using the system's default endian encoding, and advances
+                the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The eight-byte signed integer to write.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Int64,X10D.Endianness)">
+            <summary>
+                Writes an eight-byte signed integer to the current stream using the specified endian encoding, and advances the
+                stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The eight-byte signed integer to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.UInt16)">
+            <summary>
+                Writes a two-byte unsigned integer to the current stream using the system's default endian encoding, and advances
+                the stream position by two bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The two-byte unsigned integer to write.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.UInt16,X10D.Endianness)">
+            <summary>
+                Writes a two-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+                stream position by two bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The two-byte unsigned integer to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.UInt32)">
+            <summary>
+                Writes a four-byte unsigned integer to the current stream using the system's default endian encoding, and advances
+                the stream position by four bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The four-byte unsigned integer to write.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.UInt32,X10D.Endianness)">
+            <summary>
+                Writes a four-byte unsigned integer to the current stream using the specified endian encoding, and advances the
+                stream position by four bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The four-byte unsigned integer to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.UInt64)">
+            <summary>
+                Writes an eight-byte unsigned integer to the current stream using the system's default endian encoding, and
+                advances the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The eight-byte unsigned integer to write.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.UInt64,X10D.Endianness)">
+            <summary>
+                Writes an eight-byte signed integer to the current stream using the specified endian encoding, and advances the
+                stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The eight-byte signed integer to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Single,X10D.Endianness)">
+            <summary>
+                Writes a single-precision floating point value to the current stream using the specified endian encoding, and
+                advances the stream position by four bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The single-precision floating point value to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Double,X10D.Endianness)">
+            <summary>
+                Writes a double-precision floating point value to the current stream using the specified endian encoding, and
+                advances the stream position by eight bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The double-precision floating point value to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:X10D.IO.StreamExtensions.Write(System.IO.Stream,System.Decimal,X10D.Endianness)">
+            <summary>
+                Writes a decimal value to the current stream using the specified endian encoding, and advances the stream position
+                by sixteen bytes.
+            </summary>
+            <param name="stream">The stream to which the value should be written.</param>
+            <param name="value">The decimal value to write.</param>
+            <param name="endianness">The endian encoding to use.</param>
+            <returns>The number of bytes written to the stream.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <see langword="null" />.</exception>
         </member>
         <member name="T:X10D.IO.TextReaderExtensions">
             <summary>
@@ -5668,34 +5614,36 @@
                 IO-related extension methods for <see cref="T:System.UInt16" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.UInt16Extensions.GetBigEndianBytes(System.UInt16)">
+        <member name="M:X10D.IO.UInt16Extensions.GetBytes(System.UInt16)">
             <summary>
-                Converts the current 16-bit unsigned integer into an array of bytes, as big endian.
+                Returns the current 16-bit unsigned integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.UInt16" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
         </member>
-        <member name="M:X10D.IO.UInt16Extensions.GetLittleEndianBytes(System.UInt16)">
+        <member name="M:X10D.IO.UInt16Extensions.GetBytes(System.UInt16,X10D.Endianness)">
             <summary>
-                Converts the current 16-bit unsigned integer into an array of bytes, as big endian.
+                Returns the current 16-bit unsigned integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.UInt16" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
+            <returns>An array of bytes with length 2.</returns>
         </member>
-        <member name="M:X10D.IO.UInt16Extensions.TryWriteBigEndian(System.UInt16,System.Span{System.Byte})">
+        <member name="M:X10D.IO.UInt16Extensions.TryWriteBytes(System.UInt16,System.Span{System.Byte})">
             <summary>
-                Writes the current 16-bit unsigned integer into a span of bytes, as big endian.
+                Converts the current 16-bit unsigned integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.UInt16" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.UInt16" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.UInt16Extensions.TryWriteLittleEndian(System.UInt16,System.Span{System.Byte})">
+        <member name="M:X10D.IO.UInt16Extensions.TryWriteBytes(System.UInt16,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Writes the current 16-bit unsigned integer into a span of bytes, as little endian.
+                Converts the current 16-bit unsigned integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.UInt16" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.UInt16" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.UInt32Extensions">
@@ -5703,34 +5651,36 @@
                 IO-related extension methods for <see cref="T:System.UInt32" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.UInt32Extensions.GetBigEndianBytes(System.UInt32)">
+        <member name="M:X10D.IO.UInt32Extensions.GetBytes(System.UInt32)">
             <summary>
-                Converts the current 32-bit unsigned integer into an array of bytes, as big endian.
+                Returns the current 32-bit unsigned integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.UInt32" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
         </member>
-        <member name="M:X10D.IO.UInt32Extensions.GetLittleEndianBytes(System.UInt32)">
+        <member name="M:X10D.IO.UInt32Extensions.GetBytes(System.UInt32,X10D.Endianness)">
             <summary>
-                Converts the current 32-bit unsigned integer into an array of bytes, as big endian.
+                Returns the current 32-bit unsigned integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.UInt32" /> value.</param>
-            <returns>An array of bytes with length 8.</returns>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
+            <returns>An array of bytes with length 4.</returns>
         </member>
-        <member name="M:X10D.IO.UInt32Extensions.TryWriteBigEndian(System.UInt32,System.Span{System.Byte})">
+        <member name="M:X10D.IO.UInt32Extensions.TryWriteBytes(System.UInt32,System.Span{System.Byte})">
             <summary>
-                Writes the current 32-bit unsigned integer into a span of bytes, as big endian.
+                Converts the current 32-bit unsigned integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.UInt32" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.UInt32" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.UInt32Extensions.TryWriteLittleEndian(System.UInt32,System.Span{System.Byte})">
+        <member name="M:X10D.IO.UInt32Extensions.TryWriteBytes(System.UInt32,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Writes the current 32-bit unsigned integer into a span of bytes, as little endian.
+                Converts the current 32-bit unsigned integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.UInt32" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.UInt32" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.IO.UInt64Extensions">
@@ -5738,34 +5688,36 @@
                 IO-related extension methods for <see cref="T:System.UInt64" />.
             </summary>
         </member>
-        <member name="M:X10D.IO.UInt64Extensions.GetBigEndianBytes(System.UInt64)">
+        <member name="M:X10D.IO.UInt64Extensions.GetBytes(System.UInt64)">
             <summary>
-                Converts the current 64-bit unsigned integer into an array of bytes, as big endian.
+                Returns the current 64-bit unsigned integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.UInt64" /> value.</param>
+            <param name="value">The number to convert.</param>
             <returns>An array of bytes with length 8.</returns>
         </member>
-        <member name="M:X10D.IO.UInt64Extensions.GetLittleEndianBytes(System.UInt64)">
+        <member name="M:X10D.IO.UInt64Extensions.GetBytes(System.UInt64,X10D.Endianness)">
             <summary>
-                Converts the current 64-bit unsigned integer into an array of bytes, as big endian.
+                Returns the current 64-bit unsigned integer value as an array of bytes.
             </summary>
-            <param name="value">The <see cref="T:System.UInt64" /> value.</param>
+            <param name="value">The number to convert.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns>An array of bytes with length 8.</returns>
         </member>
-        <member name="M:X10D.IO.UInt64Extensions.TryWriteBigEndian(System.UInt64,System.Span{System.Byte})">
+        <member name="M:X10D.IO.UInt64Extensions.TryWriteBytes(System.UInt64,System.Span{System.Byte})">
             <summary>
-                Writes the current 64-bit unsigned integer into a span of bytes, as big endian.
+                Converts the current 64-bit unsigned integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.UInt64" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.UInt64" />.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
-        <member name="M:X10D.IO.UInt64Extensions.TryWriteLittleEndian(System.UInt64,System.Span{System.Byte})">
+        <member name="M:X10D.IO.UInt64Extensions.TryWriteBytes(System.UInt64,System.Span{System.Byte},X10D.Endianness)">
             <summary>
-                Writes the current 64-bit unsigned integer into a span of bytes, as little endian.
+                Converts the current 64-bit unsigned integer into a span of bytes.
             </summary>
             <param name="value">The <see cref="T:System.UInt64" /> value.</param>
-            <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+            <param name="destination">When this method returns, the bytes representing the converted <see cref="T:System.UInt64" />.</param>
+            <param name="endianness">The endianness with which to write the bytes.</param>
             <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
         </member>
         <member name="T:X10D.Linq.ByteExtensions">
@@ -5903,6 +5855,19 @@
             <summary>
                 LINQ-inspired extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" />.
             </summary>
+        </member>
+        <member name="M:X10D.Linq.EnumerableExtensions.ConcatOne``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+                Concatenates a single value to the end of a sequence.
+            </summary>
+            <param name="source">The source sequence.</param>
+            <param name="value">The value to concatenate to the end of the source sequence.</param>
+            <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
+            <returns>
+                An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains the concatenated elements of the input sequence, and the specified
+                value.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
         </member>
         <member name="M:X10D.Linq.EnumerableExtensions.Except``1(System.Collections.Generic.IEnumerable{``0},``0)">
             <summary>
@@ -9614,14 +9579,6 @@
                 A <see cref="T:System.String" /> composed of <paramref name="value" /> repeated <paramref name="count" /> times.
             </returns>
         </member>
-        <member name="M:X10D.Text.CharExtensions.Repeat(System.Char,System.Int32,System.Span{System.Char})">
-            <summary>
-                Writes a character to a span of characters, repeated a specified number of times.
-            </summary>
-            <param name="value">The character to repeat.</param>
-            <param name="count">The number of times to repeat.</param>
-            <param name="destination">The span of characters into which the repeated characters will be written.</param>
-        </member>
         <member name="T:X10D.Text.CharSpanExtensions">
             <summary>
                 Extension methods for <see cref="T:System.ReadOnlySpan`1" /> and <see cref="T:System.Span`1" /> of <see cref="T:System.Char" />.
@@ -9661,28 +9618,6 @@
             <param name="comparison">The string comparison method used for determining substring count.</param>
             <returns>An integer representing the count of <paramref name="needle" /> inside <paramref name="haystack" />.</returns>
         </member>
-        <member name="M:X10D.Text.CharSpanExtensions.Repeat(System.ReadOnlySpan{System.Char},System.Int32)">
-            <summary>
-                Repeats a span of characters a specified number of times.
-            </summary>
-            <param name="value">The string to repeat.</param>
-            <param name="count">The repeat count.</param>
-            <returns>A string containing <paramref name="value" /> repeated <paramref name="count" /> times.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> is less than 0.</exception>
-        </member>
-        <member name="M:X10D.Text.CharSpanExtensions.Repeat(System.ReadOnlySpan{System.Char},System.Int32,System.Span{System.Char})">
-            <summary>
-                Repeats a span of character a specified number of times, writing the result to another span of characters.
-            </summary>
-            <param name="value">The span of characters to repeat.</param>
-            <param name="count">The repeat count.</param>
-            <param name="destination">The destination span to write to.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> is less than 0.</exception>
-            <exception cref="T:System.ArgumentException">
-                <paramref name="destination" /> is too short to contain the repeated string.
-            </exception>
-        </member>
         <member name="T:X10D.Text.EnumerableExtensions">
             <summary>
                 Text-related extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1" />.
@@ -9712,118 +9647,6 @@
             <exception cref="T:System.ArgumentNullException">
                 <paramref name="source" /> or <paramref name="pattern" /> is <see langword="null" />.
             </exception>
-        </member>
-        <member name="T:X10D.Text.MarkdownExtensions">
-            <summary>
-                Markdown-related extension methods for <see cref="T:System.String" />.
-            </summary>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDBold(System.String)">
-            <summary>
-                Formats the specified text as bold, using Markdown.
-            </summary>
-            <param name="value">The value to surround with bold.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDCode(System.String)">
-            <summary>
-                Formats the specified text as code, using Markdown.
-            </summary>
-            <param name="value">The value to surround with code.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDCodeBlock(System.String)">
-            <summary>
-                Formats the specified text as a code block, using Markdown.
-            </summary>
-            <param name="value">The value to surround with code blocks.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDCodeBlock(System.String,System.String)">
-            <summary>
-                Formats the specified text as a code block, using Markdown.
-            </summary>
-            <param name="value">The value to surround with code blocks.</param>
-            <param name="language">The language to use for syntax highlighting.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDHeading(System.String,System.Int32)">
-            <summary>
-                Formats the specified text as a heading, using Markdown.
-            </summary>
-            <param name="value">The value to surround with italics.</param>
-            <param name="level">The level of the heading.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="level" /> is less than 1 or greater than 6.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDItalic(System.String)">
-            <summary>
-                Formats the specified text as italics, using Markdown.
-            </summary>
-            <param name="value">The value to surround with italics.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-            <remarks>
-                Markdown has two methods of italicizing text: <c>*</c> and <c>_</c>. This method uses asterisks by default. To
-                use underscores, use <see cref="M:X10D.Text.MarkdownExtensions.MDItalic(System.String,System.Boolean)" /> and pass <see langword="true" /> as the second argument.
-            </remarks>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDItalic(System.String,System.Boolean)">
-            <summary>
-                Formats the specified text as italics, using Markdown.
-            </summary>
-            <param name="value">The value to surround with italics.</param>
-            <param name="useUnderscores">Whether to use underscores instead of asterisks for italicizing.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDLink(System.String,System.String)">
-            <summary>
-                Formats the specified text as a link, using Markdown.
-            </summary>
-            <param name="label">The label to use for the link.</param>
-            <param name="url">The URL to link to.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="url" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDLink(System.String,System.Uri)">
-            <summary>
-                Formats the specified text as a link, using Markdown.
-            </summary>
-            <param name="label">The label to use for the link.</param>
-            <param name="url">The URL to link to.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="url" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDLink(System.Uri,System.String)">
-            <summary>
-                Formats the specified text as a link, using Markdown.
-            </summary>
-            <param name="url">The URL to link to.</param>
-            <param name="label">The label to use for the link.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="url" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDStrikeOut(System.String)">
-            <summary>
-                Formats the specified text as striked out, using Markdown.
-            </summary>
-            <param name="value">The value to surround with strikeout.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-        </member>
-        <member name="M:X10D.Text.MarkdownExtensions.MDUnderline(System.String)">
-            <summary>
-                Formats the specified text as underlined, using Markdown.
-            </summary>
-            <param name="value">The value to surround with underline.</param>
-            <returns>The formatted text.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
         </member>
         <member name="T:X10D.Text.StringBuilderReader">
             <summary>
@@ -9966,118 +9789,6 @@
                 <paramref name="sourceEncoding" /> is <see langword="null" />
                 -or
                 <paramref name="destinationEncoding" /> is <see langword="null" />.
-            </exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Boolean,System.String)">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="condition">The condition to evaluate.</param>
-            <param name="appendValue">The string to append if the condition is true.</param>
-            <returns>The concatenated string.</returns>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.Boolean},System.String)">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="conditionFactory">The function that returns the condition to evaluate.</param>
-            <param name="appendValue">The string to append if the condition is true.</param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.String,System.Boolean},System.String)">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="conditionFactory">
-                The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
-            </param>
-            <param name="appendValue">The string to append if the condition is true.</param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="conditionFactory" /> is <see langword="null" />.</exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Boolean,System.Func{System.String})">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="condition">The condition to evaluate.</param>
-            <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Boolean,System.Func{System.String,System.String})">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="condition">The condition to evaluate.</param>
-            <param name="valueFactory">
-                The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
-                argument.
-            </param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> is <see langword="null" />.</exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.Boolean},System.Func{System.String})">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="conditionFactory">The function that returns the condition to evaluate.</param>
-            <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException">
-                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
-            </exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.Boolean},System.Func{System.String,System.String})">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="conditionFactory">The function that returns the condition to evaluate.</param>
-            <param name="valueFactory">
-                The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
-                argument.
-            </param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException">
-                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
-            </exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.String,System.Boolean},System.Func{System.String})">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="conditionFactory">
-                The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
-            </param>
-            <param name="valueFactory">The function that returns the string to append if the condition is true.</param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException">
-                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
-            </exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.ConcatIf(System.String,System.Func{System.String,System.Boolean},System.Func{System.String,System.String})">
-            <summary>
-                Appends a string to the current string if the specified condition evaluates to <see langword="true" />.
-            </summary>
-            <param name="value">The current string.</param>
-            <param name="conditionFactory">
-                The function that returns the condition to evaluate, with <paramref name="value" /> given as an argument.
-            </param>
-            <param name="valueFactory">
-                The function that returns the string to append if the condition is true, with <paramref name="value" /> given as an
-                argument.
-            </param>
-            <returns>The concatenated string.</returns>
-            <exception cref="T:System.ArgumentNullException">
-                <paramref name="conditionFactory" /> or <paramref name="valueFactory" /> is <see langword="null" />.
             </exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.CountSubstring(System.Span{System.Char},System.Char)">
@@ -10322,21 +10033,9 @@
             </summary>
             <param name="value">The string to repeat.</param>
             <param name="count">The repeat count.</param>
-            <returns>A string containing <paramref name="value" /> repeated <paramref name="count" /> times.</returns>
+            <returns>A string containing <paramref name="value" /> repeated <paramref name="count" /> times.
+            </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
-        </member>
-        <member name="M:X10D.Text.StringExtensions.Repeat(System.String,System.Int32,System.Span{System.Char})">
-            <summary>
-                Repeats a string a specified number of times, writing the result to a span of characters.
-            </summary>
-            <param name="value">The string to repeat.</param>
-            <param name="count">The repeat count.</param>
-            <param name="destination">The destination span to write to.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> is less than 0.</exception>
-            <exception cref="T:System.ArgumentException">
-                <paramref name="destination" /> is too short to contain the repeated string.
-            </exception>
         </member>
         <member name="M:X10D.Text.StringExtensions.Randomize(System.String,System.Int32,System.Random)">
             <summary>
