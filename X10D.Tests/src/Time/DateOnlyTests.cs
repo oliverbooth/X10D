@@ -40,6 +40,18 @@ internal class DateOnlyTests
     }
 
     [Test]
+    public void Deconstruct_ShouldDeconstruct_GivenDateOnly()
+    {
+        var date = new DateOnly(2017, 12, 31);
+
+        date.Deconstruct(out int year, out int month, out int day);
+
+        Assert.That(year, Is.EqualTo(2017));
+        Assert.That(month, Is.EqualTo(12));
+        Assert.That(day, Is.EqualTo(31));
+    }
+
+    [Test]
     public void Deconstruct_ShouldDeconstructToTuple_GivenDateOnly()
     {
         var date = new DateOnly(2017, 12, 31);
