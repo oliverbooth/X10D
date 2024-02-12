@@ -55,4 +55,5 @@ jobs:
       uses: codecov/codecov-action@v4.0.1
       env:
         token: ${{ secrets.CODECOV_TOKEN }}
+        files: dotCover.Output.xml
         slug: oliverbooth/X10D
