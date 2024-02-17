@@ -4,7 +4,7 @@
         <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <CoverletOutputFormat>json,cobertura</CoverletOutputFormat>
+        <CoverletOutputFormat>xml,cobertura</CoverletOutputFormat>
         <CollectCoverage>true</CollectCoverage>
         <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
     </PropertyGroup>
