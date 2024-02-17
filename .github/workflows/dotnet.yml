@@ -53,7 +53,7 @@ jobs:
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.0
-      env:
+      with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: dotCover.Output.xml
         slug: oliverbooth/X10D
