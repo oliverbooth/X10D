@@ -41,7 +41,6 @@ public static class Int64Extensions
         long root = System.Math.Abs(value).Mod(9L);
         return root < 1L ? 9L - root : root;
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 64-bit signed integer.
@@ -71,6 +70,7 @@ public static class Int64Extensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 64-bit signed integer, and another 64-bit unsigned integer.

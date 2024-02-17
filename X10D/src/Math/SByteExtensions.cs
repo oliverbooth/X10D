@@ -42,7 +42,6 @@ public static class SByteExtensions
         int root = System.Math.Abs(value).Mod(9);
         return (sbyte)(root < 1 ? 9 - root : root);
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 8-bit signed integer.
@@ -72,6 +71,7 @@ public static class SByteExtensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 8-bit signed integer, and another 8-bit signed integer.

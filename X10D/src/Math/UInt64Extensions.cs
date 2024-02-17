@@ -42,7 +42,6 @@ public static class UInt64Extensions
         ulong root = value % 9;
         return root == 0 ? 9 : root;
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 64-bit unsigned integer.
@@ -66,6 +65,7 @@ public static class UInt64Extensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 64-bit unsigned integer, and another 64-bit unsigned

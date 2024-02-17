@@ -48,5 +48,35 @@ public static class BinaryIntegerExtensions
         TInteger root = TInteger.Abs(value).Mod(nine);
         return int.CreateChecked(root == TInteger.Zero ? nine : root);
     }
+
+    /// <summary>
+    ///     Returns the factorial of the current binary integer.
+    /// </summary>
+    /// <param name="value">The value whose factorial to compute.</param>
+    /// <returns>The factorial of <paramref name="value" />.</returns>
+    /// <exception cref="ArithmeticException"><paramref name="value" /> is less than 0.</exception>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static long Factorial<TInteger>(this TInteger value)
+        where TInteger : IBinaryInteger<TInteger>
+    {
+        if (value < TInteger.Zero)
+        {
+            throw new ArithmeticException(nameof(value));
+        }
+
+        if (value == TInteger.Zero)
+        {
+            return 1;
+        }
+
+        var result = 1L;
+        for (TInteger i = TInteger.One; i <= value; i++)
+        {
+            result *= long.CreateChecked(i);
+        }
+
+        return result;
+    }
 }
 #endif

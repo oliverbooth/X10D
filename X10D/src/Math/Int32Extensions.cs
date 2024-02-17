@@ -41,7 +41,6 @@ public static class Int32Extensions
         int root = System.Math.Abs(value).Mod(9);
         return root < 1 ? 9 - root : root;
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 32-bit signed integer.
@@ -71,6 +70,7 @@ public static class Int32Extensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 32-bit signed integer, and another 32-bit signed integer.

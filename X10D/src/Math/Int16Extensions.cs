@@ -41,7 +41,6 @@ public static class Int16Extensions
         short root = System.Math.Abs(value).Mod(9);
         return root < 1 ? (short)(9 - root) : root;
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 16-bit signed integer.
@@ -71,6 +70,7 @@ public static class Int16Extensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 16-bit signed integer, and another 16-bit signed integer.

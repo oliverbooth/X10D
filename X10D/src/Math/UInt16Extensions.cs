@@ -42,7 +42,6 @@ public static class UInt16Extensions
         var root = (ushort)(value % 9);
         return (ushort)(root == 0 ? 9 : root);
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 16-bit unsigned integer.
@@ -66,6 +65,7 @@ public static class UInt16Extensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 16-bit unsigned integer, and another 16-bit unsigned

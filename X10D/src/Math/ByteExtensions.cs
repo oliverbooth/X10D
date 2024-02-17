@@ -42,7 +42,6 @@ public static class ByteExtensions
         int root = value % 9;
         return (byte)(root == 0 ? 9 : root);
     }
-#endif
 
     /// <summary>
     ///     Returns the factorial of the current 8-bit unsigned integer.
@@ -66,6 +65,7 @@ public static class ByteExtensions
 
         return result;
     }
+#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 8-bit unsigned integer, and another 8-bit unsigned integer.
