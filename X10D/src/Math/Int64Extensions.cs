@@ -88,7 +88,6 @@ public static class Int64Extensions
 
         return value;
     }
-#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
@@ -119,6 +118,7 @@ public static class Int64Extensions
     {
         return !value.IsEven();
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is a prime number.

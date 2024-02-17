@@ -78,7 +78,6 @@ public static class ByteExtensions
     {
         return (byte)((long)value).GreatestCommonFactor(other);
     }
-#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
@@ -109,6 +108,7 @@ public static class ByteExtensions
     {
         return !value.IsEven();
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is a prime number.
