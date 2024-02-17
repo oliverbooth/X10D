@@ -33,6 +33,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
+    - name: Install dotCover
+      run: dotnet tool install --global JetBrains.dotCover.GlobalTool
+
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
@@ -44,3 +47,12 @@ jobs:
 
     - name: Test .NET 8
       run: dotnet test --no-build --verbosity normal --configuration Release --framework net8.0
+    
+    - name: Collect coverage
+      run: dotnet dotcover test --dcReportType=XML
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.0
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: oliverbooth/X10D
