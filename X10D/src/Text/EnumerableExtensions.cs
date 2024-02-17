@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace X10D.Text;
 
@@ -18,10 +18,6 @@ public static class EnumerableExtensions
     /// </exception>
     public static IEnumerable<string> Grep(this IEnumerable<string> source, string pattern)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(pattern);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -31,7 +27,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(pattern));
         }
-#endif
 
         return Grep(source, pattern, false);
     }
@@ -50,10 +45,6 @@ public static class EnumerableExtensions
     /// </exception>
     public static IEnumerable<string> Grep(this IEnumerable<string> source, string pattern, bool ignoreCase)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(pattern);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -63,14 +54,11 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(pattern));
         }
-#endif
 
-#if NET6_0_OR_GREATER
         if (source.TryGetNonEnumeratedCount(out int count) && count == 0)
         {
             yield break;
         }
-#endif
 
         var options = RegexOptions.Compiled | (ignoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
         var regex = new Regex(pattern, options, Regex.InfiniteMatchTimeout);

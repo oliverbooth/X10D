@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class UInt16Tests
+internal class UInt16Tests
 {
     [Test]
     public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()

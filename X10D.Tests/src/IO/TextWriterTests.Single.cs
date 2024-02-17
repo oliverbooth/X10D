@@ -1,11 +1,11 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text;
 using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class TextWriterTests
+internal partial class TextWriterTests
 {
     [Test]
     public void WriteNoAlloc_ShouldThrowArgumentNullException_GivenSingle_AndNullWriter()

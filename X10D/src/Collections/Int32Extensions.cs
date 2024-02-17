@@ -1,12 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
-using X10D.CompilerServices;
-
-#if NETCOREAPP3_0_OR_GREATER
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
-#endif
+using X10D.CompilerServices;
 
 namespace X10D.Collections;
 
@@ -23,7 +20,7 @@ public static class Int32Extensions
     /// <param name="value">The value to unpack.</param>
     /// <returns>An array of <see cref="bool" /> with length 32.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool[] Unpack(this int value)
     {
         var ret = new bool[Size];
@@ -38,7 +35,7 @@ public static class Int32Extensions
     /// <param name="destination">When this method returns, contains the unpacked booleans from <paramref name="value" />.</param>
     /// <exception cref="ArgumentException"><paramref name="destination" /> is not large enough to contain the result.</exception>
     [ExcludeFromCodeCoverage]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static void Unpack(this int value, Span<bool> destination)
     {
         if (destination.Length < Size)
@@ -46,7 +43,6 @@ public static class Int32Extensions
             throw new ArgumentException(ExceptionMessages.DestinationSpanLengthTooShort, nameof(destination));
         }
 
-#if NETCOREAPP3_0_OR_GREATER
         if (Avx2.IsSupported)
         {
             UnpackInternal_Avx2(value, destination);
@@ -58,12 +54,11 @@ public static class Int32Extensions
             UnpackInternal_Ssse3(value, destination);
             return;
         }
-#endif
 
         UnpackInternal_Fallback(value, destination);
     }
 
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static void UnpackInternal_Fallback(this int value, Span<bool> destination)
     {
         for (var index = 0; index < Size; index++)
@@ -72,8 +67,7 @@ public static class Int32Extensions
         }
     }
 
-#if NETCOREAPP3_0_OR_GREATER
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static unsafe void UnpackInternal_Ssse3(this int value, Span<bool> destination)
     {
         fixed (bool* pDestination = destination)
@@ -130,5 +124,4 @@ public static class Int32Extensions
             Avx.Store((byte*)pDestination, correctness);
         }
     }
-#endif
 }

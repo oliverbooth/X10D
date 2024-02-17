@@ -1,14 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
         <Configuration>Release</Configuration>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net7.0;net6.0;netcoreapp3.1</TargetFrameworks>
-        <LangVersion>11.0</LangVersion>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
-        <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <Optimize>true</Optimize>
     </PropertyGroup>
 

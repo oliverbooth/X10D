@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class UInt16Tests
+internal class UInt16Tests
 {
     [Test]
     public void PopCount_ShouldBe0_Given0()

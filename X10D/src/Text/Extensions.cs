@@ -1,4 +1,3 @@
-﻿#if NET5_0_OR_GREATER
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -19,10 +18,9 @@ public static class Extensions
     /// <typeparam name="T">The type of the value to convert.</typeparam>
     /// <returns>A JSON string representing the object.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static string ToJson<T>(this T value, JsonSerializerOptions? options = null)
     {
         return JsonSerializer.Serialize(value, options);
     }
 }
-#endif

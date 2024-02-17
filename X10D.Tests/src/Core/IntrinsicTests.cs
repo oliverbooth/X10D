@@ -1,4 +1,3 @@
-﻿#if NET6_0_OR_GREATER
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 using NUnit.Framework;
@@ -7,7 +6,7 @@ using X10D.Core;
 namespace X10D.Tests.Core;
 
 [TestFixture]
-public class IntrinsicTests
+internal class IntrinsicTests
 {
     [Test]
     public void CorrectBoolean_ShouldReturnExpectedVector64Result_GivenInputVector()
@@ -223,4 +222,3 @@ public class IntrinsicTests
         Assert.That(result, Is.EqualTo(expectedResult));
     }
 }
-#endif

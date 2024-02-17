@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class PointTests
+internal class PointTests
 {
     [Test]
     public void IsOnLine_ShouldReturnTrue_GivenPointOnLine()

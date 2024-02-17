@@ -1,11 +1,10 @@
-﻿#if NET5_0_OR_GREATER
 using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class DoubleTests
+internal class DoubleTests
 {
     private Half _negativeOne;
     private Half _one;
@@ -52,4 +51,3 @@ public class DoubleTests
         Assert.That((_negativeOne).Weeks() < TimeSpan.Zero);
     }
 }
-#endif

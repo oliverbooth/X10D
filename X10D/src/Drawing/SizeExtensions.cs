@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -17,7 +17,7 @@ public static class SizeExtensions
     /// <param name="size">The size to convert.</param>
     /// <returns>The resulting <see cref="Point" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Point ToPoint(this Size size)
     {
         return new Point(size.Width, size.Height);
@@ -29,7 +29,7 @@ public static class SizeExtensions
     /// <param name="size">The size to convert.</param>
     /// <returns>The resulting <see cref="PointF" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static PointF ToPointF(this Size size)
     {
         return new PointF(size.Width, size.Height);
@@ -41,7 +41,7 @@ public static class SizeExtensions
     /// <param name="size">The size to convert.</param>
     /// <returns>The resulting <see cref="Vector2" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector2 ToVector2(this Size size)
     {
         return new Vector2(size.Width, size.Height);

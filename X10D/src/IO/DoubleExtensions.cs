@@ -10,58 +10,50 @@ namespace X10D.IO;
 public static class DoubleExtensions
 {
     /// <summary>
-    ///     Returns the current double-precision floating-point value as an array of bytes.
+    ///     Converts the current double-precision floating-point number into an array of bytes, as little endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <returns>An array of bytes with length 8.</returns>
+    /// <param name="value">The <see cref="int" /> value.</param>
+    /// <returns>An array of bytes with length 4.</returns>
     [Pure]
-    public static byte[] GetBytes(this double value)
+    public static byte[] GetBigEndianBytes(this double value)
     {
-        byte[] buffer = new byte[8];
-        value.TryWriteBytes(buffer);
-        return buffer;
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteBigEndianBytes(buffer);
+        return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Returns the current double-precision floating-point value as an array of bytes.
+    ///     Converts the current double-precision floating-point number into an array of bytes, as little endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
-    /// <returns>An array of bytes with length 8.</returns>
+    /// <param name="value">The <see cref="int" /> value.</param>
+    /// <returns>An array of bytes with length 4.</returns>
     [Pure]
-    public static byte[] GetBytes(this double value, Endianness endianness)
+    public static byte[] GetLittleEndianBytes(this double value)
     {
-        byte[] buffer = new byte[8];
-        value.TryWriteBytes(buffer, endianness);
-        return buffer;
+        Span<byte> buffer = stackalloc byte[8];
+        value.TryWriteLittleEndianBytes(buffer);
+        return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Converts the current double-precision floating-point into a span of bytes.
+    ///     Converts the current double-precision floating-point number into a span of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The <see cref="double" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="double" />.</param>
+    /// <param name="value">The <see cref="float" /> value.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this double value, Span<byte> destination)
+    public static bool TryWriteBigEndianBytes(this double value, Span<byte> destination)
     {
-        return BitConverter.TryWriteBytes(destination, value);
+        return BinaryPrimitives.TryWriteDoubleBigEndian(destination, value);
     }
 
     /// <summary>
-    ///     Converts the current double-precision floating-point into a span of bytes.
+    ///     Converts the current double-precision floating-point number into a span of bytes, as little endian.
     /// </summary>
-    /// <param name="value">The <see cref="double" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="double" />.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="value">The <see cref="float" /> value.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this double value, Span<byte> destination, Endianness endianness)
+    public static bool TryWriteLittleEndianBytes(this double value, Span<byte> destination)
     {
-        if (BitConverter.IsLittleEndian == (endianness == Endianness.BigEndian))
-        {
-            long tmp = BinaryPrimitives.ReverseEndianness(BitConverter.DoubleToInt64Bits(value));
-            value = BitConverter.Int64BitsToDouble(tmp);
-        }
-
-        return MemoryMarshal.TryWrite(destination, ref value);
+        return BinaryPrimitives.TryWriteDoubleLittleEndian(destination, value);
     }
 }

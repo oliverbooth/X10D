@@ -1,4 +1,4 @@
-﻿namespace X10D.Collections;
+namespace X10D.Collections;
 
 /// <summary>
 ///     Enumerates the elements of a <see cref="ReadOnlySpan{T}" />.

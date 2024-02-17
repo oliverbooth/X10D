@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Net;
 
 namespace X10D.Tests.Net;
 
 [TestFixture]
-public class Int64Tests
+internal class Int64Tests
 {
     [Test]
     public void HostToNetworkOrder_ReturnsCorrectValue()

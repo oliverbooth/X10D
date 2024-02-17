@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
@@ -21,7 +21,7 @@ public static class SingleExtensions
     ///     is equal to <see cref="float.NaN" />, less than -1, or greater than 1, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Acos(this float value)
     {
         return MathF.Acos(value);
@@ -39,7 +39,7 @@ public static class SingleExtensions
     ///     <paramref name="value" /> is less than 1 or equal to <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Acosh(this float value)
     {
         return MathF.Acosh(value);
@@ -57,7 +57,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Asin(this float value)
     {
         return MathF.Asin(value);
@@ -75,7 +75,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Asinh(this float value)
     {
         return MathF.Asinh(value);
@@ -92,7 +92,7 @@ public static class SingleExtensions
     ///     <paramref name="value" /> is equal to <see cref="float.NaN" />, <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Atan(this float value)
     {
         return MathF.Atan(value);
@@ -111,7 +111,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Atanh(this float value)
     {
         return MathF.Atanh(value);
@@ -123,7 +123,7 @@ public static class SingleExtensions
     /// <param name="value">The number whose square root is to be found.</param>
     /// <returns>The square root of <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Complex ComplexSqrt(this float value)
     {
         switch (value)
@@ -153,7 +153,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Cos(this float value)
     {
         return MathF.Cos(value);
@@ -170,7 +170,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />, <see cref="double.NaN" /> is returned.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Cosh(this float value)
     {
         return MathF.Cosh(value);
@@ -182,7 +182,7 @@ public static class SingleExtensions
     /// <param name="value">The angle in degrees to convert.</param>
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float DegreesToRadians(this float value)
     {
         return value * (MathF.PI / 180.0f);
@@ -197,7 +197,7 @@ public static class SingleExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this float value)
     {
         return value % 2 == 0;
@@ -212,7 +212,7 @@ public static class SingleExtensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this float value)
     {
         return !value.IsEven();
@@ -224,7 +224,7 @@ public static class SingleExtensions
     /// <param name="value">The angle in radians to convert.</param>
     /// <returns>The result of π * <paramref name="value" /> / 180.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float RadiansToDegrees(this float value)
     {
         return value * (180.0f / MathF.PI);
@@ -236,7 +236,7 @@ public static class SingleExtensions
     /// <param name="value">The value to round.</param>
     /// <returns><paramref name="value" /> rounded to the nearest whole number.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Round(this float value)
     {
         return value.Round(1.0f);
@@ -249,7 +249,7 @@ public static class SingleExtensions
     /// <param name="nearest">The nearest multiple to which <paramref name="value" /> should be rounded.</param>
     /// <returns><paramref name="value" /> rounded to the nearest multiple of <paramref name="nearest" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Round(this float value, float nearest)
     {
         return MathF.Round(value / nearest) * nearest;
@@ -262,7 +262,7 @@ public static class SingleExtensions
     /// <returns>The saturated value.</returns>
     /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Saturate(this float value)
     {
         return System.Math.Clamp(value, 0.0f, 1.0f);
@@ -296,7 +296,7 @@ public static class SingleExtensions
     ///     </list>
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int Sign(this float value)
     {
         return MathF.Sign(value);
@@ -332,7 +332,7 @@ public static class SingleExtensions
     /// <author>SLenik https://stackoverflow.com/a/6755197/1467293</author>
     /// <license>CC BY-SA 3.0</license>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Sqrt(this float value)
     {
         switch (value)
@@ -366,7 +366,7 @@ public static class SingleExtensions
     ///     <see cref="double.NaN" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Sin(this float value)
     {
         return MathF.Sin(value);
@@ -382,7 +382,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Sinh(this float value)
     {
         return MathF.Sinh(value);
@@ -398,7 +398,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Tan(this float value)
     {
         return MathF.Sin(value);
@@ -415,7 +415,7 @@ public static class SingleExtensions
     ///     <see cref="float.NaN" />, this method returns <see cref="float.NaN" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Tanh(this float value)
     {
         return MathF.Tanh(value);
@@ -429,7 +429,7 @@ public static class SingleExtensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Wrap(this float value, float low, float high)
     {
         return (float)((double)value).Wrap(low, high);
@@ -442,7 +442,7 @@ public static class SingleExtensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static float Wrap(this float value, float length)
     {
         return (float)((double)value).Wrap(length);

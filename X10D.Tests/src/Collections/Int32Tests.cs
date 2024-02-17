@@ -1,11 +1,11 @@
-﻿using System.Runtime.Intrinsics.X86;
+using System.Runtime.Intrinsics.X86;
 using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class Int32Tests
+internal class Int32Tests
 {
     [Test]
     public void Unpack_ShouldUnpackToArrayCorrectly()
@@ -83,7 +83,6 @@ public class Int32Tests
         });
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void UnpackInternal_Ssse3_ShouldUnpackToSpanCorrectly()
     {
@@ -143,7 +142,6 @@ public class Int32Tests
             }
         });
     }
-#endif
 
     [Test]
     public void Unpack_ShouldRepackEqually()

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -20,7 +20,7 @@ public static class UInt16Extensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int PopCount(this ushort value)
     {
         return ((uint)value).PopCount();
@@ -35,7 +35,7 @@ public static class UInt16Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort RotateLeft(this ushort value, int count)
     {
         return (ushort)((ushort)(value << count) | (ushort)(value >> (16 - count)));
@@ -50,7 +50,7 @@ public static class UInt16Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort RotateRight(this ushort value, int count)
     {
         return (ushort)((ushort)(value >> count) | (ushort)(value << (16 - count)));
@@ -65,7 +65,7 @@ public static class UInt16Extensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ushort RoundUpToPowerOf2(this ushort value)
     {
         return (ushort)((uint)value).RoundUpToPowerOf2();

@@ -1,4 +1,4 @@
-﻿namespace X10D.Math;
+namespace X10D.Math;
 
 /// <summary>
 ///     Provides options for <see cref="ComparableExtensions.Between{T1,T2,T3}" /> clusivity.

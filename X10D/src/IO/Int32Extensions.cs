@@ -9,54 +9,50 @@ namespace X10D.IO;
 public static class Int32Extensions
 {
     /// <summary>
-    ///     Returns the current 32-bit signed integer value as an array of bytes.
+    ///     Converts the current 32-bit signed integer into an array of bytes, as big endian.
     /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <returns>An array of bytes with length 4.</returns>
+    /// <param name="value">The <see cref="int" /> value.</param>
+    /// <returns>An array of bytes with length 8.</returns>
     [Pure]
-    public static byte[] GetBytes(this int value)
+    public static byte[] GetBigEndianBytes(this int value)
     {
-        byte[] buffer = new byte[4];
-        value.TryWriteBytes(buffer);
-        return buffer;
-    }
-
-    /// <summary>
-    ///     Returns the current 32-bit signed integer value as an array of bytes.
-    /// </summary>
-    /// <param name="value">The number to convert.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
-    /// <returns>An array of bytes with length 4.</returns>
-    [Pure]
-    public static byte[] GetBytes(this int value, Endianness endianness)
-    {
-        byte[] buffer = new byte[4];
-        value.TryWriteBytes(buffer, endianness);
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Converts the current 32-bit signed integer into a span of bytes.
+    ///     Converts the current 32-bit signed integer into an array of bytes, as big endian.
     /// </summary>
     /// <param name="value">The <see cref="int" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="int" />.</param>
-    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this int value, Span<byte> destination)
+    /// <returns>An array of bytes with length 8.</returns>
+    [Pure]
+    public static byte[] GetLittleEndianBytes(this int value)
     {
-        return BitConverter.TryWriteBytes(destination, value);
+        Span<byte> buffer = stackalloc byte[4];
+        value.TryWriteLittleEndianBytes(buffer);
+        return buffer.ToArray();
     }
 
     /// <summary>
-    ///     Converts the current 32-bit signed integer into a span of bytes.
+    ///     Writes the current 32-bit signed integer into a span of bytes, as big endian.
     /// </summary>
     /// <param name="value">The <see cref="int" /> value.</param>
-    /// <param name="destination">When this method returns, the bytes representing the converted <see cref="int" />.</param>
-    /// <param name="endianness">The endianness with which to write the bytes.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as big endian.</param>
     /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
-    public static bool TryWriteBytes(this int value, Span<byte> destination, Endianness endianness)
+    public static bool TryWriteBigEndianBytes(this int value, Span<byte> destination)
     {
-        return endianness == Endianness.BigEndian
-            ? BinaryPrimitives.TryWriteInt32BigEndian(destination, value)
-            : BinaryPrimitives.TryWriteInt32LittleEndian(destination, value);
+        return BinaryPrimitives.TryWriteInt32BigEndian(destination, value);
+    }
+
+    /// <summary>
+    ///     Writes the current 32-bit signed integer into a span of bytes, as little endian.
+    /// </summary>
+    /// <param name="value">The <see cref="int" /> value.</param>
+    /// <param name="destination">The span of bytes where the value is to be written, as little endian.</param>
+    /// <returns><see langword="true" /> if the conversion was successful; otherwise, <see langword="false" />.</returns>
+    public static bool TryWriteLittleEndianBytes(this int value, Span<byte> destination)
+    {
+        return BinaryPrimitives.TryWriteInt32LittleEndian(destination, value);
     }
 }

@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class BooleanTests
+internal class BooleanTests
 {
     [Test]
     public void GetBytes_ReturnsArrayContaining1()

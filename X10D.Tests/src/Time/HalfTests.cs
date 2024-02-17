@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class HalfTests
+internal class HalfTests
 {
     [Test]
     public void TicksMillisecondsSecondsMinutesDaysHoursWeeks_ShouldBeZero_GivenZero()

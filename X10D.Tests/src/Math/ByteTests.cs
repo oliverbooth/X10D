@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public partial class ByteTests
+internal partial class ByteTests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()

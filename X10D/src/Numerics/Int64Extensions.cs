@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -19,7 +19,7 @@ public static class Int64Extensions
     ///     <a href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.x86.popcnt?view=net-6.0">POPCNT</a>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int PopCount(this long value)
     {
         return ((ulong)value).PopCount();
@@ -34,7 +34,7 @@ public static class Int64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long RotateLeft(this long value, int count)
     {
         var unsigned = unchecked((ulong)value);
@@ -50,7 +50,7 @@ public static class Int64Extensions
     /// </param>
     /// <returns>The rotated value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long RotateRight(this long value, int count)
     {
         var unsigned = unchecked((ulong)value);
@@ -66,7 +66,7 @@ public static class Int64Extensions
     ///     is 0 or the result overflows.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long RoundUpToPowerOf2(this long value)
     {
         return (long)((ulong)value).RoundUpToPowerOf2();

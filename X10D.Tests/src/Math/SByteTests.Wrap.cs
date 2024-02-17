@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class SByteTests
+internal partial class SByteTests
 {
     [TestFixture]
     public class WrapTests

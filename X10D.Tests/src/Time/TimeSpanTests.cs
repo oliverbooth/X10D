@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class TimeSpanTests
+internal class TimeSpanTests
 {
     private TimeSpan _timeSpan;
 

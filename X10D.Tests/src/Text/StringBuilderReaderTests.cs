@@ -1,11 +1,11 @@
-﻿using System.Text;
+using System.Text;
 using NUnit.Framework;
 using X10D.Text;
 
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class StringBuilderReaderTests
+internal class StringBuilderReaderTests
 {
     [Test]
     public void Peek_ShouldReturnNextChar_GivenBuilder()
