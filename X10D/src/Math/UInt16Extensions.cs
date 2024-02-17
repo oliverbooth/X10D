@@ -65,7 +65,6 @@ public static class UInt16Extensions
 
         return result;
     }
-#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 16-bit unsigned integer, and another 16-bit unsigned
@@ -80,6 +79,7 @@ public static class UInt16Extensions
     {
         return (ushort)((long)value).GreatestCommonFactor(other);
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.

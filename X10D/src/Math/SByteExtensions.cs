@@ -71,7 +71,6 @@ public static class SByteExtensions
 
         return result;
     }
-#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 8-bit signed integer, and another 8-bit signed integer.
@@ -85,6 +84,7 @@ public static class SByteExtensions
     {
         return (sbyte)((long)value).GreatestCommonFactor(other);
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.

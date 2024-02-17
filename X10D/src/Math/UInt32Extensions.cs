@@ -65,7 +65,6 @@ public static class UInt32Extensions
 
         return result;
     }
-#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 32-bit unsigned integer, and another 32-bit unsigned
@@ -80,6 +79,7 @@ public static class UInt32Extensions
     {
         return (uint)((long)value).GreatestCommonFactor(other);
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.

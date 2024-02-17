@@ -70,7 +70,6 @@ public static class Int64Extensions
 
         return result;
     }
-#endif
 
     /// <summary>
     ///     Calculates the greatest common factor between the current 64-bit signed integer, and another 64-bit unsigned integer.
@@ -89,6 +88,7 @@ public static class Int64Extensions
 
         return value;
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.

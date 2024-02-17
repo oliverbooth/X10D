@@ -78,5 +78,24 @@ public static class BinaryIntegerExtensions
 
         return result;
     }
+
+    /// <summary>
+    ///     Calculates the greatest common factor between the current binary integer, and another binary integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TInteger GreatestCommonFactor<TInteger>(this TInteger value, TInteger other)
+        where TInteger : IBinaryInteger<TInteger>
+    {
+        while (other != TInteger.Zero)
+        {
+            (value, other) = (other, value % other);
+        }
+
+        return value;
+    }
 }
 #endif
