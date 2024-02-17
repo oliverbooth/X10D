@@ -33,33 +33,21 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Install coverage tools
-      run: |
-        dotnet tool install --global JetBrains.dotCover.GlobalTool
-        dotnet tool install --global dotnet-reportgenerator-globaltool
-
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
     - name: Test .NET 6
-      run: dotnet test --no-build --verbosity normal --configuration Release --framework net6.0
+      run: dotnet test --no-build --verbosity normal --configuration Release --framework net6.0 --collect:"XPlat Code Coverage" --results-directory test-results/net6.0
 
     - name: Test .NET 7
-      run: dotnet test --no-build --verbosity normal --configuration Release --framework net7.0
+      run: dotnet test --no-build --verbosity normal --configuration Release --framework net7.0 --collect:"XPlat Code Coverage" --results-directory test-results/net7.0
 
     - name: Test .NET 8
-      run: dotnet test --no-build --verbosity normal --configuration Release --framework net8.0
-    
-    - name: Collect coverage
-      run: dotnet dotcover test --dcReportType=DetailedXML
-    
-    - name: Convert coverage
-      run: reportgenerator -reports:./dotCover.Output.xml -targetdir:. -reporttypes:Cobertura
+      run: dotnet test --no-build --verbosity normal --configuration Release --framework net8.0 --collect:"XPlat Code Coverage" --results-directory test-results/net8.0
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.0
       with:
-        disable_search: true
-        file: Cobertura.xml
+        directory: test-results
         token: ${{ secrets.CODECOV_TOKEN }}
         slug: oliverbooth/X10D
