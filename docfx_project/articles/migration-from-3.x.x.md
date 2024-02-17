@@ -3,6 +3,9 @@
 X10D 4.0.0 is a major release that introduces breaking changes. This document will help you migrate your code from 3.x.x
 to 4.0.0.
 
+When a breaking change is mentioned, the compatibility mirrors that of the Microsoft documentation for .NET, which you
+can find [here](https://learn.microsoft.com/en-us/dotnet/core/compatibility/categories).
+
 ## Removed APIs
 
 ### X10D.DSharpPlus library
@@ -12,7 +15,17 @@ wrapper library. However, I have since moved to using a different library, and a
 scope of X10D or in my best interest to maintain it. The library will remain available on NuGet until DSharpPlus release
 5.0.0 as stable, and X10D.DSharpPlus will NOT be part of X10D 4.0.0. I'm sorry for any inconvenience this may cause.
 
+### X10D.Unity library
+
+The `X10D.Unity` library has been removed. This library was used to provide extension methods for the Unity API. Due to
+game development politics, I no longer feel it in my best interest to continue development of the Unity package. The
+library will remain on NuGet for the foreseeable future but will no longer be maintained. The `upm` branch of the Git
+repository will remain available indefinitely also.
+
+
 ### `Endianness` enum
+
+**Source incompatible change**
 
 The `Endianness` enum was used to specify the endianness of data when reading or writing to a stream. This was causing
 some clutter, and makes it harder to develop X10D, so it was removed. In its stead, any method which accepted an
@@ -41,11 +54,15 @@ Span<byte> buffer = stackalloc byte[4];
 
 ### `IEnumerable<T>.ConcatOne(T)` extension method
 
+**Source incompatible change**
+
 The `IEnumerable<T>.ConcatOne` extension method was used to concatenate a single item to an enumerable. At the time, I
 was unaware of the `Enumerable.Append` method, which does the same thing. As such, `ConcatOne` has been removed. There
 is no migration path for this, as the built in `Append` method from LINQ is a drop-in replacement.
 
 ## Exception Changes
+
+**Source incompatible change**
 
 If you were previously catching TypeInitializationException when calling `Stream.GetHash<>` or `Stream.TryWriteHash<>`,
 you will now need to catch a ArgumentException instead. The justification for this change is that ArgumentException is
