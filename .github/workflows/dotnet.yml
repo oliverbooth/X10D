@@ -33,8 +33,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Install dotCover
-      run: dotnet tool install --global JetBrains.dotCover.GlobalTool
+    - name: Install coverage tools
+      run: |
+        dotnet tool install --global JetBrains.dotCover.GlobalTool
+        dotnet tool install --global dotnet-reportgenerator-globaltool
 
     - name: Build
       run: dotnet build --no-restore --configuration Release
@@ -50,13 +52,17 @@ jobs:
 
     - name: Test .NET 8
       run: dotnet test --no-build --verbosity normal --configuration Release --framework net8.0
-    
+
     - name: Collect coverage
-      run: dotnet dotcover test --dcReportType=XML
+      run: dotnet dotcover test --dcReportType=DetailedXML
+
+    - name: Convert coverage
+      run: reportgenerator -reports:./dotCover.Output.xml -targetdir:. -reporttypes:Cobertura
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.0
       with:
+        disable_search: true
+        file: Cobertura.xml
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: dotCover.Output.xml
         slug: oliverbooth/X10D
