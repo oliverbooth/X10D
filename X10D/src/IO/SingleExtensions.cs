@@ -1,4 +1,4 @@
-﻿using System.Buffers.Binary;
+using System.Buffers.Binary;
 using System.Diagnostics.Contracts;
 #if !NET5_0_OR_GREATER
 using System.Runtime.InteropServices;

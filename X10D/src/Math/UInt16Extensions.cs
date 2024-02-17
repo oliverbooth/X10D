@@ -10,6 +10,7 @@ namespace X10D.Math;
 [CLSCompliant(false)]
 public static class UInt16Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Returns the number of digits in the current 16-bit signed integer.
     /// </summary>
@@ -95,20 +96,6 @@ public static class UInt16Extensions
     }
 
     /// <summary>
-    ///     Returns a value indicating whether the current value is a prime number.
-    /// </summary>
-    /// <param name="value">The value whose primality to check.</param>
-    /// <returns>
-    ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
-    /// </returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static bool IsPrime(this ushort value)
-    {
-        return ((ulong)value).IsPrime();
-    }
-
-    /// <summary>
     ///     Returns a value indicating whether the current value is not evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -121,6 +108,21 @@ public static class UInt16Extensions
     public static bool IsOdd(this ushort value)
     {
         return !value.IsEven();
+    }
+#endif
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is a prime number.
+    /// </summary>
+    /// <param name="value">The value whose primality to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static bool IsPrime(this ushort value)
+    {
+        return ((ulong)value).IsPrime();
     }
 
     /// <summary>
