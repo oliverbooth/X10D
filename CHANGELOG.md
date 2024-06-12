@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 BigEndian/LittleEndian methods.
 - X10D: `Stream.GetHash<>` and `Stream.TryWriteHash<>` now throw ArgumentException in lieu of
 TypeInitializationException.
-- X10D: `char.IsEmoji` no longer allocates for .NET 7.
+- X10D: `char.IsEmoji` no longer allocates for .NET 7+.
 - X10D: `string.Repeat` is now more efficient.
 
 ### Removed
@@ -49,6 +49,7 @@ TypeInitializationException.
 - X10D: Removed `Endianness` enum.
 - X10D: Removed `Span<T>.Replace(T, T)` for .NET 8 target.
 - X10D: Removed .NET Standard 2.1 target.
+- X10D: Removed extensions for `Progress<T>`. These are already provided by [`Observable.FromEventPattern`](https://learn.microsoft.com/en-us/previous-versions/dotnet/reactive-extensions/hh229424(v=vs.103)).
 - X10D.Hosting: Removed .NET Standard 2.1 target.
 - X10D.DSharpPlus: Complete sunset of library. This library will not be updated to support DSharpPlus v5.0.0 (#83).
 - X10D.Unity: Complete sunset of library. This library will not be updated effective immediately (#86).
