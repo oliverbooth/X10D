@@ -1,4 +1,5 @@
 #if NET7_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -48,6 +49,28 @@ public static class BinaryIntegerExtensions
             }
         }
 
+        UnpackInternal(value, destination);
+    }
+
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    private static void UnpackInternal_Fallback<TInteger>(this TInteger value, Span<bool> destination)
+        where TInteger : unmanaged, IBinaryInteger<TInteger>
+    {
+        unsafe
+        {
+            int bitCount = sizeof(TInteger) * 8;
+            for (var index = 0; index < bitCount; index++)
+            {
+                destination[index] = (value & (TInteger.One << index)) != TInteger.Zero;
+            }
+        }
+    }
+
+    [ExcludeFromCodeCoverage]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    private static void UnpackInternal<TInteger>(TInteger value, Span<bool> destination)
+        where TInteger : unmanaged, IBinaryInteger<TInteger>
+    {
         switch (value)
         {
             case byte valueByte when Sse3.IsSupported:
@@ -69,20 +92,6 @@ public static class BinaryIntegerExtensions
             default:
                 UnpackInternal_Fallback(value, destination);
                 break;
-        }
-    }
-
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    internal static void UnpackInternal_Fallback<TInteger>(this TInteger value, Span<bool> destination)
-        where TInteger : unmanaged, IBinaryInteger<TInteger>
-    {
-        unsafe
-        {
-            int bitCount = sizeof(TInteger) * 8;
-            for (var index = 0; index < bitCount; index++)
-            {
-                destination[index] = (value & (TInteger.One << index)) != TInteger.Zero;
-            }
         }
     }
 }
