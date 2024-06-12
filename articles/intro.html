@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+    
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>X10D | X10D </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="X10D | X10D ">
+      <meta name="generator" content="docfx 2.56.7.0">
+      
+      <link rel="shortcut icon" href="../images/favicon.png">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+      
+      <meta property="docfx:rel" content="../">
+      <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+            
+            <a class="brand" href="../index.html">
+              <img src="../images/favicon.png" alt="X10D" class="logomark">
+              <span class="brand-title">X10D</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+                    
+                    <div>
+                      <div class="mobile-hide">
+                        
+                        <a class="brand" href="../index.html">
+                          <img src="../images/favicon.png" alt="X10D" class="logomark">
+                          <span class="brand-title">X10D</span>
+                        </a>  </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+                    
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+                        
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+                  <strong>DocFX + Singulink = ♥</strong>
+                  
+                </div>            </nav>
+
+            <main class="main-panel">
+                
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+                        
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h2 id="x10d">X10D</h2>
+
+<p>X10D (pronounced <em>extend</em>), is a .NET package that provides extension methods for numerous types. The purpose of this library is to simplify a codebase by reducing the need for repeated code when performing common operations. Simplify your codebase. Take advantage of .NET. Use extension methods.</p>
+<p><em>(I'm also <a href="https://www.pcmag.com/encyclopedia/term/dogfooding">dogfooding</a> this library, so there's that.)</em></p>
+<h3 id="what-are-extension-methods">What are extension methods?</h3>
+<p>Extension methods are a clever .NET feature that augment existing types with new functionality. They are defined as
+static methods in a static class, and are called as if they were instance methods on the type they are extending. Take,
+for example, the following code:</p>
+<pre><code class="lang-csharp">public static class Program
+{
+    public static void Main()
+    {
+        string str = &quot;Hello, world!&quot;;
+        Console.WriteLine(str.Reverse());
+    }
+}
+
+public static class StringExtensions
+{
+    public static string Reverse(this string str)
+    {
+        char[] chars = str.ToCharArray();
+        Array.Reverse(chars);
+        return new string(chars);
+    }
+}
+</code></pre>
+<p>This will print <code>!dlrow ,olleH</code> to the console. The <code>Reverse</code> method is defined in the <code>StringExtensions</code> class, yet is
+called as if it were an instance method on the <code>str</code> variable, even though it's not.</p>
+<h3 id="why-use-extension-methods">Why use extension methods?</h3>
+<p>Extension methods were introduced when LINQ was added to .NET. LINQ is a set of extension methods that provide a way to
+query, filter, and transform data. If you were to access LINQ's methods statically, you would have to write code like
+this:</p>
+<pre><code class="lang-csharp">public static class Program
+{
+    public static void Main()
+    {
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        IEnumerable&lt;int&gt; evenNumbers = Enumerable.Where(numbers, x =&gt; x % 2 == 0);
+        IEnumerable&lt;int&gt; doubledNumbers = Enumerable.Select(evenNumbers, x =&gt; x * 2);
+        int sum = Enumerable.Sum(doubledNumbers);
+        Console.WriteLine(sum);
+    }
+}
+</code></pre>
+<p>And if you wanted to one-line this, you'd have to write this:</p>
+<pre><code class="lang-csharp">public static class Program
+{
+    public static void Main()
+    {
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        Console.WriteLine(Enumerable.Sum(Enumerable.Select(Enumerable.Where(numbers, x =&gt; x % 2 == 0), x =&gt; x * 2)));
+    }
+}
+</code></pre>
+<p>This is a lot of code to write, and it's not very readable. The nested method calls make it incredibly difficult to
+follow. However, because LINQ is implemented as extension methods, you can write the following code instead:</p>
+<pre><code class="lang-csharp">public static class Program
+{
+    public static void Main()
+    {
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        Console.WriteLine(numbers.Where(x =&gt; x % 2 == 0).Select(x =&gt; x * 2).Sum());
+    }
+}
+</code></pre>
+<p>Because the methods are called as if they were instance methods on <code>IEnumerable&lt;T&gt;</code>, they can be chained together,
+making the code much more readable.</p>
+<p>X10D aims to provide these same benefits as LINQ, but for dozens of other types and for countless other use cases.</p>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; Singulink. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>

@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+    
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Migration from 3.x.x | X10D </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Migration from 3.x.x | X10D ">
+      <meta name="generator" content="docfx 2.56.7.0">
+      
+      <link rel="shortcut icon" href="../images/favicon.png">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+      
+      <meta property="docfx:rel" content="../">
+      <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+            
+            <a class="brand" href="../index.html">
+              <img src="../images/favicon.png" alt="X10D" class="logomark">
+              <span class="brand-title">X10D</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+                    
+                    <div>
+                      <div class="mobile-hide">
+                        
+                        <a class="brand" href="../index.html">
+                          <img src="../images/favicon.png" alt="X10D" class="logomark">
+                          <span class="brand-title">X10D</span>
+                        </a>  </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+                    
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+                        
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+                  <strong>DocFX + Singulink = ♥</strong>
+                  
+                </div>            </nav>
+
+            <main class="main-panel">
+                
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+                        
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h1 id="migration-from-3xx">Migration from 3.x.x</h1>
+
+<p>X10D 4.0.0 is a major release that introduces breaking changes. This document will help you migrate your code from 3.x.x
+to 4.0.0.</p>
+<p>When a breaking change is mentioned, the compatibility mirrors that of the Microsoft documentation for .NET, which you
+can find <a href="https://learn.microsoft.com/en-us/dotnet/core/compatibility/categories">here</a>.</p>
+<h2 id="removed-apis">Removed APIs</h2>
+<h3 id="x10ddsharpplus-library">X10D.DSharpPlus library</h3>
+<p>The <code>X10D.DSharpPlus</code> library has been removed. This library was used to provide extension methods for the DSharpPlus
+wrapper library. However, I have since moved to using a different library, and as such, I feel it is no longer in the
+scope of X10D or in my best interest to maintain it. The library will remain available on NuGet until DSharpPlus release
+5.0.0 as stable, and X10D.DSharpPlus will NOT be part of X10D 4.0.0. I'm sorry for any inconvenience this may cause.</p>
+<h3 id="x10dunity-library">X10D.Unity library</h3>
+<p>The <code>X10D.Unity</code> library has been removed. This library was used to provide extension methods for the Unity API. Due to
+game development politics, I no longer feel it in my best interest to continue development of the Unity package. The
+library will remain on NuGet for the foreseeable future but will no longer be maintained. The <code>upm</code> branch of the Git
+repository will remain available indefinitely also.</p>
+<h3 id="endianness-enum"><code>Endianness</code> enum</h3>
+<p><strong>Source incompatible change</strong></p>
+<p>The <code>Endianness</code> enum was used to specify the endianness of data when reading or writing to a stream. This was causing
+some clutter, and makes it harder to develop X10D, so it was removed. In its stead, any method which accepted an
+<code>Endianness</code> parameter now has two overloads: one for big-endian, and one for little-endian. For example, the following
+code:</p>
+<pre><code class="lang-csharp">someStream.Write(12345, Endianness.BigEndian);
+
+// or
+
+Span&lt;byte&gt; buffer = stackalloc byte[4];
+12345.TryWriteBytes(buffer, Endianness.BigEndian);
+</code></pre>
+<p>would now be written as:</p>
+<pre><code class="lang-csharp">someStream.WriteBigEndian(12345);
+
+// or
+
+Span&lt;byte&gt; buffer = stackalloc byte[4];
+12345.TryWriteLittleEndianBytes(buffer);
+</code></pre>
+<h3 id="ienumerabletconcatonet-extension-method"><code>IEnumerable&lt;T&gt;.ConcatOne(T)</code> extension method</h3>
+<p><strong>Source incompatible change</strong></p>
+<p>The <code>IEnumerable&lt;T&gt;.ConcatOne</code> extension method was used to concatenate a single item to an enumerable. At the time, I
+was unaware of the <code>Enumerable.Append</code> method, which does the same thing. As such, <code>ConcatOne</code> has been removed. There
+is no migration path for this, as the built in <code>Append</code> method from LINQ is a drop-in replacement.</p>
+<h2 id="exception-changes">Exception Changes</h2>
+<p><strong>Source incompatible change</strong></p>
+<p>If you were previously catching TypeInitializationException when calling <code>Stream.GetHash&lt;&gt;</code> or <code>Stream.TryWriteHash&lt;&gt;</code>,
+you will now need to catch a ArgumentException instead. The justification for this change is that ArgumentException is
+more general, and more easily understood by developers.</p>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; Singulink. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>
