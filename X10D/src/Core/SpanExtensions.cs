@@ -92,14 +92,12 @@ public static class SpanExtensions
                 }
 
             // dotcover disable
-            //NOSONAR
             default:
 #if NET7_0_OR_GREATER
                 throw new UnreachableException(string.Format(ExceptionMessages.EnumSizeIsUnexpected, Unsafe.SizeOf<T>()));
 #else
                 throw new ArgumentException(string.Format(ExceptionMessages.EnumSizeIsUnexpected, Unsafe.SizeOf<T>()));
 #endif
-            //NOSONAR
             // dotcover enable
         }
     }
