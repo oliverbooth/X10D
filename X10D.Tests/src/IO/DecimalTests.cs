@@ -35,7 +35,7 @@ internal class DecimalTests
         byte[] expected = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 210];
 
         Span<byte> bytes = stackalloc byte[16];
-        value.TryWriteBigEndianBytes(bytes);
+        Assert.That(value.TryWriteBigEndianBytes(bytes));
 
         CollectionAssert.AreEqual(expected, bytes.ToArray());
     }
@@ -47,8 +47,26 @@ internal class DecimalTests
         byte[] expected = [210, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         Span<byte> bytes = stackalloc byte[16];
-        value.TryWriteLittleEndianBytes(bytes);
+        Assert.That(value.TryWriteLittleEndianBytes(bytes));
 
         CollectionAssert.AreEqual(expected, bytes.ToArray());
+    }
+
+    [Test]
+    public void TryWriteBigEndianBytes_ShouldReturnFalse_GivenSmallSpan()
+    {
+        const decimal value = 1234m;
+
+        Span<byte> bytes = Span<byte>.Empty;
+        Assert.That(value.TryWriteBigEndianBytes(bytes), Is.False);
+    }
+
+    [Test]
+    public void TryWriteLittleEndianBytes_ShouldReturnFalse_GivenSmallSpan()
+    {
+        const decimal value = 1234m;
+
+        Span<byte> bytes = Span<byte>.Empty;
+        Assert.That(value.TryWriteLittleEndianBytes(bytes), Is.False);
     }
 }
