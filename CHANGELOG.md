@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Add support for generic math interfaces.
 - X10D: Added extension methods for `DateOnly`, for parity with `DateTime` and `DateTimeOffset`.
 - X10D: Added math-related extension methods for `BigInteger`.
+- X10D: Added `Queue<T>.EnqueueAll` and `Queue<T>.DequeueAll`.
+- X10D: Added `Stack<T>.PushAll` and `Stack<T>.PopAll`.
 - X10D: Added `Span<T>.Replace(T, T)`.
 - X10D: Added `CountDigits` for integer types.
 - X10D: Added `IEnumerable<T>.Except(T)`.
