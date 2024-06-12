@@ -1,70 +1,66 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt64_ShouldThrowArgumentException_GivenNonReadableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.Throws<ArgumentException>(() => stream.ReadUInt64());
-        Assert.Throws<ArgumentException>(() => stream.ReadUInt64(Endianness.LittleEndian));
-        Assert.Throws<ArgumentException>(() => stream.ReadUInt64(Endianness.BigEndian));
-    }
-
-    [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt64_ShouldThrowArgumentNullException_GivenNullStream()
+    public void ReadUInt64BigEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt64());
-        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt64(Endianness.LittleEndian));
-        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt64(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt64BigEndian());
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt64_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    public void ReadUInt64LittleEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.ReadUInt64((Endianness)(-1)));
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.ReadUInt64LittleEndian());
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt64_ShouldReadBigEndian_GivenBigEndian()
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadUInt64BigEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt64BigEndian());
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadUInt64LittleEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadUInt64LittleEndian());
+    }
+
+    [Test]
+    public void ReadUInt64BigEndian_ShouldReadBigEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA4};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA4 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const ulong expected = 420;
-        ulong actual = stream.ReadUInt64(Endianness.BigEndian);
+        ulong actual = stream.ReadUInt64BigEndian();
 
         Assert.That(stream.Position, Is.EqualTo(8));
         Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
-    [CLSCompliant(false)]
-    public void ReadUInt64_ShouldWriteLittleEndian_GivenLittleEndian()
+    public void ReadUInt64LittleEndian_ShouldWriteLittleEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0xA4, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0xA4, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const ulong expected = 420;
-        ulong actual = stream.ReadUInt64(Endianness.LittleEndian);
+        ulong actual = stream.ReadUInt64LittleEndian();
 
         Assert.That(stream.Position, Is.EqualTo(8));
         Assert.That(actual, Is.EqualTo(expected));

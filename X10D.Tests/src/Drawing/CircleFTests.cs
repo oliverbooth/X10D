@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class CircleFTests
+internal class CircleFTests
 {
     [Test]
     public void Area_ShouldBePiRadiusRadius_GivenUnitCircle()

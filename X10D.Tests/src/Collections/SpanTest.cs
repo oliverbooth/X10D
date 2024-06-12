@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class SpanTest
+internal class SpanTest
 {
     [Test]
     public void Count_ShouldReturn0_GivenEmptySpan()

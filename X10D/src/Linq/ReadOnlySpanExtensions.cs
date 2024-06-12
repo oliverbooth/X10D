@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 
 namespace X10D.Linq;
 
@@ -21,14 +21,10 @@ public static class ReadOnlySpanExtensions
     [Pure]
     public static bool All<TSource>(this ReadOnlySpan<TSource> source, Predicate<TSource> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (predicate is null)
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (source.IsEmpty)
         {
@@ -60,14 +56,10 @@ public static class ReadOnlySpanExtensions
     [Pure]
     public static bool Any<TSource>(this ReadOnlySpan<TSource> source, Predicate<TSource> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (predicate is null)
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (source.IsEmpty)
         {
@@ -97,14 +89,10 @@ public static class ReadOnlySpanExtensions
     /// <exception cref="ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
     public static int Count<TSource>(this ReadOnlySpan<TSource> source, Predicate<TSource> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (predicate is null)
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (source.IsEmpty)
         {

@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using X10D.Numerics;
 
 namespace X10D.Drawing;

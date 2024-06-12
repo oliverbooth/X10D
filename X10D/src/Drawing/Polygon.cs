@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 
 namespace X10D.Drawing;
@@ -22,14 +22,10 @@ public class Polygon : IEquatable<Polygon>
     /// </summary>
     public Polygon(Polygon polygon)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(polygon);
-#else
         if (polygon is null)
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-#endif
 
         _vertices = new List<Point>();
         for (var index = 0; index < polygon._vertices.Count; index++)
@@ -45,14 +41,10 @@ public class Polygon : IEquatable<Polygon>
     /// <param name="vertices">An enumerable collection of vertices from which the polygon should be constructed.</param>
     public Polygon(IEnumerable<Point> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         _vertices = new List<Point>(vertices);
     }
@@ -176,14 +168,10 @@ public class Polygon : IEquatable<Polygon>
     /// <exception cref="ArgumentNullException"><paramref name="polygon" /> is <see langword="null" />.</exception>
     public static Polygon FromPolygonF(PolygonF polygon)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(polygon);
-#else
         if (polygon is null)
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-#endif
 
         var vertices = new List<Point>();
 
@@ -211,14 +199,10 @@ public class Polygon : IEquatable<Polygon>
     /// <exception cref="ArgumentNullException"><paramref name="vertices" /> is <see langword="null" />.</exception>
     public void AddVertices(IEnumerable<Point> vertices)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(vertices);
-#else
         if (vertices is null)
         {
             throw new ArgumentNullException(nameof(vertices));
         }
-#endif
 
         foreach (Point vertex in vertices)
         {

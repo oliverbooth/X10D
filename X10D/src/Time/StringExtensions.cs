@@ -58,17 +58,13 @@ public static class StringExtensions
     /// <returns>A new instance of <see cref="TimeSpan" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="input" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan ToTimeSpan(this string input)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(input);
-#else
         if (input is null)
         {
             throw new ArgumentNullException(nameof(input));
         }
-#endif
 
         return TimeSpanParser.TryParse(input, out TimeSpan result)
             ? result

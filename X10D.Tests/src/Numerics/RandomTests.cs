@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
 [TestFixture]
-public class RandomTests
+internal class RandomTests
 {
     [Test]
     public void NextUnitVector2_ShouldReturnVector_WithMagnitude1()

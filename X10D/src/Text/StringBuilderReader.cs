@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace X10D.Text;
 
@@ -55,14 +55,10 @@ public class StringBuilderReader : TextReader
     /// <inheritdoc />
     public override int Read(char[] buffer, int index, int count)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(buffer);
-#else
         if (buffer is null)
         {
             throw new ArgumentNullException(nameof(buffer));
         }
-#endif
 
         if (index < 0)
         {

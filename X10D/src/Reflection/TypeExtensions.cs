@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
@@ -18,17 +18,13 @@ public static class TypeExtensions
     /// <returns><see langword="true" /> if the current exists on the type; otherwise, <see langword="false" />.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Implements<T>(this Type value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.Implements(typeof(T));
     }
@@ -45,13 +41,9 @@ public static class TypeExtensions
     ///     <para><paramref name="interfaceType" /> is <see langword="null" />.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Implements(this Type value, Type interfaceType)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-        ArgumentNullException.ThrowIfNull(interfaceType);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
@@ -61,7 +53,6 @@ public static class TypeExtensions
         {
             throw new ArgumentNullException(nameof(interfaceType));
         }
-#endif
 
         if (!interfaceType.IsInterface)
         {
@@ -86,18 +77,14 @@ public static class TypeExtensions
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentException"><paramref name="value" /> is not a class.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Inherits<T>(this Type value)
         where T : class
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.Inherits(typeof(T));
     }
@@ -122,13 +109,9 @@ public static class TypeExtensions
     ///     <para><paramref name="type" /> is not a class.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Inherits(this Type value, Type type)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-        ArgumentNullException.ThrowIfNull(type);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
@@ -138,7 +121,6 @@ public static class TypeExtensions
         {
             throw new ArgumentNullException(nameof(type));
         }
-#endif
 
         if (!value.IsClass)
         {

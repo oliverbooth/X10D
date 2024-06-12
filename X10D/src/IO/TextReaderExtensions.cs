@@ -1,4 +1,4 @@
-﻿namespace X10D.IO;
+namespace X10D.IO;
 
 /// <summary>
 ///     IO-related extension methods for <see cref="TextReader" />.
@@ -13,14 +13,10 @@ public static class TextReaderExtensions
     /// <exception cref="ArgumentNullException"><paramref name="reader" /> is <see langword="null" />.</exception>
     public static IEnumerable<string> EnumerateLines(this TextReader reader)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(reader);
-#else
         if (reader is null)
         {
             throw new ArgumentNullException(nameof(reader));
         }
-#endif
 
         while (reader.ReadLine() is { } line)
         {
@@ -36,14 +32,10 @@ public static class TextReaderExtensions
     /// <exception cref="ArgumentNullException"><paramref name="reader" /> is <see langword="null" />.</exception>
     public static async IAsyncEnumerable<string> EnumerateLinesAsync(this TextReader reader)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(reader);
-#else
         if (reader is null)
         {
             throw new ArgumentNullException(nameof(reader));
         }
-#endif
 
         while (await reader.ReadLineAsync().ConfigureAwait(false) is { } line)
         {

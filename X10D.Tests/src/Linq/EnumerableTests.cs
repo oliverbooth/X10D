@@ -1,42 +1,11 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Linq;
 
 namespace X10D.Tests.Linq;
 
 [TestFixture]
-public class EnumerableTests
+internal class EnumerableTests
 {
-    [Test]
-    public void ConcatOne_ShouldReturnConcatenatedSequence_GivenValidSequenceAndValue()
-    {
-        IEnumerable<string> source = new[] {"Hello"};
-        string[] expected = {"Hello", "World"};
-
-        string[] actual = source.ConcatOne("World").ToArray();
-
-        Assert.That(actual, Has.Length.EqualTo(2));
-        CollectionAssert.AreEqual(expected, actual);
-    }
-
-    [Test]
-    public void ConcatOne_ShouldReturnSingletonSequence_GivenEmptySequenceAndValidValue()
-    {
-        IEnumerable<string> source = Enumerable.Empty<string>();
-        string[] expected = {"Foobar"};
-
-        string[] actual = source.ConcatOne("Foobar").ToArray();
-
-        Assert.That(actual, Has.Length.EqualTo(1));
-        CollectionAssert.AreEqual(expected, actual);
-    }
-
-    [Test]
-    public void ConcatOne_ShouldThrowArgumentNullException_GivenNullSource()
-    {
-        IEnumerable<string>? source = null;
-        Assert.Throws<ArgumentNullException>(() => source!.ConcatOne("Foobar").ToArray());
-    }
-
     [Test]
     public void Except_ShouldFilterElements_GivenMatchingElements()
     {

@@ -5,7 +5,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class ListOfByteTests
+internal class ListOfByteTests
 {
     [Test]
     public void AsString_ShouldReturnBytes_GivenBytes()

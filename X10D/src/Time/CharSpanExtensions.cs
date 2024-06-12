@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -58,7 +58,7 @@ public static class CharSpanExtensions
     /// </param>
     /// <returns>A new instance of <see cref="TimeSpan" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan ToTimeSpan(this ReadOnlySpan<char> input)
     {
         return TimeSpanParser.TryParse(input, out TimeSpan result) ? result : default;

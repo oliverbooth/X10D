@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-[CLSCompliant(false)]
-public partial class UInt64Tests
+internal partial class UInt64Tests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()
@@ -52,15 +51,31 @@ public partial class UInt64Tests
     }
 
     [Test]
-    public void DigitalRootShouldBeCorrect()
+    public void DigitalRoot_ShouldReturn4_Given238()
     {
         const ulong value = 238;
-        Assert.That(value.DigitalRoot(), Is.EqualTo(4U));
+        Assert.That(value.DigitalRoot(), Is.EqualTo(4));
 
         // -ulong operator not defined because it might exceed long.MinValue,
         // so instead, cast to long and then negate.
         // HAX.
-        Assert.That((-(long)value).DigitalRoot(), Is.EqualTo(4U));
+        Assert.That((-(long)value).DigitalRoot(), Is.EqualTo(4));
+    }
+
+    [Test]
+    public void DigitalRoot_ShouldReturn9_Given9()
+    {
+        const ulong value = 9;
+        Assert.That(value.DigitalRoot(), Is.EqualTo(9));
+        Assert.That((-(long)value).DigitalRoot(), Is.EqualTo(9));
+    }
+
+    [Test]
+    public void DigitalRoot_ShouldReturn9_Given18()
+    {
+        const ulong value = 18;
+        Assert.That(value.DigitalRoot(), Is.EqualTo(9));
+        Assert.That((-(long)value).DigitalRoot(), Is.EqualTo(9));
     }
 
     [Test]

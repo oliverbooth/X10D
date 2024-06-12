@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Reflection;
 
 namespace X10D.Tests.Reflection;
 
 [TestFixture]
-public class TypeTests
+internal class TypeTests
 {
     [Test]
     public void Inherits_ShouldBeTrue_GivenStringInheritsObject()

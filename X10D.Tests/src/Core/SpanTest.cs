@@ -1,14 +1,12 @@
-﻿#if NET5_0_OR_GREATER
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
-#endif
 using NUnit.Framework;
 using X10D.Core;
 
 namespace X10D.Tests.Core;
 
 [TestFixture]
-public class SpanTest
+internal class SpanTest
 {
     [Test]
     public void Contains_ShouldReturnFalse_GivenReadOnlySpanWithNoMatchingElements_UsingByteEnum()
@@ -209,7 +207,6 @@ public class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void PackByteInternal_Sse2_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
     {
@@ -225,23 +222,6 @@ public class SpanTest
 
         Assert.That(actual, Is.EqualTo(expected));
     }
-
-    [Test]
-    public void PackByteInternal_AdvSimd_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
-    {
-        if (!AdvSimd.IsSupported)
-        {
-            return;
-        }
-
-        const byte expected = 0b00110011;
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
-
-        byte actual = span.PackByteInternal_AdvSimd();
-
-        Assert.That(actual, Is.EqualTo(expected));
-    }
-#endif
 
     [Test]
     public void PackInt16_ShouldReturnSameAsPackByte_WhenSpanHasLength8()
@@ -268,7 +248,6 @@ public class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void PackInt16Internal_Sse2_ShouldReturnCorrectInt16_GivenReadOnlySpan_Using()
     {
@@ -287,7 +266,6 @@ public class SpanTest
 
         Assert.That(actual, Is.EqualTo(expected));
     }
-#endif
 
     [Test]
     public void PackInt32Internal_Fallback_ShouldReturnCorrectInt32_GivenReadOnlySpan()
@@ -304,7 +282,6 @@ public class SpanTest
         Assert.That(actual, Is.EqualTo(expected));
     }
 
-#if NET5_0_OR_GREATER
     [Test]
     public void PackInt32Internal_Sse2_ShouldReturnCorrectInt32_GivenReadOnlySpan()
     {
@@ -344,27 +321,6 @@ public class SpanTest
 
         Assert.That(actual, Is.EqualTo(expected));
     }
-
-    [Test]
-    public void PackInt32Internal_AdvSimd_ShouldReturnCorrectInt32_GivenReadOnlySpan()
-    {
-        if (!AdvSimd.IsSupported)
-        {
-            return;
-        }
-
-        const int expected = 0b01010101_10101010_01010101_10101010;
-        ReadOnlySpan<bool> span = stackalloc bool[32]
-        {
-            false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
-
-        int actual = span.PackInt32Internal_AdvSimd();
-
-        Assert.That(actual, Is.EqualTo(expected));
-    }
-#endif
 
     [Test]
     public void PackInt32_ShouldReturnSameAsPackByte_WhenSpanHasLength8_UsingReadOnlySpan()

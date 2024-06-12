@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
@@ -20,17 +20,13 @@ public static class IPAddressExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="address" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsIPv4(this IPAddress address)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(address);
-#else
         if (address is null)
         {
             throw new ArgumentNullException(nameof(address));
         }
-#endif
 
         return address.AddressFamily == AddressFamily.InterNetwork;
     }
@@ -44,17 +40,13 @@ public static class IPAddressExtensions
     /// </returns>
     /// <exception cref="ArgumentNullException"><paramref name="address" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsIPv6(this IPAddress address)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(address);
-#else
         if (address is null)
         {
             throw new ArgumentNullException(nameof(address));
         }
-#endif
 
         return address.AddressFamily == AddressFamily.InterNetworkV6;
     }

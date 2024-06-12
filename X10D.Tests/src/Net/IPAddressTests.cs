@@ -1,11 +1,11 @@
-﻿using System.Net;
+using System.Net;
 using NUnit.Framework;
 using X10D.Net;
 
 namespace X10D.Tests.Net;
 
 [TestFixture]
-public class IPAddressTests
+internal class IPAddressTests
 {
     private IPAddress _ipv4Address = null!;
     private IPAddress _ipv6Address = null!;

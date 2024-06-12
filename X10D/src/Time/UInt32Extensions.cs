@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -25,7 +25,7 @@ public static class UInt32Extensions
     ///     <para><paramref name="value" /> is greater than 253,402,300,799,999.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateTimeOffset FromUnixTimeMilliseconds(this uint value)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(value);
@@ -46,7 +46,7 @@ public static class UInt32Extensions
     ///     <para><paramref name="value" /> is greater than 253,402,300,799.</para>
     /// </exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static DateTimeOffset FromUnixTimeSeconds(this uint value)
     {
         return DateTimeOffset.FromUnixTimeSeconds(value);
@@ -61,7 +61,7 @@ public static class UInt32Extensions
     /// </returns>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="value" /> is 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsLeapYear(this uint value)
     {
         if (value == 0)
@@ -78,7 +78,7 @@ public static class UInt32Extensions
     /// <param name="value">The duration, in ticks.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.Ticks" /> will equal <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Ticks(this uint value)
     {
         return TimeSpan.FromTicks(value);
@@ -92,7 +92,7 @@ public static class UInt32Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMilliseconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Milliseconds(this uint value)
     {
         return TimeSpan.FromMilliseconds(value);
@@ -106,7 +106,7 @@ public static class UInt32Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalSeconds" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Seconds(this uint value)
     {
         return TimeSpan.FromSeconds(value);
@@ -120,7 +120,7 @@ public static class UInt32Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalMinutes" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Minutes(this uint value)
     {
         return TimeSpan.FromMinutes(value);
@@ -134,7 +134,7 @@ public static class UInt32Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalHours" /> will equal <paramref name="value" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Hours(this uint value)
     {
         return TimeSpan.FromHours(value);
@@ -146,7 +146,7 @@ public static class UInt32Extensions
     /// <param name="value">The duration, in days.</param>
     /// <returns>A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Days(this uint value)
     {
         return TimeSpan.FromDays(value);
@@ -160,7 +160,7 @@ public static class UInt32Extensions
     ///     A <see cref="TimeSpan" /> whose <see cref="TimeSpan.TotalDays" /> will equal <paramref name="value" /> × 7.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static TimeSpan Weeks(this uint value)
     {
         return TimeSpan.FromDays(value * 7);

@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
-public partial class ArrayTests
+internal static partial class ArrayTests
 {
     [TestFixture]
     public class ClearTests

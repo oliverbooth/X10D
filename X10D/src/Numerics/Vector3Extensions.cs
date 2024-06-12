@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
@@ -31,7 +31,7 @@ public static class Vector3Extensions
     /// <param name="vector">The vector whose components to round.</param>
     /// <returns>The rounded vector.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector3 Round(this Vector3 vector)
     {
         return vector.Round(1.0f);
@@ -44,7 +44,7 @@ public static class Vector3Extensions
     /// <param name="nearest">The nearest multiple to which the components should be rounded.</param>
     /// <returns>The rounded vector.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector3 Round(this Vector3 vector, float nearest)
     {
         float x = vector.X.Round(nearest);
@@ -63,7 +63,7 @@ public static class Vector3Extensions
     ///     the same as that of <paramref name="vector" />, and whose <see cref="Vector3.Y" /> component is <paramref name="x" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector3 WithX(this Vector3 vector, float x)
     {
         return vector with {X = x};
@@ -79,7 +79,7 @@ public static class Vector3Extensions
     ///     the same as that of <paramref name="vector" />, and whose <see cref="Vector3.Y" /> component is <paramref name="y" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector3 WithY(this Vector3 vector, float y)
     {
         return vector with {Y = y};
@@ -95,7 +95,7 @@ public static class Vector3Extensions
     ///     the same as that of <paramref name="vector" />, and whose <see cref="Vector3.Z" /> component is <paramref name="z" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector3 WithZ(this Vector3 vector, float z)
     {
         return vector with {Z = z};

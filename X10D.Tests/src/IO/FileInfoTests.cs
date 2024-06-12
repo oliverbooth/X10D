@@ -5,7 +5,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class FileInfoTests
+internal class FileInfoTests
 {
     [Test]
     public void GetHashSha1ShouldBeCorrect()

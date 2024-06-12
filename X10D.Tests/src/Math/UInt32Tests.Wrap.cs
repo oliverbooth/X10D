@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
-public partial class UInt32Tests
+internal partial class UInt32Tests
 {
     [TestFixture]
     public class WrapTests

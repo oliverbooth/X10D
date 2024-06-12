@@ -1,11 +1,11 @@
-﻿using System.Text;
+using System.Text;
 using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class TextReaderTests
+internal class TextReaderTests
 {
     [Test]
     public void EnumerateLines_ShouldYield10Lines_Given10LineString()

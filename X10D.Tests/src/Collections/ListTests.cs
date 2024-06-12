@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Collections;
 
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public class ListTests
+internal class ListTests
 {
-    [CLSCompliant(false)]
-    [Test]
+        [Test]
     [TestCase(1)]
     [TestCase(1, 2, 3)]
     [TestCase(1, 2, 3, 4, 5)]
@@ -26,8 +25,7 @@ public class ListTests
         CollectionAssert.AreEqual(all42, list);
     }
 
-    [CLSCompliant(false)]
-    [Test]
+        [Test]
     [TestCase(1)]
     [TestCase(1, 2, 3)]
     [TestCase(1, 2, 3, 4, 5)]
@@ -177,9 +175,9 @@ public class ListTests
     }
 
     [Test]
-    public void RemoveRange_ShouldThrowArgumentException_GivenEndIndexLessThanStart()
+    public void RemoveRange_ShouldThrowArgumentOutOfRangeException_GivenEndIndexLessThanStart()
     {
-        Assert.Throws<ArgumentException>(() => new List<int>().RemoveRange(2..0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new List<int>().RemoveRange(2..0));
     }
 
     [Test]

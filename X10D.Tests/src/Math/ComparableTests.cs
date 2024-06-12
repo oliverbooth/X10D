@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public class ComparableTests
+internal class ComparableTests
 {
     private class ComparableTestClass : IComparable<ComparableTestClass>
     {

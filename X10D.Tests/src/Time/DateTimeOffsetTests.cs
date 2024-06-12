@@ -4,7 +4,7 @@ using X10D.Time;
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class DateTimeOffsetTests
+internal class DateTimeOffsetTests
 {
     [Test]
     public void Age_ShouldBe17_Given31December1991Birthday_And30December2017Date()

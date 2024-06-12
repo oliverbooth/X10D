@@ -1,5 +1,3 @@
-﻿#if NETCOREAPP3_0_OR_GREATER
-
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -33,7 +31,7 @@ public static class IntrinsicUtility
     /// <returns>The truncated product vector.</returns>
     [Pure]
     [CLSCompliant(false)]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static Vector128<ulong> Multiply(Vector128<ulong> left, Vector128<ulong> right)
     {
@@ -64,7 +62,7 @@ public static class IntrinsicUtility
     /// </returns>
     [Pure]
     [CLSCompliant(false)]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static Vector256<ulong> Multiply(Vector256<ulong> lhs, Vector256<ulong> rhs)
     {
@@ -92,7 +90,7 @@ public static class IntrinsicUtility
     /// A <see cref="Vector128{T}"/> of <see langword="long"/> whose elements is 64-bit truncated product of lhs and rhs.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector128<long> Multiply(Vector128<long> lhs, Vector128<long> rhs)
     {
         return Multiply(lhs.AsUInt64(), rhs.AsUInt64()).AsInt64();
@@ -116,7 +114,7 @@ public static class IntrinsicUtility
     /// A <see cref="Vector256{T}"/> of <see langword="ulong"/> whose elements is 64-bit truncated product of lhs and rhs.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static Vector256<long> Multiply(Vector256<long> lhs, Vector256<long> rhs)
     {
         return Multiply(lhs.AsUInt64(), rhs.AsUInt64()).AsInt64();
@@ -142,7 +140,7 @@ public static class IntrinsicUtility
     /// elements in lhs and rhs.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [ExcludeFromCodeCoverage]
     public static Vector128<int> HorizontalOr(Vector128<int> left, Vector128<int> right)
     {
@@ -173,7 +171,7 @@ public static class IntrinsicUtility
     /// elements in lhs and rhs.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     [CLSCompliant(false)]
     public static Vector128<uint> HorizontalOr(Vector128<uint> left, Vector128<uint> right)
     {
@@ -181,41 +179,29 @@ public static class IntrinsicUtility
     }
 
     // Helper methods
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector64<T> GetUninitializedVector64<T>() where T : struct
     {
-#if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector64<T> output);
         return output;
-#else
-        return default;
-#endif
     }
 
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<T> GetUninitializedVector128<T>() where T : struct
     {
-#if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector128<T> output);
         return output;
-#else
-        return default;
-#endif
     }
 
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector256<T> GetUninitializedVector256<T>() where T : struct
     {
-#if NET6_0_OR_GREATER
         Unsafe.SkipInit(out Vector256<T> output);
         return output;
-#else
-        return default;
-#endif
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<int> HorizontalOr_Sse(Vector128<int> left, Vector128<int> right)
     {
         Vector128<float> leftSingle = left.AsSingle();
@@ -230,7 +216,7 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<int> HorizontalOrInternal_Fallback(Vector128<int> left, Vector128<int> right)
     {
         Vector128<int> output = GetUninitializedVector128<int>();
@@ -249,7 +235,7 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<ulong> MultiplyInternal_Fallback(Vector128<ulong> left, Vector128<ulong> right)
     {
         ulong leftInteger1 = Unsafe.As<Vector128<ulong>, ulong>(ref left);
@@ -266,7 +252,7 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector128<ulong> MultiplyInternal_Sse2(Vector128<ulong> left, Vector128<ulong> right)
     {
         // https://stackoverflow.com/questions/17863411/sse-multiplication-of-2-64-bit-integers
@@ -283,7 +269,7 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector256<ulong> MultiplyInternal_Fallback(Vector256<ulong> left, Vector256<ulong> right)
     {
         Vector256<ulong> output = GetUninitializedVector256<ulong>();
@@ -299,7 +285,7 @@ public static class IntrinsicUtility
     }
 
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     internal static Vector256<ulong> MultiplyInternal_Avx2(Vector256<ulong> left, Vector256<ulong> right)
     {
         // https://stackoverflow.com/questions/17863411/sse-multiplication-of-2-64-bit-integers
@@ -315,5 +301,3 @@ public static class IntrinsicUtility
         return Avx2.Add(high, ac);
     }
 }
-
-#endif

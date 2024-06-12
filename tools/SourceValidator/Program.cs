@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 var problems = 0;
 foreach (string arg in args)

@@ -1,6 +1,4 @@
-﻿#if NET5_0_OR_GREATER
 using System.Runtime.InteropServices;
-#endif
 
 namespace X10D.Linq;
 
@@ -9,36 +7,6 @@ namespace X10D.Linq;
 /// </summary>
 public static class EnumerableExtensions
 {
-    /// <summary>
-    ///     Concatenates a single value to the end of a sequence.
-    /// </summary>
-    /// <param name="source">The source sequence.</param>
-    /// <param name="value">The value to concatenate to the end of the source sequence.</param>
-    /// <typeparam name="TSource">The type of the elements in <paramref name="source" />.</typeparam>
-    /// <returns>
-    ///     An <see cref="IEnumerable{T}" /> that contains the concatenated elements of the input sequence, and the specified
-    ///     value.
-    /// </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
-    public static IEnumerable<TSource> ConcatOne<TSource>(this IEnumerable<TSource> source, TSource value)
-    {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
-#endif
-
-        foreach (TSource item in source)
-        {
-            yield return item;
-        }
-
-        yield return value;
-    }
-
     /// <summary>
     ///     Filters a sequence of values by omitting elements that match a specified value.
     /// </summary>
@@ -52,14 +20,10 @@ public static class EnumerableExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static IEnumerable<TSource> Except<TSource>(this IEnumerable<TSource> source, TSource item)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Where(i => !Equals(i, item));
     }
@@ -74,14 +38,10 @@ public static class EnumerableExtensions
     /// <exception cref="InvalidOperationException"><paramref name="source" /> contains no elements.</exception>
     public static (T? Minimum, T? Maximum) MinMax<T>(this IEnumerable<T> source)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return MinMax(source, Comparer<T>.Default);
     }
@@ -97,14 +57,10 @@ public static class EnumerableExtensions
     /// <exception cref="InvalidOperationException"><paramref name="source" /> contains no elements.</exception>
     public static (T? Minimum, T? Maximum) MinMax<T>(this IEnumerable<T> source, IComparer<T>? comparer)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         comparer ??= Comparer<T>.Default;
 
@@ -160,10 +116,6 @@ public static class EnumerableExtensions
     public static (TResult? Minimum, TResult? Maximum) MinMax<TSource, TResult>(this IEnumerable<TSource> source,
         Func<TSource, TResult> selector)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(selector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -173,7 +125,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(selector));
         }
-#endif
 
         return MinMax(source, selector, Comparer<TResult>.Default);
     }
@@ -194,10 +145,6 @@ public static class EnumerableExtensions
         Func<TSource, TResult> selector,
         IComparer<TResult>? comparer)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(selector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -207,7 +154,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(selector));
         }
-#endif
 
         comparer ??= Comparer<TResult>.Default;
 
@@ -263,10 +209,6 @@ public static class EnumerableExtensions
     public static (TSource? Minimum, TSource? Maximum) MinMaxBy<TSource, TResult>(this IEnumerable<TSource> source,
         Func<TSource, TResult> keySelector)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(keySelector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -276,7 +218,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(keySelector));
         }
-#endif
 
         return MinMaxBy(source, keySelector, Comparer<TResult>.Default);
     }
@@ -296,10 +237,6 @@ public static class EnumerableExtensions
         Func<TSource, TResult> keySelector,
         IComparer<TResult>? comparer)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(keySelector);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
@@ -309,7 +246,6 @@ public static class EnumerableExtensions
         {
             throw new ArgumentNullException(nameof(keySelector));
         }
-#endif
 
         comparer ??= Comparer<TResult>.Default;
         TSource? minValue;
@@ -451,11 +387,9 @@ public static class EnumerableExtensions
                 span = array;
                 break;
 
-#if NET5_0_OR_GREATER
             case List<TSource> list:
                 span = CollectionsMarshal.AsSpan(list);
                 break;
-#endif
 
             default:
                 span = default;

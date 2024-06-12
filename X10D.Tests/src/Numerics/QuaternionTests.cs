@@ -1,11 +1,11 @@
-﻿using System.Numerics;
+using System.Numerics;
 using NUnit.Framework;
 using X10D.Numerics;
 
 namespace X10D.Tests.Numerics;
 
 [TestFixture]
-public class QuaternionTests
+internal class QuaternionTests
 {
     [Test]
     public void ToAxisAngle_ShouldGiveAngle180VectorZero_GivenQuaternion()

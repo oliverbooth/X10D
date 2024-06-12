@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 #if !NET6_0_OR_GREATER
 using X10D.Core;
 #endif
@@ -7,7 +7,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public class MathUtilityTests
+internal class MathUtilityTests
 {
     [Test]
     public void Bias_ReturnsCorrectResult_WhenBiasIsLessThanPointFive()

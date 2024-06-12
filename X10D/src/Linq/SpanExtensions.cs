@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 
 namespace X10D.Linq;
 
@@ -21,14 +21,10 @@ public static class SpanExtensions
     [Pure]
     public static bool All<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (predicate is null)
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (source.IsEmpty)
         {
@@ -60,14 +56,10 @@ public static class SpanExtensions
     [Pure]
     public static bool Any<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (predicate is null)
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (source.IsEmpty)
         {
@@ -97,14 +89,10 @@ public static class SpanExtensions
     /// <exception cref="ArgumentNullException"><paramref name="predicate" /> is <see langword="null" />.</exception>
     public static int Count<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate);
-#else
         if (predicate is null)
         {
             throw new ArgumentNullException(nameof(predicate));
         }
-#endif
 
         if (source.IsEmpty)
         {

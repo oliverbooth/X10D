@@ -49,21 +49,17 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool Between<T1, T2, T3>(this T1 value, T2 lower, T3 upper,
         InclusiveOptions inclusiveOptions = InclusiveOptions.None)
         where T1 : IComparable<T2>, IComparable<T3>
         where T2 : IComparable<T3>
         where T3 : IComparable<T2>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         if (lower.GreaterThan(upper))
         {
@@ -110,18 +106,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static T Clamp<T>(this T value, T lower, T upper)
         where T : IComparable<T>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         if (lower.GreaterThan(upper))
         {
@@ -156,18 +148,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool GreaterThan<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.CompareTo(other) > 0;
     }
@@ -195,18 +183,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool GreaterThanOrEqualTo<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.CompareTo(other) >= 0;
     }
@@ -234,18 +218,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool LessThan<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.CompareTo(other) < 0;
     }
@@ -273,18 +253,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool LessThanOrEqualTo<T1, T2>(this T1 value, T2 other)
         where T1 : IComparable<T2>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.CompareTo(other) <= 0;
     }
@@ -311,18 +287,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static T Max<T>(this T value, T other)
         where T : IComparable<T>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.GreaterThan(other) ? value : other;
     }
@@ -349,18 +321,14 @@ public static class ComparableExtensions
     /// </example>
     /// <exception cref="ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static T Min<T>(this T value, T other)
         where T : IComparable<T>
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(value);
-#else
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
-#endif
 
         return value.LessThan(other) ? value : other;
     }

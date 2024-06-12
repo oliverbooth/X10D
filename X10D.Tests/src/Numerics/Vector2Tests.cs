@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using NUnit.Framework;
 #if !NET6_0_OR_GREATER
 using X10D.Core;
@@ -9,7 +9,7 @@ using X10D.Numerics;
 namespace X10D.Tests.Numerics;
 
 [TestFixture]
-public class Vector2Tests
+internal class Vector2Tests
 {
     [Test]
     public void Deconstruct_ShouldReturnCorrectValues()

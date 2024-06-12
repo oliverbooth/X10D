@@ -1,11 +1,11 @@
-﻿using System.Reflection;
+using System.Reflection;
 using NUnit.Framework;
 using X10D.Reflection;
 
 namespace X10D.Tests.Reflection;
 
 [TestFixture]
-public class MemberInfoTests
+internal class MemberInfoTests
 {
     [Test]
     public void HasCustomAttribute_ShouldBeTrue_GivenCLSCompliantAttributeOnUnsignedTypes()

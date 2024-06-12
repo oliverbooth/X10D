@@ -1,65 +1,66 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
-    public void ReadSingle_ShouldThrowArgumentException_GivenNonReadableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.Throws<ArgumentException>(() => stream.ReadSingle());
-        Assert.Throws<ArgumentException>(() => stream.ReadSingle(Endianness.LittleEndian));
-        Assert.Throws<ArgumentException>(() => stream.ReadSingle(Endianness.BigEndian));
-    }
-
-    [Test]
-    public void ReadSingle_ShouldThrowArgumentNullException_GivenNullStream()
+    public void ReadSingleBigEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.Throws<ArgumentNullException>(() => stream.ReadSingle());
-        Assert.Throws<ArgumentNullException>(() => stream.ReadSingle(Endianness.LittleEndian));
-        Assert.Throws<ArgumentNullException>(() => stream.ReadSingle(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadSingleBigEndian());
     }
 
     [Test]
-    public void ReadSingle_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    public void ReadSingleLittleEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.ReadSingle((Endianness)(-1)));
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.ReadSingleLittleEndian());
     }
 
     [Test]
-    public void ReadSingle_ShouldReadBigEndian_GivenBigEndian()
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadSingleBigEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadSingleBigEndian());
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadSingleLittleEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadSingleLittleEndian());
+    }
+
+    [Test]
+    public void ReadSingleBigEndian_ShouldReadBigEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0x43, 0xD2, 0x00, 0x00};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x43, 0xD2, 0x00, 0x00 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const float expected = 420.0f;
-        float actual = stream.ReadSingle(Endianness.BigEndian);
+        float actual = stream.ReadSingleBigEndian();
 
         Assert.That(stream.Position, Is.EqualTo(4));
         Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
-    public void ReadSingle_ShouldReadLittleEndian_GivenLittleEndian()
+    public void ReadSingleLittleEndian_ShouldReadLittleEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] {0x00, 0x00, 0xD2, 0x43};
+        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x00, 0x00, 0xD2, 0x43 };
         stream.Write(bytes);
         stream.Position = 0;
 
         const float expected = 420.0f;
-        float actual = stream.ReadSingle(Endianness.LittleEndian);
+        float actual = stream.ReadSingleLittleEndian();
 
         Assert.That(stream.Position, Is.EqualTo(4));
         Assert.That(actual, Is.EqualTo(expected));

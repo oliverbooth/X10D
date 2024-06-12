@@ -4,7 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-public class DirectoryInfoTests
+internal class DirectoryInfoTests
 {
     [Test]
     public void Clear_ShouldClear_GivenValidDirectory()

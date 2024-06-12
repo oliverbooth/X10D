@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-[CLSCompliant(false)]
-public partial class SByteTests
+internal partial class SByteTests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()
@@ -63,11 +62,27 @@ public partial class SByteTests
     }
 
     [Test]
-    public void DigitalRootShouldBeCorrect()
+    public void DigitalRoot_ShouldReturn4_Given127()
     {
         const sbyte value = 127; // sbyte.MaxValue. can't use 238 like the other tests
         Assert.That(value.DigitalRoot(), Is.EqualTo(1));
         Assert.That((-value).DigitalRoot(), Is.EqualTo(1));
+    }
+
+    [Test]
+    public void DigitalRoot_ShouldReturn9_Given9()
+    {
+        const sbyte value = 9;
+        Assert.That(value.DigitalRoot(), Is.EqualTo(9));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(9));
+    }
+
+    [Test]
+    public void DigitalRoot_ShouldReturn9_Given18()
+    {
+        const sbyte value = 18;
+        Assert.That(value.DigitalRoot(), Is.EqualTo(9));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(9));
     }
 
     [Test]

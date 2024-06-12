@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 
 namespace X10D.Linq;
 
@@ -15,14 +15,10 @@ public static class ByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static byte Product(this IEnumerable<byte> source)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Aggregate((byte)1, (current, value) => (byte)(current * value));
     }
@@ -36,14 +32,10 @@ public static class ByteExtensions
     [CLSCompliant(false)]
     public static sbyte Product(this IEnumerable<sbyte> source)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Aggregate((sbyte)1, (current, value) => (sbyte)(current * value));
     }
@@ -59,14 +51,10 @@ public static class ByteExtensions
     /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
     public static byte Product<TSource>(this IEnumerable<TSource> source, Func<TSource, byte> selector)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Select(selector).Product();
     }
@@ -83,14 +71,10 @@ public static class ByteExtensions
     [CLSCompliant(false)]
     public static sbyte Product<TSource>(this IEnumerable<TSource> source, Func<TSource, sbyte> selector)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#else
         if (source is null)
         {
             throw new ArgumentNullException(nameof(source));
         }
-#endif
 
         return source.Select(selector).Product();
     }

@@ -1,11 +1,11 @@
-﻿using System.Numerics;
+using System.Numerics;
 using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class CuboidTests
+internal class CuboidTests
 {
     [Test]
     public void Corners_ShouldBeCorrect_GivenCubeOfSize1()

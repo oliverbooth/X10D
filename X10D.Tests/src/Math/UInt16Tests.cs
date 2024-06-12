@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-[CLSCompliant(false)]
-public partial class UInt16Tests
+internal partial class UInt16Tests
 {
     [Test]
     public void CountDigits_ShouldReturn1_Given0()
@@ -52,11 +51,27 @@ public partial class UInt16Tests
     }
 
     [Test]
-    public void DigitalRootShouldBeCorrect()
+    public void DigitalRoot_ShouldReturn4_Given238()
     {
         const ushort value = 238;
         Assert.That(value.DigitalRoot(), Is.EqualTo(4));
         Assert.That((-value).DigitalRoot(), Is.EqualTo(4));
+    }
+
+    [Test]
+    public void DigitalRoot_ShouldReturn9_Given9()
+    {
+        const ushort value = 9;
+        Assert.That(value.DigitalRoot(), Is.EqualTo(9));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(9));
+    }
+
+    [Test]
+    public void DigitalRoot_ShouldReturn9_Given18()
+    {
+        const ushort value = 18;
+        Assert.That(value.DigitalRoot(), Is.EqualTo(9));
+        Assert.That((-value).DigitalRoot(), Is.EqualTo(9));
     }
 
     [Test]

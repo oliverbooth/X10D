@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using X10D.CompilerServices;
 
@@ -10,6 +10,7 @@ namespace X10D.Math;
 [CLSCompliant(false)]
 public static class UInt32Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Returns the number of digits in the current 32-bit unsigned integer.
     /// </summary>
@@ -35,7 +36,7 @@ public static class UInt32Extensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint DigitalRoot(this uint value)
     {
         uint root = value % 9;
@@ -48,7 +49,7 @@ public static class UInt32Extensions
     /// <param name="value">The value whose factorial to compute.</param>
     /// <returns>The factorial of <paramref name="value" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static ulong Factorial(this uint value)
     {
         if (value == 0)
@@ -73,7 +74,7 @@ public static class UInt32Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint GreatestCommonFactor(this uint value, uint other)
     {
         return (uint)((long)value).GreatestCommonFactor(other);
@@ -88,24 +89,10 @@ public static class UInt32Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this uint value)
     {
         return (value & 1) == 0;
-    }
-
-    /// <summary>
-    ///     Returns a value indicating whether the current value is a prime number.
-    /// </summary>
-    /// <param name="value">The value whose primality to check.</param>
-    /// <returns>
-    ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
-    /// </returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
-    public static bool IsPrime(this uint value)
-    {
-        return ((ulong)value).IsPrime();
     }
 
     /// <summary>
@@ -117,10 +104,25 @@ public static class UInt32Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this uint value)
     {
         return !value.IsEven();
+    }
+#endif
+
+    /// <summary>
+    ///     Returns a value indicating whether the current value is a prime number.
+    /// </summary>
+    /// <param name="value">The value whose primality to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
+    /// </returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static bool IsPrime(this uint value)
+    {
+        return ((ulong)value).IsPrime();
     }
 
     /// <summary>
@@ -131,7 +133,7 @@ public static class UInt32Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint LowestCommonMultiple(this uint value, uint other)
     {
         return (uint)((ulong)value).LowestCommonMultiple(other);
@@ -146,7 +148,7 @@ public static class UInt32Extensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this uint value)
     {
         return ((ulong)value).MultiplicativePersistence();
@@ -160,7 +162,7 @@ public static class UInt32Extensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint Wrap(this uint value, uint low, uint high)
     {
         return (uint)((ulong)value).Wrap(low, high);
@@ -173,7 +175,7 @@ public static class UInt32Extensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static uint Wrap(this uint value, uint length)
     {
         return (uint)((ulong)value).Wrap(length);

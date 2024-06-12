@@ -4,8 +4,7 @@ using X10D.IO;
 namespace X10D.Tests.IO;
 
 [TestFixture]
-[CLSCompliant(false)]
-public class SByteTests
+internal class SByteTests
 {
     [Test]
     public void GetBytes_ReturnsArrayContainingItself()

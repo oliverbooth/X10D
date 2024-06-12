@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using NUnit.Framework;
@@ -7,7 +7,7 @@ using X10D.Math;
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public class IsPrimeTests
+internal class IsPrimeTests
 {
     private IReadOnlyList<int> _primeNumbers = ArraySegment<int>.Empty;
 

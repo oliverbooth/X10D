@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NUnit.Framework;
 using X10D.Drawing;
 
 namespace X10D.Tests.Drawing;
 
 [TestFixture]
-public class LineFTests
+internal class LineFTests
 {
     [Test]
     public void CompareTo_ShouldBeNegativeOne_GivenEmptyAndOne()

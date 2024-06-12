@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class CharSpanTests
+internal class CharSpanTests
 {
     [Test]
     public void ToTimeSpan_ShouldReturnCorrectTimeSpan_GivenSpanOfCharacters()

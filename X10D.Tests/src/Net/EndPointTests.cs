@@ -1,11 +1,11 @@
-﻿using System.Net;
+using System.Net;
 using NUnit.Framework;
 using X10D.Net;
 
 namespace X10D.Tests.Net;
 
 [TestFixture]
-public class EndPointTests
+internal class EndPointTests
 {
     [Test]
     public void GetHost_ShouldBeLocalhost_GivenLocalhostDnsEndPoint()

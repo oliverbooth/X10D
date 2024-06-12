@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class Int16Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Returns the number of digits in the current 16-bit signed integer.
     /// </summary>
@@ -34,7 +35,7 @@ public static class Int16Extensions
     ///     <para>For example, the digital root of 239 is 5: <c>2 + 3 + 9 = 14</c>, then <c>1 + 4 = 5</c>.</para>
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static short DigitalRoot(this short value)
     {
         short root = System.Math.Abs(value).Mod(9);
@@ -48,7 +49,7 @@ public static class Int16Extensions
     /// <returns>The factorial of <paramref name="value" />.</returns>
     /// <exception cref="ArithmeticException"><paramref name="value" /> is less than 0.</exception>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static long Factorial(this short value)
     {
         if (value < 0)
@@ -77,7 +78,7 @@ public static class Int16Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static short GreatestCommonFactor(this short value, short other)
     {
         return (short)((long)value).GreatestCommonFactor(other);
@@ -92,7 +93,7 @@ public static class Int16Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsEven(this short value)
     {
         return (value & 1) == 0;
@@ -107,11 +108,12 @@ public static class Int16Extensions
     ///     otherwise.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsOdd(this short value)
     {
         return !value.IsEven();
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is a prime number.
@@ -121,7 +123,7 @@ public static class Int16Extensions
     ///     <see langword="true" /> if <paramref name="value" /> is prime; otherwise, <see langword="false" />.
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static bool IsPrime(this short value)
     {
         return ((long)value).IsPrime();
@@ -134,12 +136,13 @@ public static class Int16Extensions
     /// <param name="other">The second value.</param>
     /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static short LowestCommonMultiple(this short value, short other)
     {
         return (short)((long)value).LowestCommonMultiple(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -155,12 +158,13 @@ public static class Int16Extensions
     /// <author>ShreevatsaR, https://stackoverflow.com/a/1082938/1467293</author>
     /// <license>CC-BY-SA 2.5</license>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static short Mod(this short dividend, short divisor)
     {
         int r = dividend % divisor;
         return (short)(r < 0 ? r + divisor : r);
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
@@ -171,7 +175,7 @@ public static class Int16Extensions
     ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
     /// </remarks>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int MultiplicativePersistence(this short value)
     {
         return ((long)value).MultiplicativePersistence();
@@ -205,7 +209,7 @@ public static class Int16Extensions
     ///     </list>
     /// </returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static int Sign(this short value)
     {
         return System.Math.Sign(value);
@@ -219,7 +223,7 @@ public static class Int16Extensions
     /// <param name="high">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static short Wrap(this short value, short low, short high)
     {
         return (short)((long)value).Wrap(low, high);
@@ -232,7 +236,7 @@ public static class Int16Extensions
     /// <param name="length">The exclusive upper bound.</param>
     /// <returns>The wrapped value.</returns>
     [Pure]
-    [MethodImpl(CompilerResources.MethodImplOptions)]
+    [MethodImpl(CompilerResources.MaxOptimization)]
     public static short Wrap(this short value, short length)
     {
         return (short)((long)value).Wrap(length);

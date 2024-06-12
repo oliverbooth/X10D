@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Collections;
 using X10D.Core;
 
 namespace X10D.Tests.Collections;
 
 [TestFixture]
-public partial class EnumerableTests
+internal partial class EnumerableTests
 {
     [Test]
     public void CountWhereNot_ShouldReturnCorrectCount_GivenSequence()

@@ -1,42 +1,43 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;
 
-public partial class StreamTests
+internal partial class StreamTests
 {
     [Test]
-    public void ReadDecimal_ShouldThrowArgumentException_GivenNonReadableStream()
-    {
-        Stream stream = new DummyStream();
-        Assert.Throws<ArgumentException>(() => stream.ReadDecimal());
-        Assert.Throws<ArgumentException>(() => stream.ReadDecimal(Endianness.LittleEndian));
-        Assert.Throws<ArgumentException>(() => stream.ReadDecimal(Endianness.BigEndian));
-    }
-
-    [Test]
-    public void ReadDecimal_ShouldThrowArgumentNullException_GivenNullStream()
+    public void ReadDecimalBigEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
         Stream stream = null!;
-        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimal());
-        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimal(Endianness.LittleEndian));
-        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimal(Endianness.BigEndian));
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimalBigEndian());
     }
 
     [Test]
-    public void ReadDecimal_ShouldThrowArgumentOutOfRangeException_GivenInvalidEndiannessValue()
+    public void ReadDecimalLittleEndian_ShouldThrowArgumentNullException_GivenNullStream()
     {
-        // we don't need to enclose this stream in a using declaration, since disposing a
-        // null stream is meaningless. NullStream.Dispose actually does nothing, anyway.
-        // that - coupled with the fact that encapsulating the stream in a using declaration causes the
-        // analyser to trip up and think the stream is disposed by the time the local is captured in
-        // assertion lambda - means this line is fine as it is. please do not change.
-        Stream stream = Stream.Null;
-        Assert.Throws<ArgumentOutOfRangeException>(() => stream.ReadDecimal((Endianness)(-1)));
+        Stream stream = null!;
+        Assert.Throws<ArgumentNullException>(() => stream.ReadDecimalLittleEndian());
     }
 
     [Test]
-    public void ReadDecimal_ShouldReadBigEndian_GivenBigEndian()
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadDecimalBigEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadDecimalBigEndian());
+    }
+
+    [Test]
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope")]
+    public void ReadDecimalLittleEndian_ShouldThrowArgumentException_GivenNonReadableStream()
+    {
+        Stream stream = new DummyStream();
+        Assert.Throws<ArgumentException>(() => stream.ReadDecimalLittleEndian());
+    }
+
+    [Test]
+    public void ReadDecimalBigEndian_ShouldReadBigEndian()
     {
         using var stream = new MemoryStream();
         ReadOnlySpan<byte> bytes = stackalloc byte[]
@@ -47,7 +48,7 @@ public partial class StreamTests
         stream.Position = 0;
 
         const decimal expected = 420.0m;
-        decimal actual = stream.ReadDecimal(Endianness.BigEndian);
+        decimal actual = stream.ReadDecimalBigEndian();
 
         Assert.Multiple(() =>
         {
@@ -57,7 +58,7 @@ public partial class StreamTests
     }
 
     [Test]
-    public void ReadDecimal_ShouldWriteLittleEndian_GivenLittleEndian()
+    public void ReadDecimalLittleEndian_ShouldWriteLittleEndian()
     {
         using var stream = new MemoryStream();
         ReadOnlySpan<byte> bytes = stackalloc byte[]
@@ -68,7 +69,7 @@ public partial class StreamTests
         stream.Position = 0;
 
         const decimal expected = 420.0m;
-        decimal actual = stream.ReadDecimal(Endianness.LittleEndian);
+        decimal actual = stream.ReadDecimalLittleEndian();
 
         Assert.Multiple(() =>
         {

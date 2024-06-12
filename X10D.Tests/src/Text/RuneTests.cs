@@ -1,4 +1,3 @@
-﻿#if NET5_0_OR_GREATER
 using System.Text;
 using NUnit.Framework;
 using X10D.Text;
@@ -6,7 +5,7 @@ using X10D.Text;
 namespace X10D.Tests.Text;
 
 [TestFixture]
-public class RuneTests
+internal class RuneTests
 {
     [Test]
     public void IsEmoji_ShouldReturnTrue_GivenBasicEmoji()
@@ -90,4 +89,3 @@ public class RuneTests
         Assert.That(repeated, Is.EqualTo("𐀀𐀀𐀀𐀀𐀀𐀀"));
     }
 }
-#endif

@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.Time;
 
 namespace X10D.Tests.Time;
 
 [TestFixture]
-public class Int64Tests
+internal class Int64Tests
 {
     [Test]
     public void FromUnixTimeMilliseconds_ShouldBeEpoch_GivenZero()

@@ -1,11 +1,11 @@
-﻿using System.Numerics;
+using System.Numerics;
 using NUnit.Framework;
 using X10D.Math;
 
 namespace X10D.Tests.Math;
 
 [TestFixture]
-public partial class DecimalTests
+internal partial class DecimalTests
 {
     [Test]
     public void ComplexSqrt_ShouldBeCorrect_GivenReal()

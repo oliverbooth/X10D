@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 
 namespace X10D.IO;
 
@@ -15,14 +15,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteNoAlloc(this TextWriter writer, double value)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteNoAlloc(writer, value, "N0".AsSpan(), CultureInfo.CurrentCulture);
     }
@@ -39,14 +35,10 @@ public static partial class TextWriterExtensions
     /// <exception cref="IOException">An I/O error occurs.</exception>
     public static void WriteNoAlloc(this TextWriter writer, double value, ReadOnlySpan<char> format)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         WriteNoAlloc(writer, value, format, CultureInfo.CurrentCulture);
     }
@@ -65,14 +57,10 @@ public static partial class TextWriterExtensions
     public static void WriteNoAlloc(this TextWriter writer, double value, ReadOnlySpan<char> format,
         IFormatProvider? formatProvider)
     {
-#if NET6_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(writer);
-#else
         if (writer is null)
         {
             throw new ArgumentNullException(nameof(writer));
         }
-#endif
 
         Span<char> buffer = stackalloc char[100];
         if (value.TryFormat(buffer, out int charsWritten, format, formatProvider))
