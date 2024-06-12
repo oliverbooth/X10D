@@ -24,7 +24,6 @@ jobs:
       with:
         dotnet-version: |
           6.0.x
-          7.0.x
           8.0.x
 
     - name: Add NuGet source
@@ -38,9 +37,6 @@ jobs:
 
     - name: Test .NET 6
       run: dotnet test --no-build --verbosity normal --configuration Release --framework net6.0 --collect:"XPlat Code Coverage" --results-directory test-results/net6.0
-
-    - name: Test .NET 7
-      run: dotnet test --no-build --verbosity normal --configuration Release --framework net7.0 --collect:"XPlat Code Coverage" --results-directory test-results/net7.0
 
     - name: Test .NET 8
       run: dotnet test --no-build --verbosity normal --configuration Release --framework net8.0 --collect:"XPlat Code Coverage" --results-directory test-results/net8.0

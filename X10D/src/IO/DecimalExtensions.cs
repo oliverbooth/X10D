@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 
@@ -13,11 +12,11 @@ public static class DecimalExtensions
     ///     Converts the current decimal number into an array of bytes, as little endian.
     /// </summary>
     /// <param name="value">The <see cref="int" /> value.</param>
-    /// <returns>An array of bytes with length 4.</returns>
+    /// <returns>An array of bytes with length 16.</returns>
     [Pure]
     public static byte[] GetBigEndianBytes(this decimal value)
     {
-        Span<byte> buffer = stackalloc byte[4];
+        Span<byte> buffer = stackalloc byte[16];
         value.TryWriteBigEndianBytes(buffer);
         return buffer.ToArray();
     }
@@ -26,11 +25,11 @@ public static class DecimalExtensions
     ///     Converts the current decimal number into an array of bytes, as little endian.
     /// </summary>
     /// <param name="value">The <see cref="int" /> value.</param>
-    /// <returns>An array of bytes with length 4.</returns>
+    /// <returns>An array of bytes with length 16.</returns>
     [Pure]
     public static byte[] GetLittleEndianBytes(this decimal value)
     {
-        Span<byte> buffer = stackalloc byte[4];
+        Span<byte> buffer = stackalloc byte[16];
         value.TryWriteLittleEndianBytes(buffer);
         return buffer.ToArray();
     }
@@ -44,23 +43,17 @@ public static class DecimalExtensions
     public static bool TryWriteBigEndianBytes(this decimal value, Span<byte> destination)
     {
         Span<int> buffer = stackalloc int[4];
-        GetBits(value, buffer);
+        decimal.GetBits(value, buffer);
 
-        if (buffer[0].TryWriteBigEndianBytes(destination[..4]) &&
-            buffer[1].TryWriteBigEndianBytes(destination[4..8]) &&
-            buffer[2].TryWriteBigEndianBytes(destination[8..12]) &&
-            buffer[3].TryWriteBigEndianBytes(destination[12..]))
+        Span<byte> result = stackalloc byte[16];
+        MemoryMarshal.Cast<int, byte>(buffer).CopyTo(result);
+
+        if (BitConverter.IsLittleEndian)
         {
-            if (BitConverter.IsLittleEndian)
-            {
-                destination.Reverse();
-            }
-
-            return true;
+            result.Reverse();
         }
 
-        destination.Clear();
-        return false;
+        return result.TryCopyTo(destination);
     }
 
     /// <summary>
@@ -72,44 +65,16 @@ public static class DecimalExtensions
     public static bool TryWriteLittleEndianBytes(this decimal value, Span<byte> destination)
     {
         Span<int> buffer = stackalloc int[4];
-        GetBits(value, buffer);
+        decimal.GetBits(value, buffer);
 
-        if (buffer[0].TryWriteLittleEndianBytes(destination[..4]) &&
-            buffer[1].TryWriteLittleEndianBytes(destination[4..8]) &&
-            buffer[2].TryWriteLittleEndianBytes(destination[8..12]) &&
-            buffer[3].TryWriteLittleEndianBytes(destination[12..]))
+        Span<byte> result = stackalloc byte[16];
+        MemoryMarshal.Cast<int, byte>(buffer).CopyTo(result);
+
+        if (!BitConverter.IsLittleEndian)
         {
-            if (!BitConverter.IsLittleEndian)
-            {
-                destination.Reverse();
-            }
-
-            return true;
+            result.Reverse();
         }
 
-        destination.Clear();
-        return false;
+        return result.TryCopyTo(destination);
     }
-
-    private static void GetBits(decimal value, Span<int> destination)
-    {
-        _ = decimal.GetBits(value, destination);
-    }
-
-#if !NET5_0_OR_GREATER
-    private static void WriteBits(Span<int> destination, Span<byte> buffer)
-    {
-        var flags = MemoryMarshal.Read<int>(buffer[..4]);
-        var hi = MemoryMarshal.Read<int>(buffer[4..8]);
-        var lo = MemoryMarshal.Read<long>(buffer[8..]);
-
-        var low = (uint)lo;
-        var mid = (uint)(lo >> 32);
-
-        destination[0] = (int)low;
-        destination[1] = (int)mid;
-        destination[2] = hi;
-        destination[3] = flags;
-    }
-#endif
 }

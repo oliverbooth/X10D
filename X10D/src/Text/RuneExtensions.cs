@@ -98,7 +98,6 @@ public static class RuneExtensions
                 }
 
             // dotcover disable
-            //NOSONAR
             default:
                 string exceptionFormat = ExceptionMessages.UnexpectedRuneUtf8SequenceLength;
                 string message = string.Format(CultureInfo.CurrentCulture, exceptionFormat, length);
@@ -107,7 +106,6 @@ public static class RuneExtensions
 #else
                 throw new InvalidOperationException(message);
 #endif
-            //NOSONAR
             // dotcover enable
         }
     }

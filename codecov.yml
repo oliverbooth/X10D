@@ -1,0 +1,2 @@
+ignore:
+  - "X10D/src/ExceptionMessages.Designer.cs"
