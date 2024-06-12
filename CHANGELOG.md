@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - X10D: Added `TextWriter.WriteLineNoAlloc(uint[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(long[, ReadOnlySpan<char>[, IFormatProvider]])`.
 - X10D: Added `TextWriter.WriteLineNoAlloc(ulong[, ReadOnlySpan<char>[, IFormatProvider]])`.
+- X10D: Added `Range.GetEnumerator` (and `RangeEnumerator`), implementing Python-esque `for` loops in C#.
 - X10D: Added `string.ConcatIf`.
 - X10D: Added `string.MDBold`, `string.MDCode`, `string.MDCodeBlock([string])`, `string.MDHeading(int)`,
 `string.MDItalic`, `string.MDLink`, `string.MDStrikeOut`, and `string.MDUnderline` for Markdown formatting.
