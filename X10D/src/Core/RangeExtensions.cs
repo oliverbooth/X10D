@@ -7,7 +7,7 @@ public static class RangeExtensions
 {
     /// <summary>
     ///     Allows the ability to use a <c>for</c> loop to iterate over the indices of a <see cref="Range" />. The indices of the
-    ///     range are the inclusive lower and upper bounds of the enumeration. 
+    ///     range are the inclusive lower and upper bounds of the enumeration.
     /// </summary>
     /// <param name="range">The range whose indices over which will be enumerated.</param>
     /// <returns>A <see cref="RangeEnumerator" /> that will enumerate over the indices of <paramref name="range" />.</returns>
