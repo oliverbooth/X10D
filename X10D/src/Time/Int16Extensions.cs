@@ -32,7 +32,7 @@ public static class Int16Extensions
             value++;
         }
 
-        return value.Mod(4) == 0 && (value.Mod(100) != 0 || value.Mod(400) == 0);
+        return value.Mod((short)4) == 0 && (value.Mod((short)100) != 0 || value.Mod((short)400) == 0);
     }
 
     /// <summary>

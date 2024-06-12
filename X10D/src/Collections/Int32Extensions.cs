@@ -1,5 +1,7 @@
+#if !NET7_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
+#endif
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
@@ -14,6 +16,7 @@ public static class Int32Extensions
 {
     private const int Size = sizeof(int) * 8;
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Unpacks this 32-bit signed integer into a boolean list, treating it as a bit field.
     /// </summary>
@@ -57,6 +60,7 @@ public static class Int32Extensions
 
         UnpackInternal_Fallback(value, destination);
     }
+#endif
 
     [MethodImpl(CompilerResources.MaxOptimization)]
     internal static void UnpackInternal_Fallback(this int value, Span<bool> destination)

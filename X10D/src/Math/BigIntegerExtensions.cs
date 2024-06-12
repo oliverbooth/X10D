@@ -10,6 +10,7 @@ namespace X10D.Math;
 /// </summary>
 public static class BigIntegerExtensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Returns the number of digits in the current integer.
     /// </summary>
@@ -42,6 +43,7 @@ public static class BigIntegerExtensions
         BigInteger root = BigInteger.Abs(value).Mod(9);
         return (int)(root == 0 ? 9 : root);
     }
+#endif
 
     /// <summary>
     ///     Returns the factorial of the current 64-bit signed integer.
@@ -170,6 +172,7 @@ public static class BigIntegerExtensions
         return value * other / value.GreatestCommonFactor(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -191,6 +194,7 @@ public static class BigIntegerExtensions
         BigInteger r = dividend % divisor;
         return r < 0 ? r + divisor : r;
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.

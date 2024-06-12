@@ -10,6 +10,7 @@ namespace X10D.Math;
 [CLSCompliant(false)]
 public static class UInt64Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Returns the number of digits in the current 64-bit unsigned integer.
     /// </summary>
@@ -100,6 +101,22 @@ public static class UInt64Extensions
     }
 
     /// <summary>
+    ///     Returns a value indicating whether the current value is not evenly divisible by 2.
+    /// </summary>
+    /// <param name="value">The value whose parity to check.</param>
+    /// <returns>
+    ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
+    ///     otherwise.
+    /// </returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static bool IsOdd(this ulong value)
+    {
+        return !value.IsEven();
+    }
+#endif
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is a prime number.
     /// </summary>
     /// <param name="value">The value whose primality to check.</param>
@@ -130,21 +147,6 @@ public static class UInt64Extensions
         }
 
         return true;
-    }
-
-    /// <summary>
-    ///     Returns a value indicating whether the current value is not evenly divisible by 2.
-    /// </summary>
-    /// <param name="value">The value whose parity to check.</param>
-    /// <returns>
-    ///     <see langword="true" /> if <paramref name="value" /> is not evenly divisible by 2, or <see langword="false" />
-    ///     otherwise.
-    /// </returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static bool IsOdd(this ulong value)
-    {
-        return !value.IsEven();
     }
 
     /// <summary>

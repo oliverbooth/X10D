@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using X10D.IO;
 
 namespace X10D.Tests.IO;

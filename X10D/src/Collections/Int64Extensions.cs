@@ -1,3 +1,4 @@
+#if !NET7_0_OR_GREATER
 using System.Diagnostics.Contracts;
 
 namespace X10D.Collections;
@@ -41,3 +42,4 @@ public static class Int64Extensions
         }
     }
 }
+#endif

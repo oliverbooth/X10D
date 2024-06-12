@@ -9,6 +9,7 @@ namespace X10D.Math;
 /// </summary>
 public static class Int64Extensions
 {
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Returns the number of digits in the current 64-bit signed integer.
     /// </summary>
@@ -117,6 +118,7 @@ public static class Int64Extensions
     {
         return !value.IsEven();
     }
+#endif
 
     /// <summary>
     ///     Returns a value indicating whether the current value is a prime number.
@@ -179,6 +181,7 @@ public static class Int64Extensions
         return value * other / value.GreatestCommonFactor(other);
     }
 
+#if !NET7_0_OR_GREATER
     /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
@@ -200,6 +203,7 @@ public static class Int64Extensions
         long r = dividend % divisor;
         return r < 0 ? r + divisor : r;
     }
+#endif
 
     /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
