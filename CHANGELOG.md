@@ -58,6 +58,7 @@ TypeInitializationException.
 
 ### Fixed
 
+- X10D: Fixed `decimal.TryWriteBigEndianBytes` and `decimal.TryWriteLittleEndianBytes`.
 - X10D.Hosting: Fixed `AddHostedSingleton` not accepting an interface as the service type.
 
 ## [3.3.0] - 2023-08-21
