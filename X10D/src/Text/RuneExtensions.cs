@@ -101,11 +101,7 @@ public static class RuneExtensions
             default:
                 string exceptionFormat = ExceptionMessages.UnexpectedRuneUtf8SequenceLength;
                 string message = string.Format(CultureInfo.CurrentCulture, exceptionFormat, length);
-#if NET7_0_OR_GREATER
                 throw new UnreachableException(message);
-#else
-                throw new InvalidOperationException(message);
-#endif
             // dotcover enable
         }
     }
