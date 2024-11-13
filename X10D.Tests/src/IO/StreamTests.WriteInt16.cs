@@ -44,12 +44,15 @@ internal partial class StreamTests
         Assert.That(stream.Position, Is.EqualTo(2));
         stream.Position = 0;
 
-        Span<byte> actual = stackalloc byte[2];
-        ReadOnlySpan<byte> expected = stackalloc byte[] { 0x01, 0xA4 };
-        int read = stream.Read(actual);
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[2];
+            ReadOnlySpan<byte> expected = stackalloc byte[] { 0x01, 0xA4 };
+            int read = stream.Read(actual);
 
-        Assert.That(read, Is.EqualTo(2));
-        CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
+            Assert.That(read, Is.EqualTo(2));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
+        });
     }
 
     [Test]
@@ -60,11 +63,14 @@ internal partial class StreamTests
         Assert.That(stream.Position, Is.EqualTo(2));
         stream.Position = 0;
 
-        Span<byte> actual = stackalloc byte[2];
-        ReadOnlySpan<byte> expected = stackalloc byte[] { 0xA4, 0x01 };
-        int read = stream.Read(actual);
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[2];
+            ReadOnlySpan<byte> expected = stackalloc byte[] { 0xA4, 0x01 };
+            int read = stream.Read(actual);
 
-        Assert.That(read, Is.EqualTo(2));
-        CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
+            Assert.That(read, Is.EqualTo(2));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
+        });
     }
 }

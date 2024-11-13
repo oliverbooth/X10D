@@ -13,7 +13,7 @@ internal class SingleTests
 
         var expected = new byte[] { 0x42, 0x2A, 0, 0 };
         byte[] actual = value.GetBigEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ internal class SingleTests
 
         var expected = new byte[] { 0, 0, 0x2A, 0x42 };
         byte[] actual = value.GetLittleEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -32,9 +32,12 @@ internal class SingleTests
         const float value = 42.5f;
 
         var expected = new byte[] { 0x42, 0x2A, 0, 0 };
-        Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteBigEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[4];
+            Assert.That(value.TryWriteBigEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
@@ -43,9 +46,12 @@ internal class SingleTests
         const float value = 42.5f;
 
         var expected = new byte[] { 0, 0, 0x2A, 0x42 };
-        Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteLittleEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[4];
+            Assert.That(value.TryWriteLittleEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]

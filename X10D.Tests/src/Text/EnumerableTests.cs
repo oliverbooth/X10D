@@ -10,13 +10,13 @@ internal class EnumerableTests
     public void Grep_ShouldFilterCorrectly_GivenPattern()
     {
         int year = DateTime.Now.Year;
-        var source = new[] {"Hello", "World", "String 123", $"The year is {year}"};
-        var expectedResult = new[] {"String 123", $"The year is {year}"};
+        var source = new[] { "Hello", "World", "String 123", $"The year is {year}" };
+        var expectedResult = new[] { "String 123", $"The year is {year}" };
 
         const string pattern = /*lang=regex*/@"[0-9]+";
         string[] actualResult = source.Grep(pattern).ToArray();
 
-        CollectionAssert.AreEqual(expectedResult, actualResult);
+        Assert.That(actualResult, Is.EqualTo(expectedResult).AsCollection);
     }
 
     [Test]
@@ -28,27 +28,27 @@ internal class EnumerableTests
         const string pattern = /*lang=regex*/@"[0-9]+";
         string[] actualResult = source.Grep(pattern).ToArray();
 
-        CollectionAssert.AreEqual(expectedResult, actualResult);
+        Assert.That(actualResult, Is.EqualTo(expectedResult).AsCollection);
     }
 
     [Test]
     public void Grep_ShouldMatchUpperCase_GivenIgnoreCaseTrue()
     {
         int year = DateTime.Now.Year;
-        var source = new[] {"Hello", "WORLD", "String 123", $"The year is {year}"};
-        var expectedResult = new[] {"WORLD"};
+        var source = new[] { "Hello", "WORLD", "String 123", $"The year is {year}" };
+        var expectedResult = new[] { "WORLD" };
 
         const string pattern = /*lang=regex*/@"world";
         string[] actualResult = source.Grep(pattern, true).ToArray();
 
-        CollectionAssert.AreEqual(expectedResult, actualResult);
+        Assert.That(actualResult, Is.EqualTo(expectedResult).AsCollection);
     }
 
     [Test]
     public void Grep_ShouldNotMatchUpperCase_GivenIgnoreCaseFalse()
     {
         int year = DateTime.Now.Year;
-        var source = new[] {"Hello", "WORLD", "String 123", $"The year is {year}"};
+        var source = new[] { "Hello", "WORLD", "String 123", $"The year is {year}" };
 
         const string pattern = /*lang=regex*/@"world";
         string[] actualResult = source.Grep(pattern, false).ToArray();
@@ -60,22 +60,28 @@ internal class EnumerableTests
     public void Grep_ShouldThrowArgumentNullException_GivenNullPattern()
     {
         IEnumerable<string> source = Enumerable.Empty<string>();
-        Assert.Throws<ArgumentNullException>(() => source.Grep(null!).ToArray());
-        Assert.Throws<ArgumentNullException>(() => source.Grep(null!, false).ToArray());
+        Assert.Multiple(() =>
+        {
+            Assert.Throws<ArgumentNullException>(() => source.Grep(null!).ToArray());
+            Assert.Throws<ArgumentNullException>(() => source.Grep(null!, false).ToArray());
+        });
     }
 
     [Test]
     public void Grep_ShouldThrowArgumentNullException_GivenNullSource()
     {
         IEnumerable<string> source = null!;
-        Assert.Throws<ArgumentNullException>(() => source.Grep("foo").ToArray());
-        Assert.Throws<ArgumentNullException>(() => source.Grep("foo", false).ToArray());
+        Assert.Multiple(() =>
+        {
+            Assert.Throws<ArgumentNullException>(() => source.Grep("foo").ToArray());
+            Assert.Throws<ArgumentNullException>(() => source.Grep("foo", false).ToArray());
+        });
     }
 
     [Test]
     public void Grep_ShouldYieldNoElements_GivenNoMatchingStrings()
     {
-        var source = new[] {"Hello", "World", "String"};
+        var source = new[] { "Hello", "World", "String" };
 
         const string pattern = /*lang=regex*/@"[0-9]+";
         string[] actualResult = source.Grep(pattern).ToArray();

@@ -10,16 +10,19 @@ internal class SByteTests
     public void GetBytes_ReturnsArrayContainingItself()
     {
         const sbyte value = 0x0F;
-        CollectionAssert.AreEqual(new[] {(byte)value}, value.GetBytes());
+        Assert.That(value.GetBytes(), Is.EqualTo(new[] { (byte)value }).AsCollection);
     }
 
     [Test]
     public void TryWriteBytes_ReturnsTrue_FillsSpanContainingItself_GivenLargeEnoughSpan()
     {
         const sbyte value = 0x0F;
-        Span<byte> buffer = stackalloc byte[1];
-        Assert.That(value.TryWriteBytes(buffer));
-        CollectionAssert.AreEqual(new[] {(byte)value}, buffer.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> buffer = stackalloc byte[1];
+            Assert.That(value.TryWriteBytes(buffer));
+            Assert.That(buffer.ToArray(), Is.EqualTo(new[] { (byte)value }).AsCollection);
+        });
     }
 
     [Test]

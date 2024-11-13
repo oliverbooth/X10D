@@ -26,7 +26,7 @@ internal partial class StreamTests
         byte[] hash = stream.GetHash<SHA1>();
         Trace.WriteLine($"Hash: {BitConverter.ToString(hash)}");
         Trace.WriteLine($"Expected: {BitConverter.ToString(expectedHash)}");
-        CollectionAssert.AreEqual(expectedHash, hash);
+        Assert.That(hash, Is.EqualTo(expectedHash).AsCollection);
     }
 
     [Test]
@@ -54,7 +54,7 @@ internal partial class StreamTests
         Span<byte> hash = stackalloc byte[20];
         stream.TryWriteHash<SHA1>(hash, out int bytesWritten);
         Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
-        CollectionAssert.AreEqual(expectedHash, hash.ToArray());
+        Assert.That(hash.ToArray(), Is.EqualTo(expectedHash).AsCollection);
     }
 
     [Test]

@@ -75,7 +75,7 @@ internal class PolyhedronTests
 
             // we cannot use CollectionAssert here for reasons I am not entirely sure of.
             // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
-            CollectionAssert.AreEqual(first.Vertices, second.Vertices);
+            Assert.That(second.Vertices, Is.EqualTo(first.Vertices).AsCollection);
 
             // assert that the empty polyhedron was not modified
             Assert.That(Polyhedron.Empty.VertexCount, Is.Zero);
@@ -148,11 +148,11 @@ internal class PolyhedronTests
             Assert.That(converted, Is.EqualTo((Polyhedron)polygon));
             Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
 
-            CollectionAssert.AreEqual(converted.Vertices, polygon.Vertices.Select(p =>
+            Assert.That(polygon.Vertices.Select(p =>
             {
                 var point = p.ToVector2();
                 return new Vector3(point.X, point.Y, 0);
-            }));
+            }), Is.EqualTo(converted.Vertices).AsCollection);
         });
     }
 
@@ -166,11 +166,11 @@ internal class PolyhedronTests
         {
             Assert.That(converted, Is.EqualTo((Polyhedron)polygon));
             Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
-            CollectionAssert.AreEqual(converted.Vertices, polygon.Vertices.Select(p =>
+            Assert.That(converted.Vertices, Is.EqualTo(polygon.Vertices.Select(p =>
             {
                 var point = p.ToVector2();
                 return new Vector3(point.X, point.Y, 0);
-            }));
+            })).AsCollection);
         });
     }
 

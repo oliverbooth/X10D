@@ -117,11 +117,11 @@ internal partial class EnumerableTests
 
         IEnumerable<DummyClass> source = oneToTen.Select(i => new DummyClass {Value = i}).ToArray();
         IEnumerable<int> values = source.Select(o => o.Value);
-        CollectionAssert.AreEqual(oneToTen, values.ToArray());
+        Assert.That(values.ToArray(), Is.EqualTo(oneToTen).AsCollection);
 
         source.For((i, o) => o.Value *= i);
         values = source.Select(o => o.Value);
-        CollectionAssert.AreEqual(multipliedByIndex, values.ToArray());
+        Assert.That(values.ToArray(), Is.EqualTo(multipliedByIndex).AsCollection);
     }
 
     [Test]
@@ -146,11 +146,11 @@ internal partial class EnumerableTests
 
         IEnumerable<DummyClass> source = oneToTen.Select(i => new DummyClass {Value = i}).ToArray();
         IEnumerable<int> values = source.Select(o => o.Value);
-        CollectionAssert.AreEqual(oneToTen, values.ToArray());
+        Assert.That(values.ToArray(), Is.EqualTo(oneToTen).AsCollection);
 
         source.ForEach(o => o.Value *= 2);
         values = source.Select(o => o.Value);
-        CollectionAssert.AreEqual(oneToTenDoubled, values.ToArray());
+        Assert.That(values.ToArray(), Is.EqualTo(oneToTenDoubled).AsCollection);
     }
 
     [Test]
@@ -245,10 +245,10 @@ internal partial class EnumerableTests
         int[] array = Enumerable.Range(1, 52).ToArray(); // 52! chance of being shuffled to the same order
         int[] shuffled = array[..];
 
-        CollectionAssert.AreEqual(array, shuffled);
+        Assert.That(shuffled, Is.EqualTo(array).AsCollection);
 
         shuffled = array.Shuffled().ToArray();
-        CollectionAssert.AreNotEqual(array, shuffled);
+        Assert.That(shuffled, Is.Not.EqualTo(array).AsCollection);
     }
 
     [Test]
@@ -256,7 +256,7 @@ internal partial class EnumerableTests
     {
         var enumerable = new[] {2, 4, 6, 7, 8, 9, 10};
         IEnumerable<int> result = enumerable.WhereNot(x => x % 2 == 0);
-        CollectionAssert.AreEqual(new[] {7, 9}, result.ToArray());
+        Assert.That(result.ToArray(), Is.EqualTo(new[] { 7, 9 }).AsCollection);
     }
 
     [Test]
@@ -285,7 +285,7 @@ internal partial class EnumerableTests
 
         foreach (object o in array.WhereNotNull())
         {
-            Assert.IsNotNull(o);
+            Assert.That(o, Is.Not.Null);
             actualCount++;
         }
 
