@@ -22,18 +22,21 @@ internal class StringBuilderReaderTests
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Assert.That(reader.Read(), Is.EqualTo('H'));
-        Assert.That(reader.Read(), Is.EqualTo('e'));
-        Assert.That(reader.Read(), Is.EqualTo('l'));
-        Assert.That(reader.Read(), Is.EqualTo('l'));
-        Assert.That(reader.Read(), Is.EqualTo('o'));
-        Assert.That(reader.Read(), Is.EqualTo('\n'));
-        Assert.That(reader.Read(), Is.EqualTo('W'));
-        Assert.That(reader.Read(), Is.EqualTo('o'));
-        Assert.That(reader.Read(), Is.EqualTo('r'));
-        Assert.That(reader.Read(), Is.EqualTo('l'));
-        Assert.That(reader.Read(), Is.EqualTo('d'));
-        Assert.That(reader.Read(), Is.EqualTo(-1));
+        Assert.Multiple(() =>
+        {
+            Assert.That(reader.Read(), Is.EqualTo('H'));
+            Assert.That(reader.Read(), Is.EqualTo('e'));
+            Assert.That(reader.Read(), Is.EqualTo('l'));
+            Assert.That(reader.Read(), Is.EqualTo('l'));
+            Assert.That(reader.Read(), Is.EqualTo('o'));
+            Assert.That(reader.Read(), Is.EqualTo('\n'));
+            Assert.That(reader.Read(), Is.EqualTo('W'));
+            Assert.That(reader.Read(), Is.EqualTo('o'));
+            Assert.That(reader.Read(), Is.EqualTo('r'));
+            Assert.That(reader.Read(), Is.EqualTo('l'));
+            Assert.That(reader.Read(), Is.EqualTo('d'));
+            Assert.That(reader.Read(), Is.EqualTo(-1));
+        });
 
         reader.Close();
     }
@@ -45,9 +48,12 @@ internal class StringBuilderReaderTests
 
         var array = new char[5];
         int read = reader.Read(array, 0, 5);
-        Assert.That(read, Is.EqualTo(5));
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), array);
+        Assert.Multiple(() =>
+        {
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(array, Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -114,11 +120,14 @@ internal class StringBuilderReaderTests
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Span<char> span = stackalloc char[5];
-        int read = reader.Read(span);
-        Assert.That(read, Is.EqualTo(5));
+        Assert.Multiple(() =>
+        {
+            Span<char> span = stackalloc char[5];
+            int read = reader.Read(span);
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), span.ToArray());
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(span.ToArray(), Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -130,9 +139,12 @@ internal class StringBuilderReaderTests
 
         var array = new char[5];
         int read = reader.ReadAsync(array, 0, 5).GetAwaiter().GetResult();
-        Assert.That(read, Is.EqualTo(5));
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), array);
+        Assert.Multiple(() =>
+        {
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(array, Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -144,9 +156,12 @@ internal class StringBuilderReaderTests
 
         Memory<char> memory = new char[5];
         int read = reader.ReadAsync(memory).GetAwaiter().GetResult();
-        Assert.That(read, Is.EqualTo(5));
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), memory.ToArray());
+        Assert.Multiple(() =>
+        {
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(memory.ToArray(), Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -158,9 +173,12 @@ internal class StringBuilderReaderTests
 
         var array = new char[5];
         int read = reader.ReadBlock(array, 0, 5);
-        Assert.That(read, Is.EqualTo(5));
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), array);
+        Assert.Multiple(() =>
+        {
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(array, Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -170,11 +188,14 @@ internal class StringBuilderReaderTests
     {
         using var reader = new StringBuilderReader(new StringBuilder("Hello\nWorld"));
 
-        Span<char> span = stackalloc char[5];
-        int read = reader.ReadBlock(span);
-        Assert.That(read, Is.EqualTo(5));
+        Assert.Multiple(() =>
+        {
+            Span<char> span = stackalloc char[5];
+            int read = reader.ReadBlock(span);
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), span.ToArray());
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(span.ToArray(), Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -200,9 +221,12 @@ internal class StringBuilderReaderTests
 
         var array = new char[5];
         int read = reader.ReadBlockAsync(array, 0, 5).GetAwaiter().GetResult();
-        Assert.That(read, Is.EqualTo(5));
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), array);
+        Assert.Multiple(() =>
+        {
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(array, Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }
@@ -214,9 +238,12 @@ internal class StringBuilderReaderTests
 
         Memory<char> memory = new char[5];
         int read = reader.ReadBlockAsync(memory).GetAwaiter().GetResult();
-        Assert.That(read, Is.EqualTo(5));
 
-        CollectionAssert.AreEqual("Hello".ToCharArray(), memory.ToArray());
+        Assert.Multiple(() =>
+        {
+            Assert.That(read, Is.EqualTo(5));
+            Assert.That(memory.ToArray(), Is.EqualTo("Hello".ToCharArray()).AsCollection);
+        });
 
         reader.Close();
     }

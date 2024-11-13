@@ -423,7 +423,7 @@ internal class StringTests
         var target = json.FromJson<SampleStructure>();
         Assert.Multiple(() =>
         {
-            Assert.IsInstanceOf<SampleStructure>(target);
+            Assert.That(target, Is.InstanceOf<SampleStructure>());
             Assert.That(target.Values, Is.Not.Null);
             Assert.That(target.Values.Length, Is.EqualTo(3));
             Assert.That(target.Values[0], Is.EqualTo(1));
@@ -438,7 +438,7 @@ internal class StringTests
         var expected = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64 };
         byte[] actual = "Hello World".GetBytes();
 
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -447,7 +447,7 @@ internal class StringTests
         var expected = new byte[] { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64 };
         byte[] actual = "Hello World".GetBytes(Encoding.ASCII);
 
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -1004,7 +1004,6 @@ internal class StringTests
 
     private struct SampleStructure
     {
-        [JsonPropertyName("values")]
-        public int[] Values { get; set; }
+        [JsonPropertyName("values")] public int[] Values { get; set; }
     }
 }

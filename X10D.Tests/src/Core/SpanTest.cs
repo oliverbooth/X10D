@@ -1,4 +1,3 @@
-using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 using NUnit.Framework;
 using X10D.Core;

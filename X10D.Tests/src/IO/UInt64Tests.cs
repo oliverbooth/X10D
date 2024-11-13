@@ -13,7 +13,7 @@ internal class UInt64Tests
         byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
         byte[] actual = value.GetLittleEndianBytes();
 
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ internal class UInt64Tests
         byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
         byte[] actual = value.GetBigEndianBytes();
 
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -32,10 +32,12 @@ internal class UInt64Tests
         const ulong value = 0x0F;
         byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
 
-        Span<byte> actual = stackalloc byte[8];
-        Assert.That(value.TryWriteLittleEndianBytes(actual));
-
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[8];
+            Assert.That(value.TryWriteLittleEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
@@ -44,10 +46,12 @@ internal class UInt64Tests
         const ulong value = 0x0F;
         byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
 
-        Span<byte> actual = stackalloc byte[8];
-        Assert.That(value.TryWriteBigEndianBytes(actual));
-
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[8];
+            Assert.That(value.TryWriteBigEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]

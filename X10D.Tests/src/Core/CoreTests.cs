@@ -63,7 +63,7 @@ internal class CoreTests
         // ReSharper disable once PossibleMultipleEnumeration
         object[] array = enumerable.ToArray();
         Assert.That(array, Has.Length.EqualTo(10));
-        CollectionAssert.AreEqual(new[] {o, o, o, o, o, o, o, o, o, o}, array);
+        Assert.That(array, Is.EqualTo(new[] { o, o, o, o, o, o, o, o, o, o }).AsCollection);
     }
 
     [Test]

@@ -29,7 +29,7 @@ internal class FileInfoTests
         try
         {
             byte[] hash = new FileInfo(fileName).GetHash<SHA1>();
-            CollectionAssert.AreEqual(expectedHash, hash);
+            Assert.That(hash, Is.EqualTo(expectedHash).AsCollection);
         }
         finally
         {
@@ -58,10 +58,14 @@ internal class FileInfoTests
 
         try
         {
-            Span<byte> hash = stackalloc byte[20];
-            new FileInfo(fileName).TryWriteHash<SHA1>(hash, out int bytesWritten);
-            Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
-            CollectionAssert.AreEqual(expectedHash, hash.ToArray());
+            Assert.Multiple(() =>
+            {
+                Span<byte> hash = stackalloc byte[20];
+                new FileInfo(fileName).TryWriteHash<SHA1>(hash, out int bytesWritten);
+
+                Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
+                Assert.That(hash.ToArray(), Is.EqualTo(expectedHash).AsCollection);
+            });
         }
         finally
         {
