@@ -37,12 +37,7 @@ public static class IntrinsicExtensions
         for (var i = 0; i < Vector64<byte>.Count; i++)
         {
             ref byte writeElement = ref Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref output), i);
-#if NET7_0_OR_GREATER
             writeElement = vector[i] == 0 ? (byte)0 : (byte)1;
-#else
-            byte element = Unsafe.Add(ref Unsafe.As<Vector64<byte>, byte>(ref vector), i);
-            writeElement = element == 0 ? (byte)0 : (byte)1;
-#endif
         }
 
         return output;

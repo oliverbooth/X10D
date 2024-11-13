@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
@@ -5,10 +6,6 @@ using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 using X10D.CompilerServices;
-
-#if NET7_0_OR_GREATER
-using System.Diagnostics;
-#endif
 
 namespace X10D.Core;
 
@@ -93,11 +90,7 @@ public static class SpanExtensions
 
             // dotcover disable
             default:
-#if NET7_0_OR_GREATER
                 throw new UnreachableException(string.Format(ExceptionMessages.EnumSizeIsUnexpected, Unsafe.SizeOf<T>()));
-#else
-                throw new ArgumentException(string.Format(ExceptionMessages.EnumSizeIsUnexpected, Unsafe.SizeOf<T>()));
-#endif
             // dotcover enable
         }
     }

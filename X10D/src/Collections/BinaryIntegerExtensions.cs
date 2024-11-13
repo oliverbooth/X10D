@@ -1,4 +1,3 @@
-#if NET7_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Numerics;
@@ -95,4 +94,3 @@ public static class BinaryIntegerExtensions
         }
     }
 }
-#endif
