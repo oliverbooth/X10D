@@ -75,6 +75,7 @@ public static class SpanExtensions
     }
 #endif
 
+#if !NET9_0_OR_GREATER
     /// <summary>
     ///     Splits a span of elements into sub-spans based on a delimiting element.
     /// </summary>
@@ -134,4 +135,5 @@ public static class SpanExtensions
     {
         return new SpanSplitEnumerator<T>(source, delimiter);
     }
+#endif
 }

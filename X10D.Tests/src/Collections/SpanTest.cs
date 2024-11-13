@@ -1,5 +1,7 @@
 using NUnit.Framework;
+#if !NET9_0_OR_GREATER
 using X10D.Collections;
+#endif
 
 namespace X10D.Tests.Collections;
 
@@ -70,6 +72,7 @@ internal class SpanTest
         Assert.That(span.ToArray(), Is.EqualTo(new[] {1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2}));
     }
 
+#if !NET9_0_OR_GREATER
     [Test]
     public void Split_OnEmptySpan_ShouldYieldNothing_UsingCharDelimiter_GivenReadOnlySpan()
     {
@@ -497,4 +500,5 @@ internal class SpanTest
 
         Assert.That(index, Is.EqualTo(3));
     }
+#endif
 }
