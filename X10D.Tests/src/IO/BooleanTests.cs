@@ -26,7 +26,7 @@ internal class BooleanTests
     public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
     {
         const bool value = true;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBytes(buffer), Is.False);
     }
 }

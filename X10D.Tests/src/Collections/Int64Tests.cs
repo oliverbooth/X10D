@@ -70,7 +70,7 @@ internal class Int64Tests
     {
         Assert.Throws<ArgumentException>(() =>
         {
-            Span<bool> bits = stackalloc bool[0];
+            Span<bool> bits = [];
             0b11010100L.Unpack(bits);
         });
     }

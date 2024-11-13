@@ -42,7 +42,7 @@ internal class ListTests
     [Test]
     public void Fill_ShouldThrow_GivenExceededCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         var list = new List<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, 0, 1));
         Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, 0, 1));
@@ -51,7 +51,7 @@ internal class ListTests
     [Test]
     public void Fill_ShouldThrow_GivenNegativeCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         var list = new List<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, 0, -1));
         Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, 0, -1));
@@ -60,7 +60,7 @@ internal class ListTests
     [Test]
     public void Fill_ShouldThrow_GivenNegativeStartIndex()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         var list = new List<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, -1, 0));
         Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, -1, 0));
@@ -80,7 +80,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldReturnCorrectValue_FromStartOfList()
     {
-        int[] array = { 0, 1, 2, 3, 4 };
+        int[] array = [0, 1, 2, 3, 4];
         Assert.Multiple(() =>
         {
             Assert.That(array.IndexOf(2), Is.EqualTo(2));
@@ -92,7 +92,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldReturnCorrectValue_GivenSubRange()
     {
-        int[] array = { 0, 1, 2, 3, 4, 0 };
+        int[] array = [0, 1, 2, 3, 4, 0];
         Assert.Multiple(() =>
         {
             Assert.That(array.IndexOf(0), Is.Zero);
@@ -107,7 +107,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldReturnNegative1_ForEmptyList()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Multiple(() =>
         {
             Assert.That(array.IndexOf(0), Is.EqualTo(-1));
@@ -131,14 +131,14 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, 0, -1));
     }
 
     [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Multiple(() =>
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1));
@@ -149,7 +149,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
     {
-        int[] array = { 0, 1, 2 };
+        int[] array = [0, 1, 2];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, 2, 4));
     }
 
@@ -233,21 +233,21 @@ internal class ListTests
     [Test]
     public void Slice_ShouldReturnCorrectValue_GivenStartIndex()
     {
-        int[] array = { 0, 1, 2, 3, 4, 5 };
+        int[] array = [0, 1, 2, 3, 4, 5];
         Assert.That(array.Slice(2).ToArray(), Is.EqualTo(new[] { 2, 3, 4, 5 }).AsCollection);
     }
 
     [Test]
     public void Slice_ShouldReturnCorrectValue_GivenStartIndexAndLength()
     {
-        int[] array = { 0, 1, 2, 3, 4, 5 };
+        int[] array = [0, 1, 2, 3, 4, 5];
         Assert.That(array.Slice(2, 3).ToArray(), Is.EqualTo(new[] { 2, 3, 4 }).AsCollection);
     }
 
     [Test]
     public void Slice_ShouldReturnEmptyList_ForEmptyList()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.That(array.Slice(0).ToArray(), Is.EqualTo(Array.Empty<int>()).AsCollection);
         Assert.That(array.Slice(0, 0).ToArray(), Is.EqualTo(Array.Empty<int>()).AsCollection);
     }
@@ -263,14 +263,14 @@ internal class ListTests
     [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(0, -1));
     }
 
     [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(-1));
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(-1, 0));
     }
@@ -278,7 +278,7 @@ internal class ListTests
     [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
     {
-        int[] array = { 0, 1, 2 };
+        int[] array = [0, 1, 2];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(2, 4));
     }
 

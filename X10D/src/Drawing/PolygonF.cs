@@ -10,7 +10,7 @@ namespace X10D.Drawing;
 /// </summary>
 public class PolygonF
 {
-    private readonly List<PointF> _vertices = new();
+    private readonly List<PointF> _vertices = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="PolygonF" /> class.
@@ -29,7 +29,7 @@ public class PolygonF
         {
             throw new ArgumentNullException(nameof(polygon));
         }
-        _vertices = new List<PointF>();
+        _vertices = [];
         for (var index = 0; index < polygon._vertices.Count; index++)
         {
             PointF vertex = polygon._vertices[index];
@@ -49,7 +49,7 @@ public class PolygonF
             throw new ArgumentNullException(nameof(vertices));
         }
 
-        _vertices = new List<PointF>();
+        _vertices = [];
         foreach (Vector2 vertex in vertices)
         {
             _vertices.Add(vertex.ToPointF());
@@ -68,7 +68,7 @@ public class PolygonF
             throw new ArgumentNullException(nameof(vertices));
         }
 
-        _vertices = new List<PointF>(vertices);
+        _vertices = [..vertices];
     }
 
     /// <summary>

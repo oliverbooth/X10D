@@ -18,7 +18,7 @@ public static class Extensions
     [Pure]
     public static T[] AsArrayValue<T>(this T value)
     {
-        return new[] {value};
+        return [value];
     }
 
     /// <summary>

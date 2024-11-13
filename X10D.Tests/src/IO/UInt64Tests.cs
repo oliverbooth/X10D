@@ -10,7 +10,7 @@ internal class UInt64Tests
     public void GetLittleEndianBytes_ReturnsCorrectValue_WithEndianness()
     {
         const ulong value = 0x0F;
-        byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
+        byte[] expected = [0x0F, 0, 0, 0, 0, 0, 0, 0];
         byte[] actual = value.GetLittleEndianBytes();
 
         Assert.That(actual, Is.EqualTo(expected).AsCollection);
@@ -20,7 +20,7 @@ internal class UInt64Tests
     public void GetBigEndianBytes_ReturnsCorrectValue_WithEndianness()
     {
         const ulong value = 0x0F;
-        byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
+        byte[] expected = [0, 0, 0, 0, 0, 0, 0, 0x0F];
         byte[] actual = value.GetBigEndianBytes();
 
         Assert.That(actual, Is.EqualTo(expected).AsCollection);
@@ -30,7 +30,7 @@ internal class UInt64Tests
     public void TryWriteLittleEndian_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan()
     {
         const ulong value = 0x0F;
-        byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
+        byte[] expected = [0x0F, 0, 0, 0, 0, 0, 0, 0];
 
         Assert.Multiple(() =>
         {
@@ -44,7 +44,7 @@ internal class UInt64Tests
     public void TryWriteBigEndian_ReturnsTrue_FillsSpanCorrectly_GivenLargeEnoughSpan()
     {
         const ulong value = 0x0F;
-        byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
+        byte[] expected = [0, 0, 0, 0, 0, 0, 0, 0x0F];
 
         Assert.Multiple(() =>
         {
@@ -58,7 +58,7 @@ internal class UInt64Tests
     public void TryWriteLittleEndian_RReturnsFalse_GivenSmallSpan()
     {
         const ulong value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteLittleEndianBytes(buffer), Is.False);
     }
 
@@ -66,7 +66,7 @@ internal class UInt64Tests
     public void TryWriteBigEndian_ReturnsFalse_GivenSmallSpan()
     {
         const ulong value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBigEndianBytes(buffer), Is.False);
     }
 }

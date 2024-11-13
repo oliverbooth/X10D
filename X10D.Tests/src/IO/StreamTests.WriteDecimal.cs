@@ -48,10 +48,10 @@ internal partial class StreamTests
         Assert.Multiple(() =>
         {
             Span<byte> actual = stackalloc byte[16];
-            ReadOnlySpan<byte> expected = stackalloc byte[]
-            {
+            ReadOnlySpan<byte> expected =
+            [
                 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x68
-            };
+            ];
             int read = stream.Read(actual);
             Trace.WriteLine(string.Join(' ', actual.ToArray()));
 
@@ -71,10 +71,10 @@ internal partial class StreamTests
         Assert.Multiple(() =>
         {
             Span<byte> actual = stackalloc byte[16];
-            ReadOnlySpan<byte> expected = stackalloc byte[]
-            {
+            ReadOnlySpan<byte> expected =
+            [
                 0x68, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00
-            };
+            ];
             int read = stream.Read(actual);
 
             Trace.WriteLine(string.Join(", ", actual.ToArray().Select(b => $"0x{b:X2}")));

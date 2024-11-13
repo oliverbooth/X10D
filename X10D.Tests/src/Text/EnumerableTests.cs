@@ -22,8 +22,8 @@ internal class EnumerableTests
     [Test]
     public void Grep_ShouldYieldNoResults_GivenEmptySource()
     {
-        string[] source = Array.Empty<string>();
-        string[] expectedResult = Array.Empty<string>();
+        string[] source = [];
+        string[] expectedResult = [];
 
         const string pattern = /*lang=regex*/@"[0-9]+";
         string[] actualResult = source.Grep(pattern).ToArray();
@@ -59,7 +59,7 @@ internal class EnumerableTests
     [Test]
     public void Grep_ShouldThrowArgumentNullException_GivenNullPattern()
     {
-        IEnumerable<string> source = Enumerable.Empty<string>();
+        IEnumerable<string> source = [];
         Assert.Multiple(() =>
         {
             Assert.Throws<ArgumentNullException>(() => source.Grep(null!).ToArray());

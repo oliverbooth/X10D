@@ -11,7 +11,7 @@ internal class PolyhedronTests
     public void AddVertices_ShouldAddVertices()
     {
         var polyhedron = Polyhedron.Empty;
-        polyhedron.AddVertices(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
+        polyhedron.AddVertices([new Vector3(1, 2, 3), new Vector3(4, 5, 6)]);
 
         Assert.Multiple(() =>
         {
@@ -34,7 +34,7 @@ internal class PolyhedronTests
     public void ClearVertices_ShouldClearVertices()
     {
         var polyhedron = Polyhedron.Empty;
-        polyhedron.AddVertices(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
+        polyhedron.AddVertices([new Vector3(1, 2, 3), new Vector3(4, 5, 6)]);
         Assert.Multiple(() =>
         {
             Assert.That(polyhedron.VertexCount, Is.EqualTo(2));
@@ -50,7 +50,7 @@ internal class PolyhedronTests
     [Test]
     public void Constructor_ShouldPopulateVertices_GivenPolyhedron()
     {
-        var polyhedron = new Polyhedron(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
+        var polyhedron = new Polyhedron([new Vector3(1, 2, 3), new Vector3(4, 5, 6)]);
         Assert.That(polyhedron.VertexCount, Is.EqualTo(2));
     }
 
@@ -65,7 +65,7 @@ internal class PolyhedronTests
     public void CopyConstructor_ShouldCopyVertices_GivenPolyhedron()
     {
         var first = Polyhedron.Empty;
-        first.AddVertices(new[] {new Vector3(1, 2, 3), new Vector3(4, 5, 6)});
+        first.AddVertices([new Vector3(1, 2, 3), new Vector3(4, 5, 6)]);
 
         var second = new Polyhedron(first);
         Assert.Multiple(() =>

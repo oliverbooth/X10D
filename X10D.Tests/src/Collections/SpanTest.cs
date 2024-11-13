@@ -31,7 +31,7 @@ internal class SpanTest
     [Test]
     public void Count_ShouldReturn8_GivenSpanWith8MatchingElements()
     {
-        Span<int> span = stackalloc int[16] { 1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2 };
+        Span<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
 
         int count = span.Count(2);
 
@@ -41,7 +41,7 @@ internal class SpanTest
     [Test]
     public void Count_ShouldReturn8_GivenReadOnlySpanWith8MatchingElements()
     {
-        ReadOnlySpan<int> span = stackalloc int[16] { 1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2 };
+        ReadOnlySpan<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
 
         int count = span.Count(2);
 
@@ -51,7 +51,7 @@ internal class SpanTest
     [Test]
     public void Replace_ShouldReplaceAllElements_GivenSpanOfInt32()
     {
-        Span<int> span = stackalloc int[16] { 1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2 };
+        Span<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
         span.Replace(2, 4);
         Assert.That(span.ToArray(), Is.EqualTo(new[] { 1, 4, 3, 4, 5, 4, 7, 4, 9, 4, 11, 4, 13, 4, 15, 4 }));
     }
@@ -59,7 +59,7 @@ internal class SpanTest
     [Test]
     public void Replace_ShouldReplaceAllElements_GivenSpanOfChar()
     {
-        Span<char> chars = stackalloc char[12] { 'H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!' };
+        Span<char> chars = ['H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!'];
         chars.Replace('l', 'w');
         Assert.That("Hewwo worwd!".ToCharArray(), Is.EqualTo(chars.ToArray()).AsCollection);
     }
@@ -67,7 +67,7 @@ internal class SpanTest
     [Test]
     public void Replace_ShouldDoNothing_GivenSpanWithNoMatchingElements()
     {
-        Span<int> span = stackalloc int[16] { 1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2 };
+        Span<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
         span.Replace(4, 8);
         Assert.That(span.ToArray(), Is.EqualTo(new[] { 1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2 }));
     }

@@ -11,7 +11,7 @@ internal class PolygonTests
     public void AddVertices_ShouldAddVertices()
     {
         var polygon = Polygon.Empty;
-        polygon.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
+        polygon.AddVertices([new Point(1, 2), new Point(3, 4)]);
         Assert.That(polygon.VertexCount, Is.EqualTo(2));
 
         // assert that the empty polygon was not modified
@@ -30,7 +30,7 @@ internal class PolygonTests
     public void ClearVertices_ShouldClearVertices()
     {
         var polygon = Polygon.Empty;
-        polygon.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
+        polygon.AddVertices([new Point(1, 2), new Point(3, 4)]);
         Assert.That(polygon.VertexCount, Is.EqualTo(2));
 
         // assert that the empty polygon was not modified
@@ -43,7 +43,7 @@ internal class PolygonTests
     [Test]
     public void Constructor_ShouldPopulateVertices_GivenPolygon()
     {
-        var pointPolygon = new Polygon(new[] {new Point(1, 2), new Point(3, 4)});
+        var pointPolygon = new Polygon([new Point(1, 2), new Point(3, 4)]);
 
         Assert.That(pointPolygon.VertexCount, Is.EqualTo(2));
     }
@@ -59,7 +59,7 @@ internal class PolygonTests
     public void CopyConstructor_ShouldCopyVertices_GivenPolygon()
     {
         var first = Polygon.Empty;
-        first.AddVertices(new[] {new Point(1, 2), new Point(3, 4)});
+        first.AddVertices([new Point(1, 2), new Point(3, 4)]);
 
         var second = new Polygon(first);
         Assert.That(first.VertexCount, Is.EqualTo(2));

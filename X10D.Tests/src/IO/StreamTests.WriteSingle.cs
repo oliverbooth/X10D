@@ -47,7 +47,7 @@ internal partial class StreamTests
         Assert.Multiple(() =>
         {
             Span<byte> actual = stackalloc byte[4];
-            ReadOnlySpan<byte> expected = stackalloc byte[] { 0x43, 0xD2, 0x00, 0x00 };
+            ReadOnlySpan<byte> expected = [0x43, 0xD2, 0x00, 0x00];
             int read = stream.Read(actual);
 
             Assert.That(read, Is.EqualTo(4));
@@ -66,7 +66,7 @@ internal partial class StreamTests
         Assert.Multiple(() =>
         {
             Span<byte> actual = stackalloc byte[4];
-            ReadOnlySpan<byte> expected = stackalloc byte[] { 0x00, 0x00, 0xD2, 0x43 };
+            ReadOnlySpan<byte> expected = [0x00, 0x00, 0xD2, 0x43];
             int read = stream.Read(actual);
 
             Assert.That(read, Is.EqualTo(4));

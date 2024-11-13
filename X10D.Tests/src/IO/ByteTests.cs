@@ -29,7 +29,7 @@ internal class ByteTests
     public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
     {
         const byte value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBytes(buffer), Is.False);
     }
 }

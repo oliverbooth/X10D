@@ -112,7 +112,7 @@ internal class EnumerableTests
     [Test]
     public void MinMax_ShouldThrowArgumentNullException_GivenNullSelector()
     {
-        IEnumerable<int> source = Enumerable.Empty<int>();
+        IEnumerable<int> source = [];
         Assert.Throws<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!)));
         Assert.Throws<ArgumentNullException>(() => source.MinMax((Func<int, int>)(null!), null));
     }
@@ -201,13 +201,13 @@ internal class EnumerableTests
     {
         Assert.Throws<InvalidOperationException>(() =>
         {
-            IEnumerable<Person> source = Enumerable.Empty<Person>();
+            IEnumerable<Person> source = [];
             _ = source.MinMaxBy(p => p.Age);
         });
 
         Assert.Throws<InvalidOperationException>(() =>
         {
-            Person[] source = Array.Empty<Person>();
+            Person[] source = [];
             _ = source.MinMaxBy(p => p.Age);
         });
     }

@@ -14,10 +14,10 @@ internal partial class StreamTests
     {
         // SHA-1
         byte[] expectedHash =
-        {
+        [
             0x0A, 0x4D, 0x55, 0xA8, 0xD7, 0x78, 0xE5, 0x02, 0x2F, 0xAB, 0x70, 0x19, 0x77, 0xC5, 0xD8, 0x40, 0xBB, 0xC4, 0x86,
             0xD0
-        };
+        ];
 
         using var stream = new MemoryStream();
         stream.Write(Encoding.UTF8.GetBytes("Hello World"));
@@ -42,10 +42,10 @@ internal partial class StreamTests
     {
         // SHA-1
         byte[] expectedHash =
-        {
+        [
             0x0A, 0x4D, 0x55, 0xA8, 0xD7, 0x78, 0xE5, 0x02, 0x2F, 0xAB, 0x70, 0x19, 0x77, 0xC5, 0xD8, 0x40, 0xBB, 0xC4, 0x86,
             0xD0
-        };
+        ];
 
         using var stream = new MemoryStream();
         stream.Write(Encoding.UTF8.GetBytes("Hello World"));
@@ -160,7 +160,7 @@ internal partial class StreamTests
 
         protected override byte[] HashFinal()
         {
-            return Array.Empty<byte>();
+            return [];
         }
 
         public override void Initialize()
@@ -176,7 +176,7 @@ internal partial class StreamTests
 
         protected override byte[] HashFinal()
         {
-            return Array.Empty<byte>();
+            return [];
         }
 
         public override void Initialize()

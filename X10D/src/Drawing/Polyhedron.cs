@@ -9,7 +9,7 @@ namespace X10D.Drawing;
 /// </summary>
 public class Polyhedron : IEquatable<Polyhedron>
 {
-    private readonly List<Vector3> _vertices = new();
+    private readonly List<Vector3> _vertices = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="Polyhedron" /> class.
@@ -39,7 +39,7 @@ public class Polyhedron : IEquatable<Polyhedron>
             throw new ArgumentNullException(nameof(vertices));
         }
 
-        _vertices = new List<Vector3>(vertices);
+        _vertices = [..vertices];
     }
 
     /// <summary>

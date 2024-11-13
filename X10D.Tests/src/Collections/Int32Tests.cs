@@ -156,7 +156,7 @@ internal class Int32Tests
         Assert.Throws<ArgumentException>(() =>
         {
             const int value = 0b11010100;
-            Span<bool> bits = stackalloc bool[0];
+            Span<bool> bits = [];
             value.Unpack(bits);
         });
     }

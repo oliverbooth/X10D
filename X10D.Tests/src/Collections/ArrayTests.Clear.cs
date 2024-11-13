@@ -21,7 +21,7 @@ internal static partial class ArrayTests
         [Test]
         public void Clear_ShouldDoNothing_WhenArrayIsEmpty()
         {
-            int[] array = Array.Empty<int>();
+            int[] array = [];
             array.Clear();
         }
 

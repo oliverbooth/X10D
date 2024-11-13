@@ -9,29 +9,32 @@ internal class ReadOnlySpanTests
     [Test]
     public void AllShouldReturnTrueForEmptySpan()
     {
-        var span = new ReadOnlySpan<int>();
+        ReadOnlySpan<int> span = [];
         Assert.That(span.All(x => x > 0));
     }
 
     [Test]
     public void AllShouldBeCorrect()
     {
-        var span = new ReadOnlySpan<int>(new[] { 2, 4, 6, 8, 10 });
-        Assert.That(span.All(x => x % 2 == 0));
-        Assert.That(span.All(x => x % 2 == 1), Is.False);
+        Assert.Multiple(() =>
+        {
+            ReadOnlySpan<int> span = [2, 4, 6, 8, 10];
+            Assert.That(span.All(x => x % 2 == 0));
+            Assert.That(span.All(x => x % 2 == 1), Is.False);
+        });
     }
 
     [Test]
     public void AnyShouldReturnFalseForEmptySpan()
     {
-        var span = new ReadOnlySpan<int>();
+        ReadOnlySpan<int> span = [];
         Assert.That(span.Any(x => x > 0), Is.False);
     }
 
     [Test]
     public void AnyShouldBeCorrect()
     {
-        var span = new ReadOnlySpan<int>(new[] { 2, 4, 6, 8, 10 });
+        ReadOnlySpan<int> span = [2, 4, 6, 8, 10];
         Assert.That(span.Any(x => x % 2 == 0));
         Assert.That(span.Any(x => x % 2 == 1), Is.False);
     }
@@ -41,7 +44,7 @@ internal class ReadOnlySpanTests
     {
         Assert.Throws<ArgumentNullException>(() =>
         {
-            var span = new ReadOnlySpan<int>();
+            ReadOnlySpan<int> span = [];
             _ = span.All(null!);
         });
     }
@@ -51,7 +54,7 @@ internal class ReadOnlySpanTests
     {
         Assert.Throws<ArgumentNullException>(() =>
         {
-            var span = new ReadOnlySpan<int>();
+            ReadOnlySpan<int> span = [];
             _ = span.Any(null!);
         });
     }
@@ -59,14 +62,14 @@ internal class ReadOnlySpanTests
     [Test]
     public void Count_ShouldReturn0_GivenEmptySpan()
     {
-        var span = new ReadOnlySpan<int>();
+        ReadOnlySpan<int> span = [];
         Assert.That(span.Count(i => i % 2 == 0), Is.Zero);
     }
 
     [Test]
     public void Count_ShouldReturn5_ForEvenNumbers_GivenNumbers1To10()
     {
-        var span = new ReadOnlySpan<int>(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+        ReadOnlySpan<int> span = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         Assert.That(span.Count(i => i % 2 == 0), Is.EqualTo(5));
     }
 
@@ -75,7 +78,7 @@ internal class ReadOnlySpanTests
     {
         Assert.Throws<ArgumentNullException>(() =>
         {
-            var span = new ReadOnlySpan<int>();
+            ReadOnlySpan<int> span = [];
             _ = span.Count((Predicate<int>)null!);
         });
     }

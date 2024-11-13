@@ -40,7 +40,7 @@ internal partial class StreamTests
     public void ReadInt16BigEndian_ShouldReadBigEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0x01, 0xA4 };
+        ReadOnlySpan<byte> bytes = [0x01, 0xA4];
         stream.Write(bytes);
         stream.Position = 0;
 
@@ -55,7 +55,7 @@ internal partial class StreamTests
     public void ReadInt16LittleEndian_ShouldReadLittleEndian()
     {
         using var stream = new MemoryStream();
-        ReadOnlySpan<byte> bytes = stackalloc byte[] { 0xA4, 0x01 };
+        ReadOnlySpan<byte> bytes = [0xA4, 0x01];
         stream.Write(bytes);
         stream.Position = 0;
 
