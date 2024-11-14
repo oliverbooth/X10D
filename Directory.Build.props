@@ -8,7 +8,7 @@
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <DebugType>pdbonly</DebugType>
         <DebugSymbols>true</DebugSymbols>
-        <VersionPrefix>4.1.0</VersionPrefix>
+        <VersionPrefix>5.0.0</VersionPrefix>
         <Authors>Oliver Booth</Authors>
         <Nullable>enable</Nullable>
         <NeutralLanguage>en</NeutralLanguage>
