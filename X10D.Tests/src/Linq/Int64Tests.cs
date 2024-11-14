@@ -51,7 +51,7 @@ internal class Int64Tests
     }
 
     [Test]
-    public void RangeTo_Int64_ShouldYieldCorrectValues()
+    public void RangeTo_ShouldYieldCorrectValues()
     {
         const long start = 1;
         const long end = 10;

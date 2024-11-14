@@ -50,7 +50,7 @@ internal class Int32Tests
     }
 
     [Test]
-    public void RangeTo_Int32_ShouldYieldCorrectValues()
+    public void RangeTo_ShouldYieldCorrectValues()
     {
         const int start = 1;
         const int end = 10;
@@ -64,18 +64,4 @@ internal class Int32Tests
         Assert.That(current, Is.EqualTo(end));
     }
 
-    [Test]
-    public void RangeTo_Int64_ShouldYieldCorrectValues()
-    {
-        const int start = 1;
-        const long end = 10;
-
-        long current = 1;
-        foreach (long value in start.RangeTo(end))
-        {
-            Assert.That(value, Is.EqualTo(current++));
-        }
-
-        Assert.That(current, Is.EqualTo(end));
-    }
 }
