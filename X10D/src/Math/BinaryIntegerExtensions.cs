@@ -77,4 +77,54 @@ public static class BinaryIntegerExtensions
 
         return result;
     }
+
+    /// <summary>
+    ///     Returns the multiplicative persistence of the current integer.
+    /// </summary>
+    /// <param name="value">The value whose multiplicative persistence to calculate.</param>
+    /// <returns>The multiplicative persistence.</returns>
+    /// <remarks>
+    ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
+    /// </remarks>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static int MultiplicativePersistence<TInteger>(this TInteger value)
+        where TInteger : IBinaryInteger<TInteger>
+    {
+        var nine = TInteger.CreateChecked(9);
+        var ten = TInteger.CreateChecked(10);
+
+        var persistence = 0;
+        TInteger product = TInteger.Abs(value);
+
+        while (product > nine)
+        {
+            if (value % ten == TInteger.Zero)
+            {
+                return persistence + 1;
+            }
+
+            while (value > nine)
+            {
+                value /= ten;
+                if (value % ten == TInteger.Zero)
+                {
+                    return persistence + 1;
+                }
+            }
+
+            TInteger newProduct = TInteger.One;
+            TInteger currentProduct = product;
+            while (currentProduct > TInteger.Zero)
+            {
+                newProduct *= currentProduct % ten;
+                currentProduct /= ten;
+            }
+
+            product = newProduct;
+            persistence++;
+        }
+
+        return persistence;
+    }
 }

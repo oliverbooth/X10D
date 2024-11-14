@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - X10D: Removed `IEnumerable<T>.GreatestCommonFactor` for all integer types in favour of generic math.
 - X10D: Removed `IEnumerable<T>.LowestCommonMultiple` for all integer types in favour of generic math.
+- X10D: Removed `T.MultiplicativePersistence` for all integer types in favour of generic math.
 - X10D: Removed `IEnumerable<T>.Product` for all integer types in favour of generic math.
 - X10D: Removed `IEnumerable<T>.RangeTo` for all integer types in favour of generic math.
 - X10D: Removed `T.Saturate` for all floating-point types in favour of generic math.

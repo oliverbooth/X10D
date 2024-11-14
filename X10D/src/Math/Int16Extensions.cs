@@ -22,19 +22,4 @@ public static class Int16Extensions
     {
         return ((long)value).IsPrime();
     }
-
-    /// <summary>
-    ///     Returns the multiplicative persistence of a specified value.
-    /// </summary>
-    /// <param name="value">The value whose multiplicative persistence to calculate.</param>
-    /// <returns>The multiplicative persistence.</returns>
-    /// <remarks>
-    ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
-    /// </remarks>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static int MultiplicativePersistence(this short value)
-    {
-        return ((long)value).MultiplicativePersistence();
-    }
 }
