@@ -40,20 +40,6 @@ public static class DateOnlyExtensions
     }
 
     /// <summary>
-    ///     Deconstructs the current <see cref="DateOnly" /> into its year, month, and day.
-    /// </summary>
-    /// <param name="value">The date to deconstruct.</param>
-    /// <param name="year">When this method returns, contains the year.</param>
-    /// <param name="month">When this method returns, contains the month.</param>
-    /// <param name="day">When this method returns, contains the day.</param>
-    public static void Deconstruct(this DateOnly value, out int year, out int month, out int day)
-    {
-        year = value.Year;
-        month = value.Month;
-        day = value.Day;
-    }
-
-    /// <summary>
     ///     Gets a date representing the first occurence of a specified day of the week in the current month.
     /// </summary>
     /// <param name="value">The current date.</param>

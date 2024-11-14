@@ -20,8 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- X10D: Removed `DateOnly.Deconstruct` due to conflict with
+[`System.DateOnly.Deconstruct`](https://learn.microsoft.com/en-us/dotnet/api/system.datetime.deconstruct?view=net-8.0).
 - X10D: Removed `Span<T>.Split` for .NET 9.0 target due to conflicts with
-[`System.MemoryExtensions.Split`](https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.split?view=net-8.0).
+[`System.MemoryExtensions.Split`](https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.split?view=net-9.0).
 
 ## [4.0.0] - 2024-06-12
 
