@@ -1,3 +1,4 @@
+#if !NET9_0_OR_GREATER
 namespace X10D.Collections;
 
 /// <summary>
@@ -85,3 +86,4 @@ public ref struct SpanSplitEnumerator<T> where T : struct, IEquatable<T>
         return true;
     }
 }
+#endif
