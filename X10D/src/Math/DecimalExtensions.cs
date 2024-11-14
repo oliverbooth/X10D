@@ -78,19 +78,6 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    ///     Saturates this decimal number.
-    /// </summary>
-    /// <param name="value">The value to saturate.</param>
-    /// <returns>The saturated value.</returns>
-    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static decimal Saturate(this decimal value)
-    {
-        return System.Math.Clamp(value, 0.0m, 1.0m);
-    }
-
-    /// <summary>
     ///     Returns the square root of this decimal number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>

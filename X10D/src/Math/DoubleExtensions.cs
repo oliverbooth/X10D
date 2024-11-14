@@ -256,19 +256,6 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    ///     Saturates this double-precision floating-point number.
-    /// </summary>
-    /// <param name="value">The value to saturate.</param>
-    /// <returns>The saturated value.</returns>
-    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static double Saturate(this double value)
-    {
-        return System.Math.Clamp(value, 0.0, 1.0);
-    }
-
-    /// <summary>
     ///     Returns the sine of the specified angle.
     /// </summary>
     /// <param name="value">The angle, in radians.</param>

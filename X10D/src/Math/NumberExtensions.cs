@@ -114,6 +114,22 @@ public static class NumberExtensions
     }
 
     /// <summary>
+    ///     Saturates this number.
+    /// </summary>
+    /// <param name="value">The value to saturate.</param>
+    /// <returns>The saturated value.</returns>
+    /// <remarks>
+    ///     This method clamps <paramref name="value" /> between <see cref="TNumber.Zero" /> and <see cref="TNumber.One" />.
+    /// </remarks>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber Saturate<TNumber>(this TNumber value)
+        where TNumber : INumber<TNumber>
+    {
+        return TNumber.Clamp(value, TNumber.Zero, TNumber.One);
+    }
+
+    /// <summary>
     ///     Returns an integer that indicates the sign of this number.
     /// </summary>
     /// <param name="value">A signed number.</param>
