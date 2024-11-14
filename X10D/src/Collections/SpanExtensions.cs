@@ -6,43 +6,6 @@ namespace X10D.Collections;
 public static class SpanExtensions
 {
     /// <summary>
-    ///     Returns the number of times that a specified element appears in a span of elements of the same type.
-    /// </summary>
-    /// <param name="source">The source to search.</param>
-    /// <param name="element">The element to count.</param>
-    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
-    /// <returns>The number of times that <paramref name="element" /> appears in <paramref name="source" />.</returns>
-    public static int Count<T>(this in Span<T> source, T element)
-        where T : IEquatable<T>
-    {
-        return source.AsReadOnly().Count(element);
-    }
-
-    /// <summary>
-    ///     Returns the number of times that a specified element appears in a read-only span of elements of the same type.
-    /// </summary>
-    /// <param name="source">The source to search.</param>
-    /// <param name="element">The element to count.</param>
-    /// <typeparam name="T">The type of elements in <paramref name="source" />.</typeparam>
-    /// <returns>The number of times that <paramref name="element" /> appears in <paramref name="source" />.</returns>
-    public static int Count<T>(this in ReadOnlySpan<T> source, T element)
-        where T : IEquatable<T>
-    {
-        var count = 0;
-
-        for (var index = 0; index < source.Length; index++)
-        {
-            T item = source[index];
-            if (item.Equals(element))
-            {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    /// <summary>
     ///     Returns a read-only <see cref="ReadOnlySpan{T}" /> wrapper for the current span.
     /// </summary>
     /// <param name="source">The source span.</param>

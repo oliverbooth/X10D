@@ -9,46 +9,6 @@ namespace X10D.Tests.Collections;
 internal class SpanTest
 {
     [Test]
-    public void Count_ShouldReturn0_GivenEmptySpan()
-    {
-        Span<int> span = Span<int>.Empty;
-
-        int count = span.Count(2);
-
-        Assert.That(count, Is.Zero);
-    }
-
-    [Test]
-    public void Count_ShouldReturn0_GivenEmptyReadOnlySpan()
-    {
-        ReadOnlySpan<int> span = ReadOnlySpan<int>.Empty;
-
-        int count = span.Count(2);
-
-        Assert.That(count, Is.Zero);
-    }
-
-    [Test]
-    public void Count_ShouldReturn8_GivenSpanWith8MatchingElements()
-    {
-        Span<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
-
-        int count = span.Count(2);
-
-        Assert.That(count, Is.EqualTo(8));
-    }
-
-    [Test]
-    public void Count_ShouldReturn8_GivenReadOnlySpanWith8MatchingElements()
-    {
-        ReadOnlySpan<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
-
-        int count = span.Count(2);
-
-        Assert.That(count, Is.EqualTo(8));
-    }
-
-    [Test]
     public void Replace_ShouldReplaceAllElements_GivenSpanOfInt32()
     {
         Span<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
