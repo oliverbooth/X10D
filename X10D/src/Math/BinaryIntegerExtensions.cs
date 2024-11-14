@@ -1,4 +1,3 @@
-#if NET7_0_OR_GREATER
 using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -70,7 +69,7 @@ public static class BinaryIntegerExtensions
             return 1;
         }
 
-        var result = 1L;
+        long result = 1L;
         for (TInteger i = TInteger.One; i <= value; i++)
         {
             result *= long.CreateChecked(i);
@@ -80,22 +79,52 @@ public static class BinaryIntegerExtensions
     }
 
     /// <summary>
-    ///     Calculates the greatest common factor between the current binary integer, and another binary integer.
+    ///     Returns the multiplicative persistence of the current integer.
     /// </summary>
-    /// <param name="value">The first value.</param>
-    /// <param name="other">The second value.</param>
-    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    /// <param name="value">The value whose multiplicative persistence to calculate.</param>
+    /// <returns>The multiplicative persistence.</returns>
+    /// <remarks>
+    ///     Multiplicative persistence is defined as the recursive digital product until that product is a single digit.
+    /// </remarks>
     [Pure]
     [MethodImpl(CompilerResources.MaxOptimization)]
-    public static TInteger GreatestCommonFactor<TInteger>(this TInteger value, TInteger other)
+    public static int MultiplicativePersistence<TInteger>(this TInteger value)
         where TInteger : IBinaryInteger<TInteger>
     {
-        while (other != TInteger.Zero)
+        var nine = TInteger.CreateChecked(9);
+        var ten = TInteger.CreateChecked(10);
+
+        var persistence = 0;
+        TInteger product = TInteger.Abs(value);
+
+        while (product > nine)
         {
-            (value, other) = (other, value % other);
+            if (value % ten == TInteger.Zero)
+            {
+                return persistence + 1;
+            }
+
+            while (value > nine)
+            {
+                value /= ten;
+                if (value % ten == TInteger.Zero)
+                {
+                    return persistence + 1;
+                }
+            }
+
+            TInteger newProduct = TInteger.One;
+            TInteger currentProduct = product;
+            while (currentProduct > TInteger.Zero)
+            {
+                newProduct *= currentProduct % ten;
+                currentProduct /= ten;
+            }
+
+            product = newProduct;
+            persistence++;
         }
 
-        return value;
+        return persistence;
     }
 }
-#endif

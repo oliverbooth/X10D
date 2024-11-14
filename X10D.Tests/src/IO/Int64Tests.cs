@@ -11,9 +11,9 @@ internal class Int64Tests
     {
         const long value = 0x0F;
 
-        byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
+        byte[] expected = [0x0F, 0, 0, 0, 0, 0, 0, 0];
         byte[] actual = value.GetLittleEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -21,9 +21,9 @@ internal class Int64Tests
     {
         const long value = 0x0F;
 
-        byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
+        byte[] expected = [0, 0, 0, 0, 0, 0, 0, 0x0F];
         byte[] actual = value.GetBigEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -31,10 +31,13 @@ internal class Int64Tests
     {
         const long value = 0x0F;
 
-        byte[] expected = { 0x0F, 0, 0, 0, 0, 0, 0, 0 };
-        Span<byte> actual = stackalloc byte[8];
-        Assert.That(value.TryWriteLittleEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        byte[] expected = [0x0F, 0, 0, 0, 0, 0, 0, 0];
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[8];
+            Assert.That(value.TryWriteLittleEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
@@ -42,17 +45,20 @@ internal class Int64Tests
     {
         const long value = 0x0F;
 
-        byte[] expected = { 0, 0, 0, 0, 0, 0, 0, 0x0F };
-        Span<byte> actual = stackalloc byte[8];
-        Assert.That(value.TryWriteBigEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        byte[] expected = [0, 0, 0, 0, 0, 0, 0, 0x0F];
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[8];
+            Assert.That(value.TryWriteBigEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
     public void TryWriteLittleEndian_RReturnsFalse_GivenSmallSpan()
     {
         const long value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteLittleEndianBytes(buffer), Is.False);
     }
 
@@ -60,7 +66,7 @@ internal class Int64Tests
     public void TryWriteBigEndian_ReturnsFalse_GivenSmallSpan()
     {
         const long value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBigEndianBytes(buffer), Is.False);
     }
 }

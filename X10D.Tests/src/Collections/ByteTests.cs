@@ -105,7 +105,7 @@ internal class ByteTests
         Assert.Throws<ArgumentException>(() =>
         {
             const byte value = 0b11010100;
-            Span<bool> bits = stackalloc bool[0];
+            Span<bool> bits = [];
             value.Unpack(bits);
         });
     }

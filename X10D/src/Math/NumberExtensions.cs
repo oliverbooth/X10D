@@ -1,4 +1,3 @@
-#if NET7_0_OR_GREATER
 using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -11,6 +10,25 @@ namespace X10D.Math;
 /// </summary>
 public static class NumberExtensions
 {
+    /// <summary>
+    ///     Calculates the greatest common factor between the current number and another number.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber GreatestCommonFactor<TNumber>(this TNumber value, TNumber other)
+        where TNumber : INumber<TNumber>
+    {
+        while (other != TNumber.Zero)
+        {
+            (value, other) = (other, value % other);
+        }
+
+        return value;
+    }
+
     /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
@@ -44,6 +62,35 @@ public static class NumberExtensions
     }
 
     /// <summary>
+    ///     Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber LowestCommonMultiple<TNumber>(this TNumber value, TNumber other)
+        where TNumber : INumber<TNumber>
+    {
+        if (value == TNumber.Zero || other == TNumber.Zero)
+        {
+            return TNumber.Zero;
+        }
+
+        if (value == TNumber.One)
+        {
+            return other;
+        }
+
+        if (other == TNumber.One)
+        {
+            return value;
+        }
+
+        return value * other / value.GreatestCommonFactor(other);
+    }
+
+    /// <summary>
     ///     Performs a modulo operation which supports a negative dividend.
     /// </summary>
     /// <param name="dividend">The dividend.</param>
@@ -64,6 +111,22 @@ public static class NumberExtensions
     {
         TNumber r = dividend % divisor;
         return r < TNumber.Zero ? r + divisor : r;
+    }
+
+    /// <summary>
+    ///     Saturates this number.
+    /// </summary>
+    /// <param name="value">The value to saturate.</param>
+    /// <returns>The saturated value.</returns>
+    /// <remarks>
+    ///     This method clamps <paramref name="value" /> between <see cref="TNumber.Zero" /> and <see cref="TNumber.One" />.
+    /// </remarks>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber Saturate<TNumber>(this TNumber value)
+        where TNumber : INumber<TNumber>
+    {
+        return TNumber.Clamp(value, TNumber.Zero, TNumber.One);
     }
 
     /// <summary>
@@ -100,5 +163,34 @@ public static class NumberExtensions
     {
         return TNumber.Sign(value);
     }
+
+    /// <summary>
+    ///     Wraps the current integer between a low and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="low">The inclusive lower bound.</param>
+    /// <param name="high">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber Wrap<TNumber>(this TNumber value, TNumber low, TNumber high)
+        where TNumber : INumber<TNumber>
+    {
+        TNumber difference = high - low;
+        return low + (((value - low) % difference) + difference) % difference;
+    }
+
+    /// <summary>
+    ///     Wraps the current integer between 0 and a high value.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <param name="length">The exclusive upper bound.</param>
+    /// <returns>The wrapped value.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber Wrap<TNumber>(this TNumber value, TNumber length)
+        where TNumber : INumber<TNumber>
+    {
+        return ((value % length) + length) % length;
+    }
 }
-#endif

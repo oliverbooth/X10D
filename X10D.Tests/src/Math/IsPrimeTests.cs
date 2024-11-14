@@ -142,7 +142,7 @@ internal class IsPrimeTests
     private static IReadOnlyList<int> LoadPrimes()
     {
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("X10D.Tests.1000primes.txt");
-        Assert.IsNotNull(stream);
+        Assert.That(stream, Is.Not.Null);
 
         using var reader = new StreamReader(stream, Encoding.UTF8);
         var primes = new List<int>();

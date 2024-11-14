@@ -12,7 +12,7 @@ internal class PolygonFTests
     public void AddVertices_ShouldAddVertices()
     {
         var polygon = PolygonF.Empty;
-        polygon.AddVertices(new[] {new PointF(1, 2), new PointF(3, 4)});
+        polygon.AddVertices([new PointF(1, 2), new PointF(3, 4)]);
         Assert.That(polygon.VertexCount, Is.EqualTo(2));
 
         // assert that the empty polygon was not modified
@@ -39,7 +39,7 @@ internal class PolygonFTests
     public void ClearVertices_ShouldClearVertices()
     {
         var polygon = PolygonF.Empty;
-        polygon.AddVertices(new[] {new Vector2(1, 2), new Vector2(3, 4)});
+        polygon.AddVertices([new Vector2(1, 2), new Vector2(3, 4)]);
         Assert.That(polygon.VertexCount, Is.EqualTo(2));
 
         // assert that the empty polygon was not modified
@@ -52,8 +52,8 @@ internal class PolygonFTests
     [Test]
     public void Constructor_ShouldPopulateVertices_GivenPolygon()
     {
-        var pointPolygon = new PolygonF(new[] {new PointF(1, 2), new PointF(3, 4)});
-        var vectorPolygon = new PolygonF(new[] {new Vector2(1, 2), new Vector2(3, 4)});
+        var pointPolygon = new PolygonF([new PointF(1, 2), new PointF(3, 4)]);
+        var vectorPolygon = new PolygonF([new Vector2(1, 2), new Vector2(3, 4)]);
 
         Assert.That(pointPolygon.VertexCount, Is.EqualTo(2));
         Assert.That(vectorPolygon.VertexCount, Is.EqualTo(2));
@@ -77,7 +77,7 @@ internal class PolygonFTests
     public void CopyConstructor_ShouldCopyVertices_GivenPolygon()
     {
         var first = PolygonF.Empty;
-        first.AddVertices(new[] {new PointF(1, 2), new PointF(3, 4)});
+        first.AddVertices([new PointF(1, 2), new PointF(3, 4)]);
 
         var second = new PolygonF(first);
         Assert.That(first.VertexCount, Is.EqualTo(2));
@@ -85,7 +85,7 @@ internal class PolygonFTests
 
         // we cannot use CollectionAssert here for reasons I am not entirely sure of.
         // it seems to dislike casting from IReadOnlyList<Point> to ICollection. but okay.
-        CollectionAssert.AreEqual(first.Vertices, second.Vertices);
+        Assert.That(second.Vertices, Is.EqualTo(first.Vertices).AsCollection);
 
         // assert that the empty polygon was not modified
         Assert.That(PolygonF.Empty.VertexCount, Is.Zero);
@@ -178,7 +178,7 @@ internal class PolygonFTests
             Assert.That(converted, Is.EqualTo((Polygon)polygon));
             Assert.That(converted.IsConvex, Is.EqualTo(polygon.IsConvex));
             Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
-            CollectionAssert.AreEqual(polygon.Vertices, converted.Vertices.Select(p => (PointF)p));
+            Assert.That(converted.Vertices.Select(p => (PointF)p), Is.EqualTo(polygon.Vertices).AsCollection);
         });
     }
 
@@ -194,7 +194,7 @@ internal class PolygonFTests
             Assert.That(converted == polygon);
             Assert.That(converted.IsConvex, Is.EqualTo(polygon.IsConvex));
             Assert.That(converted.VertexCount, Is.EqualTo(polygon.VertexCount));
-            CollectionAssert.AreEqual(converted.Vertices, polygon.Vertices.Select(p => (PointF)p));
+            Assert.That(polygon.Vertices.Select(p => (PointF)p), Is.EqualTo(converted.Vertices).AsCollection);
         });
     }
 

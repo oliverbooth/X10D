@@ -8,7 +8,7 @@ namespace X10D.Drawing;
 /// </summary>
 public class Polygon : IEquatable<Polygon>
 {
-    private readonly List<Point> _vertices = new();
+    private readonly List<Point> _vertices = [];
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="Polygon" /> class.
@@ -27,7 +27,7 @@ public class Polygon : IEquatable<Polygon>
             throw new ArgumentNullException(nameof(polygon));
         }
 
-        _vertices = new List<Point>();
+        _vertices = [];
         for (var index = 0; index < polygon._vertices.Count; index++)
         {
             Point vertex = polygon._vertices[index];
@@ -46,7 +46,7 @@ public class Polygon : IEquatable<Polygon>
             throw new ArgumentNullException(nameof(vertices));
         }
 
-        _vertices = new List<Point>(vertices);
+        _vertices = [..vertices];
     }
 
     /// <summary>

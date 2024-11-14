@@ -78,53 +78,6 @@ public static class DecimalExtensions
     }
 
     /// <summary>
-    ///     Saturates this decimal number.
-    /// </summary>
-    /// <param name="value">The value to saturate.</param>
-    /// <returns>The saturated value.</returns>
-    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static decimal Saturate(this decimal value)
-    {
-        return System.Math.Clamp(value, 0.0m, 1.0m);
-    }
-
-    /// <summary>
-    ///     Returns an integer that indicates the sign of this decimal number.
-    /// </summary>
-    /// <param name="value">A signed number.</param>
-    /// <returns>
-    ///     A number that indicates the sign of <paramref name="value" />, as shown in the following table.
-    ///
-    ///     <list type="table">
-    ///         <listheader>
-    ///             <term>Return value</term>
-    ///             <description>Meaning</description>
-    ///         </listheader>
-    ///
-    ///         <item>
-    ///             <term>-1</term>
-    ///             <description><paramref name="value" /> is less than zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>0</term>
-    ///             <description><paramref name="value" /> is equal to zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>1</term>
-    ///             <description><paramref name="value" /> is greater than zero.</description>
-    ///         </item>
-    ///     </list>
-    /// </returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static int Sign(this decimal value)
-    {
-        return System.Math.Sign(value);
-    }
-
-    /// <summary>
     ///     Returns the square root of this decimal number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
@@ -173,33 +126,5 @@ public static class DecimalExtensions
         } while (System.Math.Abs(previous - current) > 0.0m);
 
         return current;
-    }
-
-    /// <summary>
-    ///     Wraps the current decimal number between a low and a high value.
-    /// </summary>
-    /// <param name="value">The value to wrap.</param>
-    /// <param name="low">The inclusive lower bound.</param>
-    /// <param name="high">The exclusive upper bound.</param>
-    /// <returns>The wrapped value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static decimal Wrap(this decimal value, decimal low, decimal high)
-    {
-        decimal difference = high - low;
-        return low + (((value - low) % difference) + difference) % difference;
-    }
-
-    /// <summary>
-    ///     Wraps the current decimal number between 0 and a high value.
-    /// </summary>
-    /// <param name="value">The value to wrap.</param>
-    /// <param name="length">The exclusive upper bound.</param>
-    /// <returns>The wrapped value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static decimal Wrap(this decimal value, decimal length)
-    {
-        return ((value % length) + length) % length;
     }
 }

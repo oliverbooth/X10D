@@ -21,15 +21,15 @@ internal class FileInfoTests
 
         // SHA-1
         byte[] expectedHash =
-        {
+        [
             0x0A, 0x4D, 0x55, 0xA8, 0xD7, 0x78, 0xE5, 0x02, 0x2F, 0xAB, 0x70, 0x19, 0x77, 0xC5, 0xD8, 0x40, 0xBB, 0xC4, 0x86,
             0xD0
-        };
+        ];
 
         try
         {
             byte[] hash = new FileInfo(fileName).GetHash<SHA1>();
-            CollectionAssert.AreEqual(expectedHash, hash);
+            Assert.That(hash, Is.EqualTo(expectedHash).AsCollection);
         }
         finally
         {
@@ -51,17 +51,21 @@ internal class FileInfoTests
 
         // SHA-1
         byte[] expectedHash =
-        {
+        [
             0x0A, 0x4D, 0x55, 0xA8, 0xD7, 0x78, 0xE5, 0x02, 0x2F, 0xAB, 0x70, 0x19, 0x77, 0xC5, 0xD8, 0x40, 0xBB, 0xC4, 0x86,
             0xD0
-        };
+        ];
 
         try
         {
-            Span<byte> hash = stackalloc byte[20];
-            new FileInfo(fileName).TryWriteHash<SHA1>(hash, out int bytesWritten);
-            Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
-            CollectionAssert.AreEqual(expectedHash, hash.ToArray());
+            Assert.Multiple(() =>
+            {
+                Span<byte> hash = stackalloc byte[20];
+                new FileInfo(fileName).TryWriteHash<SHA1>(hash, out int bytesWritten);
+
+                Assert.That(bytesWritten, Is.EqualTo(expectedHash.Length));
+                Assert.That(hash.ToArray(), Is.EqualTo(expectedHash).AsCollection);
+            });
         }
         finally
         {

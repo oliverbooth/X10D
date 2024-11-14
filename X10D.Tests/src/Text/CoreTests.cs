@@ -20,7 +20,11 @@ internal class CoreTests
         int[] source = Enumerable.Range(1, 100).ToArray();
         string json = source.ToJson();
         int[]? target = json.FromJson<int[]>();
-        CollectionAssert.AreEqual(source, target);
-        CollectionAssert.AreEquivalent(source, target);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(target, Is.EqualTo(source).AsCollection);
+            Assert.That(target, Is.EquivalentTo(source));
+        });
     }
 }

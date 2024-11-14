@@ -1,4 +1,3 @@
-using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 using NUnit.Framework;
 using X10D.Core;
@@ -13,7 +12,7 @@ internal class SpanTest
     {
         Assert.Multiple(() =>
         {
-            ReadOnlySpan<EnumByte> span = stackalloc EnumByte[1] {EnumByte.B};
+            ReadOnlySpan<EnumByte> span = [EnumByte.B];
             Assert.That(span.Contains(EnumByte.A), Is.False);
             Assert.That(span.Contains(EnumByte.C), Is.False);
         });
@@ -24,7 +23,7 @@ internal class SpanTest
     {
         Assert.Multiple(() =>
         {
-            ReadOnlySpan<EnumInt16> span = stackalloc EnumInt16[1] {EnumInt16.B};
+            ReadOnlySpan<EnumInt16> span = [EnumInt16.B];
             Assert.That(span.Contains(EnumInt16.A), Is.False);
             Assert.That(span.Contains(EnumInt16.C), Is.False);
         });
@@ -35,7 +34,7 @@ internal class SpanTest
     {
         Assert.Multiple(() =>
         {
-            ReadOnlySpan<EnumInt32> span = stackalloc EnumInt32[1] {EnumInt32.B};
+            ReadOnlySpan<EnumInt32> span = [EnumInt32.B];
             Assert.That(span.Contains(EnumInt32.A), Is.False);
             Assert.That(span.Contains(EnumInt32.C), Is.False);
         });
@@ -46,7 +45,7 @@ internal class SpanTest
     {
         Assert.Multiple(() =>
         {
-            ReadOnlySpan<EnumInt64> span = stackalloc EnumInt64[1] {EnumInt64.B};
+            ReadOnlySpan<EnumInt64> span = [EnumInt64.B];
 
             Assert.That(span.Contains(EnumInt64.A), Is.False);
             Assert.That(span.Contains(EnumInt64.C), Is.False);
@@ -56,7 +55,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenReadOnlySpanWithMatchingElements_UsingByteEnum()
     {
-        ReadOnlySpan<EnumByte> span = stackalloc EnumByte[1] {EnumByte.B};
+        ReadOnlySpan<EnumByte> span = [EnumByte.B];
 
         Assert.That(span.Contains(EnumByte.B));
     }
@@ -64,7 +63,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenReadOnlySpanWithMatchingElements_UsingInt16Enum()
     {
-        ReadOnlySpan<EnumInt16> span = stackalloc EnumInt16[1] {EnumInt16.B};
+        ReadOnlySpan<EnumInt16> span = [EnumInt16.B];
 
         Assert.That(span.Contains(EnumInt16.B));
     }
@@ -72,7 +71,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenReadOnlySpanWithMatchingElements_UsingInt32Enum()
     {
-        ReadOnlySpan<EnumInt32> span = stackalloc EnumInt32[1] {EnumInt32.B};
+        ReadOnlySpan<EnumInt32> span = [EnumInt32.B];
 
         Assert.That(span.Contains(EnumInt32.B));
     }
@@ -80,7 +79,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenReadOnlySpanWithMatchingElements_UsingInt64Enum()
     {
-        ReadOnlySpan<EnumInt64> span = stackalloc EnumInt64[1] {EnumInt64.B};
+        ReadOnlySpan<EnumInt64> span = [EnumInt64.B];
 
         Assert.That(span.Contains(EnumInt64.B));
     }
@@ -90,7 +89,7 @@ internal class SpanTest
     {
         Assert.Multiple(() =>
         {
-            Span<EnumByte> span = stackalloc EnumByte[1] {EnumByte.B};
+            Span<EnumByte> span = [EnumByte.B];
 
             Assert.That(span.Contains(EnumByte.A), Is.False);
             Assert.That(span.Contains(EnumByte.C), Is.False);
@@ -100,7 +99,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnFalse_GivenSpanWithNoMatchingElements_UsingInt16Enum()
     {
-        Span<EnumInt16> span = stackalloc EnumInt16[1] {EnumInt16.B};
+        Span<EnumInt16> span = [EnumInt16.B];
 
         Assert.That(span.Contains(EnumInt16.A), Is.False);
         Assert.That(span.Contains(EnumInt16.C), Is.False);
@@ -109,7 +108,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnFalse_GivenSpanWithNoMatchingElements_UsingInt32Enum()
     {
-        Span<EnumInt32> span = stackalloc EnumInt32[1] {EnumInt32.B};
+        Span<EnumInt32> span = [EnumInt32.B];
 
         Assert.That(span.Contains(EnumInt32.A), Is.False);
         Assert.That(span.Contains(EnumInt32.C), Is.False);
@@ -118,7 +117,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnFalse_GivenSpanWithNoMatchingElements_UsingInt64Enum()
     {
-        Span<EnumInt64> span = stackalloc EnumInt64[1] {EnumInt64.B};
+        Span<EnumInt64> span = [EnumInt64.B];
 
         Assert.That(span.Contains(EnumInt64.A), Is.False);
         Assert.That(span.Contains(EnumInt64.C), Is.False);
@@ -127,7 +126,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenSpanWithMatchingElements_UsingByteEnum()
     {
-        Span<EnumByte> span = stackalloc EnumByte[1] {EnumByte.B};
+        Span<EnumByte> span = [EnumByte.B];
 
         Assert.That(span.Contains(EnumByte.B));
     }
@@ -135,7 +134,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenSpanWithMatchingElements_UsingInt16Enum()
     {
-        Span<EnumInt16> span = stackalloc EnumInt16[1] {EnumInt16.B};
+        Span<EnumInt16> span = [EnumInt16.B];
 
         Assert.That(span.Contains(EnumInt16.B));
     }
@@ -143,7 +142,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenSpanWithMatchingElements_UsingInt32Enum()
     {
-        Span<EnumInt32> span = stackalloc EnumInt32[1] {EnumInt32.B};
+        Span<EnumInt32> span = [EnumInt32.B];
 
         Assert.That(span.Contains(EnumInt32.B));
     }
@@ -151,7 +150,7 @@ internal class SpanTest
     [Test]
     public void Contains_ShouldReturnTrue_GivenSpanWithMatchingElements_UsingInt64Enum()
     {
-        Span<EnumInt64> span = stackalloc EnumInt64[1] {EnumInt64.B};
+        Span<EnumInt64> span = [EnumInt64.B];
 
         Assert.That(span.Contains(EnumInt64.B));
     }
@@ -200,7 +199,7 @@ internal class SpanTest
     public void PackByteInternal_Fallback_ShouldReturnCorrectByte_GivenReadOnlySpan_Using()
     {
         const byte expected = 0b00110011;
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        ReadOnlySpan<bool> span = [true, true, false, false, true, true, false, false];
 
         byte actual = span.PackByteInternal_Fallback();
 
@@ -216,7 +215,7 @@ internal class SpanTest
         }
 
         const byte expected = 0b00110011;
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        ReadOnlySpan<bool> span = [true, true, false, false, true, true, false, false];
 
         byte actual = span.PackByteInternal_Sse2();
 
@@ -226,7 +225,7 @@ internal class SpanTest
     [Test]
     public void PackInt16_ShouldReturnSameAsPackByte_WhenSpanHasLength8()
     {
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        ReadOnlySpan<bool> span = [true, true, false, false, true, true, false, false];
 
         short expected = span.PackByte();
         short actual = span.PackInt16();
@@ -238,10 +237,10 @@ internal class SpanTest
     public void PackInt16Internal_Fallback_ShouldReturnCorrectInt16_GivenReadOnlySpan()
     {
         const short expected = 0b00101101_11010100;
-        ReadOnlySpan<bool> span = stackalloc bool[16]
-        {
-            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
-        };
+        ReadOnlySpan<bool> span =
+        [
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false
+        ];
 
         short actual = span.PackInt16Internal_Fallback();
 
@@ -257,10 +256,10 @@ internal class SpanTest
         }
 
         const short expected = 0b00101101_11010100;
-        ReadOnlySpan<bool> span = stackalloc bool[16]
-        {
-            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
-        };
+        ReadOnlySpan<bool> span =
+        [
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false
+        ];
 
         short actual = span.PackInt16Internal_Sse2();
 
@@ -271,11 +270,11 @@ internal class SpanTest
     public void PackInt32Internal_Fallback_ShouldReturnCorrectInt32_GivenReadOnlySpan()
     {
         const int expected = 0b01010101_10101010_01010101_10101010;
-        ReadOnlySpan<bool> span = stackalloc bool[32]
-        {
+        ReadOnlySpan<bool> span =
+        [
             false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false
+        ];
 
         int actual = span.PackInt32Internal_Fallback();
 
@@ -291,11 +290,11 @@ internal class SpanTest
         }
 
         const int expected = 0b01010101_10101010_01010101_10101010;
-        ReadOnlySpan<bool> span = stackalloc bool[32]
-        {
+        ReadOnlySpan<bool> span =
+        [
             false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false
+        ];
 
         int actual = span.PackInt32Internal_Sse2();
 
@@ -311,11 +310,11 @@ internal class SpanTest
         }
 
         const int expected = 0b01010101_10101010_01010101_10101010;
-        ReadOnlySpan<bool> span = stackalloc bool[32]
-        {
+        ReadOnlySpan<bool> span =
+        [
             false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false
+        ];
 
         int actual = span.PackInt32Internal_Avx2();
 
@@ -325,7 +324,7 @@ internal class SpanTest
     [Test]
     public void PackInt32_ShouldReturnSameAsPackByte_WhenSpanHasLength8_UsingReadOnlySpan()
     {
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        ReadOnlySpan<bool> span = [true, true, false, false, true, true, false, false];
 
         int expected = span.PackByte();
         int actual = span.PackInt32();
@@ -336,7 +335,7 @@ internal class SpanTest
     [Test]
     public void PackInt32_ShouldReturnSameAsPackByte_WhenSpanHasLength8_UsingSpan()
     {
-        Span<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        Span<bool> span = [true, true, false, false, true, true, false, false];
 
         int expected = span.PackByte();
         int actual = span.PackInt32();
@@ -347,10 +346,10 @@ internal class SpanTest
     [Test]
     public void PackInt32_ShouldReturnSameAsPackInt16_WhenSpanHasLength16_UsingReadOnlySpan()
     {
-        ReadOnlySpan<bool> span = stackalloc bool[16]
-        {
-            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
-        };
+        ReadOnlySpan<bool> span =
+        [
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false
+        ];
 
         int expected = span.PackInt16();
         int actual = span.PackInt32();
@@ -361,10 +360,10 @@ internal class SpanTest
     [Test]
     public void PackInt32_ShouldReturnSameAsPackInt16_WhenSpanHasLength16_UsingSpan()
     {
-        Span<bool> span = stackalloc bool[16]
-        {
-            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
-        };
+        Span<bool> span =
+        [
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false
+        ];
 
         int expected = span.PackInt16();
         int actual = span.PackInt32();
@@ -376,13 +375,13 @@ internal class SpanTest
     public void PackInt64_ShouldReturnCorrectInt64_GivenReadOnlySpan()
     {
         const long expected = 0b01010101_11010110_01101001_11010110_00010010_10010111_00101100_10100101;
-        ReadOnlySpan<bool> span = stackalloc bool[64]
-        {
+        ReadOnlySpan<bool> span =
+        [
             true, false, true, false, false, true, false, true, false, false, true, true, false, true, false, false, true,
             true, true, false, true, false, false, true, false, true, false, false, true, false, false, false, false, true,
             true, false, true, false, true, true, true, false, false, true, false, true, true, false, false, true, true,
-            false, true, false, true, true, true, false, true, false, true, false, true, false,
-        };
+            false, true, false, true, true, true, false, true, false, true, false, true, false
+        ];
 
         long actual = span.PackInt64();
 
@@ -393,13 +392,13 @@ internal class SpanTest
     public void PackInt64_ShouldReturnCorrectInt64_GivenSpan()
     {
         const long expected = 0b01010101_11010110_01101001_11010110_00010010_10010111_00101100_10100101;
-        Span<bool> span = stackalloc bool[64]
-        {
+        Span<bool> span =
+        [
             true, false, true, false, false, true, false, true, false, false, true, true, false, true, false, false, true,
             true, true, false, true, false, false, true, false, true, false, false, true, false, false, false, false, true,
             true, false, true, false, true, true, true, false, false, true, false, true, true, false, false, true, true,
-            false, true, false, true, true, true, false, true, false, true, false, true, false,
-        };
+            false, true, false, true, true, true, false, true, false, true, false, true, false
+        ];
 
         long actual = span.PackInt64();
 
@@ -409,7 +408,7 @@ internal class SpanTest
     [Test]
     public void PackInt64_ShouldReturnSameAsPackByte_WhenSpanHasLength8_UsingReadOnlySpan()
     {
-        ReadOnlySpan<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        ReadOnlySpan<bool> span = [true, true, false, false, true, true, false, false];
 
         long expected = span.PackByte();
         long actual = span.PackInt64();
@@ -420,7 +419,7 @@ internal class SpanTest
     [Test]
     public void PackInt64_ShouldReturnSameAsPackByte_WhenSpanHasLength8_UsingSpan()
     {
-        Span<bool> span = stackalloc bool[8] {true, true, false, false, true, true, false, false};
+        Span<bool> span = [true, true, false, false, true, true, false, false];
 
         long expected = span.PackByte();
         long actual = span.PackInt64();
@@ -431,10 +430,10 @@ internal class SpanTest
     [Test]
     public void PackInt64_ShouldReturnSameAsPackInt16_WhenSpanHasLength16_UsingReadOnlySpan()
     {
-        ReadOnlySpan<bool> span = stackalloc bool[16]
-        {
-            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
-        };
+        ReadOnlySpan<bool> span =
+        [
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false
+        ];
 
         long expected = span.PackInt16();
         long actual = span.PackInt64();
@@ -445,10 +444,10 @@ internal class SpanTest
     [Test]
     public void PackInt64_ShouldReturnSameAsPackInt16_WhenSpanHasLength16_UsingSpan()
     {
-        Span<bool> span = stackalloc bool[16]
-        {
-            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false,
-        };
+        Span<bool> span =
+        [
+            false, false, true, false, true, false, true, true, true, false, true, true, false, true, false, false
+        ];
 
         long expected = span.PackInt16();
         long actual = span.PackInt64();
@@ -459,11 +458,11 @@ internal class SpanTest
     [Test]
     public void PackInt64_ShouldReturnSameAsPackInt32_WhenSpanHasLength16_UsingReadOnlySpan()
     {
-        ReadOnlySpan<bool> span = stackalloc bool[32]
-        {
+        ReadOnlySpan<bool> span =
+        [
             false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false
+        ];
 
         long expected = span.PackInt32();
         long actual = span.PackInt64();
@@ -474,11 +473,11 @@ internal class SpanTest
     [Test]
     public void PackInt64_ShouldReturnSameAsPackInt32_WhenSpanHasLength16_UsingSpan()
     {
-        Span<bool> span = stackalloc bool[32]
-        {
+        Span<bool> span =
+        [
             false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, false,
-            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false,
-        };
+            true, false, true, false, true, false, true, true, false, true, false, true, false, true, false
+        ];
 
         long expected = span.PackInt32();
         long actual = span.PackInt64();
@@ -490,7 +489,7 @@ internal class SpanTest
     public void PackInt64_ShouldFallbackAndReturnCorrectValue_GivenNonPowerOfTwoLength_UsingReadOnlySpan()
     {
         const long expected = 0b00000000_00000000_00000000_00000000_00000000_00000000_00000001_01010011;
-        ReadOnlySpan<bool> span = stackalloc bool[10] {true, true, false, false, true, false, true, false, true, false};
+        ReadOnlySpan<bool> span = [true, true, false, false, true, false, true, false, true, false];
 
         long actual = span.PackInt64();
 
@@ -501,7 +500,7 @@ internal class SpanTest
     public void PackInt64_ShouldFallbackAndReturnCorrectValue_GivenNonPowerOfTwoLength_UsingSpan()
     {
         const long expected = 0b00000000_00000000_00000000_00000000_00000000_00000000_00000001_01010011;
-        Span<bool> span = stackalloc bool[10] {true, true, false, false, true, false, true, false, true, false};
+        Span<bool> span = [true, true, false, false, true, false, true, false, true, false];
 
         long actual = span.PackInt64();
 

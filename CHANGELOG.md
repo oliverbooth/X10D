@@ -5,7 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 4.0.0 - [Unreleased]
+## 4.0.1 - [Unreleased]
+
+### Changed
+
+- X10D: Removed `IEnumerable<T>.GreatestCommonFactor` for all integer types in favour of generic math.
+- X10D: Removed `IEnumerable<T>.LowestCommonMultiple` for all integer types in favour of generic math.
+- X10D: Removed `T.MultiplicativePersistence` for all integer types in favour of generic math.
+- X10D: Removed `IEnumerable<T>.Product` for all integer types in favour of generic math.
+- X10D: Removed `IEnumerable<T>.RangeTo` for all integer types in favour of generic math.
+- X10D: Removed `T.Saturate` for all floating-point types in favour of generic math.
+- X10D: Removed `T.Sign` for all numeric types in favour of generic math.
+- X10D: Removed `T.Wrap` for all numeric types in favour of generic math.
+
+### Removed
+
+- X10D: Removed `DateOnly.Deconstruct` due to conflict with
+[`System.DateOnly.Deconstruct`](https://learn.microsoft.com/en-us/dotnet/api/system.datetime.deconstruct?view=net-8.0).
+- X10D: Removed `Span<T>.Split` for .NET 9.0 target due to conflicts with
+[`System.MemoryExtensions.Split`](https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.split?view=net-9.0).
+
+## [4.0.0] - 2024-06-12
 
 ### Added
 
@@ -642,7 +662,8 @@ please [open an issue](https://github.com/oliverbooth/X10D/issues)!
 
 Earlier versions of this package are undocumented and unlisted from package results.
 
-[unreleased]: https://github.com/oliverbooth/X10D/compare/v3.3.1...main
+[unreleased]: https://github.com/oliverbooth/X10D/compare/v4.0.0...main
+[4.0.0]: https://github.com/oliverbooth/X10D/releases/tag/v4.0.0
 [3.3.1]: https://github.com/oliverbooth/X10D/releases/tag/v3.3.1
 [3.3.0]: https://github.com/oliverbooth/X10D/releases/tag/v3.3.0
 [3.2.2]: https://github.com/oliverbooth/X10D/releases/tag/v3.2.2

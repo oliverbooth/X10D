@@ -6,7 +6,7 @@ namespace SourceGenerator;
 
 public class OverloadSyntaxReceiver : ISyntaxReceiver
 {
-    private readonly List<MethodDeclarationSyntax> _candidateMethods = new();
+    private readonly List<MethodDeclarationSyntax> _candidateMethods = [];
 
     public IReadOnlyList<MethodDeclarationSyntax> CandidateMethods
     {

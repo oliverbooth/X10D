@@ -13,7 +13,7 @@ internal class DoubleTests
 
         var expected = new byte[] { 0x40, 0x45, 0x40, 0, 0, 0, 0, 0 };
         byte[] actual = value.GetBigEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ internal class DoubleTests
 
         var expected = new byte[] { 0, 0, 0, 0, 0, 0x40, 0x45, 0x40 };
         byte[] actual = value.GetLittleEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -32,9 +32,12 @@ internal class DoubleTests
         const double value = 42.5;
 
         var expected = new byte[] { 0x40, 0x45, 0x40, 0, 0, 0, 0, 0 };
-        Span<byte> actual = stackalloc byte[8];
-        Assert.That(value.TryWriteBigEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[8];
+            Assert.That(value.TryWriteBigEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
@@ -43,16 +46,19 @@ internal class DoubleTests
         const double value = 42.5;
 
         var expected = new byte[] { 0, 0, 0, 0, 0, 0x40, 0x45, 0x40 };
-        Span<byte> actual = stackalloc byte[8];
-        Assert.That(value.TryWriteLittleEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[8];
+            Assert.That(value.TryWriteLittleEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
     public void TryWriteBigEndian_ReturnsFalse_GivenSmallSpan()
     {
         const double value = 42.5;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBigEndianBytes(buffer), Is.False);
     }
 
@@ -60,7 +66,7 @@ internal class DoubleTests
     public void TryWriteLittleEndian_RReturnsFalse_GivenSmallSpan()
     {
         const double value = 42.5;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteLittleEndianBytes(buffer), Is.False);
     }
 }

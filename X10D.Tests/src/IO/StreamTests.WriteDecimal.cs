@@ -45,16 +45,19 @@ internal partial class StreamTests
         Assert.That(stream.Position, Is.EqualTo(16));
         stream.Position = 0;
 
-        Span<byte> actual = stackalloc byte[16];
-        ReadOnlySpan<byte> expected = stackalloc byte[]
+        Assert.Multiple(() =>
         {
-            0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x68
-        };
-        int read = stream.Read(actual);
-        Trace.WriteLine(string.Join(' ', actual.ToArray()));
+            Span<byte> actual = stackalloc byte[16];
+            ReadOnlySpan<byte> expected =
+            [
+                0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x68
+            ];
+            int read = stream.Read(actual);
+            Trace.WriteLine(string.Join(' ', actual.ToArray()));
 
-        Assert.That(read, Is.EqualTo(16));
-        CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
+            Assert.That(read, Is.EqualTo(16));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
+        });
     }
 
     [Test]
@@ -65,16 +68,19 @@ internal partial class StreamTests
         Assert.That(stream.Position, Is.EqualTo(16));
         stream.Position = 0;
 
-        Span<byte> actual = stackalloc byte[16];
-        ReadOnlySpan<byte> expected = stackalloc byte[]
+        Assert.Multiple(() =>
         {
-            0x68, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00
-        };
-        int read = stream.Read(actual);
+            Span<byte> actual = stackalloc byte[16];
+            ReadOnlySpan<byte> expected =
+            [
+                0x68, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00
+            ];
+            int read = stream.Read(actual);
 
-        Trace.WriteLine(string.Join(", ", actual.ToArray().Select(b => $"0x{b:X2}")));
+            Trace.WriteLine(string.Join(", ", actual.ToArray().Select(b => $"0x{b:X2}")));
 
-        Assert.That(read, Is.EqualTo(16));
-        CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
+            Assert.That(read, Is.EqualTo(16));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
+        });
     }
 }

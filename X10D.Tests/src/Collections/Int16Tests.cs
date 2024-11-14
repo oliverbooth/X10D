@@ -126,7 +126,7 @@ internal class Int16Tests
         Assert.Throws<ArgumentException>(() =>
         {
             const short value = 0b11010100;
-            Span<bool> bits = stackalloc bool[0];
+            Span<bool> bits = [];
             value.Unpack(bits);
         });
     }

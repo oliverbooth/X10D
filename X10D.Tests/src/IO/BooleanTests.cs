@@ -10,7 +10,7 @@ internal class BooleanTests
     public void GetBytes_ReturnsArrayContaining1()
     {
         const bool value = true;
-        CollectionAssert.AreEqual(new byte[] {1}, value.GetBytes());
+        Assert.That(value.GetBytes(), Is.EqualTo(new byte[] { 1 }).AsCollection);
     }
 
     [Test]
@@ -19,14 +19,14 @@ internal class BooleanTests
         const bool value = true;
         Span<byte> buffer = stackalloc byte[1];
         Assert.That(value.TryWriteBytes(buffer));
-        CollectionAssert.AreEqual(new byte[] {1}, buffer.ToArray());
+        Assert.That(buffer.ToArray(), Is.EqualTo(new byte[] { 1 }).AsCollection);
     }
 
     [Test]
     public void TryWriteBytes_ReturnsFalse_GivenSmallSpan()
     {
         const bool value = true;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBytes(buffer), Is.False);
     }
 }

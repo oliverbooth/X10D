@@ -256,19 +256,6 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    ///     Saturates this double-precision floating-point number.
-    /// </summary>
-    /// <param name="value">The value to saturate.</param>
-    /// <returns>The saturated value.</returns>
-    /// <remarks>This method clamps <paramref name="value" /> between 0 and 1.</remarks>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static double Saturate(this double value)
-    {
-        return System.Math.Clamp(value, 0.0, 1.0);
-    }
-
-    /// <summary>
     ///     Returns the sine of the specified angle.
     /// </summary>
     /// <param name="value">The angle, in radians.</param>
@@ -298,41 +285,6 @@ public static class DoubleExtensions
     public static double Sinh(this double value)
     {
         return System.Math.Sinh(value);
-    }
-
-    /// <summary>
-    ///     Returns an integer that indicates the sign of this double-precision floating-point number.
-    /// </summary>
-    /// <param name="value">A signed number.</param>
-    /// <returns>
-    ///     A number that indicates the sign of <paramref name="value" />, as shown in the following table.
-    ///
-    ///     <list type="table">
-    ///         <listheader>
-    ///             <term>Return value</term>
-    ///             <description>Meaning</description>
-    ///         </listheader>
-    ///
-    ///         <item>
-    ///             <term>-1</term>
-    ///             <description><paramref name="value" /> is less than zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>0</term>
-    ///             <description><paramref name="value" /> is equal to zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>1</term>
-    ///             <description><paramref name="value" /> is greater than zero.</description>
-    ///         </item>
-    ///     </list>
-    /// </returns>
-    /// <exception cref="ArithmeticException"><paramref name="value" /> is equal to <see cref="double.NaN" />.</exception>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static int Sign(this double value)
-    {
-        return System.Math.Sign(value);
     }
 
     /// <summary>
@@ -420,33 +372,5 @@ public static class DoubleExtensions
     public static double Tanh(this double value)
     {
         return System.Math.Tanh(value);
-    }
-
-    /// <summary>
-    ///     Wraps the current double-precision floating-point number between a low and a high value.
-    /// </summary>
-    /// <param name="value">The value to wrap.</param>
-    /// <param name="low">The inclusive lower bound.</param>
-    /// <param name="high">The exclusive upper bound.</param>
-    /// <returns>The wrapped value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static double Wrap(this double value, double low, double high)
-    {
-        double difference = high - low;
-        return low + (((value - low) % difference) + difference) % difference;
-    }
-
-    /// <summary>
-    ///     Wraps the current double-precision floating-point number between 0 and a high value.
-    /// </summary>
-    /// <param name="value">The value to wrap.</param>
-    /// <param name="length">The exclusive upper bound.</param>
-    /// <returns>The wrapped value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static double Wrap(this double value, double length)
-    {
-        return ((value % length) + length) % length;
     }
 }

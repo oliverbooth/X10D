@@ -23,8 +23,8 @@ internal class ServiceCollectionTests
         {
             Assert.That(service, Is.Not.Null);
             Assert.That(hostedService, Is.Not.Null);
-            Assert.IsAssignableFrom<TestService>(service);
-            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(service, Is.AssignableFrom<TestService>());
+            Assert.That(hostedService, Is.AssignableFrom<TestService>());
             Assert.That(hostedService, Is.SameAs(service));
         });
     }
@@ -44,8 +44,8 @@ internal class ServiceCollectionTests
         {
             Assert.That(service, Is.Not.Null);
             Assert.That(hostedService, Is.Not.Null);
-            Assert.IsAssignableFrom<TestService>(service);
-            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(service, Is.AssignableFrom<TestService>());
+            Assert.That(hostedService, Is.AssignableFrom<TestService>());
             Assert.That(hostedService, Is.SameAs(service));
         });
     }
@@ -65,8 +65,8 @@ internal class ServiceCollectionTests
         {
             Assert.That(service, Is.Not.Null);
             Assert.That(hostedService, Is.Not.Null);
-            Assert.IsAssignableFrom<TestService>(service);
-            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(service, Is.AssignableFrom<TestService>());
+            Assert.That(hostedService, Is.AssignableFrom<TestService>());
             Assert.That(hostedService, Is.SameAs(service));
         });
     }
@@ -86,8 +86,8 @@ internal class ServiceCollectionTests
         {
             Assert.That(service, Is.Not.Null);
             Assert.That(hostedService, Is.Not.Null);
-            Assert.IsAssignableFrom<TestService>(service);
-            Assert.IsAssignableFrom<TestService>(hostedService);
+            Assert.That(service, Is.AssignableFrom<TestService>());
+            Assert.That(hostedService, Is.AssignableFrom<TestService>());
             Assert.That(hostedService, Is.SameAs(service));
         });
     }

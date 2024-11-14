@@ -6,7 +6,7 @@ namespace X10D.Tests.Collections;
 [TestFixture]
 internal class ListTests
 {
-        [Test]
+    [Test]
     [TestCase(1)]
     [TestCase(1, 2, 3)]
     [TestCase(1, 2, 3, 4, 5)]
@@ -15,17 +15,17 @@ internal class ListTests
         int[] all42 = Enumerable.Repeat(42, args.Length).ToArray();
         var list = new List<int>(args);
 
-        CollectionAssert.AreEqual(args, list);
+        Assert.That(list, Is.EqualTo(args).AsCollection);
 
         args.Fill(42);
         list.Fill(42);
 
-        CollectionAssert.AreEqual(args, list);
-        CollectionAssert.AreEqual(all42, args);
-        CollectionAssert.AreEqual(all42, list);
+        Assert.That(list, Is.EqualTo(args).AsCollection);
+        Assert.That(args, Is.EqualTo(all42).AsCollection);
+        Assert.That(list, Is.EqualTo(all42).AsCollection);
     }
 
-        [Test]
+    [Test]
     [TestCase(1)]
     [TestCase(1, 2, 3)]
     [TestCase(1, 2, 3, 4, 5)]
@@ -36,13 +36,13 @@ internal class ListTests
 
         int[] comparison = Enumerable.Repeat(1, args.Length - 1).ToArray();
         Assert.That(args[0], Is.EqualTo(first));
-        CollectionAssert.AreEqual(comparison, args[1..]);
+        Assert.That(args[1..], Is.EqualTo(comparison).AsCollection);
     }
 
     [Test]
     public void Fill_ShouldThrow_GivenExceededCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         var list = new List<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, 0, 1));
         Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, 0, 1));
@@ -51,7 +51,7 @@ internal class ListTests
     [Test]
     public void Fill_ShouldThrow_GivenNegativeCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         var list = new List<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, 0, -1));
         Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, 0, -1));
@@ -60,7 +60,7 @@ internal class ListTests
     [Test]
     public void Fill_ShouldThrow_GivenNegativeStartIndex()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         var list = new List<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Fill(0, -1, 0));
         Assert.Throws<ArgumentOutOfRangeException>(() => list.Fill(0, -1, 0));
@@ -80,7 +80,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldReturnCorrectValue_FromStartOfList()
     {
-        int[] array = {0, 1, 2, 3, 4};
+        int[] array = [0, 1, 2, 3, 4];
         Assert.Multiple(() =>
         {
             Assert.That(array.IndexOf(2), Is.EqualTo(2));
@@ -92,7 +92,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldReturnCorrectValue_GivenSubRange()
     {
-        int[] array = {0, 1, 2, 3, 4, 0};
+        int[] array = [0, 1, 2, 3, 4, 0];
         Assert.Multiple(() =>
         {
             Assert.That(array.IndexOf(0), Is.Zero);
@@ -107,7 +107,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldReturnNegative1_ForEmptyList()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Multiple(() =>
         {
             Assert.That(array.IndexOf(0), Is.EqualTo(-1));
@@ -131,14 +131,14 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, 0, -1));
     }
 
     [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Multiple(() =>
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, -1));
@@ -149,7 +149,7 @@ internal class ListTests
     [Test]
     public void IndexOf_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
     {
-        int[] array = {0, 1, 2};
+        int[] array = [0, 1, 2];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.IndexOf(0, 2, 4));
     }
 
@@ -184,7 +184,7 @@ internal class ListTests
     public void RemoveRange_ShouldThrowArgumentOutOfRangeException_GivenEndIndexGreaterThanOrEqualToCount()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => new List<int>().RemoveRange(..0));
-        Assert.Throws<ArgumentOutOfRangeException>(() => new List<int> {1}.RemoveRange(..2));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new List<int> { 1 }.RemoveRange(..2));
     }
 
     [Test]
@@ -208,7 +208,7 @@ internal class ListTests
         list.RemoveRange(2..5);
 
         Assert.That(list, Has.Count.EqualTo(6));
-        CollectionAssert.AreEqual(new[] {1, 2, 7, 8, 9, 10}, list);
+        Assert.That(list, Is.EqualTo(new[] { 1, 2, 7, 8, 9, 10 }).AsCollection);
     }
 
     [Test]
@@ -217,11 +217,11 @@ internal class ListTests
         var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order
         var shuffled = new List<int>(list);
 
-        CollectionAssert.AreEqual(list, shuffled);
+        Assert.That(shuffled, Is.EqualTo(list).AsCollection);
 
         shuffled.Shuffle();
 
-        CollectionAssert.AreNotEqual(list, shuffled);
+        Assert.That(shuffled, Is.Not.EqualTo(list).AsCollection);
     }
 
     [Test]
@@ -233,23 +233,23 @@ internal class ListTests
     [Test]
     public void Slice_ShouldReturnCorrectValue_GivenStartIndex()
     {
-        int[] array = {0, 1, 2, 3, 4, 5};
-        CollectionAssert.AreEqual(new[] {2, 3, 4, 5}, array.Slice(2).ToArray());
+        int[] array = [0, 1, 2, 3, 4, 5];
+        Assert.That(array.Slice(2).ToArray(), Is.EqualTo(new[] { 2, 3, 4, 5 }).AsCollection);
     }
 
     [Test]
     public void Slice_ShouldReturnCorrectValue_GivenStartIndexAndLength()
     {
-        int[] array = {0, 1, 2, 3, 4, 5};
-        CollectionAssert.AreEqual(new[] {2, 3, 4}, array.Slice(2, 3).ToArray());
+        int[] array = [0, 1, 2, 3, 4, 5];
+        Assert.That(array.Slice(2, 3).ToArray(), Is.EqualTo(new[] { 2, 3, 4 }).AsCollection);
     }
 
     [Test]
     public void Slice_ShouldReturnEmptyList_ForEmptyList()
     {
-        int[] array = Array.Empty<int>();
-        CollectionAssert.AreEqual(Array.Empty<int>(), array.Slice(0).ToArray());
-        CollectionAssert.AreEqual(Array.Empty<int>(), array.Slice(0, 0).ToArray());
+        int[] array = [];
+        Assert.That(array.Slice(0).ToArray(), Is.EqualTo(Array.Empty<int>()).AsCollection);
+        Assert.That(array.Slice(0, 0).ToArray(), Is.EqualTo(Array.Empty<int>()).AsCollection);
     }
 
     [Test]
@@ -263,14 +263,14 @@ internal class ListTests
     [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeCount()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(0, -1));
     }
 
     [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenNegativeStartIndex()
     {
-        int[] array = Array.Empty<int>();
+        int[] array = [];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(-1));
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(-1, 0));
     }
@@ -278,7 +278,7 @@ internal class ListTests
     [Test]
     public void Slice_ShouldThrowArgumentOutOfRangeException_GivenInvalidStartIndexCountPair()
     {
-        int[] array = {0, 1, 2};
+        int[] array = [0, 1, 2];
         Assert.Throws<ArgumentOutOfRangeException>(() => array.Slice(2, 4));
     }
 
@@ -297,18 +297,18 @@ internal class ListTests
     [Test]
     public void Swap_ShouldSwapElements_GivenMatchingElementCount()
     {
-        var first = new List<int> {1, 2, 3};
-        var second = new List<int> {4, 5, 6};
+        var first = new List<int> { 1, 2, 3 };
+        var second = new List<int> { 4, 5, 6 };
 
         first.Swap(second);
 
-        CollectionAssert.AreEqual(new[] {4, 5, 6}, first, string.Join(' ', first));
-        CollectionAssert.AreEqual(new[] {1, 2, 3}, second, string.Join(' ', second));
+        Assert.That(first, Is.EqualTo(new[] { 4, 5, 6 }).AsCollection, string.Join(' ', first));
+        Assert.That(second, Is.EqualTo(new[] { 1, 2, 3 }).AsCollection, string.Join(' ', second));
 
         first.Swap(second);
 
-        CollectionAssert.AreEqual(new[] {1, 2, 3}, first, string.Join(' ', first));
-        CollectionAssert.AreEqual(new[] {4, 5, 6}, second, string.Join(' ', second));
+        Assert.That(first, Is.EqualTo(new[] { 1, 2, 3 }).AsCollection, string.Join(' ', first));
+        Assert.That(second, Is.EqualTo(new[] { 4, 5, 6 }).AsCollection, string.Join(' ', second));
     }
 
     [Test]
@@ -322,16 +322,16 @@ internal class ListTests
             4,
             5
         };
-        var second = new List<int> {6, 7};
+        var second = new List<int> { 6, 7 };
 
         first.Swap(second);
 
-        CollectionAssert.AreEqual(new[] {6, 7}, first, string.Join(' ', first));
-        CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5}, second, string.Join(' ', second));
+        Assert.That(first, Is.EqualTo(new[] { 6, 7 }).AsCollection, string.Join(' ', first));
+        Assert.That(second, Is.EqualTo(new[] { 1, 2, 3, 4, 5 }).AsCollection, string.Join(' ', second));
 
         first.Swap(second);
 
-        CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5}, first, string.Join(' ', first));
-        CollectionAssert.AreEqual(new[] {6, 7}, second, string.Join(' ', second));
+        Assert.That(first, Is.EqualTo(new[] { 1, 2, 3, 4, 5 }).AsCollection, string.Join(' ', first));
+        Assert.That(second, Is.EqualTo(new[] { 6, 7 }).AsCollection, string.Join(' ', second));
     }
 }

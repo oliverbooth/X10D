@@ -13,7 +13,7 @@ internal class Int32Tests
 
         var expected = new byte[] { 0, 0, 0, 0x0F };
         byte[] actual = value.GetBigEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ internal class Int32Tests
 
         var expected = new byte[] { 0x0F, 0, 0, 0 };
         byte[] actual = value.GetLittleEndianBytes();
-        CollectionAssert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected).AsCollection);
     }
 
     [Test]
@@ -32,9 +32,12 @@ internal class Int32Tests
         const int value = 0x0F;
 
         var expected = new byte[] { 0, 0, 0, 0x0F };
-        Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteBigEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[4];
+            Assert.That(value.TryWriteBigEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
@@ -43,16 +46,19 @@ internal class Int32Tests
         const int value = 0x0F;
 
         var expected = new byte[] { 0x0F, 0, 0, 0 };
-        Span<byte> actual = stackalloc byte[4];
-        Assert.That(value.TryWriteLittleEndianBytes(actual));
-        CollectionAssert.AreEqual(expected, actual.ToArray());
+        Assert.Multiple(() =>
+        {
+            Span<byte> actual = stackalloc byte[4];
+            Assert.That(value.TryWriteLittleEndianBytes(actual));
+            Assert.That(actual.ToArray(), Is.EqualTo(expected).AsCollection);
+        });
     }
 
     [Test]
     public void TryWriteBigEndian_ReturnsFalse_GivenSmallSpan()
     {
         const int value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteBigEndianBytes(buffer), Is.False);
     }
 
@@ -60,7 +66,7 @@ internal class Int32Tests
     public void TryWriteLittleEndian_RReturnsFalse_GivenSmallSpan()
     {
         const int value = 0x0F;
-        Span<byte> buffer = stackalloc byte[0];
+        Span<byte> buffer = [];
         Assert.That(value.TryWriteLittleEndianBytes(buffer), Is.False);
     }
 }

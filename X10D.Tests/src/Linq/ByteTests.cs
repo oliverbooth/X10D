@@ -43,58 +43,13 @@ internal class ByteTests
     }
 
     [Test]
-    public void RangeTo_Byte_ShouldYieldCorrectValues()
+    public void RangeTo_ShouldYieldCorrectValues()
     {
         const byte start = 1;
         const byte end = 10;
 
         byte current = 1;
         foreach (byte value in start.RangeTo(end))
-        {
-            Assert.That(value, Is.EqualTo(current++));
-        }
-
-        Assert.That(current, Is.EqualTo(end));
-    }
-
-    [Test]
-    public void RangeTo_Int16_ShouldYieldCorrectValues()
-    {
-        const byte start = 1;
-        const short end = 10;
-
-        short current = 1;
-        foreach (short value in start.RangeTo(end))
-        {
-            Assert.That(value, Is.EqualTo(current++));
-        }
-
-        Assert.That(current, Is.EqualTo(end));
-    }
-
-    [Test]
-    public void RangeTo_Int32_ShouldYieldCorrectValues()
-    {
-        const byte start = 1;
-        const int end = 10;
-
-        int current = 1;
-        foreach (int value in start.RangeTo(end))
-        {
-            Assert.That(value, Is.EqualTo(current++));
-        }
-
-        Assert.That(current, Is.EqualTo(end));
-    }
-
-    [Test]
-    public void RangeTo_Int64_ShouldYieldCorrectValues()
-    {
-        const byte start = 1;
-        const long end = 10;
-
-        long current = 1;
-        foreach (long value in start.RangeTo(end))
         {
             Assert.That(value, Is.EqualTo(current++));
         }

@@ -11,7 +11,7 @@ internal static partial class ArrayTests
         [Test]
         public void AsReadOnly_ShouldReturnReadOnlyCollection_WhenArrayIsNotNull()
         {
-            int[] array = {1, 2, 3};
+            int[] array = [1, 2, 3];
             IReadOnlyCollection<int> result = array.AsReadOnly();
             Assert.That(result, Is.InstanceOf<IReadOnlyCollection<int>>());
         }
@@ -26,7 +26,7 @@ internal static partial class ArrayTests
         [Test]
         public void AsReadOnly_ShouldReturnCorrectCount_WhenArrayIsNotEmpty()
         {
-            int[] array = {1, 2, 3};
+            int[] array = [1, 2, 3];
             IReadOnlyCollection<int> result = array.AsReadOnly();
             Assert.That(result, Has.Count.EqualTo(array.Length));
         }
@@ -34,7 +34,7 @@ internal static partial class ArrayTests
         [Test]
         public void AsReadOnly_ShouldReturnEmptyCollection_WhenArrayIsEmpty()
         {
-            int[] array = Array.Empty<int>();
+            int[] array = [];
             IReadOnlyCollection<int> result = array.AsReadOnly();
             Assert.That(result, Is.Empty);
         }

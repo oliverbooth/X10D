@@ -1,0 +1,31 @@
+﻿<Solution>
+    <Folder Name="/Solution Items/">
+        <File Path=".editorconfig"/>
+        <File Path=".gitignore"/>
+        <File Path="CHANGELOG.md"/>
+        <File Path="CONTRIBUTING.md"/>
+        <File Path="LICENSE.md"/>
+        <File Path="README.md"/>
+        <File Path="branding_Icon.png"/>
+        <File Path="Directory.Build.props"/>
+        <File Path="global.json"/>
+    </Folder>
+    <Folder Name="/Tools/">
+        <Project Path="tools\Benchmarks\Benchmarks.csproj" Type="Classic C#"/>
+        <Project Path="tools\SourceGenerator\SourceGenerator.csproj" Type="Classic C#"/>
+        <Project Path="tools\SourceValidator\SourceValidator.csproj" Type="Classic C#"/>
+        <Project Path="tools\X10D.MetaServices\X10D.MetaServices.csproj" Type="Classic C#"/>
+        <File Path="tools\Directory.Build.props"/>
+    </Folder>
+    <Folder Name="/Workflows/">
+        <File Path=".github\workflows\docfx.yml"/>
+        <File Path=".github\workflows\dotnet.yml"/>
+        <File Path=".github\workflows\nightly.yml"/>
+        <File Path=".github\workflows\prerelease.yml"/>
+        <File Path=".github\workflows\release.yml"/>
+        <File Path=".github\workflows\source_validator.yml"/>
+    </Folder>
+    <Project Path="X10D.Hosting\X10D.Hosting.csproj" Type="Classic C#"/>
+    <Project Path="X10D.Tests\X10D.Tests.csproj"/>
+    <Project Path="X10D\X10D.csproj"/>
+</Solution>
