@@ -140,32 +140,4 @@ public static class DecimalExtensions
 
         return current;
     }
-
-    /// <summary>
-    ///     Wraps the current decimal number between a low and a high value.
-    /// </summary>
-    /// <param name="value">The value to wrap.</param>
-    /// <param name="low">The inclusive lower bound.</param>
-    /// <param name="high">The exclusive upper bound.</param>
-    /// <returns>The wrapped value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static decimal Wrap(this decimal value, decimal low, decimal high)
-    {
-        decimal difference = high - low;
-        return low + (((value - low) % difference) + difference) % difference;
-    }
-
-    /// <summary>
-    ///     Wraps the current decimal number between 0 and a high value.
-    /// </summary>
-    /// <param name="value">The value to wrap.</param>
-    /// <param name="length">The exclusive upper bound.</param>
-    /// <returns>The wrapped value.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static decimal Wrap(this decimal value, decimal length)
-    {
-        return ((value % length) + length) % length;
-    }
 }
