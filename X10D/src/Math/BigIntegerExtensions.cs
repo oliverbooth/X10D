@@ -40,24 +40,6 @@ public static class BigIntegerExtensions
     }
 
     /// <summary>
-    ///     Calculates the greatest common factor between this, and another, <see cref="BigInteger" />.
-    /// </summary>
-    /// <param name="value">The first value.</param>
-    /// <param name="other">The second value.</param>
-    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static BigInteger GreatestCommonFactor(this BigInteger value, BigInteger other)
-    {
-        while (other != 0)
-        {
-            (value, other) = (other, value % other);
-        }
-
-        return value;
-    }
-
-    /// <summary>
     ///     Returns a value indicating whether the current value is not evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -107,34 +89,6 @@ public static class BigIntegerExtensions
         }
 
         return true;
-    }
-
-    /// <summary>
-    ///     Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
-    /// </summary>
-    /// <param name="value">The first value.</param>
-    /// <param name="other">The second value.</param>
-    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static BigInteger LowestCommonMultiple(this BigInteger value, BigInteger other)
-    {
-        if (value == 0 || other == 0)
-        {
-            return 0;
-        }
-
-        if (value == 1)
-        {
-            return other;
-        }
-
-        if (other == 1)
-        {
-            return value;
-        }
-
-        return value * other / value.GreatestCommonFactor(other);
     }
 
     /// <summary>

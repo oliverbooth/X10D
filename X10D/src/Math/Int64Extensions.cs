@@ -43,34 +43,6 @@ public static class Int64Extensions
     }
 
     /// <summary>
-    ///     Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
-    /// </summary>
-    /// <param name="value">The first value.</param>
-    /// <param name="other">The second value.</param>
-    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static long LowestCommonMultiple(this long value, long other)
-    {
-        if (value == 0 || other == 0)
-        {
-            return 0;
-        }
-
-        if (value == 1)
-        {
-            return other;
-        }
-
-        if (other == 1)
-        {
-            return value;
-        }
-
-        return value * other / value.GreatestCommonFactor(other);
-    }
-
-    /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
     /// </summary>
     /// <param name="value">The value whose multiplicative persistence to calculate.</param>

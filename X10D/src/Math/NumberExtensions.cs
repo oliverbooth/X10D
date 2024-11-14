@@ -11,6 +11,25 @@ namespace X10D.Math;
 public static class NumberExtensions
 {
     /// <summary>
+    ///     Calculates the greatest common factor between the current number and another number.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The greatest common factor between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber GreatestCommonFactor<TNumber>(this TNumber value, TNumber other)
+        where TNumber : INumber<TNumber>
+    {
+        while (other != TNumber.Zero)
+        {
+            (value, other) = (other, value % other);
+        }
+
+        return value;
+    }
+
+    /// <summary>
     ///     Returns a value indicating whether the current value is evenly divisible by 2.
     /// </summary>
     /// <param name="value">The value whose parity to check.</param>
@@ -40,6 +59,35 @@ public static class NumberExtensions
         where TNumber : INumber<TNumber>
     {
         return !value.IsEven();
+    }
+
+    /// <summary>
+    ///     Calculates the lowest common multiple between the current 64-bit signed integer, and another 64-bit signed integer.
+    /// </summary>
+    /// <param name="value">The first value.</param>
+    /// <param name="other">The second value.</param>
+    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
+    [Pure]
+    [MethodImpl(CompilerResources.MaxOptimization)]
+    public static TNumber LowestCommonMultiple<TNumber>(this TNumber value, TNumber other)
+        where TNumber : INumber<TNumber>
+    {
+        if (value == TNumber.Zero || other == TNumber.Zero)
+        {
+            return TNumber.Zero;
+        }
+
+        if (value == TNumber.One)
+        {
+            return other;
+        }
+
+        if (other == TNumber.One)
+        {
+            return value;
+        }
+
+        return value * other / value.GreatestCommonFactor(other);
     }
 
     /// <summary>

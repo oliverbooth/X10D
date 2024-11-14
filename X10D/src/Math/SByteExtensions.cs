@@ -25,19 +25,6 @@ public static class SByteExtensions
     }
 
     /// <summary>
-    ///     Calculates the lowest common multiple between the current 8-bit signed integer, and another 8-bit signed integer.
-    /// </summary>
-    /// <param name="value">The first value.</param>
-    /// <param name="other">The second value.</param>
-    /// <returns>The lowest common multiple between <paramref name="value" /> and <paramref name="other" />.</returns>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static sbyte LowestCommonMultiple(this sbyte value, sbyte other)
-    {
-        return (sbyte)((long)value).LowestCommonMultiple(other);
-    }
-
-    /// <summary>
     ///     Returns the multiplicative persistence of a specified value.
     /// </summary>
     /// <param name="value">The value whose multiplicative persistence to calculate.</param>
