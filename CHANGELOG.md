@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- X1OD: `IBinaryInteger<T>.Factorial` now starts at `IBinaryInteger<T>.MultiplicativeIdentity` not
+`IBinaryInteger<T>.One`.
 - X10D: Removed `byte.Product`, `short.Product`, `ushort.Product`, `int.Product`, `uint.Product`, `long.Product`,
   and `ulong.Product`, in favour of `INumber<T>.Product`.
 - X10D: Removed `byte.RangeTo`, `short.RangeTo`, `ushort.RangeTo`, `int.RangeTo`, `uint.RangeTo`, `long.RangeTo`,
