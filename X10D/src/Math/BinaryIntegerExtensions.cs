@@ -69,12 +69,12 @@ public static class BinaryIntegerExtensions
             return 1;
         }
 
-        TInteger result = TInteger.MultiplicativeIdentity;
+        long result = 1L;
         for (TInteger i = TInteger.One; i <= value; i++)
         {
-            result *= i;
+            result *= long.CreateChecked(i);
         }
 
-        return long.CreateChecked(result);
+        return result;
     }
 }

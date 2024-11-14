@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- X1OD: `IBinaryInteger<T>.Factorial` now starts at `IBinaryInteger<T>.MultiplicativeIdentity` not
-`IBinaryInteger<T>.One`.
 - X10D: Removed `IEnumerable<T>.GreatestCommonFactor` for all integer types in favour of generic math.
 - X10D: Removed `IEnumerable<T>.LowestCommonMultiple` for all integer types in favour of generic math.
 - X10D: Removed `IEnumerable<T>.Product` for all integer types in favour of generic math.
