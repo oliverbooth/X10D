@@ -301,41 +301,6 @@ public static class DoubleExtensions
     }
 
     /// <summary>
-    ///     Returns an integer that indicates the sign of this double-precision floating-point number.
-    /// </summary>
-    /// <param name="value">A signed number.</param>
-    /// <returns>
-    ///     A number that indicates the sign of <paramref name="value" />, as shown in the following table.
-    ///
-    ///     <list type="table">
-    ///         <listheader>
-    ///             <term>Return value</term>
-    ///             <description>Meaning</description>
-    ///         </listheader>
-    ///
-    ///         <item>
-    ///             <term>-1</term>
-    ///             <description><paramref name="value" /> is less than zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>0</term>
-    ///             <description><paramref name="value" /> is equal to zero.</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>1</term>
-    ///             <description><paramref name="value" /> is greater than zero.</description>
-    ///         </item>
-    ///     </list>
-    /// </returns>
-    /// <exception cref="ArithmeticException"><paramref name="value" /> is equal to <see cref="double.NaN" />.</exception>
-    [Pure]
-    [MethodImpl(CompilerResources.MaxOptimization)]
-    public static int Sign(this double value)
-    {
-        return System.Math.Sign(value);
-    }
-
-    /// <summary>
     ///     Returns the square root of this double-precision floating-point number.
     /// </summary>
     /// <param name="value">The number whose square root is to be found.</param>
