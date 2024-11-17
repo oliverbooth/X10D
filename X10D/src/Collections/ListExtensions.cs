@@ -1,5 +1,6 @@
 using System.Diagnostics.Contracts;
 using X10D.Core;
+using X10D.Math;
 
 #pragma warning disable CA5394
 
@@ -246,6 +247,42 @@ public static class ListExtensions
         for (int index = start + length; index >= start; index--)
         {
             source.RemoveAt(index);
+        }
+    }
+
+    /// <summary>
+    ///     Shifts the elements of the current list by a specified amount, wrapping them in the process.
+    /// </summary>
+    /// <param name="source">The list of elements to shift.</param>
+    /// <param name="shift">The amount to shift.</param>
+    /// <typeparam name="T">The type of the elements in <paramref name="source" />.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    public static void Rotate<T>(this IList<T> source, int shift)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (shift == 0)
+        {
+            return;
+        }
+
+        shift = shift.Mod(source.Count);
+        Reverse(source, 0, source.Count - 1);
+        Reverse(source, 0, shift - 1);
+        Reverse(source, shift, source.Count - 1);
+        return;
+
+        static void Reverse(IList<T> list, int start, int end)
+        {
+            while (start < end)
+            {
+                (list[start], list[end]) = (list[end], list[start]);
+                start++;
+                end--;
+            }
         }
     }
 

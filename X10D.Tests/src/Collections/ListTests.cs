@@ -212,6 +212,46 @@ internal class ListTests
     }
 
     [Test]
+    public void Rotate_ShouldShiftElements_ByNegativeShiftAmount()
+    {
+        int[] array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        int[] expected = [5, 6, 7, 8, 9, 10, 1, 2, 3, 4];
+
+        array.Rotate(-4);
+
+        Assert.That(array, Is.EqualTo(expected).AsCollection);
+    }
+
+    [Test]
+    public void Rotate_ShouldShiftElements_ByPositiveShiftAmount()
+    {
+        int[] array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        int[] expected = [7, 8, 9, 10, 1, 2, 3, 4, 5, 6];
+
+        array.Rotate(4);
+
+        Assert.That(array, Is.EqualTo(expected).AsCollection);
+    }
+
+    [Test]
+    public void Rotate_ShouldNotShiftElements_WithShift0()
+    {
+        int[] array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        int[] expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        array.Rotate(0);
+
+        Assert.That(array, Is.EqualTo(expected).AsCollection);
+    }
+
+    [Test]
+    public void Rotate_ShouldThrowArgumentNullException_GivenNullSource()
+    {
+        int[] array = null!;
+        Assert.Throws<ArgumentNullException>(() => array.Rotate(0));
+    }
+
+    [Test]
     public void Shuffle_ShouldReorder_GivenNotNull()
     {
         var list = new List<int>(Enumerable.Range(1, 52)); // 52! chance of being shuffled to the same order

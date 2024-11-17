@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 5.0.0 - [Unreleased]
 
+### Added
+
+- X1OD: Added `IList<T>.Rotate(int)`.
+- X1OD: Added `Span<T>.Rotate(int)`.
+
 ### Changed
 
 - X10D: Removed `IEnumerable<T>.GreatestCommonFactor` for all integer types in favour of generic math.

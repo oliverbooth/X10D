@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using X10D.Collections;
 #if !NET9_0_OR_GREATER
 using X10D.Collections;
 #endif
@@ -30,6 +31,39 @@ internal class SpanTest
         Span<int> span = [1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2];
         span.Replace(4, 8);
         Assert.That(span.ToArray(), Is.EqualTo(new[] { 1, 2, 3, 2, 5, 2, 7, 2, 9, 2, 11, 2, 13, 2, 15, 2 }));
+    }
+
+    [Test]
+    public void Rotate_ShouldShiftElements_ByNegativeShiftAmount()
+    {
+        Span<int> array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        Span<int> expected = [5, 6, 7, 8, 9, 10, 1, 2, 3, 4];
+
+        array.Rotate(-4);
+
+        Assert.That(array.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
+    }
+
+    [Test]
+    public void Rotate_ShouldShiftElements_ByPositiveShiftAmount()
+    {
+        Span<int> array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        Span<int> expected = [7, 8, 9, 10, 1, 2, 3, 4, 5, 6];
+
+        array.Rotate(4);
+
+        Assert.That(array.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
+    }
+
+    [Test]
+    public void Rotate_ShouldNotShiftElements_WithShift0()
+    {
+        Span<int> array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        Span<int> expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        array.Rotate(0);
+
+        Assert.That(array.ToArray(), Is.EqualTo(expected.ToArray()).AsCollection);
     }
 
 #if !NET9_0_OR_GREATER

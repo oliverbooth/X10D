@@ -1,3 +1,5 @@
+using X10D.Math;
+
 namespace X10D.Collections;
 
 /// <summary>
@@ -14,6 +16,37 @@ public static class SpanExtensions
     public static ReadOnlySpan<T> AsReadOnly<T>(this in Span<T> source)
     {
         return source;
+    }
+
+    /// <summary>
+    ///     Shifts the elements of the current span by a specified amount, wrapping them in the process.
+    /// </summary>
+    /// <param name="source">The span of elements to shift.</param>
+    /// <param name="shift">The amount to shift.</param>
+    /// <typeparam name="T">The type of the elements in <paramref name="source" />.</typeparam>
+    /// <exception cref="ArgumentNullException"><paramref name="source" /> is <see langword="null" />.</exception>
+    public static void Rotate<T>(this Span<T> source, int shift)
+    {
+        if (shift == 0)
+        {
+            return;
+        }
+
+        shift = shift.Mod(source.Length);
+        Reverse(source, 0, source.Length - 1);
+        Reverse(source, 0, shift - 1);
+        Reverse(source, shift, source.Length - 1);
+        return;
+
+        static void Reverse(Span<T> span, int start, int end)
+        {
+            while (start < end)
+            {
+                (span[start], span[end]) = (span[end], span[start]);
+                start++;
+                end--;
+            }
+        }
     }
 
 #if !NET9_0_OR_GREATER
